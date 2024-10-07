@@ -6,6 +6,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './tournament-overview.component.html',
-  styleUrl: './tournament-overview.component.css',
+  styleUrl: './tournament-overview.component.less',
 })
 export class TournamentOverviewComponent {}

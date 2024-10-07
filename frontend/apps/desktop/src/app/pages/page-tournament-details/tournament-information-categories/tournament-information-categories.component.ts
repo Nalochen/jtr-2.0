@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {RegisterDataComponent} from "../register/register-data.component";
+import {RegisterDataComponent} from '../register/register-data.component';
 
 @Component({
   selector: 'tournament-information-categories',
