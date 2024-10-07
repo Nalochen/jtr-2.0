@@ -66,7 +66,7 @@ jobs:
       - name: Install autopep8
         run: pip install autopep8
 
-      - name: Check code style
+      - name: Run code style checks
         run: |
           set -e
 

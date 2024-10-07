@@ -1,5 +1,5 @@
 # Stage 1
-FROM node:22.0-alpine AS build
+FROM node:22.0-bullseye AS build
 
 WORKDIR /app
 
@@ -14,4 +14,9 @@ RUN nx build desktop && nx build mobile
 
 # Stage 2
 FROM nginx:1.27.1-alpine
+
+RUN apk add --no-cache nodejs npm
+
+RUN npm install -g nx
+
 COPY --from=build /app/dist/apps /usr/share/nginx/html

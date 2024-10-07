@@ -31,4 +31,7 @@ module.exports = [
     // Override or add rules here
     rules: {},
   },
+  {
+    ignores: ['node_modules'],
+  }
 ];
