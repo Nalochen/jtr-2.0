@@ -1,0 +1,30 @@
+@import "../../../../colors-desktop.less";
+
+:host {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.tournament-information {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  width: 100%;
+}
+
+.meta-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.event-information {
+  display: flex;
+  flex-direction: row;
+}
+
+p {
+  color: #AE0044;
+}
