@@ -8,3 +8,6 @@
 
 ## Deps
 > `pipreqs . --force`
+
+## GitHub Actions
+> `act --container-architecture linux/amd64`
