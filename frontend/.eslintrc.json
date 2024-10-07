@@ -42,7 +42,7 @@
         "plugin:@angular-eslint/template/accessibility"
       ],
       "rules": {
-        "@angular-eslint/template/prefer-self-closing-tags": ["on"]
+        "@angular-eslint/template/prefer-self-closing-tags": ["error"]
       }
     }
   ]
