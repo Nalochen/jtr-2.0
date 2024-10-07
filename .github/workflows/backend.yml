@@ -1,0 +1,73 @@
+name: backend
+
+on: [ push ]
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build backend image
+        run: docker build -t backend ./backend
+
+      - name: Save backend image
+        run: docker save -o backend.tar backend
+
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image
+          path: backend.tar
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: Download backend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-image
+
+      - name: Load backend image
+        run: docker load -i backend.tar
+
+      - name: Run Docker Compose
+        run: docker-compose up -d backend mysql redis rabbitmq
+
+      - name: Run tests
+        run: docker exec backend pytest
+
+  code-style:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+
+      - name: Install autopep8
+        run: pip install autopep8
+
+      - name: Check code style
+        run: |
+          set -e
+
+          find ./backend -name '*.py' -exec autopep8 --diff --exit-code {} \;

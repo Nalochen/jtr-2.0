@@ -1,0 +1,15 @@
+openapi: 3.0.0
+info:
+  title: API
+  version: 1.0.0
+paths:
+  /api/data-text:
+    get:
+      summary: Get text data
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
