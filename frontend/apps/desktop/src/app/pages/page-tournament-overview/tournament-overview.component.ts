@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-tournament-overview',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './page-tournament-overview.component.html',
-  styleUrl: './page-tournament-overview.component.css',
+  templateUrl: './tournament-overview.component.html',
+  styleUrl: './tournament-overview.component.css',
 })
 export class TournamentOverviewComponent {}
