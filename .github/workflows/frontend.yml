@@ -14,16 +14,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Docker Compose
-        run: |
-          sudo curl -L "https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          sudo chmod +x /usr/local/bin/docker-compose
-
-      - name: Build Docker image
+      - name: Build frontend image
         run: docker build -t frontend ./frontend
 
-      - name: Run Docker Compose
-        run: docker-compose up -d frontend
+      - name: Save frontend image
+        run: docker save -o frontend.tar frontend
+
+      - name: Upload frontend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image
+          path: frontend.tar
 
   test:
     needs: build
@@ -32,12 +33,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: Download frontend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-image
+
+      - name: Load frontend image
+        run: docker load -i frontend.tar
+
+      - name: Run Docker Compose
+        run: docker-compose up -d frontend
+
       - name: Run tests
         run: |
           set -e
 
-          cd ./frontend
-          nx run-many --target=test --all
+          docker exec -w /app frontend npm i
+          docker exec -w /app frontend nx run-many --target=test --all
 
   code-style:
     needs: build
@@ -46,9 +63,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: Download frontend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-image
+
+      - name: Load frontend image
+        run: docker load -i frontend.tar
+
+      - name: Run Docker Compose
+        run: docker-compose up -d frontend
+
       - name: Run code style checks on all projects
         run: |
           set -e
 
-          cd ./frontend
-          nx run-many --target=lint --all
+          docker exec -w /app frontend npm i
+          docker exec -w /app frontend nx run-many --target=lint --all
