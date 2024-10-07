@@ -6,6 +6,6 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './shared-ui.component.html',
-  styleUrl: './shared-ui.component.css',
+  styleUrl: './shared-ui.component.less',
 })
 export class SharedUiComponent {}

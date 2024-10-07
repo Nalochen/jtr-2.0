@@ -34,4 +34,21 @@ jobs:
 
       - name: Run tests
         run: |
-          # TODO
+          set -e
+
+          cd ./frontend
+          nx run-many --target=test --all
+
+  code-style:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run code style checks on all projects
+        run: |
+          set -e
+
+          cd ./frontend
+          nx run-many --target=lint --all
