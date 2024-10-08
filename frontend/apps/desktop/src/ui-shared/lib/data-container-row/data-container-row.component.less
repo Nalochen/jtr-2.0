@@ -1,0 +1,29 @@
+:host {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  column-gap: 8px;
+  grid-template-rows: auto;
+  grid-template-areas: "icon headline"
+                        ". content";
+  align-items: center;
+}
+
+.icon {
+  grid-area: icon;
+}
+
+.header {
+  grid-area: headline;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.headline {
+  font-weight: bold;
+  color: #B8594A;
+}
+
+.content {
+  grid-area: content;
+}
