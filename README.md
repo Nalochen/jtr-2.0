@@ -13,7 +13,7 @@
 > `docker compose up -d`
 >
 > ### Code Style
-> `find . -name '*.py' -exec autopep8 --in-place --aggressive --aggressive {} \;`
+> `find ./backend -name '*.py' -exec autopep8 --in-place --aggressive --aggressive {} \;`
 
 ## Frontend
 >

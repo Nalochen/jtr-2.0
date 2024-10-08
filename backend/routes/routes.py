@@ -1,6 +1,7 @@
 from flask import jsonify, request, Blueprint
 
 from database.Models.Items import Items
+from database.Models.Teams import Teams
 
 from tools.extensions import redis, cache
 
@@ -41,5 +42,6 @@ def get_items():
         return jsonify(cachedResponse)
 
     items = Items.query.all()
+    team = Teams.query.all()
 
     return jsonify([item.serialize() for item in items])

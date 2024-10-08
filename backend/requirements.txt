@@ -2,7 +2,7 @@ Flask
 Flask_Cors
 Flask_JWT_Extended
 flask_sqlalchemy
-flask-caching
+flask_caching
 PyMySQL
 redis
 pipreqs
