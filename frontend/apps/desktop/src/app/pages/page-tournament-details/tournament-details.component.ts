@@ -4,11 +4,12 @@ import {TournamentDetailsHeaderComponent} from './header/tournament-details-head
 import {
   TournamentInformationCategoriesComponent
 } from './tournament-information-categories/tournament-information-categories.component';
+import { DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
 
 @Component({
   selector: 'app-tournament-details',
   standalone: true,
-  imports: [CommonModule, TournamentDetailsHeaderComponent, TournamentInformationCategoriesComponent],
+  imports: [CommonModule, TournamentDetailsHeaderComponent, TournamentInformationCategoriesComponent, DataContainerComponent, DataContainerRowComponent],
   templateUrl: './tournament-details.component.html',
   styleUrl: './tournament-details.component.less',
 })
