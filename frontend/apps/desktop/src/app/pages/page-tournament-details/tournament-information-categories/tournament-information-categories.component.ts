@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { DataContainerComponent, DataContainerRowComponent } from '../../../../ui-shared';
+import { DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({

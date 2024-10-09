@@ -4,7 +4,7 @@ import {TournamentDetailsHeaderComponent} from './header/tournament-details-head
 import {
   TournamentInformationCategoriesComponent
 } from './tournament-information-categories/tournament-information-categories.component';
-import { DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
+import { DataContainerComponent, DataContainerRowComponent } from '../../ui-shared';
 
 @Component({
   selector: 'app-tournament-details',
