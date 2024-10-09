@@ -20,3 +20,9 @@ RUN apk add --no-cache nodejs npm
 RUN npm install -g nx
 
 COPY --from=build /app/dist/apps /usr/share/nginx/html
+
+
+# Frontend Test Image
+FROM build AS frontend-test
+
+RUN npm install --only=dev

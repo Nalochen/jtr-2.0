@@ -1,0 +1,144 @@
+name: Test Coverage Comment
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: write
+  checks: write
+  pull-requests: write
+
+jobs:
+  backend-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build backend image
+        run: docker build -t backend ./backend
+
+      - name: Save backend image
+        run: docker save -o backend.tar backend
+
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-image
+          path: backend.tar
+
+  backend-coverage:
+    needs: backend-build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download backend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-image
+
+      - name: Load backend image
+        run: docker load -i backend.tar
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Build coverage files
+        run: |
+          docker run -v /tmp:/tmp backend python3 -m pytest --junitxml=/tmp/pytest.xml tests/ --cov=/app | tee /tmp/pytest-coverage.txt
+
+      - name: Upload backend coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-coverage
+          path: |
+            /tmp/pytest.xml
+            /tmp/pytest-coverage.txt
+
+  backend-coverage-comment:
+    needs: backend-coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download backend coverage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-coverage
+
+      - name: Pytest coverage comment
+        uses: MishaKav/pytest-coverage-comment@main
+        with:
+          pytest-coverage-path: pytest-coverage.txt
+          junitxml-path: pytest.xml
+          report-only-changed-files: true
+          remove-link-from-badge: true
+          badge-title: Test Coverage
+          hide-comment: true
+
+  frontend-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build frontend image
+        run: docker build -t frontend-test -f ./frontend/Dockerfile ./frontend
+
+      - name: Save frontend-test image
+        run: docker save -o frontend-test.tar frontend-test
+
+      - name: Upload frontend-test artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-test-image
+          path: frontend-test.tar
+
+  frontend-coverage:
+    needs: frontend-build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download frontend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-test-image
+
+      - name: Load frontend-test image
+        run: docker load -i frontend-test.tar
+
+      - name: Build coverage files
+        run: |
+          docker run -v /tmp:/tmp frontend-test npx jest --coverage | tee /tmp/jest-coverage.txt
+
+      - name: Upload frontend coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-coverage
+          path: |
+            /tmp/jest-coverage.txt
+
+  frontend-coverage-comment:
+    needs: frontend-coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download frontend coverage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-coverage
+
+      - name: Jest Coverage Comment
+        uses: MishaKav/jest-coverage-comment@main
+        with:
+          coverage-path: jest-coverage.txt
