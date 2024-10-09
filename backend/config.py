@@ -3,7 +3,7 @@ import os
 import pymysql
 from flask_cors import CORS
 
-from database.db import db
+from DataDomain.Database.db import db
 
 
 class Config(object):

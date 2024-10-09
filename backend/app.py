@@ -2,8 +2,8 @@ from flask import Flask
 
 from flask_jwt_extended import JWTManager
 
-from routes.routes import api
-from tools.extensions import cache
+from ExternalApi.Routes.routes import api
+from BusinessDomain.tools.extensions import cache
 from config import Config
 
 app = Flask(__name__)
