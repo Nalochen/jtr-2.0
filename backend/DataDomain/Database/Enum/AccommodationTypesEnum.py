@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class AccommodationTypeEnum(Enum):
+class AccommodationTypesEnum(Enum):
     """
     Enum class for the accommodation types
     """

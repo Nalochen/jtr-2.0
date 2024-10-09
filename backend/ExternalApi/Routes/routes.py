@@ -1,12 +1,7 @@
 from flask import jsonify, request, Blueprint
 
-from database.Models.Items import Items
-from database.Models.Teams import Teams
-
-from tools.extensions import redis, cache
-
-from tools.extensions import celery
-
+from BusinessDomain.tools.extensions import redis, cache, celery
+from DataDomain.Database.Models import Items, Teams
 
 api = Blueprint('api', __name__)
 

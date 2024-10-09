@@ -1,14 +1,19 @@
+import json
 from typing import Dict, Any, List
 
 from sqlalchemy import func, Column, Integer, DateTime, String, Text, Boolean, Enum
-from sqlalchemy.orm import relationship, Mapped
+from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.orm import Mapped
 
-from DataDomain.ORM.Enum.RegistrationProcedureTypeEnum import RegistrationProcedureTypeEnum
-from DataDomain.ORM.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
-from database.Models import Teams
-from database.db import db
-
-from database.Models.BaseModel import BaseModel
+from .BaseModel import BaseModel
+from .Teams import Teams
+from ..Enum.TournamentFoodEveningTypesEnum import TournamentFoodEveningTypesEnum
+from ..Enum.TournamentFoodGastroTypesEnum import TournamentFoodGastroTypesEnum
+from ..Enum.TournamentFoodMorningTypesEnum import TournamentFoodMorningTypesEnum
+from ..Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
+from ..Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
+from ..Enum.RegistrationProcedureTypesEnum import RegistrationProcedureTypesEnum
+from ..db import db
 
 
 class Tournaments(BaseModel, db.Model):
@@ -23,8 +28,8 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    date: Column[DateTime] = db.Column(
-        db.DateTime,
+    date: Column[Text] = db.Column(
+        db.Text(),
         nullable=False
     )
 
@@ -61,8 +66,8 @@ class Tournaments(BaseModel, db.Model):
         default='created'
     )
 
-    contacts: Column[String] = db.Column(
-        db.String(255),
+    contacts: Column[Text] = db.Column(
+        db.Text(),
         nullable=False
     )
 
@@ -76,9 +81,8 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    # TODO: ???
-    deadlines: Column[String] = db.Column(
-        db.String(30),
+    deadlines: Column[Text] = db.Column(
+        db.Text(),
         nullable=True
     )
 
@@ -87,27 +91,26 @@ class Tournaments(BaseModel, db.Model):
         nullable=True
     )
 
-    food_morning: Column[String] = db.Column(
-        db.String(255),
+    food_morning: Column[Enum] = db.Column(
+        db.Enum(TournamentFoodMorningTypesEnum),
         nullable=True,
         default=None
     )
 
-    food_noon: Column[String] = db.Column(
-        db.String(255),
+    food_noon: Column[Enum] = db.Column(
+        db.Enum(TournamentFoodNoonTypesEnum),
         nullable=True,
         default=None
     )
 
-    food_evening: Column[String] = db.Column(
-        db.String(255),
+    food_evening: Column[Enum] = db.Column(
+        db.Enum(TournamentFoodEveningTypesEnum),
         nullable=True,
         default=None
     )
 
-    # TODO: ???
-    food_gastro: Column[String] = db.Column(
-        db.String(255),
+    food_gastro: Column[Enum] = db.Column(
+        db.Enum(TournamentFoodGastroTypesEnum),
         nullable=True,
         default=None
     )
@@ -178,7 +181,7 @@ class Tournaments(BaseModel, db.Model):
     )
 
     registration_procedure_type: Column[Enum] = db.Column(
-        Enum(RegistrationProcedureTypeEnum),
+        Enum(RegistrationProcedureTypesEnum),
         nullable=False
     )
 
@@ -214,12 +217,16 @@ class Tournaments(BaseModel, db.Model):
         db.ForeignKey('teams.id')
     )
 
+
     def serialize(self) -> Dict[str, Any]:
         """
         Serialisiert das Objekt in ein Dictionary.
         """
 
         serialized = super().serialize()
+
+        serialized['date'] = self.getDate
+        serialized['contacts'] = self.getContacts
 
         serialized['team_count'] = self.teams.count()
 
@@ -265,3 +272,19 @@ class Tournaments(BaseModel, db.Model):
         }
 
         return serialized
+
+    @hybrid_property
+    def getDate(self) -> Dict[str, DateTime]:
+        """
+        Parst den JSON-String aus der Datenbank und gibt die Änderungen als Dictionary zurück.
+        """
+
+        return json.loads(self.date)
+
+    @hybrid_property
+    def getContacts(self) -> Dict[str]:
+        """
+        Parst den JSON-String aus der Datenbank und gibt die Änderungen als Dictionary zurück.
+        """
+
+        return json.loads(self.contacts)

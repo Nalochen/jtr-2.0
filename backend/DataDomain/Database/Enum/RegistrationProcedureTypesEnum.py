@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class RegistrationProcedureTypeEnum(Enum):
+class RegistrationProcedureTypesEnum(Enum):
     """
     Enum class for the registration procedure types
     """

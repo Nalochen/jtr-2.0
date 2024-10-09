@@ -1,11 +1,12 @@
-from typing import Optional, List
+import json
+from typing import Optional, List, Text, Dict, Any
 from sqlalchemy import func, Integer, Column, String, DateTime, Boolean, Null
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
-from database.Models.Tournaments import Tournaments
-from database.Models.Users import Users
-from database.db import db
-from database.Models.BaseModel import BaseModel
+from . import Tournaments, Users
+from .BaseModel import BaseModel
+from ..db import db
 
 
 class Teams(BaseModel, db.Model):
@@ -45,9 +46,8 @@ class Teams(BaseModel, db.Model):
         nullable=True
     )
 
-    # TODO: ???
-    contacts: Column[Optional[String]] = db.Column(
-        db.String(100),
+    contacts: Column[Optional[Text]] = db.Column(
+        db.Text(),
         nullable=True
     )
 
@@ -84,3 +84,23 @@ class Teams(BaseModel, db.Model):
         'Tournaments',
         backref='team_organizer'
     )
+
+
+    def serialize(self) -> Dict[str, Any]:
+        """
+        Serialisiert das Objekt in ein Dictionary.
+        """
+
+        serialized = super().serialize()
+
+        serialized['contacts'] = self.getContacts
+
+        return serialized
+
+    @hybrid_property
+    def getContacts(self) -> Dict[str]:
+        """
+        Parst den JSON-String aus der Datenbank und gibt die Änderungen als Dictionary zurück.
+        """
+
+        return json.loads(self.contacts)

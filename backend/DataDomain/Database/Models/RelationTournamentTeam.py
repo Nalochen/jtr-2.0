@@ -1,6 +1,6 @@
 from sqlalchemy import func
 
-from database.db import db
+from ..db import db
 
 
 participates_in = db.Table(

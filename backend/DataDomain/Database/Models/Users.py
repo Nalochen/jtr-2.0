@@ -3,10 +3,9 @@ from typing import Optional, List
 from sqlalchemy import func, Integer, Column, String, DateTime
 from sqlalchemy.orm import Mapped
 
-from database.Models import Teams
-from database.db import db
-
-from database.Models.BaseModel import BaseModel
+from .Teams import Teams
+from ..db import db
+from .BaseModel import BaseModel
 
 
 class Users(BaseModel, db.Model):

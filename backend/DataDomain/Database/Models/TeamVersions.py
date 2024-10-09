@@ -1,36 +1,34 @@
 import json
 from typing import Dict, Any, Self
 
-from sqlalchemy import func, DateTime, Column, Text, Integer
+from sqlalchemy import func, Integer, Column, Text, DateTime
 from sqlalchemy.ext.hybrid import hybrid_property
 
-from database.db import db
+from ..db import db
+from .BaseModel import BaseModel
 
-from database.Models.BaseModel import BaseModel
 
-
-class TournamentVersions(BaseModel, db.Model):
+class TeamVersions(BaseModel, db.Model):
 
     id: Column[Integer] = db.Column(
         db.Integer,
         primary_key=True
     )
 
-    tournament_id: Column[Integer] = db.Column(
+    team_id: Column[Integer] = db.Column(
         db.Integer,
-        db.ForeignKey('tournaments.id'),
-        nullable=False,
+        db.ForeignKey('teams.id')
     )
 
     version: Column[Integer] = db.Column(
         db.Integer,
-        nullable=False,
+        nullable=False
     )
 
-    _changes: Column[Text] = db.Column(
+    changes: Column[Text] = db.Column(
         'changes',
         db.Text,
-        nullable=False,
+        nullable=False
     )
 
     updated_at: Column[DateTime] = db.Column(
@@ -38,23 +36,6 @@ class TournamentVersions(BaseModel, db.Model):
         default=func.now()
     )
 
-    @hybrid_property
-    def getChanges(self) -> Dict[str, Any]:
-        """
-        Parst den JSON-String aus der Datenbank und gibt die Änderungen als Dictionary zurück.
-        """
-
-        return json.loads(self._changes)
-
-    @_changes.setter
-    def setChanges(self, changesDict: Dict[str, Any]) -> Self:
-        """
-        Nimmt ein Dictionary und speichert es als JSON-String in der 'changes'-Spalte.
-        """
-
-        self._changes = json.dumps(changesDict)
-
-        return self
 
     def serialize(self) -> Dict[str, Any]:
         """
@@ -66,3 +47,21 @@ class TournamentVersions(BaseModel, db.Model):
         serialized['changes'] = self.getChanges
 
         return serialized
+
+    @hybrid_property
+    def getChanges(self) -> Dict[str, Any]:
+        """
+        Parst den JSON-String aus der Datenbank und gibt die Änderungen als Dictionary zurück.
+        """
+
+        return json.loads(self.changes)
+
+    @changes.setter
+    def setChanges(self, changesDict: Dict[str, Any]) -> Self:
+        """
+        Nimmt ein Dictionary und speichert es als JSON-String in der 'changes'-Spalte.
+        """
+
+        self.changes = json.dumps(changesDict)
+
+        return self

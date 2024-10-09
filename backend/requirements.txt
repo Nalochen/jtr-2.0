@@ -9,3 +9,4 @@ pipreqs
 cryptography
 celery
 pytest
+autopep8
