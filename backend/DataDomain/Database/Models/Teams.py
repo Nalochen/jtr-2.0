@@ -4,7 +4,6 @@ from sqlalchemy import func, Integer, Column, String, DateTime, Boolean, Null
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
-from . import Tournaments, Users
 from .BaseModel import BaseModel
 from ..db import db
 
@@ -85,7 +84,6 @@ class Teams(BaseModel, db.Model):
         backref='team_organizer'
     )
 
-
     def serialize(self) -> Dict[str, Any]:
         """
         Serialisiert das Objekt in ein Dictionary.
@@ -98,7 +96,7 @@ class Teams(BaseModel, db.Model):
         return serialized
 
     @hybrid_property
-    def getContacts(self) -> Dict[str]:
+    def getContacts(self) -> List[str]:
         """
         Parst den JSON-String aus der Datenbank und gibt die Änderungen als Dictionary zurück.
         """

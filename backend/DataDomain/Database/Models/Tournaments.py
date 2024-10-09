@@ -6,13 +6,13 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
 from .BaseModel import BaseModel
-from .Teams import Teams
-from ..Enum.TournamentFoodEveningTypesEnum import TournamentFoodEveningTypesEnum
-from ..Enum.TournamentFoodGastroTypesEnum import TournamentFoodGastroTypesEnum
-from ..Enum.TournamentFoodMorningTypesEnum import TournamentFoodMorningTypesEnum
-from ..Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
-from ..Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
-from ..Enum.RegistrationProcedureTypesEnum import RegistrationProcedureTypesEnum
+from ..Enum import (
+    TournamentFoodEveningTypesEnum,
+    TournamentFoodGastroTypesEnum,
+    TournamentFoodMorningTypesEnum,
+    TournamentFoodNoonTypesEnum,
+    TournamentStatusTypesEnum,
+    RegistrationProcedureTypesEnum)
 from ..db import db
 
 
@@ -217,7 +217,6 @@ class Tournaments(BaseModel, db.Model):
         db.ForeignKey('teams.id')
     )
 
-
     def serialize(self) -> Dict[str, Any]:
         """
         Serialisiert das Objekt in ein Dictionary.
@@ -282,7 +281,7 @@ class Tournaments(BaseModel, db.Model):
         return json.loads(self.date)
 
     @hybrid_property
-    def getContacts(self) -> Dict[str]:
+    def getContacts(self) -> List[str]:
         """
         Parst den JSON-String aus der Datenbank und gibt die Änderungen als Dictionary zurück.
         """

@@ -1,7 +1,7 @@
 from sqlalchemy import Enum
 
+from ..Enum.UserRoleTypesEnum import UserRoleTypeEnum
 from ..db import db
-from ..Enum import UserRoleTypesEnum
 
 
 is_part_of = db.Table(

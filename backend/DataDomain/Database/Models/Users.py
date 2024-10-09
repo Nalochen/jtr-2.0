@@ -3,7 +3,6 @@ from typing import Optional, List
 from sqlalchemy import func, Integer, Column, String, DateTime
 from sqlalchemy.orm import Mapped
 
-from .Teams import Teams
 from ..db import db
 from .BaseModel import BaseModel
 

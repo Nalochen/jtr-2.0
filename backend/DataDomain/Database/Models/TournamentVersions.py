@@ -37,7 +37,6 @@ class TournamentVersions(BaseModel, db.Model):
         default=func.now()
     )
 
-
     def serialize(self) -> Dict[str, Any]:
         """
         Serialisiert das Objekt in ein Dictionary.
