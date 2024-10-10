@@ -2,7 +2,7 @@
 // Proceed with caution if making changes to this file.
 
 @use 'sass:map';
-@use '../../../../node_modules/@angular/material/index' as mat;
+@use '../../../node_modules/@angular/material/index' as mat;
 
 // Note: Color palettes are generated from primary: #B8594A, secondary: #034659, tertiary: #DAEFF0, neutral: #FFFFFF
 $_palettes: (
@@ -140,9 +140,12 @@ $light-theme: mat.define-theme((
     theme-type: light,
     primary: $_primary,
     tertiary: $_tertiary,
-    use-system-variables: true,
   ),
   typography: (
-    use-system-variables: true,
+    plain-family: 'Helvetica Neue',
+    brand-family: 'Didot',
+    bold-weight: 700,
+    medium-weight: 500,
+    regular-weight: 400,
   ),
 ));
