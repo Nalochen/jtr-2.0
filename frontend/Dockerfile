@@ -5,10 +5,10 @@ WORKDIR /app
 
 COPY package*.json .
 
+COPY . .
+
 RUN npm install
 RUN npm install -g nx
-
-COPY . .
 
 RUN nx build desktop && nx build mobile
 

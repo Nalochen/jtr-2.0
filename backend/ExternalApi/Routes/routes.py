@@ -1,6 +1,6 @@
 from flask import jsonify, request, Blueprint
 
-from BusinessDomain.tools.extensions import redis, cache, celery
+from extensions import redis, cache, celery
 from DataDomain.Database.Models.Items import Items
 from DataDomain.Database.Models.Teams import Teams
 

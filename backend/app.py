@@ -3,7 +3,7 @@ from flask import Flask
 from flask_jwt_extended import JWTManager
 
 from ExternalApi.Routes.routes import api
-from BusinessDomain.tools.extensions import cache
+from extensions import cache
 from config import Config
 
 app = Flask(__name__)
