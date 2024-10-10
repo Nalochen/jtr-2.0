@@ -70,4 +70,4 @@ jobs:
         run: |
           set -e
 
-          find ./backend -name '*.py' -exec autopep8 --diff --exit-code {} \;
+          find ./backend -name '*.py' | xargs -I {} autopep8 --diff --exit-code {}

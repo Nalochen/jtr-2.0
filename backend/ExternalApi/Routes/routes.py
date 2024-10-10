@@ -1,11 +1,8 @@
 from flask import jsonify, request, Blueprint
 
-from database.Models.Items import Items
-
-from tools.extensions import redis, cache
-
-from tools.extensions import celery
-
+from BusinessDomain.tools.extensions import redis, cache, celery
+from DataDomain.Database.Models.Items import Items
+from DataDomain.Database.Models.Teams import Teams
 
 api = Blueprint('api', __name__)
 
@@ -41,5 +38,6 @@ def get_items():
         return jsonify(cachedResponse)
 
     items = Items.query.all()
+    team = Teams.query.all()
 
     return jsonify([item.serialize() for item in items])
