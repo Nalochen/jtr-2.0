@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'data-container',
+  selector: 'app-data-container',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './data-container.component.html',

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'data-container-row',
+  selector: 'app-data-container-row',
   standalone: true,
   imports: [CommonModule, MatIcon],
   templateUrl: './data-container-row.component.html',

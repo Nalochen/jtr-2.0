@@ -13,25 +13,25 @@ import { MatIcon } from '@angular/material/icon';
 })
 export class TournamentTeamsComponent {
   public registeredTeams: string[] = [
-    "Munich Monks",
-    "Rigor Mortis",
-    "Blue Fangs",
-    "Jugger Helden Bamberg",
-    "Flying Juggmen",
-    "Juggernauts",
-    "Aixcalibur",
-    "Cranium Ex Machina",
-    "Lahnveilchen Gießen",
-    "Torpedo Bääm",
-    "Zonenkinder",
+    'Munich Monks',
+    'Rigor Mortis',
+    'Blue Fangs',
+    'Jugger Helden Bamberg',
+    'Flying Juggmen',
+    'Juggernauts',
+    'Aixcalibur',
+    'Cranium Ex Machina',
+    'Lahnveilchen Gießen',
+    'Torpedo Bääm',
+    'Zonenkinder',
   ];
 
   public reservedTeams: string[] = [
-    "NLG",
-    "Peters Pawns",
-    "Quadratur des Kreises",
-    "Quak Pack",
-    "Leere Menge",
-    "Rhein-Neckar-Donner",
+    'NLG',
+    'Peters Pawns',
+    'Quadratur des Kreises',
+    'Quak Pack',
+    'Leere Menge',
+    'Rhein-Neckar-Donner',
   ];
 }

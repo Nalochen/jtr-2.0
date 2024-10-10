@@ -4,7 +4,7 @@ import { MatChipsModule } from '@angular/material/chips';
 
 
 @Component({
-  selector: 'chip',
+  selector: 'app-chip',
   standalone: true,
   imports: [CommonModule, MatChipsModule],
   templateUrl: './chip.component.html',
