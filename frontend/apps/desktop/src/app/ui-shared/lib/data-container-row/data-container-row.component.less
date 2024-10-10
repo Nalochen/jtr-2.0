@@ -6,6 +6,13 @@
   grid-template-areas: "icon headline"
                         ". content";
   align-items: center;
+  &:not(:last-of-type) {
+    margin-bottom: 8px;
+  }
+
+  &:not(:first-of-type) {
+    margin-top: 8px;
+  }
 }
 
 .icon {
