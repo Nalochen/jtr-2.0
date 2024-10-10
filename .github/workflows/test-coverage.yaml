@@ -118,7 +118,7 @@ jobs:
         run: docker run -v /tmp:/tmp frontend-test npx jest --reporters=default --reporters=jest-junit --coverage --no-cache | tee /tmp/jest-coverage.txt
 
       - name: Build summary files
-        run: docker run -v /tmp:/app/coverage frontend-test npx jest --coverage --coverageReporters json-summary --no-cache
+        run: docker run -v /tmp:/app/coverage frontend-test npx jest --coverage --coverageReporters json-summary --no-cache --verbose
 
       - name: Upload frontend coverage artifact
         uses: actions/upload-artifact@v4
