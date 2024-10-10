@@ -1,7 +1,7 @@
 from TaskHandler import TaskHandler
 
-from database.Models.Items import Items
-from database.db import db
+from DataDomain.Database.Models.Items import Items
+from DataDomain.Database.db import db
 
 
 class CreateItemHandler(TaskHandler):
