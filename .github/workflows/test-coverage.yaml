@@ -79,7 +79,8 @@ jobs:
           junitxml-path: pytest.xml
           report-only-changed-files: true
           remove-link-from-badge: true
-          badge-title: Test Coverage
+          badge-title: Coverage
+          junitxml-title: Backend coverage
 
   frontend-build:
     runs-on: ubuntu-latest
@@ -117,6 +118,7 @@ jobs:
       - name: Build coverage files
         run: |
           docker run -v /tmp:/tmp frontend-test npx jest --reporters=default --reporters=jest-junit --coverage | tee /tmp/jest-coverage.txt
+          docker run -v /tmp:/app/coverage frontend-test npx jest --coverage --coverageReporters json-summary
 
       - name: Upload frontend coverage artifact
         uses: actions/upload-artifact@v4
@@ -125,6 +127,7 @@ jobs:
           path: |
             /tmp/jest-coverage.txt
             /tmp/junit.xml
+            /tmp/coverage-summary.json
 
   frontend-coverage-comment:
     needs: frontend-coverage
@@ -141,28 +144,9 @@ jobs:
       - name: Jest Coverage Comment
         uses: MishaKav/jest-coverage-comment@main
         with:
+          coverage-summary-path: coverage-summary.json
           coverage-path: jest-coverage.txt
-
-  coverage-comment:
-    needs: [backend-coverage, frontend-coverage]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download backend coverage artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: backend-coverage
-
-      - name: Download frontend coverage artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-coverage
-
-      - name: Jest Coverage Comment
-        uses: MishaKav/jest-coverage-comment@main
-        with:
-          multiple-junitxml-files: |
-            Backend, pytest.xml
-            Frontend, junit.xml
+          junitxml-path: junit.xml
+          report-only-changed-files: true
+          badge-title: Coverage
+          title: Frontend coverage
