@@ -116,7 +116,7 @@ jobs:
 
       - name: Build coverage files
         run: |
-          docker run -v /tmp:/app frontend-test npx jest --reporters=default --reporters=jest-junit --coverage | tee jest-coverage.txt
+          docker run -v /tmp:/tmp frontend-test npx jest --reporters=default --reporters=jest-junit --coverage | tee /tmp/jest-coverage.txt 
           docker run -v /tmp:/app/coverage frontend-test npx jest --coverage --coverageReporters json-summary
 
       - name: Upload frontend coverage artifact
