@@ -21,7 +21,6 @@ RUN npm install -g nx
 
 COPY --from=build /app/dist/apps /usr/share/nginx/html
 
-
 # Frontend Test Image
 FROM build AS frontend-test
 
