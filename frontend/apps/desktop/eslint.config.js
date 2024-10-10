@@ -20,15 +20,15 @@ module.exports = [
         'error',
         {
           type: 'element',
-          prefix: 'app',
+          prefix: ['app', 'tournament', 'register'],
           style: 'kebab-case',
         },
       ],
+      'quotes': ['error', 'single']
     },
   },
   {
     files: ['**/*.html'],
-    // Override or add rules here
     rules: {},
   },
   {
