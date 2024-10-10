@@ -32,11 +32,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Docker Compose
-        run: |
-          sudo curl -L "https://github.com/docker/compose/releases/download/v2.29.7/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          sudo chmod +x /usr/local/bin/docker-compose
-
       - name: Download backend artifact
         uses: actions/download-artifact@v4
         with:
@@ -45,11 +40,11 @@ jobs:
       - name: Load backend image
         run: docker load -i backend.tar
 
-      - name: Run Docker Compose
-        run: docker-compose up -d backend mysql redis rabbitmq
-
       - name: Run tests
-        run: docker exec backend pytest
+        run: |
+          set -e
+
+          docker run backend pytest
 
   code-style:
     needs: build
@@ -61,7 +56,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: 3.11
 
       - name: Install autopep8
         run: pip install autopep8
