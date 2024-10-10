@@ -8,6 +8,7 @@ redis
 pipreqs
 cryptography
 celery
-pytest
-pytest-env
 autopep8
+pytest
+pytest-cov
+pytest-env
