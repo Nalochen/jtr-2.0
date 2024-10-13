@@ -3,11 +3,14 @@ from typing import Optional, List
 from sqlalchemy import func, Integer, Column, String, DateTime
 from sqlalchemy.orm import Mapped
 
+from .RelationUserTeam import is_part_of
 from ..db import db
 from .BaseModel import BaseModel
 
 
 class Users(BaseModel, db.Model):
+
+    __tablename__ = 'users'
 
     id: Column[Integer] = db.Column(
         db.Integer,
@@ -53,9 +56,12 @@ class Users(BaseModel, db.Model):
 
     updated_at: Column[DateTime] = db.Column(
         db.DateTime,
+        default=func.now(),
         onupdate=func.now()
     )
 
     teams: Mapped[List['Teams']] = db.relationship(
-        'Teams', secondary='is_part_of', backref='users'
+        'Teams',
+        secondary=is_part_of,
+        backref='users_backref'
     )

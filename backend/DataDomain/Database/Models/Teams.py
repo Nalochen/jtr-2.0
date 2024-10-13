@@ -5,10 +5,14 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
 from .BaseModel import BaseModel
+from .RelationTournamentTeam import participates_in
+from .RelationUserTeam import is_part_of
 from ..db import db
 
 
 class Teams(BaseModel, db.Model):
+
+    __tablename__ = 'teams'
 
     id: Column[Integer] = db.Column(
         db.Integer,
@@ -72,21 +76,30 @@ class Teams(BaseModel, db.Model):
 
     updated_at: Column[DateTime] = db.Column(
         db.DateTime,
+        default=func.now(),
         onupdate=func.now()
     )
 
-    users: Mapped[List['Users']] = db.relationship(
-        'Users', secondary='is_part_of', backref='teams'
+    team_members: Mapped[List['Users']] = db. relationship(
+        'Users',
+        secondary=is_part_of,
+        backref='teams_backref'
+    )
+
+    tournaments: Mapped[List['Tournaments']] = db.relationship(
+        'Tournaments',
+        secondary=participates_in,
+        backref='teams_backref'
     )
 
     organized_tournaments: Mapped[List['Tournaments']] = db.relationship(
         'Tournaments',
-        backref='team_organizer'
+        backref='organizer_team'
     )
 
     def serialize(self) -> Dict[str, Any]:
         """
-        Serialisiert das Objekt in ein Dictionary.
+        Serializes the object as a dictionary.
         """
 
         serialized = super().serialize()

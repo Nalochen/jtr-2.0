@@ -1,6 +1,6 @@
-from sqlalchemy import Enum
+from sqlalchemy import Enum, Integer, ForeignKey, func
 
-from ..Enum.UserRoleTypesEnum import UserRoleTypeEnum
+from ..Enum.UserRoleTypesEnum import UserRoleTypesEnum
 from ..db import db
 
 
@@ -10,22 +10,28 @@ is_part_of = db.Table(
 
     db.Column(
         'user_id',
-        db.Integer,
-        db.ForeignKey('users.id'),
+        Integer,
+        ForeignKey('users.id'),
         primary_key=True
     ),
 
     db.Column(
         'team_id',
-        db.Integer,
-        db.ForeignKey('teams.id'),
+        Integer,
+        ForeignKey('teams.id'),
         primary_key=True
     ),
 
     db.Column(
         'user_role',
-        Enum(UserRoleTypeEnum),
+        Enum(UserRoleTypesEnum),
         nullable=False,
         default='member'
+    ),
+
+    db.Column(
+        'created_at',
+        db.DateTime,
+        default=func.now()
     )
 )

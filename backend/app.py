@@ -6,6 +6,7 @@ from ExternalApi.Routes.routes import api
 from BusinessDomain.tools.extensions import cache
 from config import Config
 
+
 app = Flask(__name__)
 app.config.from_object(Config)
 

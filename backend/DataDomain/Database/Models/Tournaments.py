@@ -6,17 +6,19 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
 from .BaseModel import BaseModel
-from ..Enum import (
-    TournamentFoodEveningTypesEnum,
-    TournamentFoodGastroTypesEnum,
-    TournamentFoodMorningTypesEnum,
-    TournamentFoodNoonTypesEnum,
-    TournamentStatusTypesEnum,
-    RegistrationProcedureTypesEnum)
+from .RelationTournamentTeam import participates_in
+from ..Enum.RegistrationProcedureTypesEnum import RegistrationProcedureTypesEnum
+from ..Enum.TournamentFoodEveningTypesEnum import TournamentFoodEveningTypesEnum
+from ..Enum.TournamentFoodGastroTypesEnum import TournamentFoodGastroTypesEnum
+from ..Enum.TournamentFoodMorningTypesEnum import TournamentFoodMorningTypesEnum
+from ..Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
+from ..Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
 from ..db import db
 
 
 class Tournaments(BaseModel, db.Model):
+
+    __tablename__ = 'tournaments'
 
     id: Column[Integer] = db.Column(
         db.Integer,
@@ -63,7 +65,7 @@ class Tournaments(BaseModel, db.Model):
     status: Column[Enum] = db.Column(
         Enum(TournamentStatusTypesEnum),
         nullable=False,
-        default='created'
+        default=TournamentStatusTypesEnum.CREATED
     )
 
     contacts: Column[Text] = db.Column(
@@ -198,28 +200,24 @@ class Tournaments(BaseModel, db.Model):
 
     updated_at: Column[DateTime] = db.Column(
         db.DateTime,
+        default=func.now(),
         onupdate=func.now()
     )
 
     organizer_id: Column[Integer] = db.Column(
         db.Integer,
-        db.ForeignKey('users.id')
+        db.ForeignKey('teams.id')
     )
 
     teams: Mapped[List['Teams']] = db.relationship(
         'Teams',
-        secondary='participates_in',
-        backref='tournaments'
-    )
-
-    team_organizer_id: Column[Integer] = db.Column(
-        db.Integer,
-        db.ForeignKey('teams.id')
+        secondary=participates_in,
+        backref='tournament_backref'
     )
 
     def serialize(self) -> Dict[str, Any]:
         """
-        Serialisiert das Objekt in ein Dictionary.
+        Serializes the object as a dictionary.
         """
 
         serialized = super().serialize()

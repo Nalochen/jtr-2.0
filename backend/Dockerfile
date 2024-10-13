@@ -9,7 +9,7 @@ RUN python3 -m venv $VIRTUAL_ENV
 # ;) please ignore this line
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 RUN chmod +x entrypoint.sh
 

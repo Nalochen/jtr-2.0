@@ -10,6 +10,8 @@ from .BaseModel import BaseModel
 
 class UserVersions(BaseModel, db.Model):
 
+    __tablename__ = 'user_versions'
+
     id: Column[Integer] = db.Column(
         db.Integer,
         primary_key=True
@@ -39,7 +41,7 @@ class UserVersions(BaseModel, db.Model):
 
     def serialize(self) -> Dict[str, Any]:
         """
-        Serialisiert das Objekt in ein Dictionary.
+        Serializes the object as a dictionary.
         """
 
         serialized = super().serialize()
@@ -59,7 +61,7 @@ class UserVersions(BaseModel, db.Model):
     @changes.setter
     def setChanges(self, changesDict: Dict[str, Any]) -> Self:
         """
-        Nimmt ein Dictionary und speichert es als JSON-String in der 'changes'-Spalte.
+        Takes the dictionary and safes it as a JSON-String in the 'changes' column.
         """
 
         self.changes = json.dumps(changesDict)

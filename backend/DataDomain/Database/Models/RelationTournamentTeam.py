@@ -48,7 +48,7 @@ participates_in = db.Table(
     ),
 
     db.Column(
-        'registered_at',
+        'created_at',
         db.DateTime,
         default=func.now()
     )

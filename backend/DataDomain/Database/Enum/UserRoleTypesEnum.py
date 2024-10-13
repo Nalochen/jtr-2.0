@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class UserRoleTypeEnum(Enum):
+class UserRoleTypesEnum(Enum):
     """
     Enum class for the user role types
     """
