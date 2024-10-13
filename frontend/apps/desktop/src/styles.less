@@ -1,13 +1,15 @@
 @import "less/fonts-desktop.less";
 @import "less/colors-desktop.less";
 
+@helveticaNeue: "Helvetica Neue", Helvetica, sans-serif;
+
 body {
   margin: 0;
   background-color: @color-bg-light;
 }
 
 p {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: @helveticaNeue;
   margin: 0 !important;
 }
 
@@ -19,7 +21,7 @@ h1 {
 }
 
 h2 {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: @helveticaNeue;
   color: @color-red;
   font-size: 24px;
   margin: 0;
@@ -27,7 +29,10 @@ h2 {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: "Helvetica Neue", Helvetica, sans-serif; }
+body {
+  margin: 0; font-family: @helveticaNeue;
+}
+
 a {
   color: @color-blue;
   text-decoration: underline;
