@@ -1,6 +1,7 @@
+import json
 import random
 import traceback
-from typing import List, Union, Optional
+from typing import List, Union, Optional, Dict, Any
 
 from sqlalchemy import ColumnDefault, Table, desc, Column
 from sqlalchemy.orm import ColumnProperty
@@ -31,6 +32,9 @@ class ModelFaker:
         It handles exceptions and rolls back the session in case of any errors.
         """
 
+        if not isinstance(amount, int):
+            amount = 1
+
         try:
             for _ in range(amount):
                 data = {}
@@ -47,6 +51,7 @@ class ModelFaker:
                 else:
                     db.session.add(self.model(**data))
 
+
             db.session.commit()
 
         except Exception as e:
@@ -62,6 +67,9 @@ class ModelFaker:
 
         columnType = column.type
 
+        if column.doc:
+            return f'{self._generateJsonData(column.doc)}'
+
         # Enum has to be the first type to check, or otherwise it
         # uses the options of the corresponding type of the enum options
         if isinstance(columnType, ModelColumnTypesEnum.ENUM.value):
@@ -71,7 +79,7 @@ class ModelFaker:
             return self.__handleRelationship(column)
 
         elif isinstance(columnType, ModelColumnTypesEnum.STRING.value):
-            return self.fake.name()
+            return self.fake.word()
 
         elif isinstance(columnType, ModelColumnTypesEnum.INTEGER.value):
             return self.fake.random_int(min=1, max=100)
@@ -119,7 +127,8 @@ class ModelFaker:
         """
 
         return ((column.primary_key and not column.foreign_keys) or (
-            isinstance(column.default, ColumnDefault) and column.default.arg is not None))
+            isinstance(column.default, ColumnDefault) and column.default.arg is not None) or
+                column.nullable is not None and column.nullable is True)
 
     def __getTableColumns(self) -> List[Column]:
         """
@@ -141,3 +150,38 @@ class ModelFaker:
         fk = list(column.foreign_keys)[0]
 
         return fk.column.table
+
+    def _generateJsonData(self, docstring: str) -> Dict[str, Any]:
+        """
+        Generates JSON data based on the provided docstring.
+        """
+
+        json_structure = json.loads(docstring)
+
+        return self._populateJsonStructure(json_structure)
+
+    def _populateJsonStructure(self, structure: Union[Dict[str, Any], List[Any]]) -> Any:
+        """
+        Populates the JSON structure with fake data based on the defined schema.
+        """
+
+        if isinstance(structure, dict):
+            populated_data = {}
+
+            for key, value in structure.items():
+
+                if isinstance(value, dict):
+                    populated_data[key] = self._populateJsonStructure(value)
+                elif value == 'datetime':
+                    populated_data[key] = self.fake.date_time()
+                elif value == 'date':
+                    populated_data[key] = self.fake.date()
+                else:
+                    populated_data[key] = self.fake.word()
+
+            return populated_data
+
+        elif isinstance(structure, list):
+            return [self.fake.word() for _ in range(len(structure))]
+
+        return structure

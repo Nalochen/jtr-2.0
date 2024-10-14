@@ -5,9 +5,7 @@ from sqlalchemy.orm import relationship
 
 
 class ModelColumnTypesEnum(Enum):
-    """
-    Enum class for the model column types
-    """
+    """Enum class for the model column types"""
 
     STRING = String
 

@@ -4,10 +4,10 @@ from sqlalchemy import func, Integer, Column, String, DateTime, Boolean, Null
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
-from .BaseModel import BaseModel
-from .RelationTournamentTeam import participates_in
-from .RelationUserTeam import is_part_of
-from ..db import db
+from DataDomain.Database.Model.BaseModel import BaseModel
+from DataDomain.Database.Model.RelationTournamentTeam import participates_in
+from DataDomain.Database.Model.RelationUserTeam import is_part_of
+from DataDomain.Database.db import db
 
 
 class Teams(BaseModel, db.Model):
@@ -31,7 +31,7 @@ class Teams(BaseModel, db.Model):
 
     founded: Column[Optional[DateTime]] = db.Column(
         db.DateTime,
-        nullable=True
+        default=func.now()
     )
 
     city: Column[Optional[String]] = db.Column(
@@ -46,12 +46,13 @@ class Teams(BaseModel, db.Model):
 
     about_us: Column[Optional[String]] = db.Column(
         db.String(100),
-        nullable=True
+        nullable=True,
     )
 
     contacts: Column[Optional[Text]] = db.Column(
         db.Text(),
-        nullable=True
+        nullable=False,
+        doc='["string"]'
     )
 
     is_mix_team: Column[Optional[Boolean]] = db.Column(

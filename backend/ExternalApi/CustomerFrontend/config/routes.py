@@ -1,61 +1,56 @@
-from flask import jsonify, request, Blueprint, Response
+from flask import jsonify, request, Blueprint, Response, g
 
-from DataDomain.Database.Models.RelationTournamentTeam import participates_in
-from DataDomain.Database.Models.RelationUserTeam import is_part_of
+from DataDomain.Database.Model.RelationTournamentTeam import participates_in
+from DataDomain.Database.Model.RelationUserTeam import is_part_of
+from ExternalApi.CustomerFrontend.Handler.GenerateFakeUserHandler import GenerateFakeUserHandler
+from ExternalApi.CustomerFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
+from ExternalApi.CustomerFrontend.InputFilter.FakerInputFilter import FakerInputFilter
 from Infrastructure.JTRFaker.Faker.ModelFaker import ModelFaker
 from extensions import redis, cache, celery
-from DataDomain.Database.Models.Items import Items
-from DataDomain.Database.Models.Teams import Teams
-from DataDomain.Database.Models.Tournaments import Tournaments
-from DataDomain.Database.Models.Users import Users
+from DataDomain.Database.Model.Items import Items
+from DataDomain.Database.Model.Teams import Teams
+from DataDomain.Database.Model.Tournaments import Tournaments
 
 
 api = Blueprint('api', __name__)
 
 
-@api.route('/generate-fake-users', methods=['POST'])
-def generateFakeUsers():
-    ModelFaker(Users).create(amount=request.json.get('count'))
+@api.route('/get-tournament-details/<int:tournamentId>', methods=['GET'])
+def getTournamentDetails(
+    tournamentId: int): return GetTournamentDetailsHandler().handle(tournamentId)
 
-    return Response(status=200)
+
+@api.route('/generate-fake-users', methods=['POST'])
+@FakerInputFilter.validate()
+def generateFakeUsers(): return GenerateFakeUserHandler().handle()
 
 
 @api.route('/generate-fake-tournaments', methods=['POST'])
 def generateFakeTournaments():
-    ModelFaker(Tournaments).create(amount=request.json.get('count'))
+    ModelFaker(Tournaments).create(amount=request.json.get('amount'))
 
     return Response(status=200)
 
 
 @api.route('/generate-fake-teams', methods=['POST'])
 def generateFakeTeams():
-    ModelFaker(Teams).create(amount=request.json.get('count'))
+    ModelFaker(Teams).create(amount=request.json.get('amount'))
 
     return Response(status=200)
 
 
 @api.route('/generate-fake-is-part-of', methods=['POST'])
 def generateFakeIsPartOf():
-    ModelFaker(is_part_of).create(amount=request.json.get('count'))
+    ModelFaker(is_part_of).create(amount=request.json.get('amount'))
 
     return Response(status=200)
 
 
 @api.route('/generate-fake-participates_in', methods=['POST'])
 def generateFakeParticipatesIn():
-    ModelFaker(participates_in).create(amount=request.json.get('count'))
+    ModelFaker(participates_in).create(amount=request.json.get('amount'))
 
     return Response(status=200)
-
-
-@api.route('/data-text')
-def text():
-    return "Hello, String!"
-
-
-@api.route('/data-obj')
-def obj():
-    return {"data": "Hello, Obj!"}
 
 
 @api.route('/items', methods=['POST'])

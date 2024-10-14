@@ -4,16 +4,18 @@ from typing import Dict, Any, List
 from sqlalchemy import func, Column, Integer, DateTime, String, Text, Boolean, Enum
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
+from sqlalchemy.sql.functions import count
 
-from .BaseModel import BaseModel
-from .RelationTournamentTeam import participates_in
-from ..Enum.RegistrationProcedureTypesEnum import RegistrationProcedureTypesEnum
-from ..Enum.TournamentFoodEveningTypesEnum import TournamentFoodEveningTypesEnum
-from ..Enum.TournamentFoodGastroTypesEnum import TournamentFoodGastroTypesEnum
-from ..Enum.TournamentFoodMorningTypesEnum import TournamentFoodMorningTypesEnum
-from ..Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
-from ..Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
-from ..db import db
+from DataDomain.Database.Model.BaseModel import BaseModel
+from DataDomain.Database.Model.RelationTournamentTeam import participates_in
+from DataDomain.Database.Enum.RegistrationProcedureTypesEnum import RegistrationProcedureTypesEnum
+from DataDomain.Database.Enum.TournamentFoodEveningTypesEnum import TournamentFoodEveningTypesEnum
+from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import TournamentFoodGastroTypesEnum
+from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import TournamentFoodMorningTypesEnum
+from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
+from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
+from DataDomain.Database.Model.Teams import Teams
+from DataDomain.Database.db import db
 
 
 class Tournaments(BaseModel, db.Model):
@@ -32,7 +34,8 @@ class Tournaments(BaseModel, db.Model):
 
     date: Column[Text] = db.Column(
         db.Text(),
-        nullable=False
+        nullable=False,
+        doc='{"start": "datetime", "end": "datetime"}'
     )
 
     address: Column[String] = db.Column(
@@ -70,7 +73,8 @@ class Tournaments(BaseModel, db.Model):
 
     contacts: Column[Text] = db.Column(
         db.Text(),
-        nullable=False
+        nullable=False,
+        doc='["string"]'
     )
 
     accommodation: Column[String] = db.Column(
@@ -177,13 +181,13 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    registration_procedure_text: Column[Text] = db.Column(
-        db.Text(),
+    registration_procedure_type: Column[Enum] = db.Column(
+        Enum(RegistrationProcedureTypesEnum),
         nullable=False
     )
 
-    registration_procedure_type: Column[Enum] = db.Column(
-        Enum(RegistrationProcedureTypesEnum),
+    registration_procedure_url: Column[Text] = db.Column(
+        db.String(255),
         nullable=False
     )
 
@@ -225,7 +229,7 @@ class Tournaments(BaseModel, db.Model):
         serialized['date'] = self.getDate
         serialized['contacts'] = self.getContacts
 
-        serialized['team_count'] = self.teams.count()
+        serialized['team_count'] = count(self.teams)
 
         serialized['costs'] = {
             'user': serialized.pop('costs_per_user'),
@@ -256,7 +260,7 @@ class Tournaments(BaseModel, db.Model):
             'morning': serialized.pop('food_morning'),
             'noon': serialized.pop('food_noon'),
             'evening': serialized.pop('food_evening'),
-            'gastro': serialized.pop('gastro')
+            'gastro': serialized.pop('food_gastro')
         }
 
         serialized['shoes'] = {
@@ -267,6 +271,10 @@ class Tournaments(BaseModel, db.Model):
             'cleats_allowed': serialized.pop('cleats_shoes_allowed'),
             'barefoot_allowed': serialized.pop('barefoot_allowed')
         }
+
+        serialized['teams'] = [team.serialize() for team in self.teams]
+        serialized['organizer'] = Teams.query.get(
+            serialized.pop('organizer_id')).serialize()
 
         return serialized
 
@@ -284,4 +292,4 @@ class Tournaments(BaseModel, db.Model):
         Parses the JSON string from the database and returns the changes as a dictionary.
         """
 
-        return json.loads(self.contacts)
+        return json.loads(str(self.contacts))

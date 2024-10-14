@@ -1,5 +1,5 @@
-from .BaseModel import BaseModel
-from ..db import db
+from DataDomain.Database.Model.BaseModel import BaseModel
+from DataDomain.Database.db import db
 
 
 class Items(BaseModel, db.Model):

@@ -1,18 +1,5 @@
-### Bekomme alle Daten
-GET https://{{host}}/api/data-text
-
-
-### Füge Item hinzu
-POST https://{{host}}/api/items
-Content-Type: application/json
-
-{
-    "name": "Item 1"
-}
-
-
-### Bekomme alle Items
-GET https://{{host}}/api/items
+### Get tournaments details
+GET https://{{host}}/api/get-tournament-details/1
 
 
 ### Generate fake users
@@ -20,7 +7,7 @@ POST https://{{host}}/api/generate-fake-users
 Content-Type: application/json
 
 {
-    "count": 2
+    "amount": 2
 }
 
 
@@ -29,7 +16,7 @@ POST https://{{host}}/api/generate-fake-teams
 Content-Type: application/json
 
 {
-    "count": 2
+    "amount": 2
 }
 
 
@@ -38,7 +25,7 @@ POST https://{{host}}/api/generate-fake-tournaments
 Content-Type: application/json
 
 {
-    "count": 2
+    "amount": 2
 }
 
 
@@ -47,7 +34,7 @@ POST https://{{host}}/api/generate-fake-is-part-of
 Content-Type: application/json
 
 {
-    "count": 2
+    "amount": 2
 }
 
 
@@ -56,5 +43,5 @@ POST https://{{host}}/api/generate-fake-participates_in
 Content-Type: application/json
 
 {
-    "count": 2
+    "amount": 2
 }

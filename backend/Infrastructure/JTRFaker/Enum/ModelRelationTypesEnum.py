@@ -2,9 +2,7 @@ from enum import Enum
 
 
 class ModelRelationTypesEnum(Enum):
-    """
-    Enum class for the model relation types
-    """
+    """Enum class for the model relation types"""
 
     ONETOMANY = 'ONETOMANY'
 

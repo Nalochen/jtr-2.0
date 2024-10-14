@@ -4,8 +4,8 @@ from typing import Dict, Any, Self
 from sqlalchemy import func, DateTime, Column, Text, Integer
 from sqlalchemy.ext.hybrid import hybrid_property
 
-from ..db import db
-from .BaseModel import BaseModel
+from DataDomain.Database.db import db
+from DataDomain.Database.Model.BaseModel import BaseModel
 
 
 class UserVersions(BaseModel, db.Model):

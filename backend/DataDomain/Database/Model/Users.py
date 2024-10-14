@@ -1,11 +1,11 @@
-from typing import Optional, List
+from typing import Optional, List, Any, Dict
 
 from sqlalchemy import func, Integer, Column, String, DateTime
 from sqlalchemy.orm import Mapped
 
-from .RelationUserTeam import is_part_of
-from ..db import db
-from .BaseModel import BaseModel
+from DataDomain.Database.Model.RelationUserTeam import is_part_of
+from DataDomain.Database.db import db
+from DataDomain.Database.Model.BaseModel import BaseModel
 
 
 class Users(BaseModel, db.Model):
@@ -65,3 +65,14 @@ class Users(BaseModel, db.Model):
         secondary=is_part_of,
         backref='users_backref'
     )
+
+    def serialize(self) -> Dict[str, Any]:
+        """
+        Serializes the object as a dictionary.
+        """
+
+        serialized = super().serialize()
+
+        del serialized['password_hash']
+
+        return serialized

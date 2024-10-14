@@ -8,7 +8,6 @@ redis
 pipreqs
 cryptography
 celery
-pytest
 autopep8
 pytest
 pytest-cov

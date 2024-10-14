@@ -1,7 +1,7 @@
 from sqlalchemy import Enum, Integer, ForeignKey, func
 
-from ..Enum.UserRoleTypesEnum import UserRoleTypesEnum
-from ..db import db
+from DataDomain.Database.Enum.UserRoleTypesEnum import UserRoleTypesEnum
+from DataDomain.Database.db import db
 
 
 is_part_of = db.Table(

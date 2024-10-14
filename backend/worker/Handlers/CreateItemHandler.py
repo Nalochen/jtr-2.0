@@ -1,6 +1,6 @@
 from TaskHandler import TaskHandler
 
-from DataDomain.Database.Models.Items import Items
+from DataDomain.Database.Model.Items import Items
 from DataDomain.Database.db import db
 
 

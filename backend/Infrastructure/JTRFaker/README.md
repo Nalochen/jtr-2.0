@@ -9,7 +9,7 @@ or for `testing` your application's functionality.
 
 ```python
 from Infrastructure.JTRFaker.Faker.ModelFaker import ModelFaker
-from DataDomain.Database.Models.Users import Users
+from DataDomain.Database.Model.Users import Users
 
 ModelFaker(Users).create(5)
 ```
