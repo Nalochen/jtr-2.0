@@ -24,11 +24,11 @@ module.exports = [
           style: 'kebab-case',
         },
       ],
+      'quotes': ['error', 'single']
     },
   },
   {
     files: ['**/*.html'],
-    // Override or add rules here
     rules: {},
   },
 ];
