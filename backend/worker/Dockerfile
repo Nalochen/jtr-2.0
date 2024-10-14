@@ -1,10 +1,7 @@
-FROM python:3.11-alpine
+FROM python:3.13-alpine
 
 WORKDIR /worker
 COPY . /worker
-
-RUN python -m venv venv && \
-    . venv/bin/activate
 
 RUN pip install -r requirements.txt
 
