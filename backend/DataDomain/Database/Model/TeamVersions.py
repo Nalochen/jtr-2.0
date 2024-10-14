@@ -17,11 +17,6 @@ class TeamVersions(BaseModel, db.Model):
         primary_key=True
     )
 
-    team_id: Column[Integer] = db.Column(
-        db.Integer,
-        db.ForeignKey('teams.id')
-    )
-
     version: Column[Integer] = db.Column(
         db.Integer,
         nullable=False
@@ -36,6 +31,12 @@ class TeamVersions(BaseModel, db.Model):
     updated_at: Column[DateTime] = db.Column(
         db.DateTime,
         default=func.now()
+    )
+
+    team_id: Column[Integer] = db.Column(
+        db.Integer,
+        db.ForeignKey('teams.id'),
+        nullable=False,
     )
 
     def serialize(self) -> Dict[str, Any]:

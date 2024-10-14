@@ -1,5 +1,5 @@
 ### Get tournaments details
-GET https://{{host}}/api/get-tournament-details/1
+GET https://{{host}}/api/get-tournament-details/37
 
 
 ### Generate fake users
@@ -38,7 +38,7 @@ Content-Type: application/json
 }
 
 
-### Generate fake is part of
+### Generate fake participates in
 POST https://{{host}}/api/generate-fake-participates_in
 Content-Type: application/json
 

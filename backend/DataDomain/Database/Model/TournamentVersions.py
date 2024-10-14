@@ -17,12 +17,6 @@ class TournamentVersions(BaseModel, db.Model):
         primary_key=True
     )
 
-    tournament_id: Column[Integer] = db.Column(
-        db.Integer,
-        db.ForeignKey('tournaments.id'),
-        nullable=False,
-    )
-
     version: Column[Integer] = db.Column(
         db.Integer,
         nullable=False,
@@ -37,6 +31,12 @@ class TournamentVersions(BaseModel, db.Model):
     updated_at: Column[DateTime] = db.Column(
         db.DateTime,
         default=func.now()
+    )
+
+    tournament_id: Column[Integer] = db.Column(
+        db.Integer,
+        db.ForeignKey('tournaments.id'),
+        nullable=False,
     )
 
     def serialize(self) -> Dict[str, Any]:

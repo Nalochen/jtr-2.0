@@ -25,7 +25,6 @@ participates_in = db.Table(
         'placement',
         db.Integer,
         nullable=True,
-        default=None
     ),
 
     db.Column(

@@ -1,5 +1,5 @@
 import json
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 from sqlalchemy import func, Column, Integer, DateTime, String, Text, Boolean, Enum
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -87,38 +87,34 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    deadlines: Column[Text] = db.Column(
+    deadlines: Column[Optional[Text]] = db.Column(
         db.Text(),
         nullable=True
     )
 
-    schedule: Column[Text] = db.Column(
+    schedule: Column[Optional[Text]] = db.Column(
         db.Text(),
         nullable=True
     )
 
-    food_morning: Column[Enum] = db.Column(
+    food_morning: Column[Optional[Enum]] = db.Column(
         db.Enum(TournamentFoodMorningTypesEnum),
-        nullable=True,
-        default=None
+        nullable=True
     )
 
-    food_noon: Column[Enum] = db.Column(
+    food_noon: Column[Optional[Enum]] = db.Column(
         db.Enum(TournamentFoodNoonTypesEnum),
-        nullable=True,
-        default=None
+        nullable=True
     )
 
-    food_evening: Column[Enum] = db.Column(
+    food_evening: Column[Optional[Enum]] = db.Column(
         db.Enum(TournamentFoodEveningTypesEnum),
-        nullable=True,
-        default=None
+        nullable=True
     )
 
-    food_gastro: Column[Enum] = db.Column(
+    food_gastro: Column[Optional[Enum]] = db.Column(
         db.Enum(TournamentFoodGastroTypesEnum),
-        nullable=True,
-        default=None
+        nullable=True
     )
 
     shoes_text: Column[Text] = db.Column(
@@ -210,7 +206,8 @@ class Tournaments(BaseModel, db.Model):
 
     organizer_id: Column[Integer] = db.Column(
         db.Integer,
-        db.ForeignKey('teams.id')
+        db.ForeignKey('teams.id'),
+        nullable=False,
     )
 
     teams: Mapped[List['Teams']] = db.relationship(

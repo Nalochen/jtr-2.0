@@ -17,12 +17,6 @@ class UserVersions(BaseModel, db.Model):
         primary_key=True
     )
 
-    user_id: Column[Integer] = db.Column(
-        db.Integer,
-        db.ForeignKey('users.id'),
-        nullable=False,
-    )
-
     version: Column[Integer] = db.Column(
         db.Integer,
         nullable=False
@@ -37,6 +31,12 @@ class UserVersions(BaseModel, db.Model):
     updated_at: Column[DateTime] = db.Column(
         db.DateTime,
         default=func.now()
+    )
+
+    user_id: Column[Integer] = db.Column(
+        db.Integer,
+        db.ForeignKey('users.id'),
+        nullable=False,
     )
 
     def serialize(self) -> Dict[str, Any]:

@@ -18,6 +18,4 @@ class GetTournamentDetailsHandler:
         if tournament is None:
             return Response(status=404, response="Tournament not found")
 
-        print(tournament.serialize())
-
         return Response(status=200, response=tournament.serialize())

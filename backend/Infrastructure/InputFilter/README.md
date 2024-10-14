@@ -1,6 +1,8 @@
 # InputFilter
 
-
+The `InputFilter` class is used to validate and filter input data in Flask applications. 
+It provides a modular way to clean and ensure that incoming data meets expected format 
+and type requirements before being processed.
 
 ## Usage
 

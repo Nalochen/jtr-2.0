@@ -51,7 +51,8 @@ class Teams(BaseModel, db.Model):
 
     contacts: Column[Optional[Text]] = db.Column(
         db.Text(),
-        nullable=False,
+        nullable=True,
+        default='[]',
         doc='["string"]'
     )
 
@@ -60,12 +61,12 @@ class Teams(BaseModel, db.Model):
         nullable=True
     )
 
-    last_tournament_played: Column[DateTime | Null] = db.Column(
+    last_tournament_played: Column[Optional[DateTime]] = db.Column(
         db.DateTime,
         nullable=True
     )
 
-    last_tournament_organized: Column[DateTime | Null] = db.Column(
+    last_tournament_organized: Column[Optional[DateTime]] = db.Column(
         db.DateTime,
         nullable=True
     )

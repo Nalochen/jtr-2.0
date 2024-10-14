@@ -67,7 +67,7 @@ class ModelFaker:
         columnType = column.type
 
         if column.doc:
-            return f'{self._generateJsonData(column.doc)}'
+            return str(self._generateJsonData(column.doc))
 
         # Enum has to be the first type to check, or otherwise it
         # uses the options of the corresponding type of the enum options
@@ -173,15 +173,16 @@ class ModelFaker:
                 if isinstance(value, dict):
                     populated_data[key] = self._populateJsonStructure(value)
                 elif value == 'datetime':
-                    populated_data[key] = self.fake.date_time()
+                    populated_data[key] = self.fake.date_time().isoformat()
                 elif value == 'date':
                     populated_data[key] = self.fake.date()
                 else:
                     populated_data[key] = self.fake.word()
 
-            return populated_data
+            return json.dumps(populated_data)
 
         elif isinstance(structure, list):
-            return [self.fake.word() for _ in range(len(structure))]
+            return json.dumps([self.fake.word()
+                              for _ in range(len(structure))])
 
-        return structure
+        return json.dumps(structure)

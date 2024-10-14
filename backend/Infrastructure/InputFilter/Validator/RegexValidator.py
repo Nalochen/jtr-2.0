@@ -13,4 +13,5 @@ class RegexValidator(BaseValidator):
     def validate(self, value: str) -> None:
         if not re.match(self.pattern, value):
             raise ValidationError(
-                f"Value '{value}' does not match the required pattern '{self.pattern}'.")
+                f"Value '{value}' does not match the required pattern '{
+                    self.pattern}'.")

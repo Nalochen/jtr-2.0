@@ -1,4 +1,4 @@
-from flask import jsonify, request, Blueprint, Response, g
+from flask import jsonify, request, Blueprint, Response
 
 from DataDomain.Database.Model.RelationTournamentTeam import participates_in
 from DataDomain.Database.Model.RelationUserTeam import is_part_of
@@ -15,7 +15,8 @@ from DataDomain.Database.Model.Tournaments import Tournaments
 api = Blueprint('api', __name__)
 
 
-@api.route('/get-tournament-details/<int:tournamentId>', methods=['GET'])
+@api.route('/get-tournament-details/<int:tournamentId>',
+           methods=['GET'], endpoint='get-tournament-details')
 def getTournamentDetails(
     tournamentId: int): return GetTournamentDetailsHandler().handle(tournamentId)
 
