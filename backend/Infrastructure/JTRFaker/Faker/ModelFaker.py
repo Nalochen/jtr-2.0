@@ -51,7 +51,6 @@ class ModelFaker:
                 else:
                     db.session.add(self.model(**data))
 
-
             db.session.commit()
 
         except Exception as e:
@@ -128,7 +127,7 @@ class ModelFaker:
 
         return ((column.primary_key and not column.foreign_keys) or (
             isinstance(column.default, ColumnDefault) and column.default.arg is not None) or
-                column.nullable is not None and column.nullable is True)
+            column.nullable is not None and column.nullable is True)
 
     def __getTableColumns(self) -> List[Column]:
         """
@@ -160,7 +159,8 @@ class ModelFaker:
 
         return self._populateJsonStructure(json_structure)
 
-    def _populateJsonStructure(self, structure: Union[Dict[str, Any], List[Any]]) -> Any:
+    def _populateJsonStructure(
+            self, structure: Union[Dict[str, Any], List[Any]]) -> Any:
         """
         Populates the JSON structure with fake data based on the defined schema.
         """
