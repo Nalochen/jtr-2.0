@@ -53,7 +53,7 @@ class TournamentVersions(BaseModel, db.Model):
     @hybrid_property
     def getChanges(self) -> Dict[str, Any]:
         """
-        Parst den JSON-String aus der Datenbank und gibt die Änderungen als Dictionary zurück.
+        Parses the JSON string from the database and returns the changes as a dictionary.
         """
 
         return json.loads(self.changes)

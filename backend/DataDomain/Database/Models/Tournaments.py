@@ -273,7 +273,7 @@ class Tournaments(BaseModel, db.Model):
     @hybrid_property
     def getDate(self) -> Dict[str, DateTime]:
         """
-        Parst den JSON-String aus der Datenbank und gibt die Änderungen als Dictionary zurück.
+        Parses the JSON string from the database and returns the changes as a dictionary.
         """
 
         return json.loads(self.date)
@@ -281,7 +281,7 @@ class Tournaments(BaseModel, db.Model):
     @hybrid_property
     def getContacts(self) -> List[str]:
         """
-        Parst den JSON-String aus der Datenbank und gibt die Änderungen als Dictionary zurück.
+        Parses the JSON string from the database and returns the changes as a dictionary.
         """
 
         return json.loads(self.contacts)
