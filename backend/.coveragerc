@@ -1,0 +1,2 @@
+[run]
+omit = __init__.py, app.py, config.py, extensions.py, run.py, DataDomain/*, worker/*, test_*.py

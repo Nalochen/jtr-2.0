@@ -3,7 +3,7 @@ from flask import jsonify, request, Blueprint, Response
 from DataDomain.Database.Models.RelationTournamentTeam import participates_in
 from DataDomain.Database.Models.RelationUserTeam import is_part_of
 from Infrastructure.JTRFaker.Faker.ModelFaker import ModelFaker
-from BusinessDomain.tools.extensions import redis, cache, celery
+from extensions import redis, cache, celery
 from DataDomain.Database.Models.Items import Items
 from DataDomain.Database.Models.Teams import Teams
 from DataDomain.Database.Models.Tournaments import Tournaments
