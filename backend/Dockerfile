@@ -1,15 +1,9 @@
-FROM python:3.11-alpine
+FROM python:3.13-alpine
 
 WORKDIR /app
 COPY . /app
 
-ENV VIRTUAL_ENV=/opt/venv
-RUN python3 -m venv $VIRTUAL_ENV
-
-# ;) please ignore this line
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 RUN chmod +x entrypoint.sh
 

@@ -2,9 +2,7 @@ from enum import Enum
 
 
 class AccommodationTypesEnum(Enum):
-    """
-    Enum class for the accommodation types
-    """
+    """Enum class for the accommodation types"""
 
     CAMPING = 'camping'
 

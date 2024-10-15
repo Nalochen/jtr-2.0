@@ -1,10 +1,8 @@
 from enum import Enum
 
 
-class UserRoleTypeEnum(Enum):
-    """
-    Enum class for the user role types
-    """
+class UserRoleTypesEnum(Enum):
+    """Enum class for the user role types"""
 
     MEMBER = 'member'
 

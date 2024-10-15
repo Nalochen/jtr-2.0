@@ -1,0 +1,47 @@
+### Get tournaments details
+GET https://{{host}}/api/get-tournament-details/37
+
+
+### Generate fake users
+POST https://{{host}}/api/generate-fake-users
+Content-Type: application/json
+
+{
+    "amount": 2
+}
+
+
+### Generate fake teams
+POST https://{{host}}/api/generate-fake-teams
+Content-Type: application/json
+
+{
+    "amount": 2
+}
+
+
+### Generate fake tournaments
+POST https://{{host}}/api/generate-fake-tournaments
+Content-Type: application/json
+
+{
+    "amount": 2
+}
+
+
+### Generate fake is part of
+POST https://{{host}}/api/generate-fake-is-part-of
+Content-Type: application/json
+
+{
+    "amount": 2
+}
+
+
+### Generate fake participates in
+POST https://{{host}}/api/generate-fake-participates_in
+Content-Type: application/json
+
+{
+    "amount": 2
+}

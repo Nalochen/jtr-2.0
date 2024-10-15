@@ -12,3 +12,4 @@ autopep8
 pytest
 pytest-cov
 pytest-env
+faker

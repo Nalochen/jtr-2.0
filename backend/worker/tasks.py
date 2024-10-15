@@ -13,7 +13,7 @@ app = Celery(
     backend='rpc://')
 
 pymysql.install_as_MySQLdb()
-engine = create_engine('mysql+pymysql://user:password@mysql/mydatabase')
+engine = create_engine('mysql+pymysql://user:password@mysql/jtr', echo=True)
 db = scoped_session(sessionmaker(bind=engine))
 
 
