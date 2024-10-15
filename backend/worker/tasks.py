@@ -15,8 +15,3 @@ app = Celery(
 pymysql.install_as_MySQLdb()
 engine = create_engine('mysql+pymysql://user:password@mysql/jtr', echo=True)
 db = scoped_session(sessionmaker(bind=engine))
-
-
-@app.task()
-def create_item(data):
-    return f'Item added successfully {data}'

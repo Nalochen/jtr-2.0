@@ -1,7 +1,3 @@
-### Get tournaments details
-GET https://{{host}}/api/get-tournament-details/37
-
-
 ### Generate fake users
 POST https://{{host}}/api/generate-fake-users
 Content-Type: application/json

@@ -1,4 +1,4 @@
-from flask import jsonify, request, Blueprint, Response
+from flask import request, Blueprint, Response
 
 from DataDomain.Database.Model.RelationTournamentTeam import participates_in
 from DataDomain.Database.Model.RelationUserTeam import is_part_of
@@ -6,8 +6,6 @@ from ExternalApi.CustomerFrontend.Handler.GenerateFakeUserHandler import Generat
 from ExternalApi.CustomerFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
 from ExternalApi.CustomerFrontend.InputFilter.FakerInputFilter import FakerInputFilter
 from Infrastructure.JTRFaker.Faker.ModelFaker import ModelFaker
-from extensions import redis, cache, celery
-from DataDomain.Database.Model.Items import Items
 from DataDomain.Database.Model.Teams import Teams
 from DataDomain.Database.Model.Tournaments import Tournaments
 
@@ -52,28 +50,3 @@ def generateFakeParticipatesIn():
     ModelFaker(participates_in).create(amount=request.json.get('amount'))
 
     return Response(status=200)
-
-
-@api.route('/items', methods=['POST'])
-def add_item():
-    itemName = request.json.get('name')
-
-    celery.send_task(
-        'tasks.create_item', args=[itemName])
-
-    cache.delete('items')
-
-    return jsonify({'message': 'Item add queued'})
-
-
-@api.route('/items', methods=['GET'])
-@cache.cached(timeout=60, key_prefix='items')
-def get_items():
-    cachedResponse = redis.get('items')
-
-    if cachedResponse:
-        return jsonify(cachedResponse)
-
-    items = Items.query.all()
-
-    return jsonify([item.serialize() for item in items])
