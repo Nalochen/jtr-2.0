@@ -1,0 +1,2 @@
+### Get tournaments details
+GET https://{{host}}/api/get-tournament-details/37
