@@ -16,7 +16,7 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /home/runner/.docker
+          path: /tmp/.buildx-cache
           key: ${{ runner.os }}-docker-backend-${{ hashFiles('backend/Dockerfile', 'backend/**') }}
           restore-keys: |
             ${{ runner.os }}-docker-backend-
@@ -25,16 +25,13 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build backend image
-        run: docker build -t backend ./backend
-
-      - name: Save backend image
-        run: docker save -o backend.tar backend
-
-      - name: Upload backend artifact
-        uses: actions/upload-artifact@v4
+        uses: docker/build-push-action@v4
         with:
-          name: docker-image
-          path: backend.tar
+          context: ./backend
+          file: ./backend/Dockerfile
+          tags: backend:latest
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
 
   test:
     needs: build
@@ -43,19 +40,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download backend artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docker-image
-
-      - name: Load backend image
-        run: docker load -i backend.tar
+      - name: Pull backend image
+        run: docker pull backend:latest || echo "No cache found, running build instead"
 
       - name: Run tests
-        run: |
-          set -e
-
-          docker run backend pytest
+        run: docker run backend pytest
 
   code-style:
     needs: build
@@ -64,16 +53,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Pull backend image
+        run: docker pull backend:latest || echo "No cache found, running build instead"
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.13
 
       - name: Install autopep8
         run: pip install autopep8
 
       - name: Run code style checks
         run: |
-          set -e
-
           find ./backend -name '*.py' | xargs -I {} autopep8 --diff --exit-code {}
