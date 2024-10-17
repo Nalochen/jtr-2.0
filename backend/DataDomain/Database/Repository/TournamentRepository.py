@@ -31,7 +31,8 @@ class TournamentRepository:
             Tournaments.end_date,
             Teams.logo.label('logo'),
             func.count(TeamParticipation.c.team_id).label('total_teams'),
-            func.sum((TeamParticipation.c.is_on_waiting_list == 0).cast(Integer)).label('registered_teams')
+            func.sum((TeamParticipation.c.is_on_waiting_list ==
+                      0).cast(Integer)).label('registered_teams')
         ).outerjoin(
             TeamParticipation, Tournaments.id == TeamParticipation.c.tournament_id
         ).join(

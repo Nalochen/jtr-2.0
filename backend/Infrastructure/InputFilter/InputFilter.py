@@ -53,8 +53,11 @@ class InputFilter:
             validator.validate(value)
 
     def validateData(self, data: Dict[str, Any],
-                     kwargs: Dict[str, Any]) -> Dict[str, Any]:
+                     kwargs: Dict[str, Any] = None) -> Dict[str, Any]:
         """Validate the input data, considering both request data and URL parameters (kwargs)."""
+
+        if kwargs is None:
+            kwargs = {}
 
         validatedData = {}
 
