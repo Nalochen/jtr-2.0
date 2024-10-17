@@ -16,7 +16,7 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-cache
+          path: /home/runner/.docker
           key: ${{ runner.os }}-docker-backend-${{ hashFiles('backend/Dockerfile', 'backend/**') }}
           restore-keys: |
             ${{ runner.os }}-docker-backend-
@@ -25,13 +25,16 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build backend image
-        uses: docker/build-push-action@v4
+        run: docker build -t backend ./backend
+
+      - name: Save backend image
+        run: docker save -o backend.tar backend
+
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
         with:
-          context: ./backend
-          file: ./backend/Dockerfile
-          tags: backend:latest
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
+          name: docker-image
+          path: backend.tar
 
   test:
     needs: build
@@ -40,8 +43,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pull backend image
-        run: docker pull backend:latest || echo "No cache found, running build instead"
+      - name: Download backend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-image
+
+      - name: Load backend image
+        run: docker load -i backend.tar
 
       - name: Run tests
         run: docker run backend pytest
@@ -53,9 +61,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pull backend image
-        run: docker pull backend:latest || echo "No cache found, running build instead"
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -65,5 +70,4 @@ jobs:
         run: pip install autopep8
 
       - name: Run code style checks
-        run: |
-          find ./backend -name '*.py' | xargs -I {} autopep8 --diff --exit-code {}
+        run: find ./backend -name '*.py' | xargs -I {} autopep8 --diff --exit-code {}

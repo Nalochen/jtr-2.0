@@ -17,7 +17,7 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-cache
+          path: /home/runner/.docker
           key: ${{ runner.os }}-docker-frontend-${{ hashFiles('frontend/Dockerfile.test', 'frontend/**') }}
           restore-keys: |
             ${{ runner.os }}-docker-frontend-
@@ -26,13 +26,16 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build frontend image
-        uses: docker/build-push-action@v4
+        run: docker build -t frontend-test -f ./frontend/Dockerfile.test ./frontend
+
+      - name: Save frontend-test image
+        run: docker save -o frontend-test.tar frontend-test
+
+      - name: Upload frontend-test artifact
+        uses: actions/upload-artifact@v4
         with:
-          context: ./frontend
-          file: ./frontend/Dockerfile.test
-          tags: frontend-test:latest
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
+          name: frontend-test-image
+          path: frontend-test.tar
 
   test:
     needs: build
@@ -41,8 +44,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pull frontend-test image
-        run: docker pull frontend-test:latest || echo "No cache found, running build instead"
+      - name: Download frontend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-test-image
+
+      - name: Load frontend-test image
+        run: docker load -i frontend-test.tar
 
       - name: Run tests
         run: docker run frontend-test nx run-many --target=test --all
@@ -54,8 +62,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pull frontend-test image
-        run: docker pull frontend-test:latest || echo "No cache found, running build instead"
+      - name: Download frontend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-test-image
 
-      - name: Run code style checks
+      - name: Load frontend-test image
+        run: docker load -i frontend-test.tar
+
+      - name: Run code style checks on all projects
         run: docker run frontend-test nx run-many --target=lint --all
