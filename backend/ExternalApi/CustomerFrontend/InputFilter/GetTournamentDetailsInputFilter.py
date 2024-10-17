@@ -11,7 +11,7 @@ class GetTournamentDetailsInputFilter(InputFilter):
         super().__init__()
 
         self.add(
-            'id',
+            'tournamentId',
             required=True,
             filters=[ToIntFilter()]
         )

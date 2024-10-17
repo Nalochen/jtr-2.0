@@ -32,10 +32,14 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    date: Column[Text] = db.Column(
-        db.Text(),
+    start_date: Column[Text] = db.Column(
+        db.DateTime,
         nullable=False,
-        doc='{"start": "datetime", "end": "datetime"}'
+    )
+
+    end_date: Column[Text] = db.Column(
+        db.DateTime,
+        nullable=False,
     )
 
     address: Column[String] = db.Column(
@@ -223,10 +227,21 @@ class Tournaments(BaseModel, db.Model):
 
         serialized = super().serialize()
 
-        serialized['date'] = self.getDate
+        serialized['date'] = {
+            'start': serialized.pop('start_date').isoformat(),
+            'end': serialized.pop('end_date').isoformat()
+        }
+
         serialized['contacts'] = self.getContacts
 
-        serialized['team_count'] = count(self.teams)
+        serialized['team_count'] = len(self.teams)
+
+        serialized['status'] = serialized.pop('status').value
+
+        serialized['registration_open_at'] = serialized.pop(
+            'registration_open_at').isoformat()
+        serialized['created_at'] = serialized.pop('created_at').isoformat()
+        serialized['updated_at'] = serialized.pop('updated_at').isoformat()
 
         serialized['costs'] = {
             'user': serialized.pop('costs_per_user'),
@@ -250,15 +265,14 @@ class Tournaments(BaseModel, db.Model):
 
         serialized['registration_procedure'] = {
             'url': serialized.pop('registration_procedure_url'),
-            'type': serialized.pop('registration_procedure_type')
+            'type': serialized.pop('registration_procedure_type').value
         }
 
         serialized['food'] = {
-            'morning': serialized.pop('food_morning'),
-            'noon': serialized.pop('food_noon'),
-            'evening': serialized.pop('food_evening'),
-            'gastro': serialized.pop('food_gastro')
-        }
+            'morning': serialized.pop('food_morning').value if serialized.get('food_morning') else None,
+            'noon': serialized.pop('food_noon').value if serialized.get('food_noon') else None,
+            'evening': serialized.pop('food_evening').value if serialized.get('food_evening') else None,
+            'gastro': serialized.pop('food_gastro').value if serialized.get('food_gastro') else None}
 
         serialized['shoes'] = {
             'url': serialized.pop('shoes_url'),
@@ -274,14 +288,6 @@ class Tournaments(BaseModel, db.Model):
             serialized.pop('organizer_id')).serialize()
 
         return serialized
-
-    @hybrid_property
-    def getDate(self) -> Dict[str, DateTime]:
-        """
-        Parses the JSON string from the database and returns the changes as a dictionary.
-        """
-
-        return json.loads(self.date)
 
     @hybrid_property
     def getContacts(self) -> List[str]:

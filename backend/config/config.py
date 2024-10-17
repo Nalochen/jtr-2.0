@@ -27,6 +27,7 @@ class Config(object):
         app.config['CACHE_REDIS_HOST'] = 'redis'
         app.config['CACHE_REDIS_PORT'] = 6379
         app.config['CACHE_REDIS_DB'] = 0
+        app.config['CACHE_DEFAULT_TIMEOUT'] = 300
 
         app.config['CELERY_BROKER_URL'] = os.getenv('CELERY_BROKER_URL')
         app.config['CELERY_RESULT_BACKEND'] = 'rpc://'

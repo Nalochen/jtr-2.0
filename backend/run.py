@@ -1,4 +1,4 @@
-from app import app
+from config.app import app
 
 
 if __name__ == '__main__':

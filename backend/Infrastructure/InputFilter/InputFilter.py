@@ -52,14 +52,19 @@ class InputFilter:
         for validator in field['validators']:
             validator.validate(value)
 
-    def validateData(self, data: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate the input data."""
+    def validateData(self, data: Dict[str, Any],
+                     kwargs: Dict[str, Any] = None) -> Dict[str, Any]:
+        """Validate the input data, considering both request data and URL parameters (kwargs)."""
+
+        if kwargs is None:
+            kwargs = {}
 
         validatedData = {}
 
-        for fieldName, fieldInfo in self.fields.items():
-            value = data.get(fieldName)
+        combinedData = {**data, **kwargs}
 
+        for fieldName, fieldInfo in self.fields.items():
+            value = combinedData.get(fieldName)
             value = self.applyFilters(fieldName, value)
 
             if fieldInfo['required'] and value is None:
@@ -78,15 +83,23 @@ class InputFilter:
 
         def decorator(f):
             def wrapper(*args, **kwargs):
-                data = request.json
+                if request.method == 'GET':
+                    data = request.args
+
+                elif request.method == 'POST':
+                    if not request.is_json:
+                        return Response(
+                            status=415, response="Unsupported Media Type")
+
+                    data = request.json
 
                 input_filter = cls()
 
                 try:
-                    g.validatedData = input_filter.validateData(data)
+                    g.validatedData = input_filter.validateData(data, kwargs)
 
-                except ValidationError:
-                    return Response(status=400)
+                except ValidationError as e:
+                    return Response(status=400, response=str(e))
 
                 return f(*args, **kwargs)
 
