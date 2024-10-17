@@ -26,13 +26,15 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+        with:
+          driver-opts: image=moby/buildkit:latest
 
       - name: Build backend image with cache
         run: |
-          DOCKER_BUILDKIT=1 docker build \
+          docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
-            --cache-to=type=local,dest=/tmp/.buildx-cache \
-            -t backend ./backend
+            --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
+            -t backend ./backend --load
 
       - name: Save backend image
         run: docker save -o backend.tar backend
@@ -112,13 +114,15 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+        with:
+          driver-opts: image=moby/buildkit:latest
 
       - name: Build frontend image with cache
         run: |
-          DOCKER_BUILDKIT=1 docker build \
+          docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
-            --cache-to=type=local,dest=/tmp/.buildx-cache \
-            -t frontend-test -f ./frontend/Dockerfile.test ./frontend
+            --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
+            -t frontend-test -f ./frontend/Dockerfile.test ./frontend --load
 
       - name: Save frontend-test image
         run: docker save -o frontend-test.tar frontend-test
