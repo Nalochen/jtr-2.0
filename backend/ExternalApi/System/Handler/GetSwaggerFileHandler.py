@@ -14,7 +14,7 @@ externalApiFolder = Blueprint(
     __name__,
     static_folder=os.path.join(
         '/app/ExternalApi')
-    )
+)
 
 
 class GetSwaggerFileHandler:
