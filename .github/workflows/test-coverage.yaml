@@ -19,7 +19,7 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /home/runner/.docker
+          path: /tmp/.buildx-cache
           key: ${{ runner.os }}-docker-backend-${{ hashFiles('backend/Dockerfile', 'backend/**') }}
           restore-keys: |
             ${{ runner.os }}-docker-backend-
@@ -27,8 +27,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build backend image
-        run: docker build -t backend ./backend
+      - name: Build backend image with cache
+        run: |
+          DOCKER_BUILDKIT=1 docker build \
+            --cache-from=type=local,src=/tmp/.buildx-cache \
+            --cache-to=type=local,dest=/tmp/.buildx-cache \
+            -t backend ./backend
 
       - name: Save backend image
         run: docker save -o backend.tar backend
@@ -101,7 +105,7 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /home/runner/.docker
+          path: /tmp/.buildx-cache
           key: ${{ runner.os }}-docker-frontend-${{ hashFiles('frontend/Dockerfile.test', 'frontend/**') }}
           restore-keys: |
             ${{ runner.os }}-docker-frontend-
@@ -109,8 +113,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build frontend image
-        run: docker build -t frontend-test -f ./frontend/Dockerfile.test ./frontend
+      - name: Build frontend image with cache
+        run: |
+          DOCKER_BUILDKIT=1 docker build \
+            --cache-from=type=local,src=/tmp/.buildx-cache \
+            --cache-to=type=local,dest=/tmp/.buildx-cache \
+            -t frontend-test -f ./frontend/Dockerfile.test ./frontend
 
       - name: Save frontend-test image
         run: docker save -o frontend-test.tar frontend-test
