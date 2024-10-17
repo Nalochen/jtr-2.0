@@ -1,52 +1,63 @@
-from flask import request, Blueprint, Response
+from flask import Blueprint
 
-from DataDomain.Database.Model.RelationTournamentTeam import participates_in
-from DataDomain.Database.Model.RelationUserTeam import is_part_of
-from ExternalApi.CustomerFrontend.Handler.GenerateFakeUserHandler import GenerateFakeUserHandler
+from ExternalApi.CustomerFrontend.Handler.CreateFakeIsPartOfHandler import CreateFakeIsPartOfHandler
+from ExternalApi.CustomerFrontend.Handler.CreateFakeParticipatesInHandler import CreateFakeParticipatesInHandler
+from ExternalApi.CustomerFrontend.Handler.CreateFakeTeamsHandler import CreateFakeTeamsHandler
+from ExternalApi.CustomerFrontend.Handler.CreateFakeTournamentsHandler import CreateFakeTournamentsHandler
+from ExternalApi.CustomerFrontend.Handler.CreateFakeUsersHandler import CreateFakeUsersHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
+from ExternalApi.CustomerFrontend.Handler.GetTournamentOverviewHandler import GetTournamentOverviewHandler
 from ExternalApi.CustomerFrontend.InputFilter.FakerInputFilter import FakerInputFilter
-from Infrastructure.JTRFaker.Faker.ModelFaker import ModelFaker
-from DataDomain.Database.Model.Teams import Teams
-from DataDomain.Database.Model.Tournaments import Tournaments
+from ExternalApi.CustomerFrontend.InputFilter.GetTournamentDetailsInputFilter import GetTournamentDetailsInputFilter
+from ExternalApi.CustomerFrontend.config.extensions import create_tournament_cache_key
+from extensions import cache
 
 
-api = Blueprint('api', __name__)
+customer_frontend = Blueprint('customer-frontend', __name__)
 
 
-@api.route('/get-tournament-details/<int:tournamentId>',
-           methods=['GET'], endpoint='get-tournament-details')
+@customer_frontend.route('/get-tournament-details/<tournamentId>',
+                         methods=['GET'], endpoint='get-tournament-details')
+@GetTournamentDetailsInputFilter.validate()
+@cache.cached(key_prefix=create_tournament_cache_key)
 def getTournamentDetails(
     tournamentId: int): return GetTournamentDetailsHandler().handle(tournamentId)
 
 
-@api.route('/generate-fake-users', methods=['POST'])
+@customer_frontend.route('/get-tournament-overview',
+                         methods=['GET'], endpoint='get-tournament-overview')
+@cache.cached(key_prefix='upcoming-tournaments')
+def getTournamentOverview(): return GetTournamentOverviewHandler().handle()
+
+
+@customer_frontend.route('/create-fake-users',
+                         methods=['POST'],
+                         endpoint='create-fake-users')
 @FakerInputFilter.validate()
-def generateFakeUsers(): return GenerateFakeUserHandler().handle()
+def createFakeUsers(): return CreateFakeUsersHandler().handle()
 
 
-@api.route('/generate-fake-tournaments', methods=['POST'])
-def generateFakeTournaments():
-    ModelFaker(Tournaments).create(amount=request.json.get('amount'))
-
-    return Response(status=200)
-
-
-@api.route('/generate-fake-teams', methods=['POST'])
-def generateFakeTeams():
-    ModelFaker(Teams).create(amount=request.json.get('amount'))
-
-    return Response(status=200)
+@customer_frontend.route('/create-fake-tournaments',
+                         methods=['POST'], endpoint='create-fake-tournaments')
+@FakerInputFilter.validate()
+def createFakeTournaments(): return CreateFakeTournamentsHandler().handle()
 
 
-@api.route('/generate-fake-is-part-of', methods=['POST'])
-def generateFakeIsPartOf():
-    ModelFaker(is_part_of).create(amount=request.json.get('amount'))
+@customer_frontend.route('/create-fake-teams',
+                         methods=['POST'],
+                         endpoint='create-fake-teams')
+@FakerInputFilter.validate()
+def createFakeTeams(): return CreateFakeTeamsHandler().handle()
 
-    return Response(status=200)
+
+@customer_frontend.route('/create-fake-is-part-of',
+                         methods=['POST'],
+                         endpoint='create-fake-is-part-of')
+@FakerInputFilter.validate()
+def createFakeIsPartOf(): return CreateFakeIsPartOfHandler().handle()
 
 
-@api.route('/generate-fake-participates_in', methods=['POST'])
-def generateFakeParticipatesIn():
-    ModelFaker(participates_in).create(amount=request.json.get('amount'))
-
-    return Response(status=200)
+@customer_frontend.route('/create-fake-participates_in',
+                         methods=['POST'], endpoint='create-fake-participates_in')
+@FakerInputFilter.validate()
+def createFakeParticipatesIn(): return CreateFakeParticipatesInHandler().handle()

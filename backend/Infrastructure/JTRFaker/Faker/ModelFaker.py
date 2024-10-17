@@ -14,8 +14,8 @@ from DataDomain.Database.db import db
 class ModelFaker:
     """
     The ModelFaker class is a utility class that helps in generating fake data for a given SQLAlchemy model.
-    It uses the faker library to generate fake data based on the column types of the model.
-    It also handles relationships between models and can generate data for many-to-many relationships.
+    It uses the faker library to create fake data based on the column types of the model.
+    It also handles relationships between models and can create data for many-to-many relationships.
     """
 
     def __init__(self, model: Union[Table, ColumnProperty]) -> None:
@@ -43,7 +43,7 @@ class ModelFaker:
                     if self.__isPrimaryKeyOrHasDefaultValue(column):
                         continue
 
-                    data[column.name] = self._generateFakeData(column)
+                    data[column.name] = self._createFakeData(column)
 
                 if self.__isManyToManyRelationTable():
                     db.session.execute(self.model.insert().values(**data))
@@ -57,17 +57,17 @@ class ModelFaker:
             db.session.rollback()
             print(f"Failed to commit: {e} {traceback.format_exc()}")
 
-    def _generateFakeData(
+    def _createFakeData(
             self, column: Column) -> Optional[Union[str, int, bool, None]]:
         """
-        Generates fake data for a given column based on its type.
+        Creates fake data for a given column based on its type.
         It handles Enum, String, Integer, Boolean, DateTime, and Date column types.
         """
 
         columnType = column.type
 
         if column.doc:
-            return str(self._generateJsonData(column.doc))
+            return str(self._createJsonData(column.doc))
 
         # Enum has to be the first type to check, or otherwise it
         # uses the options of the corresponding type of the enum options
@@ -150,9 +150,9 @@ class ModelFaker:
 
         return fk.column.table
 
-    def _generateJsonData(self, docstring: str) -> Dict[str, Any]:
+    def _createJsonData(self, docstring: str) -> Dict[str, Any]:
         """
-        Generates JSON data based on the provided docstring.
+        Creates JSON data based on the provided docstring.
         """
 
         json_structure = json.loads(docstring)

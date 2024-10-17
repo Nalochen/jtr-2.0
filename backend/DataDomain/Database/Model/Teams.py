@@ -31,7 +31,7 @@ class Teams(BaseModel, db.Model):
 
     founded: Column[Optional[DateTime]] = db.Column(
         db.DateTime,
-        default=func.now()
+        nullable=True
     )
 
     city: Column[Optional[String]] = db.Column(
@@ -107,6 +107,9 @@ class Teams(BaseModel, db.Model):
         serialized = super().serialize()
 
         serialized['contacts'] = self.getContacts
+
+        serialized['created_at'] = serialized.pop('created_at').isoformat()
+        serialized['updated_at'] = serialized.pop('updated_at').isoformat()
 
         return serialized
 
