@@ -13,3 +13,4 @@ pytest
 pytest-cov
 pytest-env
 faker
+pyyaml
