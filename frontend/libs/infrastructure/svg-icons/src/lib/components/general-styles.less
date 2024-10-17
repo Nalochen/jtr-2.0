@@ -1,0 +1,144 @@
+@import '../directives/rotation';
+@import '../directives/transition-animation';
+
+:host {
+  display: inline-flex;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+
+  .icon {
+    fill: var(--color-light);
+    width: 100%;
+    height: 100%;
+  }
+}
+
+:host(.svg-icon.color-inverted) {
+  .icon {
+    fill: var(--color-inverted);
+  }
+
+  .stroke {
+    stroke: var(--color-inverted);
+  }
+}
+
+:host(.svg-icon.color-primary) {
+  .icon {
+    fill: var(--color-primary);
+  }
+
+  .stroke {
+    stroke: var(--color-primary);
+  }
+}
+
+:host(.svg-icon.color-primary-light) {
+  .icon {
+    fill: var(--color-primary-light);
+  }
+
+  .stroke {
+    stroke: var(--color-primary-light);
+  }
+}
+
+:host(.svg-icon.color-primary-darker) {
+  .icon {
+    fill: var(--color-primary-darker);
+  }
+
+  .stroke {
+    stroke: var(--color-primary-darker);
+  }
+}
+
+:host(.svg-icon.color-light) {
+  .icon {
+    fill: var(--color-light);
+  }
+
+  .stroke {
+    stroke: var(--color-light);
+  }
+}
+
+:host(.svg-icon.color-positive) {
+  .icon {
+    fill: var(--color-positive);
+  }
+
+  .stroke {
+    stroke: var(--color-positive);
+  }
+}
+
+:host(.svg-icon.color-warning) {
+  .icon {
+    fill: var(--color-warning);
+  }
+
+  .stroke {
+    stroke: var(--color-warning);
+  }
+}
+
+:host(.svg-icon.color-error) {
+  .icon {
+    fill: var(--color-error);
+  }
+
+  .stroke {
+    stroke: var(--color-error);
+  }
+}
+
+:host(.svg-icon.color-orange) {
+  .icon {
+    fill: var(--color-orange);
+  }
+
+  .stroke {
+    stroke: var(--color-orange);
+  }
+}
+
+:host(.svg-icon.color-dark-green) {
+  .icon {
+    fill: var(--color-dark-green);
+  }
+
+  .stroke {
+    stroke: var(--color-dark-green);
+  }
+}
+
+:host(.svg-icon.color-dark-red) {
+  .icon {
+    fill: var(--color-dark-red);
+  }
+
+  .stroke {
+    stroke: var(--color-dark-red);
+  }
+}
+
+:host(.svg-icon.color-light-red) {
+  .icon {
+    fill: var(--color-light-red);
+  }
+
+  .stroke {
+    stroke: var(--color-light-red);
+  }
+}
+
+:host(.svg-icon.color-custom) {
+  .icon {
+    fill: var(--color);
+  }
+
+  .stroke {
+    stroke: var(--color);
+  }
+}

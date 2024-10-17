@@ -23,6 +23,9 @@
           }
         ],
         "styles": ["apps/mobile/src/styles.less"],
+        "stylePreprocessorOptions": {
+          "includePaths": ["apps/mobile/src/less"]
+        },
         "scripts": []
       },
       "configurations": {

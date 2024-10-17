@@ -1,7 +1,7 @@
-@import "less/fonts-desktop.less";
-@import "less/colors-desktop.less";
+@import 'fonts-desktop';
+@import 'colors-desktop';
 
-@helveticaNeue: "Helvetica Neue", Helvetica, sans-serif;
+@helveticaNeue: 'Helvetica Neue', Helvetica, sans-serif;
 
 body {
   margin: 0;
@@ -14,7 +14,7 @@ p {
 }
 
 h1 {
-  font-family: "Didot", serif;
+  font-family: 'Didot', serif;
   color: @color-red;
   font-size: 48px;
   margin: 0;
@@ -28,9 +28,13 @@ h2 {
   font-weight: normal;
 }
 
-html, body { height: 100%; }
+html,
 body {
-  margin: 0; font-family: @helveticaNeue;
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: @helveticaNeue;
 }
 
 a {

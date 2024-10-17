@@ -20,11 +20,10 @@ module.exports = [
         'error',
         {
           type: 'element',
-          prefix: ['app', 'tournament', 'register'],
           style: 'kebab-case',
         },
       ],
-      'quotes': ['error', 'single']
+      quotes: ['error', 'single'],
     },
   },
   {
@@ -33,5 +32,5 @@ module.exports = [
   },
   {
     ignores: ['node_modules'],
-  }
+  },
 ];
