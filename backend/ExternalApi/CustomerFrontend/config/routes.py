@@ -10,7 +10,7 @@ from ExternalApi.CustomerFrontend.Handler.GetTournamentOverviewHandler import Ge
 from ExternalApi.CustomerFrontend.InputFilter.FakerInputFilter import FakerInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetTournamentDetailsInputFilter import GetTournamentDetailsInputFilter
 from ExternalApi.CustomerFrontend.config.extensions import create_tournament_cache_key
-from extensions import cache
+from config.extensions import cache
 
 
 customer_frontend = Blueprint('customer-frontend', __name__)
