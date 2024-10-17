@@ -16,6 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.docker
+          key: ${{ runner.os }}-docker-backend-${{ hashFiles('backend/Dockerfile', 'backend/**') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-backend-
+
       - name: Build backend image
         run: docker build -t backend ./backend
 
@@ -86,6 +94,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.docker
+          key: ${{ runner.os }}-docker-frontend-${{ hashFiles('frontend/Dockerfile.test', 'frontend/**') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-frontend-
 
       - name: Build frontend image
         run: docker build -t frontend-test -f ./frontend/Dockerfile.test ./frontend
