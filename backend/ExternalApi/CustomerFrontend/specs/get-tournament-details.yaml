@@ -3,16 +3,16 @@ info:
   title: Customer Frontend API
   version: 1.0.0
 paths:
-  /api/customer-frontend/get-tournament-details:
+  /api/customer-frontend/get-tournament-details/{tournamentId}:
     get:
       summary: Get tournament details
       operationId: getTournamentDetails
       parameters:
         - name: tournamentId
-          in: query
+          in: path
           required: true
           schema:
-            type: string
+            type: integer
 
       responses:
         '200':

@@ -1,0 +1,31 @@
+openapi: 3.0.0
+info:
+  title: System API
+  version: 1.0.0
+paths:
+  /api/system/get-swagger-file:
+    get:
+      summary: Get file for Swagger UI
+      description: Returns a file for Swagger UI
+      responses:
+        '200':
+          description: File for Swagger UI
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "File for Swagger UI"
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal server error"

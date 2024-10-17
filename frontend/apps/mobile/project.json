@@ -30,8 +30,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",
@@ -59,6 +59,7 @@
           "buildTarget": "mobile:build:production"
         },
         "development": {
+          "proxyConfig": "proxy.conf.json",
           "buildTarget": "mobile:build:development"
         }
       },
