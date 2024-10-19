@@ -27,6 +27,9 @@
           "@angular/material/prebuilt-themes/cyan-orange.css",
           "apps/desktop/src/styles.less"
         ],
+        "stylePreprocessorOptions": {
+          "includePaths": ["apps/desktop/src/less"]
+        },
         "scripts": [
           "node_modules/swagger-ui-dist/swagger-ui-bundle.js",
           "node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js"

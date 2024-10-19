@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "jtr/shared-ui": ["apps/libs/src/index.ts"]
+      "@jtr/infrastructure/svg-icons": [
+        "libs/infrastructure/svg-icons/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
