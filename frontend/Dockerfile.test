@@ -5,6 +5,6 @@ WORKDIR /app
 
 COPY package*.json .
 
-RUN npm install jest
+RUN npm install
 
 COPY . .

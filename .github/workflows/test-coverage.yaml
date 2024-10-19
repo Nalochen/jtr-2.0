@@ -16,8 +16,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build backend image
-        run: docker build -t backend ./backend
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-docker-backend-${{ hashFiles('backend/Dockerfile', 'backend/**') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-backend-
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          driver-opts: image=moby/buildkit:latest
+
+      - name: Build backend image with cache
+        run: |
+          docker buildx build \
+            --cache-from=type=local,src=/tmp/.buildx-cache \
+            --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
+            -t backend ./backend --load
 
       - name: Save backend image
         run: docker save -o backend.tar backend
@@ -46,7 +63,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: 3.13
 
       - name: Build coverage files
         run: docker run -v /tmp:/tmp backend python3 -m pytest --junitxml=/tmp/pytest.xml --cov=/app | tee /tmp/pytest-coverage.txt
@@ -87,8 +104,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build frontend image
-        run: docker build -t frontend-test -f ./frontend/Dockerfile.test ./frontend
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-docker-frontend-${{ hashFiles('frontend/Dockerfile.test', 'frontend/**') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-frontend-
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          driver-opts: image=moby/buildkit:latest
+
+      - name: Build frontend image with cache
+        run: |
+          docker buildx build \
+            --cache-from=type=local,src=/tmp/.buildx-cache \
+            --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
+            -t frontend-test -f ./frontend/Dockerfile.test ./frontend --load
 
       - name: Save frontend-test image
         run: docker save -o frontend-test.tar frontend-test
