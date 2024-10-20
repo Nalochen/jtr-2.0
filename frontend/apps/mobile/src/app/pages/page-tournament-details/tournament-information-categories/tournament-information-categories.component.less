@@ -1,0 +1,24 @@
+@import 'colors-mobile';
+
+:host {
+  display: block;
+  padding: 16px;
+  background-color: @color-bg-light;
+  border-radius: 20px;
+}
+
+mat-divider {
+  border-width: 1px;
+}
+
+div {
+  &:not(:last-of-type) {
+    margin-bottom: 16px;
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  height: fit-content;
+}
