@@ -1,0 +1,8 @@
+### Get swagger file
+GET https://{{host}}/api/system/get-swagger-file
+
+> {%
+client.test("It should return a successful status code", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}

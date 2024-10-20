@@ -19,14 +19,14 @@ customer_frontend = Blueprint('customer-frontend', __name__)
 @customer_frontend.route('/get-tournament-details/<tournamentId>',
                          methods=['GET'], endpoint='get-tournament-details')
 @GetTournamentDetailsInputFilter.validate()
-@cache.cached(key_prefix=create_tournament_cache_key)
+# @cache.cached(key_prefix=create_tournament_cache_key)
 def getTournamentDetails(
     tournamentId: int): return GetTournamentDetailsHandler().handle(tournamentId)
 
 
 @customer_frontend.route('/get-tournament-overview',
                          methods=['GET'], endpoint='get-tournament-overview')
-@cache.cached(key_prefix='upcoming-tournaments')
+# @cache.cached(key_prefix='upcoming-tournaments')
 def getTournamentOverview(): return GetTournamentOverviewHandler().handle()
 
 

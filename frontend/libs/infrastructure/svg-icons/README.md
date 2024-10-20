@@ -1,4 +1,4 @@
-# svg-icons
+# SVG Icons
 
 This library was generated with [Nx](https://nx.dev).
 

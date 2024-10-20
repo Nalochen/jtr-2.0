@@ -22,6 +22,7 @@ module.exports = [
           style: 'kebab-case',
         },
       ],
+      quotes: ['error', 'single'],
     },
   },
   {

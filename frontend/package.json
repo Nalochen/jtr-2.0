@@ -1,8 +1,29 @@
 {
-  "name": "@frontend/source",
+  "name": "jtr",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "ng": "npx nx",
+    "nx": "npx nx",
+    "start:desktop": "nx run desktop:serve",
+    "start:mobile": "nx run mobile:serve",
+    "start:desktop:storybook": "nx run desktop:storybook",
+    "start:mobile:storybook": "nx run mobile:storybook",
+    "build": "nx run-many --parallel --target=build --projects=desktop,mobile --configuration=production",
+    "build:desktop": "nx run desktop:build",
+    "build:mobile": "nx run mobile:build",
+    "test": "nx run-many --all --target=test --parallel=true --maxParallel=4 --watch=false",
+    "test:desktop": "nx run desktop:test",
+    "test:mobile": "nx run mobile:test",
+    "e2e": "ng e2e",
+    "lint": "nx run-many --all --target=lint --parallel=true --maxParallel=4",
+    "lint-fix:desktop": "nx lint desktop --format stylish --fix",
+    "lint-fix:mobile": "nx lint mobile --format stylish --fix",
+    "lint-fix:all": "nx run-many --all --target=lint --fix --parallel=true --maxParallel=4",
+    "format": "nx format:write",
+    "format:write": "nx format:write",
+    "format:check": "nx format:check"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.2.0",
@@ -19,6 +40,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rxjs": "^7.8.0",
+    "swagger-ui-dist": "^5.17.14",
+    "yaml": "^2.6.0",
     "zone.js": "^0.14.3"
   },
   "devDependencies": {

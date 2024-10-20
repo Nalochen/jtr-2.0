@@ -23,21 +23,25 @@
           }
         ],
         "styles": [
+          "node_modules/swagger-ui-dist/swagger-ui.css",
           "@angular/material/prebuilt-themes/cyan-orange.css",
           "apps/desktop/src/styles.less"
         ],
         "stylePreprocessorOptions": {
           "includePaths": ["apps/desktop/src/less"]
         },
-        "scripts": []
+        "scripts": [
+          "node_modules/swagger-ui-dist/swagger-ui-bundle.js",
+          "node_modules/swagger-ui-dist/swagger-ui-standalone-preset.js"
+        ]
       },
       "configurations": {
         "production": {
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",
@@ -65,6 +69,7 @@
           "buildTarget": "desktop:build:production"
         },
         "development": {
+          "proxyConfig": "proxy.conf.json",
           "buildTarget": "desktop:build:development"
         }
       },

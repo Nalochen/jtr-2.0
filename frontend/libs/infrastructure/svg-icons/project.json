@@ -2,7 +2,7 @@
   "name": "svg-icons",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/infrastructure/svg-icons/src",
-  "prefix": "lib",
+  "prefix": "jtr",
   "projectType": "library",
   "tags": [],
   "targets": {
