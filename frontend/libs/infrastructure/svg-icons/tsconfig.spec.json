@@ -9,8 +9,8 @@
   "files": ["src/test-setup.ts"],
   "include": [
     "jest.config.ts",
-    "infrastructure/shared-ui/src/**/*.test.ts",
-    "infrastructure/shared-ui/src/**/*.spec.ts",
-    "infrastructure/shared-ui/src/**/*.d.ts"
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
   ]
 }

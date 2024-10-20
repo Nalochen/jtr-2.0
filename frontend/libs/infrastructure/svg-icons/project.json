@@ -1,15 +1,8 @@
 {
-<<<<<<<< HEAD:frontend/libs/infrastructure/shared-ui/project.json
-  "name": "shared-ui",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/infrastructure/shared-ui/src",
-  "prefix": "jtr",
-========
   "name": "svg-icons",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/infrastructure/svg-icons/src",
-  "prefix": "lib",
->>>>>>>> 7f19655c69376cf80fc1e2fb38362a116be45475:frontend/libs/infrastructure/svg-icons/project.json
+  "prefix": "jtr",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -17,11 +10,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-<<<<<<<< HEAD:frontend/libs/infrastructure/shared-ui/project.json
-        "jestConfig": "libs/infrastructure/shared-ui/jest.config.ts"
-========
         "jestConfig": "libs/infrastructure/svg-icons/jest.config.ts"
->>>>>>>> 7f19655c69376cf80fc1e2fb38362a116be45475:frontend/libs/infrastructure/svg-icons/project.json
       }
     },
     "lint": {

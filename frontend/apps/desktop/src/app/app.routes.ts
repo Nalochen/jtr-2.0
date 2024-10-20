@@ -5,11 +5,8 @@ import { PageOutlineDemoComponent } from './pages/page-outline-demo/page-outline
 import { SwaggerViewComponent } from './pages/swagger-view/swagger-view.component';
 
 export const appRoutes: Route[] = [
-  {path: 'tournament-details', component: TournamentDetailsComponent},
-  {path: 'tournaments-overview', component: TournamentOverviewComponent},
-
+  { path: 'tournament-details', component: TournamentDetailsComponent },
+  { path: 'tournaments-overview', component: TournamentOverviewComponent },
   { path: 'outline-demo', component: PageOutlineDemoComponent },
-  {
-    path: 'swagger',
-    component: SwaggerViewComponent,
-  }, ];
+  { path: 'swagger', component: SwaggerViewComponent },
+];
