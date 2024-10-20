@@ -1,6 +1,8 @@
-<button mat-icon-button #tooltip="matTooltip"
+<button mat-icon-button
+        (click)="tooltip.show()"
+        #tooltip="matTooltip"
+        [matTooltipDisabled]="true"
         matTooltip="{{infoText}}"
-        [matTooltipPosition]="'left'"
-        matTooltipHideDelay="10">
+        [matTooltipPosition]="'left'">
   <span class="material-icons-outlined">info_i</span>
 </button>
