@@ -32,7 +32,7 @@ jobs:
           docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
             --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
-            -t frontend-test -f frontend/Dockerfile.test frontend --load
+            -t frontend-test -f ./frontend/Dockerfile.test ./frontend --load
 
       - name: Save frontend-test image
         run: docker save -o frontend-test.tar frontend-test

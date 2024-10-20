@@ -31,7 +31,7 @@ jobs:
           docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
             --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
-            -t backend backend --load
+            -t backend ./backend --load
 
       - name: Save backend image
         run: docker save -o backend.tar backend
