@@ -77,4 +77,7 @@ jobs:
         run: docker load -i frontend-test.tar
 
       - name: Run code style checks on all projects
-        run: docker run frontend-test nx run-many --target=lint --all
+        run:  |
+          set -e
+
+          docker run frontend-test nx run-many --target=lint --all

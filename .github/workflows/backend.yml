@@ -58,7 +58,10 @@ jobs:
         run: docker load -i backend.tar
 
       - name: Run tests
-        run: docker run backend pytest
+        run: |
+          set -e
+
+          docker run backend pytest
 
   code-style:
     needs: build
@@ -76,4 +79,7 @@ jobs:
         run: pip install autopep8
 
       - name: Run code style checks
-        run: find ./backend -name '*.py' | xargs -I {} autopep8 --diff --exit-code {}
+        run: |
+          set -e
+
+          find ./backend -name '*.py' | xargs -I {} autopep8 --diff --exit-code {}

@@ -26,7 +26,6 @@ export class SwaggerViewComponent implements OnInit {
     this.http
       .get('/api/system/get-swagger-file', { responseType: 'text' })
       .subscribe((yamlData: string) => {
-        console.log(YAML.parse(yamlData));
         SwaggerUIBundle({
           dom_id: '#swagger-ui',
           layout: 'BaseLayout',
