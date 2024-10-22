@@ -4,6 +4,16 @@
 
 <div *ngFor="let panel of panels">
   <div [ngSwitch]="panel.id">
+    <app-data-container class="teams" *ngSwitchCase="'teams'" [id]="panel.id" [isOpen]="panel.isOpen" (toggle)="togglePanel(panel.id, $event)">
+      <div *ngIf="!panel.isOpen" panel-header>
+        @for (team of previewTeams; track team) {
+        <span class="material-icons-outlined">star</span>
+        }
+      </div>
+      <p class="title" *ngIf="panel.isOpen" panel-header>angemeldet:</p>
+      <tournament-teams panel-content [registeredTeams]="registeredTeams" [reservedTeams]="reservedTeams"></tournament-teams>
+    </app-data-container>
+
     <app-data-container *ngSwitchCase="'registration'" [id]="panel.id" [isOpen]="panel.isOpen" (toggle)="togglePanel(panel.id, $event)">
       <app-data-container-row panel-header>
         <span class="material-icons-outlined" container-icon>edit_note</span>

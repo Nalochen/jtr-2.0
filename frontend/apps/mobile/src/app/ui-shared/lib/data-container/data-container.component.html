@@ -3,8 +3,7 @@
     <div class="header-content">
       <ng-content select="[panel-header]"></ng-content>
       <div class="arrow" [class.expanded]="isOpen" (click)="togglePanel()">
-        <span class="material-icons-outlined" *ngIf="!isOpen">keyboard_arrow_down</span>
-        <span class="material-icons-outlined" *ngIf="isOpen">keyboard_arrow_up</span>
+        <span class="material-icons-outlined">keyboard_arrow_down</span>
       </div>
     </div>
   </div>
