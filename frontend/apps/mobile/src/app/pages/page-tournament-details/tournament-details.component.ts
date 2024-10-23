@@ -5,8 +5,8 @@ import {
   TournamentInformationCategoriesComponent
 } from './tournament-information-categories/tournament-information-categories.component';
 import { DataContainerComponent, DataContainerRowComponent } from '../../ui-shared';
-import { TournamentRegistrationComponent } from './registration/tournament-registration.component';
 import { TournamentTeamsComponent } from './teams/tournament-teams.component';
+import { BottomBarComponent } from './bottom-bar/bottom-bar.component';
 
 @Component({
   selector: 'app-tournament-details',
@@ -17,8 +17,8 @@ import { TournamentTeamsComponent } from './teams/tournament-teams.component';
     TournamentInformationCategoriesComponent,
     DataContainerComponent,
     DataContainerRowComponent,
-    TournamentRegistrationComponent,
-    TournamentTeamsComponent
+    TournamentTeamsComponent,
+    BottomBarComponent,
   ],
   templateUrl: './tournament-details.component.html',
   styleUrl: './tournament-details.component.less',
