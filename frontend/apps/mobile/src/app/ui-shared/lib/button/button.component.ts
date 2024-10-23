@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
 
@@ -9,15 +9,22 @@ import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-
   templateUrl: './button.component.html',
   styleUrl: './button.component.less',
 })
-export class ButtonComponent {
+export class ButtonComponent implements OnInit{
   @Input() public color: ButtonColorEnum = ButtonColorEnum.Secondary;
   @Input() public size: ButtonSizeEnum = ButtonSizeEnum.FitContent;
 
   public readonly ButtonColorEnum = ButtonColorEnum;
   public readonly ButtonSizeEnum = ButtonSizeEnum;
 
-  public readonly isPrimary = this.color === ButtonColorEnum.Primary;
-  public readonly isSecondary = this.color === ButtonColorEnum.Secondary;
-  public readonly isFitContent = this.size === ButtonSizeEnum.FitContent;
-  public readonly isFullWidth = this.size === ButtonSizeEnum.FullWidth;
+  public isPrimary = false;
+  public isSecondary = false;
+  public isFitContent = false;
+  public isFullWidth = false;
+
+  public ngOnInit() {
+    this.isPrimary = this.color === ButtonColorEnum.Primary;
+    this.isSecondary = this.color === ButtonColorEnum.Secondary;
+    this.isFitContent = this.size === ButtonSizeEnum.FitContent;
+    this.isFullWidth = this.size === ButtonSizeEnum.FullWidth;
+  }
 }
