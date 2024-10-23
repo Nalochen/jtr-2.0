@@ -24,7 +24,6 @@
         ],
         "styles": [
           "node_modules/swagger-ui-dist/swagger-ui.css",
-          "@angular/material/prebuilt-themes/cyan-orange.css",
           "apps/desktop/src/styles.less"
         ],
         "stylePreprocessorOptions": {
