@@ -4,7 +4,6 @@ from typing import Dict, Any, List, Optional
 from sqlalchemy import func, Column, Integer, DateTime, String, Text, Boolean, Enum
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
-from sqlalchemy.sql.functions import count
 
 from DataDomain.Database.Model.BaseModel import BaseModel
 from DataDomain.Database.Model.RelationTournamentTeam import participates_in

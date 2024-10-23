@@ -54,7 +54,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: backend
-    command: ./entrypoint.sh
+    command: sh -c "./provision.sh && ./entrypoint.sh"
     environment:
       DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
       CELERY_BROKER_URL: 'amqp://admin:mypass@rabbitmq:5672'

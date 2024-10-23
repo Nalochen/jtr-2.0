@@ -3,23 +3,20 @@ import os
 import pymysql
 from flask_cors import CORS
 
-from DataDomain.Database.db import db
-
 
 class Config(object):
+    """Configuration class for the Flask app."""
+
     @staticmethod
     def init_app(app):
+        """Initializes the Flask app with the given configuration."""
+
         CORS(app)
 
         pymysql.install_as_MySQLdb()
 
         app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
         # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-        db.init_app(app)
-
-        with app.app_context():
-            db.create_all()
 
         app.config['secret_key'] = 'secret key'
 
