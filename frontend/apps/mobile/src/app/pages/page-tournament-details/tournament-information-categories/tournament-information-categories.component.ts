@@ -12,6 +12,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { TournamentTeamsComponent } from '../teams/tournament-teams.component';
+import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
 
 @Component({
   selector: 'tournament-information-categories',
@@ -67,6 +68,9 @@ export class TournamentInformationCategoriesComponent {
     'Leere Menge',
     'Rhein-Neckar-Donner',
   ];
+
+  public readonly color = ButtonColorEnum.Secondary;
+  public readonly size = ButtonSizeEnum.FitContent;
 
   public previewTeams: string[] = this.registeredTeams.slice(0, 6);
 

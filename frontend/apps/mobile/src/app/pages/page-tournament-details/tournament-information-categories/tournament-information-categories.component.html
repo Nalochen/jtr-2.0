@@ -1,5 +1,5 @@
 <div class="button-wrapper">
-  <app-button (click)="toggleAllPanels()">{{ areAllPanelsOpen ? 'Close All' : 'Open All' }}</app-button>
+  <app-button [color]="color" [size]="size" (click)="toggleAllPanels()">{{ areAllPanelsOpen ? 'Close All' : 'Open All' }}</app-button>
 </div>
 
 <div *ngFor="let panel of panels">
