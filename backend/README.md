@@ -1,13 +1,41 @@
 # Backend
 
 ## Docker
-> `docker exec -it backend /bin/bash`
+
+```sh
+docker exec -it backend /bin/sh
+```
+
+## Testing
+    
+```sh
+docker exec backend pytest
+```
+
+
+## Code Style
+
+```sh
+docker exec backend find . -name '*.py' -exec autopep8 --in-place --aggressive --aggressive {} \;
+```
+
 
 ## SQL
-> `mysql -u root -p`
+
+```sh
+mysql -u root -p
+```
+
 
 ## Deps
-> `pipreqs . --force`
+
+```sh
+pipreqs . --force
+```
+
 
 ## GitHub Actions
-> `act --container-architecture linux/amd64`
+
+```sh
+act --container-architecture linux/amd64
+```
