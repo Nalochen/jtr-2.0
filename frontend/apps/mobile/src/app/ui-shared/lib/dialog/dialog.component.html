@@ -1,7 +1,7 @@
-<h2 mat-dialog-title>Hallo</h2>
+<h2 mat-dialog-title>Info</h2>
 <mat-dialog-content>
   <p>{{ data }}</p>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+  <app-button [color]="color" [size]="size" (click)="closeDialog()">Schließen</app-button>
 </mat-dialog-actions>

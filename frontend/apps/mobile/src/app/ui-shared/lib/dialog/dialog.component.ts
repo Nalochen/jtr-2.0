@@ -7,6 +7,8 @@ import {
   MatDialogModule, MatDialogRef,
   MatDialogTitle
 } from '@angular/material/dialog';
+import { ButtonComponent } from '../button/button.component';
+import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
 
 @Component({
   selector: 'app-dialog',
@@ -18,6 +20,7 @@ import {
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
+    ButtonComponent
   ],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.less',
@@ -26,4 +29,11 @@ import {
 export class DialogComponent {
   public readonly dialogRef = inject(MatDialogRef<DialogComponent>);
   public readonly data = inject<string>(MAT_DIALOG_DATA);
+
+  public readonly color = ButtonColorEnum.Primary;
+  public readonly size = ButtonSizeEnum.FitContent;
+
+  public closeDialog() {
+    this.dialogRef.close();
+  }
 }
