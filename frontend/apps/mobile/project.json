@@ -22,7 +22,10 @@
             "input": "apps/mobile/public"
           }
         ],
-        "styles": ["apps/mobile/src/styles.less"],
+        "styles": ["apps/mobile/src/styles.less",
+          {
+            "input": "apps/mobile/src/appm3-theme.scss"
+          }],
         "stylePreprocessorOptions": {
           "includePaths": ["apps/mobile/src/less"]
         },

@@ -1,16 +1,27 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
+// Plus imports for other components in your app.
 
-html,
-body {
-  height: 100%;
-}
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
 
-body {
-  margin: 0;
-  font-family: 'Helvetica Neue', sans-serif;
-}
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+//:root {
+  //@include mat.all-component-themes($mobile-theme);
+//}
 
-$custom_primary_theme: (
+// Comment out the line below if you want to use the pre-defined typography utility classes.
+// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
+// @include mat.typography-hierarchy($mobile-theme);
+
+$_palettes: (
+custom_primary_theme: (
   0: #000000,
   5: #2C0100,
   10: #400100,
@@ -29,9 +40,8 @@ $custom_primary_theme: (
   98: #FFF8F6,
   99: #FFFBFF,
   100: #FFFFFF
-);
-
-$custom_secondary_theme: (
+),
+  custom_secondary_theme: (
   0: #000000,
   5: #00131B,
   10: #001F29,
@@ -50,8 +60,8 @@ $custom_secondary_theme: (
   98: #F3FAFF,
   99: #FAFCFF,
   100: #FFFFFF
-);
-$custom_tertiary_theme: (
+),
+custom_tertiary_theme: (
   0: #000000,
   5: #001414,
   10: #051F1F,
@@ -70,8 +80,8 @@ $custom_tertiary_theme: (
   98: #E3FFFE,
   99: #F1FFFE,
   100: #FFFFFF
-);
-$custom_neutral_theme: (
+),
+custom_neutral_theme: (
   0: #000000,
   5: #111111,
   10: #1B1C1B,
@@ -90,8 +100,8 @@ $custom_neutral_theme: (
   98: #FBF9F8,
   99: #FEFCFB,
   100: #FFFFFF
-);
-$custom_neutral-variant_theme: (
+),
+custom_neutral-variant_theme: (
   0: #000000,
   5: #111111,
   10: #1C1B1B,
@@ -110,8 +120,8 @@ $custom_neutral-variant_theme: (
   98: #FCF8F8,
   99: #F6FEFF,
   100: #FFFFFF
-);
-$custom_error_theme: (
+),
+custom_error_theme: (
   0: #000000,
   5: #2C0100,
   10: #400100,
@@ -130,16 +140,16 @@ $custom_error_theme: (
   98: #FFF8F6,
   99: #FFFBFF,
   100: #FFFFFF
-);
+));
 
-$custom_primary: mat.m2-define-palette($custom-primary_theme);
-$custom_secondary: mat.m2-define-palette($custom_secondary_theme);
-$custom_tertiary: mat.m2-define-palette($custom_tertiary_theme);
-$custom_neutral: mat.m2-define-palette($custom_neutral_theme);
-$custom_neutral-variant: mat.m2-define-palette($custom_neutral-variant_theme);
-$custom_error: mat.m2-define-palette($custom_error_theme);
+$custom_primary: mat.define-colors($_palettes.custom-primary_theme);
+$custom_secondary: mat.define-colors($_palettes.custom_secondary_theme);
+$custom_tertiary: mat.define-colors($_palettes.custom_tertiary_theme);
+$custom_neutral: mat.define-colors($_palettes.custom_neutral_theme);
+$custom_neutral-variant: mat.define-colors($_palettes.custom_neutral-variant_theme);
+$custom_error: mat.define-colors($_palettes.custom_error_theme);
 
-$custom_theme: mat.m2-define-light_theme(
+$custom_theme: mat.define-theme(
   (
     color: (
       primary: $custom_primary,
@@ -148,8 +158,14 @@ $custom_theme: mat.m2-define-light_theme(
       neutral: $custom_neutral,
       neutral-variant: $custom_neutral-variant,
       error: $custom_error,
+    ),
+    density: (
+      scale: 0,
     )
   )
 );
 
-@include mat.all-component-themes($custom_theme);
+:root {
+  @include mat.angular-material-theme($custom_theme);
+  @include mat.all-component-themes($custom_theme);
+}

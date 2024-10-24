@@ -24,7 +24,10 @@
         ],
         "styles": [
           "node_modules/swagger-ui-dist/swagger-ui.css",
-          "apps/desktop/src/styles.less"
+          "apps/desktop/src/styles.less",
+          {
+            "input": "apps/desktop/src/appm3-theme.scss"
+          }
         ],
         "stylePreprocessorOptions": {
           "includePaths": ["apps/desktop/src/less"]
