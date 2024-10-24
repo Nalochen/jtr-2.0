@@ -1,6 +1,6 @@
 import json
 from typing import Optional, List, Text, Dict, Any
-from sqlalchemy import func, Integer, Column, String, DateTime, Boolean, Null
+from sqlalchemy import func, Integer, Column, String, DateTime, Boolean
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
