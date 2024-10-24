@@ -12,14 +12,15 @@ class GetTournamentOverviewHandler:
 
         responseData = [
             {
-                'tournament_id': tournament.id,
-                'organizer_logo': tournament.logo,
-                'start_date': tournament.start_date.isoformat(),
-                'total_teams': int(
+                'id': tournament.id,
+                'name': tournament.name,
+                'organizerLogo': tournament.logo,
+                'startDate': tournament.start_date.isoformat(),
+                'totalTeams': int(
                     tournament.total_teams) if tournament.total_teams else 0,
-                'registered_teams': int(
+                'registeredTeams': int(
                     tournament.registered_teams) if tournament.registered_teams else 0,
-                'tournament_name': tournament.name} for tournament in tournaments]
+            } for tournament in tournaments]
 
         return Response(
             response=responseData,
