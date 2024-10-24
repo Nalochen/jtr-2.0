@@ -1,9 +1,10 @@
-Flask
-Flask_Cors
-Flask_JWT_Extended
+flask
+flask_Cors
+flask_jwt_extended
 flask_sqlalchemy
+flask_Migrate
 flask_caching
-PyMySQL
+pymysql
 redis
 pipreqs
 cryptography
