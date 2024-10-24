@@ -1,35 +1,25 @@
 # Frontend
 
-### Ideas
-- capacitor
-
-
-## Finish your CI setup
-
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/5vHx82ZZlW)
-
-
-## Run tasks
-
-To run the dev server for your app, use:
+## Serve
 
 ```sh
-npx nx serve (desktop|mobile)
+nx serve (desktop|mobile)
 ```
 
-To create a production bundle:
 
+## Tests
 ```sh
-npx nx build (desktop|mobile)
+nx run-many --target=test --all
 ```
 
-To see all available targets to run for a project, run:
 
+## Code Style
 ```sh
-npx nx show project (desktop|mobile)
+nx run-many --target=lint --all --fix
 ```
 
-To run e2e tests
+
+## Run e2e tests
 
 ```sh
 npx nx e2e (desktop|mobile)
