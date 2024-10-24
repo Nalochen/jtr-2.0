@@ -15,10 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@jtr/business-domain/tournament": [
+        "libs/business-domain/tournament/src/index.ts"
+      ],
+      "@jtr/data-domain/store": ["libs/data-domain/store/src/index.ts"],
+      "@jtr/infrastructure/cache": ["libs/infrastructure/cache/src/index.ts"],
       "@jtr/infrastructure/svg-icons": [
         "libs/infrastructure/svg-icons/src/index.ts"
-      ],
-      "shared-ui": ["libs/src/index.ts"]
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

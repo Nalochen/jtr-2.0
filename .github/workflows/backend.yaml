@@ -1,0 +1,85 @@
+name: backend
+
+on: [push]
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-docker-backend-${{ hashFiles('backend/Dockerfile', 'backend/**') }}
+          restore-keys: |
+            ${{ runner.os }}-docker-backend-
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        with:
+          driver-opts: image=moby/buildkit:latest
+
+      - name: Build backend image with cache
+        run: |
+          docker buildx build \
+            --cache-from=type=local,src=/tmp/.buildx-cache \
+            --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
+            -t backend ./backend --load
+
+      - name: Save backend image
+        run: docker save -o backend.tar backend
+
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image
+          path: backend.tar
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download backend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-image
+
+      - name: Load backend image
+        run: docker load -i backend.tar
+
+      - name: Run tests
+        run: |
+          set -e
+
+          docker run backend pytest
+
+  code-style:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      - name: Install autopep8
+        run: pip install autopep8
+
+      - name: Run code style checks
+        run: |
+          set -e
+
+          find ./backend -name '*.py' | xargs -I {} autopep8 --diff --exit-code {}

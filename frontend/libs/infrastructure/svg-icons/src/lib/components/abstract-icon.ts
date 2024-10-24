@@ -91,17 +91,17 @@ export abstract class AbstractIconComponent implements OnInit, OnChanges {
   }
 
   public encodeSVG(data: string): string {
-    data = data.replace(/"/g, `'`);
+    data = data.replace(/"/g, "'");
 
-    data = data.replace(/>\s{1,}</g, `><`);
-    data = data.replace(/\s{2,}/g, ` `);
+    data = data.replace(/>\s{1,}</g, '><');
+    data = data.replace(/\s{2,}/g, ' ');
 
     return data.replace(symbols, encodeURIComponent);
   }
 
   private addNameSpace(data: string): string {
-    if (data.indexOf(`http://www.w3.org/2000/svg`) < 0) {
-      data = data.replace(/<svg/g, `<svg xmlns="http://www.w3.org/2000/svg"`);
+    if (data.indexOf('http://www.w3.org/2000/svg') < 0) {
+      data = data.replace(/<svg/g, '<svg xmlns="http://www.w3.org/2000/svg"');
     }
 
     return data;
