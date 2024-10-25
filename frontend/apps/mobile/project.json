@@ -6,26 +6,8 @@
   "sourceRoot": "apps/mobile/src",
   "tags": [],
   "targets": {
-    "compileMaterialTemplate": {
-      "executor": "nx:run-commands",
-      "options": {
-          "cwd": "apps/mobile",
-          "command": "npx sass src/assets/styles/material-theme.scss tmp/mobile-material-theme.css --load-path=../../node_modules"
-      },
-      "configurations": {
-          "production": {},
-          "development": {}
-      },
-      "defaultConfiguration": "production",
-      "outputs": ["{workspaceRoot}/apps/mobile/tmp"]
-    },
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "dependsOn": [
-        {
-          "target": "compileMaterialTemplate"
-        }
-      ],
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/mobile",
@@ -40,10 +22,7 @@
             "input": "apps/mobile/public"
           }
         ],
-        "styles": ["apps/mobile/src/styles.less",
-          {
-            "input": "apps/mobile/src/assets/styles/material-theme.scss"
-          }],
+        "styles": ["apps/mobile/src/styles.less"],
         "stylePreprocessorOptions": {
           "includePaths": ["apps/mobile/src/less"]
         },
@@ -78,11 +57,6 @@
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
-      "dependsOn": [
-        {
-          "target": "compileMaterialTemplate"
-        }
-      ],
       "configurations": {
         "production": {
           "buildTarget": "mobile:build:production"
