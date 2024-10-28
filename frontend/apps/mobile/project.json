@@ -45,7 +45,7 @@
             "input": "apps/mobile/src/assets/styles/material-theme.scss"
           }],
         "stylePreprocessorOptions": {
-          "includePaths": ["apps/mobile/src/less"]
+          "includePaths": ["apps/mobile/src/assets/styles/less"]
         },
         "scripts": []
       },

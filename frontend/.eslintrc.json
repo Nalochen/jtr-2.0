@@ -1,6 +1,7 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -10,12 +11,17 @@
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
+      "plugins": [
+        "rxjs-angular",
+        "rxjs",
+        "simple-import-sort",
+        "unused-imports"
+      ],
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
           {
             "type": "attribute",
-            "prefix": "app",
             "style": "camelCase"
           }
         ],
@@ -23,7 +29,6 @@
           "error",
           {
             "type": "element",
-            "prefix": "app",
             "style": "kebab-case"
           }
         ],
@@ -36,16 +41,52 @@
             }
           }
         ],
-        "rxjs/finnish": [
-          "error",
+        "simple-import-sort/imports": [
+          1,
           {
-            "functions": true,
-            "methods": true,
-            "parameters": true,
-            "properties": true,
-            "variables": true
+            "groups": [
+              // @NOTE 1st: Zone.js and Jest to not break tests
+              ["zone\\.js\\/?", "@?jest(\\/|-)"],
+              // @NOTE 2nd: Angular related packages
+              ["^@angular\\/"],
+              // @NOTE 3rd: Material related packages
+              ["^@angular\\/material"],
+              // @NOTE 4th: RxJS related packages
+              ["^rxjs\\/?"],
+              // @NOTE 5th: NgRx related packages
+              ["^@?ngrx\\/?", "^ngrx-store-localstorage"],
+              // @NOTE 6th: Other packages
+              [
+                "^date-fns\\/?",
+                "^@fortawesome\\/?",
+                "^jasmine",
+                "^ng2-currency-mask",
+                "^ngx-cookie",
+                "^ngx-logger",
+                "^text-mask-addons\\/?",
+                "^@maskito\\/?"
+              ],
+              // @NOTE 7th: Imports from other layers (Nx)
+              [
+                "@jtr\\/business-domain\\/",
+                "@jtr\\/data-domain\\/",
+                "@jtr\\/infrastructure\\/"
+              ],
+              // @NOTE 8th: Imports from other layers (non-Nx)
+              [
+                "\\/business-rules\\/",
+                "\\/data-domain\\/",
+                "\\/infrastructure\\/"
+              ],
+              // @NOTE 9th: Environments
+              ["\\/environments\\/environment"],
+              // @NOTE 10th: AppComponent, Module and RoutingModule
+              ["app\\.component", "app\\.module", "app-routing\\.module"]
+            ]
           }
-        ]
+        ],
+        "no-extra-semi": "off",
+        "quotes": ["error", "single"]
       }
     },
     {
@@ -55,13 +96,18 @@
       }
     },
     {
-      "files": ["*.html"],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended",
-        "plugin:@angular-eslint/template/accessibility"
-      ],
+      "files": ["*.js"],
+      "extends": ["plugin:@nx/javascript"],
       "rules": {
-        "@angular-eslint/template/prefer-self-closing-tags": ["error"]
+        "no-extra-semi": "off"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {
+        "@angular-eslint/template/prefer-self-closing-tags": ["error"],
+        "@typescript-eslint/ban-ts-comment": ["off"]
       }
     }
   ]

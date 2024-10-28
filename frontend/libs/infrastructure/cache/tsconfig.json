@@ -1,7 +1,5 @@
 {
   "extends": "../../../tsconfig.base.json",
-  "files": [],
-  "include": [],
   "references": [
     {
       "path": "./tsconfig.lib.json"
@@ -10,16 +8,13 @@
       "path": "./tsconfig.spec.json"
     }
   ],
+  "files": [],
+  "include": [],
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "target": "es2020"
+    "target": "es2023"
   },
-  "angularCompilerOptions": {
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
 }
