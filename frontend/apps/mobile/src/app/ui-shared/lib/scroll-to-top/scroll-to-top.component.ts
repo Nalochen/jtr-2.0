@@ -1,7 +1,9 @@
-import { Component, HostListener, Inject } from '@angular/core';
 import { CommonModule, DOCUMENT, NgOptimizedImage } from '@angular/common';
-import { ButtonComponent } from '../../../ui-shared';
+import { Component, HostListener, Inject } from '@angular/core';
+
 import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
+
+import { ButtonComponent } from '../../../ui-shared';
 
 
 @Component({
@@ -12,12 +14,14 @@ import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-
   styleUrl: './scroll-to-top.component.less',
 })
 export class ScrollToTopComponent {
-  public windowScrolled: boolean = false;
+  public windowScrolled = false;
   public readonly color = ButtonColorEnum.Primary;
   public readonly size = ButtonSizeEnum.FitContent;
+
   constructor(@Inject(DOCUMENT) private document: Document) {}
-  @HostListener("window:scroll", [])
-  onWindowScroll() {
+
+  @HostListener('window:scroll', [])
+  public onWindowScroll(): void {
     if (window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
       this.windowScrolled = true;
     }
@@ -25,9 +29,10 @@ export class ScrollToTopComponent {
       this.windowScrolled = false;
     }
   }
-  scrollToTop() {
-    (function smoothScroll() {
-      let currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
+
+  public scrollToTop() {
+    (function smoothScroll(): void {
+      const currentScroll: number = document.documentElement.scrollTop || document.body.scrollTop;
       if (currentScroll > 0) {
         window.requestAnimationFrame(smoothScroll);
         window.scrollTo(0, currentScroll - (currentScroll / 8));

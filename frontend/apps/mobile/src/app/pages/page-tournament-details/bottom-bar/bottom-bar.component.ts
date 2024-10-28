@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { Component } from '@angular/core';
+
+import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
+
 import { ButtonComponent } from '../../../ui-shared';
 import { ScrollToTopComponent } from '../../../ui-shared/lib/scroll-to-top/scroll-to-top.component';
-import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
 
 @Component({
   selector: 'bottom-bar',

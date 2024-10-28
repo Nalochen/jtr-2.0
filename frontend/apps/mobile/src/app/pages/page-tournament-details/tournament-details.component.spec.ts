@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { TournamentDetailsComponent } from './tournament-details.component';
 
 describe('TournamentDetailsComponent', () => {

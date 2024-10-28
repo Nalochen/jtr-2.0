@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { AbstractIconComponent } from '../abstract-icon';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'svg-icon-log-in',
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconLogInComponent extends AbstractIconComponent {
-  protected override rawIcon: string = `<svg fill='#color-placeholder' viewBox="0 0 26 26">
+  protected override rawIcon = `<svg fill='#color-placeholder' viewBox="0 0 26 26">
         <g transform="translate(0, 0)">
         <g transform="translate(0, 0) rotate(0)">
         <path vector-effect="non-scaling-stroke" class="st0" d="M13,0C5.8,0,0,5.8,0,13s5.8,13,13,13s13-5.8,13-13S20.2,0,13,0z M13,24.4

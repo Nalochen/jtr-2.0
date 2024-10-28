@@ -1,18 +1,21 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  DataContainerComponent,
-  DataContainerRowComponent,
-  ChipComponent,
-  InfoButtonComponent,
-  ButtonComponent,
-  TeamComponent
-} from '../../../ui-shared';
-import { MatIcon } from '@angular/material/icon';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
-import { TournamentTeamsComponent } from '../teams/tournament-teams.component';
+import { MatIcon } from '@angular/material/icon';
+
 import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
+
+import {
+  ButtonComponent,
+  ChipComponent,
+  DataContainerComponent,
+  DataContainerRowComponent,
+  InfoButtonComponent,
+  TeamComponent
+} from '../../../ui-shared';
+import { TournamentTeamsComponent } from '../teams/tournament-teams.component';
 
 @Component({
   selector: 'tournament-information-categories',
@@ -74,7 +77,7 @@ export class TournamentInformationCategoriesComponent {
 
   public previewTeams: string[] = this.registeredTeams.slice(0, 6);
 
-  get areAllPanelsOpen(): boolean {
+  public get areAllPanelsOpen(): boolean {
     return this.panels.every(panel => panel.isOpen);
   }
 
@@ -84,7 +87,6 @@ export class TournamentInformationCategoriesComponent {
     const shouldOpenAll = !this.areAllPanelsOpen;
     this.panels.forEach((panel) => {
       panel.isOpen = shouldOpenAll;
-      console.log(panel.id, panel.isOpen);
     });
     this.cdr.detectChanges();
   }

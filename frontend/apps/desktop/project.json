@@ -30,7 +30,7 @@
           }
         ],
         "stylePreprocessorOptions": {
-          "includePaths": ["apps/desktop/src/less"]
+          "includePaths": ["apps/desktop/src/assets/styles/less"]
         },
         "scripts": [
           "node_modules/swagger-ui-dist/swagger-ui-bundle.js",

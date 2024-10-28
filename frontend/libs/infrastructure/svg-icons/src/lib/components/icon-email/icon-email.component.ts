@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { AbstractIconComponent } from '../abstract-icon';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'svg-icon-email',
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconEmailComponent extends AbstractIconComponent {
-  protected override rawIcon: string = `<svg viewBox="0 0 143.8000030517578 102" fill='#color-placeholder'>
+  protected override rawIcon = `<svg viewBox="0 0 143.8000030517578 102" fill='#color-placeholder'>
     <polygon points="104.5,37.4 141.8,76 141.8,3.7" />
     <path d="M46.8,22.6l-21-18.9v18.9c3.4-0.8,6.9-1.3,10.5-1.3C39.9,21.3,43.4,21.8,46.8,22.6z" />
     <polygon points="137.7,0 30,0 83.9,48.5" />

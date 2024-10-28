@@ -1,8 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { AbstractIconComponent } from '../abstract-icon';
 import { Color } from '../../models/color.model';
-import { CommonModule } from '@angular/common';
+import { AbstractIconComponent } from '../abstract-icon';
 
 const iconCircle = `<svg fill="#fill-color" viewBox="0 0 100 100">
     <circle r="45%" cx="50%" cy="50%" fill="#tick-color" stroke-width="10"/>

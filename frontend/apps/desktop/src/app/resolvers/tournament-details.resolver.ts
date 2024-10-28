@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { Store } from '@ngrx/store';
+
 import { Observable } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+
 import { loadTournamentDetailsData } from '@jtr/business-domain/tournament';
 
 @Injectable({
@@ -10,7 +13,7 @@ import { loadTournamentDetailsData } from '@jtr/business-domain/tournament';
 export class TournamentDetailsResolver implements Resolve<boolean> {
   constructor(private store: Store) {}
 
-  resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
+  public resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
     const tournamentId = route.paramMap.get('tournamentId');
 
     if (tournamentId) {

@@ -9,11 +9,11 @@ import { AbstractIconComponent } from '../abstract-icon';
 })
 export class IconCircleComponent extends AbstractIconComponent {
   @Input()
-  public innerScalePercent: number = 71; // about 1/sqrt(2)
+  public innerScalePercent = 71; // about 1/sqrt(2)
 
-  @Input() public fill: string = '#ffffff';
+  @Input() public fill = '#ffffff';
 
-  protected override rawIcon: string = `<svg viewBox="0 0 70 70">
+  protected override rawIcon = `<svg viewBox="0 0 70 70">
         <circle stroke="#stroke-color" fill="#fill-color" cx="35" cy="35" r="34" stroke-width="2"/>
     </svg>`;
 
