@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+
 import {
   MAT_DIALOG_DATA,
   MatDialogActions, MatDialogClose,
@@ -7,8 +8,10 @@ import {
   MatDialogModule, MatDialogRef,
   MatDialogTitle
 } from '@angular/material/dialog';
-import { ButtonComponent } from '../button/button.component';
+
 import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
+
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-dialog',

@@ -95,6 +95,7 @@ export interface TournamentData {
   houseRules: TournamentHouseRules;
   location: string;
   name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   organizer: any; // TODO
   pompfCheck: TournamentPompfCheck;
   possibleSpace: number;
@@ -104,6 +105,7 @@ export interface TournamentData {
   shoes: TournamentShoes;
   status: TournamentStatus;
   teamsCount: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   teams: any[]; // TODO
   updatedAt: string;
 }

@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
+
 import { TournamentData } from './tournament-data.response';
-import { MemoryCache } from '@jtr/infrastructure/cache';
 
 const ENDPOINT = '/api/customer-frontend/get-tournament-details/';
 

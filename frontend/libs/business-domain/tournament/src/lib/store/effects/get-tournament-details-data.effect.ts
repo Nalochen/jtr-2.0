@@ -1,8 +1,12 @@
 import { inject, Injectable } from '@angular/core';
+
 import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
+
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+
 import { TournamentData, TournamentDataClient } from '@jtr/data-domain/store';
+
 import { loadTournamentDetailsData } from '../actions/tournament-details-data-load.action';
 import { loadTournamentDetailsDataFailedAction } from '../actions/tournament-details-data-loaded-failed.action';
 import { loadTournamentDetailsDataSuccessAction } from '../actions/tournament-details-data-loaded-success.action';

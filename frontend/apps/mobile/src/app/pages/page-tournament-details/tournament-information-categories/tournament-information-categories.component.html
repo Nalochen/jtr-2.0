@@ -4,30 +4,30 @@
 
 <div *ngFor="let panel of panels">
   <div [ngSwitch]="panel.id">
-    <app-data-container class="teams" *ngSwitchCase="'teams'" [id]="panel.id" [isOpen]="panel.isOpen" (toggle)="togglePanel(panel.id, $event)">
+    <app-data-container class="teams" *ngSwitchCase="'teams'" [id]="panel.id" [isOpen]="panel.isOpen" (toggleVisibility)="togglePanel(panel.id, $event)">
       <section *ngIf="!panel.isOpen" panel-header>
         @for (team of previewTeams; track team) {
         <span class="material-icons-outlined">star</span>
         }
       </section>
       <p class="title" *ngIf="panel.isOpen" panel-header>angemeldet:</p>
-      <tournament-teams panel-content [registeredTeams]="registeredTeams" [reservedTeams]="reservedTeams"></tournament-teams>
+      <tournament-teams panel-content [registeredTeams]="registeredTeams" [reservedTeams]="reservedTeams" />
     </app-data-container>
 
-    <app-data-container *ngSwitchCase="'registration'" [id]="panel.id" [isOpen]="panel.isOpen" (toggle)="togglePanel(panel.id, $event)">
+    <app-data-container *ngSwitchCase="'registration'" [id]="panel.id" [isOpen]="panel.isOpen" (toggleVisibility)="togglePanel(panel.id, $event)">
       <app-data-container-row panel-header>
         <span class="material-icons-outlined" container-icon>edit_note</span>
         <p container-headline>Kosten</p>
         <p container-content>10€ pro Person</p>
       </app-data-container-row>
-      <mat-divider panel-content></mat-divider>
+      <mat-divider panel-content />
       <app-data-container-row panel-content class="first-content-row">
         <span class="material-icons-outlined" container-icon>edit_note</span>
         <p container-headline>Anmeldeverfahren</p>
         <app-chip container-additional>Windhund</app-chip>
         <p container-content>Teams aus der Region Franken sind gesetzt alle anderen Teams können sich zur Deadline auf Plätze bewerben und werden per Los-Verfahren zufällig ausgewählt</p>
       </app-data-container-row>
-      <mat-divider panel-content></mat-divider>
+      <mat-divider panel-content />
       <app-data-container-row panel-content>
         <span class="material-icons-outlined" container-icon>edit_note</span>
         <p container-headline>Deadlines</p>
@@ -44,7 +44,7 @@
         <p container-headline>Awarenessteam</p>
         <p container-content>01575 80000006</p>
       </app-data-container-row>
-      <mat-divider panel-content></mat-divider>
+      <mat-divider panel-content />
       <app-data-container-row panel-content class="first-content-row">
         <span class="material-icons-outlined" container-icon>contact_page</span>
         <p container-headline>Organisation</p>
@@ -59,13 +59,13 @@
       <p container-headline>Adresse</p>
       <p container-content>Columbiadamm 111 21107 Berlin</p>
     </app-data-container-row>
-    <mat-divider panel-content></mat-divider>
+    <mat-divider panel-content />
     <app-data-container-row panel-content class="first-content-row">
       <span class="material-icons-outlined" container-icon>pin_drop</span>
       <p container-headline>Anreise</p>
       <p container-content>Freitag 18h - Samstag 9h</p>
     </app-data-container-row>
-    <mat-divider panel-content></mat-divider>
+    <mat-divider panel-content />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>pin_drop</span>
       <p container-headline>Zeitplan</p>
@@ -78,7 +78,7 @@
         Frühstück: 8h
         Spielbeginn: 9h</p>
     </app-data-container-row>
-    <mat-divider panel-content></mat-divider>
+    <mat-divider panel-content />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>pin_drop</span>
       <p container-headline>Übernachtung</p>
@@ -89,7 +89,7 @@
         xxx</p>
       <app-chip container-additional>Turnhalle</app-chip>
     </app-data-container-row>
-    <mat-divider panel-content></mat-divider>
+    <mat-divider panel-content />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>pin_drop</span>
       <p container-headline>Verpflegung</p>
@@ -104,30 +104,30 @@
       <a container-additional>Link</a>
       <p container-content>Freitag Abend von 18-22h gecheckt wird nach deutschem Regelwerk.</p>
     </app-data-container-row>
-    <mat-divider panel-content class="first-content-row"></mat-divider>
+    <mat-divider panel-content class="first-content-row" />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>menu_book</span>
       <p container-headline>Turniersystem</p>
       <a container-additional>Tugeny</a>
       <p container-content>Wir spielen ein Round Robin mit 8 Teams</p>
     </app-data-container-row>
-    <mat-divider panel-content></mat-divider>
+    <mat-divider panel-content />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>menu_book</span>
       <p container-headline>Hausregeln</p>
       <a container-additional>Link</a>
       <p container-content>unter dem Link findet ihr eine Auflistung der Hausregeln, die wir auf diesem Turnier ausprobieren wollen.</p>
     </app-data-container-row>
-    <mat-divider panel-content></mat-divider>
+    <mat-divider panel-content />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>menu_book</span>
       <p container-headline>Schuhwerk</p>
-      <app-info-button container-additional [infoText]="'Schuhwerk Infotext'"></app-info-button>
+      <app-info-button container-additional [infoText]="'Schuhwerk Infotext'" />
       <p container-content>Noppenschuhe Nockenschuhe Stollenschuhe Barfuß Aus Sicherheitsgründen erlauben wir nicht, dass Barfuß gespielt wird</p>
     </app-data-container-row>
   </app-data-container>
 
-    <app-data-container *ngSwitchCase="'other'" [id]="panel.id" [isOpen]="panel.isOpen">
+  <app-data-container *ngSwitchCase="'other'" [id]="panel.id" [isOpen]="panel.isOpen">
     <app-data-container-row panel-header>
       <p container-headline>zusätzliche Information</p>
       <p container-content>Lorem Ipsum</p>

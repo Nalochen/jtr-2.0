@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Store } from '@ngrx/store';
-import { TournamentOverviewData } from '@jtr/data-domain/store';
+import { Component } from '@angular/core';
+
 import { Observable } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+
 import { tournamentOverviewDataSelector } from '@jtr/business-domain/tournament';
+import { TournamentOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 @Component({

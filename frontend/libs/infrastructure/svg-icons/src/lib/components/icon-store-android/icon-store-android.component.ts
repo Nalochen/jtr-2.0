@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { AbstractIconComponent } from '../abstract-icon';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'svg-icon-store-android',
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconStoreAndroidComponent extends AbstractIconComponent {
-  protected override rawIcon: string = `<svg id="artwork" x="0px" y="0px"
+  protected override rawIcon = `<svg id="artwork" x="0px" y="0px"
      viewBox="0 0 135 40" style="enable-background:new 0 0 135 40;">
 <style type="text/css">
 .st0{fill:#A6A6A6;}

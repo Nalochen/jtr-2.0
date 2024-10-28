@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { AbstractIconComponent } from '../abstract-icon';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'svg-icon-tip',
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconTipComponent extends AbstractIconComponent {
-  protected override rawIcon: string = `<svg viewBox="0 0 123.3 100" fill='#color-placeholder'>
+  protected override rawIcon = `<svg viewBox="0 0 123.3 100" fill='#color-placeholder'>
     <path d="M22,37.8a4.58,4.58,0,0,0-4.58-4.58H5.21a4.58,4.58,0,1,0,0,
         9.15h12.2A4.58,4.58,0,0,0,22,37.8ZM21.05,56l-10.57,6.1a4.58,4.58,0,0,
         0,4.43,8l.15-.08,10.57-6.1A4.58,4.58,0,0,0,21.05,56Zm4.58-44.24L15.06,
