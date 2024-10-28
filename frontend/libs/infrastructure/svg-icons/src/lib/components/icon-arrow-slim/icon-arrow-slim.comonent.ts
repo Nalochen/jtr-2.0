@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { AbstractIconComponent } from '../abstract-icon';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { AbstractIconComponent } from '../abstract-icon';
 
 @Component({
   selector: 'svg-icon-arrow-slim',
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconArrowSlimComponent extends AbstractIconComponent {
-  protected override rawIcon: string = `<svg fill='#color-placeholder' viewBox="0 0 18 10.126079114172057" >
+  protected override rawIcon = `<svg fill='#color-placeholder' viewBox="0 0 18 10.126079114172057" >
     <g transform="translate(0, 0)">
         <defs>
             <path

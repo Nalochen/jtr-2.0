@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { TournamentDetailsDataState } from '../states/tournament-details-data-store.state';
+
 import { tournamentDetailsDataStoreSlice } from '../states/tournament-details-data-store.slice';
+import { TournamentDetailsDataState } from '../states/tournament-details-data-store.state';
 
 export const tournamentDetailsDataStateSelector =
   createFeatureSelector<TournamentDetailsDataState>(

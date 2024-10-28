@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { AbstractIconComponent } from '../abstract-icon';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'svg-icon-copy',
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconCopyComponent extends AbstractIconComponent {
-  protected override rawIcon: string = `<svg viewBox="0 0 88.9 100">
+  protected override rawIcon = `<svg viewBox="0 0 88.9 100">
     <path
     fill="#color-placeholder"
     d="M85.3,13L75.2,2.9c-1.8-1.8-4.1-2.7-6.6-2.7H35.1c-5.2,0-9.3,4.2-9.3,9.3v9.3H10.2c-5.2,0-9.3,4.2-9.3,9.3v62.3

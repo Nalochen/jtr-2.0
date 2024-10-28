@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+
 import { MatButtonModule } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatIcon } from '@angular/material/icon';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
 
@@ -14,5 +15,5 @@ import {MatTooltipModule} from '@angular/material/tooltip';
   styleUrl: './info-button.component.less',
 })
 export class InfoButtonComponent {
-  @Input() infoText = '';
+  @Input() public infoText = '';
 }

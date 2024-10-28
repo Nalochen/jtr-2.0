@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { Component } from '@angular/core';
+
 import {MatButtonModule} from '@angular/material/button';
 
 

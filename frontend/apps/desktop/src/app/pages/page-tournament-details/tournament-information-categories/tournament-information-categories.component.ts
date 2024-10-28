@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { DataContainerComponent, DataContainerRowComponent, ChipComponent, InfoButtonComponent } from '../../../ui-shared';
-import { MatIcon } from '@angular/material/icon';
+import { Component } from '@angular/core';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatIcon } from '@angular/material/icon';
+
+import { ChipComponent, DataContainerComponent, DataContainerRowComponent, InfoButtonComponent } from '../../../ui-shared';
 
 @Component({
   selector: 'tournament-information-categories',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -12,6 +12,4 @@ import { provideAnimations } from '@angular/platform-browser/animations';
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
 })
-export class AppComponent {
-  title = 'mobile';
-}
+export class AppComponent {}

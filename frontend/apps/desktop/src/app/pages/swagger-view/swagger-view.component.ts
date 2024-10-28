@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import YAML from 'yaml';

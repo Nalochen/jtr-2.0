@@ -1,3 +1,5 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -7,8 +9,6 @@ import {
   OnChanges, Output,
   SimpleChanges
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-data-container',
@@ -36,16 +36,16 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataContainerComponent implements OnChanges {
-  @Input() public id: string = '';
-  @Input() public isOpen: boolean = false;
-  @Output() public toggle: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() public id = '';
+  @Input() public isOpen = false;
+  @Output() public toggleVisibility: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private cdr: ChangeDetectorRef) {}
 
   protected togglePanel() {
     this.isOpen = !this.isOpen;
     this.cdr.detectChanges();
-    this.toggle.emit(this.isOpen);
+    this.toggleVisibility.emit(this.isOpen);
   }
 
   public ngOnChanges(changes: SimpleChanges) {

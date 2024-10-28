@@ -1,13 +1,17 @@
 <div class="expansion-panel">
   <div class="panel-header">
     <div class="header-content">
-      <ng-content select="[panel-header]"></ng-content>
+      <ng-content select="[panel-header]" />
+      <!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
+      <!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
       <div class="arrow" [class.expanded]="isOpen" (click)="togglePanel()">
+        <!-- eslint-enable @angular-eslint/template/click-events-have-key-events -->
+        <!-- eslint-enable @angular-eslint/template/interactive-supports-focus -->
         <span class="material-icons-outlined">keyboard_arrow_down</span>
       </div>
     </div>
   </div>
   <div class="panel-content" *ngIf="isOpen" [@expandCollapse]="isOpen ? 'expanded' : 'collapsed'">
-    <ng-content></ng-content>
+    <ng-content />
   </div>
 </div>

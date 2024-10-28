@@ -1,15 +1,18 @@
+import { provideHttpClient } from '@angular/common/http';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
-import { appRoutes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideRouter } from '@angular/router';
+
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
-import { metaReducers, reducers } from './reducers';
+
 import {
   GetTournamentDetailsDataEffect,
   GetTournamentOverviewDataEffect,
 } from '@jtr/business-domain/tournament';
-import { provideHttpClient } from '@angular/common/http';
+
+import { appRoutes } from './app.routes';
+import { metaReducers, reducers } from './reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [

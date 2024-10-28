@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { Component } from '@angular/core';
+
 import { MatDivider } from '@angular/material/divider';
-import { DataContainerComponent, TeamComponent } from '../../../ui-shared';
 import { MatIcon } from '@angular/material/icon';
+
+import { DataContainerComponent, TeamComponent } from '../../../ui-shared';
 
 @Component({
   selector: 'tournament-teams',

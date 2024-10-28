@@ -1,4 +1,6 @@
 import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
+import { localStorageSync } from 'ngrx-store-localstorage';
+
 import {
   TOURNAMENT_DETAILS_DATA_REDUCER_SLICE,
   TOURNAMENT_OVERVIEW_DATA_REDUCER_SLICE,
@@ -7,7 +9,6 @@ import {
   tournamentOverviewDataReducer,
   TournamentOverviewDataState,
 } from '@jtr/business-domain/tournament';
-import { localStorageSync } from 'ngrx-store-localstorage';
 
 export interface State {
   tournamentOverview: TournamentOverviewDataState;

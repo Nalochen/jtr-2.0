@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+
 import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
 
 @Component({
