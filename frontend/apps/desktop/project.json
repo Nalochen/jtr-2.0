@@ -26,7 +26,7 @@
           "node_modules/swagger-ui-dist/swagger-ui.css",
           "apps/desktop/src/styles.less",
           {
-            "input": "apps/desktop/src/appm3-theme.scss"
+            "input": "apps/desktop/src/assets/styles/material-theme.scss"
           }
         ],
         "stylePreprocessorOptions": {
