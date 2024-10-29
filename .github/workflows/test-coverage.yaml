@@ -66,7 +66,7 @@ jobs:
           python-version: 3.13
 
       - name: Build coverage files
-        run: docker run -v /tmp:/tmp backend python3 -m pytest --junitxml=/tmp/pytest.xml --cov=/app | tee /tmp/pytest-coverage.txt
+        run: docker run --rm -v /tmp:/tmp backend python3 -m pytest --junitxml=/tmp/pytest.xml --cov=/app | tee /tmp/pytest-coverage.txt
 
       - name: Upload backend coverage artifact
         uses: actions/upload-artifact@v4
@@ -108,7 +108,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-docker-frontend-${{ hashFiles('frontend/Dockerfile.test', 'frontend/**') }}
+          key: ${{ runner.os }}-docker-frontend-${{ hashFiles('frontend/test.Dockerfile', 'frontend/**') }}
           restore-keys: |
             ${{ runner.os }}-docker-frontend-
 
@@ -122,7 +122,7 @@ jobs:
           docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
             --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
-            -t frontend-test -f ./frontend/Dockerfile.test ./frontend --load
+            -t frontend-test -f ./frontend/test.Dockerfile ./frontend --load
 
       - name: Save frontend-test image
         run: docker save -o frontend-test.tar frontend-test
@@ -149,7 +149,7 @@ jobs:
         run: docker load -i frontend-test.tar
 
       - name: Build coverage files
-        run: docker run -v /tmp:/tmp frontend-test npx jest --reporters=default --reporters=jest-junit --coverage --no-cache | tee /tmp/jest-coverage.txt
+        run: docker run --rm -v /tmp:/tmp frontend-test npx jest --reporters=default --reporters=jest-junit --coverage --no-cache | tee /tmp/jest-coverage.txt
 
       #- name: Build summary files
       #  run: docker run -v /tmp:/app/coverage frontend-test npx jest --coverage --coverageReporters json-summary --no-cache --verbose

@@ -18,7 +18,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-docker-frontend-${{ hashFiles('frontend/Dockerfile.test', 'frontend/**') }}
+          key: ${{ runner.os }}-docker-frontend-${{ hashFiles('frontend/test.Dockerfile', 'frontend/**') }}
           restore-keys: |
             ${{ runner.os }}-docker-frontend-
 
@@ -32,7 +32,7 @@ jobs:
           docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
             --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
-            -t frontend-test -f ./frontend/Dockerfile.test ./frontend --load
+            -t frontend-test -f ./frontend/test.Dockerfile ./frontend --load
 
       - name: Save frontend-test image
         run: docker save -o frontend-test.tar frontend-test
@@ -60,9 +60,11 @@ jobs:
 
       - name: Run tests
         run: |
-          set -e
+          set -x # Print commands and their arguments as they are executed.
+          set -e # Exit immediately if a command exits with a non-zero status.
+          set -u # Exit immediately if a variable is not defined.
 
-          docker run frontend-test nx run-many --target=test --all
+          docker run --rm frontend-test nx run-many --target=test --all --base=origin/main
 
   code-style:
     needs: build
@@ -81,6 +83,8 @@ jobs:
 
       - name: Run code style checks on all projects
         run: |
-          set -e
+          set -x # Print commands and their arguments as they are executed.
+          set -e # Exit immediately if a command exits with a non-zero status.
+          set -u # Exit immediately if a variable is not defined.
 
-          docker run frontend-test nx run-many --target=lint --all
+          docker run --rm frontend-test nx run-many --target=lint --all --base=origin/main
