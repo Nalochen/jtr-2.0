@@ -59,9 +59,11 @@ jobs:
 
       - name: Run tests
         run: |
-          set -e
+          set -x # Print commands and their arguments as they are executed.
+          set -e # Exit immediately if a command exits with a non-zero status.
+          set -u # Exit immediately if a variable is not defined.
 
-          docker run backend pytest
+          docker run --rm backend pytest
 
   code-style:
     needs: build
@@ -80,6 +82,8 @@ jobs:
 
       - name: Run code style checks
         run: |
-          set -e
+          set -x # Print commands and their arguments as they are executed.
+          set -e # Exit immediately if a command exits with a non-zero status.
+          set -u # Exit immediately if a variable is not defined.
 
           find ./backend -name '*.py' | xargs -I {} autopep8 --diff --exit-code {}
