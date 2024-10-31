@@ -1,10 +1,10 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   Input,
   OnChanges,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-status-indicator',
