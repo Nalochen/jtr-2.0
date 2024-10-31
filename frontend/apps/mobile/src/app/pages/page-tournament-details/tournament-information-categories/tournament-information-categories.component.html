@@ -17,20 +17,20 @@
     <app-data-container *ngSwitchCase="'registration'" [id]="panel.id" [isOpen]="panel.isOpen" (toggleVisibility)="togglePanel(panel.id, $event)">
       <app-data-container-row panel-header>
         <span class="material-icons-outlined" container-icon>edit_note</span>
-        <p container-headline>Kosten</p>
+        <p container-headline class="headline">Kosten</p>
         <p container-content>10€ pro Person</p>
       </app-data-container-row>
       <mat-divider panel-content />
       <app-data-container-row panel-content class="first-content-row">
         <span class="material-icons-outlined" container-icon>edit_note</span>
-        <p container-headline>Anmeldeverfahren</p>
+        <p container-headline class="headline">Anmeldeverfahren</p>
         <app-chip container-additional>Windhund</app-chip>
         <p container-content>Teams aus der Region Franken sind gesetzt alle anderen Teams können sich zur Deadline auf Plätze bewerben und werden per Los-Verfahren zufällig ausgewählt</p>
       </app-data-container-row>
       <mat-divider panel-content />
       <app-data-container-row panel-content>
         <span class="material-icons-outlined" container-icon>edit_note</span>
-        <p container-headline>Deadlines</p>
+        <p container-headline class="headline">Deadlines</p>
         <div container-content>
           <p>Überweisung: 23.09.</p>
           <p>Anmeldungsrunde: 30.09.</p>
@@ -41,13 +41,13 @@
     <app-data-container *ngSwitchCase="'contacts'" [id]="panel.id" [isOpen]="panel.isOpen">
       <app-data-container-row panel-header>
         <span class="material-icons-outlined" container-icon>contact_page</span>
-        <p container-headline>Awarenessteam</p>
+        <p container-headline class="headline">Awarenessteam</p>
         <p container-content>01575 80000006</p>
       </app-data-container-row>
       <mat-divider panel-content />
       <app-data-container-row panel-content class="first-content-row">
         <span class="material-icons-outlined" container-icon>contact_page</span>
-        <p container-headline>Organisation</p>
+        <p container-headline class="headline">Organisation</p>
         <p container-content>01575 80000005
           orga-at-jugger.com</p>
       </app-data-container-row>
@@ -56,19 +56,19 @@
     <app-data-container *ngSwitchCase="'address'" [id]="panel.id" [isOpen]="panel.isOpen">
     <app-data-container-row panel-header>
       <span class="material-icons-outlined" container-icon>pin_drop</span>
-      <p container-headline>Adresse</p>
+      <p container-headline class="headline">Adresse</p>
       <p container-content>Columbiadamm 111 21107 Berlin</p>
     </app-data-container-row>
     <mat-divider panel-content />
     <app-data-container-row panel-content class="first-content-row">
       <span class="material-icons-outlined" container-icon>pin_drop</span>
-      <p container-headline>Anreise</p>
+      <p container-headline class="headline">Anreise</p>
       <p container-content>Freitag 18h - Samstag 9h</p>
     </app-data-container-row>
     <mat-divider panel-content />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>pin_drop</span>
-      <p container-headline>Zeitplan</p>
+      <p container-headline class="headline">Zeitplan</p>
       <p container-content>Freitag: Pompfencheck 18-22h
         Samstag:
         Frühstück: 8h
@@ -81,7 +81,7 @@
     <mat-divider panel-content />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>pin_drop</span>
-      <p container-headline>Übernachtung</p>
+      <p container-headline class="headline">Übernachtung</p>
       <p container-content>Es wird eine Halle bereit gestellt.
         Adresse:
         xxx
@@ -92,7 +92,7 @@
     <mat-divider panel-content />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>pin_drop</span>
-      <p container-headline>Verpflegung</p>
+      <p container-headline class="headline">Verpflegung</p>
       <p container-content>Frühstück Mittagessen Abendessen Gastro</p>
     </app-data-container-row>
   </app-data-container>
@@ -100,28 +100,28 @@
     <app-data-container *ngSwitchCase="'tournamentSystem'" [id]="panel.id" [isOpen]="panel.isOpen">
     <app-data-container-row panel-header>
       <span class="material-icons-outlined" container-icon>menu_book</span>
-      <p container-headline>Pompfencheck</p>
+      <p container-headline class="headline">Pompfencheck</p>
       <a container-additional>Link</a>
       <p container-content>Freitag Abend von 18-22h gecheckt wird nach deutschem Regelwerk.</p>
     </app-data-container-row>
     <mat-divider panel-content class="first-content-row" />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>menu_book</span>
-      <p container-headline>Turniersystem</p>
+      <p container-headline class="headline">Turniersystem</p>
       <a container-additional>Tugeny</a>
       <p container-content>Wir spielen ein Round Robin mit 8 Teams</p>
     </app-data-container-row>
     <mat-divider panel-content />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>menu_book</span>
-      <p container-headline>Hausregeln</p>
+      <p container-headline class="headline">Hausregeln</p>
       <a container-additional>Link</a>
       <p container-content>unter dem Link findet ihr eine Auflistung der Hausregeln, die wir auf diesem Turnier ausprobieren wollen.</p>
     </app-data-container-row>
     <mat-divider panel-content />
     <app-data-container-row panel-content>
       <span class="material-icons-outlined" container-icon>menu_book</span>
-      <p container-headline>Schuhwerk</p>
+      <p container-headline class="headline">Schuhwerk</p>
       <app-info-button container-additional [infoText]="'Schuhwerk Infotext'" />
       <p container-content>Noppenschuhe Nockenschuhe Stollenschuhe Barfuß Aus Sicherheitsgründen erlauben wir nicht, dass Barfuß gespielt wird</p>
     </app-data-container-row>
@@ -129,7 +129,7 @@
 
   <app-data-container *ngSwitchCase="'other'" [id]="panel.id" [isOpen]="panel.isOpen">
     <app-data-container-row panel-header>
-      <p container-headline>zusätzliche Information</p>
+      <p container-headline class="headline">zusätzliche Information</p>
       <p container-content>Lorem Ipsum</p>
     </app-data-container-row>
   </app-data-container>

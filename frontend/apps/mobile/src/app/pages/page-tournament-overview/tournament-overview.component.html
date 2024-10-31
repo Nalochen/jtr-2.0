@@ -1,1 +1,41 @@
-<p>tournament-overview works!</p>
+<div class="header">
+  <h1>Turniere</h1>
+</div>
+
+<div class="tournaments">
+  @for (team of teams; track team) {
+  <app-data-container>
+    <app-data-container-row panel-header>
+      <div container-headline class="headline">
+        <div class="meta-data">
+          <p class="date">11.-12.12.</p>
+          <p>Bamberg</p>
+        </div>
+        <app-status-indicator container-additional [totalTeams]="10" [registeredTeams]="12"></app-status-indicator>
+      </div>
+      <span class="material-icons-outlined" container-icon>event</span>
+      <p container-content class="title">Turniername</p>
+    </app-data-container-row>
+    <app-data-container-row panel-content>
+      <div class="content" container-content>
+        <button mat-icon-button class="register" container-headline>
+          <span class="material-icons-outlined">keyboard_arrow_right</span>
+          Registrierung
+        </button>
+        <button mat-icon-button class="on-site">
+          <span class="material-icons-outlined">keyboard_arrow_right</span>
+          Vor Ort
+        </button>
+        <button mat-icon-button class="contact" container-headline>
+          <span class="material-icons-outlined">keyboard_arrow_right</span>
+          Kontakt
+        </button>
+        <button mat-icon-button class="rules">
+          <span class="material-icons-outlined">keyboard_arrow_right</span>
+          Regeln
+        </button>
+      </div>
+    </app-data-container-row>
+  </app-data-container>
+  }
+</div>
