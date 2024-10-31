@@ -4,14 +4,14 @@ import { loadTournamentDetailsData } from '../actions/tournament-details-data-lo
 import { loadTournamentDetailsDataFailedAction } from '../actions/tournament-details-data-loaded-failed.action';
 import { loadTournamentDetailsDataSuccessAction } from '../actions/tournament-details-data-loaded-success.action';
 import { tournamentDetailsDataInitialState } from '../states/tournament-details-data-store.initial-state';
-import { TournamentDetailsDataState } from '../states/tournament-details-data-store.state';
+import { TournamentDetailsState } from '../states/tournament-details-data-store.state';
 import { FAILED, IDLE, LOADING } from '../types/loading-state.type';
 
 export const tournamentDetailsDataReducer = createReducer(
   tournamentDetailsDataInitialState,
   on(
     loadTournamentDetailsData,
-    (state): TournamentDetailsDataState => ({
+    (state): TournamentDetailsState => ({
       ...state,
       loadingState: LOADING,
       error: null,
@@ -19,7 +19,7 @@ export const tournamentDetailsDataReducer = createReducer(
   ),
   on(
     loadTournamentDetailsDataSuccessAction,
-    (state, { tournamentDetails }): TournamentDetailsDataState => ({
+    (state, { tournamentDetails }): TournamentDetailsState => ({
       ...state,
       loadingState: IDLE,
       tournamentDetails: tournamentDetails,
@@ -27,7 +27,7 @@ export const tournamentDetailsDataReducer = createReducer(
   ),
   on(
     loadTournamentDetailsDataFailedAction,
-    (state, { error }): TournamentDetailsDataState => ({
+    (state, { error }): TournamentDetailsState => ({
       ...state,
       loadingState: FAILED,
       error,

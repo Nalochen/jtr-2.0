@@ -6,8 +6,25 @@
   "sourceRoot": "apps/desktop/src",
   "tags": [],
   "targets": {
+    "compileMaterialTemplate": {
+      "executor": "nx:run-commands",
+      "options": {
+          "cwd": "apps/desktop",
+          "command": "npx sass src/assets/styles/material-theme.scss tmp/desktop-material-theme.css --load-path=../../node_modules"
+      },
+      "configurations": {
+          "production": {},
+          "development": {}
+      },
+      "defaultConfiguration": "production"
+    },
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
+      "dependsOn": [
+        {
+          "target": "compileMaterialTemplate"
+        }
+      ],
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/desktop",
@@ -42,13 +59,13 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
+              "maximumWarning": "3mb",
+              "maximumError": "6mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "2kb",
-              "maximumError": "4kb"
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
             }
           ],
           "outputHashing": "all"

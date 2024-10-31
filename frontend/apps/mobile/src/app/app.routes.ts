@@ -1,8 +1,9 @@
 import { Route } from '@angular/router';
 
-import { TournamentDetailsComponent } from './pages/page-tournament-details/tournament-details.component';
-import { TournamentOverviewComponent } from './pages/page-tournament-overview/tournament-overview.component';
+import { PageTournamentDetailsComponent } from './pages/page-tournament-details/page-tournament-details.component';
+import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
+
 export const appRoutes: Route[] = [
-  { path: 'tournament-details', component: TournamentDetailsComponent },
-  { path: 'tournaments-overview', component: TournamentOverviewComponent },
+  { path: 'tournament-details', component: PageTournamentDetailsComponent },
+  { path: 'tournaments-overview', component: PageTournamentOverviewComponent },
 ];

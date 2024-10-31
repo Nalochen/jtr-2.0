@@ -1,0 +1,11 @@
+<tournament-header
+  *ngIf="tournament$ | async as tournament"
+  [tournament]="tournament"
+/>
+
+<tournament-information
+  *ngIf="tournament$ | async as tournament"
+  [tournament]="tournament"
+/>
+
+<tournament-bottom-bar />

@@ -24,7 +24,7 @@ class UserVersions(BaseModel, db.Model):
 
     changes: Column[Text] = db.Column(
         'changes',
-        db.Text,
+        db.Text(),
         nullable=False
     )
 

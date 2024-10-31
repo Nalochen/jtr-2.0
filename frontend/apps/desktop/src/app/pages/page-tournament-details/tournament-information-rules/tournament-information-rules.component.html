@@ -1,0 +1,37 @@
+<app-data-container>
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
+    <p ngProjectAs="container-headline">Pompfencheck</p>
+    <a ngProjectAs="container-additional" href="{{ tournament.pompfCheck.url }}" target="_blank">Link</a>
+    <p ngProjectAs="container-content">{{ tournament.pompfCheck.text }}</p>
+  </app-data-container-row>
+
+  <mat-divider />
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
+    <p ngProjectAs="container-headline">Turniersystem</p>
+    <a ngProjectAs="container-additional" href="{{ tournament.tournamentSystem.url }}" target="_blank">{{ tournament.tournamentSystem.type }}</a>
+    <p ngProjectAs="container-content">{{ tournament.tournamentSystem.text }}</p>
+  </app-data-container-row>
+
+  <mat-divider />
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
+    <p ngProjectAs="container-headline">Hausregeln</p>
+    <a ngProjectAs="container-additional" href="{{ tournament.houseRules.url }}" target="_blank">Link</a>
+    <p ngProjectAs="container-content">{{ tournament.houseRules.text }}</p>
+  </app-data-container-row>
+
+  <mat-divider />
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
+    <p ngProjectAs="container-headline">Schuhwerk</p>
+
+    <app-info-button ngProjectAs="container-additional" [infoText]="'Schuhwerk Infotext'" />
+
+    <p ngProjectAs="container-content">{{ tournament.shoes.text }}</p><-- TODO: Wir haben haufenweise Einzelne angeben zu den Schuhen, die wir hier dann auch nutzen könnten. -->
+  </app-data-container-row>
+</app-data-container>

@@ -2,12 +2,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
-    "target": "es2023",
+    "target": "esnext",
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
     "types": [],
-    "lib": ["dom", "es2023"]
+    "lib": ["dom", "esnext"]
   },
   "exclude": [
     "src/test-setup.ts",
