@@ -325,7 +325,8 @@ class Tournaments(BaseModel, db.Model):
 
         # TODO
         serialized['arrivalTime'] = serialized.pop('arrival_time')
-        serialized['additionalInformation'] = serialized.pop('additional_information')
+        serialized['additionalInformation'] = serialized.pop(
+            'additional_information')
         serialized['possibleSpace'] = serialized.pop('possible_space')
 
         return serialized
