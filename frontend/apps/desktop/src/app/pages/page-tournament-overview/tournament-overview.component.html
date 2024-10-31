@@ -1,32 +1,33 @@
 <h1>Turniere</h1>
 
 @for (tournament of tournaments$ | async; track tournament) {
-  <app-data-container>
-    <img src="{{ tournament.organizerLogo }}" alt="{{ tournament.name }}">
-    <h2>{{ tournament.name }}</h2>
-    <p class="date">{{ tournament.startDate }}</p>
-    <p class="city">Test</p>
-    <app-status-indicator
-      [registeredTeams]="tournament.registeredTeams"
-      [totalTeams]="tournament.totalTeams"
-      class="teams">
-    </app-status-indicator>
+<app-data-container>
+  <img src="{{ tournament.organizerLogo }}" alt="{{ tournament.name }}" />
+  <h2>{{ tournament.name }}</h2>
+  <p class="date">{{ tournament.startDate }}</p>
+  <p class="city">Test</p>
+  <app-status-indicator
+    [registeredTeams]="tournament.registeredTeams"
+    [totalTeams]="tournament.totalTeams"
+    class="teams"
+  >
+  </app-status-indicator>
 
-    <button mat-icon-button class="registration">
-      <span class="material-icons-outlined">keyboard_arrow_right</span>
-      Registrierung
-    </button>
-    <button mat-icon-button class="rules">
-      <span class="material-icons-outlined">keyboard_arrow_right</span>
-      Regeln
-    </button>
-    <button mat-icon-button class="contact">
-      <span class="material-icons-outlined">keyboard_arrow_right</span>
-      Kontakt
-    </button>
-    <button mat-icon-button class="on-site">
-      <span class="material-icons-outlined">keyboard_arrow_right</span>
-      Vor Ort
-    </button>
-  </app-data-container>
+  <button mat-icon-button class="registration">
+    <span class="material-icons-outlined">keyboard_arrow_right</span>
+    Registrierung
+  </button>
+  <button mat-icon-button class="rules">
+    <span class="material-icons-outlined">keyboard_arrow_right</span>
+    Regeln
+  </button>
+  <button mat-icon-button class="contact">
+    <span class="material-icons-outlined">keyboard_arrow_right</span>
+    Kontakt
+  </button>
+  <button mat-icon-button class="on-site">
+    <span class="material-icons-outlined">keyboard_arrow_right</span>
+    Vor Ort
+  </button>
+</app-data-container>
 }

@@ -15,7 +15,12 @@ import { StatusIndicatorComponent } from '../../ui-shared/lib/status-indicator/s
 @Component({
   selector: 'page-tournament-overview',
   standalone: true,
-  imports: [CommonModule, DataContainerComponent, MatButtonModule, StatusIndicatorComponent],
+  imports: [
+    CommonModule,
+    DataContainerComponent,
+    MatButtonModule,
+    StatusIndicatorComponent,
+  ],
   templateUrl: './tournament-overview.component.html',
   styleUrl: './tournament-overview.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,39 +14,25 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./status-indicator.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StatusIndicatorComponent implements OnInit, OnChanges {
+export class StatusIndicatorComponent implements OnChanges {
   @Input() totalTeams: number = 0;
   @Input() registeredTeams: number = 0;
 
   fillPercentage: number = 0;
   showBackground: boolean = true;
 
-  ngOnInit(): void {
+  public ngOnChanges(): void {
     this.calculateFill();
   }
 
-  ngOnChanges(): void {
-    this.calculateFill();
-  }
-
-  calculateFill(): void {
+  private calculateFill(): void {
     if (this.totalTeams === 0) {
       this.fillPercentage = 100;
       this.showBackground = false;
-      return;
-    }
-
-    const ratio = this.registeredTeams / this.totalTeams;
-
-    if (this.registeredTeams < this.totalTeams) {
-      this.fillPercentage = ratio * 100;
-      this.showBackground = true;
-    } else if (this.registeredTeams === this.totalTeams) {
-      this.fillPercentage = 100;
-      this.showBackground = false;
     } else {
+      const ratio = Math.min(this.registeredTeams / this.totalTeams, 1);
       this.fillPercentage = ratio * 100;
-      this.showBackground = false;
+      this.showBackground = this.fillPercentage < 100;
     }
   }
 }

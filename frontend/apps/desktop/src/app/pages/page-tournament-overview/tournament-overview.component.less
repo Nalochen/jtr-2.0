@@ -6,9 +6,12 @@ h1 {
 
 app-data-container {
   display: grid;
-  grid-template-areas: "logo date city teams registration rules"
-                        "logo name name name contact on-site";
-  grid-template-columns: 48px fit-content(150px) fit-content(150px) 1fr fit-content(150px) fit-content(150px);
+  grid-template-areas:
+    'logo date city teams registration rules'
+    'logo name name name contact on-site';
+  grid-template-columns: 48px fit-content(150px) fit-content(150px) 1fr fit-content(
+      150px
+    ) fit-content(150px);
   grid-template-rows: auto;
   grid-column-gap: 16px;
 }
