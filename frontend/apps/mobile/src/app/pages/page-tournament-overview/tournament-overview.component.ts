@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { DataContainerComponent, DataContainerRowComponent } from '../../ui-shared';
+
 import { MatButtonModule } from '@angular/material/button';
+
+import { DataContainerComponent, DataContainerRowComponent } from '../../ui-shared';
 import { StatusIndicatorComponent } from '../../ui-shared/lib/status-indicator/status-indicator.component';
 
 @Component({
