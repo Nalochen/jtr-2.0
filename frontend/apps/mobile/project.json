@@ -114,6 +114,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "mobile:build",
+        "port": 4201,
         "spa": true
       }
     }

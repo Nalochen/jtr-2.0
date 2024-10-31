@@ -15,11 +15,11 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusIndicatorComponent implements OnChanges {
-  @Input() totalTeams: number = 0;
-  @Input() registeredTeams: number = 0;
+  @Input() protected totalTeams: number = 0;
+  @Input() protected registeredTeams: number = 0;
 
-  fillPercentage: number = 0;
-  showBackground: boolean = true;
+  protected fillPercentage: number = 0;
+  protected showBackground: boolean = true;
 
   public ngOnChanges(): void {
     this.calculateFill();
