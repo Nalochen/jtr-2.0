@@ -5,17 +5,18 @@ from sqlalchemy import func, Column, Integer, DateTime, String, Text, Boolean, E
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
+from DataDomain.Database.db import db
 from DataDomain.Database.Enum.TournamentAccommodationTypesEnum import TournamentAccommodationTypesEnum
-from DataDomain.Database.Model.BaseModel import BaseModel
-from DataDomain.Database.Model.RelationTournamentTeam import participates_in
-from DataDomain.Database.Enum.RegistrationProcedureTypesEnum import RegistrationProcedureTypesEnum
 from DataDomain.Database.Enum.TournamentFoodEveningTypesEnum import TournamentFoodEveningTypesEnum
 from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import TournamentFoodGastroTypesEnum
 from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import TournamentFoodMorningTypesEnum
 from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
+from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import TournamentRegistrationProcedureTypesEnum
 from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
+from DataDomain.Database.Enum.TournamentSystemTypesEnum import TournamentSystemTypesEnum
+from DataDomain.Database.Model.BaseModel import BaseModel
+from DataDomain.Database.Model.RelationTournamentTeam import participates_in
 from DataDomain.Database.Model.Teams import Teams
-from DataDomain.Database.db import db
 
 
 class Tournaments(BaseModel, db.Model):
@@ -179,6 +180,11 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
+    tournament_system_type: Column[Enum] = db.Column(
+        db.Enum(TournamentSystemTypesEnum),
+        nullable=False
+    )
+
     tournament_system_url: Column[String] = db.Column(
         db.String(255),
         nullable=False
@@ -200,7 +206,7 @@ class Tournaments(BaseModel, db.Model):
     )
 
     registration_procedure_type: Column[Enum] = db.Column(
-        Enum(RegistrationProcedureTypesEnum),
+        Enum(TournamentRegistrationProcedureTypesEnum),
         nullable=False
     )
 
@@ -285,7 +291,8 @@ class Tournaments(BaseModel, db.Model):
 
         serialized['tournamentSystem'] = {
             'url': serialized.pop('tournament_system_url'),
-            'text': serialized.pop('tournament_system_text')
+            'text': serialized.pop('tournament_system_text'),
+            'type': serialized.pop('tournament_system_type').value
         }
 
         serialized['pompfCheck'] = {

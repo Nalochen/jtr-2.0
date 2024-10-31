@@ -7,13 +7,13 @@ import { ButtonComponent } from '../../../ui-shared';
 import { ScrollToTopComponent } from '../../../ui-shared/lib/scroll-to-top/scroll-to-top.component';
 
 @Component({
-  selector: 'bottom-bar',
+  selector: 'tournament-bottom-bar',
   standalone: true,
   imports: [CommonModule, NgOptimizedImage, ButtonComponent, ScrollToTopComponent],
-  templateUrl: './bottom-bar.component.html',
-  styleUrl: './bottom-bar.component.less',
+  templateUrl: './tournament-bottom-bar.component.html',
+  styleUrl: './tournament-bottom-bar.component.less',
 })
-export class BottomBarComponent {
+export class TournamentBottomBarComponent {
   public readonly ButtonColorEnum = ButtonColorEnum;
   public readonly ButtonSizeEnum = ButtonSizeEnum;
 

@@ -17,7 +17,9 @@
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
     <p ngProjectAs="container-headline">Anmeldeverfahren</p>
+
     <app-chip ngProjectAs="container-additional">{{ tournament.registrationProcedure.type }}</app-chip>
+
     <p ngProjectAs="container-content">{{ tournament.registrationProcedure.text }}</p> <-- TODO: Klären ob wir das Feld registration_procedure_url brauchen-->
   </app-data-container-row>
 

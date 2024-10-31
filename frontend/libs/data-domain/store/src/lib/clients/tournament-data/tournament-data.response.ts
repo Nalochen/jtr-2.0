@@ -13,9 +13,14 @@ export interface TournamentHouseRules {
   text: string;
 }
 
+export enum TournamentSystemType {
+  TUGENY = 'tugeny'
+}
+
 export interface TournamentSystem {
   url: string;
   text: string;
+  type: TournamentSystemType
 }
 
 export interface TournamentPompfCheck {

@@ -1,15 +1,18 @@
 @for (team of registeredTeams; track team) {
   <app-team class="team">
     <span class="material-icons-outlined" ngProjectAs="team-logo">star</span>
-    <p ngProjectAs="team-name">{{ team }}</p>
+    <p ngProjectAs="team-name">{{ team.name }}</p>
   </app-team>
 }
+
 <mat-divider />
+
 <p class="title">vorgemerkt:</p>
+
 @for (team of reservedTeams; track team) {
   <app-team class="team">
     <span class="material-icons-outlined" ngProjectAs="team-logo">star</span>
-    <p ngProjectAs="team-name">{{ team }}</p>
+    <p ngProjectAs="team-name">{{ team.name }}</p>
     <span class="material-icons-outlined" ngProjectAs="team-country">send</span>
   </app-team>
 }

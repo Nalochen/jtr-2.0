@@ -168,6 +168,7 @@ class TournamentRepository:
             },
             'tournamentSystem': {
                 'text': tournament.tournament_system_text,
+                'type': tournament.tournament_system_type.value,
                 'url': tournament.tournament_system_url
             },
             'updatedAt': tournament.updated_at.isoformat()

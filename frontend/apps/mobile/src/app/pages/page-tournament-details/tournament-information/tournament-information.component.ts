@@ -1,9 +1,11 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input} from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
+
+import {TeamData, TournamentData} from '@jtr/data-domain/store';
 
 import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
 
@@ -15,10 +17,10 @@ import {
   InfoButtonComponent,
   TeamComponent
 } from '../../../ui-shared';
-import { TournamentTeamsComponent } from '../teams/tournament-teams.component';
+import { TournamentTeamsComponent } from '../tournament-teams/tournament-teams.component';
 
 @Component({
-  selector: 'tournament-information-categories',
+  selector: 'tournament-information',
   standalone: true,
   providers: [],
   imports: [
@@ -33,13 +35,16 @@ import { TournamentTeamsComponent } from '../teams/tournament-teams.component';
     MatDividerModule,
     ButtonComponent,
     TournamentTeamsComponent,
-    TeamComponent
+    TeamComponent,
+    ChipComponent
   ],
-  templateUrl: './tournament-information-categories.component.html',
-  styleUrl: './tournament-information-categories.component.less',
+  templateUrl: './tournament-information.component.html',
+  styleUrl: './tournament-information.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TournamentInformationCategoriesComponent {
+export class TournamentInformationComponent {
+  @Input() public tournament!: TournamentData;
+
   protected panels = [
     { id: 'teams', isOpen: false },
     { id: 'registration', isOpen: false },
@@ -49,33 +54,10 @@ export class TournamentInformationCategoriesComponent {
     { id: 'other', isOpen: false },
   ];
 
-  public registeredTeams: string[] = [
-    'Munich Monks',
-    'Rigor Mortis',
-    'Blue Fangs',
-    'Jugger Helden Bamberg',
-    'Flying Juggmen',
-    'Juggernauts',
-    'Aixcalibur',
-    'Cranium Ex Machina',
-    'Lahnveilchen Gießen',
-    'Torpedo Bääm',
-    'Zonenkinder',
-  ];
-
-  public reservedTeams: string[] = [
-    'NLG',
-    'Peters Pawns',
-    'Quadratur des Kreises',
-    'Quak Pack',
-    'Leere Menge',
-    'Rhein-Neckar-Donner',
-  ];
-
   public readonly color = ButtonColorEnum.Secondary;
   public readonly size = ButtonSizeEnum.FitContent;
 
-  public previewTeams: string[] = this.registeredTeams.slice(0, 6);
+  public previewTeams: TeamData[] = this.tournament.teams.participating.slice(0, 6);
 
   public get areAllPanelsOpen(): boolean {
     return this.panels.every(panel => panel.isOpen);
@@ -85,17 +67,21 @@ export class TournamentInformationCategoriesComponent {
 
   protected toggleAllPanels(): void {
     const shouldOpenAll = !this.areAllPanelsOpen;
+
     this.panels.forEach((panel) => {
       panel.isOpen = shouldOpenAll;
     });
+
     this.cdr.detectChanges();
   }
 
   protected togglePanel(panelId: string, isOpen: boolean): void {
     const panel = this.panels.find(panel => panel.id === panelId);
+
     if (panel && panel.isOpen !== isOpen) {
       panel.isOpen = isOpen;
     }
+
     this.cdr.detectChanges();
   }
 }
