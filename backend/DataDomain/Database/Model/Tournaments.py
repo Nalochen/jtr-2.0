@@ -5,6 +5,7 @@ from sqlalchemy import func, Column, Integer, DateTime, String, Text, Boolean, E
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
+from DataDomain.Database.Enum.TournamentAccommodationTypesEnum import TournamentAccommodationTypesEnum
 from DataDomain.Database.Model.BaseModel import BaseModel
 from DataDomain.Database.Model.RelationTournamentTeam import participates_in
 from DataDomain.Database.Enum.RegistrationProcedureTypesEnum import RegistrationProcedureTypesEnum
@@ -39,6 +40,12 @@ class Tournaments(BaseModel, db.Model):
     end_date: Column[Text] = db.Column(
         db.DateTime,
         nullable=False,
+    )
+
+    additional_information: Column[Text] = db.Column(
+        db.Text(),
+        nullable=False,
+        default=''
     )
 
     address: Column[String] = db.Column(
@@ -80,8 +87,13 @@ class Tournaments(BaseModel, db.Model):
         doc='["string"]'
     )
 
-    accommodation: Column[String] = db.Column(
-        db.String(30),
+    accommodation_type: Column[Enum] = db.Column(
+        Enum(TournamentAccommodationTypesEnum),
+        nullable=False
+    )
+
+    accommodation_text: Column[String] = db.Column(
+        db.String(255),
         nullable=False
     )
 
@@ -90,9 +102,11 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    deadlines: Column[Optional[Text]] = db.Column(
+    deadlines: Column[Text] = db.Column(
         db.Text(),
-        nullable=True
+        nullable=False,
+        default='[]',
+        doc='["string"]'
     )
 
     schedule: Column[Optional[Text]] = db.Column(
@@ -180,6 +194,11 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
+    registration_procedure_text: Column[Text] = db.Column(
+        db.Text(),
+        nullable=True
+    )
+
     registration_procedure_type: Column[Enum] = db.Column(
         Enum(RegistrationProcedureTypesEnum),
         nullable=False
@@ -213,6 +232,11 @@ class Tournaments(BaseModel, db.Model):
         nullable=False,
     )
 
+    organized_tournaments: Mapped['Teams'] = db.relationship(
+        'Teams',
+        back_populates='tournaments'
+    )
+
     teams: Mapped[List['Teams']] = db.relationship(
         'Teams',
         secondary=participates_in,
@@ -231,6 +255,8 @@ class Tournaments(BaseModel, db.Model):
             'end': serialized.pop('end_date').isoformat()
         }
 
+        serialized['deadlines'] = self.getDeadlines
+
         serialized['contacts'] = self.getContacts
 
         serialized['teamCount'] = len(self.teams)
@@ -245,6 +271,11 @@ class Tournaments(BaseModel, db.Model):
         serialized['costs'] = {
             'user': serialized.pop('costs_per_user'),
             'team': serialized.pop('costs_per_team')
+        }
+
+        serialized['accommodation'] = {
+            'type': serialized.pop('accommodation_type').value,
+            'text': serialized.pop('accommodation_text'),
         }
 
         serialized['houseRules'] = {
@@ -264,7 +295,8 @@ class Tournaments(BaseModel, db.Model):
 
         serialized['registrationProcedure'] = {
             'url': serialized.pop('registration_procedure_url'),
-            'type': serialized.pop('registration_procedure_type').value
+            'type': serialized.pop('registration_procedure_type').value,
+            'text': serialized.pop('registration_procedure_text')
         }
 
         serialized['food'] = {
@@ -293,6 +325,7 @@ class Tournaments(BaseModel, db.Model):
 
         # TODO
         serialized['arrivalTime'] = serialized.pop('arrival_time')
+        serialized['additionalInformation'] = serialized.pop('additional_information')
         serialized['possibleSpace'] = serialized.pop('possible_space')
 
         return serialized
@@ -304,3 +337,11 @@ class Tournaments(BaseModel, db.Model):
         """
 
         return json.loads(str(self.contacts))
+
+    @hybrid_property
+    def getDeadlines(self) -> List[str]:
+        """
+        Parses the JSON string from the database and returns the changes as a dictionary.
+        """
+
+        return json.loads(str(self.deadlines))

@@ -23,6 +23,11 @@ export interface TournamentPompfCheck {
   text: string;
 }
 
+export interface TournamentAccommodation {
+  text: string;
+  type: string;
+}
+
 export enum TournamentRegistrationProcedureType {
   FIRST_COME = 'first_come',
   LOTS = 'lots',
@@ -32,6 +37,7 @@ export enum TournamentRegistrationProcedureType {
 export interface TournamentRegistrationProcedure {
   url: string;
   type: TournamentRegistrationProcedureType;
+  text: string;
 }
 
 export enum TournamentFoodEvening {
@@ -81,22 +87,43 @@ export enum TournamentStatus {
   OVER = 'over',
 }
 
+export interface TournamentTeamData {
+  participating: TeamData[];
+  waiting: TeamData[];
+}
+
+export interface TeamData {
+  id: number;
+  aboutUs: string;
+  city: string;
+  contacts: string[];
+  createdAt: string;
+  founded: string;
+  isMixTeam: boolean;
+  lastTournamentOrganized: string;
+  lastTournamentPlayed: string;
+  logo: string;
+  name: string;
+  trainingTime: string;
+  updatedAt: string;
+}
+
 export interface TournamentData {
   id: number;
-  accommodation: string;
+  accommodation: TournamentAccommodation;
+  additionalInformation: string;
   address: string;
   arrivalTime: string;
   contacts: string[];
   costs: TournamentCosts;
   createdAt: string;
   date: TournamentDate;
-  deadlines?: string;
+  deadlines: string[];
   food: TournamentFood;
   houseRules: TournamentHouseRules;
   location: string;
   name: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  organizer: any; // TODO
+  organizer: TeamData;
   pompfCheck: TournamentPompfCheck;
   possibleSpace: number;
   registrationOpenAt: string;
@@ -104,8 +131,8 @@ export interface TournamentData {
   schedule?: string;
   shoes: TournamentShoes;
   status: TournamentStatus;
-  teamsCount: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  teams: any[]; // TODO
+  teamCount: number;
+  teams: TournamentTeamData;
+  tournamentSystem: TournamentSystem;
   updatedAt: string;
 }

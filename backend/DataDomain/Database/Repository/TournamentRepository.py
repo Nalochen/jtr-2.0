@@ -2,12 +2,13 @@ from datetime import datetime
 from typing import List
 
 from sqlalchemy import func, Integer, or_, and_
-from sqlalchemy.orm import aliased
+from sqlalchemy.orm import aliased, joinedload
 
 from DataDomain.Database.Model.RelationTournamentTeam import participates_in
 from DataDomain.Database.Model.Teams import Teams
 from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.db import db
+import json
 
 
 class TournamentRepository:
@@ -50,3 +51,124 @@ class TournamentRepository:
         ).order_by(
             Tournaments.start_date
         ).all()
+
+    @staticmethod
+    def getTournamentDetails(tournamentId: int) -> dict | None:
+        """Get tournament details by id."""
+
+        tournament = db.session.query(Tournaments).options(
+            joinedload(Tournaments.teams),
+            joinedload(Tournaments.organizer)
+        ).filter(Tournaments.id == tournamentId).first()
+
+        if not tournament:
+            return None
+
+        participatesTeams = []
+        waitingTeams = []
+
+        for team in tournament.teams:
+            participation = db.session.query(participates_in).filter(
+                participates_in.c.team_id == team.id,
+                participates_in.c.tournament_id == tournament.id
+            ).first()
+
+            team_data = {
+                'id': team.id,
+                'name': team.name,
+                'aboutUs': team.about_us,
+                'city': team.city,
+                'contacts': json.loads(str(team.contacts)),
+                'createdAt': team.created_at.isoformat(),
+                'founded': team.founded.isoformat(),
+                'isMixTeam': team.is_mix_team,
+                'lastTournamentOrganized': team.last_tournament_organized.isoformat(),
+                'lastTournamentPlayed': team.last_tournament_played.isoformat(),
+                'logo': team.logo,
+                'trainingTime': team.training_time,
+                'updatedAt': team.updated_at.isoformat()
+            }
+            if participation and participation.is_on_waiting_list:
+                waitingTeams.append(team_data)
+            else:
+                participatesTeams.append(team_data)
+
+        return {
+            'id': tournament.id,
+            'name': tournament.name,
+            'accommodation': {
+                'text': tournament.accommodation_text,
+                'type': tournament.accommodation_type.value,
+            },
+            'additionalInformation': tournament.additional_information,
+            'address': tournament.address,
+            'arrivalTime': tournament.arrival_time,
+            'contacts': json.loads(str(tournament.contacts)),
+            'costs': {
+                'team': tournament.costs_per_team,
+                'user': tournament.costs_per_user
+            },
+            'createdAt': tournament.created_at.isoformat(),
+            'date': {
+                'start': tournament.start_date.isoformat(),
+                'end': tournament.end_date.isoformat()
+            },
+            'deadlines': json.loads(str(tournament.deadlines)),
+            'food': {
+                'morning': tournament.food_morning.value,
+                'noon': tournament.food_noon.value,
+                'evening': tournament.food_evening.value,
+                'gastro': tournament.food_gastro.value
+            },
+            'houseRules': {
+                'text': tournament.house_rules_text,
+                'url': tournament.house_rules_url
+            },
+            'location': tournament.location,
+            'organizer': {
+                'id': tournament.organizer.id,
+                'name': tournament.organizer.name,
+                'aboutUs': tournament.organizer.about_us,
+                'city': tournament.organizer.city,
+                'contacts': json.loads(str(tournament.organizer.contacts)),
+                'createdAt': tournament.organizer.created_at.isoformat(),
+                'founded': tournament.organizer.founded.isoformat(),
+                'isMixTeam': tournament.organizer.is_mix_team,
+                'lastTournamentOrganized': tournament.organizer.last_tournament_organized.isoformat(),
+                'lastTournamentPlayed': tournament.organizer.last_tournament_played.isoformat(),
+                'logo': tournament.organizer.logo,
+                'trainingTime': tournament.organizer.training_time,
+                'updatedAt': tournament.organizer.updated_at.isoformat()
+            },
+            'pompfCheck': {
+                'text': tournament.pompf_check_text,
+                'url': tournament.pompf_check_url
+            },
+            'possibleSpace': tournament.possible_space,
+            'registrationOpenAt': tournament.registration_open_at.isoformat(),
+            'registrationProcedure': {
+                'text': tournament.registration_procedure_text,
+                'type': tournament.registration_procedure_type.value,
+                'url': tournament.registration_procedure_url
+            },
+            'schedule': tournament.schedule,
+            'shoes': {
+                'barefootAllowed': tournament.barefoot_allowed,
+                'camAllowed': tournament.cam_shoes_allowed,
+                'cleatsAllowed': tournament.cleats_shoes_allowed,
+                'studdedAllowed': tournament.studded_shoes_allowed,
+                'text': tournament.shoes_text,
+                'url': tournament.shoes_url
+            },
+            'status': tournament.status.value,
+            'teamCount': len(tournament.teams),
+            'teams': {
+                'participating': participatesTeams,
+                'waiting': waitingTeams
+            },
+            'tournamentSystem': {
+                'text': tournament.tournament_system_text,
+                'url': tournament.tournament_system_url
+            },
+            'updatedAt': tournament.updated_at.isoformat()
+        }

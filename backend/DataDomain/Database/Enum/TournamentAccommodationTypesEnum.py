@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class AccommodationTypesEnum(Enum):
+class TournamentAccommodationTypesEnum(Enum):
     """Enum class for the accommodation types"""
 
     CAMPING = 'camping'

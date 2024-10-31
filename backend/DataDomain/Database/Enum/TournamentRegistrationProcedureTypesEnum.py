@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class RegistrationProcedureTypesEnum(Enum):
+class TournamentRegistrationProcedureTypesEnum(Enum):
     """Enum class for the registration procedure types"""
 
     FIRST_COME = 'first_come'

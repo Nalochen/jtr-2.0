@@ -1,0 +1,21 @@
+<app-data-container>
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">contact_page</span>
+    <p ngProjectAs="container-headline">Awarenessteam</p>
+
+    @for (contacts of tournament.contacts; track contacts) {
+      <p ngProjectAs="container-content">{{ contacts }}</p>
+    }
+  </app-data-container-row>
+
+  <mat-divider />
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">contact_page</span>
+    <p ngProjectAs="container-headline">Organisation</p>
+
+    @for (contacts of tournament.organizer.contacts; track contacts) {
+      <p ngProjectAs="container-content">{{ contacts }}</p>
+    }
+  </app-data-container-row>
+</app-data-container>

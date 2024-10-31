@@ -1,8 +1,7 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 import {MatButtonModule} from '@angular/material/button';
-
 
 @Component({
   selector: 'tournament-registration',
@@ -11,4 +10,6 @@ import {MatButtonModule} from '@angular/material/button';
   templateUrl: './tournament-registration.component.html',
   styleUrl: './tournament-registration.component.less',
 })
-export class TournamentRegistrationComponent {}
+export class TournamentRegistrationComponent {
+    @Input() public registrationOpenAt!: string;
+}

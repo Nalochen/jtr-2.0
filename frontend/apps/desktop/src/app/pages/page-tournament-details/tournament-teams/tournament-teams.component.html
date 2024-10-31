@@ -1,0 +1,24 @@
+<app-data-container>
+  <p class="title">angemeldet:</p>
+
+  @for (team of participatingTeams; track team) {
+    <app-team class="team">
+      <mat-icon ngProjectAs="team-logo">star</mat-icon>
+
+      <p ngProjectAs="team-name">{{ team.name }}</p>
+    </app-team>
+  }
+  <mat-divider />
+
+  <p class="title">vorgemerkt:</p>
+
+  @for (team of waitingTeams; track team) {
+    <app-team class="team">
+      <mat-icon ngProjectAs="team-logo">star</mat-icon>
+
+      <p ngProjectAs="team-name">{{ team.name }}</p>
+
+      <mat-icon ngProjectAs="team-country">send</mat-icon>
+    </app-team>
+  }
+</app-data-container>
