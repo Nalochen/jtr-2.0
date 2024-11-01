@@ -6,6 +6,7 @@
   grid-template-areas: "icon headline"
                         ". content";
   align-items: center;
+  width: 100%;
   &:not(:last-of-type) {
     margin-bottom: 8px;
   }
@@ -26,15 +27,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.headline {
-  font-weight: bold;
-  color: #B8594A;
-  display: flex;
-  align-items: center;
+  width: 100%;
 }
 
 .content {
   grid-area: content;
+}
+
+.headline {
+  width: 100%;
 }

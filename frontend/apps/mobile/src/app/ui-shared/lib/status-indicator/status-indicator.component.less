@@ -1,0 +1,50 @@
+@import 'colors-mobile';
+
+:host {
+  display: block;
+  position: relative;
+  height: 16px;
+  border-radius: 10px;
+  overflow: hidden;
+  width: fit-content;
+  padding: 2px 8px 0 8px;
+}
+
+.bar-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: @color-bg-red;
+}
+
+.bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.text-overlay {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: @color-text-default;
+  z-index: 1;
+}
+
+.not-full {
+  background-color: @color-bg-light;
+}
+
+.full {
+  background-color: @color-full;
+}
+
+.overfull {
+  background-color: @color-negative;
+}
