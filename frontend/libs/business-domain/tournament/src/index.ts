@@ -11,7 +11,7 @@ export * from './lib/store/effects/get-tournament-overview-data.effect';
 export * from './lib/store/reducers/tournament-details-data.reducer';
 export * from './lib/store/reducers/tournament-overview-data.reducer';
 
-export * from './lib/store/selectors/tournament-details-data.selector';
+export * from './lib/store/selectors/tournament-details.selector';
 export * from './lib/store/selectors/tournament-overview-data.selector';
 
 export * from './lib/store/states/tournament-details-data-store.initial-state';

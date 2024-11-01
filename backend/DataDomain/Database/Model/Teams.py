@@ -49,9 +49,9 @@ class Teams(BaseModel, db.Model):
         nullable=True,
     )
 
-    contacts: Column[Optional[Text]] = db.Column(
+    contacts: Column[Text] = db.Column(
         db.Text(),
-        nullable=True,
+        nullable=False,
         default='[]',
         doc='["string"]'
     )
@@ -96,7 +96,7 @@ class Teams(BaseModel, db.Model):
 
     organized_tournaments: Mapped[List['Tournaments']] = db.relationship(
         'Tournaments',
-        backref='organizer_team'
+        backref='organizer'
     )
 
     def serialize(self) -> Dict[str, Any]:
@@ -108,8 +108,20 @@ class Teams(BaseModel, db.Model):
 
         serialized['contacts'] = self.getContacts
 
-        serialized['created_at'] = serialized.pop('created_at').isoformat()
-        serialized['updated_at'] = serialized.pop('updated_at').isoformat()
+        if serialized.get('training_time'):
+            serialized['trainingTime'] = serialized.pop('training_time')
+        if serialized.get('about_us'):
+            serialized['aboutUs'] = serialized.pop('about_us')
+        if serialized.get('is_mix_team'):
+            serialized['isMixTeam'] = serialized.pop('is_mix_team')
+        if serialized.get('last_tournament_played'):
+            serialized['lastTournamentPlayed'] = serialized.pop(
+                'last_tournament_played')
+        if serialized.get('last_tournament_organized'):
+            serialized['lastTournamentOrganized'] = serialized.pop(
+                'last_tournament_organized')
+        serialized['createdAt'] = serialized.pop('created_at').isoformat()
+        serialized['updatedAt'] = serialized.pop('updated_at').isoformat()
 
         return serialized
 
@@ -119,4 +131,4 @@ class Teams(BaseModel, db.Model):
         Parses the JSON string from the database and returns the changes as a dictionary.
         """
 
-        return json.loads(self.contacts)
+        return json.loads(str(self.contacts))

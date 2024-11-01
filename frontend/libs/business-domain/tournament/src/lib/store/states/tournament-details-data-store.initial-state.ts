@@ -1,7 +1,7 @@
 import { IDLE } from '../types/loading-state.type';
-import { TournamentDetailsDataState } from './tournament-details-data-store.state';
+import { TournamentDetailsState } from './tournament-details-data-store.state';
 
-export const tournamentDetailsDataInitialState: TournamentDetailsDataState = {
+export const tournamentDetailsDataInitialState: TournamentDetailsState = {
   tournamentDetails: null,
   loadingState: IDLE,
   error: null,
