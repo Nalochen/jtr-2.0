@@ -1,0 +1,9 @@
+<div class="bar-background" *ngIf="showBackground"></div>
+<div
+  class="bar-fill"
+  [ngStyle]="{ width: fillPercentage + '%' }"
+  [class.not-full]="fillPercentage < 100"
+  [class.full]="fillPercentage === 100"
+  [class.overfull]="fillPercentage > 100"
+></div>
+<p class="text-overlay">{{ registeredTeams }} / {{ totalTeams }}</p>

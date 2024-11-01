@@ -16,8 +16,7 @@
           "production": {},
           "development": {}
       },
-      "defaultConfiguration": "production",
-      "outputs": ["{workspaceRoot}/apps/mobile/tmp"]
+      "defaultConfiguration": "production"
     },
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -54,8 +53,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
+              "maximumWarning": "3mb",
+              "maximumError": "6mb"
             },
             {
               "type": "anyComponentStyle",
@@ -114,6 +113,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "mobile:build",
+        "port": 4201,
         "spa": true
       }
     }

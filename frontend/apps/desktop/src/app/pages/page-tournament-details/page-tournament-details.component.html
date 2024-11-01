@@ -1,0 +1,23 @@
+<tournament-header
+  *ngIf="tournament$ | async as tournament"
+  [tournament]="tournament"
+/>
+
+<section class="content">
+  <tournament-information
+    *ngIf="tournament$ | async as tournament"
+    [tournament]="tournament"
+  />
+
+  <section class="registration">
+    <tournament-registration
+      *ngIf="(tournament$ | async)?.status === 'published' && (registrationOpenAt$ | async) as registrationOpenAt"
+      [registrationOpenAt]="registrationOpenAt"
+    />
+
+    <tournament-teams
+      *ngIf="teams$ | async as teams"
+      [teams]="teams"
+    />
+  </section>
+</section>

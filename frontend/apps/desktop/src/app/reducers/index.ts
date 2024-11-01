@@ -5,14 +5,14 @@ import {
   TOURNAMENT_DETAILS_DATA_REDUCER_SLICE,
   TOURNAMENT_OVERVIEW_DATA_REDUCER_SLICE,
   tournamentDetailsDataReducer,
-  TournamentDetailsDataState,
+  TournamentDetailsState,
   tournamentOverviewDataReducer,
   TournamentOverviewDataState,
 } from '@jtr/business-domain/tournament';
 
 export interface State {
   tournamentOverview: TournamentOverviewDataState;
-  tournamentDetails: TournamentDetailsDataState;
+  tournamentDetails: TournamentDetailsState;
 }
 
 export const reducers: ActionReducerMap<State> = {
