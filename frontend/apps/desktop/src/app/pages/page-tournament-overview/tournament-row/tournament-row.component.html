@@ -1,32 +1,32 @@
-<h1>Turniere</h1>
-
-@for (tournament of tournaments$ | async; track tournament) {
 <app-data-container>
-  <img src="{{ tournament.organizerLogo }}" alt="{{ tournament.name }}" />
+  <img ngSrc="{{ tournament.organizerLogo }}" width="50" height="50" alt="Logo of {{ tournament.name }}" />
   <h2>{{ tournament.name }}</h2>
-  <p class="date">{{ tournament.startDate }}</p>
-  <p class="city">Test</p>
+  <p class="date">{{ tournament.startDate | date:"dd.MM" }} - {{ tournament.endDate | date:"dd.MM.YYYY" }}</p>
+  <p class="city">{{ tournament.location }}</p>
+
   <app-status-indicator
     [registeredTeams]="tournament.registeredTeams"
     [totalTeams]="tournament.totalTeams"
     class="teams"
   />
 
-  <button mat-icon-button class="registration">
+  <button mat-icon-button class="registration" ngProjectAs="container-headline">
     <span class="material-icons-outlined">keyboard_arrow_right</span>
     Registrierung
   </button>
-  <button mat-icon-button class="rules">
+
+  <button mat-icon-button class="rules" ngProjectAs="container-headline">
     <span class="material-icons-outlined">keyboard_arrow_right</span>
     Regeln
   </button>
-  <button mat-icon-button class="contact">
+
+  <button mat-icon-button class="contact" ngProjectAs="container-headline">
     <span class="material-icons-outlined">keyboard_arrow_right</span>
     Kontakt
   </button>
-  <button mat-icon-button class="on-site">
+
+  <button mat-icon-button class="on-site" ngProjectAs="container-headline">
     <span class="material-icons-outlined">keyboard_arrow_right</span>
     Vor Ort
   </button>
 </app-data-container>
-}

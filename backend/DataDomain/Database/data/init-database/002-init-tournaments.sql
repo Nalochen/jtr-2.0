@@ -41,8 +41,8 @@ INSERT IGNORE INTO tournaments (
     organizer_id
 ) VALUES (
     'Summer Tournament',
-    '2024-06-01 10:00:00',
-    '2024-06-02 18:00:00',
+    '2024-12-01 10:00:00',
+    '2024-12-02 18:00:00',
     'Please bring your own water bottle.',
     '123 Main St, Anytown, GER',
     10,

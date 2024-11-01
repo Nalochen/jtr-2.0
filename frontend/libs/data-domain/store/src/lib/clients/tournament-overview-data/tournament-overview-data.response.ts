@@ -4,5 +4,7 @@ export interface TournamentOverviewData {
   organizerLogo: string;
   registeredTeams: number;
   startDate: string;
+  endDate: string;
   totalTeams: number;
+  location: string;
 }

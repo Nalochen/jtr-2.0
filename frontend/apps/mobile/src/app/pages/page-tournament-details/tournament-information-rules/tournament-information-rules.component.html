@@ -1,32 +1,32 @@
-<app-data-container>
-  <app-data-container-row>
+<app-data-container [id]="id" [isOpen]="isOpen">
+  <app-data-container-row ngProjectAs="panel-header">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
     <p ngProjectAs="container-headline">Pompfencheck</p>
-    <a ngProjectAs="container-additional" href="{{ tournament.pompfCheck.url }}" target="_blank">Link</a>
+    <a ngProjectAs="container-additional" href="{{ tournament.pompfCheck.url }}">Link</a>
     <p ngProjectAs="container-content">{{ tournament.pompfCheck.text }}</p>
   </app-data-container-row>
 
-  <mat-divider />
+  <mat-divider ngProjectAs="panel-content" />
 
-  <app-data-container-row>
+  <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
     <p ngProjectAs="container-headline">Turniersystem</p>
     <a ngProjectAs="container-additional" href="{{ tournament.tournamentSystem.url }}" target="_blank">{{ tournament.tournamentSystem.type }}</a>
     <p ngProjectAs="container-content">{{ tournament.tournamentSystem.text }}</p>
   </app-data-container-row>
 
-  <mat-divider />
+  <mat-divider ngProjectAs="panel-content" />
 
-  <app-data-container-row>
+  <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
     <p ngProjectAs="container-headline">Hausregeln</p>
-    <a ngProjectAs="container-additional" href="{{ tournament.houseRules.url }}" target="_blank">Link</a>
+    <a ngProjectAs="container-additional" href="{{ tournament.houseRules.url }}">Link</a>
     <p ngProjectAs="container-content">{{ tournament.houseRules.text }}</p>
   </app-data-container-row>
 
-  <mat-divider />
+  <mat-divider ngProjectAs="panel-content" />
 
-  <app-data-container-row>
+  <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
     <p ngProjectAs="container-headline">Schuhwerk</p>
 

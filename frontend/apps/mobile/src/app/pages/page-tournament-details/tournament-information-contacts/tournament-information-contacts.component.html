@@ -1,0 +1,21 @@
+<app-data-container [id]="id" [isOpen]="isOpen">
+  <app-data-container-row ngProjectAs="panel-header">
+    <span class="material-icons-outlined" ngProjectAs="container-icon">contact_page</span>
+    <p ngProjectAs="container-headline">Awarenessteam</p>
+
+    @for (contacts of tournament.contacts; track contacts) {
+      <p ngProjectAs="container-content">{{ contacts }}</p>
+    }
+  </app-data-container-row>
+
+  <mat-divider ngProjectAs="panel-content" />
+
+  <app-data-container-row ngProjectAs="panel-content" class="first-content-row">
+    <span class="material-icons-outlined" ngProjectAs="container-icon">contact_page</span>
+    <p ngProjectAs="container-headline">Organisation</p>
+
+    @for (contacts of tournament.organizer.contacts; track contacts) {
+      <p ngProjectAs="container-content">{{ contacts }}</p>
+    }
+  </app-data-container-row>
+</app-data-container>
