@@ -89,8 +89,6 @@ class TournamentRepository:
                 'createdAt': team.created_at.isoformat(),
                 'founded': team.founded.isoformat(),
                 'isMixTeam': team.is_mix_team,
-                'lastTournamentOrganized': team.last_tournament_organized.isoformat(),
-                'lastTournamentPlayed': team.last_tournament_played.isoformat(),
                 'logo': team.logo,
                 'trainingTime': team.training_time,
                 'updatedAt': team.updated_at.isoformat()
@@ -141,8 +139,6 @@ class TournamentRepository:
                 'createdAt': tournament.organizer.created_at.isoformat(),
                 'founded': tournament.organizer.founded.isoformat(),
                 'isMixTeam': tournament.organizer.is_mix_team,
-                'lastTournamentOrganized': tournament.organizer.last_tournament_organized.isoformat(),
-                'lastTournamentPlayed': tournament.organizer.last_tournament_played.isoformat(),
                 'logo': tournament.organizer.logo,
                 'trainingTime': tournament.organizer.training_time,
                 'updatedAt': tournament.organizer.updated_at.isoformat()

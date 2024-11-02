@@ -108,20 +108,12 @@ class Teams(BaseModel, db.Model):
 
         serialized['contacts'] = self.getContacts
 
-        if serialized.get('training_time'):
-            serialized['trainingTime'] = serialized.pop('training_time')
-        if serialized.get('about_us'):
-            serialized['aboutUs'] = serialized.pop('about_us')
-        if serialized.get('is_mix_team'):
-            serialized['isMixTeam'] = serialized.pop('is_mix_team')
-        if serialized.get('last_tournament_played'):
-            serialized['lastTournamentPlayed'] = serialized.pop(
-                'last_tournament_played')
-        if serialized.get('last_tournament_organized'):
-            serialized['lastTournamentOrganized'] = serialized.pop(
-                'last_tournament_organized')
-        serialized['createdAt'] = serialized.pop('created_at').isoformat()
-        serialized['updatedAt'] = serialized.pop('updated_at').isoformat()
+        if serialized.get('trainingTimeUpdatedAt'):
+            serialized['trainingTimeUpdatedAt'] = serialized.pop(
+                'trainingTimeUpdatedAt').isoformat()
+        serialized['founded'] = serialized.pop('founded').isoformat()
+        serialized['createdAt'] = serialized.pop('createdAt').isoformat()
+        serialized['updatedAt'] = serialized.pop('updatedAt').isoformat()
 
         return serialized
 

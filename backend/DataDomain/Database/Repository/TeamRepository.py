@@ -58,18 +58,24 @@ class TeamRepository:
         pastTournaments = db.session.query(
             Tournaments.id,
             Tournaments.name,
+            Tournaments.end_date,
             participates_in.c.placement
         ).join(
             participates_in, participates_in.c.tournament_id == Tournaments.id
         ).filter(
             participates_in.c.team_id == teamId
+        ).order_by(
+            Tournaments.created_at.desc()
         ).all()
 
         organizedTournaments = db.session.query(
             Tournaments.id,
-            Tournaments.name
+            Tournaments.name,
+            Tournaments.end_date
         ).filter(
             Tournaments.organizer_id == teamId
+        ).order_by(
+            Tournaments.created_at.desc()
         ).all()
 
         return {
@@ -79,8 +85,8 @@ class TeamRepository:
             'contacts': json.loads(str(team.contacts)),
             'founded': team.founded.isoformat() if team.founded else None,
             'isMixTeam': team.is_mix_team,
-            'lastOrganizedTournament': team.last_organized_tournament.isoformat() if team.last_organized_tournament else None,
-            'lastParticipatedTournament': team.last_participated_tournament.isoformat() if team.last_participated_tournament else None,
+            'lastOrganizedTournament': organizedTournaments[0].end_date.isoformat() if organizedTournaments else None,
+            'lastParticipatedTournament': pastTournaments[0].end_date.isoformat() if pastTournaments else None,
             'logo': team.logo,
             'members': [{
                 'id': member.id,

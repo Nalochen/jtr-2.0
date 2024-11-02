@@ -257,8 +257,8 @@ class Tournaments(BaseModel, db.Model):
         serialized = super().serialize()
 
         serialized['date'] = {
-            'start': serialized.pop('start_date').isoformat(),
-            'end': serialized.pop('end_date').isoformat()
+            'start': serialized.pop('startDate').isoformat(),
+            'end': serialized.pop('endDate').isoformat()
         }
 
         serialized['deadlines'] = self.getDeadlines
@@ -270,71 +270,60 @@ class Tournaments(BaseModel, db.Model):
         serialized['status'] = serialized.pop('status').value
 
         serialized['registrationOpenAt'] = serialized.pop(
-            'registration_open_at').isoformat()
-        serialized['createdAt'] = serialized.pop('created_at').isoformat()
-        serialized['updatedAt'] = serialized.pop('updated_at').isoformat()
+            'registrationOpenAt').isoformat()
+        serialized['createdAt'] = serialized.pop('createdAt').isoformat()
+        serialized['updatedAt'] = serialized.pop('updatedAt').isoformat()
 
         serialized['costs'] = {
-            'user': serialized.pop('costs_per_user'),
-            'team': serialized.pop('costs_per_team')
+            'user': serialized.pop('costsPerUser'),
+            'team': serialized.pop('costsPerTeam')
         }
 
         serialized['accommodation'] = {
-            'type': serialized.pop('accommodation_type').value,
-            'text': serialized.pop('accommodation_text'),
+            'type': serialized.pop('accommodationType').value,
+            'text': serialized.pop('accommodationText'),
         }
 
         serialized['houseRules'] = {
-            'url': serialized.pop('house_rules_url'),
-            'text': serialized.pop('house_rules_text')
+            'url': serialized.pop('houseRulesUrl'),
+            'text': serialized.pop('houseRulesText')
         }
 
         serialized['tournamentSystem'] = {
-            'url': serialized.pop('tournament_system_url'),
-            'text': serialized.pop('tournament_system_text'),
-            'type': serialized.pop('tournament_system_type').value
+            'url': serialized.pop('tournamentSystemUrl'),
+            'text': serialized.pop('tournamentSystemText'),
+            'type': serialized.pop('tournamentSystemType').value
         }
 
         serialized['pompfCheck'] = {
-            'url': serialized.pop('pompf_check_url'),
-            'text': serialized.pop('pompf_check_text')
+            'url': serialized.pop('pompfCheckUrl'),
+            'text': serialized.pop('pompfCheckText')
         }
 
         serialized['registrationProcedure'] = {
-            'url': serialized.pop('registration_procedure_url'),
-            'type': serialized.pop('registration_procedure_type').value,
-            'text': serialized.pop('registration_procedure_text')
+            'url': serialized.pop('registrationProcedureUrl'),
+            'type': serialized.pop('registrationProcedureType').value,
+            'text': serialized.pop('registrationProcedureText')
         }
 
         serialized['food'] = {
-            'morning': serialized.get('food_morning').value if serialized.get('food_morning') else None,
-            'noon': serialized.get('food_noon').value if serialized.get('food_noon') else None,
-            'evening': serialized.get('food_evening').value if serialized.get('food_evening') else None,
-            'gastro': serialized.get('food_gastro').value if serialized.get('food_gastro') else None}
-
-        serialized.pop('food_morning')
-        serialized.pop('food_noon')
-        serialized.pop('food_evening')
-        serialized.pop('food_gastro')
+            'morning': serialized.pop('foodMorning').value if serialized.get('foodMorning') else None,
+            'noon': serialized.pop('foodNoon').value if serialized.get('foodNoon') else None,
+            'evening': serialized.pop('foodEvening').value if serialized.get('foodEvening') else None,
+            'gastro': serialized.pop('foodGastro').value if serialized.get('foodGastro') else None}
 
         serialized['shoes'] = {
-            'url': serialized.pop('shoes_url'),
-            'text': serialized.pop('shoes_text'),
-            'studdedAllowed': serialized.pop('studded_shoes_allowed'),
-            'camAllowed': serialized.pop('cam_shoes_allowed'),
-            'cleatsAllowed': serialized.pop('cleats_shoes_allowed'),
-            'barefootAllowed': serialized.pop('barefoot_allowed')
+            'url': serialized.pop('shoesUrl'),
+            'text': serialized.pop('shoesText'),
+            'studdedAllowed': serialized.pop('studdedShoesAllowed'),
+            'camAllowed': serialized.pop('camShoesAllowed'),
+            'cleatsAllowed': serialized.pop('cleatsShoesAllowed'),
+            'barefootAllowed': serialized.pop('barefootAllowed')
         }
 
         serialized['teams'] = [team.serialize() for team in self.teams]
         serialized['organizer'] = Teams.query.get(
-            serialized.pop('organizer_id')).serialize()
-
-        # TODO
-        serialized['arrivalTime'] = serialized.pop('arrival_time')
-        serialized['additionalInformation'] = serialized.pop(
-            'additional_information')
-        serialized['possibleSpace'] = serialized.pop('possible_space')
+            serialized.pop('organizerId')).serialize()
 
         return serialized
 
