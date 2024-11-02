@@ -1,7 +1,7 @@
 <app-data-container [id]="id" [isOpen]="isOpen">
   <app-data-container-row ngProjectAs="panel-header">
     <span class="material-icons-outlined" ngProjectAs="container-icon">contact_page</span>
-    <p ngProjectAs="container-headline">Awarenessteam</p>
+    <h5 ngProjectAs="container-headline">Awarenessteam</h5>
 
     @for (contacts of tournament.contacts; track contacts) {
       <p ngProjectAs="container-content">{{ contacts }}</p>
@@ -12,7 +12,7 @@
 
   <app-data-container-row ngProjectAs="panel-content" class="first-content-row">
     <span class="material-icons-outlined" ngProjectAs="container-icon">contact_page</span>
-    <p ngProjectAs="container-headline">Organisation</p>
+    <h5 ngProjectAs="container-headline">Organisation</h5>
 
     @for (contacts of tournament.organizer.contacts; track contacts) {
       <p ngProjectAs="container-content">{{ contacts }}</p>

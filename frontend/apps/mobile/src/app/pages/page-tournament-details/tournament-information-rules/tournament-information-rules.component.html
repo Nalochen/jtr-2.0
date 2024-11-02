@@ -1,7 +1,7 @@
 <app-data-container [id]="id" [isOpen]="isOpen">
   <app-data-container-row ngProjectAs="panel-header">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <p ngProjectAs="container-headline">Pompfencheck</p>
+    <h5 ngProjectAs="container-headline">Pompfencheck</h5>
     <a ngProjectAs="container-additional" href="{{ tournament.pompfCheck.url }}">Link</a>
     <p ngProjectAs="container-content">{{ tournament.pompfCheck.text }}</p>
   </app-data-container-row>
@@ -10,7 +10,7 @@
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <p ngProjectAs="container-headline">Turniersystem</p>
+    <h5 ngProjectAs="container-headline">Turniersystem</h5>
     <a ngProjectAs="container-additional" href="{{ tournament.tournamentSystem.url }}" target="_blank">{{ tournament.tournamentSystem.type }}</a>
     <p ngProjectAs="container-content">{{ tournament.tournamentSystem.text }}</p>
   </app-data-container-row>
@@ -19,7 +19,7 @@
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <p ngProjectAs="container-headline">Hausregeln</p>
+    <h5 ngProjectAs="container-headline">Hausregeln</h5>
     <a ngProjectAs="container-additional" href="{{ tournament.houseRules.url }}">Link</a>
     <p ngProjectAs="container-content">{{ tournament.houseRules.text }}</p>
   </app-data-container-row>
@@ -28,7 +28,7 @@
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <p ngProjectAs="container-headline">Schuhwerk</p>
+    <h5 ngProjectAs="container-headline">Schuhwerk</h5>
 
     <app-info-button ngProjectAs="container-additional" [infoText]="'Schuhwerk Infotext'" />
 
