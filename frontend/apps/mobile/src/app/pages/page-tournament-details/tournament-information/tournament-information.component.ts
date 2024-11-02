@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
-import {TeamData, TournamentData} from '@jtr/data-domain/store';
+import {TournamentData,TournamentTeamData} from '@jtr/data-domain/store';
 
 import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
 
@@ -89,7 +89,7 @@ export class TournamentInformationComponent implements OnInit{
   public readonly size = ButtonSizeEnum.FitContent;
   public readonly PanelTypes = PanelTypes;
 
-  public previewTeams: TeamData[] = [];
+  public previewTeams: TournamentTeamData[] = [];
 
   public ngOnInit(): void {
     this.previewTeams = this.tournament.teams.participating.slice(0, 6)

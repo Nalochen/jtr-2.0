@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { tournamentOverviewDataSelector } from '@jtr/business-domain/tournament';
+import { tournamentOverviewSelector } from '@jtr/business-domain/tournament';
 import { TournamentOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
@@ -26,6 +26,6 @@ export class PageTournamentOverviewComponent {
 
   @SingletonGetter()
   public get tournaments$(): Observable<TournamentOverviewData[]> {
-    return this.store$.select(tournamentOverviewDataSelector);
+    return this.store$.select(tournamentOverviewSelector);
   }
 }

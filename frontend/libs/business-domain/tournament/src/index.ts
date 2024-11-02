@@ -11,8 +11,11 @@ export * from './lib/store/effects/get-tournament-overview-data.effect';
 export * from './lib/store/reducers/tournament-details-data.reducer';
 export * from './lib/store/reducers/tournament-overview-data.reducer';
 
+export * from './lib/store/resolvers/tournament-details.resolver';
+export * from './lib/store/resolvers/tournament-overview.resolver';
+
 export * from './lib/store/selectors/tournament-details.selector';
-export * from './lib/store/selectors/tournament-overview-data.selector';
+export * from './lib/store/selectors/tournament-overview.selector';
 
 export * from './lib/store/states/tournament-details-data-store.initial-state';
 export * from './lib/store/states/tournament-overview-data-store.initial-state';

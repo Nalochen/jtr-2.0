@@ -4,7 +4,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
-import {TeamData, TournamentTeamData} from '@jtr/data-domain/store';
+import {TournamentTeamData, TournamentTeamsData} from '@jtr/data-domain/store';
 
 import { DataContainerComponent, TeamComponent } from '../../../ui-shared';
 
@@ -16,10 +16,10 @@ import { DataContainerComponent, TeamComponent } from '../../../ui-shared';
   styleUrl: './tournament-teams.component.less',
 })
 export class TournamentTeamsComponent implements OnInit {
-  @Input() public teams!: TournamentTeamData;
+  @Input() public teams!: TournamentTeamsData;
 
-  public participatingTeams: TeamData[] = [];
-  public waitingTeams: TeamData[] = [];
+  public participatingTeams: TournamentTeamData[] = [];
+  public waitingTeams: TournamentTeamData[] = [];
 
   public ngOnInit(): void {
     this.participatingTeams = this.teams.participating;

@@ -10,7 +10,7 @@ import {
   tournamentDetailsSelector,
   tournamentDetailsTeamsSelector
 } from '@jtr/business-domain/tournament';
-import {TournamentData, TournamentTeamData} from '@jtr/data-domain/store';
+import {TournamentData, TournamentTeamsData} from '@jtr/data-domain/store';
 import {SingletonGetter} from '@jtr/infrastructure/cache';
 
 import { DataContainerComponent, DataContainerRowComponent } from '../../ui-shared';
@@ -49,7 +49,7 @@ export class PageTournamentDetailsComponent {
   }
 
   @SingletonGetter()
-  public get teams$(): Observable<TournamentTeamData|undefined> {
+  public get teams$(): Observable<TournamentTeamsData|undefined> {
     return this.store$.select(tournamentDetailsTeamsSelector);
   }
 }
