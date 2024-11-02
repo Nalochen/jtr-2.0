@@ -1,6 +1,8 @@
 import json
+from typing import List
 
 from sqlalchemy import func
+from sqlalchemy.orm import aliased
 
 from DataDomain.Database.Model.RelationTournamentTeam import participates_in
 from DataDomain.Database.Model.RelationUserTeam import is_part_of
@@ -12,6 +14,37 @@ from DataDomain.Database.db import db
 
 class TeamRepository:
     """Repository for team related queries."""
+
+    @staticmethod
+    def getTeamOverview() -> List[dict]:
+        team_alias = aliased(Teams)
+        subquery = db.session.query(
+            team_alias.id,
+            team_alias.points,
+            func.rank().over(order_by=team_alias.points.desc()).label('rank')
+        ).subquery()
+
+        team = db.session.query(
+            Teams.id,
+            Teams.name,
+            Teams.logo,
+            Teams.points,
+            Teams.city,
+            subquery.c.rank.label('placement')
+        ).join(
+            subquery, Teams.id == subquery.c.id
+        ).order_by(
+            Teams.points.desc()
+        ).all()
+
+        return [{
+            'id': team.id,
+            'name': team.name,
+            'logo': team.logo,
+            'points': team.points,
+            'city': team.city,
+            'placement': team.placement
+        } for team in team]
 
     @staticmethod
     def getTeamDetails(teamId: int) -> dict | None:

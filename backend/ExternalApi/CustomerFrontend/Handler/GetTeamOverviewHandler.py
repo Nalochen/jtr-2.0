@@ -2,13 +2,13 @@ from DataDomain.Database.Repository.TeamRepository import TeamRepository
 from DataDomain.Model.Response import Response
 
 
-class GetTeamDetailsHandler:
-    """Handler for getting team details."""
+class GetTeamOverviewHandler:
+    """Handler for getting team overview."""
 
-    def handle(self, teamId: int) -> Response:
-        """Get team details by id."""
+    def handle(self) -> Response:
+        """Get team overview."""
 
-        team = TeamRepository.getTeamDetails(teamId)
+        team = TeamRepository.getTeamOverview()
 
         if team is None:
             return Response(status=404, response='Team not found')

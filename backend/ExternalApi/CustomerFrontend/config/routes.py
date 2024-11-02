@@ -6,6 +6,7 @@ from ExternalApi.CustomerFrontend.Handler.CreateFakeTeamsHandler import CreateFa
 from ExternalApi.CustomerFrontend.Handler.CreateFakeTournamentsHandler import CreateFakeTournamentsHandler
 from ExternalApi.CustomerFrontend.Handler.CreateFakeUsersHandler import CreateFakeUsersHandler
 from ExternalApi.CustomerFrontend.Handler.GetTeamDetailsHandler import GetTeamDetailsHandler
+from ExternalApi.CustomerFrontend.Handler.GetTeamOverviewHandler import GetTeamOverviewHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentOverviewHandler import GetTournamentOverviewHandler
 from ExternalApi.CustomerFrontend.InputFilter.FakerInputFilter import FakerInputFilter
@@ -36,6 +37,11 @@ def getTournamentOverview(): return GetTournamentOverviewHandler().handle()
                          methods=['GET'], endpoint='get-team-details')
 @GetTeamDetailsInputFilter.validate()
 def getTeamDetails(teamId: int): return GetTeamDetailsHandler().handle(teamId)
+
+
+@customer_frontend.route('/get-team-overview',
+                         methods=['GET'], endpoint='get-team-overview')
+def getTeamOverview(): return GetTeamOverviewHandler().handle()
 
 
 @customer_frontend.route('/create-fake-users',
