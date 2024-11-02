@@ -5,9 +5,11 @@ from ExternalApi.CustomerFrontend.Handler.CreateFakeParticipatesInHandler import
 from ExternalApi.CustomerFrontend.Handler.CreateFakeTeamsHandler import CreateFakeTeamsHandler
 from ExternalApi.CustomerFrontend.Handler.CreateFakeTournamentsHandler import CreateFakeTournamentsHandler
 from ExternalApi.CustomerFrontend.Handler.CreateFakeUsersHandler import CreateFakeUsersHandler
+from ExternalApi.CustomerFrontend.Handler.GetTeamDetailsHandler import GetTeamDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentOverviewHandler import GetTournamentOverviewHandler
 from ExternalApi.CustomerFrontend.InputFilter.FakerInputFilter import FakerInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.GetTeamDetailsInputFilter import GetTeamDetailsInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetTournamentDetailsInputFilter import GetTournamentDetailsInputFilter
 from ExternalApi.CustomerFrontend.config.extensions import create_tournament_cache_key
 from config.extensions import cache
@@ -28,6 +30,12 @@ def getTournamentDetails(
                          methods=['GET'], endpoint='get-tournament-overview')
 # @cache.cached(key_prefix='upcoming-tournaments')
 def getTournamentOverview(): return GetTournamentOverviewHandler().handle()
+
+
+@customer_frontend.route('/get-team-details/<teamId>',
+                         methods=['GET'], endpoint='get-team-details')
+@GetTeamDetailsInputFilter.validate()
+def getTeamDetails(teamId: int): return GetTeamDetailsHandler().handle(teamId)
 
 
 @customer_frontend.route('/create-fake-users',
