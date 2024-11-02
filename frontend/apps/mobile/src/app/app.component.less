@@ -9,6 +9,12 @@
 
 .header {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+  box-sizing: border-box;
+  margin-bottom: 16px;
 }
 
 .content {
@@ -18,4 +24,19 @@
 
 a {
   color: @color-bg-light;
+}
+
+span {
+  color: @color-red;
+  font-size: 24px;
+}
+
+button {
+  padding: 0 !important;
+  height: 24px !important;
+  width: 24px !important;
+
+  &:not(:last-of-type) {
+    margin-right: 8px;
+  }
 }
