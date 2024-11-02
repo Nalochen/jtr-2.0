@@ -15,8 +15,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusIndicatorComponent implements OnChanges {
-  @Input() protected totalTeams: number = 0;
-  @Input() protected registeredTeams: number = 0;
+  @Input() public totalTeams!: number;
+  @Input() public registeredTeams!: number;
 
   protected fillPercentage: number = 0;
   protected showBackground: boolean = true;

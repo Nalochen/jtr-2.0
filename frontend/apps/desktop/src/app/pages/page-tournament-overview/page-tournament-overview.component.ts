@@ -1,7 +1,5 @@
-import { CommonModule } from '@angular/common';
+import {CommonModule} from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-
-import { MatButtonModule } from '@angular/material/button';
 
 import { Observable } from 'rxjs';
 
@@ -11,23 +9,19 @@ import { tournamentOverviewDataSelector } from '@jtr/business-domain/tournament'
 import { TournamentOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
-import { DataContainerComponent } from '../../ui-shared';
-import { StatusIndicatorComponent } from '../../ui-shared/lib/status-indicator/status-indicator.component';
+import {TournamentRowComponent} from './tournament-row/tournament-row.component';
 
 @Component({
-  selector: 'page-tournament-overview',
   standalone: true,
   imports: [
     CommonModule,
-    DataContainerComponent,
-    MatButtonModule,
-    StatusIndicatorComponent,
+    TournamentRowComponent,
   ],
-  templateUrl: './tournament-overview.component.html',
-  styleUrl: './tournament-overview.component.less',
+  templateUrl: './page-tournament-overview.component.html',
+  styleUrl: './page-tournament-overview.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TournamentOverviewComponent {
+export class PageTournamentOverviewComponent {
   constructor(private store$: Store) {}
 
   @SingletonGetter()

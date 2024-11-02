@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List
 
-from sqlalchemy import func, Integer, or_, and_
+from sqlalchemy import func, or_, and_
 from sqlalchemy.orm import aliased, joinedload
 
 from DataDomain.Database.Model.RelationTournamentTeam import participates_in
@@ -16,7 +16,7 @@ class TournamentRepository:
 
     @staticmethod
     def getTournamentOverview(
-            currentTime: datetime = None) -> List[Tournaments]:
+            currentTime: datetime = None) -> List[dict]:
         """Get tournament overview."""
 
         if currentTime is None:
@@ -24,33 +24,43 @@ class TournamentRepository:
 
         TeamParticipation = aliased(participates_in)
 
-        return db.session.query(
+        tournaments = db.session.query(
             Tournaments.id,
             Tournaments.organizer_id,
             Tournaments.name,
             Tournaments.start_date,
             Tournaments.end_date,
             Teams.logo.label('logo'),
-            func.count(TeamParticipation.c.team_id).label('total_teams'),
-            func.sum((TeamParticipation.c.is_on_waiting_list ==
-                      0).cast(Integer)).label('registered_teams')
-        ).outerjoin(
-            TeamParticipation, Tournaments.id == TeamParticipation.c.tournament_id
-        ).join(
-            Teams, Tournaments.organizer_id == Teams.id
-        ).filter(
-            or_(
-                and_(
-                    Tournaments.start_date <= currentTime,
-                    Tournaments.end_date >= currentTime
-                ),
-                Tournaments.start_date > currentTime
-            )
-        ).group_by(
-            Tournaments.id
-        ).order_by(
-            Tournaments.start_date
-        ).all()
+            Tournaments.possible_space,
+            func.count(
+                TeamParticipation.c.team_id).label('registered_teams'),
+            Tournaments.location).outerjoin(
+            TeamParticipation,
+            Tournaments.id == TeamParticipation.c.tournament_id).join(
+                Teams,
+                Tournaments.organizer_id == Teams.id).filter(
+                    or_(
+                        and_(
+                            Tournaments.start_date <= currentTime,
+                            Tournaments.end_date >= currentTime),
+                        Tournaments.start_date > currentTime)).group_by(
+            Tournaments.id).order_by(
+            Tournaments.start_date).all()
+
+        responseData = [
+            {
+                'id': tournament.id,
+                'name': tournament.name,
+                'organizerLogo': tournament.logo,
+                'startDate': tournament.start_date.isoformat(),
+                'endDate': tournament.end_date.isoformat(),
+                'totalTeams': tournament.possible_space,
+                'registeredTeams': int(
+                    tournament.registered_teams) if tournament.registered_teams else 0,
+                'location': tournament.location
+            } for tournament in tournaments]
+
+        return responseData
 
     @staticmethod
     def getTournamentDetails(tournamentId: int) -> dict | None:
@@ -73,7 +83,7 @@ class TournamentRepository:
                 participates_in.c.tournament_id == tournament.id
             ).first()
 
-            team_data = {
+            teamData = {
                 'id': team.id,
                 'name': team.name,
                 'aboutUs': team.about_us,
@@ -89,9 +99,9 @@ class TournamentRepository:
                 'updatedAt': team.updated_at.isoformat()
             }
             if participation and participation.is_on_waiting_list:
-                waitingTeams.append(team_data)
+                waitingTeams.append(teamData)
             else:
-                participatesTeams.append(team_data)
+                participatesTeams.append(teamData)
 
         return {
             'id': tournament.id,

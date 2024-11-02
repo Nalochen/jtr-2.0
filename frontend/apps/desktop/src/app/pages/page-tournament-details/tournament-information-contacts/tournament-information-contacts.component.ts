@@ -8,12 +8,12 @@ import {TournamentData} from '@jtr/data-domain/store';
 import {DataContainerComponent, DataContainerRowComponent} from '../../../ui-shared';
 
 @Component({
-  selector: 'tournament-information-team',
+  selector: 'tournament-information-contacts',
   standalone: true,
   imports: [CommonModule, DataContainerComponent, DataContainerRowComponent, MatDividerModule],
-  templateUrl: './tournament-information-team.component.html',
-  styleUrl: './tournament-information-team.component.less',
+  templateUrl: './tournament-information-contacts.component.html',
+  styleUrl: './tournament-information-contacts.component.less',
 })
-export class TournamentInformationTeamComponent {
+export class TournamentInformationContactsComponent {
     @Input() public tournament!: TournamentData;
 }

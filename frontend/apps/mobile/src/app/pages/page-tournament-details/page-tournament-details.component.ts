@@ -22,7 +22,6 @@ import {
 import { TournamentTeamsComponent } from './tournament-teams/tournament-teams.component';
 
 @Component({
-  selector: 'page-tournament-details',
   standalone: true,
   imports: [
     CommonModule,

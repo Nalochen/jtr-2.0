@@ -7,6 +7,9 @@ import {
   TournamentInformationAdditionalComponent
 } from '../tournament-information-additional/tournament-information-additional.component';
 import {
+  TournamentInformationContactsComponent
+} from '../tournament-information-contacts/tournament-information-contacts.component';
+import {
   TournamentInformationLocationComponent
 } from '../tournament-information-location/tournament-information-location.component';
 import {
@@ -15,9 +18,6 @@ import {
 import {
   TournamentInformationRulesComponent
 } from '../tournament-information-rules/tournament-information-rules.component';
-import {
-  TournamentInformationTeamComponent
-} from '../tournament-information-team/tournament-information-team.component';
 
 @Component({
   selector: 'tournament-information',
@@ -27,7 +27,7 @@ import {
     TournamentInformationAdditionalComponent,
     TournamentInformationRulesComponent,
     TournamentInformationRegistrationComponent,
-    TournamentInformationTeamComponent,
+    TournamentInformationContactsComponent,
     TournamentInformationLocationComponent,
   ],
   templateUrl: './tournament-information.component.html',

@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -17,12 +17,37 @@ import {
   InfoButtonComponent,
   TeamComponent
 } from '../../../ui-shared';
+import {
+  TournamentInformationAdditionalComponent
+} from '../tournament-information-additional/tournament-information-additional.component';
+import {
+  TournamentInformationContactsComponent
+} from '../tournament-information-contacts/tournament-information-contacts.component';
+import {
+  TournamentInformationLocationComponent
+} from '../tournament-information-location/tournament-information-location.component';
+import {
+  TournamentInformationRulesComponent
+} from '../tournament-information-rules/tournament-information-rules.component';
 import { TournamentTeamsComponent } from '../tournament-teams/tournament-teams.component';
+
+export interface Panel {
+  id: string;
+  isOpen: boolean;
+}
+
+export enum PanelTypes {
+  Teams = 'teams',
+  Registration = 'registration',
+  Contacts = 'contacts',
+  Location = 'location',
+  Rules = 'rules',
+  Additional = 'additional'
+}
 
 @Component({
   selector: 'tournament-information',
   standalone: true,
-  providers: [],
   imports: [
     CommonModule,
     NgOptimizedImage,
@@ -36,34 +61,43 @@ import { TournamentTeamsComponent } from '../tournament-teams/tournament-teams.c
     ButtonComponent,
     TournamentTeamsComponent,
     TeamComponent,
-    ChipComponent
+    ChipComponent,
+    TournamentInformationAdditionalComponent,
+    TournamentInformationContactsComponent,
+    TournamentInformationRulesComponent,
+    TournamentInformationLocationComponent
   ],
   templateUrl: './tournament-information.component.html',
   styleUrl: './tournament-information.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TournamentInformationComponent {
+export class TournamentInformationComponent implements OnInit{
+  constructor(private cdr: ChangeDetectorRef) {}
+
   @Input() public tournament!: TournamentData;
 
-  protected panels = [
-    { id: 'teams', isOpen: false },
-    { id: 'registration', isOpen: false },
-    { id: 'contacts', isOpen: false },
-    { id: 'address', isOpen: false },
-    { id: 'tournamentSystem', isOpen: false },
-    { id: 'other', isOpen: false },
+  protected panels: Panel[] = [
+    { id: PanelTypes.Teams, isOpen: false },
+    { id: PanelTypes.Registration, isOpen: false },
+    { id: PanelTypes.Contacts, isOpen: false },
+    { id: PanelTypes.Location, isOpen: false },
+    { id: PanelTypes.Rules, isOpen: false },
+    { id: PanelTypes.Additional, isOpen: false },
   ];
 
   public readonly color = ButtonColorEnum.Secondary;
   public readonly size = ButtonSizeEnum.FitContent;
+  public readonly PanelTypes = PanelTypes;
 
-  public previewTeams: TeamData[] = this.tournament.teams.participating.slice(0, 6);
+  public previewTeams: TeamData[] = [];
+
+  public ngOnInit(): void {
+    this.previewTeams = this.tournament.teams.participating.slice(0, 6)
+  }
 
   public get areAllPanelsOpen(): boolean {
     return this.panels.every(panel => panel.isOpen);
   }
-
-  constructor(private cdr: ChangeDetectorRef) {}
 
   protected toggleAllPanels(): void {
     const shouldOpenAll = !this.areAllPanelsOpen;
@@ -76,7 +110,7 @@ export class TournamentInformationComponent {
   }
 
   protected togglePanel(panelId: string, isOpen: boolean): void {
-    const panel = this.panels.find(panel => panel.id === panelId);
+    const panel = this.panels.find((panel: Panel) => panel.id === panelId);
 
     if (panel && panel.isOpen !== isOpen) {
       panel.isOpen = isOpen;
