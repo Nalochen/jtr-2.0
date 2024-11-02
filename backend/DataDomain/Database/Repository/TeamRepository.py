@@ -29,7 +29,8 @@ class TeamRepository:
             Teams.training_time_updated_at,
             Teams.contacts,
             Teams.about_us,
-            func.max(participates_in.c.created_at).label('last_participated_tournament'),
+            func.max(participates_in.c.created_at).label(
+                'last_participated_tournament'),
             func.max(Tournaments.created_at).label('last_organized_tournament')
         ).outerjoin(
             participates_in, participates_in.c.team_id == Teams.id
