@@ -105,8 +105,6 @@ export interface TournamentTeamData {
   createdAt: string;
   founded: string;
   isMixTeam: boolean;
-  lastTournamentOrganized: string;
-  lastTournamentPlayed: string;
   logo: string;
   name: string;
   trainingTime: string;
