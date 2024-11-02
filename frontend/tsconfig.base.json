@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@jtr/business-domain/team": [
+        "libs/business-domain/team/src/index.ts"
+      ],
       "@jtr/business-domain/tournament": [
         "libs/business-domain/tournament/src/index.ts"
       ],

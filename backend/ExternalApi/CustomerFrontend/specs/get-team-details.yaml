@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/customer-frontend/get-team-details/{teamId}:
+    get:
+      summary: Get team details
+      operationId: getTeamDetails
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        '200':
+          description: OK

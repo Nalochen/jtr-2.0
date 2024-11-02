@@ -1,13 +1,22 @@
 import { Route } from '@angular/router';
 
+import {TeamDetailsResolver} from '@jtr/business-domain/team';
+import { TournamentDetailsResolver, TournamentOverviewResolver } from '@jtr/business-domain/tournament';
+
 import { PageOutlineDemoComponent } from './pages/page-outline-demo/page-outline-demo.component';
+import {PageTeamDetailsComponent} from './pages/page-team-details/page-team-details.component';
 import { PageTournamentDetailsComponent } from './pages/page-tournament-details/page-tournament-details.component';
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
 import { SwaggerViewComponent } from './pages/swagger-view/swagger-view.component';
-import { TournamentDetailsResolver } from './resolvers/tournament-details.resolver';
-import { TournamentOverviewResolver } from './resolvers/tournament-overview.resolver';
 
 export const appRoutes: Route[] = [
+  {
+    path: 'team-details/:teamId',
+    component: PageTeamDetailsComponent,
+    resolve: {
+      teamDetails: TeamDetailsResolver,
+    },
+  },
   {
     path: 'tournament-details/:tournamentId',
     component: PageTournamentDetailsComponent,

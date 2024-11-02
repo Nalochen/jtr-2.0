@@ -47,20 +47,17 @@ class TournamentRepository:
             Tournaments.id).order_by(
             Tournaments.start_date).all()
 
-        responseData = [
-            {
-                'id': tournament.id,
-                'name': tournament.name,
-                'organizerLogo': tournament.logo,
-                'startDate': tournament.start_date.isoformat(),
-                'endDate': tournament.end_date.isoformat(),
-                'totalTeams': tournament.possible_space,
-                'registeredTeams': int(
-                    tournament.registered_teams) if tournament.registered_teams else 0,
-                'location': tournament.location
-            } for tournament in tournaments]
-
-        return responseData
+        return [{
+            'id': tournament.id,
+            'name': tournament.name,
+            'organizerLogo': tournament.logo,
+            'startDate': tournament.start_date.isoformat(),
+            'endDate': tournament.end_date.isoformat(),
+            'totalTeams': tournament.possible_space,
+            'registeredTeams': int(
+                tournament.registered_teams) if tournament.registered_teams else 0,
+            'location': tournament.location
+        } for tournament in tournaments]
 
     @staticmethod
     def getTournamentDetails(tournamentId: int) -> dict | None:

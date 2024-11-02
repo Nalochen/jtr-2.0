@@ -1,6 +1,6 @@
 import json
 from typing import Optional, List, Text, Dict, Any
-from sqlalchemy import func, Integer, Column, String, DateTime, Boolean
+from sqlalchemy import func, Integer, Column, String, DateTime, Boolean, Float
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
@@ -34,6 +34,11 @@ class Teams(BaseModel, db.Model):
         nullable=True
     )
 
+    points: Column[Float] = db.Column(
+        db.Float,
+        default=0
+    )
+
     city: Column[Optional[String]] = db.Column(
         db.String(100),
         nullable=True
@@ -41,6 +46,11 @@ class Teams(BaseModel, db.Model):
 
     training_time: Column[Optional[String]] = db.Column(
         db.String(100),
+        nullable=True
+    )
+
+    training_time_updated_at: Column[Optional[DateTime]] = db.Column(
+        db.DateTime,
         nullable=True
     )
 
@@ -58,16 +68,6 @@ class Teams(BaseModel, db.Model):
 
     is_mix_team: Column[Optional[Boolean]] = db.Column(
         db.Boolean(),
-        nullable=True
-    )
-
-    last_tournament_played: Column[Optional[DateTime]] = db.Column(
-        db.DateTime,
-        nullable=True
-    )
-
-    last_tournament_organized: Column[Optional[DateTime]] = db.Column(
-        db.DateTime,
         nullable=True
     )
 

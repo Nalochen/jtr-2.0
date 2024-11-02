@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
-import {TeamData} from '@jtr/data-domain/store';
+import {TournamentTeamData} from '@jtr/data-domain/store';
 
 import { DataContainerComponent, TeamComponent } from '../../../ui-shared';
 
@@ -16,6 +16,6 @@ import { DataContainerComponent, TeamComponent } from '../../../ui-shared';
   styleUrl: './tournament-teams.component.less',
 })
 export class TournamentTeamsComponent {
-  @Input() public registeredTeams: TeamData[] = [];
-  @Input() public reservedTeams: TeamData[] = [];
+  @Input() public registeredTeams: TournamentTeamData[] = [];
+  @Input() public reservedTeams: TournamentTeamData[] = [];
 }

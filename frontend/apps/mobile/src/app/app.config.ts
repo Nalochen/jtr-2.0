@@ -8,6 +8,7 @@ import { provideRouter } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 
+import {GetTeamDetailsDataEffect} from '@jtr/business-domain/team';
 import {
   GetTournamentDetailsDataEffect,
   GetTournamentOverviewDataEffect,
@@ -26,6 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideStore(reducers, { metaReducers }),
     provideEffects([
+      GetTeamDetailsDataEffect,
       GetTournamentOverviewDataEffect,
       GetTournamentDetailsDataEffect,
     ]),

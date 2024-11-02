@@ -92,12 +92,12 @@ export enum TournamentStatus {
   OVER = 'over',
 }
 
-export interface TournamentTeamData {
-  participating: TeamData[];
-  waiting: TeamData[];
+export interface TournamentTeamsData {
+  participating: TournamentTeamData[];
+  waiting: TournamentTeamData[];
 }
 
-export interface TeamData {
+export interface TournamentTeamData {
   id: number;
   aboutUs: string;
   city: string;
@@ -128,7 +128,7 @@ export interface TournamentData {
   houseRules: TournamentHouseRules;
   location: string;
   name: string;
-  organizer: TeamData;
+  organizer: TournamentTeamData;
   pompfCheck: TournamentPompfCheck;
   possibleSpace: number;
   registrationOpenAt: string;
@@ -137,7 +137,7 @@ export interface TournamentData {
   shoes: TournamentShoes;
   status: TournamentStatus;
   teamCount: number;
-  teams: TournamentTeamData;
+  teams: TournamentTeamsData;
   tournamentSystem: TournamentSystem;
   updatedAt: string;
 }
