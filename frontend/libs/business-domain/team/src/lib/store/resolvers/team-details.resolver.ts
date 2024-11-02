@@ -5,20 +5,20 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { loadTournamentDetailsData } from '@jtr/business-domain/tournament';
+import { loadTeamDetailsData } from '@jtr/business-domain/team';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TournamentDetailsResolver implements Resolve<boolean> {
+export class TeamDetailsResolver implements Resolve<boolean> {
   constructor(private store: Store) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-    const tournamentId = route.paramMap.get('tournamentId');
+    const teamId = route.paramMap.get('teamId');
 
-    if (tournamentId) {
+    if (teamId) {
       this.store.dispatch(
-        loadTournamentDetailsData({ tournamentId: +tournamentId })
+        loadTeamDetailsData({ teamId: +teamId })
       );
     }
 
