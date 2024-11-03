@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/customer-frontend/update-team:
+    put:
+      summary: Update team
+      operationId: updateTeam
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTeamRequestBody'
+
+      responses:
+        '200':
+          description: OK
+
+        '404':
+          description: Team not Found
+
+components :
+  schemas :
+    UpdateTeamRequestBody :
+      type : object
+      required :
+        - teamId
+      properties:
+        teamId:
+          type: integer
+        name:
+          type: string
+        logo:
+          type: string
+        city:
+          type: string
+        isMixTeam:
+          type: boolean
+        trainingTime:
+          type: string
+        aboutUs:
+          type: string
+        contacts:
+          type: array
+          items:
+            type: string

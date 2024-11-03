@@ -1,0 +1,23 @@
+### Update a team
+PUT https://{{host}}/api/customer-frontend/update-team
+Content-Type: application/json
+
+{
+  "teamId": 1,
+  "name": "Team 1",
+  "logo": "https://example.com/logo.png",
+  "city": "Berlin",
+  "isMixTeam": false,
+  "trainingTime": "Sonntags 10 Uhr",
+  "aboutUs": "About us",
+  "contacts": [
+    "Contact 1",
+    "Contact 2"
+  ]
+}
+
+> {%
+client.test("It should return a successful status code", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+%}

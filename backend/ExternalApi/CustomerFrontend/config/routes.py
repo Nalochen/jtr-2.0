@@ -9,9 +9,11 @@ from ExternalApi.CustomerFrontend.Handler.GetTeamDetailsHandler import GetTeamDe
 from ExternalApi.CustomerFrontend.Handler.GetTeamOverviewHandler import GetTeamOverviewHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentOverviewHandler import GetTournamentOverviewHandler
+from ExternalApi.CustomerFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
 from ExternalApi.CustomerFrontend.InputFilter.FakerInputFilter import FakerInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetTeamDetailsInputFilter import GetTeamDetailsInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetTournamentDetailsInputFilter import GetTournamentDetailsInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.UpdateTeamInputFilter import UpdateTeamInputFilter
 from ExternalApi.CustomerFrontend.config.extensions import create_tournament_cache_key
 from config.extensions import cache
 
@@ -42,6 +44,12 @@ def getTeamDetails(teamId: int): return GetTeamDetailsHandler().handle(teamId)
 @customer_frontend.route('/get-team-overview',
                          methods=['GET'], endpoint='get-team-overview')
 def getTeamOverview(): return GetTeamOverviewHandler().handle()
+
+
+@customer_frontend.route('/update-team',
+                         methods=['PUT'], endpoint='update-team')
+@UpdateTeamInputFilter.validate()
+def updateTeam(): return UpdateTeamHandler().handle()
 
 
 @customer_frontend.route('/create-fake-users',
