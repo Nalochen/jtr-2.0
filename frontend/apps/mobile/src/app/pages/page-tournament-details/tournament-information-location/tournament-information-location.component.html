@@ -1,7 +1,7 @@
 <app-data-container [id]="id" [isOpen]="isOpen">
   <app-data-container-row ngProjectAs="panel-header">
     <span class="material-icons-outlined" ngProjectAs="container-icon">pin_drop</span>
-    <p ngProjectAs="container-headline">Adresse</p>
+    <h5 ngProjectAs="container-headline">Adresse</h5>
     <p ngProjectAs="container-content">{{ tournament.address }}</p>
   </app-data-container-row>
 
@@ -9,7 +9,7 @@
 
   <app-data-container-row ngProjectAs="panel-content" class="first-content-row">
     <span class="material-icons-outlined" ngProjectAs="container-icon">pin_drop</span>
-    <p ngProjectAs="container-headline">Anreise</p>
+    <h5 ngProjectAs="container-headline">Anreise</h5>
     <p ngProjectAs="container-content">{{ tournament.arrivalTime }}</p>
   </app-data-container-row>
 
@@ -17,7 +17,7 @@
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">pin_drop</span>
-    <p ngProjectAs="container-headline">Zeitplan</p>
+    <h5 ngProjectAs="container-headline">Zeitplan</h5>
     <p ngProjectAs="container-content">{{ tournament.schedule }}</p>
   </app-data-container-row>
 
@@ -25,7 +25,7 @@
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">pin_drop</span>
-    <p ngProjectAs="container-headline">Übernachtung</p>
+    <h5 ngProjectAs="container-headline">Übernachtung</h5>
     <p ngProjectAs="container-content">{{ tournament.accommodation.text }}</p>
     <app-chip ngProjectAs="container-additional">{{ tournament.accommodation.type }}</app-chip>
   </app-data-container-row>
@@ -34,7 +34,7 @@
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">pin_drop</span>
-    <p ngProjectAs="container-headline">Verpflegung</p>
+    <h5 ngProjectAs="container-headline">Verpflegung</h5>
     <p ngProjectAs="container-content">Frühstück: {{ tournament.food.morning }}</p>
     <p ngProjectAs="container-content">Mittagessen: {{ tournament.food.noon }}</p>
     <p ngProjectAs="container-content">Abendessen: {{ tournament.food.evening }}</p>

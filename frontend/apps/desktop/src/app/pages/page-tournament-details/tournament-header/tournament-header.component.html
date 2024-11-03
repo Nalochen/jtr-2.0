@@ -3,12 +3,12 @@
 <div class="tournament-information">
   <div class="meta-data">
     <div class="event-information">
-      <h2 class="date">{{ tournament.date.start | date:"dd.MM.YYYY" }} - {{ tournament.date.end | date:"dd.MM.YYYY" }}</h2>
+      <h3 class="date">{{ tournament.date.start | date:"dd.MM.YYYY" }} - {{ tournament.date.end | date:"dd.MM.YYYY" }}</h3>
 
-      <h2 class="city">{{ tournament.location }}</h2>
+      <h3 class="city">{{ tournament.location }}</h3>
     </div>
 
-    <h2>{{ tournament.teamCount }}/{{ tournament.possibleSpace }}</h2>
+    <h3>{{ tournament.teamCount }}/{{ tournament.possibleSpace }}</h3>
   </div>
 
   <h1>{{ tournament.name }}</h1>

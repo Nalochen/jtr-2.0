@@ -28,7 +28,7 @@
         <app-data-container [id]="panel.id" [isOpen]="panel.isOpen" (toggleVisibility)="togglePanel(panel.id, $event)">
           <app-data-container-row ngProjectAs="panel-header">
             <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
-            <p ngProjectAs="container-headline">Kosten</p>
+            <h5 ngProjectAs="container-headline">Kosten</h5>
 
             @if (tournament.costs.user) {
               <p ngProjectAs="container-content">{{ tournament.costs.user | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de' }} pro Person</p>
@@ -43,7 +43,7 @@
 
           <app-data-container-row class="first-content-row" ngProjectAs="panel-content">
             <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
-            <p ngProjectAs="container-headline">Anmeldeverfahren</p>
+            <h5 ngProjectAs="container-headline">Anmeldeverfahren</h5>
             <app-chip ngProjectAs="container-additional">{{ tournament.registrationProcedure.type }}</app-chip>
 
             <p ngProjectAs="container-content">{{ tournament.registrationProcedure.text }}</p> <!-- TODO: Klären ob wir das Feld registration_procedure_url brauchen-->
@@ -53,7 +53,7 @@
 
           <app-data-container-row ngProjectAs="panel-content">
             <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
-            <p ngProjectAs="container-headline">Deadlines</p>
+            <h5 ngProjectAs="container-headline">Deadlines</h5>
             <div ngProjectAs="container-content">
               @for (deadline of tournament.deadlines; track deadline) {
                 <p>{{ deadline }}</p>

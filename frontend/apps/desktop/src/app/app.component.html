@@ -1,26 +1,35 @@
 <div class="header">
-  <h1>Angular Router App</h1>
+  <div mat-button class="home">
+    <span class="material-icons-outlined">image</span>
+    <h1>JTR 2.0</h1>
+  </div>
   <nav>
-    <ul>
-      <li>
-        <a
-          routerLink="/tournament-details/1"
-          routerLinkActive="active"
-          ariaCurrentWhenActive="page"
-          >Turnier Details</a
-        >
-      </li>
-
-      <li>
-        <a
-          routerLink="/tournaments-overview"
-          routerLinkActive="active"
-          ariaCurrentWhenActive="page"
-          >Alle Turniere</a
-        >
-      </li>
-    </ul>
+    <a
+      routerLink="/tournaments-overview"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >
+      Turniere
+      <span class="material-icons-outlined">keyboard_arrow_down</span>
+    </a>
+    <a
+      routerLink="/teams-overview"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >
+      Teams
+      <span class="material-icons-outlined">keyboard_arrow_down</span>
+    </a>
   </nav>
+  <div class="account">
+    <button mat-button>Login</button>
+    <button mat-icon-button>
+      <span class="material-icons-outlined">account_circle</span>
+    </button>
+    <button mat-icon-button="menu">
+      <span class="material-icons-outlined">menu</span>
+    </button>
+  </div>
 </div>
 <div class="content">
   <router-outlet />
