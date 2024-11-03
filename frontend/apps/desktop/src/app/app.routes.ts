@@ -1,8 +1,9 @@
 import { Route } from '@angular/router';
 
-import {TeamDetailsResolver} from '@jtr/business-domain/team';
+import {TeamDetailsResolver, TeamOverviewResolver} from '@jtr/business-domain/team';
 import { TournamentDetailsResolver, TournamentOverviewResolver } from '@jtr/business-domain/tournament';
 
+import {PageTeamOverviewComponent} from '../../../mobile/src/app/pages/page-team-overview/page-team-overview.component';
 import { PageOutlineDemoComponent } from './pages/page-outline-demo/page-outline-demo.component';
 import {PageTeamDetailsComponent} from './pages/page-team-details/page-team-details.component';
 import { PageTournamentDetailsComponent } from './pages/page-tournament-details/page-tournament-details.component';
@@ -15,6 +16,13 @@ export const appRoutes: Route[] = [
     component: PageTeamDetailsComponent,
     resolve: {
       teamDetails: TeamDetailsResolver,
+    },
+  },
+  {
+    path: 'team-overview',
+    component: PageTeamOverviewComponent,
+    resolve: {
+      teamDetails: TeamOverviewResolver,
     },
   },
   {

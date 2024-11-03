@@ -1,5 +1,5 @@
-### Get team details
-GET https://{{host}}/api/customer-frontend/get-team-details/1
+### Get team overview
+GET https://{{host}}/api/customer-frontend/get-team-overview
 
 > {%
 client.test("It should return a successful status code", function() {
