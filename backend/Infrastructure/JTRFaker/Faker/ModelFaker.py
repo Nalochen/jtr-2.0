@@ -120,7 +120,8 @@ class ModelFaker:
             self.model,
             '__mapper__')
 
-    def __isPrimaryKeyOrHasDefaultValue(self, column: Column) -> bool:
+    @staticmethod
+    def __isPrimaryKeyOrHasDefaultValue(column: Column) -> bool:
         """
         Checks if a column is a primary key or has a default value.
         """
@@ -155,9 +156,9 @@ class ModelFaker:
         Creates JSON data based on the provided docstring.
         """
 
-        json_structure = json.loads(docstring)
+        jsonStructure = json.loads(docstring)
 
-        return self._populateJsonStructure(json_structure)
+        return self._populateJsonStructure(jsonStructure)
 
     def _populateJsonStructure(
             self, structure: Union[Dict[str, Any], List[Any]]) -> Any:
@@ -166,20 +167,20 @@ class ModelFaker:
         """
 
         if isinstance(structure, dict):
-            populated_data = {}
+            populatedData = {}
 
             for key, value in structure.items():
 
                 if isinstance(value, dict):
-                    populated_data[key] = self._populateJsonStructure(value)
+                    populatedData[key] = self._populateJsonStructure(value)
                 elif value == 'datetime':
-                    populated_data[key] = self.fake.date_time().isoformat()
+                    populatedData[key] = self.fake.date_time().isoformat()
                 elif value == 'date':
-                    populated_data[key] = self.fake.date()
+                    populatedData[key] = self.fake.date()
                 else:
-                    populated_data[key] = self.fake.word()
+                    populatedData[key] = self.fake.word()
 
-            return json.dumps(populated_data)
+            return json.dumps(populatedData)
 
         elif isinstance(structure, list):
             return json.dumps([self.fake.word()

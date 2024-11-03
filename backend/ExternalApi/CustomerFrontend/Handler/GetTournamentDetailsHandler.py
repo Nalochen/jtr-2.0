@@ -5,7 +5,8 @@ from DataDomain.Model.Response import Response
 class GetTournamentDetailsHandler:
     """Handler for getting tournament details."""
 
-    def handle(self, tournamentId: int) -> Response:
+    @staticmethod
+    def handle(tournamentId: int) -> Response:
         """Get tournament details by id."""
 
         tournament = TournamentRepository.getTournamentDetails(tournamentId)
