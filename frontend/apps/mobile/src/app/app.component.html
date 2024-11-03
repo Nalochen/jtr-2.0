@@ -6,7 +6,7 @@
     <button mat-icon-button="search" class="search">
       <span class="material-icons-outlined">search</span>
     </button>
-    <button mat-icon-button="nav">
+    <button mat-icon-button (click)="openOverlay()">
       <span class="material-icons-outlined">menu</span>
     </button>
   </nav>
@@ -14,3 +14,5 @@
 <div class="content">
   <router-outlet/>
 </div>
+
+<app-overlay-menu #overlay (close)="closeOverlay()"></app-overlay-menu>
