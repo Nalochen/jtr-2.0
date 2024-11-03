@@ -1,7 +1,7 @@
 <app-data-container>
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
-    <p ngProjectAs="container-headline">Kosten</p>
+    <h4 ngProjectAs="container-headline">Kosten</h4>
 
     @if (tournament.costs.user) {
       <p ngProjectAs="container-content">{{ tournament.costs.user | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de' }} pro Person</p>
@@ -16,7 +16,7 @@
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
-    <p ngProjectAs="container-headline">Anmeldeverfahren</p>
+    <h4 ngProjectAs="container-headline">Anmeldeverfahren</h4>
 
     <app-chip ngProjectAs="container-additional">{{ tournament.registrationProcedure.type }}</app-chip>
 
@@ -27,7 +27,7 @@
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
-    <p ngProjectAs="container-headline">Deadlines</p>
+    <h4 ngProjectAs="container-headline">Deadlines</h4>
     <div ngProjectAs="container-content">
       @for (deadline of tournament.deadlines; track deadline) {
         <p>{{ deadline }}</p>
