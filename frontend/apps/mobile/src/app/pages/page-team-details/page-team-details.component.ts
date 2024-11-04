@@ -1,6 +1,8 @@
 import {CommonModule} from '@angular/common';
 import { Component } from '@angular/core';
 
+import { MatButtonModule } from '@angular/material/button';
+
 import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
@@ -14,7 +16,6 @@ import { TeamInformationComponent } from './team-information/team-information.co
 import { TeamMembersComponent } from './team-members/team-members.component';
 import { TeamOtherTournamentsComponent } from './team-other-tournaments/team-other-tournaments.component';
 import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tournaments.component';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   standalone: true,
