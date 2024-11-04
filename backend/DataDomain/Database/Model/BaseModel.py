@@ -1,10 +1,11 @@
 
-class BaseModel():
+class BaseModel:
     """Base model class for all models"""
 
     __table__ = None
 
-    def toCamelCase(self, snakeStr):
+    @staticmethod
+    def toCamelCase(snakeStr):
         components = snakeStr.split('_')
         return components[0] + ''.join(x.title() for x in components[1:])
 

@@ -1,7 +1,7 @@
 import json
 from typing import List
 
-from sqlalchemy import func
+from sqlalchemy import func, Integer
 from sqlalchemy.orm import aliased
 
 from DataDomain.Database.Model.RelationTournamentTeam import participates_in
@@ -140,3 +140,17 @@ class TeamRepository:
             'trainingTime': team.training_time,
             'trainingTimeUpdatedAt': team.training_time_updated_at.isoformat() if team.training_time_updated_at else None,
         }
+
+    @staticmethod
+    def get(teamId: Integer) -> Teams:
+        return Teams.query.get(teamId)
+
+    @staticmethod
+    def update(teamInstance: Teams) -> None:
+        try:
+            db.session.add(teamInstance)
+            db.session.commit()
+
+        except Exception as e:
+            db.session.rollback()
+            raise e
