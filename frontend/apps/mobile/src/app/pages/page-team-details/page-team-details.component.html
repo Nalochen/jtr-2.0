@@ -1,1 +1,36 @@
-<h1>Works</h1>
+<team-header
+  *ngIf="team$ | async as team"
+  [team]="team"
+/>
+
+
+<section class="content">
+  <div class="extra-infos">
+    <p class="small-text" *ngIf="team$ | async as team">gegründet: {{ team.founded | date }}</p>
+    <button mat-icon-button>
+      <span class="material-icons">edit</span>
+    </button>
+  </div>
+
+  <team-information
+    *ngIf="team$ | async as team"
+    [team]="team"
+  />
+
+  <section class="activities">
+    <team-members
+      *ngIf="team$ | async as team"
+      [team]="team"
+    />
+
+    <team-own-tournaments
+      *ngIf="team$ | async as team"
+      [team]="team"
+    />
+
+    <team-other-tournaments
+      *ngIf="team$ | async as team"
+      [team]="team"
+    />
+  </section>
+</section>

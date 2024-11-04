@@ -1,0 +1,12 @@
+<img alt="Logo of {{ team.name }}" width="50" height="50" ngSrc="{{ team.logo }}">
+
+<div class="meta-data">
+  <p class="city" *ngIf="team.isMixTeam; else city">Mixteam</p>
+  <p class="points">{{ team.points }} P.</p>
+</div>
+
+<h2 class="name">{{ team.name }}</h2>
+
+<ng-template #city>
+  <p class="city">{{ team.city }}</p>
+</ng-template>

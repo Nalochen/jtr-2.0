@@ -1,0 +1,32 @@
+@import 'colors-mobile';
+
+:host {
+  display: grid;
+  padding: 4px 16px;
+  grid-template-areas: "logo information"
+"logo name";
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: auto;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+  margin-bottom: 24px;
+}
+
+.meta-data {
+  grid-area: information;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.name {
+  grid-area: name;
+}
+
+img {
+  grid-area: logo;
+}
+
+p {
+  color: @color-red;
+}

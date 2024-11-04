@@ -1,0 +1,9 @@
+<app-data-container>
+  <p class="small-text" ngProjectAs="container-additional">zuletzt aktualisiert: {{ team.trainingTimeUpdatedAt | date }}</p>
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">event</span>
+    <h5 ngProjectAs="container-headline">Training</h5>
+
+    <p ngProjectAs="container-content">{{ team.trainingTime }}</p>
+  </app-data-container-row>
+</app-data-container>
