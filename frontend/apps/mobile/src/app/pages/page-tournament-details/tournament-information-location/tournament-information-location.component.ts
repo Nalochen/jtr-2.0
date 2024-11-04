@@ -5,15 +5,15 @@ import {MatDividerModule} from '@angular/material/divider';
 
 import {TournamentData} from '@jtr/data-domain/store';
 
-import {ChipComponent, DataContainerComponent, DataContainerRowComponent} from '../../../ui-shared';
+import {ChipComponent, DataContainerExpandableComponent, DataContainerRowComponent} from '../../../ui-shared';
 
 @Component({
   selector: 'tournament-information-location',
   standalone: true,
-  imports: [CommonModule, DataContainerComponent, DataContainerRowComponent, MatDividerModule, ChipComponent],
+  imports: [CommonModule, DataContainerExpandableComponent, DataContainerRowComponent, MatDividerModule, ChipComponent],
   templateUrl: './tournament-information-location.component.html',
   styleUrl: './tournament-information-location.component.less',
 })
-export class TournamentInformationLocationComponent extends DataContainerComponent {
+export class TournamentInformationLocationComponent extends DataContainerExpandableComponent {
     @Input() public tournament!: TournamentData;
 }

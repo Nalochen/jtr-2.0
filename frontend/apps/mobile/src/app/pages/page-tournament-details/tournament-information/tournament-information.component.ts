@@ -12,7 +12,7 @@ import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-
 import {
   ButtonComponent,
   ChipComponent,
-  DataContainerComponent,
+  DataContainerExpandableComponent,
   DataContainerRowComponent,
   InfoButtonComponent,
   TeamComponent
@@ -51,7 +51,7 @@ export enum PanelTypes {
   imports: [
     CommonModule,
     NgOptimizedImage,
-    DataContainerComponent,
+    DataContainerExpandableComponent,
     DataContainerRowComponent,
     MatIcon,
     MatButtonModule,

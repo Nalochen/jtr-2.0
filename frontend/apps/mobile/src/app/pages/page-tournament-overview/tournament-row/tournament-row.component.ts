@@ -5,13 +5,16 @@ import {MatIconButton} from '@angular/material/button';
 
 import {TournamentOverviewData} from '@jtr/data-domain/store';
 
-import {DataContainerComponent, DataContainerRowComponent} from '../../../ui-shared';
-import {StatusIndicatorComponent} from '../../../ui-shared/lib/status-indicator/status-indicator.component';
+import {
+  DataContainerExpandableComponent,
+  DataContainerRowComponent,
+  StatusIndicatorComponent
+} from '../../../ui-shared';
 
 @Component({
   selector: 'tournament-row',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, DataContainerComponent, MatIconButton, StatusIndicatorComponent, DataContainerRowComponent],
+  imports: [CommonModule, NgOptimizedImage, DataContainerExpandableComponent, MatIconButton, StatusIndicatorComponent, DataContainerRowComponent],
   templateUrl: './tournament-row.component.html',
   styleUrl: './tournament-row.component.less',
 })

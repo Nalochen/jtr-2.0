@@ -1,4 +1,4 @@
-<app-data-container [id]="id" [isOpen]="isOpen">
+<app-data-container-expandable [id]="id" [isOpen]="isOpen">
   <app-data-container-row ngProjectAs="panel-header">
     <span class="material-icons-outlined" ngProjectAs="container-icon">pin_drop</span>
     <h5 ngProjectAs="container-headline">Adresse</h5>
@@ -40,4 +40,4 @@
     <p ngProjectAs="container-content">Abendessen: {{ tournament.food.evening }}</p>
     <p ngProjectAs="container-content">Gastro: {{ tournament.food.gastro }}</p>
   </app-data-container-row>
-</app-data-container>
+</app-data-container-expandable>
