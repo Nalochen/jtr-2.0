@@ -26,11 +26,11 @@ export interface TeamData {
   aboutUs: string;
   city: string;
   contacts: string[];
-  createdAt: string;
-  founded: string;
+  createdAt: Date;
+  founded: Date;
   isMixTeam: boolean;
-  lastTournamentOrganized: string;
-  lastTournamentPlayed: string;
+  lastTournamentOrganized: Date;
+  lastTournamentPlayed: Date;
   logo: string;
   members: TeamUserData[];
   name: string;
@@ -38,6 +38,6 @@ export interface TeamData {
   pastTournaments: TeamPastTournamentData[];
   points: number;
   trainingTime: string;
-  trainingTimeUpdatedAt: string;
-  updatedAt: string;
+  trainingTimeUpdatedAt: Date;
+  updatedAt: Date;
 }
