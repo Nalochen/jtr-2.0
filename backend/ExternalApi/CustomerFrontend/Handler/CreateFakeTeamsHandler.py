@@ -8,7 +8,8 @@ from Infrastructure.JTRFaker.Faker.ModelFaker import ModelFaker
 class CreateFakeTeamsHandler:
     """Handler for generating fake teams."""
 
-    def handle(self) -> Response:
+    @staticmethod
+    def handle() -> Response:
         """Generate fake teams."""
 
         data = g.validatedData
