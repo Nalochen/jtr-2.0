@@ -9,7 +9,8 @@ from ExternalApi.CustomerFrontend.config.extensions import clearTournamentCache
 class CreateFakeTournamentsHandler:
     """Handler for generating fake tournaments."""
 
-    def handle(self) -> Response:
+    @staticmethod
+    def handle() -> Response:
         """Generate fake tournaments."""
 
         data = g.validatedData

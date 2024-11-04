@@ -86,7 +86,7 @@ class InputFilter:
                 if request.method == 'GET':
                     data = request.args
 
-                elif request.method == 'POST':
+                elif request.method == 'POST' or request.method == 'PUT':
                     if not request.is_json:
                         return Response(
                             status=415, response="Unsupported Media Type")
