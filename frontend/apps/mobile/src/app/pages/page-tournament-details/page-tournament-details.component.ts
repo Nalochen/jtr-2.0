@@ -13,7 +13,7 @@ import {
 import {TournamentData, TournamentTeamsData} from '@jtr/data-domain/store';
 import {SingletonGetter} from '@jtr/infrastructure/cache';
 
-import { DataContainerComponent, DataContainerRowComponent } from '../../ui-shared';
+import { DataContainerExpandableComponent, DataContainerRowComponent } from '../../ui-shared';
 import { TournamentBottomBarComponent } from './tournament-bottom-bar/tournament-bottom-bar.component';
 import {TournamentHeaderComponent} from './tournament-header/tournament-header.component';
 import {
@@ -27,7 +27,7 @@ import { TournamentTeamsComponent } from './tournament-teams/tournament-teams.co
     CommonModule,
     TournamentHeaderComponent,
     TournamentInformationComponent,
-    DataContainerComponent,
+    DataContainerExpandableComponent,
     DataContainerRowComponent,
     TournamentTeamsComponent,
     TournamentBottomBarComponent,

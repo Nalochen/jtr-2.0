@@ -6,7 +6,7 @@
   @for (panel of panels; track panel) {
     @switch (panel.id) {
       @case (PanelTypes.Teams) {
-        <app-data-container class="teams" [id]="panel.id" [isOpen]="panel.isOpen" (toggleVisibility)="togglePanel(panel.id, $event)">
+        <app-data-container-expandable class="teams" [id]="panel.id" [isOpen]="panel.isOpen" (toggleVisibility)="togglePanel(panel.id, $event)">
           @if (panel.isOpen) {
             <p class="title" ngProjectAs="panel-header">angemeldet:</p>
           } @else {
@@ -22,10 +22,10 @@
             [registeredTeams]="tournament.teams.participating"
             [reservedTeams]="tournament.teams.waiting"
           />
-        </app-data-container>
+        </app-data-container-expandable>
       }
       @case (PanelTypes.Registration) {
-        <app-data-container [id]="panel.id" [isOpen]="panel.isOpen" (toggleVisibility)="togglePanel(panel.id, $event)">
+        <app-data-container-expandable [id]="panel.id" [isOpen]="panel.isOpen" (toggleVisibility)="togglePanel(panel.id, $event)">
           <app-data-container-row ngProjectAs="panel-header">
             <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
             <h5 ngProjectAs="container-headline">Kosten</h5>
@@ -60,7 +60,7 @@
               }
             </div>
           </app-data-container-row>
-        </app-data-container>
+        </app-data-container-expandable>
       }
 
       @case (PanelTypes.Contacts) {

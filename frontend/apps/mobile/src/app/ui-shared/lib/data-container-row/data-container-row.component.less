@@ -1,6 +1,6 @@
 :host {
   display: grid;
-  grid-template-columns: 24px 1fr;
+  grid-template-columns: min-content 1fr;
   column-gap: 8px;
   grid-template-rows: auto;
   grid-template-areas: "icon headline"
@@ -27,7 +27,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
 }
 
 .content {
@@ -36,4 +35,8 @@
 
 .headline {
   width: 100%;
+}
+
+span {
+  font-size: 20px;
 }
