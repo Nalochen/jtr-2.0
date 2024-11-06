@@ -5,7 +5,7 @@ from Infrastructure.InputFilter.Validator.BaseValidator import BaseValidator
 
 
 class RegexValidator(BaseValidator):
-    """A validator that checks if a value matches a given regular expression pattern."""
+    """A validator that checks if a value matches a given regular expression pattern"""
 
     def __init__(self, pattern: str, errorMessage: str = None) -> None:
         self.pattern = pattern

@@ -5,11 +5,11 @@ from flask_cors import CORS
 
 
 class Config(object):
-    """Configuration class for the Flask app."""
+    """Configuration class for the Flask app"""
 
     @staticmethod
     def init_app(app):
-        """Initializes the Flask app with the given configuration."""
+        """Initializes the Flask app with the given configuration"""
 
         CORS(app)
 

@@ -5,7 +5,7 @@ from Infrastructure.InputFilter.Validator.BaseValidator import BaseValidator
 
 
 class IsInstanceValidator(BaseValidator):
-    """Validator that checks if a value is an instance of a given class."""
+    """Validator that checks if a value is an instance of a given class"""
 
     def __init__(self, classType: Type[Any]) -> None:
         self.classType = classType

@@ -16,7 +16,8 @@
           "production": {},
           "development": {}
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "outputs": ["{workspaceRoot}/apps/mobile/tmp"]
     },
     "build": {
       "executor": "@angular-devkit/build-angular:browser",

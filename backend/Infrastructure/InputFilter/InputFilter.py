@@ -8,10 +8,10 @@ from Infrastructure.InputFilter.Validator.BaseValidator import BaseValidator
 
 
 class InputFilter:
-    """Base class for input filters."""
+    """Base class for input filters"""
 
     def __init__(self) -> None:
-        """Initialize the input filter."""
+        """Initialize the input filter"""
 
         self.fields = {}
 
@@ -20,7 +20,7 @@ class InputFilter:
             required: bool = True,
             filters: Optional[List[BaseFilter]] = None,
             validators: Optional[List[BaseValidator]] = None):
-        """Add the field to the input filter."""
+        """Add the field to the input filter"""
 
         self.fields[name] = {
             'required': required,
@@ -29,7 +29,7 @@ class InputFilter:
         }
 
     def applyFilters(self, field_name: str, value: Any) -> Any:
-        """Apply filters to the field value."""
+        """Apply filters to the field value"""
 
         field = self.fields.get(field_name)
 
@@ -42,7 +42,7 @@ class InputFilter:
         return value
 
     def validateField(self, fieldName: str, value: Any) -> None:
-        """Validate the field value."""
+        """Validate the field value"""
 
         field = self.fields.get(fieldName)
 
@@ -54,7 +54,7 @@ class InputFilter:
 
     def validateData(self, data: Dict[str, Any],
                      kwargs: Dict[str, Any] = None) -> Dict[str, Any]:
-        """Validate the input data, considering both request data and URL parameters (kwargs)."""
+        """Validate the input data, considering both request data and URL parameters (kwargs)"""
 
         if kwargs is None:
             kwargs = {}
@@ -79,7 +79,7 @@ class InputFilter:
 
     @classmethod
     def validate(cls):
-        """Decorator for validating input data in Flask routes."""
+        """Decorator for validating input data in Flask routes"""
 
         def decorator(f):
             def wrapper(*args, **kwargs):

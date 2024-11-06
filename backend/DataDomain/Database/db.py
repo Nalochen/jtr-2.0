@@ -6,7 +6,7 @@ db = SQLAlchemy()
 
 
 def executeSqlFile(filename: str) -> None:
-    """Executes the SQL commands in the given file."""
+    """Executes the SQL commands in the given file"""
 
     with open(filename, 'r') as sql_file:
         sqlCommands = sql_file.read()
@@ -28,7 +28,7 @@ def executeSqlFile(filename: str) -> None:
 
 
 def executeSqlCommandsToInitDatabase() -> None:
-    """Executes the SQL commands in the init-database folder."""
+    """Executes the SQL commands in the init-database folder"""
 
     folderPath = '/app/DataDomain/Database/data/init-database'
 
@@ -40,7 +40,7 @@ def executeSqlCommandsToInitDatabase() -> None:
 
 
 def initDatabase(app) -> None:
-    """Initializes the database with the given SQL commands."""
+    """Initializes the database with the given SQL commands"""
 
     db.init_app(app)
 

@@ -3,9 +3,9 @@ import { Route } from '@angular/router';
 import {TeamDetailsResolver, TeamOverviewResolver} from '@jtr/business-domain/team';
 import { TournamentDetailsResolver, TournamentOverviewResolver } from '@jtr/business-domain/tournament';
 
-import {PageTeamOverviewComponent} from '../../../mobile/src/app/pages/page-team-overview/page-team-overview.component';
 import { PageOutlineDemoComponent } from './pages/page-outline-demo/page-outline-demo.component';
 import {PageTeamDetailsComponent} from './pages/page-team-details/page-team-details.component';
+import {PageTeamOverviewComponent} from './pages/page-team-overview/page-team-overview.component';
 import { PageTournamentDetailsComponent } from './pages/page-tournament-details/page-tournament-details.component';
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
 import { SwaggerViewComponent } from './pages/swagger-view/swagger-view.component';

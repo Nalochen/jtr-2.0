@@ -4,10 +4,10 @@ from Infrastructure.InputFilter.InputFilter import InputFilter
 
 
 class FakerInputFilter(InputFilter):
-    """The input filter for the Faker API routes."""
+    """The input filter for the Faker API routes"""
 
     def __init__(self):
-        """Initializes the FakerInputFilter."""
+        """Initializes the FakerInputFilter"""
 
         super().__init__()
 

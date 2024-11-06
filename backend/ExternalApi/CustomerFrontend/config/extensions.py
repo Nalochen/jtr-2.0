@@ -3,7 +3,7 @@ from config.extensions import cache
 
 
 def create_tournament_cache_key() -> str:
-    """Create cache key for tournament."""
+    """Create cache key for tournament"""
 
     tournamentId = request.view_args['tournamentId']
 

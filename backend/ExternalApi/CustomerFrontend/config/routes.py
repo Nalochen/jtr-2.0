@@ -43,62 +43,71 @@ def register() -> Response:
                          methods=['GET'], endpoint='get-tournament-details')
 @GetTournamentDetailsInputFilter.validate()
 # @cache.cached(key_prefix=create_tournament_cache_key)
-def getTournamentDetails(
-    tournamentId: int): return GetTournamentDetailsHandler().handle(tournamentId)
+def getTournamentDetails(tournamentId: int) -> Response:
+    return GetTournamentDetailsHandler().handle(tournamentId)
 
 
 @customer_frontend.route('/get-tournament-overview',
                          methods=['GET'], endpoint='get-tournament-overview')
 # @cache.cached(key_prefix='upcoming-tournaments')
-def getTournamentOverview(): return GetTournamentOverviewHandler().handle()
+def getTournamentOverview() -> Response:
+    return GetTournamentOverviewHandler().handle()
 
 
 @customer_frontend.route('/get-team-details/<teamId>',
                          methods=['GET'], endpoint='get-team-details')
 @GetTeamDetailsInputFilter.validate()
-def getTeamDetails(teamId: int): return GetTeamDetailsHandler().handle(teamId)
+def getTeamDetails(teamId: int) -> Response:
+    return GetTeamDetailsHandler().handle(teamId)
 
 
 @customer_frontend.route('/get-team-overview',
                          methods=['GET'], endpoint='get-team-overview')
-def getTeamOverview(): return GetTeamOverviewHandler().handle()
+def getTeamOverview() -> Response:
+    return GetTeamOverviewHandler().handle()
 
 
 @customer_frontend.route('/update-team',
                          methods=['PUT'], endpoint='update-team')
 @jwt_required()
 @UpdateTeamInputFilter.validate()
-def updateTeam(): return UpdateTeamHandler().handle()
+def updateTeam() -> Response:
+    return UpdateTeamHandler().handle()
 
 
 @customer_frontend.route('/create-fake-users',
                          methods=['POST'],
                          endpoint='create-fake-users')
 @FakerInputFilter.validate()
-def createFakeUsers(): return CreateFakeUsersHandler().handle()
+def createFakeUsers() -> Response:
+    return CreateFakeUsersHandler().handle()
 
 
 @customer_frontend.route('/create-fake-tournaments',
                          methods=['POST'], endpoint='create-fake-tournaments')
 @FakerInputFilter.validate()
-def createFakeTournaments(): return CreateFakeTournamentsHandler().handle()
+def createFakeTournaments() -> Response:
+    return CreateFakeTournamentsHandler().handle()
 
 
 @customer_frontend.route('/create-fake-teams',
                          methods=['POST'],
                          endpoint='create-fake-teams')
 @FakerInputFilter.validate()
-def createFakeTeams(): return CreateFakeTeamsHandler().handle()
+def createFakeTeams() -> Response:
+    return CreateFakeTeamsHandler().handle()
 
 
 @customer_frontend.route('/create-fake-is-part-of',
                          methods=['POST'],
                          endpoint='create-fake-is-part-of')
 @FakerInputFilter.validate()
-def createFakeIsPartOf(): return CreateFakeIsPartOfHandler().handle()
+def createFakeIsPartOf() -> Response:
+    return CreateFakeIsPartOfHandler().handle()
 
 
 @customer_frontend.route('/create-fake-participates_in',
                          methods=['POST'], endpoint='create-fake-participates_in')
 @FakerInputFilter.validate()
-def createFakeParticipatesIn(): return CreateFakeParticipatesInHandler().handle()
+def createFakeParticipatesIn() -> Response:
+    return CreateFakeParticipatesInHandler().handle()

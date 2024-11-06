@@ -21,11 +21,11 @@ paths:
         '404':
           description: Team not Found
 
-components :
-  schemas :
-    UpdateTeamRequestBody :
-      type : object
-      required :
+components:
+  schemas:
+    UpdateTeamRequestBody:
+      type: object
+      required:
         - teamId
       properties:
         teamId:
