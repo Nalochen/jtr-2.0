@@ -1,5 +1,5 @@
 ### Create fake users
-POST https://{{host}}/api/customer-frontend/create-fake-users
+POST https://{{host}}/api/system/create-fake-users
 Content-Type: application/json
 
 {
@@ -14,7 +14,7 @@ Content-Type: application/json
 
 
 ### Create fake teams
-POST https://{{host}}/api/customer-frontend/create-fake-teams
+POST https://{{host}}/api/system/create-fake-teams
 Content-Type: application/json
 
 {
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 
 ### Create fake tournaments
-POST https://{{host}}/api/customer-frontend/create-fake-tournaments
+POST https://{{host}}/api/system/create-fake-tournaments
 Content-Type: application/json
 
 {
@@ -44,7 +44,7 @@ Content-Type: application/json
 
 
 ### Create fake is part of
-POST https://{{host}}/api/customer-frontend/create-fake-is-part-of
+POST https://{{host}}/api/system/create-fake-is-part-of
 Content-Type: application/json
 
 {
@@ -59,7 +59,7 @@ Content-Type: application/json
 
 
 ### Create fake participates in
-POST https://{{host}}/api/customer-frontend/create-fake-participates_in
+POST https://{{host}}/api/system/create-fake-participates_in
 Content-Type: application/json
 
 {
