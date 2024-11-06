@@ -12,12 +12,12 @@ import json
 
 
 class TournamentRepository:
-    """Repository for tournament related queries."""
+    """Repository for tournament related queries"""
 
     @staticmethod
     def getTournamentOverview(
             currentTime: datetime = None) -> List[dict]:
-        """Get tournament overview."""
+        """Get tournament overview"""
 
         if currentTime is None:
             currentTime = datetime.now()
@@ -61,7 +61,7 @@ class TournamentRepository:
 
     @staticmethod
     def getTournamentDetails(tournamentId: int) -> dict | None:
-        """Get tournament details by id."""
+        """Get tournament details by id"""
 
         tournament = db.session.query(Tournaments).options(
             joinedload(Tournaments.teams),
