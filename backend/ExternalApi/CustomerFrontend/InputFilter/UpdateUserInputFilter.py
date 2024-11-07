@@ -5,26 +5,31 @@ from Infrastructure.InputFilter.InputFilter import InputFilter
 from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
 
 
-class CreateUserInputFilter(InputFilter):
-    """The input filter for the register route"""
+class UpdateUserInputFilter(InputFilter):
+    """The input filter for the update-user route"""
 
     def __init__(self):
-        """Initializes the CreateUserInputFilter"""
+        """Initializes the UpdateUserInputFilter"""
 
         super().__init__()
 
         self.add(
-            'username',
-            required=True,
+            'birthday',
+            required=False,
             filters=[
-                StringTrimFilter(),
                 ToNullFilter()
+            ],
+            validators=[
+                RegexValidator(
+                    ISO_DATE_REGEX,
+                    'Das Geburtsdatum muss im iso format haben.'
+                )
             ]
         )
 
         self.add(
-            'password',
-            required=True,
+            'city',
+            required=False,
             filters=[
                 StringTrimFilter(),
                 ToNullFilter()
@@ -56,16 +61,11 @@ class CreateUserInputFilter(InputFilter):
         )
 
         self.add(
-            'birthday',
+            'password',
             required=False,
             filters=[
+                StringTrimFilter(),
                 ToNullFilter()
-            ],
-            validators=[
-                RegexValidator(
-                    ISO_DATE_REGEX,
-                    'Das Geburtsdatum muss im iso format haben.'
-                )
             ]
         )
 
@@ -77,5 +77,14 @@ class CreateUserInputFilter(InputFilter):
             ],
             validators=[
                 # TODO Image validator
+            ]
+        )
+
+        self.add(
+            'username',
+            required=False,
+            filters=[
+                StringTrimFilter(),
+                ToNullFilter()
             ]
         )

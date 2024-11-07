@@ -11,6 +11,7 @@ from ExternalApi.CustomerFrontend.Handler.GetTournamentOverviewHandler import Ge
 from ExternalApi.CustomerFrontend.Handler.GetUserDetailsHandler import GetUserDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.LoginUserHandler import LoginUserHandler
 from ExternalApi.CustomerFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
+from ExternalApi.CustomerFrontend.Handler.UpdateUserHandler import UpdateUserHandler
 from ExternalApi.CustomerFrontend.InputFilter.CreateTeamInputFilter import CreateTeamInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetTeamDetailsInputFilter import GetTeamDetailsInputFilter
@@ -18,6 +19,7 @@ from ExternalApi.CustomerFrontend.InputFilter.GetTournamentDetailsInputFilter im
 from ExternalApi.CustomerFrontend.InputFilter.GetUserDetailsInputFilter import GetUserDetailsInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.LoginUserInputFilter import LoginUserInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.UpdateTeamInputFilter import UpdateTeamInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.UpdateUserInputFilter import UpdateUserInputFilter
 
 customer_frontend = Blueprint('customer-frontend', __name__)
 
@@ -66,6 +68,14 @@ def getUserDetails(userId: int = None) -> Response:
 @UpdateTeamInputFilter.validate()
 def updateTeam() -> Response:
     return UpdateTeamHandler().handle()
+
+
+@customer_frontend.route('/update-user',
+                         methods=['PUT'], endpoint='update-user')
+@jwt_required()
+@UpdateUserInputFilter.validate()
+def updateUser() -> Response:
+    return UpdateUserHandler().handle()
 
 
 @customer_frontend.route('/create-team',
