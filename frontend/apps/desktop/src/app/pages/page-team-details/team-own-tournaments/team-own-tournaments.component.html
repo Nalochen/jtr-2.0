@@ -1,4 +1,4 @@
-<p>Teilgenommene Turniere</p>
+<p>{{ 'participated-tournaments' | translate }}</p>
 <ng-container *ngIf="team.pastTournaments.length > 0; else noPastTournaments">
   @for (tournament of team.pastTournaments; track tournament) {
     <app-button>{{ tournament.name }}</app-button>
