@@ -10,10 +10,11 @@ import {TournamentOverviewData} from '@jtr/data-domain/store';
 import {SingletonGetter} from '@jtr/infrastructure/cache';
 
 import {TournamentRowComponent} from './tournament-row/tournament-row.component';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TournamentRowComponent],
+  imports: [CommonModule, TournamentRowComponent, TranslatePipe],
   templateUrl: './page-tournament-overview.component.html',
   styleUrl: './page-tournament-overview.component.less',
 })

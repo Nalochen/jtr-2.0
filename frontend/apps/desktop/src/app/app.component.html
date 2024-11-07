@@ -9,7 +9,7 @@
       routerLinkActive="active"
       ariaCurrentWhenActive="page"
     >
-      Turniere
+      {{ 'tournaments' | translate }}
       <span class="material-icons-outlined">keyboard_arrow_down</span>
     </a>
     <a
@@ -22,6 +22,10 @@
     </a>
   </nav>
   <div class="account">
+    <div>
+      <button (click)="switchLanguage('en')">English</button>
+      <button (click)="switchLanguage('de')">Deutsch</button>
+    </div>
     <button mat-button>Login</button>
     <button mat-icon-button>
       <span class="material-icons-outlined">account_circle</span>

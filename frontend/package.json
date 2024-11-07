@@ -40,6 +40,8 @@
     "@ngrx/effects": "^18.1.0",
     "@ngrx/operators": "^18.1.0",
     "@ngrx/store": "^18.1.0",
+    "@ngx-translate/core": "^16.0.3",
+    "@ngx-translate/http-loader": "^16.0.0",
     "material-design-icons": "^3.0.1",
     "ngrx-store-localstorage": "^18.0.0",
     "ngx-cookie-service": "^18.0.0",
