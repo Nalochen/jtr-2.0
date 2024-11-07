@@ -1,22 +1,15 @@
-### Update a team
+### Update a user
 ### Execute ExternalApi/specs/requests/000-Authorization.http before using this!
-PUT https://{{host}}/api/customer-frontend/update-team
+PUT https://{{host}}/api/customer-frontend/update-user
 Content-Type: application/json
 Authorization: Bearer {{jwtToken}}
 
 {
-  "teamId": 1,
-  "name": "Team 1",
-  "logo": "https://example.com/logo.png",
+  "birthday": "1990-12-19T00:00:00",
   "city": "Berlin",
-  "isMixTeam": false,
-  "trainingTime": "Sonntags 10 Uhr",
-  "founded": "2020-01-01T00:00:00",
-  "aboutUs": "About us",
-  "contacts": [
-    "Contact 1",
-    "Contact 2"
-  ]
+  "email": "joseph12435@gmail.de",
+  "name": "Joseph",
+  "picture": "https://www.example.com/picture.jpg"
 }
 
 > {%

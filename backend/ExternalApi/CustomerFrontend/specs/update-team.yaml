@@ -43,8 +43,10 @@ components:
           type: string
         logo:
           type: string
+          format: binary
         founded:
           type: string
+          format: date
         city:
           type: string
         isMixTeam:

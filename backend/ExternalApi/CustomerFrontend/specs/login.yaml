@@ -13,24 +13,20 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LoginRequestBody'
+
       responses:
         '200':
-          description: JWT access token
+          description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoginResponseBody'
 
+        '404':
+          description: User not Found
+
         '500':
           description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Internal server error"
 
 components:
   schemas:
@@ -50,4 +46,4 @@ components:
       properties:
         token:
           type: string
-          example: "eyJhbGciOi
+          example: eyJhbGciOifghjkgfdsfghj

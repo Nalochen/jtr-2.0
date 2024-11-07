@@ -3,16 +3,16 @@ info:
   title: Customer Frontend API
   version: 1.0.0
 paths:
-  /api/customer-frontend/register:
-    post:
-      summary: Creates a new user
-      description: Returns the JWT access token for the user session.
-      requestBody: 
+  /api/customer-frontend/update-user:
+    put:
+      summary: Update user
+      operationId: updateUser
+      requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegisterRequestBody'
+              $ref: '#/components/schemas/UpdateUserRequestBody'
 
       responses:
         '200':
@@ -20,36 +20,44 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RegisterResponseBody'
+                $ref: '#/components/schemas/UpdateUserResponseBody'
+
+        '400':
+          description: Bad Request
+
+        '401':
+          description: Unauthorized
+
+        '404':
+          description: User not Found
 
         '500':
-          description: Internal server error
+          description: Internal Server Error
 
 components:
   schemas:
-    RegisterRequestBody:
+    UpdateUserRequestBody:
       type: object
-      required:
-        - username
-        - password
       properties:
-        username:
-          type: string
-        password:
-          type: string
         birthday:
           type: string
           format: date
+        city:
+          type: string
         email:
           type: string
           format: email
         name:
           type: string
+        password:
+          type: string
         picture:
           type: string
           format: binary
+        username:
+          type: string
 
-    RegisterResponseBody:
+    UpdateUserResponseBody:
       type: object
       properties:
         token:

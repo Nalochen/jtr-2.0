@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 from flask import g
 
@@ -41,7 +42,7 @@ class UpdateTeamHandler:
 
         founded = data.get('founded')
         if founded is not None:
-            team.founded = founded
+            team.founded = datetime.fromisoformat(founded)
 
         city = data.get('city')
         if city is not None:
