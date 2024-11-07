@@ -2,6 +2,7 @@ from flask import Blueprint
 from flask_jwt_extended import jwt_required
 
 from DataDomain.Model.Response import Response
+from ExternalApi.CustomerFrontend.Handler.CreateTeamHandler import CreateTeamHandler
 from ExternalApi.CustomerFrontend.Handler.CreateUserHandler import CreateUserHandler
 from ExternalApi.CustomerFrontend.Handler.GetTeamDetailsHandler import GetTeamDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.GetTeamOverviewHandler import GetTeamOverviewHandler
@@ -9,13 +10,14 @@ from ExternalApi.CustomerFrontend.Handler.GetTournamentDetailsHandler import Get
 from ExternalApi.CustomerFrontend.Handler.GetTournamentOverviewHandler import GetTournamentOverviewHandler
 from ExternalApi.CustomerFrontend.Handler.GetUserDetailsHandler import GetUserDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.LoginUserHandler import LoginUserHandler
-from ExternalApi.CustomerFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
 from ExternalApi.CustomerFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
+from ExternalApi.CustomerFrontend.InputFilter.CreateTeamInputFilter import CreateTeamInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetTeamDetailsInputFilter import GetTeamDetailsInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetTournamentDetailsInputFilter import GetTournamentDetailsInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetUserDetailsInputFilter import GetUserDetailsInputFilter
-from ExternalApi.CustomerFrontend.InputFilter.UpdateTeamInputFilter import UpdateTeamInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.LoginUserInputFilter import LoginUserInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.UpdateTeamInputFilter import UpdateTeamInputFilter
 
 customer_frontend = Blueprint('customer-frontend', __name__)
 
@@ -64,6 +66,14 @@ def getUserDetails(userId: int = None) -> Response:
 @UpdateTeamInputFilter.validate()
 def updateTeam() -> Response:
     return UpdateTeamHandler().handle()
+
+
+@customer_frontend.route('/create-team',
+                         methods=['POST'], endpoint='create-team')
+@jwt_required()
+@CreateTeamInputFilter.validate()
+def createTeam() -> Response:
+    return CreateTeamHandler().handle()
 
 
 @customer_frontend.route('/login', methods=['POST'], endpoint='login')

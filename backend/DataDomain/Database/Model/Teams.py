@@ -85,18 +85,18 @@ class Teams(BaseModel, db.Model):
     team_members: Mapped[List['Users']] = db. relationship(
         'Users',
         secondary=is_part_of,
-        backref='teams_backref'
+        back_populates='teams'
     )
 
     tournaments: Mapped[List['Tournaments']] = db.relationship(
         'Tournaments',
         secondary=participates_in,
-        backref='teams_backref'
+        back_populates='teams'
     )
 
     organized_tournaments: Mapped[List['Tournaments']] = db.relationship(
         'Tournaments',
-        backref='organizer'
+        back_populates='organizer'
     )
 
     def serialize(self) -> Dict[str, Any]:

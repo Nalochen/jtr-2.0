@@ -11,3 +11,14 @@ class IsPartOfRepository:
             is_part_of.c.user_id == userId,
             is_part_of.c.team_id == teamId
         ).first()
+
+    @staticmethod
+    def create(userId: int, teamId: int, userRole: str) -> None:
+        db.session.execute(
+            is_part_of.insert().values(
+                user_id=userId,
+                team_id=teamId,
+                user_role=userRole
+            )
+        )
+        db.session.commit()

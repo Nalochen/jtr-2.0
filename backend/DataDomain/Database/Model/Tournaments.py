@@ -238,15 +238,15 @@ class Tournaments(BaseModel, db.Model):
         nullable=False,
     )
 
-    organized_tournaments: Mapped['Teams'] = db.relationship(
+    organizer: Mapped['Teams'] = db.relationship(
         'Teams',
-        back_populates='tournaments'
+        back_populates='organized_tournaments'
     )
 
     teams: Mapped[List['Teams']] = db.relationship(
         'Teams',
         secondary=participates_in,
-        backref='tournament_backref'
+        back_populates='tournaments'
     )
 
     def serialize(self) -> Dict[str, Any]:

@@ -3,7 +3,7 @@ from flask_jwt_extended import create_access_token
 from werkzeug.security import generate_password_hash
 
 from DataDomain.Database.Model.Users import Users
-from DataDomain.Database.Repository.UserResponsitory import UserRepository
+from DataDomain.Database.Repository.UserRepository import UserRepository
 from DataDomain.Model.Response import Response
 
 
@@ -40,7 +40,7 @@ class CreateUserHandler:
             user.picture = picture
 
         try:
-            UserRepository().createUser(user)
+            UserRepository().create(user)
 
         except Exception:
             return Response(status=500)

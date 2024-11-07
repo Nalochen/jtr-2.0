@@ -147,11 +147,24 @@ class TeamRepository:
         return Teams.query.get(teamId)
 
     @staticmethod
+    def create(team: Teams) -> int:
+        try:
+            db.session.add(team)
+            db.session.commit()
+
+            return team.id
+
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f'TeamRepository | create |  {e}')
+            raise e
+
+    @staticmethod
     def update() -> None:
         try:
             db.session.commit()
 
         except Exception as e:
             db.session.rollback()
-            logging.error('TeamRepository | update | ' + str(e))
+            logging.error(f'TeamRepository | update | {e}')
             raise e

@@ -74,7 +74,7 @@ class Users(BaseModel, db.Model):
     teams: Mapped[List['Teams']] = db.relationship(
         'Teams',
         secondary=is_part_of,
-        backref='users_backref'
+        back_populates='team_members'
     )
 
     def serialize(self) -> Dict[str, Any]:

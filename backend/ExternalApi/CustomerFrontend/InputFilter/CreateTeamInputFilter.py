@@ -5,36 +5,18 @@ from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
 
 
-class UpdateTeamInputFilter(InputFilter):
-    """The input filter for the update-team route"""
+class CreateTeamInputFilter(InputFilter):
+    """The input filter for the create-team route"""
 
     def __init__(self):
-        """Initializes the UpdateTeamInputFilter"""
+        """Initializes the CreateTeamInputFilter"""
 
         super().__init__()
-
-        self.add(
-            'teamId',
-            required=True,
-            filters=[ToIntFilter()]
-        )
 
         self.add(
             'name',
             required=False,
             filters=[StringTrimFilter(), ToNullFilter()]
-        )
-
-        self.add(
-            'logo',
-            required=False,
-            filters=[StringTrimFilter(), ToNullFilter()]
-        )
-
-        self.add(
-            'founded',
-            required=False,
-            filters=[ToNullFilter()]
         )
 
         self.add(

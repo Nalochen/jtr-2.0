@@ -2,7 +2,7 @@ from flask import g
 from flask_jwt_extended import create_access_token
 from werkzeug.security import check_password_hash
 
-from DataDomain.Database.Repository.UserResponsitory import UserRepository
+from DataDomain.Database.Repository.UserRepository import UserRepository
 from DataDomain.Model.Response import Response
 
 
