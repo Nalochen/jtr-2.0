@@ -191,7 +191,8 @@ class TeamRepository:
             ).filter(
                 participates_in.c.team_id == teamId,
                 participates_in.c.tournament_id.in_(
-                    db.session.query(Tournaments.id).filter(Tournaments.start_date > func.now())
+                    db.session.query(Tournaments.id).filter(
+                        Tournaments.start_date > func.now())
                 )
             ).update({
                 'is_deleted': True
