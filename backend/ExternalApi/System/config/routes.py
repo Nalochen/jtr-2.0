@@ -19,38 +19,38 @@ def getSwagger(): return GetSwaggerFileHandler().handle()
 
 
 @system.route('/create-fake-users',
-                         methods=['POST'],
-                         endpoint='create-fake-users')
+              methods=['POST'],
+              endpoint='create-fake-users')
 @FakerInputFilter.validate()
 def createFakeUsers() -> Response:
     return CreateFakeUsersHandler().handle()
 
 
 @system.route('/create-fake-tournaments',
-                         methods=['POST'], endpoint='create-fake-tournaments')
+              methods=['POST'], endpoint='create-fake-tournaments')
 @FakerInputFilter.validate()
 def createFakeTournaments() -> Response:
     return CreateFakeTournamentsHandler().handle()
 
 
 @system.route('/create-fake-teams',
-                         methods=['POST'],
-                         endpoint='create-fake-teams')
+              methods=['POST'],
+              endpoint='create-fake-teams')
 @FakerInputFilter.validate()
 def createFakeTeams() -> Response:
     return CreateFakeTeamsHandler().handle()
 
 
 @system.route('/create-fake-is-part-of',
-                         methods=['POST'],
-                         endpoint='create-fake-is-part-of')
+              methods=['POST'],
+              endpoint='create-fake-is-part-of')
 @FakerInputFilter.validate()
 def createFakeIsPartOf() -> Response:
     return CreateFakeIsPartOfHandler().handle()
 
 
 @system.route('/create-fake-participates_in',
-                         methods=['POST'], endpoint='create-fake-participates_in')
+              methods=['POST'], endpoint='create-fake-participates_in')
 @FakerInputFilter.validate()
 def createFakeParticipatesIn() -> Response:
     return CreateFakeParticipatesInHandler().handle()

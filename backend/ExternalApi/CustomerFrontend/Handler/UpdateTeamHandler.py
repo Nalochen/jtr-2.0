@@ -56,8 +56,12 @@ class UpdateTeamHandler:
         if 'contacts' in request.json:
             team.contacts = json.dumps(request.json.get('contacts'))
 
-        TeamRepository().update(team)
+        try:
+            TeamRepository().update()
+
+        except Exception:
+            return Response(status=500)
 
         return Response(
-            status=200,
+            status=200
         )

@@ -36,7 +36,7 @@ class Teams(BaseModel, db.Model):
 
     points: Column[Float] = db.Column(
         db.Float,
-        default=0
+        default=10.45
     )
 
     city: Column[Optional[String]] = db.Column(
