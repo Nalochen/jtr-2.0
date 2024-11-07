@@ -4,24 +4,35 @@ from flask import request
 
 from DataDomain.Database.Repository.TeamRepository import TeamRepository
 from DataDomain.Model.Response import Response
+from ExternalApi.CustomerFrontend.Service.CheckForIsPartOfRoleService import CheckForIsPartOfRoleService
 
 
 class UpdateTeamHandler:
-    """Handler for updating a team."""
+    """Handler for updating a team"""
 
-    @staticmethod
-    def handle() -> Response:
-        """Update team."""
+    def __init__(self):
+        """Constructor for UpdateTeamHandler"""
+
+        self.checkForIsPartOfRoleService = CheckForIsPartOfRoleService()
+
+    def handle(self) -> Response:
+        """Update team"""
 
         teamId = request.json.get('teamId')
 
-        # TODO: Authentication and Authorisation
         team = TeamRepository().get(teamId)
 
         if team is None:
             return Response(
                 status=404,
-                message='Not Team not found.'
+                message='No Team found.'
+            )
+
+        if self.checkForIsPartOfRoleService.isCurrentUserAdminOfTeam(
+                team.id) is None:
+            return Response(
+                status=403,
+                message='You are not allowed to update this team.'
             )
 
         if 'name' in request.json:

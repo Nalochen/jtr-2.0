@@ -1,21 +1,21 @@
 from flask import g
 
-from DataDomain.Database.Model.Tournaments import Tournaments
+from DataDomain.Database.Model.RelationUserTeam import is_part_of
 from DataDomain.Model.Response import Response
 from Infrastructure.JTRFaker.Faker.ModelFaker import ModelFaker
 from ExternalApi.CustomerFrontend.config.extensions import clearTournamentCache
 
 
-class CreateFakeTournamentsHandler:
-    """Handler for generating fake tournaments."""
+class CreateFakeIsPartOfHandler:
+    """Handler for generating fake is_part_of"""
 
     @staticmethod
     def handle() -> Response:
-        """Generate fake tournaments."""
+        """Generate fake is_part_of"""
 
         data = g.validatedData
 
-        ModelFaker(Tournaments).create(amount=data['amount'])
+        ModelFaker(is_part_of).create(amount=data.get('amount'))
 
         clearTournamentCache()
 

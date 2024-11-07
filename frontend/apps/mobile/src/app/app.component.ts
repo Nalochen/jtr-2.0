@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 
+import {AuthService} from './business-rules/auth/auth.service';
+
 import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
 
 @Component({
@@ -21,6 +23,8 @@ import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
   styleUrl: './app.component.less',
 })
 export class AppComponent {
+  constructor(private readonly authService: AuthService) {}
+
   @ViewChild('overlay') public overlay!: OverlayMenuComponent;
 
   public openOverlay() {
@@ -29,5 +33,9 @@ export class AppComponent {
 
   public closeOverlay() {
     this.overlay.closeMenu();
+  }
+
+  public logout(): void {
+    this.authService.logout();
   }
 }

@@ -18,10 +18,10 @@ externalApiFolder = Blueprint(
 
 
 class GetSwaggerFileHandler:
-    """Handler for getting swagger file."""
+    """Handler for getting swagger file"""
 
     def handle(self) -> Response:
-        """Get swagger file."""
+        """Get swagger file"""
 
         yamlFiles = []
 
@@ -39,7 +39,7 @@ class GetSwaggerFileHandler:
 
     @staticmethod
     def __mergeYamlFiles(yamlFilePaths: List[str]) -> dict:
-        """Merge multiple yaml files into a single dictionary."""
+        """Merge multiple yaml files into a single dictionary"""
 
         mergedData = {
             'openapi': '3.0.0',

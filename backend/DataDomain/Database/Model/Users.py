@@ -73,6 +73,6 @@ class Users(BaseModel, db.Model):
 
         serialized = super().serialize()
 
-        del serialized['password_hash']
+        del serialized['passwordHash']
 
         return serialized

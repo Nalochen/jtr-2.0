@@ -13,7 +13,7 @@ from DataDomain.Database.db import db
 
 
 class TeamRepository:
-    """Repository for team related queries."""
+    """Repository for team related queries"""
 
     @staticmethod
     def getTeamOverview() -> List[dict]:
@@ -48,7 +48,7 @@ class TeamRepository:
 
     @staticmethod
     def getTeamDetails(teamId: int) -> dict | None:
-        """Get team details by id."""
+        """Get team details by id"""
 
         team = db.session.query(
             Teams.id,

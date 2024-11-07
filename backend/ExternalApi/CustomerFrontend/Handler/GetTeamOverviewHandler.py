@@ -3,11 +3,11 @@ from DataDomain.Model.Response import Response
 
 
 class GetTeamOverviewHandler:
-    """Handler for getting team overview."""
+    """Handler for getting team overview"""
 
     @staticmethod
     def handle() -> Response:
-        """Get team overview."""
+        """Get team overview"""
 
         team = TeamRepository.getTeamOverview()
 

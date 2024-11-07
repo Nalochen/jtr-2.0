@@ -10,7 +10,7 @@ from config.extensions import cache
 
 
 def createApp() -> Flask:
-    """Creates the Flask app."""
+    """Creates the Flask app"""
 
     app = Flask(__name__)
     Config.init_app(app)

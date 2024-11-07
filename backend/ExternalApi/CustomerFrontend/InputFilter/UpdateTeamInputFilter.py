@@ -6,10 +6,10 @@ from Infrastructure.InputFilter.InputFilter import InputFilter
 
 
 class UpdateTeamInputFilter(InputFilter):
-    """The input filter for the update-team route."""
+    """The input filter for the update-team route"""
 
     def __init__(self):
-        """Initializes the UpdateTeamInputFilter."""
+        """Initializes the UpdateTeamInputFilter"""
 
         super().__init__()
 

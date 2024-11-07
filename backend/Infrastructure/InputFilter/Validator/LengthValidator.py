@@ -5,7 +5,7 @@ from Infrastructure.InputFilter.Validator.BaseValidator import BaseValidator
 
 
 class LengthValidator(BaseValidator):
-    """Validator that checks the length of a string value."""
+    """Validator that checks the length of a string value"""
 
     def __init__(self, minLength: int = 0, maxLength: int = None) -> None:
         self.minLength = minLength

@@ -12,7 +12,7 @@ from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
 
 class TestInputFilter(unittest.TestCase):
     def setUp(self):
-        """Set up a basic InputFilter instance for testing."""
+        """Set up a basic InputFilter instance for testing"""
         self.inputFilter = InputFilter()
         self.inputFilter.add('age', required=True, filters=[ToIntFilter()])
         self.inputFilter.add(
@@ -25,7 +25,7 @@ class TestInputFilter(unittest.TestCase):
             RegexValidator(pattern=r'^[\w\.-]+@[\w\.-]+\.\w+$')])
 
     def test_required_field_validation(self):
-        """Test validation of required fields."""
+        """Test validation of required fields"""
         with self.assertRaises(ValidationError):
             self.inputFilter.validateData({'age': None, 'name': 'John'})
 
@@ -33,12 +33,12 @@ class TestInputFilter(unittest.TestCase):
             self.inputFilter.validateData({'age': 25, 'name': None})
 
     def test_length_validation(self):
-        """Test length validation."""
+        """Test length validation"""
         with self.assertRaises(ValidationError):
             self.inputFilter.validateData({'age': 25, 'name': 'Jo'})
 
     def test_successful_validation(self):
-        """Test successful validation."""
+        """Test successful validation"""
         data = {
             'age': '40',
             'name': 'Alice',
@@ -52,7 +52,7 @@ class TestInputFilter(unittest.TestCase):
         self.assertEqual(validatedData['email'], 'alice@example.com')
 
     def test_null_filter(self):
-        """Test that ToNullFilter transforms empty string to None."""
+        """Test that ToNullFilter transforms empty string to None"""
         self.inputFilter.add(
             'optional_field',
             required=False,
@@ -63,31 +63,31 @@ class TestInputFilter(unittest.TestCase):
         self.assertIsNone(validatedData['optional_field'])
 
     def test_invalid_gender(self):
-        """Test validation for invalid gender."""
+        """Test validation for invalid gender"""
         with self.assertRaises(ValidationError):
             self.inputFilter.validateData(
                 {'age': 25, 'name': 'Alice', 'gender': 'unknown'})
 
     def test_invalid_email_format(self):
-        """Test validation for invalid email format."""
+        """Test validation for invalid email format"""
         with self.assertRaises(ValidationError):
             self.inputFilter.validateData(
                 {'age': 25, 'name': 'Alice', 'email': 'invalid_email'})
 
     def test_valid_email(self):
-        """Test successful validation of a valid email format."""
+        """Test successful validation of a valid email format"""
         data = {'age': '30', 'name': 'Alice', 'email': 'alice@example.com'}
         validatedData = self.inputFilter.validateData(data)
         self.assertEqual(validatedData['email'], 'alice@example.com')
 
     def test_successful_optional_gender(self):
-        """Test that optional field validation works."""
+        """Test that optional field validation works"""
         data = {'age': '30', 'name': 'Alice'}
         validatedData = self.inputFilter.validateData(data)
         self.assertIsNone(validatedData.get('gender'))  # gender is optional
 
     def test_string_trim_filter(self):
-        """Test that StringTrimFilter trims whitespace."""
+        """Test that StringTrimFilter trims whitespace"""
         self.inputFilter.add(
             'trimmed_field',
             required=False,

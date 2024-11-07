@@ -3,7 +3,7 @@ info:
   title: Customer Frontend API
   version: 1.0.0
 paths:
-  /api/customer-frontend/create-fake-tournament:
+  /api/system/create-fake-tournament:
     post:
       summary: Create fake
       operationId: createFake
@@ -21,7 +21,7 @@ paths:
         '200':
           description: OK
 
-  /api/customer-frontend/create-fake-teams:
+  /api/system/create-fake-teams:
     post:
       summary: Create fake
       operationId: createFake
@@ -39,7 +39,7 @@ paths:
         '200':
           description: OK
 
-  /api/customer-frontend/create-fake-users:
+  /api/system/create-fake-users:
     post:
       summary: Create fake
       operationId: createFake
@@ -57,7 +57,7 @@ paths:
         '200':
           description: OK
 
-  /api/customer-frontend/create-fake-is-part-of:
+  /api/system/create-fake-is-part-of:
     post:
       summary: Create fake
       operationId: createFake
@@ -75,7 +75,7 @@ paths:
         '200':
           description: OK
 
-  /api/customer-frontend/create-fake-participates_in:
+  /api/system/create-fake-participates_in:
     post:
       summary: Create fake
       operationId: createFake

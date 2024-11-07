@@ -6,14 +6,14 @@ from Infrastructure.JTRFaker.Faker.ModelFaker import ModelFaker
 
 
 class CreateFakeUsersHandler:
-    """Handler for generating fake users."""
+    """Handler for generating fake users"""
 
     @staticmethod
     def handle() -> Response:
-        """Generate fake users."""
+        """Generate fake users"""
 
         data = g.validatedData
 
-        ModelFaker(Users).create(amount=data['amount'])
+        ModelFaker(Users).create(amount=data.get('amount'))
 
         return Response(status=200)

@@ -1,0 +1,73 @@
+### Create fake users
+POST https://{{host}}/api/system/create-fake-users
+Content-Type: application/json
+
+{
+    "amount": 2
+}
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+
+### Create fake teams
+POST https://{{host}}/api/system/create-fake-teams
+Content-Type: application/json
+
+{
+    "amount": 2
+}
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+
+### Create fake tournaments
+POST https://{{host}}/api/system/create-fake-tournaments
+Content-Type: application/json
+
+{
+    "amount": 2
+}
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+
+### Create fake is part of
+POST https://{{host}}/api/system/create-fake-is-part-of
+Content-Type: application/json
+
+{
+    "amount": 2
+}
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+
+### Create fake participates in
+POST https://{{host}}/api/system/create-fake-participates_in
+Content-Type: application/json
+
+{
+    "amount": 2
+}
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
