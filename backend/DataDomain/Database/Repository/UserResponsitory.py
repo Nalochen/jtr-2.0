@@ -1,4 +1,5 @@
 import logging
+from sqlalchemy import and_
 
 from DataDomain.Database.Model.Users import Users
 from DataDomain.Database.db import db
@@ -59,3 +60,30 @@ class UserRepository:
             db.session.rollback()
             logging.error(f"Error while deleting user: {e}")
             raise e
+
+    @staticmethod
+    def getUserByUsername(username: str) -> Users | None:
+        """Get a user by username"""
+
+        return Users.query.filter(Users.username == username).first()
+
+    @staticmethod
+    def getUserByEmail(email: str) -> Users | None:
+        """Get a user by email"""
+
+        return Users.query.filter(Users.email == email).first()
+
+    @staticmethod
+    def getUserByUsernameOrEmail(
+            username: str | None,
+            email: str | None) -> Users | None:
+        """Get a user by username or email"""
+
+        filters = []
+
+        if username is not None:
+            filters.append(Users.username == username)
+        if email is not None:
+            filters.append(Users.email == email)
+
+        return Users.query.filter(and_(*filters)).first()

@@ -46,4 +46,5 @@ def updateZipcode():
     data = g.validatedData
 
     # Do something with validatedData
+    id = data.get('id')
 ```
