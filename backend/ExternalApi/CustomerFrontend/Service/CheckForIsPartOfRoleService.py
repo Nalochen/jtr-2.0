@@ -20,7 +20,7 @@ class CheckForIsPartOfRoleService:
 
         user = getJwtIdentity()
 
-        isPartOf = IsPartOfRepository().get(user['id'], teamId)
+        isPartOf = IsPartOfRepository().get(user.id, teamId)
 
         return isPartOf is not None
 
@@ -30,7 +30,7 @@ class CheckForIsPartOfRoleService:
 
         user = getJwtIdentity()
 
-        isPartOf = IsPartOfRepository().get(user['id'], teamId)
+        isPartOf = IsPartOfRepository().get(user.id, teamId)
 
         return isPartOf.user_role == UserRoleTypesEnum.ADMIN.value
 
@@ -40,7 +40,7 @@ class CheckForIsPartOfRoleService:
 
         user = getJwtIdentity()
 
-        isPartOf = IsPartOfRepository().get(user['id'], teamId)
+        isPartOf = IsPartOfRepository().get(user.id, teamId)
 
         return isPartOf.user_role == UserRoleTypesEnum.MODERATOR.value
 
@@ -50,6 +50,6 @@ class CheckForIsPartOfRoleService:
 
         user = getJwtIdentity()
 
-        isPartOf = IsPartOfRepository().get(user['id'], teamId)
+        isPartOf = IsPartOfRepository().get(user.id, teamId)
 
         return isPartOf.user_role == UserRoleTypesEnum.MEMBER.value

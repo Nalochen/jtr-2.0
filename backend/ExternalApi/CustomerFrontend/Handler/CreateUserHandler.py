@@ -42,11 +42,8 @@ class CreateUserHandler:
         try:
             UserRepository().createUser(user)
 
-        except Exception as e:
-            return Response(
-                response=e,
-                status=400
-            )
+        except Exception:
+            return Response(status=500)
 
         accessToken = create_access_token(
             identity={'username': user.username}

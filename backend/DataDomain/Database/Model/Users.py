@@ -1,6 +1,6 @@
 from typing import Optional, List, Any, Dict
 
-from sqlalchemy import func, Integer, Column, String, DateTime
+from sqlalchemy import func, Integer, Column, String, DateTime, Boolean
 from sqlalchemy.orm import Mapped
 
 from DataDomain.Database.Model.RelationUserTeam import is_part_of
@@ -47,6 +47,17 @@ class Users(BaseModel, db.Model):
     picture: Column[Optional[String]] = db.Column(
         db.String(255),
         nullable=True
+    )
+
+    city: Column[Optional[String]] = db.Column(
+        db.String(100),
+        nullable=True
+    )
+
+    is_deleted: Column[Boolean] = db.Column(
+        db.Boolean,
+        nullable=False,
+        default=False
     )
 
     created_at: Column[DateTime] = db.Column(

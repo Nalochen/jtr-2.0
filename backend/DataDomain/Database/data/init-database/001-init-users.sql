@@ -5,6 +5,7 @@ INSERT IGNORE INTO users (
     name,
     birthday,
     picture,
+    city,
     created_at,
     updated_at
 ) VALUES (
@@ -14,6 +15,7 @@ INSERT IGNORE INTO users (
     'Max Pecu',
     '1990-01-01',
     'https://example.com/picture.png',
+    'Berlin',
     NOW(),
     NOW()
 );

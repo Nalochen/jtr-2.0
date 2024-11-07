@@ -15,12 +15,14 @@ import {
   tournamentOverviewDataReducer,
   TournamentOverviewState,
 } from '@jtr/business-domain/tournament';
+import {USER_DETAILS_DATA_REDUCER_SLICE, userDetailsDataReducer, UserDetailsState} from '@jtr/business-domain/user';
 
 export interface State {
   teamDetails: TeamDetailsState;
   teamOverview: TeamOverviewState;
   tournamentDetails: TournamentDetailsState;
   tournamentOverview: TournamentOverviewState;
+  userDetails: UserDetailsState;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -28,6 +30,7 @@ export const reducers: ActionReducerMap<State> = {
   teamOverview: teamOverviewDataReducer,
   tournamentDetails: tournamentDetailsDataReducer,
   tournamentOverview: tournamentOverviewDataReducer,
+  userDetails: userDetailsDataReducer,
 };
 
 export function localStorageSyncReducer(
@@ -41,6 +44,7 @@ export function localStorageSyncReducer(
       TEAM_OVERVIEW_DATA_REDUCER_SLICE,
       TOURNAMENT_DETAILS_DATA_REDUCER_SLICE,
       TOURNAMENT_OVERVIEW_DATA_REDUCER_SLICE,
+      USER_DETAILS_DATA_REDUCER_SLICE,
     ],
     storage: localStorage,
     rehydrate: true,

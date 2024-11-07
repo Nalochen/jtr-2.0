@@ -13,6 +13,7 @@ import {
   GetTournamentDetailsDataEffect,
   GetTournamentOverviewDataEffect,
 } from '@jtr/business-domain/tournament';
+import {GetUserDetailsDataEffect} from '@jtr/business-domain/user';
 
 import { JwtInterceptor } from './business-rules/interceptors/jwt.interceptor';
 import { metaReducers, reducers } from './business-rules/reducers';
@@ -33,6 +34,7 @@ export const appConfig: ApplicationConfig = {
       GetTeamOverviewDataEffect,
       GetTournamentOverviewDataEffect,
       GetTournamentDetailsDataEffect,
+      GetUserDetailsDataEffect,
     ]),
     provideHttpClient(),
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

@@ -1,4 +1,5 @@
 import json
+import logging
 from typing import List
 
 from sqlalchemy import func, Integer
@@ -146,11 +147,11 @@ class TeamRepository:
         return Teams.query.get(teamId)
 
     @staticmethod
-    def update(teamInstance: Teams) -> None:
+    def update() -> None:
         try:
-            db.session.add(teamInstance)
             db.session.commit()
 
         except Exception as e:
             db.session.rollback()
+            logging.error('TeamRepository | update | ' + str(e))
             raise e

@@ -1,3 +1,4 @@
+import logging
 from sqlalchemy import and_
 
 from DataDomain.Database.Model.Users import Users
@@ -33,7 +34,8 @@ class UserRepository:
 
         except Exception as e:
             db.session.rollback()
-            print(f"Fehler beim Erstellen eines Nutzers: {e}")
+            logging.error(f"Error while creating user: {e}")
+            raise e
 
     @staticmethod
     def updateUser(user: Users) -> None:
@@ -43,7 +45,8 @@ class UserRepository:
 
         except Exception as e:
             db.session.rollback()
-            print(f"Fehler beim Aktualisieren eines Nutzers: {e}")
+            logging.error(f"Error while updating user: {e}")
+            raise e
 
     @staticmethod
     def deleteUser(userId: int) -> None:
@@ -55,7 +58,8 @@ class UserRepository:
 
         except Exception as e:
             db.session.rollback()
-            print(f"Fehler beim Löschen eines Nutzers: {e}")
+            logging.error(f"Error while deleting user: {e}")
+            raise e
 
     @staticmethod
     def getUserByUsername(username: str) -> Users | None:

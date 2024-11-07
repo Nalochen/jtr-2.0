@@ -7,11 +7,13 @@ from ExternalApi.CustomerFrontend.Handler.GetTeamDetailsHandler import GetTeamDe
 from ExternalApi.CustomerFrontend.Handler.GetTeamOverviewHandler import GetTeamOverviewHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentOverviewHandler import GetTournamentOverviewHandler
+from ExternalApi.CustomerFrontend.Handler.GetUserDetailsHandler import GetUserDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.LoginUserHandler import LoginUserHandler
 from ExternalApi.CustomerFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
 from ExternalApi.CustomerFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
 from ExternalApi.CustomerFrontend.InputFilter.GetTeamDetailsInputFilter import GetTeamDetailsInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetTournamentDetailsInputFilter import GetTournamentDetailsInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.GetUserDetailsInputFilter import GetUserDetailsInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.UpdateTeamInputFilter import UpdateTeamInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.LoginUserInputFilter import LoginUserInputFilter
 
@@ -44,6 +46,16 @@ def getTeamDetails(teamId: int) -> Response:
                          methods=['GET'], endpoint='get-team-overview')
 def getTeamOverview() -> Response:
     return GetTeamOverviewHandler().handle()
+
+
+@customer_frontend.route('/get-user-details',
+                         methods=['GET'], endpoint='get-user-details')
+@customer_frontend.route('/get-user-details/<userId>',
+                         methods=['GET'], endpoint='get-user-details')
+@GetUserDetailsInputFilter.validate()
+@jwt_required(optional=True)
+def getUserDetails(userId: int = None) -> Response:
+    return GetUserDetailsHandler().handle(userId)
 
 
 @customer_frontend.route('/update-team',
