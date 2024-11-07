@@ -14,6 +14,6 @@ class CreateFakeUsersHandler:
 
         data = g.validatedData
 
-        ModelFaker(Users).create(amount=data['amount'])
+        ModelFaker(Users).create(amount=data.get('amount'))
 
         return Response(status=200)

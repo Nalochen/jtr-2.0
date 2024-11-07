@@ -7,6 +7,21 @@ import { tap } from 'rxjs/operators';
 const LOGIN_ENDPOINT = '/login';
 const REGISTER_ENDPOINT = '/register';
 
+export interface LoginRequestBody {
+  username: string | null;
+  email: string | null;
+  password: string;
+}
+
+export interface RegisterRequestBody {
+  birthday: string | null;
+  email: string | null;
+  name: string | null;
+  password: string;
+  picture: string | null;
+  username: string;
+}
+
 export interface AuthResponse {
   token: string;
 }
@@ -17,8 +32,8 @@ export interface AuthResponse {
 export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
-  public login(username: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(LOGIN_ENDPOINT, { username, password }).pipe(
+  public login(body: LoginRequestBody): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(LOGIN_ENDPOINT, body).pipe(
       tap((response: AuthResponse) => {
         if (response.token) {
           this.setSession(response.token);
@@ -27,8 +42,8 @@ export class AuthService {
     );
   }
 
-  public register(username: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(REGISTER_ENDPOINT, { username, password }).pipe(
+  public register(body: RegisterRequestBody): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(REGISTER_ENDPOINT, body).pipe(
       tap((response: AuthResponse) => {
         if (response.token) {
           this.setSession(response.token);

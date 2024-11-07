@@ -14,6 +14,6 @@ class CreateFakeTeamsHandler:
 
         data = g.validatedData
 
-        ModelFaker(Teams).create(amount=data['amount'])
+        ModelFaker(Teams).create(amount=data.get('amount'))
 
         return Response(status=200)

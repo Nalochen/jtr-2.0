@@ -18,22 +18,26 @@ class CreateUserHandler:
 
         user = Users()
 
-        user.username = data['username']
-        user.password_hash = generate_password_hash(data['password'])
+        user.username = data.get('username')
+        user.password_hash = generate_password_hash(data.get('password'))
 
-        if 'email' in data:
-            user.email = data['email']
+        birthday = data.get('birthday')
+        if birthday is not None:
+            user.birthday = birthday
 
-        if 'name' in data:
-            user.name = data['name']
+        email = data.get('email')
+        if email is not None:
+            user.email = email
 
-        if 'birthday' in data:
-            user.birthday = data['birthday']
+        name = data.get('name')
+        if name is not None:
+            user.name = name
 
-        if 'picture' in data:
+        picture = data.get('picture')
+        if picture is not None:
             # TODO: Add saving of image
 
-            user.picture = data['picture']
+            user.picture = picture
 
         try:
             UserRepository().createUser(user)

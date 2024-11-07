@@ -15,7 +15,7 @@ class CreateFakeTournamentsHandler:
 
         data = g.validatedData
 
-        ModelFaker(Tournaments).create(amount=data['amount'])
+        ModelFaker(Tournaments).create(amount=data.get('amount'))
 
         clearTournamentCache()
 

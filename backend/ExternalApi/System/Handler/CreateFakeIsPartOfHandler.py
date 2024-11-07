@@ -15,7 +15,7 @@ class CreateFakeIsPartOfHandler:
 
         data = g.validatedData
 
-        ModelFaker(is_part_of).create(amount=data['amount'])
+        ModelFaker(is_part_of).create(amount=data.get('amount'))
 
         clearTournamentCache()
 

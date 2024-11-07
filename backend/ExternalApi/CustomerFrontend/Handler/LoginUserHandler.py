@@ -2,25 +2,34 @@ from flask import g
 from flask_jwt_extended import create_access_token
 from werkzeug.security import check_password_hash
 
-from DataDomain.Database.Model.Users import Users
+from DataDomain.Database.Repository.UserResponsitory import UserRepository
 from DataDomain.Model.Response import Response
 
 
 class LoginUserHandler:
     """Handler to login user"""
 
-    @staticmethod
-    def handle() -> Response:
+    def __init__(self):
+        """Initializes the LoginUserHandler"""
+
+        self.userRepository = UserRepository()
+
+    def handle(self) -> Response:
         """Login user"""
 
         data = g.validatedData
 
-        username = data['username']
-        password = data['password']
+        username = data.get('username')
+        email = data.get('email')
+        password = data.get('password')
 
-        user = Users.query.filter(
-            Users.username == username
-        ).first()
+        if username is None and email is None:
+            return Response(
+                response='Benutzername oder Email muss angegeben werden',
+                status=400
+            )
+
+        user = self.userRepository.getUserByUsernameOrEmail(username, email)
 
         if user and check_password_hash(user.password_hash, password):
             accessToken = create_access_token(
