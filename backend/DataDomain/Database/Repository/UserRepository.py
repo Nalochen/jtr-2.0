@@ -13,7 +13,7 @@ class UserRepository:
         return Users.query.get(userId)
 
     @staticmethod
-    def createUser(user: Users) -> None:
+    def create(user: Users) -> int:
         try:
             existingUsername = Users.query.select(
                 Users.username == user.username
@@ -32,24 +32,26 @@ class UserRepository:
             db.session.add(user)
             db.session.commit()
 
+            return user.id
+
         except Exception as e:
             db.session.rollback()
-            logging.error(f"Error while creating user: {e}")
+            logging.error(f'UserRepository | create | {e}')
             raise e
 
     @staticmethod
-    def updateUser(user: Users) -> None:
+    def update(user: Users) -> None:
         try:
             db.session.add(user)
             db.session.commit()
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f"Error while updating user: {e}")
+            logging.error(f'UserRepository | update | {e}')
             raise e
 
     @staticmethod
-    def deleteUser(userId: int) -> None:
+    def delete(userId: int) -> None:
         try:
             user = UserRepository.get(userId)
 
@@ -58,7 +60,7 @@ class UserRepository:
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f"Error while deleting user: {e}")
+            logging.error(f'UserRepository | delete | {e}')
             raise e
 
     @staticmethod

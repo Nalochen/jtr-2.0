@@ -32,7 +32,7 @@ class CheckForIsPartOfRoleService:
 
         isPartOf = IsPartOfRepository().get(user.id, teamId)
 
-        return isPartOf.user_role == UserRoleTypesEnum.ADMIN.value
+        return isPartOf and isPartOf.user_role == UserRoleTypesEnum.ADMIN.value
 
     @staticmethod
     def isCurrentUserCoachOfTeam(teamId: int) -> bool:
@@ -42,7 +42,7 @@ class CheckForIsPartOfRoleService:
 
         isPartOf = IsPartOfRepository().get(user.id, teamId)
 
-        return isPartOf.user_role == UserRoleTypesEnum.MODERATOR.value
+        return isPartOf and isPartOf.user_role == UserRoleTypesEnum.MODERATOR.value
 
     @staticmethod
     def isCurrentUserMemberOfTeam(teamId: int) -> bool:
@@ -52,4 +52,4 @@ class CheckForIsPartOfRoleService:
 
         isPartOf = IsPartOfRepository().get(user.id, teamId)
 
-        return isPartOf.user_role == UserRoleTypesEnum.MEMBER.value
+        return isPartOf and isPartOf.user_role == UserRoleTypesEnum.MEMBER.value
