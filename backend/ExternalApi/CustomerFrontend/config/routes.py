@@ -64,4 +64,3 @@ def login() -> Response:
 @CreateUserInputFilter.validate()
 def register() -> Response:
     return CreateUserHandler().handle()
-
