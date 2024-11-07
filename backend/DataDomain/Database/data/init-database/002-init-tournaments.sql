@@ -36,8 +36,6 @@ INSERT IGNORE INTO tournaments (
     registration_procedure_type,
     registration_procedure_url,
     registration_open_at,
-    created_at,
-    updated_at,
     organizer_id
 ) VALUES (
     'Summer Tournament',
@@ -76,8 +74,6 @@ INSERT IGNORE INTO tournaments (
     'First come, first served.',
     'first_come',
     'https://example.com/registration',
-    NOW(),
-    NOW(),
     NOW(),
     1
 );

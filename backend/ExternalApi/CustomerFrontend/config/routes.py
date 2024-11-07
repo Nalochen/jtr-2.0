@@ -4,6 +4,10 @@ from flask_jwt_extended import jwt_required
 from DataDomain.Model.Response import Response
 from ExternalApi.CustomerFrontend.Handler.CreateTeamHandler import CreateTeamHandler
 from ExternalApi.CustomerFrontend.Handler.CreateUserHandler import CreateUserHandler
+from ExternalApi.CustomerFrontend.Handler.DeleteIsPartOfHandler import DeleteIsPartOfHandler
+from ExternalApi.CustomerFrontend.Handler.DeleteParticipatesInHandler import DeleteParticipatesInHandler
+from ExternalApi.CustomerFrontend.Handler.DeleteTeamHandler import DeleteTeamHandler
+from ExternalApi.CustomerFrontend.Handler.DeleteTournamentHandler import DeleteTournamentHandler
 from ExternalApi.CustomerFrontend.Handler.GetTeamDetailsHandler import GetTeamDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.GetTeamOverviewHandler import GetTeamOverviewHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
@@ -14,6 +18,10 @@ from ExternalApi.CustomerFrontend.Handler.UpdateTeamHandler import UpdateTeamHan
 from ExternalApi.CustomerFrontend.Handler.UpdateUserHandler import UpdateUserHandler
 from ExternalApi.CustomerFrontend.InputFilter.CreateTeamInputFilter import CreateTeamInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.DeleteIsPartOfInputFilter import DeleteIsPartOfInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.DeleteParticipatingInInputFilter import DeleteParticipatingInInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.DeleteTeamInputFilter import DeleteTeamInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.DeleteTournamentInputFilter import DeleteTournamentInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetTeamDetailsInputFilter import GetTeamDetailsInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetTournamentDetailsInputFilter import GetTournamentDetailsInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetUserDetailsInputFilter import GetUserDetailsInputFilter
@@ -96,3 +104,39 @@ def login() -> Response:
 @CreateUserInputFilter.validate()
 def register() -> Response:
     return CreateUserHandler().handle()
+
+
+@customer_frontend.route('/delete-is-part-of',
+                         methods=['DELETE'],
+                         endpoint='delete-is-part-of')
+@jwt_required()
+@DeleteIsPartOfInputFilter.validate()
+def deleteIsPartOf() -> Response:
+    return DeleteIsPartOfHandler().handle()
+
+
+@customer_frontend.route('/delete-participates-in',
+                         methods=['DELETE'],
+                         endpoint='delete-participates-in')
+@jwt_required()
+@DeleteParticipatingInInputFilter.validate()
+def deleteParticipatingIn() -> Response:
+    return DeleteParticipatesInHandler().handle()
+
+
+@customer_frontend.route('/delete-team',
+                         methods=['DELETE'],
+                         endpoint='delete-team')
+@jwt_required()
+@DeleteTeamInputFilter.validate()
+def deleteParticipatingIn() -> Response:
+    return DeleteTeamHandler().handle()
+
+
+@customer_frontend.route('/delete-tournament',
+                         methods=['DELETE'],
+                         endpoint='delete-tournament')
+@jwt_required()
+@DeleteTournamentInputFilter.validate()
+def deleteParticipatingIn() -> Response:
+    return DeleteTournamentHandler().handle()

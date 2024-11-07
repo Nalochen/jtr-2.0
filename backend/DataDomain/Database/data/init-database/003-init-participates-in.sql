@@ -4,14 +4,12 @@ INSERT IGNORE INTO participates_in (
     placement,
     is_on_waiting_list,
     has_played,
-    registration_order,
-    created_at
+    registration_order
 ) VALUES (
     1,
     1,
     3,
     FALSE,
     FALSE,
-    1,
-    NOW()
+    1
 );

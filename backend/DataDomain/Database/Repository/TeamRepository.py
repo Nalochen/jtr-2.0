@@ -5,8 +5,8 @@ from typing import List
 from sqlalchemy import func, Integer
 from sqlalchemy.orm import aliased
 
-from DataDomain.Database.Model.RelationTournamentTeam import participates_in
-from DataDomain.Database.Model.RelationUserTeam import is_part_of
+from DataDomain.Database.Model.ParticipatesIn import participates_in
+from DataDomain.Database.Model.IsPartOf import is_part_of
 from DataDomain.Database.Model.Teams import Teams
 from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.Model.Users import Users
@@ -34,6 +34,8 @@ class TeamRepository:
             subquery.c.rank.label('placement')
         ).join(
             subquery, Teams.id == subquery.c.id
+        ).filter(
+            Teams.is_deleted == False
         ).order_by(
             Teams.points.desc()
         ).all()
@@ -71,7 +73,8 @@ class TeamRepository:
         ).outerjoin(
             Tournaments, Tournaments.organizer_id == Teams.id
         ).filter(
-            Teams.id == teamId
+            Teams.id == teamId,
+            Teams.is_deleted == False
         ).group_by(
             Teams.id
         ).first()
@@ -86,7 +89,8 @@ class TeamRepository:
         ).join(
             is_part_of, is_part_of.c.user_id == Users.id
         ).filter(
-            is_part_of.c.team_id == teamId
+            is_part_of.c.team_id == teamId,
+            is_part_of.c.is_deleted == False
         ).all()
 
         pastTournaments = db.session.query(
@@ -97,7 +101,8 @@ class TeamRepository:
         ).join(
             participates_in, participates_in.c.tournament_id == Tournaments.id
         ).filter(
-            participates_in.c.team_id == teamId
+            participates_in.c.team_id == teamId,
+            participates_in.c.is_deleted == False
         ).order_by(
             Tournaments.created_at.desc()
         ).all()
@@ -107,7 +112,8 @@ class TeamRepository:
             Tournaments.name,
             Tournaments.end_date
         ).filter(
-            Tournaments.organizer_id == teamId
+            Tournaments.organizer_id == teamId,
+            Tournaments.is_deleted == False
         ).order_by(
             Tournaments.created_at.desc()
         ).all()
@@ -144,10 +150,14 @@ class TeamRepository:
 
     @staticmethod
     def get(teamId: Integer) -> Teams:
+        """Get team by id"""
+
         return Teams.query.get(teamId)
 
     @staticmethod
     def create(team: Teams) -> int:
+        """Create a new team entry"""
+
         try:
             db.session.add(team)
             db.session.commit()
@@ -161,10 +171,58 @@ class TeamRepository:
 
     @staticmethod
     def update() -> None:
+        """Update team entry"""
+
         try:
             db.session.commit()
 
         except Exception as e:
             db.session.rollback()
             logging.error(f'TeamRepository | update | {e}')
+            raise e
+
+    @staticmethod
+    def delete(teamId: int) -> None:
+        """Set is_deleted on team entry to True"""
+
+        try:
+            db.session.query(
+                participates_in
+            ).filter(
+                participates_in.c.team_id == teamId,
+                participates_in.c.tournament_id.in_(
+                    db.session.query(Tournaments.id).filter(Tournaments.start_date > func.now())
+                )
+            ).update({
+                'is_deleted': True
+            }, synchronize_session=False)
+
+            db.session.query(
+                is_part_of
+            ).filter(
+                is_part_of.c.team_id == teamId
+            ).update({
+                'is_deleted': True
+            }, synchronize_session=False)
+
+            db.session.query(
+                Tournaments
+            ).filter(
+                Tournaments.organizer_id == teamId,
+            ).update({
+                'is_deleted': True
+            }, synchronize_session=False)
+
+            db.session.query(
+                Teams
+            ).filter(
+                Teams.id == teamId
+            ).update({
+                'is_deleted': True
+            })
+            db.session.commit()
+
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f'TeamRepository | delete | {e}')
             raise e

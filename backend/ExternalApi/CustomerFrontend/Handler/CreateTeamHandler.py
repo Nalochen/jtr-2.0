@@ -3,7 +3,7 @@ from datetime import datetime
 
 from flask import g
 
-from DataDomain.Database.Model.RelationUserTeam import is_part_of
+from DataDomain.Database.Model.IsPartOf import is_part_of
 from DataDomain.Database.Model.Teams import Teams
 from DataDomain.Database.Repository.IsPartOfRepository import IsPartOfRepository
 from DataDomain.Database.Repository.TeamRepository import TeamRepository
@@ -36,14 +36,14 @@ class CreateTeamHandler:
             team.training_time_updated_at = datetime.now()
 
         try:
-            teamId = TeamRepository().create(team)
+            teamId = TeamRepository.create(team)
 
         except Exception:
             return Response(status=500)
 
         user = getJwtIdentity()
 
-        IsPartOfRepository().create(
+        IsPartOfRepository.create(
             userId=user.id,
             teamId=teamId,
             userRole='admin'

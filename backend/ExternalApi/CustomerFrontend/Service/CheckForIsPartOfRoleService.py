@@ -10,7 +10,7 @@ class CheckForIsPartOfRoleService:
     def isUserPartOfTeam(userId: int, teamId: int) -> bool:
         """Check if user is_part_of team"""
 
-        isPartOf = IsPartOfRepository().get(userId, teamId)
+        isPartOf = IsPartOfRepository.get(userId, teamId)
 
         return isPartOf is not None
 
@@ -20,7 +20,7 @@ class CheckForIsPartOfRoleService:
 
         user = getJwtIdentity()
 
-        isPartOf = IsPartOfRepository().get(user.id, teamId)
+        isPartOf = IsPartOfRepository.get(user.id, teamId)
 
         return isPartOf is not None
 
@@ -30,9 +30,9 @@ class CheckForIsPartOfRoleService:
 
         user = getJwtIdentity()
 
-        isPartOf = IsPartOfRepository().get(user.id, teamId)
+        isPartOf = IsPartOfRepository.get(user.id, teamId)
 
-        return isPartOf and isPartOf.user_role == UserRoleTypesEnum.ADMIN.value
+        return isPartOf and isPartOf.user_role == UserRoleTypesEnum.ADMIN
 
     @staticmethod
     def isCurrentUserCoachOfTeam(teamId: int) -> bool:
@@ -40,9 +40,9 @@ class CheckForIsPartOfRoleService:
 
         user = getJwtIdentity()
 
-        isPartOf = IsPartOfRepository().get(user.id, teamId)
+        isPartOf = IsPartOfRepository.get(user.id, teamId)
 
-        return isPartOf and isPartOf.user_role == UserRoleTypesEnum.MODERATOR.value
+        return isPartOf and isPartOf.user_role == UserRoleTypesEnum.MODERATOR
 
     @staticmethod
     def isCurrentUserMemberOfTeam(teamId: int) -> bool:
@@ -50,6 +50,6 @@ class CheckForIsPartOfRoleService:
 
         user = getJwtIdentity()
 
-        isPartOf = IsPartOfRepository().get(user.id, teamId)
+        isPartOf = IsPartOfRepository.get(user.id, teamId)
 
-        return isPartOf and isPartOf.user_role == UserRoleTypesEnum.MEMBER.value
+        return isPartOf and isPartOf.user_role == UserRoleTypesEnum.MEMBER

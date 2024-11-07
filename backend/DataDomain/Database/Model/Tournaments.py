@@ -15,7 +15,7 @@ from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import To
 from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
 from DataDomain.Database.Enum.TournamentSystemTypesEnum import TournamentSystemTypesEnum
 from DataDomain.Database.Model.BaseModel import BaseModel
-from DataDomain.Database.Model.RelationTournamentTeam import participates_in
+from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Database.Model.Teams import Teams
 
 
@@ -64,22 +64,20 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    costs_per_user: Column[Integer] = db.Column(
+    costs_per_user: Column[Optional[Integer]] = db.Column(
         db.Integer,
-        nullable=True,
-        default=None
+        nullable=True
     )
 
-    costs_per_team: Column[Integer] = db.Column(
+    costs_per_team: Column[Optional[Integer]] = db.Column(
         db.Integer,
-        nullable=True,
-        default=None
+        nullable=True
     )
 
     status: Column[Enum] = db.Column(
         Enum(TournamentStatusTypesEnum),
         nullable=False,
-        default=TournamentStatusTypesEnum.CREATED
+        server_default=TournamentStatusTypesEnum.CREATED.value
     )
 
     contacts: Column[Text] = db.Column(
@@ -218,17 +216,23 @@ class Tournaments(BaseModel, db.Model):
     registration_open_at: Column[DateTime] = db.Column(
         db.DateTime,
         nullable=False,
-        default=func.now()
+        server_default=func.now()
+    )
+
+    is_deleted: Column[Boolean] = db.Column(
+        db.Boolean,
+        nullable=False,
+        server_default='0'
     )
 
     created_at: Column[DateTime] = db.Column(
         db.DateTime,
-        default=func.now()
+        server_default=func.now()
     )
 
     updated_at: Column[DateTime] = db.Column(
         db.DateTime,
-        default=func.now(),
+        server_default=func.now(),
         onupdate=func.now()
     )
 

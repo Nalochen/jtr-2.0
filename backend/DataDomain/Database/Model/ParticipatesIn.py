@@ -37,7 +37,7 @@ participates_in = db.Table(
         'has_played',
         db.Boolean,
         nullable=False,
-        default=False
+        server_default='0'
     ),
 
     db.Column(
@@ -47,8 +47,15 @@ participates_in = db.Table(
     ),
 
     db.Column(
+        'is_deleted',
+        db.Boolean,
+        nullable=False,
+        server_default='0'
+    ),
+
+    db.Column(
         'created_at',
         db.DateTime,
-        default=func.now()
+        server_default=func.now()
     )
 )

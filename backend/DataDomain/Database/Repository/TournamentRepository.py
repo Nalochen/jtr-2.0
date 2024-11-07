@@ -4,7 +4,7 @@ from typing import List
 from sqlalchemy import func, or_, and_
 from sqlalchemy.orm import aliased, joinedload
 
-from DataDomain.Database.Model.RelationTournamentTeam import participates_in
+from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Database.Model.Teams import Teams
 from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.db import db
@@ -176,3 +176,39 @@ class TournamentRepository:
             },
             'updatedAt': tournament.updated_at.isoformat()
         }
+
+    @staticmethod
+    def get(tournamentId: int) -> Tournaments:
+        """Get tournament by id"""
+
+        return db.session.query(
+            Tournaments
+        ).filter(
+            Tournaments.id == tournamentId
+        ).first()
+
+    @staticmethod
+    def delete(tournamentId: int) -> None:
+        """Set is_deleted on tournament entry to True"""
+
+        try:
+            db.session.query(
+                participates_in
+            ).filter(
+                participates_in.c.tournament_id == tournamentId
+            ).update({
+                'is_deleted': True
+            }, synchronize_session=False)
+
+            db.session.query(
+                Tournaments
+            ).filter(
+                Tournaments.id == tournamentId
+            ).update({
+                'is_deleted': True
+            })
+            db.session.commit()
+
+        except Exception as e:
+            db.session.rollback()
+            raise e

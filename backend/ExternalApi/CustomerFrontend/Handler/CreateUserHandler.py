@@ -42,7 +42,7 @@ class CreateUserHandler:
             user.picture = picture
 
         try:
-            UserRepository().create(user)
+            UserRepository.create(user)
 
         except Exception:
             return Response(status=500)

@@ -51,7 +51,7 @@ class UpdateUserHandler:
             user.picture = picture
 
         try:
-            UserRepository().update(user)
+            UserRepository.update(user)
 
         except Exception:
             return Response(status=500)

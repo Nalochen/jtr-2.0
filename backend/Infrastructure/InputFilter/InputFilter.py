@@ -86,17 +86,17 @@ class InputFilter:
                 if request.method == 'GET':
                     data = request.args
 
-                elif request.method == 'POST' or request.method == 'PUT':
+                elif request.method == 'POST' or request.method == 'PUT' or request.method == 'DELETE':
                     if not request.is_json:
                         return Response(
                             status=415, response="Unsupported Media Type")
 
                     data = request.json
 
-                input_filter = cls()
+                inputFilter = cls()
 
                 try:
-                    g.validatedData = input_filter.validateData(data, kwargs)
+                    g.validatedData = inputFilter.validateData(data, kwargs)
 
                 except ValidationError as e:
                     return Response(status=400, response=str(e))

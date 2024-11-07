@@ -11,24 +11,20 @@ from ExternalApi.CustomerFrontend.Service.CheckForIsPartOfRoleService import Che
 class UpdateTeamHandler:
     """Handler for updating a team"""
 
-    def __init__(self):
-        """Constructor for UpdateTeamHandler"""
-
-        self.checkForIsPartOfRoleService = CheckForIsPartOfRoleService()
-
-    def handle(self) -> Response:
+    @staticmethod
+    def handle() -> Response:
         """Update team"""
 
         data = g.validatedData
 
         teamId = data.get('teamId')
 
-        team = TeamRepository().get(teamId)
+        team = TeamRepository.get(teamId)
 
         if team is None:
             return Response(status=404)
 
-        if self.checkForIsPartOfRoleService.isCurrentUserAdminOfTeam(
+        if CheckForIsPartOfRoleService.isCurrentUserAdminOfTeam(
                 team.id) is None:
             return Response(status=403)
 
@@ -65,7 +61,7 @@ class UpdateTeamHandler:
             team.contacts = json.dumps(contacts)
 
         try:
-            TeamRepository().update()
+            TeamRepository.update()
 
         except Exception:
             return Response(status=500)

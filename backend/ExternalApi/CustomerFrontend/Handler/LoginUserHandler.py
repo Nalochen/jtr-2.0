@@ -9,12 +9,8 @@ from DataDomain.Model.Response import Response
 class LoginUserHandler:
     """Handler to login user"""
 
-    def __init__(self):
-        """Initializes the LoginUserHandler"""
-
-        self.userRepository = UserRepository()
-
-    def handle(self) -> Response:
+    @staticmethod
+    def handle() -> Response:
         """Login user"""
 
         data = g.validatedData
@@ -29,7 +25,7 @@ class LoginUserHandler:
                 status=400
             )
 
-        user = self.userRepository.getUserByUsernameOrEmail(username, email)
+        user = UserRepository.getUserByUsernameOrEmail(username, email)
 
         if user and check_password_hash(user.password_hash, password):
             accessToken = create_access_token(
