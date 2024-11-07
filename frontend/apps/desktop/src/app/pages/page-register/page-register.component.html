@@ -1,0 +1,57 @@
+<h1>Willkommen</h1>
+<h3>Registrierung</h3>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="email">E-Mail *</label>
+    <input type="email" class="form-control" [formControl]="form.controls.email" id="email">
+  </div>
+
+  <div>
+    <div class="headline">
+      <label for="username">Benutzername (einzigartig) *</label>
+      <app-info-button position="left">
+        <p>test</p>
+      </app-info-button>
+    </div>
+    <input type="text" class="form-control" [formControl]="form.controls.username" id="username">
+  </div>
+
+  <div>
+    <label for="password">Passwort *</label>
+    <input type="password" class="form-control" [formControl]="form.controls.password" id="password">
+  </div>
+
+  <div>
+    <label for="confirmPassword">Passwort wiederholen *</label>
+    <input type="password" class="form-control" [formControl]="form.controls.confirmPassword" id="confirmPassword">
+  </div>
+
+  <div>
+    <div class="headline">
+      <label for="name">Name</label>
+      <app-info-button position="left"></app-info-button>
+    </div>
+    <input type="text" class="form-control" [formControl]="form.controls.name" id="name">
+  </div>
+
+  <div>
+    <div class="headline">
+      <label for="city">Stadt oder PLZ</label>
+      <app-info-button position="left"></app-info-button>
+    </div>
+    <input type="text" class="form-control" [formControl]="form.controls.city" id="city">
+  </div>
+
+  <div>
+    <div class="headline">
+      <label for="birthdate">Geburtsdatum</label>
+      <app-info-button position="left"></app-info-button>
+    </div>
+    <input type="date" class="form-control" [formControl]="form.controls.birthdate" id="birthdate">
+  </div>
+
+  <div class="button">
+    <app-button>Register</app-button>
+  </div>
+</form>
