@@ -23,7 +23,7 @@ jobs:
           set -u # Exit immediately if a variable is not defined.
 
           docker run --rm  \
-            --platform linux/amd64/v8 \
+            --platform linux/arm64/v8 \
             -v $(pwd)/backend:/app \
             ghcr.io/leandercs/jtr-backend:latest pytest
 
