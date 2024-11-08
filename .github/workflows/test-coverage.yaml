@@ -62,7 +62,6 @@ jobs:
           junitxml-title: Backend coverage
 
   frontend-coverage:
-    needs: frontend-build
     runs-on: ubuntu-latest
 
     steps:
