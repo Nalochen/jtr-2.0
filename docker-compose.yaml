@@ -37,11 +37,11 @@ services:
       - backend_network
 
   worker:
-    build:
-      context: ./backend/worker
-      dockerfile: Dockerfile
+    image: ghcr.io/leandercs/jtr-worker:latest
     user: nobody
     container_name: worker
+    volumes:
+      - ./backend/worker:/worker
     depends_on:
       - mysql
       - rabbitmq
@@ -50,11 +50,9 @@ services:
       - backend_network
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: ghcr.io/leandercs/jtr-backend:latest
     container_name: backend
-    command: sh -c "./provision.sh && ./entrypoint.sh"
+    command: sh -c "/opt/scripts/provision.sh && /opt/scripts/entrypoint.sh"
     environment:
       DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
       CELERY_BROKER_URL: 'amqp://admin:mypass@rabbitmq:5672'
