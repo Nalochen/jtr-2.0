@@ -68,16 +68,6 @@ services:
     networks:
       - backend_network
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: frontend
-    volumes:
-      - ./frontend:/app
-    ports:
-      - "4200:4200"
-
 networks:
   backend_network:
     driver: bridge
