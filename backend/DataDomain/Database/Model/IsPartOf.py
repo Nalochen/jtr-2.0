@@ -26,12 +26,19 @@ is_part_of = db.Table(
         'user_role',
         Enum(UserRoleTypesEnum),
         nullable=False,
-        default='member'
+        server_default='member'
+    ),
+
+    db.Column(
+        'is_deleted',
+        db.Boolean,
+        nullable=False,
+        server_default='0'
     ),
 
     db.Column(
         'created_at',
         db.DateTime,
-        default=func.now()
+        server_default=func.now()
     )
 )

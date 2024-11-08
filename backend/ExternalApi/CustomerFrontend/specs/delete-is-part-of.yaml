@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/customer-frontend/delete-is-part-of:
+    delete:
+      summary: Delete is-part-of
+      operationId: deleteIsPartOf
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteIsPartOfRequestBody'
+
+      responses:
+        '200':
+          description: OK
+
+        '400':
+          description: Bad Request
+
+        '401':
+          description: Unauthorized
+
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    DeleteIsPartOfRequestBody:
+      type: object
+      required:
+        - teamId
+      properties:
+        teamId:
+          type: number
+        userId:
+          type: number

@@ -1,9 +1,9 @@
 from typing import Optional, List, Any, Dict
 
-from sqlalchemy import func, Integer, Column, String, DateTime, Boolean
+from sqlalchemy import func, Integer, Column, String, DateTime, Boolean, text
 from sqlalchemy.orm import Mapped
 
-from DataDomain.Database.Model.RelationUserTeam import is_part_of
+from DataDomain.Database.Model.IsPartOf import is_part_of
 from DataDomain.Database.db import db
 from DataDomain.Database.Model.BaseModel import BaseModel
 
@@ -57,17 +57,17 @@ class Users(BaseModel, db.Model):
     is_deleted: Column[Boolean] = db.Column(
         db.Boolean,
         nullable=False,
-        default=False
+        server_default='0'
     )
 
     created_at: Column[DateTime] = db.Column(
         db.DateTime,
-        default=func.now()
+        server_default=func.now()
     )
 
     updated_at: Column[DateTime] = db.Column(
         db.DateTime,
-        default=func.now(),
+        server_default=func.now(),
         onupdate=func.now()
     )
 
