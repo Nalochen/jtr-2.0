@@ -8,7 +8,6 @@ permissions:
 
 jobs:
   test:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +25,6 @@ jobs:
           docker run --rm -v $(pwd)/backend:/app ghcr.io/leandercs/jtr-backend:latest pytest
 
   code-style:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
