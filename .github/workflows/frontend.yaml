@@ -8,55 +8,14 @@ permissions:
   packages: read
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Cache Docker layers
-        uses: actions/cache@v4
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-docker-frontend-${{ hashFiles('frontend/test.Dockerfile', 'frontend/**') }}
-          restore-keys: |
-            ${{ runner.os }}-docker-frontend-
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-        with:
-          driver-opts: image=moby/buildkit:latest
-
-      - name: Build frontend image with cache
-        run: |
-          docker buildx build \
-            --cache-from=type=local,src=/tmp/.buildx-cache \
-            --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
-            -t frontend-test -f ./frontend/test.Dockerfile ./frontend --load
-
-      - name: Save frontend-test image
-        run: docker save -o frontend-test.tar frontend-test
-
-      - name: Upload frontend-test artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-test-image
-          path: frontend-test.tar
-
   test:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download frontend artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-test-image
-
-      - name: Load frontend-test image
-        run: docker load -i frontend-test.tar
+      - name: Pull frontend-test image from GHCR
+        run: docker pull ghcr.io/leandercs/jtr-frontend-test:latest-amd64
 
       - name: Run tests
         run: |
@@ -64,22 +23,19 @@ jobs:
           set -e # Exit immediately if a command exits with a non-zero status.
           set -u # Exit immediately if a variable is not defined.
 
-          docker run --rm frontend-test nx run-many --target=test --all --base=origin/main
+          docker run --rm \
+            -v $(pwd)/frontend:/app \
+            ghcr.io/leandercs/jtr-frontend-test:latest-amd64 \
+            /bin/bash -c "npm install && nx run-many --target=test --all --base=origin/main"
 
   code-style:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download frontend artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-test-image
-
-      - name: Load frontend-test image
-        run: docker load -i frontend-test.tar
+      - name: Pull frontend-test image from GHCR
+        run: docker pull ghcr.io/leandercs/jtr-frontend-test:latest-amd64
 
       - name: Run code style checks on all projects
         run: |
@@ -87,4 +43,7 @@ jobs:
           set -e # Exit immediately if a command exits with a non-zero status.
           set -u # Exit immediately if a variable is not defined.
 
-          docker run --rm frontend-test nx run-many --target=lint --all --base=origin/main
+          docker run --rm \
+            -v $(pwd)/frontend:/app \
+            ghcr.io/leandercs/jtr-frontend-test:latest-amd64 \
+            /bin/bash -c "npm install && nx run-many --target=lint --all --base=origin/main"
