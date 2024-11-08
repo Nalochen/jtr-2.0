@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Pull backend image from GHCR
-        run: docker pull ghcr.io/leandercs/jtr-backend:latest
+        run: docker pull ghcr.io/leandercs/jtr-backend:latest-amd64
 
       - name: Run tests
         run: |
@@ -23,7 +23,6 @@ jobs:
           set -u # Exit immediately if a variable is not defined.
 
           docker run --rm  \
-            --platform linux/arm64/v8 \
             -v $(pwd)/backend:/app \
             ghcr.io/leandercs/jtr-backend:latest pytest
 
