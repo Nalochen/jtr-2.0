@@ -26,6 +26,7 @@ jobs:
 
       - name: Build coverage files
         run: docker run --rm \
+          --platform linux/amd64 \
           -v $(pwd)/backend:/app \
           -v /tmp:/tmp \
           ghcr.io/leandercs/jtr-backend:latest \
