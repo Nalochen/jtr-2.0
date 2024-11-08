@@ -71,9 +71,9 @@ jobs:
         run: docker pull ghcr.io/leandercs/jtr-frontend-test:latest-amd64
 
       - name: Build coverage files
-        run: docker run --rm  \
+        run: docker run --rm \
           -v $(pwd)/frontend:/app \
-          -v /tmp:/tmp  \
+          -v /tmp:/tmp \
           ghcr.io/leandercs/jtr-frontend-test:latest-amd64 \
           /bin/bash -c "npm install && npx jest --reporters=default --reporters=jest-junit --coverage --no-cache | tee /tmp/jest-coverage.txt"
 

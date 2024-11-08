@@ -22,7 +22,7 @@ jobs:
           set -e # Exit immediately if a command exits with a non-zero status.
           set -u # Exit immediately if a variable is not defined.
 
-          docker run --rm  \
+          docker run --rm \
             -v $(pwd)/backend:/app \
             ghcr.io/leandercs/jtr-backend:latest-amd64 pytest
 
