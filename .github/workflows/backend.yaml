@@ -24,7 +24,7 @@ jobs:
 
           docker run --rm  \
             -v $(pwd)/backend:/app \
-            ghcr.io/leandercs/jtr-backend:latest pytest
+            ghcr.io/leandercs/jtr-backend:latest-amd64 pytest
 
   code-style:
     runs-on: ubuntu-latest

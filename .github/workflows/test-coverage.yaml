@@ -28,7 +28,7 @@ jobs:
         run: docker run --rm \
           -v $(pwd)/backend:/app \
           -v /tmp:/tmp \
-          ghcr.io/leandercs/jtr-backend:latest \
+          ghcr.io/leandercs/jtr-backend:latest-amd64 \
           python3 -m pytest --junitxml=/tmp/pytest.xml --cov=/app | tee /tmp/pytest-coverage.txt
 
       - name: Upload backend coverage artifact
