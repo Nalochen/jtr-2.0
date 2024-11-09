@@ -1,4 +1,5 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { PasswordsMatchValidator } from './passwords-match.validator';
 
 export const registerForm = new FormGroup<{

@@ -1,8 +1,9 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { ButtonComponent, ButtonColorEnum, ButtonTypeEnum } from '../../../ui-shared';
 import { FormControl } from '@angular/forms';
+
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../../ui-shared';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'visibility-button',

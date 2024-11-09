@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+
 import { ButtonColorEnum } from './enums/color.enum';
 import { ButtonTypeEnum } from './enums/type.enum';
 

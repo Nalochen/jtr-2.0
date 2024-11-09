@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { loginFormControl } from '../business-domain/login/login-form.control';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ButtonComponent, ButtonColorEnum, ButtonTypeEnum } from '../ui-shared';
+
+import { loginFormControl } from '../business-domain/login/login-form.control';
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../ui-shared';
 
 @Component({
   selector: 'login-overlay',

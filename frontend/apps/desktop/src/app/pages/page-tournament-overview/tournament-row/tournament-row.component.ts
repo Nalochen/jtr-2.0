@@ -5,7 +5,7 @@ import {MatIconButton} from '@angular/material/button';
 
 import {TournamentOverviewData} from '@jtr/data-domain/store';
 
-import { ButtonComponent, DataContainerComponent, ButtonColorEnum, ButtonTypeEnum } from '../../../ui-shared';
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum,DataContainerComponent } from '../../../ui-shared';
 import {StatusIndicatorComponent} from '../../../ui-shared/lib/status-indicator/status-indicator.component';
 
 @Component({

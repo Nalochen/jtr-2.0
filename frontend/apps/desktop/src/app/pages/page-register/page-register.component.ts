@@ -1,9 +1,11 @@
 import {CommonModule} from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { registerForm } from '../../business-domain/register/register-form.control';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
-import { ButtonComponent, InfoButtonComponent, ButtonColorEnum, ButtonTypeEnum } from '../../ui-shared';
+
+import { registerForm } from '../../business-domain/register/register-form.control';
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum,InfoButtonComponent } from '../../ui-shared';
 import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
 
 

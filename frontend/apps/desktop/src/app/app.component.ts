@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import {AuthService} from './business-rules/auth/auth.service';
-import { ButtonComponent, ButtonColorEnum, ButtonTypeEnum } from './ui-shared';
+
 import { LoginOverlayComponent } from './login-overlay/login-overlay.component';
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from './ui-shared';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({

@@ -1,9 +1,11 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy,Component } from '@angular/core';
+
 import { MatButtonModule } from '@angular/material/button';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
+
 import { ButtonComponent } from '../button/button.component';
 import { ButtonTypeEnum } from '../button/enums/type.enum';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 
 @Component({
