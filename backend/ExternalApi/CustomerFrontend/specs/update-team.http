@@ -11,6 +11,7 @@ Authorization: Bearer {{jwtToken}}
   "city": "Berlin",
   "isMixTeam": false,
   "trainingTime": "Sonntags 10 Uhr",
+  "founded": "2020-01-01T00:00:00",
   "aboutUs": "About us",
   "contacts": [
     "Contact 1",

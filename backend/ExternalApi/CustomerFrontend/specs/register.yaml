@@ -13,9 +13,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/RegisterRequestBody'
+
       responses:
         '200':
-          description: JWT access token
+          description: OK
           content:
             application/json:
               schema:
@@ -23,14 +24,6 @@ paths:
 
         '500':
           description: Internal server error
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Internal server error"
 
 components:
   schemas:
@@ -44,10 +37,21 @@ components:
           type: string
         password:
           type: string
+        birthday:
+          type: string
+          format: date
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        picture:
+          type: string
+          format: binary
 
     RegisterResponseBody:
       type: object
       properties:
         token:
           type: string
-          example: "eyJhbGciOi
+          example: eyJhbGciOifghjkgfdsfghj

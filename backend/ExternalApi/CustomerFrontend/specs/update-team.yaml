@@ -18,8 +18,17 @@ paths:
         '200':
           description: OK
 
+        '400':
+          description: Bad Request
+
+        '401':
+          description: Unauthorized
+
         '404':
           description: Team not Found
+
+        '500':
+          description: Internal Server Error
 
 components:
   schemas:
@@ -34,6 +43,10 @@ components:
           type: string
         logo:
           type: string
+          format: binary
+        founded:
+          type: string
+          format: date
         city:
           type: string
         isMixTeam:

@@ -9,6 +9,9 @@ class Response(FlaskResponse):
     def __init__(self, response: Any = None, status=200, **kwargs):
         jsonData = jsonify(response).get_data(as_text=True)
 
+        if response is None:
+            jsonData = {}
+
         super().__init__(
             response=jsonData,
             status=status,

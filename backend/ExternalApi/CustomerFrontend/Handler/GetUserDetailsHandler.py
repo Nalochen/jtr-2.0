@@ -1,7 +1,6 @@
 from flask_jwt_extended import get_jwt_identity
 
-from DataDomain.Database.Model.Users import Users
-from DataDomain.Database.Repository.UserResponsitory import UserRepository
+from DataDomain.Database.Repository.UserRepository import UserRepository
 from DataDomain.Database.tools import getJwtIdentity
 from DataDomain.Model.Response import Response
 

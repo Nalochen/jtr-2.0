@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/customer-frontend/delete-participates-in:
+    delete:
+      summary: Delete participates-in
+      operationId: deleteIsPartOf
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteParticipatingInRequestBody'
+
+      responses:
+        '200':
+          description: OK
+
+        '400':
+          description: Bad Request
+
+        '401':
+          description: Unauthorized
+
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    DeleteParticipatingInRequestBody:
+      type: object
+      required:
+        - teamId
+        - tournamentId
+      properties:
+        teamId:
+          type: number
+        tournamentId:
+          type: number

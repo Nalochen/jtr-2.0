@@ -1,6 +1,7 @@
 import json
+from datetime import datetime
 
-from flask import request
+from flask import g
 
 from DataDomain.Database.Repository.TeamRepository import TeamRepository
 from DataDomain.Model.Response import Response
@@ -10,54 +11,57 @@ from ExternalApi.CustomerFrontend.Service.CheckForIsPartOfRoleService import Che
 class UpdateTeamHandler:
     """Handler for updating a team"""
 
-    def __init__(self):
-        """Constructor for UpdateTeamHandler"""
-
-        self.checkForIsPartOfRoleService = CheckForIsPartOfRoleService()
-
-    def handle(self) -> Response:
+    @staticmethod
+    def handle() -> Response:
         """Update team"""
 
-        teamId = request.json.get('teamId')
+        data = g.validatedData
 
-        team = TeamRepository().get(teamId)
+        teamId = data.get('teamId')
+
+        team = TeamRepository.get(teamId)
 
         if team is None:
-            return Response(
-                status=404,
-                message='No Team found.'
-            )
+            return Response(status=404)
 
-        if self.checkForIsPartOfRoleService.isCurrentUserAdminOfTeam(
+        if CheckForIsPartOfRoleService.isCurrentUserAdminOfTeam(
                 team.id) is None:
-            return Response(
-                status=403,
-                message='You are not allowed to update this team.'
-            )
+            return Response(status=403)
 
-        if 'name' in request.json:
-            team.name = request.json.get('name')
+        name = data.get('name')
+        if name is not None:
+            team.name = name
 
-        if 'logo' in request.json:
-            team.logo = request.json.get('logo')
+        logo = data.get('logo')
+        if logo is not None:
+            team.logo = logo
 
-        if 'city' in request.json:
-            team.city = request.json.get('city')
+        founded = data.get('founded')
+        if founded is not None:
+            team.founded = datetime.fromisoformat(founded)
 
-        if 'isMixTeam' in request.json:
-            team.isMixTeam = request.json.get('isMixTeam')
+        city = data.get('city')
+        if city is not None:
+            team.city = city
 
-        if 'trainingTime' in request.json:
-            team.trainingTime = request.json.get('trainingTime')
+        isMixTeam = data.get('isMixTeam')
+        if isMixTeam is not None:
+            team.isMixTeam = isMixTeam
 
-        if 'aboutUs' in request.json:
-            team.aboutUs = request.json.get('aboutUs')
+        trainingTime = data.get('trainingTime')
+        if trainingTime is not None:
+            team.trainingTime = trainingTime
 
-        if 'contacts' in request.json:
-            team.contacts = json.dumps(request.json.get('contacts'))
+        aboutUs = data.get('aboutUs')
+        if aboutUs is not None:
+            team.aboutUs = aboutUs
+
+        contacts = data.get('contacts')
+        if contacts is not None:
+            team.contacts = json.dumps(contacts)
 
         try:
-            TeamRepository().update()
+            TeamRepository.update()
 
         except Exception:
             return Response(status=500)

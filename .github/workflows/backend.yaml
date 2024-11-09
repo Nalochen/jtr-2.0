@@ -7,55 +7,14 @@ permissions:
   contents: read
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Cache Docker layers
-        uses: actions/cache@v4
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-docker-backend-${{ hashFiles('backend/Dockerfile', 'backend/**') }}
-          restore-keys: |
-            ${{ runner.os }}-docker-backend-
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-        with:
-          driver-opts: image=moby/buildkit:latest
-
-      - name: Build backend image with cache
-        run: |
-          docker buildx build \
-            --cache-from=type=local,src=/tmp/.buildx-cache \
-            --cache-to=type=local,dest=/tmp/.buildx-cache,mode=max \
-            -t backend ./backend --load
-
-      - name: Save backend image
-        run: docker save -o backend.tar backend
-
-      - name: Upload backend artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: docker-image
-          path: backend.tar
-
   test:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download backend artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docker-image
-
-      - name: Load backend image
-        run: docker load -i backend.tar
+      - name: Pull backend image from GHCR
+        run: docker pull ghcr.io/leandercs/jtr-backend:latest-amd64
 
       - name: Run tests
         run: |
@@ -63,10 +22,11 @@ jobs:
           set -e # Exit immediately if a command exits with a non-zero status.
           set -u # Exit immediately if a variable is not defined.
 
-          docker run --rm backend pytest
+          docker run --rm \
+            -v $(pwd)/backend:/app \
+            ghcr.io/leandercs/jtr-backend:latest-amd64 pytest
 
   code-style:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:

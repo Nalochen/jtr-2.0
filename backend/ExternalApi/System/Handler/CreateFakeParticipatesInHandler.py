@@ -1,6 +1,6 @@
 from flask import g
 
-from DataDomain.Database.Model.RelationTournamentTeam import participates_in
+from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Model.Response import Response
 from Infrastructure.JTRFaker.Faker.ModelFaker import ModelFaker
 from ExternalApi.CustomerFrontend.config.extensions import clearTournamentCache
