@@ -1,9 +1,8 @@
 <div class="tooltip-container">
-  <button mat-icon-button (click)="toggleTooltip()">
+  <button mat-icon-button (click)="overlay.toggle($event)" >
     <span class="material-icons-outlined">info_i</span>
   </button>
-
-  <div class="tooltip-content" [ngClass]="position" *ngIf="isTooltipVisible">
+  <p-overlayPanel #overlay>
     <ng-content></ng-content>
-  </div>
+  </p-overlayPanel>
 </div>
