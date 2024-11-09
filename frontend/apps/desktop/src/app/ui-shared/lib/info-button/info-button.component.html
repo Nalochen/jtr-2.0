@@ -1,7 +1,7 @@
 <div class="tooltip-container">
-  <button mat-icon-button (click)="overlay.toggle($event)" >
+  <app-button [type]="ButtonTypeEnum.Icon" (click)="overlay.toggle($event)" >
     <span class="material-icons-outlined">info_i</span>
-  </button>
+  </app-button>
   <p-overlayPanel #overlay>
     <ng-content></ng-content>
   </p-overlayPanel>

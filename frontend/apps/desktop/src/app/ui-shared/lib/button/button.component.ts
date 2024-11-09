@@ -11,7 +11,7 @@ import { ButtonTypeEnum } from './enums/type.enum';
   styleUrl: './button.component.less',
 })
 export class ButtonComponent {
-  @Input() public color: ButtonColorEnum = ButtonColorEnum.White;
+  @Input() public color: ButtonColorEnum = ButtonColorEnum.None;
   @Input() public type: ButtonTypeEnum = ButtonTypeEnum.Basic;
 }
 
