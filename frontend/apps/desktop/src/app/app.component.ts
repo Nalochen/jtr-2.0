@@ -3,10 +3,12 @@ import { RouterModule } from '@angular/router';
 
 import {AuthService} from './business-rules/auth/auth.service';
 import { ButtonComponent, ButtonColorEnum, ButtonTypeEnum } from './ui-shared';
+import { LoginOverlayComponent } from './login-overlay/login-overlay.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, ButtonComponent],
+  imports: [RouterModule, ButtonComponent, LoginOverlayComponent, OverlayPanelModule],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
@@ -14,6 +16,7 @@ import { ButtonComponent, ButtonColorEnum, ButtonTypeEnum } from './ui-shared';
 export class AppComponent {
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
+  protected readonly isLoggedIn = false;
 
   constructor(private readonly authService: AuthService) {}
 

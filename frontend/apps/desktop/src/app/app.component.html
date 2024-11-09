@@ -22,14 +22,15 @@
     </a>
   </nav>
   <div class="account">
-    <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Basic">
-      <p class="color-blue">
-        Login
-      </p>
-    </app-button>
-    <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon">
-      <span class="material-icons-outlined">account_circle</span>
-    </app-button>
+    @if (isLoggedIn) {
+      <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon">
+        <span class="material-icons-outlined">account_circle</span>
+      </app-button>
+    } @else {
+      <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Basic" (click)="login.toggle($event)">
+        <p class="color-blue">Login</p>
+      </app-button>
+    }
     <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon">
       <span class="material-icons-outlined">menu</span>
     </app-button>
@@ -38,3 +39,7 @@
 <div class="content">
   <router-outlet />
 </div>
+
+<p-overlayPanel #login>
+  <login-overlay />
+</p-overlayPanel>
