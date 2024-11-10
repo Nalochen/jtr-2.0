@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 
-import { registerForm } from '../../business-domain/register/register-form.control';
+import { registerForm } from '../../../../../../libs/business-domain/register/src/lib/form-controls/register-form.control';
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum,InfoButtonComponent } from '../../ui-shared';
 import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
 
