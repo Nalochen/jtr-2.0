@@ -1,3 +1,4 @@
+import logging
 import os
 
 from flask_sqlalchemy import SQLAlchemy
@@ -20,7 +21,8 @@ def executeSqlFile(filename: str) -> None:
 
     except Exception as e:
         connection.rollback()
-        print(f"Fehler beim Ausführen der SQL-Datei: {e}")
+        logging.error(
+            f'Database | db | Fehler beim Ausführen der SQL-Datei: {e}')
 
     finally:
         cursor.close()
@@ -30,7 +32,7 @@ def executeSqlFile(filename: str) -> None:
 def executeSqlCommandsToInitDatabase() -> None:
     """Executes the SQL commands in the init-database folder"""
 
-    folderPath = '/app/DataDomain/Database/data/init-database'
+    folderPath = '/home/backend/DataDomain/Database/data/init-database'
 
     for filename in os.listdir(folderPath):
         if filename.endswith('.sql'):
