@@ -5,6 +5,7 @@ import { TournamentDetailsResolver, TournamentOverviewResolver } from '@jtr/busi
 import {UserDetailsResolver} from '@jtr/business-domain/user';
 
 import { PageOutlineDemoComponent } from './pages/page-outline-demo/page-outline-demo.component';
+import { PageRegisterComponent } from './pages/page-register/page-register.component';
 import {PageTeamDetailsComponent} from './pages/page-team-details/page-team-details.component';
 import {PageTeamOverviewComponent} from './pages/page-team-overview/page-team-overview.component';
 import { PageTournamentDetailsComponent } from './pages/page-tournament-details/page-tournament-details.component';
@@ -37,6 +38,13 @@ export const appRoutes: Route[] = [
   {
     path: 'tournaments-overview',
     component: PageTournamentOverviewComponent,
+    resolve: {
+      tournamentOverview: TournamentOverviewResolver,
+    },
+  },
+  {
+    path: 'register',
+    component: PageRegisterComponent,
     resolve: {
       tournamentOverview: TournamentOverviewResolver,
     },

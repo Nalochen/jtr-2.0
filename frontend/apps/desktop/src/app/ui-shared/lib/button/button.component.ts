@@ -1,13 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { MatButtonModule } from '@angular/material/button';
+import { ButtonColorEnum } from './enums/color.enum';
+import { ButtonTypeEnum } from './enums/type.enum';
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [CommonModule, MatButtonModule],
+  imports: [CommonModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.less',
 })
-export class ButtonComponent {}
+export class ButtonComponent {
+  @Input() public color: ButtonColorEnum = ButtonColorEnum.None;
+  @Input() public type: ButtonTypeEnum = ButtonTypeEnum.Basic;
+}
+

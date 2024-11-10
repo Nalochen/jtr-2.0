@@ -30,7 +30,9 @@
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
     <h4 ngProjectAs="container-headline">Schuhwerk</h4>
 
-    <app-info-button ngProjectAs="container-additional" [infoText]="'Schuhwerk Infotext'" />
+    <app-info-button ngProjectAs="container-additional" position="left">
+      <p>Schuhwerk Infotext</p>
+    </app-info-button>
 
     <p ngProjectAs="container-content">{{ tournament.shoes.text }}</p>
   </app-data-container-row>

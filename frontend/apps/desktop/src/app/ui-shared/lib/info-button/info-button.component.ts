@@ -1,19 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy,Component } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatIcon } from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip';
+
+import { ButtonComponent } from '../button/button.component';
+import { ButtonTypeEnum } from '../button/enums/type.enum';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 
 @Component({
-  selector: 'app-info-button',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIcon, MatDialogModule, MatTooltipModule],
+  imports: [CommonModule, MatButtonModule, OverlayPanelModule, ButtonComponent],
+  selector: 'app-info-button',
   templateUrl: './info-button.component.html',
-  styleUrl: './info-button.component.less',
+  styleUrls: ['./info-button.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class InfoButtonComponent {
-  @Input() public infoText = '';
+  protected readonly ButtonTypeEnum = ButtonTypeEnum;
 }
+

@@ -1,0 +1,20 @@
+<app-button [color]="ButtonColorEnum.White" [type]="ButtonTypeEnum.Fab" (click)="overlay.toggle($event)">
+  @if (visible) {
+    <span class="material-icons-outlined">visibility</span>
+  } @else {
+    <span class="material-icons-outlined">visibility_off</span>
+  }
+</app-button>
+<p-overlayPanel #overlay>
+  <div class="overlay-content">
+    <p class="overlay-content-text">Sichtbarkeit</p>
+    <app-button class="overlay-content-button" [color]="ButtonColorEnum.Grey" [type]="ButtonTypeEnum.Flat" (click)="toggleVisibility(false)">
+      <span class="material-icons-outlined button-icon">visibility_off</span>
+      <p>privat</p>
+    </app-button>
+    <app-button class="overlay-content-button" [color]="ButtonColorEnum.Grey" [type]="ButtonTypeEnum.Flat" (click)="toggleVisibility(true)">
+      <span class="material-icons-outlined button-icon">visibility</span>
+      <p>öffentlich</p>
+    </app-button>
+  </div>
+</p-overlayPanel>

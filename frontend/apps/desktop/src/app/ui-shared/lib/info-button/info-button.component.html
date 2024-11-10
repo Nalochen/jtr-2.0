@@ -1,6 +1,8 @@
-<button mat-icon-button #tooltip="matTooltip"
-        matTooltip="{{infoText}}"
-        [matTooltipPosition]="'left'"
-        matTooltipHideDelay="10">
-  <span class="material-icons-outlined">info_i</span>
-</button>
+<div class="tooltip-container">
+  <app-button [type]="ButtonTypeEnum.Icon" (click)="overlay.toggle($event)" >
+    <span class="material-icons-outlined">info_i</span>
+  </app-button>
+  <p-overlayPanel #overlay>
+    <ng-content />
+  </p-overlayPanel>
+</div>

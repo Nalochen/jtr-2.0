@@ -2,11 +2,91 @@
 
 button {
   width: 100%;
+  font-size: 16px !important;
+  font-family: "Helvetica Neue", sans-serif !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.mat-mdc-raised-button:not(:disabled) {
+.white {
+  background-color: @color-bg-white;
+  color: @color-text-default;
+
+  &:hover {
+    background-color: @color-bg-white-hover;
+  }
+}
+
+.grey {
+  background-color: @color-bg-grey;
+  color: @color-text-default;
+
+  &:hover {
+    background-color: @color-bg-grey-hover;
+  }
+}
+
+.red {
   background-color: @color-red;
-  padding: 8px;
-  border-radius: 8px;
   color: @color-text-white;
+
+  &:hover {
+    background-color: @color-red-hover;
+  }
+}
+
+.none {
+  background: none;
+  color: @color-text-default;
+
+  &:hover {
+    background: none;
+  }
+}
+
+
+.basic {
+  border: none;
+  background: none;
+}
+
+.raised {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+}
+
+.rounded {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 24px;
+}
+
+.stroked {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid @color-text-default;
+}
+
+.flat {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+
+.icon {
+  background: none;
+  border: none;
+  font-size: 24px;
+}
+
+.fab {
+  border: none;
+  padding: 4px;
+  border-radius: 8px;
+  height: 32px;
+  width: 32px;
 }
