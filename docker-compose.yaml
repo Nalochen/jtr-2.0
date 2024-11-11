@@ -1,76 +1,28 @@
 services:
 
-  mysql:
-    image: mysql:8.0.35
-    container_name: mysql
-    restart: always
+  jtr-development:
+    image: ghcr.io/leandercs/jtr:latest-arm64
+    container_name: jtr
+    entrypoint: [ "/opt/scripts/provisioning/entrypoint.sh" ]
     environment:
+      CELERY_BROKER_URL: 'amqp://admin:mypass@localhost:5672'
+      DATABASE_URL: 'mysql+pymysql://user:password@localhost:3307/jtr'
+      FLASK_ENV: 'development'
       MYSQL_DATABASE: 'jtr'
-      MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
-    volumes:
-      - mysql_db_data:/var/lib/mysql
-    ports:
-      - "3307:3306"
-    networks:
-      - backend_network
-
-  redis:
-    image: redis:latest
-    container_name: redis
-    ports:
-      - "6379:6379"
-    networks:
-      - backend_network
-
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq
-    environment:
-      RABBITMQ_DEFAULT_USER: admin
+      MYSQL_USER: 'user'
       RABBITMQ_DEFAULT_PASS: mypass
+      RABBITMQ_DEFAULT_USER: admin
     ports:
+      - "3307:3307"
+      - "5001:5001"
       - "5672:5672"
+      - "6379:6379"
       - "15672:15672"
-    networks:
-      - backend_network
-
-  worker:
-    image: ghcr.io/leandercs/jtr-worker:latest-arm64
-    user: nobody
-    container_name: worker
     volumes:
-      - ./backend/worker:/worker
-    depends_on:
-      - mysql
-      - rabbitmq
-      - backend
-    networks:
-      - backend_network
-
-  backend:
-    image: ghcr.io/leandercs/jtr-backend:latest-arm64
-    container_name: backend
-    command: sh -c "/opt/scripts/provision.sh && /opt/scripts/entrypoint.sh"
-    environment:
-      DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
-      CELERY_BROKER_URL: 'amqp://admin:mypass@rabbitmq:5672'
-      FLASK_ENV: 'development'
-    volumes:
-      - ./backend:/app
-    ports:
-      - "5001:5000"
-    depends_on:
-      - mysql
-      - redis
-      - rabbitmq
-    networks:
-      - backend_network
-
-networks:
-  backend_network:
-    driver: bridge
+      - .:/home:delegated
+      - mysql_db_data:/var/lib/mysql
 
 volumes:
   mysql_db_data: {}

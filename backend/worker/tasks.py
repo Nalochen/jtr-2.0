@@ -9,9 +9,11 @@ logger = get_task_logger(__name__)
 
 app = Celery(
     'tasks',
-    broker='amqp://admin:mypass@rabbitmq:5672',
+    broker='amqp://admin:mypass@localhost:5672',
     backend='rpc://')
 
 pymysql.install_as_MySQLdb()
-engine = create_engine('mysql+pymysql://user:password@mysql/jtr', echo=True)
+engine = create_engine(
+    'mysql+pymysql://user:password@localhost:3307/jtr',
+    echo=True)
 db = scoped_session(sessionmaker(bind=engine))

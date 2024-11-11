@@ -16,7 +16,7 @@ docker exec backend pytest
 ## Code Style
 
 ```sh
-docker exec backend find . -name '*.py' -exec autopep8 --in-place --aggressive --aggressive {} \;
+find ./backend -name '*.py' -not -path './backend/venv/*' -not -path './backend/worker/venv/*' -exec autopep8 --in-place --aggressive --aggressive {} \;
 ```
 
 
