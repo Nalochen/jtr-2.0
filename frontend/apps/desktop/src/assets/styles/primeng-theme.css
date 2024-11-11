@@ -1220,7 +1220,7 @@
     height: 1.75rem;
   }
   .p-inputswitch .p-inputswitch-slider {
-    background: #ced4da;
+    background: #A4A4A4;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
     border-radius: 30px;
   }
@@ -1242,16 +1242,16 @@
     box-shadow: 0 0 0 0.2rem #bfd1f6;
   }
   .p-inputswitch:not(.p-disabled):hover .p-inputswitch-slider {
-    background: #c3cad2;
+    background: #8C8C8C;
   }
   .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
-    background: #B8594A;
+    background: #BCD7D6;
   }
   .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
     background: #ffffff;
   }
   .p-inputswitch.p-inputswitch-checked:not(.p-disabled):hover .p-inputswitch-slider {
-    background: #034659;
+    background: #A4C2C1;
   }
   p-inputswitch.ng-dirty.ng-invalid > .p-inputswitch > .p-inputswitch-slider {
     border-color: #ced4da #ced4da #ced4da #e4677e;
