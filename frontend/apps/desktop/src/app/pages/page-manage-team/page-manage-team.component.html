@@ -1,0 +1,30 @@
+<team-header
+  *ngIf="team$ | async as team"
+  [form]="form"
+/>
+
+<p class="small-text" *ngIf="team$ | async as team">gegründet: {{ team.founded | date : "dd.MM.yyyy" }}</p>
+<div class="data-information">
+  <p>Wofür benutzen wir die Infos auf dieser Seite?</p>
+  <app-info-button>
+    <p>Info Text</p>
+  </app-info-button>
+</div>
+
+<section class="content">
+  <team-information
+    *ngIf="team$"
+    [form]="form"
+  />
+
+  <section class="activities">
+    <team-members
+      *ngIf="team$"
+      [form]="form"
+    />
+  </section>
+</section>
+
+<team-bottom-bar
+  [form]="form"
+  />

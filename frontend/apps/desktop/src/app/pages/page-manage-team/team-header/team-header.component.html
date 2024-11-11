@@ -1,0 +1,23 @@
+<label for="logo">Logo</label>
+<input type="image" id="logo" alt="Logo of {{ form.controls.name.value }}" value="{{ form.controls.logo.value }}" height="150" width="150">
+
+<div class="team-information">
+  <div class="meta-data">
+    <p>{{ form.controls.isMixTeam.value }}</p>
+    @if (!form.controls.isMixTeam.value) {
+        <label for="city">Stadt</label>
+        <input pInputText type="text" formControlName="form.controls.city" value="{{ form.controls.city.value }}" id="city">
+    } @else {
+        <h3 class="city">Mixteam</h3>
+    }
+    <h3 class="mixteam">Mixteam?</h3>
+    <p-inputSwitch formControlName="isMixTeam" (click)="onInputSwitchChange($event)"></p-inputSwitch>
+  </div>
+
+  <label for="name">Name</label>
+  <input pInputText type="text" id="name" value="{{ form.controls.name.value }}">
+</div>
+
+<ng-template #city>
+  <h3 class="city">{{ form.controls.city.value }}</h3>
+</ng-template>
