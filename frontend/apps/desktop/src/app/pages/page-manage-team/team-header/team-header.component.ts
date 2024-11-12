@@ -1,5 +1,5 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -8,11 +8,12 @@ import {
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { Subject, takeUntil } from 'rxjs';
+import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../../ui-shared';
 
 @Component({
   selector: 'team-header',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, InputSwitchModule, InputTextModule, ReactiveFormsModule],
+  imports: [CommonModule, NgOptimizedImage, InputSwitchModule, InputTextModule, ReactiveFormsModule, ButtonComponent],
   templateUrl: './team-header.component.html',
   styleUrl: './team-header.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,6 +21,8 @@ import { Subject, takeUntil } from 'rxjs';
 export class TeamHeaderComponent implements OnInit{
   @Input() public form!: FormGroup<EditTeamForm>;
   private readonly destroy$ = new Subject<void>();
+  protected readonly ButtonColorEnum = ButtonColorEnum;
+  protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
@@ -27,5 +30,9 @@ export class TeamHeaderComponent implements OnInit{
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.changeDetectorRef.markForCheck();
     });
+  }
+
+  public onChangeLogo() {
+    window.alert('Change logo');
   }
 }

@@ -19,15 +19,6 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class TeamInformationContactsComponent {
   @Input() public form!: FormGroup<EditTeamForm>;
-
-  public onNewContact(): void {
-    this.form.controls.contacts.push(new FormControl(''));
-  }
-
-  public onRemoveContact(index: number): void {
-    this.form.controls.contacts.removeAt(index);
-  }
-
   private readonly destroy$ = new Subject<void>();
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {}
@@ -36,5 +27,13 @@ export class TeamInformationContactsComponent {
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.changeDetectorRef.markForCheck();
     });
+  }
+
+  public onNewContact(): void {
+    this.form.controls.contacts.push(new FormControl(''));
+  }
+
+  public onRemoveContact(index: number): void {
+    this.form.controls.contacts.removeAt(index);
   }
 }

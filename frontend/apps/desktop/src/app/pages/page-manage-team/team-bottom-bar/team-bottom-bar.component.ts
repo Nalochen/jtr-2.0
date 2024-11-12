@@ -15,7 +15,17 @@ import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../../ui-sh
 })
 export class TeamBottomBarComponent {
   @Input() public form!: FormGroup<EditTeamForm>;
-
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
+
+  public onDeleteTeam() {
+    window.alert('Delete team');
+  }
+
+  public onSaveTeam() {
+    window.alert('Save team');
+
+    console.log('here');
+    console.log(this.form.value);
+  }
 }
