@@ -1,13 +1,12 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-
-import { TeamData } from '@jtr/data-domain/store';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 
 import { DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
   EditTeamForm
 } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'team-members',
@@ -19,4 +18,14 @@ import {
 })
 export class TeamMembersComponent {
   @Input() public form!: FormGroup<EditTeamForm>;
+
+  private readonly destroy$ = new Subject<void>();
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+
+  public ngOnInit(): void {
+    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.changeDetectorRef.markForCheck();
+    });
+  }
 }

@@ -1,5 +1,5 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
 
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -9,6 +9,7 @@ import {
   EditTeamForm
 } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'team-training',
@@ -20,4 +21,13 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 })
 export class TeamInformationTrainingComponent {
   @Input() public form!: FormGroup<EditTeamForm>;
+  private readonly destroy$ = new Subject<void>();
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+
+  public ngOnInit(): void {
+    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.changeDetectorRef.markForCheck();
+    });
+  }
 }

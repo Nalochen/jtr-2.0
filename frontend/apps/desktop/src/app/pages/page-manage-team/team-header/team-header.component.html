@@ -1,12 +1,11 @@
-<div [formGroup]="form">
+<div class="header" [formGroup]="form">
   <label for="logo">Logo</label>
   <input type="image" id="logo" alt="Logo of {{ form.controls.name.value }}" value="{{ form.controls.logo.value }}" height="150" width="150">
 
   <div class="team-information">
     <div class="meta-data">
-      <p>{{ form.controls.isMixTeam.value }}</p>
       @if (!form.controls.isMixTeam.value) {
-      <label for="city">Stadt</label>
+      <label for="city" id="cityLabel">Stadt</label>
       <input pInputText type="text" formControlName="city" value="{{ form.controls.city.value }}" id="city">
       } @else {
       <h3 class="city">Mixteam</h3>

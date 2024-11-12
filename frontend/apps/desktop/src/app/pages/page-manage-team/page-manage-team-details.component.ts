@@ -61,7 +61,6 @@ export class PageManageTeamDetailsComponent implements OnInit{
       this.form.controls.name.setValue(team?.name);
       this.form.controls.trainingTime.setValue(team?.trainingTime);
 
-      //in einzelnen Komponten auf valueChanges reagieren
       this.changeDetectorRef.markForCheck();
     });
   }
