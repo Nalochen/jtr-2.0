@@ -1,8 +1,7 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
 
-import { TeamData } from '@jtr/data-domain/store';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
   EditTeamForm
 } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
@@ -13,14 +12,20 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'team-header',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, InputSwitchModule, InputTextModule],
+  imports: [CommonModule, NgOptimizedImage, InputSwitchModule, InputTextModule, ReactiveFormsModule],
   templateUrl: './team-header.component.html',
   styleUrl: './team-header.component.less',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamHeaderComponent {
+export class TeamHeaderComponent implements OnInit{
   @Input() public form!: FormGroup<EditTeamForm>;
+  private readonly destroy$ = new Subject<void>();
 
-  public onInputSwitchChange = (event: Event) => {
-    console.log('onInputSwitchChange', event);
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+
+  public ngOnInit(): void {
+    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      this.changeDetectorRef.markForCheck();
+    });
   }
 }

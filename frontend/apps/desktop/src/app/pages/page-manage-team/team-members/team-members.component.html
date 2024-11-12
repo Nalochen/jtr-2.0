@@ -1,6 +1,6 @@
 <h3>Mitglieder</h3>
 
-<app-data-container>
+<app-data-container [formGroup]="form">
   @if (form.controls.members.length > 0) {
     @for (member of form.controls.members.value; track member) {
       <app-data-container-row>

@@ -13,16 +13,17 @@ import { TeamMembersComponent } from './team-members/team-members.component';
 import { teamDetailsSelector } from '@jtr/business-domain/team';
 import { editTeamForm } from '../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
 import { InfoButtonComponent } from '../../ui-shared';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TeamBottomBarComponent } from './team-bottom-bar/team-bottom-bar.component';
-
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TeamHeaderComponent, TeamInformationComponent, TeamMembersComponent, TeamBottomBarComponent, InfoButtonComponent],
+  imports: [CommonModule, TeamHeaderComponent, TeamInformationComponent, TeamMembersComponent, TeamBottomBarComponent, InfoButtonComponent, ReactiveFormsModule],
   templateUrl: './page-manage-team.component.html',
   styleUrl: './page-manage-team.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,})
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+
 export class PageManageTeamDetailsComponent implements OnInit{
   public readonly form = editTeamForm;
   private readonly destroy$ = new Subject<void>();
@@ -59,6 +60,9 @@ export class PageManageTeamDetailsComponent implements OnInit{
 
       this.form.controls.name.setValue(team?.name);
       this.form.controls.trainingTime.setValue(team?.trainingTime);
+
+      //in einzelnen Komponten auf valueChanges reagieren
+      this.changeDetectorRef.markForCheck();
     });
   }
 }
