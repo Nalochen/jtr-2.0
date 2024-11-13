@@ -24,13 +24,13 @@ class TournamentVersions(BaseModel, db.Model):
 
     changes: Column[Text] = db.Column(
         'changes',
-        db.Text,
+        db.Text(),
         nullable=False,
     )
 
     updated_at: Column[DateTime] = db.Column(
         db.DateTime,
-        default=func.now()
+        server_default=func.now()
     )
 
     tournament_id: Column[Integer] = db.Column(

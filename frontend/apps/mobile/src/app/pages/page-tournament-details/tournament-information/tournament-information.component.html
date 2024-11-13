@@ -1,0 +1,99 @@
+<div class="button-wrapper">
+  <app-button [color]="color" [size]="size" (click)="toggleAllPanels()">{{ areAllPanelsOpen ? 'Close All' : 'Open All' }}</app-button>
+</div>
+
+<div>
+  @for (panel of panels; track panel) {
+    @switch (panel.id) {
+      @case (PanelTypes.Teams) {
+        <app-data-container-expandable class="teams" [id]="panel.id" [isOpen]="panel.isOpen" (toggleVisibility)="togglePanel(panel.id, $event)">
+          @if (panel.isOpen) {
+            <p class="title" ngProjectAs="panel-header">angemeldet:</p>
+          } @else {
+            <section ngProjectAs="panel-header">
+              @for (team of previewTeams; track team) {
+                <span class="material-icons-outlined">star</span>
+              }
+            </section>
+          }
+
+          <tournament-teams
+            ngProjectAs="panel-content"
+            [registeredTeams]="tournament.teams.participating"
+            [reservedTeams]="tournament.teams.waiting"
+          />
+        </app-data-container-expandable>
+      }
+      @case (PanelTypes.Registration) {
+        <app-data-container-expandable [id]="panel.id" [isOpen]="panel.isOpen" (toggleVisibility)="togglePanel(panel.id, $event)">
+          <app-data-container-row ngProjectAs="panel-header">
+            <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
+            <h5 ngProjectAs="container-headline">Kosten</h5>
+
+            @if (tournament.costs.user) {
+              <p ngProjectAs="container-content">{{ tournament.costs.user | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de' }} pro Person</p>
+            }
+
+            @if (tournament.costs.team) {
+              <p ngProjectAs="container-content">{{ tournament.costs.team | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de' }} pro Team</p>
+            }
+          </app-data-container-row>
+
+          <mat-divider ngProjectAs="panel-content" />
+
+          <app-data-container-row class="first-content-row" ngProjectAs="panel-content">
+            <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
+            <h5 ngProjectAs="container-headline">Anmeldeverfahren</h5>
+            <app-chip ngProjectAs="container-additional">{{ tournament.registrationProcedure.type }}</app-chip>
+
+            <p ngProjectAs="container-content">{{ tournament.registrationProcedure.text }}</p> <!-- TODO: Klären ob wir das Feld registration_procedure_url brauchen-->
+          </app-data-container-row>
+
+          <mat-divider ngProjectAs="panel-content" />
+
+          <app-data-container-row ngProjectAs="panel-content">
+            <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
+            <h5 ngProjectAs="container-headline">Deadlines</h5>
+            <div ngProjectAs="container-content">
+              @for (deadline of tournament.deadlines; track deadline) {
+                <p>{{ deadline }}</p>
+              }
+            </div>
+          </app-data-container-row>
+        </app-data-container-expandable>
+      }
+
+      @case (PanelTypes.Contacts) {
+        <tournament-information-contacts
+          [id]="panel.id"
+          [isOpen]="panel.isOpen"
+          [tournament]="tournament"
+        />
+      }
+
+      @case (PanelTypes.Location) {
+        <tournament-information-location
+          [id]="panel.id"
+          [isOpen]="panel.isOpen"
+          [tournament]="tournament"
+        />
+      }
+
+      @case (PanelTypes.Rules) {
+        <tournament-information-rules
+          [id]="panel.id"
+          [isOpen]="panel.isOpen"
+          [tournament]="tournament"
+        />
+      }
+
+      @case (PanelTypes.Additional) {
+        <tournament-information-additional
+          [id]="panel.id"
+          [isOpen]="panel.isOpen"
+          [tournamentAdditionalInformation]="tournament.additionalInformation"
+        />
+      }
+    }
+  }
+</div>

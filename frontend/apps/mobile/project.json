@@ -6,8 +6,26 @@
   "sourceRoot": "apps/mobile/src",
   "tags": [],
   "targets": {
+    "compileMaterialTemplate": {
+      "executor": "nx:run-commands",
+      "options": {
+          "cwd": "apps/mobile",
+          "command": "npx sass src/assets/styles/material-theme.scss tmp/mobile-material-theme.css --load-path=../../node_modules"
+      },
+      "configurations": {
+          "production": {},
+          "development": {}
+      },
+      "defaultConfiguration": "production",
+      "outputs": ["{workspaceRoot}/apps/mobile/tmp"]
+    },
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
+      "dependsOn": [
+        {
+          "target": "compileMaterialTemplate"
+        }
+      ],
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/mobile",
@@ -22,9 +40,14 @@
             "input": "apps/mobile/public"
           }
         ],
-        "styles": ["apps/mobile/src/styles.less"],
+        "styles": [
+          "apps/mobile/src/styles.less",
+          {
+            "input": "apps/mobile/src/assets/styles/material-theme.scss"
+          }
+        ],
         "stylePreprocessorOptions": {
-          "includePaths": ["apps/mobile/src/less"]
+          "includePaths": ["apps/mobile/src/assets/styles/less"]
         },
         "scripts": []
       },
@@ -33,8 +56,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
+              "maximumWarning": "3mb",
+              "maximumError": "6mb"
             },
             {
               "type": "anyComponentStyle",
@@ -88,6 +111,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "mobile:build",
+        "port": 4201,
         "spa": true
       }
     }

@@ -13,15 +13,15 @@ externalApiFolder = Blueprint(
     'external_api',
     __name__,
     static_folder=os.path.join(
-        '/app/ExternalApi')
+        '/home/backend/ExternalApi')
 )
 
 
 class GetSwaggerFileHandler:
-    """Handler for getting swagger file."""
+    """Handler for getting swagger file"""
 
     def handle(self) -> Response:
-        """Get swagger file."""
+        """Get swagger file"""
 
         yamlFiles = []
 
@@ -37,10 +37,11 @@ class GetSwaggerFileHandler:
             status=200,
         )
 
-    def __mergeYamlFiles(self, yamlFilePaths: List[str]) -> dict:
-        """Merge multiple yaml files into a single dictionary."""
+    @staticmethod
+    def __mergeYamlFiles(yamlFilePaths: List[str]) -> dict:
+        """Merge multiple yaml files into a single dictionary"""
 
-        merged_data = {
+        mergedData = {
             'openapi': '3.0.0',
             'info': {
                 'title': 'JTR API',
@@ -55,16 +56,16 @@ class GetSwaggerFileHandler:
             with open(file_path, 'r') as file:
                 data = yaml.safe_load(file)
 
-                for path, path_data in data.get('paths', {}).items():
-                    if path in merged_data['paths']:
+                for path, pathData in data.get('paths', {}).items():
+                    if path in mergedData['paths']:
 
-                        merged_data['paths'][path].update(path_data)
+                        mergedData['paths'][path].update(pathData)
 
                     else:
-                        merged_data['paths'][path] = path_data
+                        mergedData['paths'][path] = pathData
 
-        """Convert the defaultdict to a regular dict"""
+        """Convert the default-dict to a regular dict"""
 
-        merged_data['paths'] = dict(merged_data['paths'])
+        mergedData['paths'] = dict(mergedData['paths'])
 
-        return merged_data
+        return mergedData

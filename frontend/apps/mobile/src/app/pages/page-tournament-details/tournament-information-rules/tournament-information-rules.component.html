@@ -1,0 +1,37 @@
+<app-data-container-expandable [id]="id" [isOpen]="isOpen">
+  <app-data-container-row ngProjectAs="panel-header">
+    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
+    <h5 ngProjectAs="container-headline">Pompfencheck</h5>
+    <a ngProjectAs="container-additional" href="{{ tournament.pompfCheck.url }}">Link</a>
+    <p ngProjectAs="container-content">{{ tournament.pompfCheck.text }}</p>
+  </app-data-container-row>
+
+  <mat-divider ngProjectAs="panel-content" />
+
+  <app-data-container-row ngProjectAs="panel-content">
+    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
+    <h5 ngProjectAs="container-headline">Turniersystem</h5>
+    <a ngProjectAs="container-additional" href="{{ tournament.tournamentSystem.url }}" target="_blank">{{ tournament.tournamentSystem.type }}</a>
+    <p ngProjectAs="container-content">{{ tournament.tournamentSystem.text }}</p>
+  </app-data-container-row>
+
+  <mat-divider ngProjectAs="panel-content" />
+
+  <app-data-container-row ngProjectAs="panel-content">
+    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
+    <h5 ngProjectAs="container-headline">Hausregeln</h5>
+    <a ngProjectAs="container-additional" href="{{ tournament.houseRules.url }}">Link</a>
+    <p ngProjectAs="container-content">{{ tournament.houseRules.text }}</p>
+  </app-data-container-row>
+
+  <mat-divider ngProjectAs="panel-content" />
+
+  <app-data-container-row ngProjectAs="panel-content">
+    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
+    <h5 ngProjectAs="container-headline">Schuhwerk</h5>
+
+    <app-info-button ngProjectAs="container-additional" [infoText]="'Schuhwerk Infotext'" />
+
+    <p ngProjectAs="container-content">{{ tournament.shoes.text }}</p>
+  </app-data-container-row>
+</app-data-container-expandable>

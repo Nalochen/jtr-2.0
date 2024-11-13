@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { AbstractIconComponent } from '../abstract-icon';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+
+import { AbstractIconComponent } from '../abstract-icon';
 
 @Component({
   selector: 'svg-icon-timeline-circle',
@@ -11,9 +12,9 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconTimelineCircleComponent extends AbstractIconComponent {
-  @Input() public outline: boolean = false;
+  @Input() public outline = false;
 
-  protected override rawIcon: string = `<svg viewBox="0 0 100 100">
+  protected override rawIcon = `<svg viewBox="0 0 100 100">
     <circle cx="49.8" cy="49.9" r="45" stroke-width="10" stroke="#outline-color" fill="transparent" />
     <path fill="#inner-circle-color" d="M49.8 79.9c-16.6 0-30-13.4-30-30s13.4-30 30-30 30 13.4 30 30c0 16.5-13.4 29.9-30 30z"/>
     </svg>`;

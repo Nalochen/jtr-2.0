@@ -1,0 +1,103 @@
+@import 'colors-desktop';
+
+form {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 32px;
+  grid-template-rows: auto;
+  grid-template-areas: 'email .' 'username .' 'password .' 'password-repeat .' 'name name-button' 'city city-button' 'birthdate birthdate-button' 'register-button register-button';
+  grid-column-gap: 48px;
+  grid-row-gap: 24px;
+  align-items: end;
+  margin-top: 24px;
+}
+
+.register-button {
+  grid-area: register-button;
+  width: 20%;
+  justify-self: end;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  background-color: @color-red;
+  color: @color-text-white;
+
+  &:hover {
+    background-color: @color-red-hover;
+  }
+
+  &:disabled {
+    background-color: @color-bg-grey;
+    color: @color-text-white;
+  }
+}
+
+input {
+  margin-top: 8px;
+  min-height: 24px;
+  border-radius: 8px;
+  border: 1px solid @color-text-default;
+  width: 100%;
+  font-size: 16px;
+  padding: 4px 8px;
+
+  &.invalid {
+    border: 2px solid @color-red;
+  }
+}
+
+.i-headline {
+  margin-bottom: 8px !important;
+}
+
+.headline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.email {
+  grid-area: email;
+}
+
+.username {
+  grid-area: username;
+}
+
+.password {
+  grid-area: password;
+}
+
+.password-repeat {
+  grid-area: password-repeat;
+}
+
+.name {
+  grid-area: name;
+}
+
+.name-button {
+  grid-area: name-button;
+}
+
+.city {
+  grid-area: city;
+}
+
+.city-button {
+  grid-area: city-button;
+}
+
+.birthdate {
+  grid-area: birthdate;
+}
+
+.birthdate-button {
+  grid-area: birthdate-button;
+}
+
+.error-message {
+  margin-top: 4px !important;
+  color: @color-red;
+}

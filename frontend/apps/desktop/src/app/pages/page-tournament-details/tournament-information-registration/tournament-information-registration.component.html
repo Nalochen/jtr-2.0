@@ -1,0 +1,37 @@
+<app-data-container>
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
+    <h4 ngProjectAs="container-headline">Kosten</h4>
+
+    @if (tournament.costs.user) {
+      <p ngProjectAs="container-content">{{ tournament.costs.user | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de' }} pro Person</p>
+    }
+
+    @if (tournament.costs.team) {
+      <p ngProjectAs="container-content">{{ tournament.costs.team | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de' }} pro Team</p>
+    }
+  </app-data-container-row>
+
+  <mat-divider />
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
+    <h4 ngProjectAs="container-headline">Anmeldeverfahren</h4>
+
+    <app-chip ngProjectAs="container-additional">{{ tournament.registrationProcedure.type }}</app-chip>
+
+    <p ngProjectAs="container-content">{{ tournament.registrationProcedure.text }}</p> <!-- TODO: Klären ob wir das Feld registration_procedure_url brauchen-->
+  </app-data-container-row>
+
+  <mat-divider />
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
+    <h4 ngProjectAs="container-headline">Deadlines</h4>
+    <div ngProjectAs="container-content">
+      @for (deadline of tournament.deadlines; track deadline) {
+        <p>{{ deadline }}</p>
+      }
+    </div>
+  </app-data-container-row>
+</app-data-container>

@@ -8,17 +8,27 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
+    "target": "esnext",
     "module": "esnext",
-    "lib": ["es2020", "dom"],
+    "lib": ["esnext", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@jtr/business-domain/team": [
+        "libs/business-domain/team/src/index.ts"
+      ],
+      "@jtr/business-domain/tournament": [
+        "libs/business-domain/tournament/src/index.ts"
+      ],
+      "@jtr/business-domain/user": [
+        "libs/business-domain/user/src/index.ts"
+      ],
+      "@jtr/data-domain/store": ["libs/data-domain/store/src/index.ts"],
+      "@jtr/infrastructure/cache": ["libs/infrastructure/cache/src/index.ts"],
       "@jtr/infrastructure/svg-icons": [
         "libs/infrastructure/svg-icons/src/index.ts"
-      ],
-      "shared-ui": ["libs/src/index.ts"]
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

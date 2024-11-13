@@ -1,0 +1,21 @@
+{
+  "name": "cache",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/infrastructure/cache/src",
+  "prefix": "jtr",
+  "projectType": "library",
+  "tags": ["scope:infrastructure"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "tsConfig": "libs/infrastructure/cache/tsconfig.lib.json",
+        "jestConfig": "libs/infrastructure/cache/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

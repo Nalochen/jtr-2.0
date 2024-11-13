@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { AbstractIconComponent } from '../abstract-icon';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'svg-icon-alarm-clock',
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconAlarmClockComponent extends AbstractIconComponent {
-  protected override rawIcon: string = `<svg fill='#color-placeholder' viewBox="0 0 99.6 100">
+  protected override rawIcon = `<svg fill='#color-placeholder' viewBox="0 0 99.6 100">
     <path
         d="M49.8,13.43A42.61,42.61,0,0,0,15.66,81.62L8,89.25a3,3,0,0,0,0,4.31H8l4.31,4.31a3,3,0,0,0,4.31,
         0l7.64-7.64a42.42,42.42,0,0,0,51,0L83,97.87a3,3,0,0,0,4.31,0h0l4.31-4.31a3,3,0,0,0,0-4.31h0l-7.64-7.63A42.61,

@@ -1,22 +1,13 @@
 @import 'fonts-desktop';
 @import 'colors-desktop';
+@import './assets/styles/primeng-theme.css';
 
 @helveticaNeue: 'Helvetica Neue', Helvetica, sans-serif;
-
-body {
-  margin: 0;
-  background-color: @color-bg-light;
-}
-
-p {
-  font-family: @helveticaNeue;
-  margin: 0 !important;
-}
 
 h1 {
   font-family: 'Didot', serif;
   color: @color-red;
-  font-size: 48px;
+  font-size: 56px;
   margin: 0;
 }
 
@@ -25,16 +16,45 @@ h2 {
   color: @color-red;
   font-size: 24px;
   margin: 0;
+  font-weight: bold;
+}
+
+h3 {
+  font-family: @helveticaNeue;
+  color: @color-red;
+  font-size: 24px;
+  margin: 0;
   font-weight: normal;
+}
+
+h4 {
+  font-family: @helveticaNeue;
+  color: @color-red;
+  font-size: 16px;
+  margin: 0;
+  font-weight: bold;
+}
+
+p {
+  font-family: @helveticaNeue;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  font-size: 16px;
+}
+
+.small-text {
+  font-size: 14px;
 }
 
 html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: @helveticaNeue;
+  background-color: @color-bg-light;
 }
 
 a {

@@ -1,12 +1,51 @@
 <div class="header">
-  <h1>Angular Router App</h1>
+  <div mat-button class="home">
+    <span class="material-icons-outlined">image</span>
+    <h1>JTR 2.0</h1>
+  </div>
   <nav>
-    <ul>
-      <li><a routerLink="/tournament-details" routerLinkActive="active" ariaCurrentWhenActive="page">Turnier Details</a></li>
-      <li><a routerLink="/tournaments-overview" routerLinkActive="active" ariaCurrentWhenActive="page">Alle Turniere</a></li>
-    </ul>
+    <a
+      routerLink="/tournaments-overview"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >
+      {{ 'tournaments' | translate }}
+      <span class="material-icons-outlined">keyboard_arrow_down</span>
+    </a>
+    <a
+      routerLink="/teams-overview"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >
+      Teams
+      <span class="material-icons-outlined">keyboard_arrow_down</span>
+    </a>
   </nav>
+  <div class="account">
+    <app-button [type]="ButtonTypeEnum.Flat" [color]="ButtonColorEnum.White" (click)="switchLanguage('en')">
+      <p class="color-blue">Englisch</p>
+    </app-button>
+    <app-button [type]="ButtonTypeEnum.Flat" [color]="ButtonColorEnum.White" (click)="switchLanguage('de')">
+      <p class="color-blue">Deutsch</p>
+    </app-button>
+    @if (isLoggedIn) {
+      <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon">
+        <span class="material-icons-outlined">account_circle</span>
+      </app-button>
+    } @else {
+      <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Basic" (click)="login.toggle($event)">
+        <p class="color-blue">Login</p>
+      </app-button>
+    }
+    <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon">
+      <span class="material-icons-outlined">menu</span>
+    </app-button>
+  </div>
 </div>
 <div class="content">
-  <router-outlet/>
+  <router-outlet />
 </div>
+
+<p-overlayPanel #login>
+  <login-overlay />
+</p-overlayPanel>

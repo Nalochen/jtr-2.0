@@ -1,0 +1,11 @@
+<div class="header">
+  <h1>{{ 'tournaments' | translate }}</h1>
+</div>
+
+<div class="tournaments">
+  @for (tournament of tournaments$ | async; track tournament) {
+    <tournament-row
+      [tournament]="tournament"
+    />
+  }
+</div>

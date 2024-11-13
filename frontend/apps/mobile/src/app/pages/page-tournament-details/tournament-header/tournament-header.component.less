@@ -1,0 +1,55 @@
+@import 'colors-mobile';
+
+:host {
+  display: grid;
+  padding: 4px 16px;
+  grid-template-areas: "logo information"
+"logo name"
+"progress progress";
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: auto;
+  grid-column-gap: 8px;
+  grid-row-gap: 8px;
+}
+
+.tournament-information {
+  grid-area: information;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.event-information {
+  display: flex;
+  flex-direction: row;
+}
+
+.date {
+  margin-right: 5px !important;
+}
+
+p {
+  color: @color-red;
+}
+
+img {
+  grid-area: logo;
+  height: 50px;
+  width: 50px;
+}
+
+h1 {
+  grid-area: name;
+  margin: 0;
+  line-height: 1;
+}
+
+mat-progress-bar {
+  grid-area: progress;
+  height: 8px;
+  --mdc-linear-progress-active-indicator-color: @color-bg-light;
+  --mdc-linear-progress-active-indicator-height: 8px !important;
+  --mdc-linear-progress-track-color: @color-bg-white;
+  --mdc-linear-progress-track-height: 8px !important;
+  border-radius: 5px !important;
+}

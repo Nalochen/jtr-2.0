@@ -1,12 +1,12 @@
 import json
 from typing import Optional, List, Text, Dict, Any
-from sqlalchemy import func, Integer, Column, String, DateTime, Boolean, Null
+from sqlalchemy import func, Integer, Column, String, DateTime, Boolean, Float
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
 from DataDomain.Database.Model.BaseModel import BaseModel
-from DataDomain.Database.Model.RelationTournamentTeam import participates_in
-from DataDomain.Database.Model.RelationUserTeam import is_part_of
+from DataDomain.Database.Model.ParticipatesIn import participates_in
+from DataDomain.Database.Model.IsPartOf import is_part_of
 from DataDomain.Database.db import db
 
 
@@ -34,6 +34,11 @@ class Teams(BaseModel, db.Model):
         nullable=True
     )
 
+    points: Column[Float] = db.Column(
+        db.Float,
+        server_default='0'
+    )
+
     city: Column[Optional[String]] = db.Column(
         db.String(100),
         nullable=True
@@ -44,14 +49,19 @@ class Teams(BaseModel, db.Model):
         nullable=True
     )
 
+    training_time_updated_at: Column[Optional[DateTime]] = db.Column(
+        db.DateTime,
+        nullable=True
+    )
+
     about_us: Column[Optional[String]] = db.Column(
         db.String(100),
         nullable=True,
     )
 
-    contacts: Column[Optional[Text]] = db.Column(
+    contacts: Column[Text] = db.Column(
         db.Text(),
-        nullable=True,
+        nullable=False,
         default='[]',
         doc='["string"]'
     )
@@ -61,42 +71,38 @@ class Teams(BaseModel, db.Model):
         nullable=True
     )
 
-    last_tournament_played: Column[Optional[DateTime]] = db.Column(
-        db.DateTime,
-        nullable=True
-    )
-
-    last_tournament_organized: Column[Optional[DateTime]] = db.Column(
-        db.DateTime,
-        nullable=True
+    is_deleted: Column[Boolean] = db.Column(
+        db.Boolean,
+        nullable=False,
+        server_default='0'
     )
 
     created_at: Column[DateTime] = db.Column(
         db.DateTime,
-        default=func.now()
+        server_default=func.now()
     )
 
     updated_at: Column[DateTime] = db.Column(
         db.DateTime,
-        default=func.now(),
+        server_default=func.now(),
         onupdate=func.now()
     )
 
     team_members: Mapped[List['Users']] = db. relationship(
         'Users',
         secondary=is_part_of,
-        backref='teams_backref'
+        back_populates='teams'
     )
 
     tournaments: Mapped[List['Tournaments']] = db.relationship(
         'Tournaments',
         secondary=participates_in,
-        backref='teams_backref'
+        back_populates='teams'
     )
 
     organized_tournaments: Mapped[List['Tournaments']] = db.relationship(
         'Tournaments',
-        backref='organizer_team'
+        back_populates='organizer'
     )
 
     def serialize(self) -> Dict[str, Any]:
@@ -108,8 +114,12 @@ class Teams(BaseModel, db.Model):
 
         serialized['contacts'] = self.getContacts
 
-        serialized['created_at'] = serialized.pop('created_at').isoformat()
-        serialized['updated_at'] = serialized.pop('updated_at').isoformat()
+        if serialized.get('trainingTimeUpdatedAt'):
+            serialized['trainingTimeUpdatedAt'] = serialized.pop(
+                'trainingTimeUpdatedAt').isoformat()
+        serialized['founded'] = serialized.pop('founded').isoformat()
+        serialized['createdAt'] = serialized.pop('createdAt').isoformat()
+        serialized['updatedAt'] = serialized.pop('updatedAt').isoformat()
 
         return serialized
 
@@ -119,4 +129,4 @@ class Teams(BaseModel, db.Model):
         Parses the JSON string from the database and returns the changes as a dictionary.
         """
 
-        return json.loads(self.contacts)
+        return json.loads(str(self.contacts))

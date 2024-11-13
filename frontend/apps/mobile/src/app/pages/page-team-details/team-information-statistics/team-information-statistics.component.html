@@ -1,0 +1,11 @@
+<app-data-container>
+  <app-data-container-row>
+    <p ngProjectAs="container-headline">zuletzt an einem Turnier teilgenommen:</p>
+    <p ngProjectAs="container-content">{{ team.lastTournamentPlayed | date }}</p>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <p ngProjectAs="container-headline">zuletzt ein Turnier organisiert:</p>
+    <p ngProjectAs="container-content">{{ team.lastTournamentOrganized | date }}</p>
+  </app-data-container-row>
+</app-data-container>

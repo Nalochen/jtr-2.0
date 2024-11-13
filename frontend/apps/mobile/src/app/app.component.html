@@ -1,1 +1,18 @@
-<router-outlet />
+<div class="header">
+  <button mat-icon-button="home">
+    <span class="material-icons-outlined">image</span>
+  </button>
+  <nav>
+    <button mat-icon-button="search" class="search">
+      <span class="material-icons-outlined">search</span>
+    </button>
+    <button mat-icon-button (click)="openOverlay()">
+      <span class="material-icons-outlined">menu</span>
+    </button>
+  </nav>
+</div>
+<div class="content">
+  <router-outlet/>
+</div>
+
+<app-overlay-menu #overlay (close)="closeOverlay()" />

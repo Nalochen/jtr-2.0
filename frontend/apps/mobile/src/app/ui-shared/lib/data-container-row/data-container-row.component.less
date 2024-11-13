@@ -1,0 +1,42 @@
+:host {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  column-gap: 8px;
+  grid-template-rows: auto;
+  grid-template-areas: "icon headline"
+                        ". content";
+  align-items: center;
+  width: 100%;
+  &:not(:last-of-type) {
+    margin-bottom: 8px;
+  }
+
+  &:not(:first-of-type) {
+    margin-top: 8px;
+  }
+}
+
+.icon {
+  grid-area: icon;
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+  grid-area: headline;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.content {
+  grid-area: content;
+}
+
+.headline {
+  width: 100%;
+}
+
+span {
+  font-size: 20px;
+}

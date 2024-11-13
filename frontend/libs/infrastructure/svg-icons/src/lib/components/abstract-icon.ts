@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
-import { AspectRatioService } from '../services/aspect-ratio.service';
 import { Color, colorMap } from '../models/color.model';
+import { AspectRatioService } from '../services/aspect-ratio.service';
 
 const symbols = /[\r\n%#()<>?[\\\]^`{|}]/g;
 const defaultColor = '#b4b4b4';
@@ -18,7 +18,7 @@ const defaultColor = '#b4b4b4';
 export abstract class AbstractIconComponent implements OnInit, OnChanges {
   @Input() public color: Color | undefined | null;
 
-  protected rawIcon: string = '';
+  protected rawIcon = '';
   protected defaultColor: Color = defaultColor;
 
   @HostBinding('class.svg-icon')
@@ -30,7 +30,7 @@ export abstract class AbstractIconComponent implements OnInit, OnChanges {
   @HostBinding('style.background-image')
   private background: SafeStyle = '';
 
-  private initialized: boolean = false;
+  private initialized = false;
 
   constructor(
     private readonly sanitizer: DomSanitizer,
@@ -46,6 +46,7 @@ export abstract class AbstractIconComponent implements OnInit, OnChanges {
     this.initialized = true;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public ngOnChanges(changes: SimpleChanges): void {
     if (this.initialized) {
       this.setVariables();
@@ -91,17 +92,17 @@ export abstract class AbstractIconComponent implements OnInit, OnChanges {
   }
 
   public encodeSVG(data: string): string {
-    data = data.replace(/"/g, `'`);
+    data = data.replace(/"/g, '\'');
 
-    data = data.replace(/>\s{1,}</g, `><`);
-    data = data.replace(/\s{2,}/g, ` `);
+    data = data.replace(/>\s{1,}</g, '><');
+    data = data.replace(/\s{2,}/g, ' ');
 
     return data.replace(symbols, encodeURIComponent);
   }
 
   private addNameSpace(data: string): string {
-    if (data.indexOf(`http://www.w3.org/2000/svg`) < 0) {
-      data = data.replace(/<svg/g, `<svg xmlns="http://www.w3.org/2000/svg"`);
+    if (data.indexOf('http://www.w3.org/2000/svg') < 0) {
+      data = data.replace(/<svg/g, '<svg xmlns="http://www.w3.org/2000/svg"');
     }
 
     return data;
@@ -109,7 +110,7 @@ export abstract class AbstractIconComponent implements OnInit, OnChanges {
 
   private getHexForColorName(colorName: string): string | null {
     colorName = colorName.replace(/_/gi, '-');
-    // @ts-ignore
+    // @ts-expect-error colorMap is abstract
     const hexValue = colorMap[colorName];
 
     if (hexValue !== undefined) {

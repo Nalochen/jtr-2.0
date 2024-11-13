@@ -1,0 +1,70 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+const LOGIN_ENDPOINT = '/login';
+const REGISTER_ENDPOINT = '/register';
+
+export interface LoginRequestBody {
+  username: string | null;
+  email: string | null;
+  password: string;
+}
+
+export interface RegisterRequestBody {
+  birthday: string | null;
+  email: string | null;
+  name: string | null;
+  password: string;
+  picture: string | null;
+  username: string;
+}
+
+export interface AuthResponse {
+  token: string;
+}
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  constructor(private readonly http: HttpClient) {}
+
+  public login(body: LoginRequestBody): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(LOGIN_ENDPOINT, body).pipe(
+      tap((response: AuthResponse) => {
+        if (response.token) {
+          this.setSession(response.token);
+        }
+      })
+    );
+  }
+
+  public register(body: RegisterRequestBody): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(REGISTER_ENDPOINT, body).pipe(
+      tap((response: AuthResponse) => {
+        if (response.token) {
+          this.setSession(response.token);
+        }
+      })
+    );
+  }
+
+  private setSession(token: string): void {
+    localStorage.setItem('jwt', token);
+  }
+
+  public logout(): void {
+    localStorage.removeItem('jwt');
+  }
+
+  public getToken(): string | null {
+    return localStorage.getItem('jwt');
+  }
+
+  public isAuthenticated(): boolean {
+    return !!this.getToken();
+  }
+}

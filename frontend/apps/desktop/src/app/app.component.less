@@ -8,8 +8,67 @@
 
 .header {
   width: 100%;
+  border-bottom: 1px solid @color-blue;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 24px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  margin-bottom: 48px;
 }
 
 .content {
   width: 80%;
+}
+
+.material-icons-outlined {
+  font-size: 32px;
+  color: @color-blue;
+}
+
+h1 {
+  color: @color-blue;
+  font-size: 32px;
+  margin-left: 20px;
+  margin-bottom: -12px;
+}
+
+.home {
+  display: flex;
+  flex-direction: row;
+}
+
+a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &:not(:last-of-type) {
+    margin-right: 24px;
+  }
+}
+
+.account {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.color-blue {
+  color: @color-blue;
+  font-weight: bold;
+}
+
+app-button {
+  &:not(:last-of-type) {
+    margin-right: 8px;
+  }
 }

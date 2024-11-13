@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import YAML from 'yaml';
@@ -26,7 +27,6 @@ export class SwaggerViewComponent implements OnInit {
     this.http
       .get('/api/system/get-swagger-file', { responseType: 'text' })
       .subscribe((yamlData: string) => {
-        console.log(YAML.parse(yamlData));
         SwaggerUIBundle({
           dom_id: '#swagger-ui',
           layout: 'BaseLayout',

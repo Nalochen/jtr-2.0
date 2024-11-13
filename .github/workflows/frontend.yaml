@@ -1,0 +1,49 @@
+name: frontend
+
+on: [push]
+
+permissions:
+  actions: read
+  contents: read
+  packages: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull frontend-test image from GHCR
+        run: docker pull ghcr.io/leandercs/jtr-frontend-test:latest-amd64
+
+      - name: Run tests
+        run: |
+          set -x # Print commands and their arguments as they are executed.
+          set -e # Exit immediately if a command exits with a non-zero status.
+          set -u # Exit immediately if a variable is not defined.
+
+          docker run --rm \
+            -v $(pwd)/frontend:/app \
+            ghcr.io/leandercs/jtr-frontend-test:latest-amd64 \
+            /bin/bash -c "npm install && nx run-many --target=test --all --base=origin/main"
+
+  code-style:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull frontend-test image from GHCR
+        run: docker pull ghcr.io/leandercs/jtr-frontend-test:latest-amd64
+
+      - name: Run code style checks on all projects
+        run: |
+          set -x # Print commands and their arguments as they are executed.
+          set -e # Exit immediately if a command exits with a non-zero status.
+          set -u # Exit immediately if a variable is not defined.
+
+          docker run --rm \
+            -v $(pwd)/frontend:/app \
+            ghcr.io/leandercs/jtr-frontend-test:latest-amd64 \
+            /bin/bash -c "npm install && nx run-many --target=lint --all --base=origin/main"

@@ -4,9 +4,9 @@ from celery import Celery
 
 
 cache = Cache()
-redis = Redis(host='redis', port=6379, db=0)
+redis = Redis(host='localhost', port=6379, db=0)
 
 celery = Celery(
     host='worker',
-    broker='amqp://admin:mypass@rabbitmq:5672',
+    broker='amqp://admin:mypass@localhost:5672',
     backend='rpc://')

@@ -6,5 +6,5 @@ import { Directive, HostBinding, Input } from '@angular/core';
 export class TransitionAnimationDirective {
   @Input()
   @HostBinding('class.svg-icon-transition-animation')
-  private SvgIconTransitionAnimation: boolean = false;
+  private SvgIconTransitionAnimation = false;
 }

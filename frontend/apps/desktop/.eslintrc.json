@@ -1,0 +1,5 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*", "node_modules/*"],
+  "overrides": []
+}

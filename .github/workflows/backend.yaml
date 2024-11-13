@@ -1,0 +1,49 @@
+name: backend
+
+on: [push]
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull backend image from GHCR
+        run: docker pull ghcr.io/leandercs/jtr-backend:latest-amd64
+
+      - name: Run tests
+        run: |
+          set -x # Print commands and their arguments as they are executed.
+          set -e # Exit immediately if a command exits with a non-zero status.
+          set -u # Exit immediately if a variable is not defined.
+
+          docker run --rm \
+            -v $(pwd)/backend:/app \
+            ghcr.io/leandercs/jtr-backend:latest-amd64 pytest
+
+  code-style:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      - name: Install autopep8
+        run: pip install autopep8
+
+      - name: Run code style checks
+        run: |
+          set -x # Print commands and their arguments as they are executed.
+          set -e # Exit immediately if a command exits with a non-zero status.
+          set -u # Exit immediately if a variable is not defined.
+
+          find ./backend -name '*.py' | xargs -I {} autopep8 --diff --exit-code {}
