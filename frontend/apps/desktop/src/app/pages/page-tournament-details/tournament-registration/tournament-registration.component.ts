@@ -1,7 +1,7 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {Component, Input} from '@angular/core';
 
-import { ButtonComponent, ButtonColorEnum, ButtonTypeEnum } from '../../../ui-shared';
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../../ui-shared';
 
 @Component({
   selector: 'tournament-registration',

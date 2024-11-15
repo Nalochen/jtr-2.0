@@ -1,14 +1,14 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-
-
-import { DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+
+import { Subject, takeUntil } from 'rxjs';
+
 import {
   EditTeamForm
 } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'team-about-us',

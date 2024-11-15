@@ -1,5 +1,6 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { TeamUserData, UserRole } from '@jtr/data-domain/store';
+
+import { UserRole } from '@jtr/data-domain/store';
 
 export const editTeamForm = new FormGroup<EditTeamForm>({
   aboutUs: new FormControl(null),

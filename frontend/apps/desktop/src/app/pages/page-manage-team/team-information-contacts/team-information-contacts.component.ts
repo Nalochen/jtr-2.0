@@ -1,13 +1,14 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
-
-import { ButtonComponent, DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
+import { Subject, takeUntil } from 'rxjs';
+
 import {
   EditTeamForm
 } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { ButtonComponent, DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
 import { InputTextModule } from 'primeng/inputtext';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'team-contacts',
@@ -17,7 +18,7 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrl: './team-information-contacts.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamInformationContactsComponent {
+export class TeamInformationContactsComponent implements OnInit {
   @Input() public form!: FormGroup<EditTeamForm>;
   private readonly destroy$ = new Subject<void>();
 

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { loadTeamDetailsData, loadTeamOverviewData } from '@jtr/business-domain/team';
+import { loadTeamDetailsData } from '@jtr/business-domain/team';
 
 @Injectable({
   providedIn: 'root',

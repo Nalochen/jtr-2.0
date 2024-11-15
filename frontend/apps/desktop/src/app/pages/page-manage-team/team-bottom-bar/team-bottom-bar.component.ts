@@ -1,10 +1,11 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {Component, Input} from '@angular/core';
 import { FormGroup } from '@angular/forms';
+
 import {
   EditTeamForm
 } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
-import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../../ui-shared';
+import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum } from '../../../ui-shared';
 
 @Component({
   selector: 'team-bottom-bar',
@@ -23,9 +24,6 @@ export class TeamBottomBarComponent {
   }
 
   public onSaveTeam() {
-    window.alert('Save team');
-
-    console.log('here');
-    console.log(this.form.value);
+   window.alert(this.form.value);
   }
 }

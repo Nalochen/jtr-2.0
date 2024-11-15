@@ -1,14 +1,15 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+
+import { Subject, takeUntil } from 'rxjs';
+
 import {
   EditTeamForm
 } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum } from '../../../ui-shared';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
-import { Subject, takeUntil } from 'rxjs';
-import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../../ui-shared';
 
 @Component({
   selector: 'team-header',

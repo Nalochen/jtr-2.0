@@ -2,21 +2,21 @@
   <div class="image-container">
     <img id="logo" alt="Logo of {{ form.controls.name.value }}" src="{{ form.controls.logo.value }}">
     <app-button (click)="onChangeLogo()" [color]="ButtonColorEnum.White" [type]="ButtonTypeEnum.Round">
-      <span class="material-icons-outlined">delete</span>
+      <span class="material-icons-outlined">edit</span>
     </app-button>
   </div>
 
   <div class="team-information">
     <div class="meta-data">
       @if (!form.controls.isMixTeam.value) {
-      <label for="city" id="cityLabel">Stadt</label>
-      <input pInputText type="text" formControlName="city" value="{{ form.controls.city.value }}" id="city">
+        <label for="city" id="cityLabel">Stadt</label>
+        <input pInputText type="text" formControlName="city" value="{{ form.controls.city.value }}" id="city">
       } @else {
-      <h3 class="city">Mixteam</h3>
+        <h3 class="city">Mixteam</h3>
       }
       <div class="switch">
         <h3 class="mixteam">Mixteam?</h3>
-        <p-inputSwitch formControlName="isMixTeam"></p-inputSwitch>
+        <p-inputSwitch formControlName="isMixTeam" />
       </div>
     </div>
 

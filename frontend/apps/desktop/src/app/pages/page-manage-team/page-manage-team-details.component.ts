@@ -1,20 +1,21 @@
 import {CommonModule} from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable, Subject, takeUntil } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
+import { teamDetailsSelector } from '@jtr/business-domain/team';
 import { TeamData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
+
+import { editTeamForm } from '../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { InfoButtonComponent } from '../../ui-shared';
+import { TeamBottomBarComponent } from './team-bottom-bar/team-bottom-bar.component';
 import { TeamHeaderComponent } from './team-header/team-header.component';
 import { TeamInformationComponent } from './team-information/team-information.component';
 import { TeamMembersComponent } from './team-members/team-members.component';
-import { teamDetailsSelector } from '@jtr/business-domain/team';
-import { editTeamForm } from '../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
-import { InfoButtonComponent } from '../../ui-shared';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { TeamBottomBarComponent } from './team-bottom-bar/team-bottom-bar.component';
 
 @Component({
   standalone: true,

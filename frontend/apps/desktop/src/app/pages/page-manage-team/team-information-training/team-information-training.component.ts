@@ -1,15 +1,16 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatDividerModule } from '@angular/material/divider';
 
-import { DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
+
 import {
   EditTeamForm
 } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'team-training',
@@ -19,7 +20,7 @@ import { Subject, takeUntil } from 'rxjs';
   styleUrl: './team-information-training.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamInformationTrainingComponent {
+export class TeamInformationTrainingComponent implements OnInit {
   @Input() public form!: FormGroup<EditTeamForm>;
   private readonly destroy$ = new Subject<void>();
 
