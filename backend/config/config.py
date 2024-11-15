@@ -21,7 +21,7 @@ class Config(object):
         app.config['SECRET_KEY'] = 'secret key'
 
         app.config['CACHE_TYPE'] = 'redis'
-        app.config['CACHE_REDIS_HOST'] = 'redis'
+        app.config['CACHE_REDIS_HOST'] = 'localhost'
         app.config['CACHE_REDIS_PORT'] = 6379
         app.config['CACHE_REDIS_DB'] = 0
         app.config['CACHE_DEFAULT_TIMEOUT'] = 300
