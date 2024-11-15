@@ -1,21 +1,21 @@
 :host {
   padding-bottom: 50px;
+  display: grid;
+  grid-template-columns: 1fr 35%;
+  grid-gap: 48px;
+  grid-template-areas: "header header" "content registration";
 }
 
-.content {
-  display: flex;
-  flex-direction: row;
-  gap: 48px;
+tournament-header {
+  grid-area: header;
+}
+
+tournament-information {
+  grid-area: content;
 }
 
 .registration {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
-  width: 40%;
   gap: 48px;
-}
-
-tournament-details-header {
-  margin-bottom: 48px;
 }

@@ -1,7 +1,7 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {Component, Input} from '@angular/core';
 
-import { ButtonComponent } from '../../../ui-shared';
+import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -13,4 +13,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class TournamentRegistrationComponent {
     @Input() public registrationOpenAt!: string;
+
+    protected readonly ButtonTypeEnum = ButtonTypeEnum;
+    protected readonly ButtonColorEnum = ButtonColorEnum;
 }

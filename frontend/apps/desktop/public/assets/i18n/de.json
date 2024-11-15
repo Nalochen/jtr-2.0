@@ -27,6 +27,13 @@
     "registration-open": "Anmeldung geöffnet ab",
     "register-team": "Team anmelden",
     "registered": "angemeldet",
-    "waiting": "vorgemerkt"
+    "waiting": "vorgemerkt",
+    "shoes-information-nubbed-header": "Noppenschuhe",
+    "shoes-information-nubbed": "zeichnen sich durch eine Sohle mit zahlreichen kleinen, flachen Noppen aus, die gleichmäßig über die gesamte Fläche verteilt sind. Sie haben ein eher unauffälliges Profil und wirken durch die vielen kleinen Erhebungen strukturierter, ohne dass die Noppen besonders weit aus der Sohle herausragen.",
+    "shoes-information-cleaded-header": "Nockenschuhe",
+    "shoes-information-cleaded": "haben eine Sohle mit runden oder konischen Nocken, die im Vergleich zu Noppen größer und weniger zahlreich sind. Sie sind gleichmäßig verteilt und ragen mehr hervor, wirken dabei jedoch kompakter als die längeren Stollen bei Stollenschuhen.",
+    "shoes-information-studded-header": "Stollenschuhe",
+    "shoes-information-studded": "besitzen hingegen längere, hervorstehende Stollen, die entweder fest integriert oder austauschbar sein können. Diese Stollen sind oft in verschiedenen Formen – wie konisch oder scharfkantig – gestaltet und sind klar voneinander getrennt, um eine markante Optik zu erzeugen.",
+    "shoes-information-barefoot-header": "Barfuß"
   }
 }

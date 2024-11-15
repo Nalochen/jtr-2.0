@@ -7,14 +7,18 @@ import {TournamentData} from '@jtr/data-domain/store';
 
 import {DataContainerComponent, DataContainerRowComponent, InfoButtonComponent} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @Component({
   selector: 'tournament-information-rules',
   standalone: true,
-  imports: [CommonModule, DataContainerComponent, DataContainerRowComponent, InfoButtonComponent, MatDividerModule, TranslatePipe],
+  imports: [CommonModule, DataContainerComponent, DataContainerRowComponent, InfoButtonComponent, MatDividerModule, TranslatePipe, InputSwitchModule],
   templateUrl: './tournament-information-rules.component.html',
   styleUrl: './tournament-information-rules.component.less',
 })
 export class TournamentInformationRulesComponent {
     @Input() public tournament!: TournamentData;
+    protected form = {
+
+    }
 }

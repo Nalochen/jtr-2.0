@@ -31,9 +31,32 @@
     <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.shoes' | translate }}</h4>
 
     <app-info-button ngProjectAs="container-additional" position="left">
-      <p>Schuhwerk Infotext</p>
+      <p><b>{{ 'page-tournament-details.shoes-information-nubbed-header' | translate }}</b> {{ 'page-tournament-details.shoes-information-nubbed' | translate }}</p>
+      <br>
+      <p><b>{{ 'page-tournament-details.shoes-information-cleaded-header' | translate }}</b> {{ 'page-tournament-details.shoes-information-cleaded' | translate }}</p>
+      <br>
+      <p><b>{{ 'page-tournament-details.shoes-information-studded-header' | translate }}</b>{{ 'page-tournament-details.shoes-information-studded' | translate }}</p>
     </app-info-button>
 
-    <p ngProjectAs="container-content">{{ tournament.shoes.text }}</p>
+    <div ngProjectAs="container-content">
+      <div class="nubbed">
+        <p>{{ 'page-tournament-details.shoes-information-nubbed-header' | translate }}</p>
+        <p-inputSwitch [(ngModel)]="tournament.shoes.camAllowed" [disabled]="true" />
+      </div>
+      <div class="cleaded">
+        <p>{{ 'page-tournament-details.shoes-information-cleaded-header' | translate }}</p>
+        <p-inputSwitch [disabled]="true" />
+      </div>
+      <div class="studded">
+        <p>{{ 'page-tournament-details.shoes-information-studded-header' | translate }}</p>
+        <p-inputSwitch [disabled]="true" />
+      </div>
+      <div class="barefoot">
+        <p>{{ 'page-tournament-details.shoes-information-barefoot-header' | translate }}</p>
+        <p-inputSwitch [disabled]="true" />
+      </div>
+
+      <p>{{ tournament.shoes.text }}</p>
+    </div>
   </app-data-container-row>
 </app-data-container>

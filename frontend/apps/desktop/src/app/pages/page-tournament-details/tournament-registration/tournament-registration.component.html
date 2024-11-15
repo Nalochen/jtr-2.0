@@ -1,2 +1,2 @@
 <p>{{ 'page-tournament-details.registration-open' | translate }}: {{ registrationOpenAt | date:"dd.MM" }}</p>
-<app-button>{{ 'page-tournament-details.register-team' | translate }}</app-button>
+<app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" >{{ 'page-tournament-details.register-team' | translate }}</app-button>
