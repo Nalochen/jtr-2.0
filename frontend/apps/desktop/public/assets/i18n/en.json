@@ -1,5 +1,32 @@
 {
   "tournament-details": "Tournament Details",
   "tournaments": "Tournaments",
-  "participated-tournaments": "Participated Tournaments"
+  "participated-tournaments": "Participated Tournaments",
+  "page-tournament-details": {
+    "costs": "Costs",
+    "per-person": "per Person",
+    "per-team": "per Team",
+    "registration-procedure": "Registration Procedure",
+    "deadlines": "Deadlines",
+    "awareness-team": "Awareness Team",
+    "organizer": "Organizer",
+    "address": "Address",
+    "arrival": "Arrival",
+    "schedule": "Schedule",
+    "accommodation": "Accommodation",
+    "food": "Food",
+    "breakfast": "Breakfast",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "gastronomy": "Gastronomy",
+    "pompf-check": "Pompf Check",
+    "tournament-system": "Tournament System",
+    "house-rules": "House Rules",
+    "shoes": "Shoes",
+    "additional-information": "Additional Information",
+    "registration-open": "Registration open from",
+    "register-team": "Register Team",
+    "registered": "registered",
+    "waiting": "waiting"
+  }
 }

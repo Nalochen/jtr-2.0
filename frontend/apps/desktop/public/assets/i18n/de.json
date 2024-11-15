@@ -1,5 +1,32 @@
 {
   "tournament-details": "Turnier Details",
   "tournaments": "Turniere",
-  "participated-tournaments": "Teilgenommene Turniere"
+  "participated-tournaments": "Teilgenommene Turniere",
+  "page-tournament-details": {
+    "costs": "Kosten",
+    "per-person": "pro Person",
+    "per-team": "pro Team",
+    "registration-procedure": "Anmeldeverfahren",
+    "deadlines": "Deadlines",
+    "awareness-team": "Awarenessteam",
+    "organizer": "Organisation",
+    "address": "Adresse",
+    "arrival": "Anreise",
+    "schedule": "Zeitplan",
+    "accommodation": "Unterkunft",
+    "food": "Verpflegung",
+    "breakfast": "Frühstück",
+    "lunch": "Mittagessen",
+    "dinner": "Abendessen",
+    "gastronomy": "Gastronomie",
+    "pompf-check": "Pompfencheck",
+    "tournament-system": "Turniersystem",
+    "house-rules": "Hausregeln",
+    "shoes": "Schuhwerk",
+    "additional-information": "Zusätzliche Informationen",
+    "registration-open": "Anmeldung geöffnet ab",
+    "register-team": "Team anmelden",
+    "registered": "angemeldet",
+    "waiting": "vorgemerkt"
+  }
 }

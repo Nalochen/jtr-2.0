@@ -1,7 +1,7 @@
 <app-data-container>
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h4 ngProjectAs="container-headline">Pompfencheck</h4>
+    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.pompf-check' | translate }}</h4>
     <a ngProjectAs="container-additional" href="{{ tournament.pompfCheck.url }}" target="_blank">Link</a>
     <p ngProjectAs="container-content">{{ tournament.pompfCheck.text }}</p>
   </app-data-container-row>
@@ -10,7 +10,7 @@
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h4 ngProjectAs="container-headline">Turniersystem</h4>
+    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.tournament-system' | translate }}</h4>
     <a ngProjectAs="container-additional" href="{{ tournament.tournamentSystem.url }}" target="_blank">{{ tournament.tournamentSystem.type }}</a>
     <p ngProjectAs="container-content">{{ tournament.tournamentSystem.text }}</p>
   </app-data-container-row>
@@ -19,7 +19,7 @@
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h4 ngProjectAs="container-headline">Hausregeln</h4>
+    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.house-rules' | translate }}</h4>
     <a ngProjectAs="container-additional" href="{{ tournament.houseRules.url }}" target="_blank">Link</a>
     <p ngProjectAs="container-content">{{ tournament.houseRules.text }}</p>
   </app-data-container-row>
@@ -28,7 +28,7 @@
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h4 ngProjectAs="container-headline">Schuhwerk</h4>
+    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.shoes' | translate }}</h4>
 
     <app-info-button ngProjectAs="container-additional" position="left">
       <p>Schuhwerk Infotext</p>
