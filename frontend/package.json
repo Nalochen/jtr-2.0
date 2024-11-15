@@ -15,11 +15,13 @@
     "test": "nx run-many --all --target=test --parallel=true --maxParallel=4 --watch=false",
     "test:desktop": "nx run desktop:test",
     "test:mobile": "nx run mobile:test",
+    "test-changed": "nx run-many --target=test --all --base=origin/main --parallel=true --maxParallel=4 --watch=false",
     "e2e": "ng e2e",
     "lint": "nx run-many --all --target=lint --parallel=true --maxParallel=4",
     "lint-fix:desktop": "nx lint desktop --format stylish --fix",
     "lint-fix:mobile": "nx lint mobile --format stylish --fix",
     "lint-fix:all": "nx run-many --all --target=lint --fix --parallel=true --maxParallel=4",
+    "lint-changed": "nx run-many --target=lint --all --base=origin/main --parallel=true --maxParallel=4",
     "format": "nx format:write",
     "format:write": "nx format:write",
     "format:check": "nx format:check"

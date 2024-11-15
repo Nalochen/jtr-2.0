@@ -13,8 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pull backend image from GHCR
-        run: docker pull ghcr.io/leandercs/jtr-backend:latest-amd64
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
 
       - name: Run tests
         run: |
@@ -22,9 +27,7 @@ jobs:
           set -e # Exit immediately if a command exits with a non-zero status.
           set -u # Exit immediately if a variable is not defined.
 
-          docker run --rm \
-            -v $(pwd)/backend:/app \
-            ghcr.io/leandercs/jtr-backend:latest-amd64 pytest
+          PYTHONPATH=backend pytest
 
   code-style:
     runs-on: ubuntu-latest
