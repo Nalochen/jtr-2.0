@@ -37,7 +37,7 @@ components:
           type: string
         password:
           type: string
-        birthday:
+        birthdate:
           type: string
           format: date
         email:
