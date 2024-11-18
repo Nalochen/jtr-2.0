@@ -1,16 +1,9 @@
-<team-training
-  [team]="team"
-  />
+<team-training [team]="team" />
 
-<team-contacts
-  [team]="team"
-/>
+<team-contacts [team]="team" />
 
-<team-statistics
-  [team]="team"
-/>
+<team-statistics [team]="team" />
 
-<team-about-us
-  *ngIf="team.aboutUs"
-  [team]="team"
-/>
+@if (team.aboutUs) {
+<team-about-us [team]="team" />
+}
