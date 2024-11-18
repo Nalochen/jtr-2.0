@@ -15,14 +15,14 @@ class UserRepository:
     @staticmethod
     def create(user: Users) -> int:
         try:
-            existingUsername = Users.query.select(
+            existingUsername = Users.query.filter(
                 Users.username == user.username
             ).count()
 
             if existingUsername:
                 raise Exception('Username already in use.')
 
-            existingEmail = Users.query.select(
+            existingEmail = Users.query.filter(
                 Users.email == user.email
             ).count()
 

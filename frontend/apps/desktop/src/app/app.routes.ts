@@ -1,7 +1,11 @@
 import { Route } from '@angular/router';
 
-import { ManageTeamDetailsResolver,TeamDetailsResolver, TeamOverviewResolver} from '@jtr/business-domain/team';
-import { TournamentDetailsResolver, TournamentOverviewResolver } from '@jtr/business-domain/tournament';
+import { ManageTeamDetailsResolver,TeamDetailsResolver,
+  TeamOverviewResolver,
+} from '@jtr/business-domain/team';
+import {
+  TournamentDetailsResolver,
+  TournamentOverviewResolver,} from '@jtr/business-domain/tournament';
 import { UserDetailsResolver } from '@jtr/business-domain/user';
 
 import { PageManageTeamDetailsComponent } from './pages/page-manage-team/page-manage-team-details.component';
@@ -53,9 +57,6 @@ export const appRoutes: Route[] = [
   {
     path: 'register',
     component: PageRegisterComponent,
-    resolve: {
-      tournamentOverview: TournamentOverviewResolver,
-    },
   },
   {
     path: 'user-details/:userId?',

@@ -39,7 +39,7 @@ components:
     UpdateUserRequestBody:
       type: object
       properties:
-        birthday:
+        birthdate:
           type: string
           format: date
         city:

@@ -16,16 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pull backend image from GHCR
-        run: docker pull ghcr.io/leandercs/jtr-backend:latest-amd64
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      - name: Install dependencies
+        run: pip install -r backend/requirements.txt
 
       - name: Build coverage files
         run: |
-          docker run --rm \
-            -v $(pwd)/backend:/app \
-            -v /tmp:/tmp \
-            ghcr.io/leandercs/jtr-backend:latest-amd64 \
-            python3 -m pytest --junitxml=/tmp/pytest.xml --cov=/app | tee /tmp/pytest-coverage.txt
+          PYTHONPATH=backend pytest --junitxml=/tmp/pytest.xml --cov=backend --cov-config=backend/.coveragerc  | tee /tmp/pytest-coverage.txt
 
       - name: Upload backend coverage artifact
         uses: actions/upload-artifact@v4
@@ -63,17 +64,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pull frontend-test image from GHCR
-        run: docker pull ghcr.io/leandercs/jtr-frontend-test:latest-amd64
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install --prefix frontend
 
       - name: Build coverage files
         run: |
-          docker run --rm \
-            -v $(pwd)/frontend:/app \
-            -v /tmp:/tmp \
-            ghcr.io/leandercs/jtr-frontend-test:latest-amd64 \
-            /bin/bash -c "npm install && npx jest --reporters=default --reporters=jest-junit --coverage --no-cache | tee /tmp/jest-coverage.txt"
-
+          cd frontend
+          npx jest --reporters=default --reporters=jest-junit --coverage --no-cache | tee /tmp/jest-coverage.txt
     #- name: Build summary files
     #  run: docker run -v /tmp:/app/coverage frontend-test npx jest --coverage --coverageReporters json-summary --no-cache --verbose
 
