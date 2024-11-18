@@ -16,11 +16,9 @@ export class UserDetailsResolver implements Resolve<boolean> {
   public resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
     const userId = route.paramMap.get('userId');
 
-    if (userId) {
-      this.store.dispatch(
-        loadUserDetailsData({ userId: +userId })
-      );
-    }
+    this.store.dispatch(
+      loadUserDetailsData({ userId: userId ? +userId : undefined })
+    );
 
     return new Observable<boolean>((observer) => {
       observer.next(true);

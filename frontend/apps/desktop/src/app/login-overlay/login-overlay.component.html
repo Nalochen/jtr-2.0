@@ -1,18 +1,29 @@
 <h4>Login</h4>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
   <p>Noch kein Konto?</p>
-  <a href="example.com">Registrieren</a>
+  <a href="/register">Registrieren</a>
 
   <div class="email">
     <label for="emailOrUsername">E-Mail oder Benutzername</label>
-    <input type="text" class="form-control" [formControl]="form.controls.emailOrUsername" id="emailOrUsername">
+    <input
+      type="text"
+      class="form-control"
+      [formControl]="form.controls.emailOrUsername"
+      id="emailOrUsername"
+    />
   </div>
 
   <div class="password">
     <label for="password">Passwort</label>
-    <input type="password" class="form-control" [formControl]="form.controls.password" id="password">
+    <input
+      type="password"
+      class="form-control"
+      [formControl]="form.controls.password"
+      id="password"
+    />
   </div>
 
-  <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Flat">Login</app-button>
+  <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Flat"
+    >Login</app-button
+  >
 </form>

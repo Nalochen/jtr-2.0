@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-const LOGIN_ENDPOINT = '/login';
-const REGISTER_ENDPOINT = '/register';
+const LOGIN_ENDPOINT = '/api/customer-frontend/login';
+const REGISTER_ENDPOINT = '/api/customer-frontend/register';
 
 export interface AuthResponse {
   token: string;
@@ -18,23 +18,30 @@ export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
   public login(username: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(LOGIN_ENDPOINT, { username, password }).pipe(
-      tap((response: AuthResponse) => {
-        if (response.token) {
-          this.setSession(response.token);
-        }
-      })
-    );
+    return this.http
+      .post<AuthResponse>(LOGIN_ENDPOINT, { username, password })
+      .pipe(
+        tap((response: AuthResponse) => {
+          if (response.token) {
+            this.setSession(response.token);
+          }
+        })
+      );
   }
 
-  public register(username: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(REGISTER_ENDPOINT, { username, password }).pipe(
-      tap((response: AuthResponse) => {
-        if (response.token) {
-          this.setSession(response.token);
-        }
-      })
-    );
+  public register(
+    username: string,
+    password: string
+  ): Observable<AuthResponse> {
+    return this.http
+      .post<AuthResponse>(REGISTER_ENDPOINT, { username, password })
+      .pipe(
+        tap((response: AuthResponse) => {
+          if (response.token) {
+            this.setSession(response.token);
+          }
+        })
+      );
   }
 
   private setSession(token: string): void {

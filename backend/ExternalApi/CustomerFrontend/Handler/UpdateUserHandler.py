@@ -28,9 +28,9 @@ class UpdateUserHandler:
         if password is not None:
             user.password_hash = generate_password_hash(password)
 
-        birthday = data.get('birthday')
-        if birthday is not None:
-            user.birthday = datetime.fromisoformat(birthday)
+        birthdate = data.get('birthdate')
+        if birthdate is not None:
+            user.birthdate = datetime.fromisoformat(birthdate)
 
         city = data.get('city')
         if city is not None:
