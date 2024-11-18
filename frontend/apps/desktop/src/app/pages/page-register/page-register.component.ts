@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 
-import { registerForm } from '../../business-domain/register/register-form.control';
+import { registerForm } from '../../../../../../libs/business-domain/register/src/lib/form-controls/register-form.control';
 import {
   ButtonColorEnum,
   ButtonComponent,

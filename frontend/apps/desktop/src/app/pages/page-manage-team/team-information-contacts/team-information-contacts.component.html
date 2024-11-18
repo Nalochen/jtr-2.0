@@ -1,0 +1,21 @@
+<app-data-container [formGroup]="form">
+  <app-data-container-row>
+    <h4 ngProjectAs="container-headline">Kontakte</h4>
+  </app-data-container-row>
+  @for (contact of form.controls.contacts.value; track contact; let index = $index) {
+    <app-data-container-row>
+      <span class="material-icons-outlined" ngProjectAs="container-icon">contact_page</span>
+
+      <label for="contact">Contact</label>
+      <input pInputText ngProjectAs="container-headline" value="{{ contact }}" id="contact" />
+      <app-button (click)="onRemoveContact(index)" ngProjectAs="container-additional">
+        <span class="material-icons-outlined">delete</span>
+      </app-button>
+    </app-data-container-row>
+  }
+  <app-data-container-row>
+    <app-button (click)="onNewContact()" ngProjectAs="container-additional">
+      <span class="material-icons-outlined">add</span>
+    </app-button>
+  </app-data-container-row>
+</app-data-container>

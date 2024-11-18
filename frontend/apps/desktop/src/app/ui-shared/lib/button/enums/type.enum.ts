@@ -7,4 +7,5 @@ export enum ButtonTypeEnum {
   Icon = 'icon',
   Fab = 'fab',
   ExtendedFab = 'extendedFab',
+  Round = 'round',
 }

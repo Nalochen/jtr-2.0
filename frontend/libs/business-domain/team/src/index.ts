@@ -13,6 +13,7 @@ export * from './lib/store/reducers/team-overview-data.reducer';
 
 export * from './lib/store/resolvers/team-details.resolver';
 export * from './lib/store/resolvers/team-overview.resolver';
+export * from './lib/store/resolvers/manage-team-details.resolver';
 
 export * from './lib/store/selectors/team-details.selector';
 export * from './lib/store/selectors/team-overview.selector';
