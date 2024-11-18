@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable, Subject, takeUntil } from 'rxjs';
@@ -25,7 +25,7 @@ import { TeamMembersComponent } from './team-members/team-members.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class PageManageTeamDetailsComponent implements OnInit{
+export class PageManageTeamDetailsComponent implements OnInit, OnDestroy {
   public readonly form = editTeamForm;
   private readonly destroy$ = new Subject<void>();
 
@@ -64,5 +64,10 @@ export class PageManageTeamDetailsComponent implements OnInit{
 
       this.changeDetectorRef.markForCheck();
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

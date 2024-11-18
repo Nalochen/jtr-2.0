@@ -1,5 +1,5 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatDividerModule } from '@angular/material/divider';
@@ -20,7 +20,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   styleUrl: './team-information-training.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamInformationTrainingComponent implements OnInit {
+export class TeamInformationTrainingComponent implements OnInit, OnDestroy {
   @Input() public form!: FormGroup<EditTeamForm>;
   private readonly destroy$ = new Subject<void>();
 
@@ -30,5 +30,10 @@ export class TeamInformationTrainingComponent implements OnInit {
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.changeDetectorRef.markForCheck();
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
