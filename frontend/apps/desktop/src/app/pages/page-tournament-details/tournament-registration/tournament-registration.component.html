@@ -1,2 +1,7 @@
-<p>Anmeldung offen ab: {{ registrationOpenAt | date:"dd.MM" }}</p>
-<app-button>Team anmelden</app-button>
+<p>Anmeldung offen ab: {{ registrationOpenAt | date : 'dd.MM' }}</p>
+<app-button
+  [type]="ButtonTypeEnum.Raised"
+  [color]="ButtonColorEnum.Red"
+  [fullWidth]="true"
+  >Team anmelden</app-button
+>
