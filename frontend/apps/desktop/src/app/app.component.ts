@@ -3,10 +3,9 @@ import { RouterModule } from '@angular/router';
 
 import { AuthService } from './business-rules/auth/auth.service';
 
-
 import { LoginOverlayComponent } from './login-overlay/login-overlay.component';
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from './ui-shared';
-import { TranslatePipe, TranslateService} from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 

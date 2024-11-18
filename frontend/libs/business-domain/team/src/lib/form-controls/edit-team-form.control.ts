@@ -14,18 +14,18 @@ export const editTeamForm = new FormGroup<EditTeamForm>({
 });
 
 export type EditTeamForm = {
-  aboutUs: FormControl<string | null>,
-  city: FormControl<string | null>,
-  contacts: FormArray<FormControl<string | null>>,
-  isMixTeam: FormControl<boolean | null>,
-  logo: FormControl<string | null>,
-  members: FormArray<FormControl<TeamUserDataForm>>,
-  name: FormControl<string | null>,
-  trainingTime: FormControl<string | null>,
+  aboutUs: FormControl<string | null>;
+  city: FormControl<string | null>;
+  contacts: FormArray<FormControl<string | null>>;
+  isMixTeam: FormControl<boolean | null>;
+  logo: FormControl<string | null>;
+  members: FormArray<FormControl<TeamUserDataForm>>;
+  name: FormControl<string | null>;
+  trainingTime: FormControl<string | null>;
 };
 
 export type TeamUserDataForm = {
-  id: FormControl<number | null>,
-  name: FormControl<string | null>,
-  role: FormControl<UserRole | null>,
-}
+  id: FormControl<number | null>;
+  name: FormControl<string | null>;
+  role: FormControl<UserRole | null>;
+};

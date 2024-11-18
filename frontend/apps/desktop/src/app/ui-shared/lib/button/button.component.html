@@ -1,3 +1,7 @@
-<button [ngClass]="[type, color]" type="{{ buttonType }}" [class.fullWidth]="fullWidth">
+<button
+  [ngClass]="[type, color]"
+  type="{{ buttonType }}"
+  [class.fullWidth]="fullWidth"
+>
   <ng-content />
 </button>

@@ -1,9 +1,9 @@
 <div [formGroup]="form" class="form-group">
-  <team-header
-    [form]="form"
-  />
+  <team-header [form]="form" />
 
-  <p class="small-text" *ngIf="team$ | async as team">gegründet: {{ team.founded | date : "dd.MM.yyyy" }}</p>
+  <p class="small-text" *ngIf="team$ | async as team">
+    gegründet: {{ team.founded | date : 'dd.MM.yyyy' }}
+  </p>
   <div class="data-information">
     <p>Wofür benutzen wir die Infos auf dieser Seite?</p>
     <app-info-button>
@@ -12,18 +12,12 @@
   </div>
 
   <section class="content">
-    <team-information
-      [form]="form"
-    />
+    <team-information [form]="form" />
 
     <section class="activities">
-      <team-members
-        [form]="form"
-      />
+      <team-members [form]="form" />
     </section>
   </section>
 
-  <team-bottom-bar
-    [form]="form"
-    />
+  <team-bottom-bar [form]="form" />
 </div>

@@ -1,10 +1,8 @@
 <p>Organisierte Turniere</p>
-<ng-container *ngIf="team.organizedTournaments.length > 0; else noOrganizedTournaments">
-  @for (tournament of team.organizedTournaments; track tournament) {
-  <app-button>{{ tournament.name }}</app-button>
-  }
-</ng-container>
 
-<ng-template #noOrganizedTournaments>
-  <p>Noch keine organisierten Turniere vorhanden</p>
-</ng-template>
+@if (team.organizedTournaments.length > 0) { @for (tournament of
+team.organizedTournaments; track tournament) {
+<app-button>{{ tournament.name }}</app-button>
+} } @else {
+<p>Noch keine organisierten Turniere vorhanden</p>
+}

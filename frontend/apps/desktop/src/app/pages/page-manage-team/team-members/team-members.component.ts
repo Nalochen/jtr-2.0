@@ -1,18 +1,32 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
+import { EditTeamForm } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
 import {
-  EditTeamForm
-} from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
-import { DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
+  DataContainerComponent,
+  DataContainerRowComponent,
+} from '../../../ui-shared';
 
 @Component({
   selector: 'team-members',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, DataContainerComponent, DataContainerRowComponent, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+    DataContainerComponent,
+    DataContainerRowComponent,
+    ReactiveFormsModule,
+  ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,

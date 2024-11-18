@@ -1,20 +1,36 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
+import { EditTeamForm } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
 import {
-  EditTeamForm
-} from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
-import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum } from '../../../ui-shared';
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+} from '../../../ui-shared';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'team-header',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, InputSwitchModule, InputTextModule, ReactiveFormsModule, ButtonComponent],
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+    InputSwitchModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    ButtonComponent,
+  ],
   templateUrl: './team-header.component.html',
   styleUrl: './team-header.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,

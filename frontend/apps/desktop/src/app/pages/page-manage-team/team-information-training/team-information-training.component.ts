@@ -1,21 +1,37 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatDividerModule } from '@angular/material/divider';
 
 import { Subject, takeUntil } from 'rxjs';
 
+import { EditTeamForm } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
 import {
-  EditTeamForm
-} from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
-import { DataContainerComponent, DataContainerRowComponent } from '../../../ui-shared';
+  DataContainerComponent,
+  DataContainerRowComponent,
+} from '../../../ui-shared';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
   selector: 'team-training',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, DataContainerComponent, DataContainerRowComponent, MatDividerModule, InputTextareaModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+    DataContainerComponent,
+    DataContainerRowComponent,
+    MatDividerModule,
+    InputTextareaModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './team-information-training.component.html',
   styleUrl: './team-information-training.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
