@@ -1,5 +1,5 @@
 from flask import request
-from config.extensions import cache
+from config.cache import cache
 
 
 def create_tournament_cache_key() -> str:

@@ -4,7 +4,7 @@ import pymysql
 from flask_cors import CORS
 
 
-class Config(object):
+class Config:
     """Configuration class for the Flask app"""
 
     @staticmethod
@@ -16,15 +16,17 @@ class Config(object):
         pymysql.install_as_MySQLdb()
 
         app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
-        # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
         app.config['SECRET_KEY'] = 'secret key'
 
         app.config['CACHE_TYPE'] = 'redis'
-        app.config['CACHE_REDIS_HOST'] = 'localhost'
-        app.config['CACHE_REDIS_PORT'] = 6379
+        app.config['CACHE_REDIS_HOST'] = os.getenv('CACHE_REDIS_HOST')
+        app.config['CACHE_REDIS_PORT'] = os.getenv('CACHE_REDIS_PORT')
         app.config['CACHE_REDIS_DB'] = 0
         app.config['CACHE_DEFAULT_TIMEOUT'] = 300
 
+        app.config['CELERY_BROKER_NAME'] = os.getenv('CELERY_BROKER_NAME')
         app.config['CELERY_BROKER_URL'] = os.getenv('CELERY_BROKER_URL')
-        app.config['CELERY_RESULT_BACKEND'] = 'rpc://'
+        app.config['CELERY_RESULT_BACKEND'] = os.getenv(
+            'CELERY_RESULT_BACKEND')
