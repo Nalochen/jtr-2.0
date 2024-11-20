@@ -1,6 +1,8 @@
 import logging
 import os
 
+from flask import Flask
+from flask_migrate import upgrade, Migrate
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -41,12 +43,10 @@ def executeSqlCommandsToInitDatabase() -> None:
             executeSqlFile(fullPath)
 
 
-def initDatabase(app) -> None:
+def initDatabase(app: Flask) -> None:
     """Initializes the database with the given SQL commands"""
 
-    db.init_app(app)
-
     with app.app_context():
-        db.create_all()
+        upgrade()
 
         executeSqlCommandsToInitDatabase()
