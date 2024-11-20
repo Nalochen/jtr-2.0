@@ -212,3 +212,16 @@ class TournamentRepository:
         except Exception as e:
             db.session.rollback()
             raise e
+
+    @staticmethod
+    def getOrganizingTeam(tournamentId: int) -> Teams:
+        """Get organizing team of tournament"""
+
+        return db.session.query(
+            Teams
+        ).join(
+            Tournaments,
+            Tournaments.organizer_id == Teams.id
+        ).filter(
+            Tournaments.id == tournamentId
+        ).first()

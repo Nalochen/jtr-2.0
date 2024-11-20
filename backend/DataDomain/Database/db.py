@@ -2,7 +2,7 @@ import logging
 import os
 
 from flask import Flask
-from flask_migrate import upgrade, Migrate
+from flask_migrate import upgrade
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()

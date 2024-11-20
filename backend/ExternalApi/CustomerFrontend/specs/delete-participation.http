@@ -1,6 +1,6 @@
 ### Delete a team
 ### Execute ExternalApi/specs/requests/000-Authorization.http before using this!
-DELETE https://{{host}}/api/customer-frontend/delete-participates-in
+DELETE https://{{host}}/api/customer-frontend/delete-participation
 Content-Type: application/json
 Authorization: Bearer {{jwtToken}}
 

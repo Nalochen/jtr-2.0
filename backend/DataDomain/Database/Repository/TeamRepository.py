@@ -151,7 +151,7 @@ class TeamRepository:
         }
 
     @staticmethod
-    def get(teamId: Integer) -> Teams:
+    def get(teamId: int) -> Teams:
         """Get team by id"""
 
         return Teams.query.get(teamId)
