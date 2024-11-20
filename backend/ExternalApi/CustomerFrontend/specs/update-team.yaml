@@ -38,7 +38,7 @@ components:
         - teamId
       properties:
         teamId:
-          type: integer
+          type: number
         name:
           type: string
         logo:

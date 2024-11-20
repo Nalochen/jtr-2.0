@@ -18,7 +18,7 @@ paths:
                   type: object
                   properties:
                     id:
-                      type: integer
+                      type: number
                       description: The unique ID of the tournament
                       example: 123
                     location:
@@ -34,7 +34,7 @@ paths:
                       description: The logo of the tournament's organizer team
                       example: "https://example.com/logo.png"
                     registeredTeams:
-                      type: integer
+                      type: number
                       description: The number of teams that have registered for the tournament
                       example: 5
                     startDate:
@@ -43,7 +43,7 @@ paths:
                       description: The start date of the tournament
                       example: "2024-10-20T12:00:00"
                     totalTeams:
-                      type: integer
+                      type: number
                       description: The total number of teams participating in the tournament
                       example: 10
 
