@@ -1,13 +1,12 @@
 from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
-from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
 
 
-class DeleteParticipatingInInputFilter(InputFilter):
-    """The input filter for the delete-participates-in route"""
+class DeleteParticipationInputFilter(InputFilter):
+    """The input filter for the delete-participation route"""
 
     def __init__(self):
-        """Initializes the DeleteParticipatingInInputFilter"""
+        """Initializes the DeleteParticipationInputFilter"""
 
         super().__init__()
 

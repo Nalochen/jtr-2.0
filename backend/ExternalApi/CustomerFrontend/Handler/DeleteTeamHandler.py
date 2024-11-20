@@ -14,7 +14,7 @@ class DeleteTeamHandler:
 
         data = g.validatedData
 
-        teamId = data.get('teamId')
+        teamId: int = data.get('teamId')
 
         team = TeamRepository.get(
             teamId=teamId

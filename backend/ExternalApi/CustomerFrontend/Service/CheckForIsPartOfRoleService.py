@@ -1,5 +1,6 @@
 from DataDomain.Database.Enum.UserRoleTypesEnum import UserRoleTypesEnum
 from DataDomain.Database.Repository.IsPartOfRepository import IsPartOfRepository
+from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
 from DataDomain.Database.tools import getJwtIdentity
 
 
@@ -53,3 +54,15 @@ class CheckForIsPartOfRoleService:
         isPartOf = IsPartOfRepository.get(user.id, teamId)
 
         return isPartOf and isPartOf.user_role == UserRoleTypesEnum.MEMBER
+
+    @staticmethod
+    def isCurrentUserAdminOfOrganizingTeam(tournamentId: int) -> bool:
+        """Check if current user is admin of organizing team"""
+
+        user = getJwtIdentity()
+
+        organizingTeam = TournamentRepository.getOrganizingTeam(tournamentId)
+
+        isPartOf = IsPartOfRepository.get(user.id, organizingTeam.id)
+
+        return isPartOf and isPartOf.user_role == UserRoleTypesEnum.ADMIN
