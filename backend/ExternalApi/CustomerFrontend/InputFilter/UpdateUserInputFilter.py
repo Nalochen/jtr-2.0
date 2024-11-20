@@ -14,7 +14,7 @@ class UpdateUserInputFilter(InputFilter):
         super().__init__()
 
         self.add(
-            'birthday',
+            'birthdate',
             required=False,
             filters=[
                 ToNullFilter()

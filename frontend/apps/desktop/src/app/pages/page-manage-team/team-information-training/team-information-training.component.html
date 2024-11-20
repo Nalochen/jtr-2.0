@@ -1,0 +1,20 @@
+<app-data-container [formGroup]="form">
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >event</span
+    >
+
+    <label for="training" ngProjectAs="container-headline">
+      <h4>Training</h4>
+    </label>
+    <textarea
+      [autoResize]="true"
+      rows="2"
+      pInputTextarea
+      id="training"
+      value="{{ form.controls.trainingTime.value }}"
+      ngProjectAs="container-content"
+    >
+    </textarea>
+  </app-data-container-row>
+</app-data-container>

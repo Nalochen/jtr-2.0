@@ -4,7 +4,12 @@ Content-Type: application/json
 
 {
     "username": "Maxi",
-    "password": "123456"
+    "password": "123456",
+    "isBirthdateVisible": true,
+    "birthdate": "1990-01-01",
+    "isCityVisible": true,
+    "city": "Berlin",
+    "isNameVisible": true
 }
 
 > {%

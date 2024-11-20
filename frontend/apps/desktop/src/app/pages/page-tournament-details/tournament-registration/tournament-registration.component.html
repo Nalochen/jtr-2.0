@@ -1,2 +1,7 @@
-<p>{{ 'page-tournament-details.registration-open' | translate }}: {{ registrationOpenAt | date:"dd.MM" }}</p>
-<app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" >{{ 'page-tournament-details.register-team' | translate }}</app-button>
+<p>{{ 'page-tournament-details.registration-open' | translate }}: {{ registrationOpenAt | date : 'dd.MM' }}</p>
+<app-button
+  [type]="ButtonTypeEnum.Raised"
+  [color]="ButtonColorEnum.Red"
+  [fullWidth]="true"
+  >{{ 'page-tournament-details.register-team' | translate }}</app-button
+>

@@ -1,14 +1,20 @@
 <p>Mitglieder</p>
 
-<app-data-container-expandable *ngIf="team.members !== []; else noMembers">
+@if (team.members !== []) {
+<app-data-container-expandable>
   @for (member of team.members; track member) {
-    <app-data-container-row>
-      <img ngProjectAs="container-icon" alt="Profilbild von {{ member }}" width="28" height="28">
-      <p>{{ member.name }}</p>
-    </app-data-container-row>
+  <app-data-container-row>
+    <img
+      ngProjectAs="container-icon"
+      alt="Profilbild von {{ member }}"
+      ngSrc="{{ member.picture }}"
+      width="28"
+      height="28"
+    />
+    <p>{{ member.name }}</p>
+  </app-data-container-row>
   }
 </app-data-container-expandable>
-
-<ng-template #noMembers>
-  <p>Noch keine Mitglieder vorhanden.</p>
-</ng-template>
+} @else {
+<p>Noch keine Mitglieder vorhanden.</p>
+}

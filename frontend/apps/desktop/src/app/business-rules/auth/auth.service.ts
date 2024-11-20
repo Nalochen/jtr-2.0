@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-const LOGIN_ENDPOINT = '/login';
-const REGISTER_ENDPOINT = '/register';
+const LOGIN_ENDPOINT = '/api/customer-frontend/login';
+const REGISTER_ENDPOINT = '/api/customer-frontend/register';
 
 export interface LoginRequestBody {
   username: string | null;
@@ -13,12 +13,15 @@ export interface LoginRequestBody {
   password: string;
 }
 
-export interface RegisterRequestBody {
-  birthday: string | null;
+export interface RegisterFormBody {
+  birthdate: string | null;
+  isBirthdateVisible: boolean;
+  city: string | null;
+  isCityVisible: boolean;
   email: string | null;
   name: string | null;
+  isNameVisible: boolean;
   password: string;
-  picture: string | null;
   username: string;
 }
 
@@ -42,7 +45,7 @@ export class AuthService {
     );
   }
 
-  public register(body: RegisterRequestBody): Observable<AuthResponse> {
+  public register(body: RegisterFormBody): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(REGISTER_ENDPOINT, body).pipe(
       tap((response: AuthResponse) => {
         if (response.token) {

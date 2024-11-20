@@ -8,6 +8,7 @@ export interface TeamUserData {
   id: number;
   name: string;
   role: UserRole;
+  picture: string;
 }
 
 export interface TeamOrganizedTournamentData {
@@ -26,11 +27,11 @@ export interface TeamData {
   aboutUs: string;
   city: string;
   contacts: string[];
-  createdAt: Date;
-  founded: Date;
+  createdAt: string;
+  founded: string;
   isMixTeam: boolean;
-  lastTournamentOrganized: Date;
-  lastTournamentPlayed: Date;
+  lastTournamentOrganized: string;
+  lastTournamentPlayed: string;
   logo: string;
   members: TeamUserData[];
   name: string;
@@ -38,6 +39,6 @@ export interface TeamData {
   pastTournaments: TeamPastTournamentData[];
   points: number;
   trainingTime: string;
-  trainingTimeUpdatedAt: Date;
-  updatedAt: Date;
+  trainingTimeUpdatedAt: string;
+  updatedAt: string;
 }

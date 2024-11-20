@@ -10,7 +10,7 @@ class GetUserDetailsHandler:
 
     @staticmethod
     def handle(userId: int | None) -> Response:
-        """Get user details by id"""
+        """Get user details by id or current user, if user has a session"""
 
         if userId is None and get_jwt_identity() is None:
             return Response(
@@ -26,6 +26,9 @@ class GetUserDetailsHandler:
             if user is None or user.is_deleted:
                 return Response(status=404, response='User not found')
 
+        ownProfileOfCurrentUser = (
+            get_jwt_identity() and getJwtIdentity().id) == userId
+
         teams = [{
             'id': team.id,
             'logo': team.logo,
@@ -34,19 +37,28 @@ class GetUserDetailsHandler:
 
         response = {
             'id': user.id,
-            'birthday': user.birthday.isoformat(),
-            'city': user.city,
             'createdAt': user.created_at.isoformat(),
             'isDeleted': user.is_deleted,
-            'name': user.name,
             'picture': user.picture,
             'teams': teams,
             'updatedAt': user.updated_at.isoformat(),
             'username': user.username,
         }
 
-        if userId is None:
+        if ownProfileOfCurrentUser:
             response['email'] = user.email
+            response['isCityVisible'] = user.city_visibility
+            response['isNameVisible'] = user.name_visibility
+            response['isBirthdateVisible'] = user.birthdate_visibility
+
+            if user.name_visibility:
+                response['name'] = user.name
+
+            if user.birthdate_visibility:
+                response['birthdate'] = user.birthdate.isoformat()
+
+            if user.city_visibility:
+                response['city'] = user.city
 
         return Response(
             response=response,
