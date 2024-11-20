@@ -1,9 +1,19 @@
 export enum ButtonColorEnum {
-  Secondary = 'secondary',
-  Primary = 'primary',
+  White = 'white',
+  Grey = 'grey',
+  Red = 'red',
+  None = 'none',
 }
 
-export enum ButtonSizeEnum {
-  FitContent = 'fit-content',
-  FullWidth = 'full-width',
+export enum ButtonTypeEnum {
+  Basic = 'basic',
+  Raised = 'raised',
+  Rounded = 'rounded',
+  Stroked = 'stroked',
+  Flat = 'flat',
+  Icon = 'icon',
+  Fab = 'fab',
+  ExtendedFab = 'extendedFab',
+  Round = 'round',
 }
+

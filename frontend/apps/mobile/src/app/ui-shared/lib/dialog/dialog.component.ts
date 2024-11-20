@@ -9,7 +9,7 @@ import {
   MatDialogTitle
 } from '@angular/material/dialog';
 
-import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
+import { ButtonColorEnum, ButtonTypeEnum } from '../../../infrastructure/button-style/button-style.enum';
 
 import { ButtonComponent } from '../button/button.component';
 
@@ -30,11 +30,11 @@ import { ButtonComponent } from '../button/button.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent {
+  public readonly ButtonColorEnum = ButtonColorEnum;
+  public readonly ButtonTypeEnum = ButtonTypeEnum;
+
   public readonly dialogRef = inject(MatDialogRef<DialogComponent>);
   public readonly data = inject<string>(MAT_DIALOG_DATA);
-
-  public readonly color = ButtonColorEnum.Primary;
-  public readonly size = ButtonSizeEnum.FitContent;
 
   public closeDialog() {
     this.dialogRef.close();

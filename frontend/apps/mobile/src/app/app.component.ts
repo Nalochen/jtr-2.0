@@ -8,7 +8,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import {AuthService} from './business-rules/auth/auth.service';
 
 import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
+import { ButtonComponent } from './ui-shared';
+
+import { ButtonColorEnum, ButtonTypeEnum } from './infrastructure/button-style/button-style.enum';
 
 @Component({
   standalone: true,
@@ -18,14 +22,23 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatButtonModule,
     MatMenuModule,
     OverlayMenuComponent,
-    TranslatePipe
+    TranslatePipe,
+    ButtonComponent
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
 })
 export class AppComponent {
+  public readonly ButtonColorEnum = ButtonColorEnum;
+  public readonly ButtonTypeEnum = ButtonTypeEnum;
+
   constructor(private readonly authService: AuthService) {}
+
+  @SingletonGetter()
+  public get isLoggedIn$(): boolean {
+    return this.authService.isAuthenticated();
+  }
 
   @ViewChild('overlay') public overlay!: OverlayMenuComponent;
 

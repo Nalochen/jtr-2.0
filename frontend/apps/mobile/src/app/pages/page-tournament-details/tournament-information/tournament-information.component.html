@@ -1,5 +1,5 @@
 <div class="button-wrapper">
-  <app-button [color]="color" [size]="size" (click)="toggleAllPanels()">
+  <app-button [color]="ButtonColorEnum.White" [type]="ButtonTypeEnum.Flat" (click)="toggleAllPanels()">
     @if (areAllPanelsOpen) {
       {{ 'page-tournament-details.collapse-all' | translate }}
     } @else {
