@@ -30,6 +30,7 @@ import {
   TournamentInformationRulesComponent
 } from '../tournament-information-rules/tournament-information-rules.component';
 import { TournamentTeamsComponent } from '../tournament-teams/tournament-teams.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export interface Panel {
   id: string;
@@ -65,7 +66,8 @@ export enum PanelTypes {
     TournamentInformationAdditionalComponent,
     TournamentInformationContactsComponent,
     TournamentInformationRulesComponent,
-    TournamentInformationLocationComponent
+    TournamentInformationLocationComponent,
+    TranslatePipe
   ],
   templateUrl: './tournament-information.component.html',
   styleUrl: './tournament-information.component.less',

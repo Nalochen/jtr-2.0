@@ -1,7 +1,7 @@
 <app-data-container-expandable [id]="id" [isOpen]="isOpen">
   <app-data-container-row ngProjectAs="panel-header">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h5 ngProjectAs="container-headline">Pompfencheck</h5>
+    <h5 ngProjectAs="container-headline">{{ 'page-tournament-details.pompf-check' | translate }}</h5>
     <a ngProjectAs="container-additional" href="{{ tournament.pompfCheck.url }}">Link</a>
     <p ngProjectAs="container-content">{{ tournament.pompfCheck.text }}</p>
   </app-data-container-row>
@@ -10,7 +10,7 @@
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h5 ngProjectAs="container-headline">Turniersystem</h5>
+    <h5 ngProjectAs="container-headline">{{ 'page-tournament-details.tournament-system' | translate }}</h5>
     <a ngProjectAs="container-additional" href="{{ tournament.tournamentSystem.url }}" target="_blank">{{ tournament.tournamentSystem.type }}</a>
     <p ngProjectAs="container-content">{{ tournament.tournamentSystem.text }}</p>
   </app-data-container-row>
@@ -19,7 +19,7 @@
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h5 ngProjectAs="container-headline">Hausregeln</h5>
+    <h5 ngProjectAs="container-headline">{{ 'page-tournament-details.house-rules' | translate }}</h5>
     <a ngProjectAs="container-additional" href="{{ tournament.houseRules.url }}">Link</a>
     <p ngProjectAs="container-content">{{ tournament.houseRules.text }}</p>
   </app-data-container-row>
@@ -28,10 +28,29 @@
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h5 ngProjectAs="container-headline">Schuhwerk</h5>
+    <h5 ngProjectAs="container-headline">{{ 'page-tournament-details.shoes' | translate }}</h5>
 
     <app-info-button ngProjectAs="container-additional" [infoText]="'Schuhwerk Infotext'" />
 
-    <p ngProjectAs="container-content">{{ tournament.shoes.text }}</p>
+    <div ngProjectAs="container-content" [formGroup]="form">
+      <div class="shoe">
+        <p>{{ 'page-tournament-details.shoes-information-nubbed-header' | translate }}</p>
+        <p-inputSwitch formControlName="nubbedShoesAllowed" [disabled]="true" />
+      </div>
+      <div class="shoe">
+        <p>{{ 'page-tournament-details.shoes-information-cleaded-header' | translate }}</p>
+        <p-inputSwitch formControlName="cleadedShoesAllowed" [disabled]="true" />
+      </div>
+      <div class="shoe">
+        <p>{{ 'page-tournament-details.shoes-information-studded-header' | translate }}</p>
+        <p-inputSwitch formControlName="studdedShoesAllowed" [disabled]="true" />
+      </div>
+      <div class="shoe">
+        <p>{{ 'page-tournament-details.shoes-information-barefoot-header' | translate }}</p>
+        <p-inputSwitch formControlName="barefootAllowed" [disabled]="true" />
+      </div>
+
+      <p>{{ tournament.shoes.text }}</p>
+    </div>
   </app-data-container-row>
 </app-data-container-expandable>

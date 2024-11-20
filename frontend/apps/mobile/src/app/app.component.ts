@@ -8,6 +8,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import {AuthService} from './business-rules/auth/auth.service';
 
 import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -16,7 +17,8 @@ import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
     RouterModule,
     MatButtonModule,
     MatMenuModule,
-    OverlayMenuComponent
+    OverlayMenuComponent,
+    TranslatePipe
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',

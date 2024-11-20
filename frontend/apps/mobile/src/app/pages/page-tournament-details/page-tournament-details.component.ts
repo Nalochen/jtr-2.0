@@ -20,6 +20,7 @@ import {
   TournamentInformationComponent
 } from './tournament-information/tournament-information.component';
 import { TournamentTeamsComponent } from './tournament-teams/tournament-teams.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -31,6 +32,7 @@ import { TournamentTeamsComponent } from './tournament-teams/tournament-teams.co
     DataContainerRowComponent,
     TournamentTeamsComponent,
     TournamentBottomBarComponent,
+    TranslatePipe,
   ],
   templateUrl: './page-tournament-details.component.html',
   styleUrl: './page-tournament-details.component.less',

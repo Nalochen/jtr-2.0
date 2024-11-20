@@ -1,11 +1,7 @@
-<tournament-header
-  *ngIf="tournament$ | async as tournament"
-  [tournament]="tournament"
-/>
+@if (tournament$ | async; as tournament) {
+  <tournament-header [tournament]="tournament"></tournament-header>
 
-<tournament-information
-  *ngIf="tournament$ | async as tournament"
-  [tournament]="tournament"
-/>
+  <tournament-information [tournament]="tournament"></tournament-information>
+}
 
 <tournament-bottom-bar />
