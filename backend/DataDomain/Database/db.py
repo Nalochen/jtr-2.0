@@ -34,7 +34,8 @@ def executeSqlFile(filename: str) -> None:
 def executeSqlCommandsToInitDatabase() -> None:
     """Executes the SQL commands in the init-database folder"""
 
-    folderPath = '/home/backend/DataDomain/Database/data/init-database'
+    folderPath = '/home/backend/DataDomain/Database/data/init-database' if os.getenv(
+        'FLASK_ENV') == 'development' else '/app/DataDomain/Database/data/init-database'
 
     for filename in os.listdir(folderPath):
         if filename.endswith('.sql'):

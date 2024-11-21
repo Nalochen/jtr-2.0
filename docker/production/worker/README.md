@@ -5,7 +5,7 @@
 From root dir
 
 ```bash
-docker build -t jtr-worker -f docker/production/worker/worker.Dockerfile .
+docker build -t jtr-prod-worker -f docker/production/worker/worker.Dockerfile .
 ```
 
 ## Use

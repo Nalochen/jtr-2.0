@@ -1,0 +1,92 @@
+services:
+
+  mysql:
+    image: mysql:8.0.35
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'jtr'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    volumes:
+      - mysql_db_data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+    networks:
+      - backend_network
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - backend_network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: mypass
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - backend_network
+
+  worker:
+    build:
+      context: ../../
+      dockerfile: docker/production/worker/worker.Dockerfile
+    user: nobody
+    container_name: worker
+    environment:
+      CELERY_APP_NAME: 'tasks'
+      CELERY_BROKER_URL: 'amqp://admin:mypass@rabbitmq:5672'
+      CELERY_RESULT_BACKEND: 'rpc://'
+      DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
+    depends_on:
+      - mysql
+      - rabbitmq
+      - backend
+    networks:
+      - backend_network
+
+  backend:
+    build:
+      context: ../../
+      dockerfile: docker/production/backend/backend.Dockerfile
+    container_name: backend
+    environment:
+      FLASK_ENV: 'production'
+      CACHE_REDIS_HOST: 'redis'
+      CACHE_REDIS_PORT: '6379'
+      CELERY_BROKER_NAME: 'worker'
+      CELERY_BROKER_URL: 'amqp://admin:mypass@worker:5672'
+      CELERY_RESULT_BACKEND: 'rpc://'
+      DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mysql
+      - redis
+      - rabbitmq
+    networks:
+      - backend_network
+
+  frontend:
+    build:
+      context: ../../
+      dockerfile: docker/production/frontend/frontend.Dockerfile
+    container_name: frontend
+    ports:
+      - "80:80"
+
+networks:
+  backend_network:
+    driver: bridge
+
+volumes:
+  mysql_db_data: {}
