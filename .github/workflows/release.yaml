@@ -1,0 +1,19 @@
+name: Create new release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build production image
+        run: cd ../../ && docker build -t jtr-prod-frontend:latest -f docker/production/frontend/frontend.Dockerfile .
+
+      - name: Push production image to Docker Hub
+        run: docker push jtr-prod-frontend:latest
