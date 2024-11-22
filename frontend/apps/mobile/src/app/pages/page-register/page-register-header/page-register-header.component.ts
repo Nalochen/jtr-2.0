@@ -1,8 +1,7 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../../ui-shared';
+import { ButtonComponent } from '../../../ui-shared';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
