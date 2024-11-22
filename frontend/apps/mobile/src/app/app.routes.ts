@@ -10,6 +10,7 @@ import { PageTournamentDetailsComponent } from './pages/page-tournament-details/
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
 import { PageRegisterComponent } from './pages/page-register/page-register.component';
+import { PageLoginComponent } from './pages/page-login/page-login.component';
 
 export const appRoutes: Route[] = [
   {
@@ -43,6 +44,10 @@ export const appRoutes: Route[] = [
   {
     path: 'register',
     component: PageRegisterComponent,
+  },
+  {
+    path: 'login',
+    component: PageLoginComponent,
   },
   {
     path: 'user-details/:userId?',
