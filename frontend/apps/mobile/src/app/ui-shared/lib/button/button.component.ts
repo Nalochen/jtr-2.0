@@ -1,12 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { ButtonColorEnum, ButtonTypeEnum } from '../../../infrastructure/button-style/button-style.enum';
-
-export enum ButtonType {
-  BUTTON = 'button',
-  SUBMIT = 'submit',
-}
+import { ButtonColorEnum } from './enums/color.enum';
+import { ButtonTypeEnum } from './enums/type.enum';
+import { ButtonFunctionType } from './enums/function-type.enum';
 
 @Component({
   selector: 'app-button',
@@ -18,6 +15,6 @@ export enum ButtonType {
 export class ButtonComponent {
   @Input() public color: ButtonColorEnum = ButtonColorEnum.None;
   @Input() public type: ButtonTypeEnum = ButtonTypeEnum.Basic;
-  @Input() public buttonType: ButtonType = ButtonType.BUTTON;
+  @Input() public buttonType: ButtonFunctionType = ButtonFunctionType.BUTTON;
   @Input() public fullWidth = false;
 }

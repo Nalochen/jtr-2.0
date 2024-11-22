@@ -1,9 +1,6 @@
 import { CommonModule, DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { Component, HostListener, Inject } from '@angular/core';
-
-import { ButtonColorEnum, ButtonTypeEnum } from '../../../infrastructure/button-style/button-style.enum';
-
-import { ButtonComponent } from '../../../ui-shared';
+import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../../ui-shared';
 
 
 @Component({

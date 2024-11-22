@@ -5,9 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
-import {TournamentData,TournamentTeamData} from '@jtr/data-domain/store';
-
-import { ButtonColorEnum, ButtonTypeEnum } from '../../../infrastructure/button-style/button-style.enum';
+import { TournamentData,TournamentTeamData } from '@jtr/data-domain/store';
 
 import {
   ButtonComponent,
@@ -15,7 +13,9 @@ import {
   DataContainerExpandableComponent,
   DataContainerRowComponent,
   InfoButtonComponent,
-  TeamComponent
+  TeamComponent,
+  ButtonColorEnum,
+  ButtonTypeEnum
 } from '../../../ui-shared';
 import {
   TournamentInformationAdditionalComponent

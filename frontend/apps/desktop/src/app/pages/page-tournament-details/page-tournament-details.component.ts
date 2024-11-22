@@ -1,10 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { Store } from '@ngrx/store';
-
 import {
   tournamentDetailsRegistrationOpenAtSelector,
   tournamentDetailsSelector,
@@ -12,7 +9,6 @@ import {
 } from '@jtr/business-domain/tournament';
 import {TournamentData, TournamentTeamsData} from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
-
 import {
   DataContainerComponent,
   DataContainerRowComponent,
