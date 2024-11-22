@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 
+import { AuthService } from '../../business-rules/auth/auth.service';
+
 import { registerForm } from '../../../../../../libs/business-domain/register/src/lib/form-controls/register-form.control';
 import {
   ButtonColorEnum,
@@ -13,7 +15,6 @@ import {
   InfoButtonComponent,
 } from '../../ui-shared';
 import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
-import { AuthService } from '../../business-rules/auth/auth.service';
 
 @Component({
   standalone: true,
