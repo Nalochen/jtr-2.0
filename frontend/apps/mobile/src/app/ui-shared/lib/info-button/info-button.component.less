@@ -1,16 +1,24 @@
-:host {
-  display: block;
-  height: 24px;
-  width: 24px;
+.tooltip-container {
+  display: inline-block;
+  position: relative;
 }
 
 button {
   padding: 0;
+  cursor: pointer;
+  font-size: 24px;
   height: 24px;
   width: 24px;
 }
 
 span {
-  height: 24px;
   width: 24px;
+}
+
+::ng-deep .p-dialog-content {
+  padding: 8px !important;
+}
+
+::ng-deep .p-dialog-header {
+  padding: 8px !important;
 }

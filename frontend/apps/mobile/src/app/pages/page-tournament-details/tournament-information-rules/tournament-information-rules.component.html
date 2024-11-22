@@ -30,7 +30,13 @@
     <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
     <h5 ngProjectAs="container-headline">{{ 'page-tournament-details.shoes' | translate }}</h5>
 
-    <app-info-button ngProjectAs="container-additional" [infoText]="'Schuhwerk Infotext'" />
+    <app-info-button ngProjectAs="container-additional" position="left">
+      <p><b>{{ 'page-tournament-details.shoes-information-nubbed-header' | translate }}</b> {{ 'page-tournament-details.shoes-information-nubbed' | translate }}</p>
+      <br>
+      <p><b>{{ 'page-tournament-details.shoes-information-cleaded-header' | translate }}</b> {{ 'page-tournament-details.shoes-information-cleaded' | translate }}</p>
+      <br>
+      <p><b>{{ 'page-tournament-details.shoes-information-studded-header' | translate }}</b> {{ 'page-tournament-details.shoes-information-studded' | translate }}</p>
+    </app-info-button>
 
     <div ngProjectAs="container-content" [formGroup]="form">
       <div class="shoe">

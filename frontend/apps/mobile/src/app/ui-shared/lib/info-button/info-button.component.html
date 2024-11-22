@@ -1,5 +1,9 @@
-<button mat-icon-button
-        (click)="openTooltipDialog()"
->
-  <span class="material-icons-outlined">info_i</span>
-</button>
+<div class="tooltip-container">
+  <app-button [type]="ButtonTypeEnum.Icon" (click)="showDialog()">
+    <span class="material-icons-outlined">info_i</span>
+  </app-button>
+  <p-dialog header="Info" [(visible)]="visible" [style]="{ width: '90%' }">
+    <ng-content />
+    <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" (click)="visible = false">Ok</app-button>
+  </p-dialog>
+</div>
