@@ -29,5 +29,11 @@ export class InfoButtonComponent {
     this.visible = true;
     this.changeDetectorRef.markForCheck();
   }
+
+  public hideDialog() {
+    console.log('hideDialog');
+    this.visible = false;
+    this.changeDetectorRef.markForCheck();
+  }
 }
 

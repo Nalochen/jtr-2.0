@@ -31,10 +31,10 @@ export class TournamentInformationRulesComponent extends DataContainerExpandable
     @Input() public tournament!: TournamentData;
 
   protected form = new FormGroup({
-    nubbedShoesAllowed: new FormControl(false),
-    cleadedShoesAllowed: new FormControl(false),
-    studdedShoesAllowed: new FormControl(false),
-    barefootAllowed: new FormControl(false),
+    nubbedShoesAllowed: new FormControl({ value: false, disabled: true }),
+    cleadedShoesAllowed: new FormControl({ value: false, disabled: true }),
+    studdedShoesAllowed: new FormControl({ value: false, disabled: true }),
+    barefootAllowed: new FormControl({ value: false, disabled: true }),
   })
 
   public ngOnInit(): void {
