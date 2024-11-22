@@ -20,7 +20,7 @@ import { DialogModule } from 'primeng/dialog';
 export class InfoButtonComponent {
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
   protected readonly ButtonColorEnum = ButtonColorEnum;
-  public visible: boolean = false;
+  public visible = false;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
@@ -31,7 +31,6 @@ export class InfoButtonComponent {
   }
 
   public hideDialog() {
-    console.log('hideDialog');
     this.visible = false;
     this.changeDetectorRef.markForCheck();
   }
