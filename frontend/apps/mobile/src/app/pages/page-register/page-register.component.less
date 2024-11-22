@@ -1,12 +1,20 @@
 @import 'colors-mobile';
 
+.background {
+  background-color: @color-bg-light;
+}
+
+.content {
+  padding: 20px;
+}
+
 form {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 32px;
   grid-template-rows: auto;
   grid-template-areas: 'email .' 'username .' 'password .' 'password-repeat .' 'name name-button' 'city city-button' 'birthdate birthdate-button' 'register-button register-button';
-  grid-column-gap: 48px;
+  grid-column-gap: 16px;
   grid-row-gap: 24px;
   align-items: end;
   margin-top: 24px;
@@ -14,7 +22,6 @@ form {
 
 .register-button {
   grid-area: register-button;
-  width: 20%;
   justify-self: end;
   border: none;
   border-radius: 8px;

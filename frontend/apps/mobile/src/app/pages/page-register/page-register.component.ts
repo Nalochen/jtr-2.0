@@ -9,6 +9,7 @@ import { registerForm } from '../../../../../../libs/business-domain/register/sr
 import { AuthService } from '../../business-rules/auth/auth.service';
 import { ButtonComponent, InfoButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../ui-shared';
 import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
+import { PageRegisterHeaderComponent } from './page-register-header/page-register-header.component';
 
 @Component({
   standalone: true,
@@ -19,6 +20,7 @@ import { VisibilityButtonComponent } from './visibility-button/visibility-button
     InfoButtonComponent,
     ButtonComponent,
     VisibilityButtonComponent,
+    PageRegisterHeaderComponent,
   ],
   templateUrl: './page-register.component.html',
   styleUrl: './page-register.component.less',
