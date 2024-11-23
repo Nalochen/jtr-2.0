@@ -1,5 +1,5 @@
 <div class="tooltip-container">
-  <app-button [type]="ButtonTypeEnum.Icon" (click)="overlay.toggle($event)" >
+  <app-button [type]="ButtonTypeEnum.Icon" [buttonType]="ButtonFunctionType.BUTTON" (click)="overlay.toggle($event)" >
     <span class="material-icons-outlined">info_i</span>
   </app-button>
   <p-overlayPanel #overlay>
