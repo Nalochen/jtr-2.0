@@ -25,7 +25,10 @@
     />
   </div>
 
-  <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Flat"
+  <app-button
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Flat"
+    [buttonType]="ButtonFunctionType.SUBMIT"
     >{{ 'login.login' | translate }}</app-button
   >
 </form>
