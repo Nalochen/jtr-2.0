@@ -3,27 +3,34 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../business-rules/auth/auth.service';
+import { MatButtonModule } from '@angular/material/button';
 
-import { loginFormControl } from '../../../../../libs/business-domain/login/src/lib/form-controls/login-form.control';
-import { isEmail } from '../../../../../libs/business-domain/login/src/lib/rules/is-email.rule';
-import { ButtonColorEnum, ButtonComponent, ButtonFunctionType,ButtonTypeEnum } from '../ui-shared';
+import { AuthService } from '../../../../../desktop/src/app/business-rules/auth/auth.service';
+
+import {
+  loginFormControl
+} from '../../../../../../libs/business-domain/login/src/lib/form-controls/login-form.control';
+import { isEmail } from '../../../../../../libs/business-domain/login/src/lib/rules/is-email.rule';
+import { ButtonColorEnum, ButtonComponent, ButtonFunctionType,ButtonTypeEnum, InfoButtonComponent } from '../../ui-shared';
+import { PageLoginHeaderComponent } from './page-login-header/page-login-header.component';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
-  selector: 'login-overlay',
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    InfoButtonComponent,
     ButtonComponent,
+    PageLoginHeaderComponent,
     TranslatePipe
   ],
-  templateUrl: './login-overlay.component.html',
-  styleUrl: './login-overlay.component.less',
+  templateUrl: './page-login.component.html',
+  styleUrl: './page-login.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginOverlayComponent {
+export class PageLoginComponent {
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
   protected readonly ButtonFunctionType = ButtonFunctionType;

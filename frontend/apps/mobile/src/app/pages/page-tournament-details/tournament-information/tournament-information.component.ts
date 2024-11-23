@@ -5,18 +5,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
-import {TournamentData,TournamentTeamData} from '@jtr/data-domain/store';
-
-import { ButtonColorEnum, ButtonTypeEnum } from '../../../infrastructure/button-style/button-style.enum';
+import { TournamentData,TournamentTeamData } from '@jtr/data-domain/store';
 
 import {
+  ButtonColorEnum,
   ButtonComponent,
+  ButtonTypeEnum,
   ChipComponent,
   DataContainerExpandableComponent,
   DataContainerRowComponent,
   InfoButtonComponent,
-  TeamComponent
-} from '../../../ui-shared';
+  TeamComponent} from '../../../ui-shared';
 import {
   TournamentInformationAdditionalComponent
 } from '../tournament-information-additional/tournament-information-additional.component';
