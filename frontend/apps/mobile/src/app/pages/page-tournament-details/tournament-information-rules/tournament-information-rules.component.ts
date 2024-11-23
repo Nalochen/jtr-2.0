@@ -1,5 +1,6 @@
 import {CommonModule} from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import {MatDividerModule} from '@angular/material/divider';
 
@@ -7,7 +8,6 @@ import {TournamentData} from '@jtr/data-domain/store';
 
 import {DataContainerExpandableComponent, DataContainerRowComponent, InfoButtonComponent} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { InputSwitchModule } from 'primeng/inputswitch';
 
 @Component({
