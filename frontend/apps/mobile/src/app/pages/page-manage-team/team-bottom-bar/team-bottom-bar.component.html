@@ -1,0 +1,16 @@
+<div>
+  <app-button
+    (click)="onDeleteTeam()"
+    [color]="ButtonColorEnum.White"
+    [type]="ButtonTypeEnum.Raised"
+  >
+    <p>{{ 'page-manage-team.delete-team' | translate }}</p>
+  </app-button>
+  <app-button
+    (click)="onSaveTeam()"
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Raised"
+  >
+    <p>{{ 'page-manage-team.save' | translate }}</p>
+  </app-button>
+</div>

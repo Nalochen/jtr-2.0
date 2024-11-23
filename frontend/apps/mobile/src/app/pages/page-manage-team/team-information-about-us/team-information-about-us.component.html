@@ -1,0 +1,17 @@
+<app-data-container [formGroup]="form">
+  <app-data-container-row>
+    <label ngProjectAs="container-headline" for="aboutUs">
+      <h4>{{ 'page-manage-team.about-us' | translate }}:</h4>
+    </label>
+    <textarea
+      rows="3"
+      [autoResize]="true"
+      ngProjectAs="container-content"
+      id="aboutUs"
+      formControlName="aboutUs"
+      pInputTextarea
+      value="{{ form.controls.aboutUs.value }}"
+    >
+    </textarea>
+  </app-data-container-row>
+</app-data-container>
