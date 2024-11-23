@@ -16,10 +16,10 @@
     />
     @if ((form.controls.email.dirty || form.controls.email.touched) &&
     form.controls.email.hasError('required')) {
-    <p class="error-message">E-Mail ist erforderlich</p>
+    <p class="error-message">{{ 'register.email-required' | translate }}</p>
     } @if ((form.controls.email.dirty || form.controls.email.touched) &&
     form.controls.email.hasError('email')) {
-    <p class="error-message">ungültige E-Mail</p>
+    <p class="error-message">{{ 'register.email-invalid' | translate }}</p>
     }
   </div>
 

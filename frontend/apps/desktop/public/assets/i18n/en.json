@@ -48,6 +48,8 @@
     "welcome": "Welcome",
     "register": "Register",
     "email": "Email",
+    "email-required": "Email is required",
+    "email-invalid": "Email is invalid",
     "username": "Username",
     "unique": "(unique)",
     "username-info": "Your username must be a unique sequence of numbers and letters so that everyone can identify you clearly.",

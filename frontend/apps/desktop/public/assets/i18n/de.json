@@ -48,6 +48,8 @@
     "welcome": "Willkommen",
     "register": "Registrieren",
     "email": "Email",
+    "email-required": "Email ist erforderlich",
+    "email-invalid": "Email ist ungültig",
     "username": "Benutzername",
     "unique": "(einzigartig)",
     "username-info": "Dein Benutzername muss eine eindeutige Abfolge von Zahlen und Buchstaben sein, damit dich jeder eindeutig zuordnen kann.",
