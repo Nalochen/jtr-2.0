@@ -12,6 +12,7 @@ import {
   ButtonColorEnum,
   ButtonComponent,
   ButtonTypeEnum,
+  ButtonFunctionType,
   InfoButtonComponent,
 } from '../../ui-shared';
 import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
@@ -37,6 +38,7 @@ export class PageRegisterComponent {
 
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
+  protected readonly ButtonFunctionType = ButtonFunctionType;
   protected readonly form = registerForm;
 
   public onSubmit(): void {

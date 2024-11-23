@@ -1,6 +1,6 @@
 <button
   [ngClass]="[type, color]"
-  type="{{ buttonType }}"
+  [attr.type]="buttonType"
   [class.fullWidth]="fullWidth"
   [disabled]="disabled"
 >

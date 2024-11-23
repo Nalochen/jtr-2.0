@@ -8,7 +8,8 @@
         <a href="/register">{{ 'login.register' | translate }}</a>
       </div>
 
-      <div class="row">{{ 'login.email-or-username' | translate }}</label>
+      <div class="row">
+        <label>{{ 'login.email-or-username' | translate }}</label>
         <input
           type="text"
           class="form-control"
@@ -27,7 +28,10 @@
         />
       </div>
 
-      <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Flat" [buttonType]="ButtonFunctionType.SUBMIT"
+      <app-button
+        [color]="ButtonColorEnum.Red"
+        [type]="ButtonTypeEnum.Flat"
+        [buttonType]="ButtonFunctionType.SUBMIT"
       >{{ 'login.login-button' | translate }}</app-button>
     </form>
   </div>
