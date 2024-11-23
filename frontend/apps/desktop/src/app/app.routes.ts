@@ -20,6 +20,7 @@ import { PageTournamentDetailsComponent } from './pages/page-tournament-details/
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
 import { SwaggerViewComponent } from './pages/swagger-view/swagger-view.component';
+import { PageCreateTournamentComponent } from './pages/page-create-tournament/page-create-tournament.component';
 
 export const appRoutes: Route[] = [
   {
@@ -56,6 +57,10 @@ export const appRoutes: Route[] = [
     resolve: {
       tournamentOverview: TournamentOverviewResolver,
     },
+  },
+  {
+    path: 'create-tournament',
+    component: PageCreateTournamentComponent,
   },
   {
     path: 'register',
