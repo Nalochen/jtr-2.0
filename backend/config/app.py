@@ -25,7 +25,8 @@ def createApp() -> Flask:
     cache.init_app(app)
 
     db.init_app(app)
-    Migrate(app, db, directory='/home/backend/DataDomain/Database/Migration')
+
+    Migrate(app, db, directory=app.config['MIGRATION_DIR'])
 
     return app
 
