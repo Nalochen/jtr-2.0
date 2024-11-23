@@ -1,17 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 
-import { ButtonComponent, InfoButtonComponent, ButtonTypeEnum, ButtonColorEnum, ButtonFunctionType } from '../../ui-shared';
-import { PageLoginHeaderComponent } from './page-login-header/page-login-header.component';
+import { AuthService } from '../../../../../desktop/src/app/business-rules/auth/auth.service';
+
 import {
   loginFormControl
 } from '../../../../../../libs/business-domain/login/src/lib/form-controls/login-form.control';
-import { AuthService } from '../../../../../desktop/src/app/business-rules/auth/auth.service';
-import { Router } from '@angular/router';
 import { isEmail } from '../../../../../../libs/business-domain/login/src/lib/rules/is-email.rule';
+import { ButtonColorEnum, ButtonComponent, ButtonFunctionType,ButtonTypeEnum, InfoButtonComponent } from '../../ui-shared';
+import { PageLoginHeaderComponent } from './page-login-header/page-login-header.component';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

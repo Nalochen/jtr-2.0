@@ -2,8 +2,8 @@ import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { ButtonComponent } from '../../../ui-shared';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { TranslatePipe } from '@ngx-translate/core';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'page-login-header',

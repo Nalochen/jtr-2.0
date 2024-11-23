@@ -4,8 +4,8 @@ import { ChangeDetectionStrategy,Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 import { ButtonComponent } from '../button/button.component';
-import { ButtonTypeEnum } from '../button/enums/type.enum';
 import { ButtonFunctionType } from '../button/enums/function-type.enum';
+import { ButtonTypeEnum } from '../button/enums/type.enum';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 

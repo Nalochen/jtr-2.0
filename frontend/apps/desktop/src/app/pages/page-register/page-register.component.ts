@@ -11,8 +11,8 @@ import { registerForm } from '../../../../../../libs/business-domain/register/sr
 import {
   ButtonColorEnum,
   ButtonComponent,
-  ButtonTypeEnum,
   ButtonFunctionType,
+  ButtonTypeEnum,
   InfoButtonComponent,
 } from '../../ui-shared';
 import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';

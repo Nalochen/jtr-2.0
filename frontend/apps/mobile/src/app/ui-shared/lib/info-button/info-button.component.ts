@@ -4,9 +4,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
 import { MatButtonModule } from '@angular/material/button';
 
 import { ButtonComponent } from '../button/button.component';
+import { ButtonColorEnum } from '../button/enums/color.enum';
 import { ButtonFunctionType } from '../button/enums/function-type.enum';
 import { ButtonTypeEnum } from '../button/enums/type.enum';
-import { ButtonColorEnum } from '../button/enums/color.enum';
 import { DialogModule } from 'primeng/dialog';
 
 @Component({
