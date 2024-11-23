@@ -1,5 +1,5 @@
 <app-data-container>
-  <p class="title">angemeldet:</p>
+  <p class="title">{{ 'page-tournament-details.registered' | translate }}:</p>
 
   @for (team of participatingTeams; track team) {
     <app-team class="team">
@@ -10,7 +10,7 @@
   }
   <mat-divider />
 
-  <p class="title">vorgemerkt:</p>
+  <p class="title">{{ 'page-tournament-details.waiting' | translate }}:</p>
 
   @for (team of waitingTeams; track team) {
     <app-team class="team">
