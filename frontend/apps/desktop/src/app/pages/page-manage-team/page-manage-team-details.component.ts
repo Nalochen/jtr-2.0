@@ -22,6 +22,7 @@ import { TeamBottomBarComponent } from './team-bottom-bar/team-bottom-bar.compon
 import { TeamHeaderComponent } from './team-header/team-header.component';
 import { TeamInformationComponent } from './team-information/team-information.component';
 import { TeamMembersComponent } from './team-members/team-members.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -33,6 +34,7 @@ import { TeamMembersComponent } from './team-members/team-members.component';
     TeamBottomBarComponent,
     InfoButtonComponent,
     ReactiveFormsModule,
+    TranslatePipe
   ],
   templateUrl: './page-manage-team.component.html',
   styleUrl: './page-manage-team.component.less',

@@ -1,4 +1,4 @@
-<h3>Mitglieder</h3>
+<h3>{{ 'page-manage-team.members' | translate }}</h3>
 
 <app-data-container [formGroup]="form">
   @if (form.controls.members.length > 0) { @for (member of
@@ -7,6 +7,7 @@
     <img
       ngProjectAs="container-icon"
       alt="Profilbild von {{ member }}"
+      src="https://example.com/picture.png"
       width="28"
       height="28"
     />
@@ -14,7 +15,7 @@
   </app-data-container-row>
   } } @else {
   <div class="noMembers">
-    <p>Noch keine Mitglieder vorhanden.</p>
+    <p>{{ 'page-manage-team.no-members' | translate }}</p>
   </div>
   }
 </app-data-container>

@@ -17,6 +17,7 @@ import {
   DataContainerRowComponent,
 } from '../../../ui-shared';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'team-about-us',
@@ -28,6 +29,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     DataContainerComponent,
     InputTextareaModule,
     ReactiveFormsModule,
+    TranslatePipe
   ],
   templateUrl: './team-information-about-us.component.html',
   styleUrl: './team-information-about-us.component.less',

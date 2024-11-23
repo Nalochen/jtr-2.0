@@ -18,6 +18,7 @@ import {
   DataContainerRowComponent,
 } from '../../../ui-shared';
 import { InputTextModule } from 'primeng/inputtext';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'team-contacts',
@@ -30,6 +31,7 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule,
     ButtonComponent,
     ReactiveFormsModule,
+    TranslatePipe
   ],
   templateUrl: './team-information-contacts.component.html',
   styleUrl: './team-information-contacts.component.less',

@@ -4,13 +4,13 @@
     [color]="ButtonColorEnum.White"
     [type]="ButtonTypeEnum.Raised"
   >
-    <p>Team löschen</p>
+    <p>{{ 'page-manage-team.delete-team' | translate }}</p>
   </app-button>
   <app-button
     (click)="onSaveTeam()"
     [color]="ButtonColorEnum.Red"
     [type]="ButtonTypeEnum.Raised"
   >
-    <p>speichern</p>
+    <p>{{ 'page-manage-team.save' | translate }}</p>
   </app-button>
 </div>

@@ -16,6 +16,7 @@ import {
   DataContainerComponent,
   DataContainerRowComponent,
 } from '../../../ui-shared';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'team-members',
@@ -26,6 +27,7 @@ import {
     DataContainerComponent,
     DataContainerRowComponent,
     ReactiveFormsModule,
+    TranslatePipe
   ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',

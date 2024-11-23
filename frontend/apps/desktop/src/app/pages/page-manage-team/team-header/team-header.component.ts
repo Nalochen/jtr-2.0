@@ -19,6 +19,7 @@ import {
 } from '../../../ui-shared';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'team-header',
@@ -30,6 +31,7 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule,
     ReactiveFormsModule,
     ButtonComponent,
+    TranslatePipe
   ],
   templateUrl: './team-header.component.html',
   styleUrl: './team-header.component.less',
