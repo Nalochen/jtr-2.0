@@ -11,6 +11,7 @@ import { registerForm } from '../../../../../../libs/business-domain/register/sr
 import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum, InfoButtonComponent } from '../../ui-shared';
 import { PageRegisterHeaderComponent } from './page-register-header/page-register-header.component';
 import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -22,6 +23,7 @@ import { VisibilityButtonComponent } from './visibility-button/visibility-button
     ButtonComponent,
     VisibilityButtonComponent,
     PageRegisterHeaderComponent,
+    TranslatePipe
   ],
   templateUrl: './page-register.component.html',
   styleUrl: './page-register.component.less',

@@ -4,12 +4,11 @@
   <div class="content">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="row no-account">
-        <p>Noch kein Konto?</p>
-        <a href="/register">Registrieren</a>
+        <p>{{ 'login.no-account' | translate }}</p>
+        <a href="/register">{{ 'login.register' | translate }}</a>
       </div>
 
-      <div class="row">
-        <label for="emailOrUsername">E-Mail oder Benutzername</label>
+      <div class="row">{{ 'login.email-or-username' | translate }}</label>
         <input
           type="text"
           class="form-control"
@@ -19,7 +18,7 @@
       </div>
 
       <div class="row">
-        <label for="password">Passwort</label>
+        <label for="password">{{ 'login.password' | translate }}</label>
         <input
           type="password"
           class="form-control"
@@ -29,7 +28,7 @@
       </div>
 
       <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Flat" [buttonType]="ButtonFunctionType.SUBMIT"
-      >Login</app-button>
+      >{{ 'login.login-button' | translate }}</app-button>
     </form>
   </div>
 </div>

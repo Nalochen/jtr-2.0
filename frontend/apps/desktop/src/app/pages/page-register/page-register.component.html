@@ -154,7 +154,7 @@
     [control]="form.controls.isBirthdateVisible"
   />
 
-  <button type="submit" class="register-button" [disabled]="!form.valid">
+  <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" [buttonType]="ButtonFunctionType.SUBMIT" [disabled]="!form.valid" class="register-button">
     <p>{{ 'register.register-button' | translate }}</p>
-  </button>
+  </app-button>
 </form>

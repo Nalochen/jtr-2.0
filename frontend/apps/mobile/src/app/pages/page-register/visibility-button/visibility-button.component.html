@@ -12,7 +12,7 @@
 
 <p-overlayPanel #overlay>
   <div class="overlay-content">
-    <p class="overlay-content-text">Sichtbarkeit</p>
+    <p class="overlay-content-text">{{ 'register.visibility' | translate }}</p>
     <app-button
       class="overlay-content-button"
       [color]="ButtonColorEnum.Grey"
@@ -21,7 +21,7 @@
     >
       <span class="material-icons-outlined button-icon">visibility_off</span>
 
-      <p>privat</p>
+      <p>{{ 'register.private' | translate }}</p>
     </app-button>
 
     <app-button
@@ -32,7 +32,7 @@
     >
       <span class="material-icons-outlined button-icon">visibility</span>
 
-      <p>öffentlich</p>
+      <p>{{ 'register.public' | translate }}</p>
     </app-button>
   </div>
 </p-overlayPanel>
