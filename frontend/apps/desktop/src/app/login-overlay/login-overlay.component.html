@@ -1,7 +1,9 @@
 <h4>Login</h4>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <p>Noch kein Konto?</p>
-  <a href="/register">Registrieren</a>
+  <div class="no-account">
+    <p>Noch kein Konto?</p>
+    <a href="/register">Registrieren</a>
+  </div>
 
   <div class="email">
     <label for="emailOrUsername">E-Mail oder Benutzername</label>
