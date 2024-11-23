@@ -4,12 +4,12 @@ import { TeamDetailsResolver, TeamOverviewResolver } from '@jtr/business-domain/
 import { TournamentDetailsResolver, TournamentOverviewResolver } from '@jtr/business-domain/tournament';
 import { UserDetailsResolver } from '@jtr/business-domain/user';
 
+import { PageRegisterComponent } from './pages/page-register/page-register.component';
 import {PageTeamDetailsComponent} from './pages/page-team-details/page-team-details.component';
 import {PageTeamOverviewComponent} from './pages/page-team-overview/page-team-overview.component';
 import { PageTournamentDetailsComponent } from './pages/page-tournament-details/page-tournament-details.component';
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
-import { PageRegisterComponent } from './pages/page-register/page-register.component';
 
 export const appRoutes: Route[] = [
   {
