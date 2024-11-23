@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 
-import { registerForm } from '../../../../../../libs/business-domain/register/src/lib/form-controls/register-form.control';
 import { AuthService } from '../../business-rules/auth/auth.service';
-import { ButtonComponent, InfoButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../ui-shared';
-import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
+
+import { registerForm } from '../../../../../../libs/business-domain/register/src/lib/form-controls/register-form.control';
+import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum, InfoButtonComponent } from '../../ui-shared';
 import { PageRegisterHeaderComponent } from './page-register-header/page-register-header.component';
+import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
 
 @Component({
   standalone: true,

@@ -3,10 +3,10 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
 
 import { MatButtonModule } from '@angular/material/button';
 
-import { DialogModule } from 'primeng/dialog';
 import { ButtonComponent } from '../button/button.component';
 import { ButtonColorEnum } from '../button/enums/color.enum';
 import { ButtonTypeEnum } from '../button/enums/type.enum';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   standalone: true,

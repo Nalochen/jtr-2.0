@@ -8,15 +8,14 @@ import { MatIcon } from '@angular/material/icon';
 import { TournamentData,TournamentTeamData } from '@jtr/data-domain/store';
 
 import {
+  ButtonColorEnum,
   ButtonComponent,
+  ButtonTypeEnum,
   ChipComponent,
   DataContainerExpandableComponent,
   DataContainerRowComponent,
   InfoButtonComponent,
-  TeamComponent,
-  ButtonColorEnum,
-  ButtonTypeEnum
-} from '../../../ui-shared';
+  TeamComponent} from '../../../ui-shared';
 import {
   TournamentInformationAdditionalComponent
 } from '../tournament-information-additional/tournament-information-additional.component';

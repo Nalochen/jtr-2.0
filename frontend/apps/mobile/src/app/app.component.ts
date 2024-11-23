@@ -5,12 +5,13 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 
+import { SingletonGetter } from '@jtr/infrastructure/cache';
+
 import {AuthService} from './business-rules/auth/auth.service';
 
 import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
+import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum } from './ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum } from './ui-shared';
 
 @Component({
   standalone: true,

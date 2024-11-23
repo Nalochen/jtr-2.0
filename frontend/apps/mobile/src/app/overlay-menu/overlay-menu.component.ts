@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter,Output } from '@angular/core';
-import { ButtonComponent, ButtonColorEnum, ButtonTypeEnum } from '../ui-shared';
+
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../ui-shared';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

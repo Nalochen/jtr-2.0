@@ -1,5 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 import {
   ButtonColorEnum,
@@ -9,7 +10,6 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 export interface Team {
   name: string;
@@ -49,7 +49,7 @@ export class TournamentRegistrationComponent implements OnInit {
     name: FormControl<string | null>;
   }>>([]);
 
-  ngOnInit() {
+  public ngOnInit() {
     this.teams.forEach((team) => {
       this.form.push(
         new FormGroup({
