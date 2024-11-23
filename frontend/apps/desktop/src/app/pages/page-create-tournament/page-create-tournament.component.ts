@@ -8,11 +8,45 @@ import { Store } from '@ngrx/store';
 import { userDetailsSelector } from '@jtr/business-domain/user';
 import { UserData} from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
+import {
+  PageCreateTournamentNavigationComponent
+} from './page-create-tournament-navigation/page-create-tournament-navigation.component';
+import {
+  PageTournamentInformationBasicComponent
+} from './page-create-tournament-information-basic/page-create-tournament-information-basic.component';
+import {
+  PageCreateTournamentInformationAdditionalComponent
+} from './page-create-tournament-information-additional/page-create-tournament-information-additional.component';
+import {
+  PageCreateTournamentSubmitComponent
+} from './page-create-tournament-submit/page-create-tournament-submit.component';
+import {
+  PageCreateTournamentInformationAccommodationComponent
+} from './page-create-tournament-information-accommodation/page-create-tournament-information-accommodation.component';
+import {
+  PageCreateTournamentInformationContactComponent
+} from './page-create-tournament-information-contact/page-create-tournament-information-contact.component';
+import {
+  PageCreateTournamentInformationRegistrationComponent
+} from './page-create-tournament-information-registration/page-create-tournament-information-registration.component';
+import {
+  PageCreateTournamentInformationRulesComponent
+} from './page-create-tournament-information-rules/page-create-tournament-information-rules.component';
 
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    PageCreateTournamentNavigationComponent,
+    PageTournamentInformationBasicComponent,
+    PageCreateTournamentInformationAccommodationComponent,
+    PageCreateTournamentInformationContactComponent,
+    PageCreateTournamentInformationRegistrationComponent,
+    PageCreateTournamentInformationRulesComponent,
+    PageCreateTournamentInformationAdditionalComponent,
+    PageCreateTournamentSubmitComponent
+  ],
   templateUrl: './page-create-tournament.component.html',
   styleUrl: './page-create-tournament.component.less',
 })

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-page-create-tournament-information-registration',
+  selector: 'page-create-tournament-information-registration',
   standalone: true,
   imports: [CommonModule],
   templateUrl:
