@@ -1,3 +1,4 @@
+import logging
 import os
 
 import pymysql
@@ -18,6 +19,8 @@ class Config:
         app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+        app.config['MIGRATION_DIR'] = '/home/backend/DataDomain/Database/Migration' if os.getenv(
+            'FLASK_ENV') == 'development' else '/app/DataDomain/Database/Migration'
         app.config['SECRET_KEY'] = 'secret key'
 
         app.config['CACHE_TYPE'] = 'redis'
