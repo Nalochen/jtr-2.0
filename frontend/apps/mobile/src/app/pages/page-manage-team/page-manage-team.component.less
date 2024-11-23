@@ -1,3 +1,5 @@
+@import 'colors-mobile';
+
 .small-text {
   margin-bottom: 16px !important;
 }
@@ -10,18 +12,15 @@
 }
 
 .content {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+  display: block;
+  padding: 16px 16px 70px 16px;
+  background-color: @color-bg-light;
+  border-radius: 20px 20px 0 0;
+  flex-grow: 1;
 }
 
 team-information {
   width: 70%;
-}
-
-.activities {
-  margin-left: 24px;
-  width: 30%;
 }
 
 team-members,
@@ -33,8 +32,4 @@ team-bottom-bar {
   position: fixed;
   bottom: 0;
   width: 100%;
-}
-
-.form-group {
-  padding-bottom: 64px;
 }

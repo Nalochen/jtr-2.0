@@ -1,3 +1,11 @@
+@import 'colors-mobile';
+
+:host {
+  display: block;
+  width: 100%;
+  padding: 0 16px;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -17,6 +25,7 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 4px;
+  align-items: center;
 }
 
 label {
@@ -34,18 +43,30 @@ p-inputswitch {
 }
 
 img {
-  width: 150px;
-  height: 150px;
+  width: 50px;
+  height: 50px;
 }
 
 app-button {
   position: absolute;
-  bottom: 8px;
-  right: 8px;
+  bottom: 4px;
+  right: 4px;
 }
 
 .image-container {
   position: relative;
   display: inline-block;
-  margin-right: 24px;
+  margin-right: 16px;
+}
+
+.edit-icon {
+  font-size: 16px;
+}
+
+.city, .mixteam {
+  color: @color-red;
+}
+
+#city {
+  max-width: 130px;
 }
