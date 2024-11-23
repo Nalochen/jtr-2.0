@@ -15,6 +15,7 @@ import {
   InfoButtonComponent,
 } from '../../ui-shared';
 import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -25,6 +26,7 @@ import { VisibilityButtonComponent } from './visibility-button/visibility-button
     InfoButtonComponent,
     ButtonComponent,
     VisibilityButtonComponent,
+    TranslatePipe
   ],
   templateUrl: './page-register.component.html',
   styleUrl: './page-register.component.less',

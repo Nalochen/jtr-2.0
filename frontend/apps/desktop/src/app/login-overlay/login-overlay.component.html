@@ -1,12 +1,12 @@
 <h4>Login</h4>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="no-account">
-    <p>Noch kein Konto?</p>
-    <a href="/register">Registrieren</a>
+    <p>{{ 'login.no-account' | translate }}</p>
+    <a href="/register">{{ 'login.register' | translate }}</a>
   </div>
 
   <div class="email">
-    <label for="emailOrUsername">E-Mail oder Benutzername</label>
+    <label for="emailOrUsername">{{ 'login.email-or-username' | translate }}</label>
     <input
       type="text"
       class="form-control"
@@ -16,7 +16,7 @@
   </div>
 
   <div class="password">
-    <label for="password">Passwort</label>
+    <label for="password">{{ 'login.password' | translate }}</label>
     <input
       type="password"
       class="form-control"
@@ -26,6 +26,6 @@
   </div>
 
   <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Flat"
-    >Login</app-button
+    >{{ 'login.login' | translate }}</app-button
   >
 </form>

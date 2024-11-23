@@ -4,11 +4,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { loginFormControl } from '../../../../../libs/business-domain/login/src/lib/form-controls/login-form.control';
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../ui-shared';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'login-overlay',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ButtonComponent,
+    TranslatePipe
+  ],
   templateUrl: './login-overlay.component.html',
   styleUrl: './login-overlay.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
