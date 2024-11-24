@@ -5,8 +5,7 @@
     <h5 ngProjectAs="container-headline">{{ 'page-manage-team.members' | translate }}</h5>
   </app-data-container-row>
 
-  @if (form.controls.members.length > 0) { @for (member of
-  form.controls.members.value; track member) {
+  @for (member of form.controls.members.value; track member.id) {
   <app-data-container-row>
     <img
       ngProjectAs="container-icon"
@@ -17,7 +16,7 @@
     />
     <p>{{ member.name }}</p>
   </app-data-container-row>
-  } } @else {
+  } @empty {
   <div class="noMembers">
     <p>{{ 'page-manage-team.no-members' | translate }}</p>
   </div>
