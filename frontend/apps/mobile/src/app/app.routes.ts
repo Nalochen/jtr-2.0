@@ -4,6 +4,7 @@ import { TeamDetailsResolver, TeamOverviewResolver } from '@jtr/business-domain/
 import { TournamentDetailsResolver, TournamentOverviewResolver } from '@jtr/business-domain/tournament';
 import { UserDetailsResolver } from '@jtr/business-domain/user';
 
+import { PageLoginComponent } from './pages/page-login/page-login.component';
 import { PageRegisterComponent } from './pages/page-register/page-register.component';
 import {PageTeamDetailsComponent} from './pages/page-team-details/page-team-details.component';
 import {PageTeamOverviewComponent} from './pages/page-team-overview/page-team-overview.component';
@@ -43,6 +44,10 @@ export const appRoutes: Route[] = [
   {
     path: 'register',
     component: PageRegisterComponent,
+  },
+  {
+    path: 'login',
+    component: PageLoginComponent,
   },
   {
     path: 'user-details/:userId?',
