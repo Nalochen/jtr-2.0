@@ -37,20 +37,22 @@ export class LoginOverlayComponent {
       return;
     }
 
-    if (this.form.controls.password.value) {
-      if (isEmail(this.form.controls.emailOrUsername.value)) {
-        this.authService.login({
-          email: this.form.controls.emailOrUsername.value,
-          username: null,
-          password: this.form.controls.password.value
-        });
-      } else {
-        this.authService.login({
-          email: null,
-          username: this.form.controls.emailOrUsername.value,
-          password: this.form.controls.password.value
-        });
-      }
+    if (!this.form.controls.password.value) {
+      return;
+    }
+
+    if (isEmail(this.form.controls.emailOrUsername.value)) {
+      this.authService.login({
+        email: this.form.controls.emailOrUsername.value,
+        username: null,
+        password: this.form.controls.password.value
+      });
+    } else {
+      this.authService.login({
+        email: null,
+        username: this.form.controls.emailOrUsername.value,
+        password: this.form.controls.password.value
+      });
     }
 
     this.form.reset();
