@@ -37,6 +37,22 @@
     "shoes-information-studded": "besitzen hingegen längere, hervorstehende Stollen, die entweder fest integriert oder austauschbar sein können. Diese Stollen sind oft in verschiedenen Formen – wie konisch oder scharfkantig – gestaltet und sind klar voneinander getrennt, um eine markante Optik zu erzeugen.",
     "shoes-information-barefoot-header": "Barfuß"
   },
+  "page-manage-team": {
+    "city": "Stadt",
+    "mix-team": "Mixteam",
+    "name": "Name",
+    "founded": "gegründet",
+    "information-usage": "Wofür benutzen wir die Infos auf dieser Seite?",
+    "information-usage-text": "Info Text",
+    "training": "Training",
+    "contacts": "Kontakte",
+    "contact": "Kontakt",
+    "about-us": "Über uns",
+    "members": "Mitglieder",
+    "no-members": "noch keine Mitglieder vorhanden",
+    "delete-team": "Team löschen",
+    "save": "Speichern"
+  },
   "login": {
     "no-account": "Noch keinen Account?",
     "register": "Registrieren",

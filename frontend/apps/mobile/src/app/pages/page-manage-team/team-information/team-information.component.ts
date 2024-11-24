@@ -12,36 +12,28 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 
 import { EditTeamForm } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
-import {
-  ButtonColorEnum,
-  ButtonComponent,
-  ButtonTypeEnum,
-} from '../../../ui-shared';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { InputTextModule } from 'primeng/inputtext';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TeamInformationAboutUsComponent } from '../team-information-about-us/team-information-about-us.component';
+import { TeamInformationContactsComponent } from '../team-information-contacts/team-information-contacts.component';
+import { TeamInformationTrainingComponent } from '../team-information-training/team-information-training.component';
 
 @Component({
-  selector: 'team-header',
+  selector: 'team-information',
   standalone: true,
   imports: [
     CommonModule,
     NgOptimizedImage,
-    InputSwitchModule,
-    InputTextModule,
+    TeamInformationTrainingComponent,
+    TeamInformationContactsComponent,
+    TeamInformationAboutUsComponent,
     ReactiveFormsModule,
-    ButtonComponent,
-    TranslatePipe
   ],
-  templateUrl: './team-header.component.html',
-  styleUrl: './team-header.component.less',
+  templateUrl: './team-information.component.html',
+  styleUrl: './team-information.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamHeaderComponent implements OnInit, OnDestroy {
+export class TeamInformationComponent implements OnInit, OnDestroy {
   @Input() public form!: FormGroup<EditTeamForm>;
   private readonly destroy$ = new Subject<void>();
-  protected readonly ButtonColorEnum = ButtonColorEnum;
-  protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
   constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
@@ -54,9 +46,5 @@ export class TeamHeaderComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-  }
-
-  public onChangeLogo() {
-    window.alert('Change logo');
   }
 }

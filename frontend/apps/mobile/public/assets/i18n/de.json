@@ -2,6 +2,22 @@
   "tournament-details": "Turnier Details",
   "tournaments": "Turniere",
   "participated-tournaments": "Teilgenommene Turniere",
+  "page-manage-team": {
+    "city": "Stadt",
+    "mix-team": "Mixteam",
+    "name": "Name",
+    "founded": "gegründet",
+    "information-usage": "Wofür benutzen wir die Infos auf dieser Seite?",
+    "information-usage-text": "Info Text",
+    "training": "Training",
+    "contacts": "Kontakte",
+    "contact": "Kontakt",
+    "about-us": "Über uns",
+    "members": "Mitglieder",
+    "no-members": "noch keine Mitglieder vorhanden",
+    "delete-team": "Team löschen",
+    "save": "Speichern"
+  },
   "page-tournament-details": {
     "collapse-all": "Alle schließen",
     "expand-all": "Alle öffnen",

@@ -10,7 +10,7 @@
       [color]="ButtonColorEnum.White"
       [type]="ButtonTypeEnum.Round"
     >
-      <span class="material-icons-outlined">edit</span>
+      <span class="material-icons-outlined edit-icon">edit</span>
     </app-button>
   </div>
 
@@ -26,10 +26,10 @@
         id="city"
       />
       } @else {
-      <h3 class="city">{{ 'page-manage-team.mix-team' | translate }}</h3>
+      <p class="city">{{ 'page-manage-team.mix-team' | translate }}</p>
       }
       <div class="switch">
-        <h3 class="mixteam">{{ 'page-manage-team.mix-team' | translate }}?</h3>
+        <p class="mixteam">{{ 'page-manage-team.mix-team' | translate }}?</p>
         <p-inputSwitch formControlName="isMixTeam" />
       </div>
     </div>
