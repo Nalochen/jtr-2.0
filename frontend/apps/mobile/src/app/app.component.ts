@@ -8,10 +8,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import {AuthService} from './business-rules/auth/auth.service';
-import { ButtonColorEnum, ButtonTypeEnum } from './infrastructure/button-style/button-style.enum';
 
 import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
-import { ButtonComponent } from './ui-shared';
+import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum } from './ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

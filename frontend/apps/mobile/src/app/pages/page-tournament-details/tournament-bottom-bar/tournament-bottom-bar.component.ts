@@ -1,9 +1,7 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ButtonColorEnum, ButtonTypeEnum } from '../../../infrastructure/button-style/button-style.enum';
-
-import { ButtonComponent, ScrollToTopComponent } from '../../../ui-shared';
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum,ScrollToTopComponent } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
