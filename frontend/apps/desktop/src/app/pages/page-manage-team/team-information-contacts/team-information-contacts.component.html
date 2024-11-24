@@ -1,6 +1,6 @@
 <app-data-container [formGroup]="form">
   <app-data-container-row>
-    <h4 ngProjectAs="container-headline">Kontakte</h4>
+    <h4 ngProjectAs="container-headline">{{ 'page-manage-team.contacts' | translate }}</h4>
   </app-data-container-row>
   @for (contact of form.controls.contacts.value; track contact; let index =
   $index) {
@@ -9,7 +9,7 @@
       >contact_page</span
     >
 
-    <label for="contact">Contact</label>
+    <label for="contact">{{ 'page-manage-team.contact' | translate }}</label>
     <input
       pInputText
       ngProjectAs="container-headline"

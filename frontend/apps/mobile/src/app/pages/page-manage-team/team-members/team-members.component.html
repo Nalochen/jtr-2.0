@@ -1,0 +1,25 @@
+
+
+<app-data-container [formGroup]="form">
+  <app-data-container-row>
+    <h5 ngProjectAs="container-headline">{{ 'page-manage-team.members' | translate }}</h5>
+  </app-data-container-row>
+
+  @if (form.controls.members.length > 0) { @for (member of
+  form.controls.members.value; track member) {
+  <app-data-container-row>
+    <img
+      ngProjectAs="container-icon"
+      alt="Profilbild von {{ member }}"
+      src="https://example.com/picture.png"
+      width="28"
+      height="28"
+    />
+    <p>{{ member.name }}</p>
+  </app-data-container-row>
+  } } @else {
+  <div class="noMembers">
+    <p>{{ 'page-manage-team.no-members' | translate }}</p>
+  </div>
+  }
+</app-data-container>

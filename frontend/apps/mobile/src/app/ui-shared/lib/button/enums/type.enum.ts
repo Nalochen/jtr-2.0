@@ -1,10 +1,3 @@
-export enum ButtonColorEnum {
-  White = 'white',
-  Grey = 'grey',
-  Red = 'red',
-  None = 'none',
-}
-
 export enum ButtonTypeEnum {
   Basic = 'basic',
   Raised = 'raised',
@@ -16,4 +9,3 @@ export enum ButtonTypeEnum {
   ExtendedFab = 'extendedFab',
   Round = 'round',
 }
-

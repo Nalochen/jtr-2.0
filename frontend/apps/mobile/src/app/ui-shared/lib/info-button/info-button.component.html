@@ -1,11 +1,11 @@
 <div class="tooltip-container">
-  <app-button [type]="ButtonTypeEnum.Icon" (click)="showDialog()">
+  <app-button [type]="ButtonTypeEnum.Icon" [buttonType]="ButtonFunctionType.BUTTON" (click)="showDialog()">
     <span class="material-icons-outlined">info_i</span>
   </app-button>
   <p-dialog header="Info" [(visible)]="visible" [modal]="true" [style]="{ width: '90%' }">
     <div class="content">
       <ng-content />
-      <app-button class="close" [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" (click)="hideDialog()">Ok</app-button>
+      <app-button class="close" [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" [buttonType]="ButtonFunctionType.BUTTON" (click)="hideDialog()">Ok</app-button>
     </div>
   </p-dialog>
 </div>

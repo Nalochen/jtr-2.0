@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy,Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 import { ButtonComponent } from '../button/button.component';
+import { ButtonFunctionType } from '../button/enums/function-type.enum';
 import { ButtonTypeEnum } from '../button/enums/type.enum';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
@@ -19,5 +20,6 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 export class InfoButtonComponent {
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
+  protected readonly ButtonFunctionType = ButtonFunctionType;
 }
 

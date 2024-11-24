@@ -1,9 +1,9 @@
-<h1>Willkommen</h1>
-<h3>Registrierung</h3>
+<h1>{{ 'register.welcome' | translate }}</h1>
+<h3>{{ 'register.register' | translate }}</h3>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="email">
-    <label for="email">E-Mail</label>
+    <label for="email">{{ 'register.email' | translate }}</label>
     <input
       type="email"
       class="form-control"
@@ -16,22 +16,19 @@
     />
     @if ((form.controls.email.dirty || form.controls.email.touched) &&
     form.controls.email.hasError('required')) {
-    <p class="error-message">E-Mail ist erforderlich</p>
+    <p class="error-message">{{ 'register.email-required' | translate }}</p>
     } @if ((form.controls.email.dirty || form.controls.email.touched) &&
     form.controls.email.hasError('email')) {
-    <p class="error-message">ungültige E-Mail</p>
+    <p class="error-message">{{ 'register.email-invalid' | translate }}</p>
     }
   </div>
 
   <div class="username">
     <div class="headline">
-      <label for="username">Benutzername (einzigartig)</label>
+      <label for="username">{{ 'register.username' | translate }} {{ 'register.unique' | translate }}</label>
       <app-info-button>
-        <p class="i-headline">Benutzername</p>
-        <p>
-          Dein Benutzername muss eine eindeutige Abfolge von Zahlen und
-          Buchstaben sein, damit dich jeder eindeutig zuordnen kann.
-        </p>
+        <p class="i-headline">{{ 'register.username' | translate }}</p>
+        <p>{{ 'register.username-info' | translate }}</p>
       </app-info-button>
     </div>
     <input
@@ -46,17 +43,15 @@
     />
     @if ((form.controls.username.dirty || form.controls.username.touched) &&
     form.controls.username.hasError('required')) {
-    <p class="error-message">Benutzername ist erforderlich</p>
+    <p class="error-message">{{ 'register.username-required' | translate }}</p>
     } @if ((form.controls.username.dirty || form.controls.username.touched) &&
     form.controls.username.hasError('minlength')) {
-    <p class="error-message">
-      Benutzername muss mindestens 2 Zeichen enthalten
-    </p>
+    <p class="error-message">{{ 'register.username-min' | translate }}</p>
     }
   </div>
 
   <div class="password">
-    <label for="password">Passwort</label>
+    <label for="password">{{ 'register.password' | translate }}</label>
     <input
       type="password"
       class="form-control"
@@ -69,15 +64,15 @@
     />
     @if ((form.controls.password.dirty || form.controls.password.touched) &&
     form.controls.password.hasError('required')) {
-    <p class="error-message">Passwort ist erforderlich</p>
+    <p class="error-message">{{ 'register.password-required' | translate }}</p>
     } @if ((form.controls.password.dirty || form.controls.password.touched) &&
     form.controls.password.hasError('minlength')) {
-    <p class="error-message">Passwort muss mindestens 8 Zeichen enthalten</p>
+    <p class="error-message">{{ 'register.password-min' | translate }}</p>
     }
   </div>
 
   <div class="password-repeat">
-    <label for="confirmPassword">Passwort wiederholen</label>
+    <label for="confirmPassword">{{ 'register.password-confirmation' | translate }}</label>
     <input
       type="password"
       class="form-control"
@@ -92,19 +87,16 @@
     @if ((form.controls.confirmPassword.dirty ||
     form.controls.confirmPassword.touched) &&
     form.hasError('passwordsMismatch')) {
-    <p class="error-message">Die Passwörter stimmen nicht überein</p>
+    <p class="error-message">{{ 'register.password-confirmation-mismatch' | translate }}</p>
     }
   </div>
 
   <div class="name">
     <div class="headline">
-      <label for="name">Name</label>
+      <label for="name">{{ 'register.name' | translate }}</label>
       <app-info-button>
-        <p class="i-headline">Name</p>
-        <p>
-          Dein Anzeige-Name. Trage hier am besten den Namen ein, unter dem dich
-          die meisten Menschen in der Community kennen
-        </p>
+        <p class="i-headline">{{ 'register.name' | translate }}</p>
+        <p>{{ 'register.name-info' | translate }}</p>
       </app-info-button>
     </div>
     <input
@@ -122,13 +114,10 @@
 
   <div class="city">
     <div class="headline">
-      <label for="city">Stadt</label>
+      <label for="city">{{ 'register.city' | translate }}</label>
       <app-info-button>
-        <p class="i-headline">Stadt</p>
-        <p>
-          Hier kannst du die Stadt angeben, aus der du kommst oder die in der du
-          trainierst.
-        </p>
+        <p class="i-headline">{{ 'register.city' | translate }}</p>
+        <p>{{ 'register.city-info' | translate }}</p>
       </app-info-button>
     </div>
     <input
@@ -146,14 +135,10 @@
 
   <div class="birthdate">
     <div class="headline">
-      <label for="birthdate">Geburtsdatum</label>
+      <label for="birthdate">{{ 'register.birthdate' | translate }}</label>
       <app-info-button>
-        <p class="i-headline">Geburtsdatum</p>
-        <p>
-          Dein Geburtsdatum wird nur gespeichert, damit du später auf der
-          Turnierseite schneller nach Turnieren filtern kannst, die für deine
-          Altersgruppe freigegeben sind.
-        </p>
+        <p class="i-headline">{{ 'register.birthdate' | translate }}</p>
+        <p>{{ 'register.birthdate-info' | translate }}</p>
       </app-info-button>
     </div>
     <input
@@ -169,7 +154,7 @@
     [control]="form.controls.isBirthdateVisible"
   />
 
-  <button type="submit" class="register-button" [disabled]="!form.valid">
-    <p>Registrieren</p>
-  </button>
+  <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" [buttonType]="ButtonFunctionType.SUBMIT" [disabled]="!form.valid" class="register-button">
+    <p>{{ 'register.register-button' | translate }}</p>
+  </app-button>
 </form>

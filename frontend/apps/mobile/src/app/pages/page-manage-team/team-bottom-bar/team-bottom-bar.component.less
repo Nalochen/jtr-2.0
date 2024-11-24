@@ -1,0 +1,23 @@
+@import 'colors-mobile';
+
+:host {
+  background-color: @color-button-passive;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 16px;
+  margin: 0 auto;
+}
+
+app-button&:not(:last-of-type) {
+  margin-right: 16px;
+}
