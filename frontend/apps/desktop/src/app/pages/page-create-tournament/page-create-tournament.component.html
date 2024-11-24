@@ -1,16 +1,30 @@
 <h1>Turnier erstellen</h1>
 
-<page-create-tournament-information-accommodation />
+<page-create-tournament-navigation />
 
-<page-tournament-information-basic />
+<page-tournament-information-basic
+  [form]="form.controls.basic"
+/>
 
-<page-create-tournament-information-registration />
+<p-divider />
+
+<page-create-tournament-information-registration
+  [form]="form.controls.registration"
+/>
+
+<p-divider />
 
 <page-create-tournament-information-contact />
 
+<p-divider />
+
 <page-create-tournament-information-accommodation />
 
+<p-divider />
+
 <page-create-tournament-information-rules />
+
+<p-divider />
 
 <page-create-tournament-information-additional />
 

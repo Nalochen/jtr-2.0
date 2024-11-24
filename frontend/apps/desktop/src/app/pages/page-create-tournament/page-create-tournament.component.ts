@@ -32,6 +32,11 @@ import {
 import {
   PageCreateTournamentInformationRulesComponent
 } from './page-create-tournament-information-rules/page-create-tournament-information-rules.component';
+import {
+  createTournamentFormControl
+} from '../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DividerModule } from 'primeng/divider';
 
 
 @Component({
@@ -45,9 +50,13 @@ import {
     PageCreateTournamentInformationRegistrationComponent,
     PageCreateTournamentInformationRulesComponent,
     PageCreateTournamentInformationAdditionalComponent,
-    PageCreateTournamentSubmitComponent
+    PageCreateTournamentSubmitComponent,
+    ReactiveFormsModule,
+    DividerModule
   ],
   templateUrl: './page-create-tournament.component.html',
   styleUrl: './page-create-tournament.component.less',
 })
-export class PageCreateTournamentComponent {}
+export class PageCreateTournamentComponent {
+  public form = createTournamentFormControl;
+}
