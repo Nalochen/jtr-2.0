@@ -1,0 +1,22 @@
+.additional {
+  width: 100%;
+}
+
+input {
+  width: 40rem;
+}
+
+.headline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.dates-input {
+  display: flex;
+  flex-direction: row;
+  width: 35rem;
+  align-items: center
+}

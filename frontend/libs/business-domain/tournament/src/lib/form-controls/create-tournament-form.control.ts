@@ -44,7 +44,8 @@ export type BasicInformationForm = {
 };
 
 export type RegistrationInformationForm = {
-  teamCount: FormControl<number | null>;
+  teamCountButton: FormControl<number | null>;
+  teamCountField: FormControl<number | null>;
   registrationProcedure: FormControl<RegistrationProcedureEnum | null>
   registrationProcedureText: FormControl<string | null>;
   registrationStart: FormControl<Date | null>;
@@ -86,7 +87,8 @@ export const basicInformationFormControl = new FormGroup<BasicInformationForm>({
 });
 
 export const registrationInformationFormControl = new FormGroup<RegistrationInformationForm>({
-  teamCount: new FormControl(null, [Validators.required]),
+  teamCountButton: new FormControl(null),
+  teamCountField: new FormControl(null),
   registrationProcedure: new FormControl(null, [Validators.required]),
   registrationProcedureText: new FormControl(null),
   registrationStart: new FormControl(null, [Validators.required]),
