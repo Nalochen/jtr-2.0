@@ -1,4 +1,19 @@
 :host {
   padding-bottom: 32px;
-  display: block;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-gap: 32px;
+  grid-template-areas: "header header" "navigation form";
+}
+
+h1 {
+  grid-area: header;
+}
+
+page-create-tournament-navigation {
+  grid-area: navigation;
+}
+
+form {
+  grid-area: form;
 }
