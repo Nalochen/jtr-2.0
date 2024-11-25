@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { PageCreateTournamentInformationRegistrationComponent } from './page-create-tournament-information-registration.component';
 
 describe('PageCreateTournamentInformationRegistrationComponent', () => {

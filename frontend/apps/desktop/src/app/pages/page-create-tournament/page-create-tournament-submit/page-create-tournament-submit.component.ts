@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum, ButtonFunctionType } from '../../../ui-shared';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+
+import { ButtonColorEnum, ButtonComponent, ButtonFunctionType,ButtonTypeEnum } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

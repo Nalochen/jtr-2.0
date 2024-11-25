@@ -17,9 +17,9 @@ import {
   ButtonComponent,
   ButtonTypeEnum,
 } from '../../../ui-shared';
+import { TranslatePipe } from '@ngx-translate/core';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
-import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'team-header',

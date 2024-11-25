@@ -1,12 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import {
-  RegistrationInformationForm
-} from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
 import { DataContainerRowComponent } from '../../../ui-shared';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TranslatePipe } from '@ngx-translate/core';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
   selector: 'page-create-tournament-information-additional',
@@ -23,5 +21,5 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageCreateTournamentInformationAdditionalComponent {
-  @Input() form!: FormControl<string | null>;
+  @Input() public form!: FormControl<string | null>;
 }

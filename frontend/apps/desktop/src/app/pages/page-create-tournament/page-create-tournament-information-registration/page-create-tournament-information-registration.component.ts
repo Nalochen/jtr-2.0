@@ -1,19 +1,22 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  RegistrationInformationForm
-} from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
-import { ButtonComponent, DataContainerRowComponent, InfoButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../../ui-shared';
-import { InputTextModule } from 'primeng/inputtext';
-import { SelectButtonModule } from 'primeng/selectbutton';
+
+import { Subject, takeUntil } from 'rxjs';
+
+import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
 import {
   RegistrationProcedureEnum
 } from '../../../../../../../libs/data-domain/tournament/enums/registration-procedure.enum';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { Subject, takeUntil } from 'rxjs';
-import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
+
+import {
+  RegistrationInformationForm
+} from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
+import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum, DataContainerRowComponent, InfoButtonComponent } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @Component({
   selector: 'page-create-tournament-information-registration',
@@ -38,7 +41,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PageCreateTournamentInformationRegistrationComponent implements OnInit, OnDestroy {
-  @Input() form!: FormGroup<RegistrationInformationForm>;
+  @Input() public form!: FormGroup<RegistrationInformationForm>;
 
   public readonly ButtonColorEnum = ButtonColorEnum;
   public readonly ButtonTypeEnum = ButtonTypeEnum;
@@ -81,7 +84,10 @@ export class PageCreateTournamentInformationRegistrationComponent implements OnI
     });
   }
 
-  public ngOnDestroy() {}
+  public ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   public onOpenRegistrationNow() {
     const currentDateAndTime = this.datePipe.transform(new Date(), 'yyyy-MM-dd');

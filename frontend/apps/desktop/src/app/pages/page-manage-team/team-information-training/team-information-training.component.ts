@@ -18,8 +18,8 @@ import {
   DataContainerComponent,
   DataContainerRowComponent,
 } from '../../../ui-shared';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TranslatePipe } from '@ngx-translate/core';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
   selector: 'team-training',

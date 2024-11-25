@@ -1,19 +1,21 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-  AccommodationInformationForm
-} from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
-import { ButtonComponent, DataContainerRowComponent } from '../../../ui-shared';
-import { InputTextModule } from 'primeng/inputtext';
-import { SelectButtonModule } from 'primeng/selectbutton';
+
 import { AccommodationTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/accommodation-type.enum';
 import {
   GastronomyAvailabilityEnum,
   MealAvailabilityEnum
 } from '../../../../../../../libs/data-domain/tournament/enums/food-type.enum';
-import { DropdownModule } from 'primeng/dropdown';
+
+import {
+  AccommodationInformationForm
+} from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
+import { ButtonComponent, DataContainerRowComponent } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @Component({
   selector: 'page-create-tournament-information-accommodation',
@@ -35,7 +37,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PageCreateTournamentInformationAccommodationComponent {
-  @Input() form!: FormGroup<AccommodationInformationForm>;
+  @Input() public form!: FormGroup<AccommodationInformationForm>;
 
   public readonly accommodationTypeOptions = [
     { label: 'camping', value: AccommodationTypeEnum.CAMPING },

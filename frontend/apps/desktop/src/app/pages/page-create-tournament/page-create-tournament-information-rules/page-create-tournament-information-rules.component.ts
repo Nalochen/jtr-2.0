@@ -1,14 +1,15 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+
 import {
   RulesInformationForm
 } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import { DataContainerRowComponent, InfoButtonComponent } from '../../../ui-shared';
+import { TranslatePipe } from '@ngx-translate/core';
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { InputSwitchModule } from 'primeng/inputswitch';
-import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-create-tournament-information-rules',
@@ -28,5 +29,5 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageCreateTournamentInformationRulesComponent {
-  @Input() form!: FormGroup<RulesInformationForm>;
+  @Input() public form!: FormGroup<RulesInformationForm>;
 }

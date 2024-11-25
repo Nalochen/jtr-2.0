@@ -17,8 +17,8 @@ import {
   DataContainerComponent,
   DataContainerRowComponent,
 } from '../../../ui-shared';
-import { InputTextModule } from 'primeng/inputtext';
 import { TranslatePipe } from '@ngx-translate/core';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'team-contacts',

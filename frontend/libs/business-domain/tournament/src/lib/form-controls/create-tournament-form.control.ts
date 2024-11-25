@@ -1,11 +1,12 @@
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { RegistrationProcedureEnum } from '../../../../../data-domain/tournament/enums/registration-procedure.enum';
-import { PricingTypeEnum } from '../../../../../data-domain/tournament/enums/pricing-type.enum';
+
 import { AccommodationTypeEnum } from '../../../../../data-domain/tournament/enums/accommodation-type.enum';
 import {
   GastronomyAvailabilityEnum,
   MealAvailabilityEnum
 } from '../../../../../data-domain/tournament/enums/food-type.enum';
+import { PricingTypeEnum } from '../../../../../data-domain/tournament/enums/pricing-type.enum';
+import { RegistrationProcedureEnum } from '../../../../../data-domain/tournament/enums/registration-procedure.enum';
 
 export type CostsInformationForm = {
   registrationFee: FormControl<number | null>;

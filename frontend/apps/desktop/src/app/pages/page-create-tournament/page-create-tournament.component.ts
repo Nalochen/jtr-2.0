@@ -1,28 +1,19 @@
 import {CommonModule} from '@angular/common';
 import { Component } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { Observable } from 'rxjs';
-
-import { Store } from '@ngrx/store';
-
-import { userDetailsSelector } from '@jtr/business-domain/user';
-import { UserData} from '@jtr/data-domain/store';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
 import {
-  PageCreateTournamentNavigationComponent
-} from './page-create-tournament-navigation/page-create-tournament-navigation.component';
+  createTournamentFormControl
+} from '../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import {
-  PageTournamentInformationBasicComponent
-} from './page-create-tournament-information-basic/page-create-tournament-information-basic.component';
+  PageCreateTournamentInformationAccommodationComponent
+} from './page-create-tournament-information-accommodation/page-create-tournament-information-accommodation.component';
 import {
   PageCreateTournamentInformationAdditionalComponent
 } from './page-create-tournament-information-additional/page-create-tournament-information-additional.component';
 import {
-  PageCreateTournamentSubmitComponent
-} from './page-create-tournament-submit/page-create-tournament-submit.component';
-import {
-  PageCreateTournamentInformationAccommodationComponent
-} from './page-create-tournament-information-accommodation/page-create-tournament-information-accommodation.component';
+  PageTournamentInformationBasicComponent
+} from './page-create-tournament-information-basic/page-create-tournament-information-basic.component';
 import {
   PageCreateTournamentInformationContactComponent
 } from './page-create-tournament-information-contact/page-create-tournament-information-contact.component';
@@ -33,11 +24,13 @@ import {
   PageCreateTournamentInformationRulesComponent
 } from './page-create-tournament-information-rules/page-create-tournament-information-rules.component';
 import {
-  createTournamentFormControl
-} from '../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
-import { ReactiveFormsModule } from '@angular/forms';
-import { DividerModule } from 'primeng/divider';
+  PageCreateTournamentNavigationComponent
+} from './page-create-tournament-navigation/page-create-tournament-navigation.component';
+import {
+  PageCreateTournamentSubmitComponent
+} from './page-create-tournament-submit/page-create-tournament-submit.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DividerModule } from 'primeng/divider';
 
 
 @Component({
