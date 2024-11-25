@@ -1,6 +1,7 @@
 export enum MealAvailabilityEnum {
   FULL_MEAL_PROVIDED = 'FULL_MEAL_PROVIDED',
   SNACKS = 'SNACKS',
+  GRILL_STATION = 'GRILL_STATION',
   NOT_PROVIDED = 'NOT_PROVIDED',
 }
 

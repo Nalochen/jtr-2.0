@@ -1,1 +1,49 @@
-<p>page-create-tournament-information-accommodation works!</p>
+<div [formGroup]="form">
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
+    <div class="headline" ngProjectAs="container-headline">
+      <h3>Übernachtung</h3>
+      <p-selectButton
+        [options]="accommodationTypeOptions"
+        [formControl]="form.controls.accommodationType"
+        optionLabel="label"
+        optionValue="value"
+      />
+    </div>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
+    <h3 ngProjectAs="container-headline">Übernachtungsort</h3>
+    <input
+      class="registration-procedure-input"
+      ngProjectAs="container-content"
+      pInputText
+      type="text"
+      [formControl]="form.controls.accommodationAddress"
+    >
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
+    <h3 ngProjectAs="container-headline">Verpflegung</h3>
+    <div class="food" ngProjectAs="container-content">
+      <h5>Frühstück</h5>
+      <p-dropdown
+        [formControl]="form.controls.food.controls.breakfast"
+        [options]="mealAvailabilityOptions" />
+      <h5>Mittagessen</h5>
+      <p-dropdown
+        [formControl]="form.controls.food.controls.lunch"
+        [options]="mealAvailabilityOptions" />
+      <h5>Abendessen</h5>
+      <p-dropdown
+        [formControl]="form.controls.food.controls.dinner"
+        [options]="mealAvailabilityOptions" />
+      <h5>Gastronomie</h5>
+      <p-dropdown
+        [formControl]="form.controls.food.controls.gastronomy"
+        [options]="gastronomyAvailabilityOptions" />
+    </div>
+  </app-data-container-row>
+</div>
