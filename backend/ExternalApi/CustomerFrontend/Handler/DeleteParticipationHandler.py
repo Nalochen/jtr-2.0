@@ -2,7 +2,7 @@ from flask import g
 
 from DataDomain.Database.Repository.ParticipatesInRepository import ParticipatesInRepository
 from DataDomain.Model.Response import Response
-from ExternalApi.CustomerFrontend.Service.CheckForIsPartOfRoleService import CheckForIsPartOfRoleService
+from ExternalApi.CustomerFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
 
 
 class DeleteParticipationHandler:
@@ -21,8 +21,8 @@ class DeleteParticipationHandler:
         teamId: int = data.get('teamId')
         tournamentId: int = data.get('tournamentId')
 
-        if (not CheckForIsPartOfRoleService.isCurrentUserAdminOfTeam(teamId)
-                and not CheckForIsPartOfRoleService.isCurrentUserAdminOfOrganizingTeam(teamId, tournamentId)):
+        if (not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId)
+                and not CheckForMembershipRoleService.isCurrentUserAdminOfOrganizingTeam(teamId, tournamentId)):
             return Response(status=403)
 
         if not self.participatesInRepository.exists(tournamentId, teamId):

@@ -4,7 +4,7 @@ from DataDomain.Database.Repository.TournamentRepository import TournamentReposi
 from DataDomain.Database.tools import getJwtIdentity
 
 
-class CheckForIsPartOfRoleService:
+class CheckForMembershipRoleService:
     """Check for is part of role service class"""
 
     @staticmethod

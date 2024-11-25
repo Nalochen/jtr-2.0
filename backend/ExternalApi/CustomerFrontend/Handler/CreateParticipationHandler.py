@@ -4,7 +4,7 @@ from flask import g
 
 from DataDomain.Database.Repository.ParticipatesInRepository import ParticipatesInRepository
 from DataDomain.Model.Response import Response
-from ExternalApi.CustomerFrontend.Service.CheckForIsPartOfRoleService import CheckForIsPartOfRoleService
+from ExternalApi.CustomerFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
 
 
 class CreateParticipationHandler:
@@ -23,7 +23,7 @@ class CreateParticipationHandler:
         teamId: int = data.get('teamId')
         tournamentId: int = data.get('tournamentId')
 
-        if not CheckForIsPartOfRoleService.isCurrentUserAdminOfTeam(teamId):
+        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId):
             return Response(status=403)
 
         try:

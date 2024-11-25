@@ -3,15 +3,15 @@ from flask import g
 from DataDomain.Database.Repository.IsPartOfRepository import IsPartOfRepository
 from DataDomain.Database.tools import getJwtIdentity
 from DataDomain.Model.Response import Response
-from ExternalApi.CustomerFrontend.Service.CheckForIsPartOfRoleService import CheckForIsPartOfRoleService
+from ExternalApi.CustomerFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
 
 
-class DeleteIsPartOfHandler:
+class DeleteMembershipHandler:
     """Handler for deleting an is_part_of relation"""
 
     @staticmethod
     def handle() -> Response:
-        """Handles the delete-is-part-of route"""
+        """Handles the delete-membership route"""
 
         data = g.validatedData
 
@@ -31,7 +31,7 @@ class DeleteIsPartOfHandler:
             return Response(status=404)
 
         if data.get(
-                'userId') and not CheckForIsPartOfRoleService.isCurrentUserAdminOfTeam(teamId):
+                'userId') and not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId):
             return Response(status=403)
 
         try:
