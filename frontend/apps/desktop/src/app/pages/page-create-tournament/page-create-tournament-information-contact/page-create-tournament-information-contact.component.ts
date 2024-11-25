@@ -8,6 +8,7 @@ import { ButtonComponent, DataContainerRowComponent, InfoButtonComponent } from 
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { Subject, takeUntil } from 'rxjs';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-create-tournament-information-contact',
@@ -19,7 +20,8 @@ import { Subject, takeUntil } from 'rxjs';
     InputTextareaModule,
     ReactiveFormsModule,
     InfoButtonComponent,
-    ButtonComponent
+    ButtonComponent,
+    TranslatePipe
   ],
   templateUrl: './page-create-tournament-information-contact.component.html',
   styleUrl: './page-create-tournament-information-contact.component.css',

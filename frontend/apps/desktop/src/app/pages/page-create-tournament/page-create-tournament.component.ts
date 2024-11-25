@@ -37,6 +37,7 @@ import {
 } from '../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DividerModule } from 'primeng/divider';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
@@ -52,7 +53,8 @@ import { DividerModule } from 'primeng/divider';
     PageCreateTournamentInformationAdditionalComponent,
     PageCreateTournamentSubmitComponent,
     ReactiveFormsModule,
-    DividerModule
+    DividerModule,
+    TranslatePipe
   ],
   templateUrl: './page-create-tournament.component.html',
   styleUrl: './page-create-tournament.component.less',

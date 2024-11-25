@@ -13,6 +13,7 @@ import {
   MealAvailabilityEnum
 } from '../../../../../../../libs/data-domain/tournament/enums/food-type.enum';
 import { DropdownModule } from 'primeng/dropdown';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-create-tournament-information-accommodation',
@@ -25,7 +26,8 @@ import { DropdownModule } from 'primeng/dropdown';
     FormsModule,
     SelectButtonModule,
     ButtonComponent,
-    DropdownModule
+    DropdownModule,
+    TranslatePipe
   ],
   templateUrl:
     './page-create-tournament-information-accommodation.component.html',
@@ -36,10 +38,10 @@ export class PageCreateTournamentInformationAccommodationComponent {
   @Input() form!: FormGroup<AccommodationInformationForm>;
 
   public readonly accommodationTypeOptions = [
-    { label: AccommodationTypeEnum.CAMPING, value: AccommodationTypeEnum.CAMPING },
-    { label: AccommodationTypeEnum.GYM, value: AccommodationTypeEnum.GYM },
-    { label: AccommodationTypeEnum.NONE, value: AccommodationTypeEnum.NONE },
-    { label: AccommodationTypeEnum.OTHER, value: AccommodationTypeEnum.OTHER },
+    { label: 'camping', value: AccommodationTypeEnum.CAMPING },
+    { label: 'gym', value: AccommodationTypeEnum.GYM },
+    { label: 'none', value: AccommodationTypeEnum.NONE },
+    { label: 'other', value: AccommodationTypeEnum.OTHER },
   ];
 
   public readonly mealAvailabilityOptions = Object.values(MealAvailabilityEnum)

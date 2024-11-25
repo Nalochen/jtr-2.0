@@ -8,6 +8,7 @@ import { DataContainerRowComponent, InfoButtonComponent } from '../../../ui-shar
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-create-tournament-information-rules',
@@ -19,7 +20,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     InputTextModule,
     InputTextareaModule,
     InputSwitchModule,
-    InfoButtonComponent
+    InfoButtonComponent,
+    TranslatePipe
   ],
   templateUrl: './page-create-tournament-information-rules.component.html',
   styleUrl: './page-create-tournament-information-rules.component.css',

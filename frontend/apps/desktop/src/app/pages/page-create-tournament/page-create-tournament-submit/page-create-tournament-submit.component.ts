@@ -1,13 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum, ButtonFunctionType } from '../../../ui-shared';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-create-tournament-submit',
   standalone: true,
   imports: [
     CommonModule,
-    ButtonComponent
+    ButtonComponent,
+    TranslatePipe
   ],
   templateUrl: './page-create-tournament-submit.component.html',
   styleUrl: './page-create-tournament-submit.component.css',

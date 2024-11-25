@@ -1,14 +1,14 @@
 <div [formGroup]="form">
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">rule</span>
-    <h3 ngProjectAs="container-headline">Turniersystem</h3>
+    <h3 ngProjectAs="container-headline">{{ 'create-tournament.tournament-system' | translate }}</h3>
     <div class="content" ngProjectAs="container-content">
       <textarea
         pInputTextarea
         [formControl]="form.controls.tournamentSystem"
         [autoResize]="true"></textarea>
       <div class="link">
-        <h5>Link:</h5>
+        <h5>{{ 'create-tournament.link' | translate }}:</h5>
         <input
           pInputText
           type="text"
@@ -20,9 +20,9 @@
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">rule</span>
-    <h3 ngProjectAs="container-headline">Pompfencheck</h3>
+    <h3 ngProjectAs="container-headline">{{ 'create-tournament.pompf-check' | translate }}</h3>
     <app-info-button ngProjectAs="container-additional">
-      <p>Info Text</p>
+      <p>{{ 'create-tournament.pompf-check-info' | translate }}</p>
     </app-info-button>
     <div class="content" ngProjectAs="container-content">
       <textarea
@@ -30,7 +30,7 @@
         [formControl]="form.controls.pompfCheck"
         [autoResize]="true"></textarea>
       <div class="link">
-        <h5>Link:</h5>
+        <h5>{{ 'create-tournament.link' | translate }}:</h5>
         <input
           pInputText
           type="text"
@@ -42,14 +42,14 @@
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">rule</span>
-    <h3 ngProjectAs="container-headline">Hausregeln</h3>
+    <h3 ngProjectAs="container-headline">{{ 'create-tournament.house-rules' | translate }}</h3>
     <div class="content" ngProjectAs="container-content">
       <textarea
         pInputTextarea
         [formControl]="form.controls.houseRules"
         [autoResize]="true"></textarea>
       <div class="link">
-        <h5>Link:</h5>
+        <h5>{{ 'create-tournament.link' | translate }}:</h5>
         <input
           pInputText
           type="text"
@@ -61,25 +61,29 @@
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">rule</span>
-    <h3 ngProjectAs="container-headline">Schuhwerk</h3>
+    <h3 ngProjectAs="container-headline">{{ 'create-tournament.shoes' | translate }}</h3>
     <app-info-button ngProjectAs="container-additional">
-      <p>Info Text</p>
+      <p><b>{{ 'create-tournament.shoes-information-nubbed-header' | translate }}</b> {{ 'create-tournament.shoes-information-nubbed' | translate }}</p>
+      <br>
+      <p><b>{{ 'create-tournament.shoes-information-cleaded-header' | translate }}</b> {{ 'create-tournament.shoes-information-cleaded' | translate }}</p>
+      <br>
+      <p><b>{{ 'create-tournament.shoes-information-studded-header' | translate }}</b> {{ 'create-tournament.shoes-information-studded' | translate }}</p>
     </app-info-button>
     <div class="content" ngProjectAs="container-content">
       <div class="shoes-row">
-        <h5>Noppenschuhe</h5>
+        <h5>{{ 'create-tournament.shoes-information-nubbed-header' | translate }}</h5>
         <p-inputSwitch [formControl]="form.controls.shoes.controls.studded" />
       </div>
       <div class="shoes-row">
-        <h5>Nockenschuhe</h5>
+        <h5>{{ 'create-tournament.shoes-information-cleaded-header' | translate }}</h5>
         <p-inputSwitch [formControl]="form.controls.shoes.controls.cam" />
       </div>
       <div class="shoes-row">
-        <h5>Stollenschuhe</h5>
+        <h5>{{ 'create-tournament.shoes-information-studded-header' | translate }}</h5>
         <p-inputSwitch [formControl]="form.controls.shoes.controls.cleats" />
       </div>
       <div class="shoes-row">
-        <h5>Barfuß</h5>
+        <h5>{{ 'create-tournament.shoes-information-barefoot-header' | translate }}</h5>
         <p-inputSwitch [formControl]="form.controls.shoes.controls.barefoot" />
       </div>
       <textarea

@@ -2,7 +2,7 @@
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
     <div class="headline" ngProjectAs="container-headline">
-      <h3>Übernachtung</h3>
+      <h3>{{ 'create-tournament.accommodation' | translate }}</h3>
       <p-selectButton
         [options]="accommodationTypeOptions"
         [formControl]="form.controls.accommodationType"
@@ -14,7 +14,7 @@
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
-    <h3 ngProjectAs="container-headline">Übernachtungsort</h3>
+    <h3 ngProjectAs="container-headline">{{ 'create-tournament.accommodation-address' | translate }}</h3>
     <input
       class="registration-procedure-input"
       ngProjectAs="container-content"
@@ -26,21 +26,21 @@
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
-    <h3 ngProjectAs="container-headline">Verpflegung</h3>
+    <h3 ngProjectAs="container-headline">{{ 'create-tournament.food' | translate }}</h3>
     <div class="food" ngProjectAs="container-content">
-      <h5>Frühstück</h5>
+      <h5>{{ 'create-tournament.breakfast' | translate }}</h5>
       <p-dropdown
         [formControl]="form.controls.food.controls.breakfast"
         [options]="mealAvailabilityOptions" />
-      <h5>Mittagessen</h5>
+      <h5>{{ 'create-tournament.lunch' | translate }}</h5>
       <p-dropdown
         [formControl]="form.controls.food.controls.lunch"
         [options]="mealAvailabilityOptions" />
-      <h5>Abendessen</h5>
+      <h5>{{ 'create-tournament.dinner' | translate }}</h5>
       <p-dropdown
         [formControl]="form.controls.food.controls.dinner"
         [options]="mealAvailabilityOptions" />
-      <h5>Gastronomie</h5>
+      <h5>{{ 'create-tournament.gastronomy' | translate }}</h5>
       <p-dropdown
         [formControl]="form.controls.food.controls.gastronomy"
         [options]="gastronomyAvailabilityOptions" />

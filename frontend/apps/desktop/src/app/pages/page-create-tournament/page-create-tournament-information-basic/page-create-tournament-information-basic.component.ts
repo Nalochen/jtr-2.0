@@ -6,6 +6,7 @@ import {
   BasicInformationForm
 } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-tournament-information-basic',
@@ -15,7 +16,8 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
     DataContainerRowComponent,
     InputTextModule,
     ReactiveFormsModule,
-    InfoButtonComponent
+    InfoButtonComponent,
+    TranslatePipe
   ],
   templateUrl: './page-create-tournament-information-basic.component.html',
   styleUrl: './page-create-tournament-information-basic.component.css',

@@ -6,6 +6,7 @@ import {
 } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import { DataContainerRowComponent } from '../../../ui-shared';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-create-tournament-information-additional',
@@ -14,7 +15,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     CommonModule,
     ReactiveFormsModule,
     DataContainerRowComponent,
-    InputTextareaModule
+    InputTextareaModule,
+    TranslatePipe
   ],
   templateUrl: './page-create-tournament-information-additional.component.html',
   styleUrl: './page-create-tournament-information-additional.component.css',

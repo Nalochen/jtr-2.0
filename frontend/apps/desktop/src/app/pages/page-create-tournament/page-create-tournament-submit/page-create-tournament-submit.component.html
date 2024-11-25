@@ -5,7 +5,7 @@
   [fullWidth]="true"
   (click)="onManageTeams()"
 >
-  Teams verwalten
+  {{ 'create-tournament.manage-teams' | translate }}
 </app-button>
 <div class="button-wrapper">
   <app-button
@@ -14,7 +14,7 @@
     [buttonType]="ButtonFunctionType.SUBMIT"
     [fullWidth]="true"
   >
-    speichern
+    {{ 'create-tournament.save' | translate }}
   </app-button>
   <app-button
     [color]="ButtonColorEnum.Red"
@@ -23,6 +23,6 @@
     [fullWidth]="true"
     (click)="onPublish()"
   >
-    Turnier veröffentlichen
+    {{ 'create-tournament.publish-tournament' | translate }}
   </app-button>
 </div>

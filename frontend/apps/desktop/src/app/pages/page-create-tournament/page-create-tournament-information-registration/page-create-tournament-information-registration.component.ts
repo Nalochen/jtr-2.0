@@ -13,6 +13,7 @@ import {
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { Subject, takeUntil } from 'rxjs';
 import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'page-create-tournament-information-registration',
@@ -27,7 +28,8 @@ import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournamen
     FormsModule,
     SelectButtonModule,
     ButtonComponent,
-    DatePipe
+    DatePipe,
+    TranslatePipe
   ],
   providers: [DatePipe],
   templateUrl:
@@ -53,15 +55,15 @@ export class PageCreateTournamentInformationRegistrationComponent implements OnI
   ];
 
   public registrationProcedureOptions = [
-    { label: RegistrationProcedureEnum.FIRST_COME_FIRST_SERVED, value: RegistrationProcedureEnum.FIRST_COME_FIRST_SERVED },
-    { label: RegistrationProcedureEnum.DRAW, value: RegistrationProcedureEnum.DRAW },
-    { label: RegistrationProcedureEnum.INVITATION, value: RegistrationProcedureEnum.INVITATION },
-    { label: RegistrationProcedureEnum.OTHER, value: RegistrationProcedureEnum.OTHER },
+    { label: 'first come first served', value: RegistrationProcedureEnum.FIRST_COME_FIRST_SERVED },
+    { label: 'draw', value: RegistrationProcedureEnum.DRAW },
+    { label: 'invitation', value: RegistrationProcedureEnum.INVITATION },
+    { label: 'other', value: RegistrationProcedureEnum.OTHER },
   ];
 
   public pricingTypeOptions = [
-    { label: PricingTypeEnum.PER_PERSON, value: PricingTypeEnum.PER_PERSON },
-    { label: PricingTypeEnum.PER_TEAM, value: PricingTypeEnum.PER_TEAM },
+    { label: 'per Person', value: PricingTypeEnum.PER_PERSON },
+    { label: 'per Team', value: PricingTypeEnum.PER_TEAM },
   ];
 
   constructor(private readonly datePipe: DatePipe) { }
