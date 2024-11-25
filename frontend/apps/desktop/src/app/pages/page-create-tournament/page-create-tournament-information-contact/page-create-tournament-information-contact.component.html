@@ -1,7 +1,7 @@
 <div [formGroup]="form">
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
-    <h3 ngProjectAs="container-headline">Deadlines</h3>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
+    <h3 ngProjectAs="container-headline">Zeitplan</h3>
     <textarea
       ngProjectAs="container-content"
       pInputTextarea
@@ -14,7 +14,7 @@
   </app-data-container-row>
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">call</span>
     <h3 ngProjectAs="container-headline">Kontakte</h3>
     <div class="contact-content" ngProjectAs="container-content">
       @for (contact of form.controls.contacts.value; track contact; let index = $index) {

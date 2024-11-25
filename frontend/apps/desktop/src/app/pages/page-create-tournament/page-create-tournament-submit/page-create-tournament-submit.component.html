@@ -1,1 +1,28 @@
-<p>page-create-tournament-submit works!</p>
+<app-button
+  [color]="ButtonColorEnum.White"
+  [type]="ButtonTypeEnum.Raised"
+  [buttonType]="ButtonFunctionType.SUBMIT"
+  [fullWidth]="true"
+  (click)="onManageTeams()"
+>
+  Teams verwalten
+</app-button>
+<div class="button-wrapper">
+  <app-button
+    [color]="ButtonColorEnum.White"
+    [type]="ButtonTypeEnum.Raised"
+    [buttonType]="ButtonFunctionType.SUBMIT"
+    [fullWidth]="true"
+  >
+    speichern
+  </app-button>
+  <app-button
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Raised"
+    [buttonType]="ButtonFunctionType.SUBMIT"
+    [fullWidth]="true"
+    (click)="onPublish()"
+  >
+    Turnier veröffentlichen
+  </app-button>
+</div>
