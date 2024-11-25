@@ -59,4 +59,8 @@ import { DividerModule } from 'primeng/divider';
 })
 export class PageCreateTournamentComponent {
   public form = createTournamentFormControl;
+
+  public onSubmit() {
+    console.log('submit');
+  }
 }

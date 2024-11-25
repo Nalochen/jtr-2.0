@@ -1,1 +1,40 @@
-<p>page-create-information-contact works!</p>
+<div [formGroup]="form">
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
+    <h3 ngProjectAs="container-headline">Deadlines</h3>
+    <textarea
+      ngProjectAs="container-content"
+      pInputTextarea
+      type="text"
+      placeholder="z.B. Bezahldeadline, 1. Nachrückerrunde, 2. Nachrückerrunde"
+      [formControl]="form.controls.schedule"
+      rows="3"
+      [autoResize]="true"
+    ></textarea>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
+    <h3 ngProjectAs="container-headline">Kontakte</h3>
+    <div class="contact-content" ngProjectAs="container-content">
+      @for (contact of form.controls.contacts.value; track contact; let index = $index) {
+      <div class="contact-input">
+        <input
+          class="contact-input-field"
+          pInputText
+          value="{{ contact }}"
+          id="contact"
+        />
+        <app-button
+          (click)="onRemoveContact(index)"
+        >
+          <span class="material-icons-outlined">delete</span>
+        </app-button>
+      </div>
+      }
+      <app-button (click)="onNewContact()">
+        <span class="material-icons-outlined">add</span>
+      </app-button>
+    </div>
+  </app-data-container-row>
+</div>

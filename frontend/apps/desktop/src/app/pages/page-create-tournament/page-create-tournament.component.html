@@ -2,30 +2,40 @@
 
 <page-create-tournament-navigation />
 
-<page-tournament-information-basic
-  [form]="form.controls.basic"
-/>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <page-tournament-information-basic
+    [form]="form.controls.basic"
+  />
 
-<p-divider />
+  <p-divider />
 
-<page-create-tournament-information-registration
-  [form]="form.controls.registration"
-/>
+  <page-create-tournament-information-registration
+    [form]="form.controls.registration"
+  />
 
-<p-divider />
+  <p-divider />
 
-<page-create-tournament-information-contact />
+  <page-create-tournament-information-contact
+    [form]="form.controls.contact"
+  />
 
-<p-divider />
+  <p-divider />
 
-<page-create-tournament-information-accommodation />
+  <page-create-tournament-information-accommodation
+    [form]="form.controls.accommodation"
+  />
 
-<p-divider />
+  <p-divider />
 
-<page-create-tournament-information-rules />
+  <page-create-tournament-information-rules
+    [form]="form.controls.rules"
+  />
 
-<p-divider />
+  <p-divider />
 
-<page-create-tournament-information-additional />
+  <page-create-tournament-information-additional
+    [form]="form.controls.additionalText"
+  />
 
-<page-create-tournament-submit />
+  <page-create-tournament-submit />
+</form>

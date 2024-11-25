@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { RegistrationProcedureEnum } from '../../../../../data-domain/tournament/enums/registration-procedure.enum';
 import { PricingTypeEnum } from '../../../../../data-domain/tournament/enums/pricing-type.enum';
 import { AccommodationTypeEnum } from '../../../../../data-domain/tournament/enums/accommodation-type.enum';
@@ -53,6 +53,11 @@ export type RegistrationInformationForm = {
   deadlines: FormControl<string | null>
 };
 
+export type ContactInformationForm = {
+  schedule: FormControl<string | null>;
+  contacts: FormArray<FormControl<string | null>>;
+};
+
 export type AccommodationInformationForm = {
   accommodationType: FormControl<AccommodationTypeEnum | null>;
   accommodationAddress: FormControl<string | null>;
@@ -72,6 +77,7 @@ export type RulesInformationForm = {
 export type CreateTournamentForm = {
   basic: FormGroup<BasicInformationForm>;
   registration: FormGroup<RegistrationInformationForm>;
+  contact: FormGroup<ContactInformationForm>;
   accommodation: FormGroup<AccommodationInformationForm>;
   rules: FormGroup<RulesInformationForm>;
   additionalText: FormControl<string | null>;
@@ -93,17 +99,22 @@ export const registrationInformationFormControl = new FormGroup<RegistrationInfo
   registrationProcedureText: new FormControl(null),
   registrationStart: new FormControl(null, [Validators.required]),
   costs: new FormGroup<CostsInformationForm>({
-    registrationFee: new FormControl(null, [Validators.required]),
-    registrationFeePricingType: new FormControl(null, [Validators.required]),
-    deposit: new FormControl(null, [Validators.required]),
-    depositPricingType: new FormControl(null, [Validators.required]),
-    accommodation: new FormControl(null, [Validators.required]),
-    accommodationPricingType: new FormControl(null, [Validators.required]),
-    guests: new FormControl(null, [Validators.required]),
-    guestsPricingType: new FormControl(null, [Validators.required]),
+    registrationFee: new FormControl(0),
+    registrationFeePricingType: new FormControl(null),
+    deposit: new FormControl(0),
+    depositPricingType: new FormControl(null),
+    accommodation: new FormControl(0),
+    accommodationPricingType: new FormControl(null),
+    guests: new FormControl(0),
+    guestsPricingType: new FormControl(null),
     additionalText: new FormControl(null),
   }),
-  deadlines: new FormControl(null, [Validators.required]),
+  deadlines: new FormControl(null),
+});
+
+export const contactInformationFormControl = new FormGroup<ContactInformationForm>({
+  schedule: new FormControl(null),
+  contacts: new FormArray<FormControl<string | null>>([])
 });
 
 export const  accommodationInformationFormControl = new FormGroup<AccommodationInformationForm>({
@@ -136,6 +147,7 @@ export const rulesInformationFormControl = new FormGroup<RulesInformationForm>({
 export const createTournamentFormControl = new FormGroup<CreateTournamentForm>({
   basic: basicInformationFormControl,
   registration: registrationInformationFormControl,
+  contact: contactInformationFormControl,
   accommodation: accommodationInformationFormControl,
   rules: rulesInformationFormControl,
   additionalText: new FormControl(null),
