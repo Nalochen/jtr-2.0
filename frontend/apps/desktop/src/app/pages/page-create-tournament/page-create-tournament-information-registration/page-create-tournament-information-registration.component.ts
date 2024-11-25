@@ -26,8 +26,10 @@ import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournamen
     InfoButtonComponent,
     FormsModule,
     SelectButtonModule,
-    ButtonComponent
+    ButtonComponent,
+    DatePipe
   ],
+  providers: [DatePipe],
   templateUrl:
     './page-create-tournament-information-registration.component.html',
   styleUrl: './page-create-tournament-information-registration.component.css',
@@ -62,6 +64,8 @@ export class PageCreateTournamentInformationRegistrationComponent implements OnI
     { label: PricingTypeEnum.PER_TEAM, value: PricingTypeEnum.PER_TEAM },
   ];
 
+  constructor(private readonly datePipe: DatePipe) { }
+
   public ngOnInit() {
     this.form.controls.teamCountField.valueChanges.pipe(
       takeUntil(this.destroy$)
@@ -78,6 +82,7 @@ export class PageCreateTournamentInformationRegistrationComponent implements OnI
   public ngOnDestroy() {}
 
   public onOpenRegistrationNow() {
-    this.form.controls.registrationStart.setValue(new Date());
+    const currentDateAndTime = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.form.controls.registrationStart.setValue(currentDateAndTime);
   }
 }

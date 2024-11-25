@@ -36,10 +36,10 @@ export type ShoesInformationForm = {
 
 export type BasicInformationForm = {
   name: FormControl<string | null>;
-  tournamentStartDate: FormControl<Date | null>;
-  tournamentEndDate: FormControl<Date | null>;
-  arrivalStartDate: FormControl<Date | null>;
-  arrivalEndDate: FormControl<Date | null>;
+  tournamentStartDate: FormControl<string | null>;
+  tournamentEndDate: FormControl<string | null>;
+  arrivalStartDate: FormControl<string | null>;
+  arrivalEndDate: FormControl<string | null>;
   address: FormControl<string | null>;
 };
 
@@ -48,7 +48,7 @@ export type RegistrationInformationForm = {
   teamCountField: FormControl<number | null>;
   registrationProcedure: FormControl<RegistrationProcedureEnum | null>
   registrationProcedureText: FormControl<string | null>;
-  registrationStart: FormControl<Date | null>;
+  registrationStart: FormControl<string | null>;
   costs: FormGroup<CostsInformationForm>;
   deadlines: FormControl<string | null>
 };

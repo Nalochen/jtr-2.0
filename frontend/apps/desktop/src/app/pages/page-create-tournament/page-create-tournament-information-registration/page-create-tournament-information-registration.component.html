@@ -3,17 +3,20 @@
     <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
     <div class="headline" ngProjectAs="container-headline">
       <h3>Anzahl Teams</h3>
-      <p-selectButton
-        [options]="teamCountOptions"
-        formControlName="teamCountButton"
-        optionLabel="label"
-        optionValue="value"
-      />
-      <input
-        pInputText
-        type="number"
-        [formControl]="form.controls.teamCountField"
-      >
+      <div class="align-end">
+        <p-selectButton
+          [options]="teamCountOptions"
+          formControlName="teamCountButton"
+          optionLabel="label"
+          optionValue="value"
+        />
+        <input
+          class="total-count-teams-input"
+          pInputText
+          type="number"
+          [formControl]="form.controls.teamCountField"
+        >
+      </div>
     </div>
   </app-data-container-row>
 
@@ -28,6 +31,7 @@
       optionValue="value"
     />
     <input
+      class="registration-procedure-input"
       ngProjectAs="container-content"
       pInputText
       type="text"
@@ -39,21 +43,22 @@
     <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
     <div class="headline" ngProjectAs="container-headline">
       <h3>Anmeldung offen ab</h3>
-      <div class="dates-input">
+      <div class="align-end">
         <input
+          class="registration-start-input"
           pInputText
           type="date"
           [formControl]="form.controls.registrationStart"
           value="form.controls.registrationStart.value | date: 'yyyy-MM-dd'"
         >
+        <app-button
+          [color]="ButtonColorEnum.Red"
+          [type]="ButtonTypeEnum.Raised"
+          (click)="onOpenRegistrationNow()"
+        >
+          sofort
+        </app-button>
       </div>
-      <app-button
-        [color]="ButtonColorEnum.Red"
-        [type]="ButtonTypeEnum.Raised"
-        (click)="onOpenRegistrationNow()"
-      >
-        sofort
-      </app-button>
     </div>
   </app-data-container-row>
 
@@ -61,70 +66,74 @@
     <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
     <h3 ngProjectAs="container-headline">Kosten</h3>
     <div class="cost-inputs" ngProjectAs="container-content">
-      <div class="cost-row">
-        <h5>Anmeldung</h5>
-        <input
-          pInputText
-          type="number"
-          [formControl]="form.controls.costs.controls.registrationFee"
-        >
-        <p-selectButton
-          [options]="pricingTypeOptions"
-          [formControl]="form.controls.costs.controls.registrationFeePricingType"
-          optionLabel="label"
-          optionValue="value"
-        />
-      </div>
-      <div class="cost-row">
-        <h5>Kaution</h5>
-        <input
-          pInputText
-          type="number"
-          [formControl]="form.controls.costs.controls.deposit"
-        >
-        <p-selectButton
-          [options]="pricingTypeOptions"
-          [formControl]="form.controls.costs.controls.depositPricingType"
-          optionLabel="label"
-          optionValue="value"
-        />
-      </div>
-      <div class="cost-row">
-        <h5>Übernachtung</h5>
-        <input
-          pInputText
-          type="number"
-          [formControl]="form.controls.costs.controls.accommodation"
-        >
-        <p-selectButton
-          [options]="pricingTypeOptions"
-          [formControl]="form.controls.costs.controls.accommodationPricingType"
-          optionLabel="label"
-          optionValue="value"
-        />
-      </div>
-      <div class="cost-row">
-        <h5>Gäste</h5>
-        <input
-          pInputText
-          type="number"
-          [formControl]="form.controls.costs.controls.guests"
-        >
-        <p-selectButton
-          [options]="pricingTypeOptions"
-          [formControl]="form.controls.costs.controls.guestsPricingType"
-          optionLabel="label"
-          optionValue="value"
-        />
-      </div>
-      <div class="cost-row">
-        <h5>Kommentar</h5>
-        <input
-          pInputText
-          type="text"
-          [formControl]="form.controls.costs.controls.additionalText"
-        >
-      </div>
+      <h5 class="registration-header">Anmeldung</h5>
+      <input
+        class="registration-input"
+        pInputText
+        type="number"
+        [formControl]="form.controls.costs.controls.registrationFee"
+      >
+      <p-selectButton
+        class="registration-input-type"
+        [options]="pricingTypeOptions"
+        [formControl]="form.controls.costs.controls.registrationFeePricingType"
+        optionLabel="label"
+        optionValue="value"
+      />
+
+      <h5 class="deposit-header">Kaution</h5>
+      <input
+        class="deposit-input"
+        pInputText
+        type="number"
+        [formControl]="form.controls.costs.controls.deposit"
+      >
+      <p-selectButton
+        class="deposit-input-type"
+        [options]="pricingTypeOptions"
+        [formControl]="form.controls.costs.controls.depositPricingType"
+        optionLabel="label"
+        optionValue="value"
+      />
+
+      <h5 class="accommodation-header">Übernachtung</h5>
+      <input
+        class="accommodation-input"
+        pInputText
+        type="number"
+        [formControl]="form.controls.costs.controls.accommodation"
+      >
+      <p-selectButton
+        class="accommodation-input-type"
+        [options]="pricingTypeOptions"
+        [formControl]="form.controls.costs.controls.accommodationPricingType"
+        optionLabel="label"
+        optionValue="value"
+      />
+
+      <h5 class="guests-header">Gäste</h5>
+      <input
+        class="guests-input"
+        pInputText
+        type="number"
+        [formControl]="form.controls.costs.controls.guests"
+      >
+      <p-selectButton
+        class="guests-input-type"
+        [options]="pricingTypeOptions"
+        [formControl]="form.controls.costs.controls.guestsPricingType"
+        optionLabel="label"
+        optionValue="value"
+      />
+
+      <h5 class="costs-text-header">Kommentar</h5>
+      <input
+        class="costs-text-input"
+        pInputText
+        type="text"
+        placeholder="z.B. Zeltgebühr"
+        [formControl]="form.controls.costs.controls.additionalText"
+      >
     </div>
   </app-data-container-row>
 
@@ -135,7 +144,10 @@
       ngProjectAs="container-content"
       pInputTextarea
       type="text"
+      placeholder="z.B. Bezahldeadline, 1. Nachrückerrunde, 2. Nachrückerrunde"
       [formControl]="form.controls.deadlines"
+      rows="3"
+      [autoResize]="true"
     ></textarea>
   </app-data-container-row>
 </form>
