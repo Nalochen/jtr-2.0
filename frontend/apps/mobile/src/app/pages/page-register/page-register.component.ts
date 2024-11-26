@@ -42,7 +42,7 @@ export class PageRegisterComponent {
       return;
     }
 
-    this.authService.register(this.form.controls.username.getRawValue(), this.form.controls.password.getRawValue());
+    this.authService.register(this.form.getRawValue());
 
     this.form.reset();
 

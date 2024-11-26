@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 
-import { AuthService } from '../../../../../desktop/src/app/business-rules/auth/auth.service';
+import { AuthService } from '../../business-rules/auth/auth.service';
 
 import {
   loginFormControl
