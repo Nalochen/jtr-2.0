@@ -12,7 +12,7 @@ paths:
           in: path
           required: false
           schema:
-            type: integer
+            type: number
 
       responses:
         '200':

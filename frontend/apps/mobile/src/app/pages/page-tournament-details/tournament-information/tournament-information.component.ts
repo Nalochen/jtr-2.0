@@ -5,18 +5,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
-import {TournamentData,TournamentTeamData} from '@jtr/data-domain/store';
-
-import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
+import { TournamentData,TournamentTeamData } from '@jtr/data-domain/store';
 
 import {
+  ButtonColorEnum,
   ButtonComponent,
+  ButtonTypeEnum,
   ChipComponent,
   DataContainerExpandableComponent,
   DataContainerRowComponent,
   InfoButtonComponent,
-  TeamComponent
-} from '../../../ui-shared';
+  TeamComponent} from '../../../ui-shared';
 import {
   TournamentInformationAdditionalComponent
 } from '../tournament-information-additional/tournament-information-additional.component';
@@ -30,6 +29,7 @@ import {
   TournamentInformationRulesComponent
 } from '../tournament-information-rules/tournament-information-rules.component';
 import { TournamentTeamsComponent } from '../tournament-teams/tournament-teams.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export interface Panel {
   id: string;
@@ -65,16 +65,21 @@ export enum PanelTypes {
     TournamentInformationAdditionalComponent,
     TournamentInformationContactsComponent,
     TournamentInformationRulesComponent,
-    TournamentInformationLocationComponent
+    TournamentInformationLocationComponent,
+    TranslatePipe
   ],
   templateUrl: './tournament-information.component.html',
   styleUrl: './tournament-information.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentInformationComponent implements OnInit{
-  constructor(private cdr: ChangeDetectorRef) {}
-
   @Input() public tournament!: TournamentData;
+
+  public readonly ButtonColorEnum = ButtonColorEnum;
+  public readonly ButtonTypeEnum = ButtonTypeEnum;
+
+  public readonly PanelTypes = PanelTypes;
+  public previewTeams: TournamentTeamData[] = [];
 
   protected panels: Panel[] = [
     { id: PanelTypes.Teams, isOpen: false },
@@ -85,11 +90,7 @@ export class TournamentInformationComponent implements OnInit{
     { id: PanelTypes.Additional, isOpen: false },
   ];
 
-  public readonly color = ButtonColorEnum.Secondary;
-  public readonly size = ButtonSizeEnum.FitContent;
-  public readonly PanelTypes = PanelTypes;
-
-  public previewTeams: TournamentTeamData[] = [];
+  constructor(private cdr: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
     this.previewTeams = this.tournament.teams.participating.slice(0, 6)

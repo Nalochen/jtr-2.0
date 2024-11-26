@@ -8,7 +8,11 @@ import {TournamentData} from '@jtr/data-domain/store';
 @Component({
   selector: 'tournament-header',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, MatProgressBarModule],
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+    MatProgressBarModule,
+  ],
   templateUrl: './tournament-header.component.html',
   styleUrl: './tournament-header.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,

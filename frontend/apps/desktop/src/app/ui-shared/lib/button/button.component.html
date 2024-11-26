@@ -1,3 +1,8 @@
-<button [ngClass]="[type, color]">
+<button
+  [ngClass]="[type, color]"
+  [attr.type]="buttonType"
+  [class.fullWidth]="fullWidth"
+  [disabled]="disabled"
+>
   <ng-content />
 </button>

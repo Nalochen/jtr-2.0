@@ -5,7 +5,7 @@ from flask import g
 
 from DataDomain.Database.Repository.TeamRepository import TeamRepository
 from DataDomain.Model.Response import Response
-from ExternalApi.CustomerFrontend.Service.CheckForIsPartOfRoleService import CheckForIsPartOfRoleService
+from ExternalApi.CustomerFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
 
 
 class UpdateTeamHandler:
@@ -24,7 +24,7 @@ class UpdateTeamHandler:
         if team is None:
             return Response(status=404)
 
-        if CheckForIsPartOfRoleService.isCurrentUserAdminOfTeam(
+        if CheckForMembershipRoleService.isCurrentUserAdminOfTeam(
                 team.id) is None:
             return Response(status=403)
 

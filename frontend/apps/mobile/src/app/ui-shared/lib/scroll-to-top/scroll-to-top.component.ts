@@ -1,9 +1,7 @@
 import { CommonModule, DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { Component, HostListener, Inject } from '@angular/core';
 
-import { ButtonColorEnum, ButtonSizeEnum } from '../../../infrastructure/button-style/button-style.enum';
-
-import { ButtonComponent } from '../../../ui-shared';
+import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum } from '../../../ui-shared';
 
 
 @Component({
@@ -15,8 +13,8 @@ import { ButtonComponent } from '../../../ui-shared';
 })
 export class ScrollToTopComponent {
   public windowScrolled = false;
-  public readonly color = ButtonColorEnum.Primary;
-  public readonly size = ButtonSizeEnum.FitContent;
+  public ButtonTypeEnum = ButtonTypeEnum;
+  public ButtonColorEnum = ButtonColorEnum;
 
   constructor(@Inject(DOCUMENT) private document: Document) {}
 

@@ -2,10 +2,11 @@ from flask import Blueprint
 from flask_jwt_extended import jwt_required
 
 from DataDomain.Model.Response import Response
+from ExternalApi.CustomerFrontend.Handler.CreateParticipationHandler import CreateParticipationHandler
 from ExternalApi.CustomerFrontend.Handler.CreateTeamHandler import CreateTeamHandler
 from ExternalApi.CustomerFrontend.Handler.CreateUserHandler import CreateUserHandler
-from ExternalApi.CustomerFrontend.Handler.DeleteIsPartOfHandler import DeleteIsPartOfHandler
-from ExternalApi.CustomerFrontend.Handler.DeleteParticipatesInHandler import DeleteParticipatesInHandler
+from ExternalApi.CustomerFrontend.Handler.DeleteMembershipHandler import DeleteMembershipHandler
+from ExternalApi.CustomerFrontend.Handler.DeleteParticipationHandler import DeleteParticipationHandler
 from ExternalApi.CustomerFrontend.Handler.DeleteTeamHandler import DeleteTeamHandler
 from ExternalApi.CustomerFrontend.Handler.DeleteTournamentHandler import DeleteTournamentHandler
 from ExternalApi.CustomerFrontend.Handler.GetTeamDetailsHandler import GetTeamDetailsHandler
@@ -16,10 +17,11 @@ from ExternalApi.CustomerFrontend.Handler.GetUserDetailsHandler import GetUserDe
 from ExternalApi.CustomerFrontend.Handler.LoginUserHandler import LoginUserHandler
 from ExternalApi.CustomerFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
 from ExternalApi.CustomerFrontend.Handler.UpdateUserHandler import UpdateUserHandler
+from ExternalApi.CustomerFrontend.InputFilter.CreateParticipationInputFilter import CreateParticipationInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.CreateTeamInputFilter import CreateTeamInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
-from ExternalApi.CustomerFrontend.InputFilter.DeleteIsPartOfInputFilter import DeleteIsPartOfInputFilter
-from ExternalApi.CustomerFrontend.InputFilter.DeleteParticipatingInInputFilter import DeleteParticipatingInInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.DeleteMembershipInputFilter import DeleteMembershipInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.DeleteParticipationInputFilter import DeleteParticipationInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.DeleteTeamInputFilter import DeleteTeamInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.DeleteTournamentInputFilter import DeleteTournamentInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.GetTeamDetailsInputFilter import GetTeamDetailsInputFilter
@@ -86,6 +88,14 @@ def updateUser() -> Response:
     return UpdateUserHandler().handle()
 
 
+@customer_frontend.route('/create-participation',
+                         methods=['POST'], endpoint='create-participation')
+@jwt_required()
+@CreateParticipationInputFilter.validate()
+def createParticipation() -> Response:
+    return CreateParticipationHandler().handle()
+
+
 @customer_frontend.route('/create-team',
                          methods=['POST'], endpoint='create-team')
 @jwt_required()
@@ -106,22 +116,22 @@ def register() -> Response:
     return CreateUserHandler().handle()
 
 
-@customer_frontend.route('/delete-is-part-of',
+@customer_frontend.route('/delete-membership',
                          methods=['DELETE'],
-                         endpoint='delete-is-part-of')
+                         endpoint='delete-membership')
 @jwt_required()
-@DeleteIsPartOfInputFilter.validate()
-def deleteIsPartOf() -> Response:
-    return DeleteIsPartOfHandler().handle()
+@DeleteMembershipInputFilter.validate()
+def deleteMembership() -> Response:
+    return DeleteMembershipHandler().handle()
 
 
-@customer_frontend.route('/delete-participates-in',
+@customer_frontend.route('/delete-participation',
                          methods=['DELETE'],
-                         endpoint='delete-participates-in')
+                         endpoint='delete-participation')
 @jwt_required()
-@DeleteParticipatingInInputFilter.validate()
-def deleteParticipatingIn() -> Response:
-    return DeleteParticipatesInHandler().handle()
+@DeleteParticipationInputFilter.validate()
+def deleteParticipation() -> Response:
+    return DeleteParticipationHandler().handle()
 
 
 @customer_frontend.route('/delete-team',
@@ -129,7 +139,7 @@ def deleteParticipatingIn() -> Response:
                          endpoint='delete-team')
 @jwt_required()
 @DeleteTeamInputFilter.validate()
-def deleteParticipatingIn() -> Response:
+def deleteTeam() -> Response:
     return DeleteTeamHandler().handle()
 
 
@@ -138,5 +148,5 @@ def deleteParticipatingIn() -> Response:
                          endpoint='delete-tournament')
 @jwt_required()
 @DeleteTournamentInputFilter.validate()
-def deleteParticipatingIn() -> Response:
+def deleteTournament() -> Response:
     return DeleteTournamentHandler().handle()

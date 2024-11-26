@@ -1,15 +1,70 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {Component, Input} from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
-import { ButtonComponent } from '../../../ui-shared';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+} from '../../../ui-shared';
+import { TranslatePipe } from '@ngx-translate/core';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+
+export interface Team {
+  name: string;
+}
 
 @Component({
   selector: 'tournament-registration',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, ButtonComponent],
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+    ButtonComponent,
+    TranslatePipe,
+    DialogModule,
+    DropdownModule
+  ],
   templateUrl: './tournament-registration.component.html',
   styleUrl: './tournament-registration.component.less',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TournamentRegistrationComponent {
-    @Input() public registrationOpenAt!: string;
+export class TournamentRegistrationComponent implements OnInit {
+  @Input() public registrationOpenAt!: string;
+
+  protected readonly ButtonColorEnum = ButtonColorEnum;
+  protected readonly ButtonTypeEnum = ButtonTypeEnum;
+
+  protected dialogVisible = false;
+  protected teams = [
+    { name: 'Rigor Mortis' },
+    { name: 'The Walking Dead' },
+    { name: 'The Living Dead' },
+    { name: 'Cranium Ex Machina' },
+    { name: 'Leipziger Partyhände'}
+  ];
+  protected selectedTeam: Team | undefined;
+  protected form = new FormArray<FormGroup<{
+    name: FormControl<string | null>;
+  }>>([]);
+
+  public ngOnInit() {
+    this.teams.forEach((team) => {
+      this.form.push(
+        new FormGroup({
+          name: new FormControl(team.name)
+        })
+      );
+    });
+  }
+
+  public onShowDialog(): void {
+    this.dialogVisible = true;
+  }
+
+  public onRegistrationClick(): void {
+    this.dialogVisible = false;
+    window.alert('Registration clicked');
+  }
 }

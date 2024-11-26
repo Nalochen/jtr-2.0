@@ -9,4 +9,20 @@
     <button (click)="closeMenu()">Über uns</button>
     <button (click)="closeMenu()">Impressum</button>
   </div>
+  <div class="language">
+    <app-button
+      [type]="ButtonTypeEnum.Flat"
+      [color]="ButtonColorEnum.Grey"
+      (click)="switchLanguage('en')"
+    >
+      <p class="color-blue">Englisch</p>
+    </app-button>
+    <app-button
+      [type]="ButtonTypeEnum.Flat"
+      [color]="ButtonColorEnum.Grey"
+      (click)="switchLanguage('de')"
+    >
+      <p class="color-blue">Deutsch</p>
+    </app-button>
+  </div>
 </div>

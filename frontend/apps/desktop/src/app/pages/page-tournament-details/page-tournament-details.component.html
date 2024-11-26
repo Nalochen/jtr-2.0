@@ -1,23 +1,17 @@
-<tournament-header
-  *ngIf="tournament$ | async as tournament"
-  [tournament]="tournament"
-/>
+@if (tournament$ | async; as tournament) {
+  <tournament-header [tournament]="tournament" />
+}
 
-<section class="content">
-  <tournament-information
-    *ngIf="tournament$ | async as tournament"
-    [tournament]="tournament"
-  />
+@if (tournament$ | async; as tournament) {
+  <tournament-information [tournament]="tournament" />
+}
 
-  <section class="registration">
-    <tournament-registration
-      *ngIf="(tournament$ | async)?.status === 'published' && (registrationOpenAt$ | async) as registrationOpenAt"
-      [registrationOpenAt]="registrationOpenAt"
-    />
+<section class="registration">
+  @if ((tournament$ | async)?.status === 'published' && (registrationOpenAt$ | async); as registrationOpenAt) {
+    <tournament-registration [registrationOpenAt]="registrationOpenAt" />
+  }
 
-    <tournament-teams
-      *ngIf="teams$ | async as teams"
-      [teams]="teams"
-    />
-  </section>
+  @if (teams$ | async; as teams) {
+    <tournament-teams [teams]="teams" />
+  }
 </section>

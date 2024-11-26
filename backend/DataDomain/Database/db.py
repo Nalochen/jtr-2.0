@@ -1,6 +1,8 @@
 import logging
 import os
 
+from flask import Flask
+from flask_migrate import upgrade
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -32,7 +34,8 @@ def executeSqlFile(filename: str) -> None:
 def executeSqlCommandsToInitDatabase() -> None:
     """Executes the SQL commands in the init-database folder"""
 
-    folderPath = '/home/backend/DataDomain/Database/data/init-database'
+    folderPath = '/home/backend/DataDomain/Database/data/init-database' if os.getenv(
+        'FLASK_ENV') == 'development' else '/app/DataDomain/Database/data/init-database'
 
     for filename in os.listdir(folderPath):
         if filename.endswith('.sql'):
@@ -41,12 +44,10 @@ def executeSqlCommandsToInitDatabase() -> None:
             executeSqlFile(fullPath)
 
 
-def initDatabase(app) -> None:
+def initDatabase(app: Flask) -> None:
     """Initializes the database with the given SQL commands"""
 
-    db.init_app(app)
-
     with app.app_context():
-        db.create_all()
+        upgrade()
 
         executeSqlCommandsToInitDatabase()

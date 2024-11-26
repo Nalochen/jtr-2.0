@@ -2,7 +2,7 @@ from flask import g
 
 from DataDomain.Database.Repository.TeamRepository import TeamRepository
 from DataDomain.Model.Response import Response
-from ExternalApi.CustomerFrontend.Service.CheckForIsPartOfRoleService import CheckForIsPartOfRoleService
+from ExternalApi.CustomerFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
 
 
 class DeleteTeamHandler:
@@ -14,7 +14,7 @@ class DeleteTeamHandler:
 
         data = g.validatedData
 
-        teamId = data.get('teamId')
+        teamId: int = data.get('teamId')
 
         team = TeamRepository.get(
             teamId=teamId
@@ -22,7 +22,7 @@ class DeleteTeamHandler:
         if not team:
             return Response(status=404)
 
-        if not CheckForIsPartOfRoleService.isCurrentUserAdminOfTeam(teamId):
+        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId):
             return Response(status=403)
 
         try:

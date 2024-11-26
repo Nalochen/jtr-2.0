@@ -1,12 +1,15 @@
+from celery import Celery
 from flask import Flask
 
 from flask_jwt_extended import JWTManager
+from flask_migrate import Migrate
+from redis import Redis
 
 from DataDomain.Database.db import db
 from ExternalApi.CustomerFrontend.config.routes import customer_frontend
 from ExternalApi.System.config.routes import system
+from config.cache import cache
 from config.config import Config
-from config.extensions import cache
 
 
 def createApp() -> Flask:
@@ -21,11 +24,23 @@ def createApp() -> Flask:
 
     cache.init_app(app)
 
+    db.init_app(app)
+
+    Migrate(app, db, directory=app.config['MIGRATION_DIR'])
+
     return app
 
 
 app = createApp()
 
-db.init_app(app)
-
 jwt = JWTManager(app)
+
+redis = Redis(
+    host=app.config['CACHE_REDIS_HOST'],
+    port=app.config['CACHE_REDIS_PORT'],
+    db=app.config['CACHE_REDIS_DB'])
+
+celery = Celery(
+    host=app.config['CELERY_BROKER_NAME'],
+    broker=app.config['CELERY_BROKER_URL'],
+    backend=app.config['CELERY_RESULT_BACKEND'])

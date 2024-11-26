@@ -1,33 +1,40 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
-import {
-  MatDialog,
-  MatDialogModule,
-} from '@angular/material/dialog';
-import {MatTooltipModule} from '@angular/material/tooltip';
 
-import { DialogComponent } from '../dialog/dialog.component';
-
+import { ButtonComponent } from '../button/button.component';
+import { ButtonColorEnum } from '../button/enums/color.enum';
+import { ButtonFunctionType } from '../button/enums/function-type.enum';
+import { ButtonTypeEnum } from '../button/enums/type.enum';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
-  selector: 'app-info-button',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatTooltipModule, MatButtonModule],
+  imports: [CommonModule, MatButtonModule, DialogModule, ButtonComponent],
+  selector: 'app-info-button',
   templateUrl: './info-button.component.html',
-  styleUrl: './info-button.component.less',
+  styleUrls: ['./info-button.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InfoButtonComponent {
-  @Input() public infoText = '';
-  public readonly dialog = inject(MatDialog);
 
-  public openTooltipDialog(): void {
-    this.dialog.open(DialogComponent, {
-      backdropClass: 'dialog-backdrop',
-      data: this.infoText,
-    });
+export class InfoButtonComponent {
+  protected readonly ButtonTypeEnum = ButtonTypeEnum;
+  protected readonly ButtonColorEnum = ButtonColorEnum;
+  protected readonly ButtonFunctionType = ButtonFunctionType;
+  public visible = false;
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
 
+  public showDialog() {
+    this.visible = true;
+    this.changeDetectorRef.markForCheck();
+  }
+
+  public hideDialog() {
+    this.visible = false;
+    this.changeDetectorRef.markForCheck();
+  }
 }
+

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -35,9 +35,12 @@ import { TournamentTeamsComponent } from './tournament-teams/tournament-teams.co
   ],
   templateUrl: './page-tournament-details.component.html',
   styleUrl: './page-tournament-details.component.less',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageTournamentDetailsComponent {
-  constructor(private store$: Store) {}
+  constructor(
+    private store$: Store,
+  ) {}
 
   @SingletonGetter()
   public get tournament$(): Observable<TournamentData|null> {

@@ -56,7 +56,7 @@ class UpdateTeamInputFilter(InputFilter):
         self.add(
             'isMixTeam',
             required=False,
-            filters=[ToBoolFilter()]
+            filters=[ToBoolFilter(), ToNullFilter()]
         )
 
         self.add(

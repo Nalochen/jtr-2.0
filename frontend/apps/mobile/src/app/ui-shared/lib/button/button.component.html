@@ -1,9 +1,7 @@
 <button
-  mat-raised-button
-  [class.primary]="isPrimary"
-  [class.secondary]="isSecondary"
-  [class.fit-content]="isFitContent"
-  [class.full-width]="isFullWidth"
+  [ngClass]="[type, color]"
+  [attr.type]="buttonType"
+  [class.fullWidth]="fullWidth"
 >
   <ng-content />
 </button>

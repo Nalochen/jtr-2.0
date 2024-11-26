@@ -1,17 +1,24 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import {AuthService} from './business-rules/auth/auth.service';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
 
-import {TranslatePipe, TranslateService} from '@ngx-translate/core';
+import { AuthService } from './business-rules/auth/auth.service';
 
 import { LoginOverlayComponent } from './login-overlay/login-overlay.component';
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from './ui-shared';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, ButtonComponent, LoginOverlayComponent, OverlayPanelModule, TranslatePipe],
+  imports: [
+    RouterModule,
+    ButtonComponent,
+    LoginOverlayComponent,
+    OverlayPanelModule,
+    TranslatePipe,
+  ],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.less',
@@ -19,7 +26,6 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 export class AppComponent {
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
-  protected readonly isLoggedIn = false;
 
   constructor(
     private readonly authService: AuthService,
@@ -28,6 +34,11 @@ export class AppComponent {
     const savedLanguage = sessionStorage.getItem('language') || 'de';
     this.translate.setDefaultLang(savedLanguage);
     this.translate.use(savedLanguage);
+  }
+
+  @SingletonGetter()
+  public get isLoggedIn$(): boolean {
+    return this.authService.isAuthenticated();
   }
 
   public logout(): void {

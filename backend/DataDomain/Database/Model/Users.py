@@ -39,9 +39,19 @@ class Users(BaseModel, db.Model):
         nullable=True
     )
 
-    birthday: Column[Optional[DateTime]] = db.Column(
+    name_visibility: Column[Boolean] = db.Column(
+        db.Boolean,
+        nullable=False
+    )
+
+    birthdate: Column[Optional[DateTime]] = db.Column(
         db.Date,
         nullable=True
+    )
+
+    birthdate_visibility: Column[Boolean] = db.Column(
+        db.Boolean,
+        nullable=False
     )
 
     picture: Column[Optional[String]] = db.Column(
@@ -52,6 +62,11 @@ class Users(BaseModel, db.Model):
     city: Column[Optional[String]] = db.Column(
         db.String(100),
         nullable=True
+    )
+
+    city_visibility: Column[Boolean] = db.Column(
+        db.Boolean,
+        nullable=False
     )
 
     is_deleted: Column[Boolean] = db.Column(

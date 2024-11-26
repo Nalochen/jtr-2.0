@@ -85,7 +85,8 @@ class TeamRepository:
         members = db.session.query(
             Users.id,
             Users.name,
-            is_part_of.c.user_role.label('role')
+            is_part_of.c.user_role.label('role'),
+            Users.picture
         ).join(
             is_part_of, is_part_of.c.user_id == Users.id
         ).filter(
@@ -131,7 +132,8 @@ class TeamRepository:
             'members': [{
                 'id': member.id,
                 'name': member.name,
-                'role': member.role.value
+                'role': member.role.value,
+                'picture': member.picture
             } for member in members],
             'name': team.name,
             'organizedTournaments': [{
@@ -149,7 +151,7 @@ class TeamRepository:
         }
 
     @staticmethod
-    def get(teamId: Integer) -> Teams:
+    def get(teamId: int) -> Teams:
         """Get team by id"""
 
         return Teams.query.get(teamId)

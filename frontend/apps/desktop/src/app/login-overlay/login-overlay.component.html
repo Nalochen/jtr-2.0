@@ -1,18 +1,34 @@
 <h4>Login</h4>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-  <p>Noch kein Konto?</p>
-  <a href="example.com">Registrieren</a>
+  <div class="no-account">
+    <p>{{ 'login.no-account' | translate }}</p>
+    <a href="/register">{{ 'login.register' | translate }}</a>
+  </div>
 
   <div class="email">
-    <label for="emailOrUsername">E-Mail oder Benutzername</label>
-    <input type="text" class="form-control" [formControl]="form.controls.emailOrUsername" id="emailOrUsername">
+    <label for="emailOrUsername">{{ 'login.email-or-username' | translate }}</label>
+    <input
+      type="text"
+      class="form-control"
+      [formControl]="form.controls.emailOrUsername"
+      id="emailOrUsername"
+    />
   </div>
 
   <div class="password">
-    <label for="password">Passwort</label>
-    <input type="password" class="form-control" [formControl]="form.controls.password" id="password">
+    <label for="password">{{ 'login.password' | translate }}</label>
+    <input
+      type="password"
+      class="form-control"
+      [formControl]="form.controls.password"
+      id="password"
+    />
   </div>
 
-  <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Flat">Login</app-button>
+  <app-button
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Flat"
+    [buttonType]="ButtonFunctionType.SUBMIT"
+    >{{ 'login.login' | translate }}</app-button
+  >
 </form>

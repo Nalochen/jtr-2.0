@@ -214,30 +214,30 @@ class Tournaments(BaseModel, db.Model):
     )
 
     registration_open_at: Column[DateTime] = db.Column(
-        db.DateTime,
+        db.DateTime(),
         nullable=False,
         server_default=func.now()
     )
 
     is_deleted: Column[Boolean] = db.Column(
-        db.Boolean,
+        db.Boolean(),
         nullable=False,
         server_default='0'
     )
 
     created_at: Column[DateTime] = db.Column(
-        db.DateTime,
+        db.DateTime(),
         server_default=func.now()
     )
 
     updated_at: Column[DateTime] = db.Column(
-        db.DateTime,
+        db.DateTime(),
         server_default=func.now(),
         onupdate=func.now()
     )
 
     organizer_id: Column[Integer] = db.Column(
-        db.Integer,
+        db.Integer(),
         db.ForeignKey('teams.id'),
         nullable=False,
     )
