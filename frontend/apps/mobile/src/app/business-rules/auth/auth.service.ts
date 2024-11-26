@@ -40,23 +40,27 @@ export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
   public async login(body: LoginRequestBody): Promise<AuthResponse> {
-    return await firstValueFrom(this.http.post<AuthResponse>(LOGIN_ENDPOINT, body).pipe(
-      tap((response: AuthResponse) => {
-        if (response.token) {
-          this.setSession(response.token);
-        }
-      })
-    ));
+    return await firstValueFrom(
+      this.http.post<AuthResponse>(LOGIN_ENDPOINT, body).pipe(
+        tap((response: AuthResponse) => {
+          if (response.token) {
+            this.setSession(response.token);
+          }
+        })
+      )
+    );
   }
 
   public async register(body: RegisterRequestBody): Promise<AuthResponse> {
-    return await firstValueFrom(this.http.post<AuthResponse>(REGISTER_ENDPOINT, body).pipe(
-      tap((response: AuthResponse) => {
-        if (response.token) {
-          this.setSession(response.token);
-        }
-      })
-    ));
+    return await firstValueFrom(
+      this.http.post<AuthResponse>(REGISTER_ENDPOINT, body).pipe(
+        tap((response: AuthResponse) => {
+          if (response.token) {
+            this.setSession(response.token);
+          }
+        })
+      )
+    );
   }
 
   private setSession(token: string): void {

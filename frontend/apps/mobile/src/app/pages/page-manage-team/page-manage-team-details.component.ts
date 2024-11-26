@@ -13,10 +13,10 @@ import { Observable, Subject, takeUntil } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { teamDetailsSelector } from '@jtr/business-domain/team';
+import { editTeamForm } from '@jtr/business-domain/team';
 import { TeamData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
-import { editTeamForm } from '../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
 import { InfoButtonComponent } from '../../ui-shared';
 import { TeamBottomBarComponent } from './team-bottom-bar/team-bottom-bar.component';
 import { TeamHeaderComponent } from './team-header/team-header.component';
@@ -34,7 +34,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     TeamBottomBarComponent,
     InfoButtonComponent,
     ReactiveFormsModule,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './page-manage-team.component.html',
   styleUrl: './page-manage-team.component.less',

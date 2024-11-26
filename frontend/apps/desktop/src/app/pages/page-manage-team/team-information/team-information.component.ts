@@ -11,7 +11,8 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { EditTeamForm } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { EditTeamForm } from '@jtr/business-domain/team';
+
 import { TeamInformationAboutUsComponent } from '../team-information-about-us/team-information-about-us.component';
 import { TeamInformationContactsComponent } from '../team-information-contacts/team-information-contacts.component';
 import { TeamInformationTrainingComponent } from '../team-information-training/team-information-training.component';

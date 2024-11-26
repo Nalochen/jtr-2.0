@@ -1,7 +1,14 @@
 import { Route } from '@angular/router';
 
-import { ManageTeamDetailsResolver, TeamDetailsResolver, TeamOverviewResolver } from '@jtr/business-domain/team';
-import { TournamentDetailsResolver, TournamentOverviewResolver } from '@jtr/business-domain/tournament';
+import {
+  ManageTeamDetailsResolver,
+  TeamDetailsResolver,
+  TeamOverviewResolver,
+} from '@jtr/business-domain/team';
+import {
+  TournamentDetailsResolver,
+  TournamentOverviewResolver,
+} from '@jtr/business-domain/tournament';
 import { UserDetailsResolver } from '@jtr/business-domain/user';
 
 import { PageLoginComponent } from './pages/page-login/page-login.component';

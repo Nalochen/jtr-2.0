@@ -11,7 +11,8 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { EditTeamForm } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { EditTeamForm } from '@jtr/business-domain/team';
+
 import {
   ButtonColorEnum,
   ButtonComponent,
@@ -31,7 +32,7 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule,
     ReactiveFormsModule,
     ButtonComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './team-header.component.html',
   styleUrl: './team-header.component.less',

@@ -7,11 +7,15 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { AuthService } from '../../business-rules/auth/auth.service';
 
-import {
-  loginFormControl
-} from '../../../../../../libs/business-domain/login/src/lib/form-controls/login-form.control';
+import { loginFormControl } from '../../../../../../libs/business-domain/login/src/lib/form-controls/login-form.control';
 import { isEmail } from '../../../../../../libs/business-domain/login/src/lib/rules/is-email.rule';
-import { ButtonColorEnum, ButtonComponent, ButtonFunctionType,ButtonTypeEnum, InfoButtonComponent } from '../../ui-shared';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonFunctionType,
+  ButtonTypeEnum,
+  InfoButtonComponent,
+} from '../../ui-shared';
 import { PageLoginHeaderComponent } from './page-login-header/page-login-header.component';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -24,7 +28,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     InfoButtonComponent,
     ButtonComponent,
     PageLoginHeaderComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './page-login.component.html',
   styleUrl: './page-login.component.less',
@@ -44,19 +48,21 @@ export class PageLoginComponent {
       return;
     }
 
-    if (!this.form.controls.password.value) { return; }
+    if (!this.form.controls.password.value) {
+      return;
+    }
 
     if (isEmail(this.form.controls.emailOrUsername.value)) {
       this.authService.login({
         email: this.form.controls.emailOrUsername.value,
         username: null,
-        password: this.form.controls.password.value
+        password: this.form.controls.password.value,
       });
     } else {
       this.authService.login({
         email: null,
         username: this.form.controls.emailOrUsername.value,
-        password: this.form.controls.password.value
+        password: this.form.controls.password.value,
       });
     }
 
