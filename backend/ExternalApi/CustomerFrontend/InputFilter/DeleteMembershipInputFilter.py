@@ -3,11 +3,11 @@ from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
 
 
-class DeleteIsPartOfInputFilter(InputFilter):
-    """The input filter for the delete-is-part-of route"""
+class DeleteMembershipInputFilter(InputFilter):
+    """The input filter for the delete-membership route"""
 
     def __init__(self):
-        """Initializes the DeleteIsPartOfInputFilter"""
+        """Initializes the DeleteMembershipInputFilter"""
 
         super().__init__()
 

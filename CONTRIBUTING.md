@@ -48,6 +48,11 @@ If you have to execute commands inside the Docker container, you can use the fol
 docker exec -it jtr /bin/sh
 ```
 
+### Frontend Development Styling
+
+We mostly use PrimeNG (https://primeng.org/) to style our components in the frontend. To style one of those components its necessary to edit the primeng-theme.css file. This is a generated file from another repository. You find the repos and further information here:
+- https://github.com/Nalochen/jtr-2.0-primeng-de
+- https://github.com/Nalochen/jtr-2.0-primeng-mo
 
 ## Issues and pull requests
 

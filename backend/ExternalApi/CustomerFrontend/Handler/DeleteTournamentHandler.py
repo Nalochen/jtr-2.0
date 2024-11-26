@@ -2,7 +2,7 @@ from flask import g
 
 from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
 from DataDomain.Model.Response import Response
-from ExternalApi.CustomerFrontend.Service.CheckForIsPartOfRoleService import CheckForIsPartOfRoleService
+from ExternalApi.CustomerFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
 
 
 class DeleteTournamentHandler:
@@ -22,7 +22,7 @@ class DeleteTournamentHandler:
         if not tournament:
             return Response(status=404)
 
-        if not CheckForIsPartOfRoleService.isCurrentUserAdminOfTeam(
+        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(
                 tournament.organizer_id):
             return Response(status=403)
 

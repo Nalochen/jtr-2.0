@@ -5,7 +5,7 @@ from DataDomain.Model.Response import Response
 from ExternalApi.CustomerFrontend.Handler.CreateParticipationHandler import CreateParticipationHandler
 from ExternalApi.CustomerFrontend.Handler.CreateTeamHandler import CreateTeamHandler
 from ExternalApi.CustomerFrontend.Handler.CreateUserHandler import CreateUserHandler
-from ExternalApi.CustomerFrontend.Handler.DeleteIsPartOfHandler import DeleteIsPartOfHandler
+from ExternalApi.CustomerFrontend.Handler.DeleteMembershipHandler import DeleteMembershipHandler
 from ExternalApi.CustomerFrontend.Handler.DeleteParticipationHandler import DeleteParticipationHandler
 from ExternalApi.CustomerFrontend.Handler.DeleteTeamHandler import DeleteTeamHandler
 from ExternalApi.CustomerFrontend.Handler.DeleteTournamentHandler import DeleteTournamentHandler
@@ -20,7 +20,7 @@ from ExternalApi.CustomerFrontend.Handler.UpdateUserHandler import UpdateUserHan
 from ExternalApi.CustomerFrontend.InputFilter.CreateParticipationInputFilter import CreateParticipationInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.CreateTeamInputFilter import CreateTeamInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
-from ExternalApi.CustomerFrontend.InputFilter.DeleteIsPartOfInputFilter import DeleteIsPartOfInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.DeleteMembershipInputFilter import DeleteMembershipInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.DeleteParticipationInputFilter import DeleteParticipationInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.DeleteTeamInputFilter import DeleteTeamInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.DeleteTournamentInputFilter import DeleteTournamentInputFilter
@@ -116,13 +116,13 @@ def register() -> Response:
     return CreateUserHandler().handle()
 
 
-@customer_frontend.route('/delete-is-part-of',
+@customer_frontend.route('/delete-membership',
                          methods=['DELETE'],
-                         endpoint='delete-is-part-of')
+                         endpoint='delete-membership')
 @jwt_required()
-@DeleteIsPartOfInputFilter.validate()
-def deleteIsPartOf() -> Response:
-    return DeleteIsPartOfHandler().handle()
+@DeleteMembershipInputFilter.validate()
+def deleteMembership() -> Response:
+    return DeleteMembershipHandler().handle()
 
 
 @customer_frontend.route('/delete-participation',
