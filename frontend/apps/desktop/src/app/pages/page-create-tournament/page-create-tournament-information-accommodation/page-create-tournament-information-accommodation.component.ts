@@ -33,7 +33,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
   ],
   templateUrl:
     './page-create-tournament-information-accommodation.component.html',
-  styleUrl: './page-create-tournament-information-accommodation.component.css',
+  styleUrl: './page-create-tournament-information-accommodation.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PageCreateTournamentInformationAccommodationComponent {

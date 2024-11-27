@@ -21,7 +21,7 @@ import { InputTextModule } from 'primeng/inputtext';
     TranslatePipe
   ],
   templateUrl: './page-create-tournament-information-basic.component.html',
-  styleUrl: './page-create-tournament-information-basic.component.css',
+  styleUrl: './page-create-tournament-information-basic.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PageTournamentInformationBasicComponent {

@@ -11,7 +11,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     TranslatePipe
   ],
   templateUrl: './page-create-tournament-navigation.component.html',
-  styleUrl: './page-create-tournament-navigation.component.css',
+  styleUrl: './page-create-tournament-navigation.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PageCreateTournamentNavigationComponent {}

@@ -13,7 +13,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     TranslatePipe
   ],
   templateUrl: './page-create-tournament-submit.component.html',
-  styleUrl: './page-create-tournament-submit.component.css',
+  styleUrl: './page-create-tournament-submit.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PageCreateTournamentSubmitComponent {

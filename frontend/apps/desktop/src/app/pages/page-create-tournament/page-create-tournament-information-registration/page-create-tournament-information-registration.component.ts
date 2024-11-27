@@ -39,7 +39,7 @@ export type TeamCountOption = { label: string, value: number };
   providers: [DatePipe],
   templateUrl:
     './page-create-tournament-information-registration.component.html',
-  styleUrl: './page-create-tournament-information-registration.component.css',
+  styleUrl: './page-create-tournament-information-registration.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PageCreateTournamentInformationRegistrationComponent implements OnInit, OnDestroy {

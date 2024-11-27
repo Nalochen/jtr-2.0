@@ -17,7 +17,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     TranslatePipe
   ],
   templateUrl: './page-create-tournament-information-additional.component.html',
-  styleUrl: './page-create-tournament-information-additional.component.css',
+  styleUrl: './page-create-tournament-information-additional.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageCreateTournamentInformationAdditionalComponent {
