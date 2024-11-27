@@ -3,10 +3,10 @@ info:
   title: Customer Frontend API
   version: 1.0.0
 paths:
-  /api/customer-frontend/delete-is-part-of:
+  /api/customer-frontend/delete-membership:
     delete:
-      summary: Delete is-part-of
-      operationId: deleteIsPartOf
+      summary: Delete membership
+      operationId: deleteMembership
       requestBody:
         required: true
         content:
