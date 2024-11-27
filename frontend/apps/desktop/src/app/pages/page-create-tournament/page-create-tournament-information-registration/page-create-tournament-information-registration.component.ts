@@ -18,6 +18,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
 
+export type TeamCountOption = { label: string, value: number };
+
 @Component({
   selector: 'page-create-tournament-information-registration',
   standalone: true,
@@ -47,7 +49,7 @@ export class PageCreateTournamentInformationRegistrationComponent implements OnI
   public readonly ButtonTypeEnum = ButtonTypeEnum;
   public destroy$ = new Subject<void>();
 
-  public teamCountOptions: { label: string, value: number }[] = [
+  public teamCountOptions: TeamCountOption[] = [
     { label: '6', value: 6 },
     { label: '8', value: 8 },
     { label: '12', value: 12 },
