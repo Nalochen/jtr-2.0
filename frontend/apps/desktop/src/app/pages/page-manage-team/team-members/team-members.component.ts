@@ -11,7 +11,8 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { EditTeamForm } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { EditTeamForm } from '@jtr/business-domain/team';
+
 import {
   DataContainerComponent,
   DataContainerRowComponent,
@@ -27,7 +28,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     DataContainerComponent,
     DataContainerRowComponent,
     ReactiveFormsModule,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',

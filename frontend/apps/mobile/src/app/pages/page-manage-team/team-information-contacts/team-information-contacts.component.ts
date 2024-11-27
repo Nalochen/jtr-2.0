@@ -11,14 +11,15 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { EditTeamForm } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { EditTeamForm } from '@jtr/business-domain/team';
+
 import {
   ButtonComponent,
   DataContainerComponent,
   DataContainerRowComponent,
 } from '../../../ui-shared';
-import { InputTextModule } from 'primeng/inputtext';
 import { TranslatePipe } from '@ngx-translate/core';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'team-contacts',
@@ -31,7 +32,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     InputTextModule,
     ButtonComponent,
     ReactiveFormsModule,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './team-information-contacts.component.html',
   styleUrl: './team-information-contacts.component.less',

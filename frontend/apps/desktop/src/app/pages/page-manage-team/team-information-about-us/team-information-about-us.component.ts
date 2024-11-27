@@ -11,13 +11,14 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { EditTeamForm } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { EditTeamForm } from '@jtr/business-domain/team';
+
 import {
   DataContainerComponent,
   DataContainerRowComponent,
 } from '../../../ui-shared';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TranslatePipe } from '@ngx-translate/core';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
   selector: 'team-about-us',
@@ -29,7 +30,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     DataContainerComponent,
     InputTextareaModule,
     ReactiveFormsModule,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './team-information-about-us.component.html',
   styleUrl: './team-information-about-us.component.less',

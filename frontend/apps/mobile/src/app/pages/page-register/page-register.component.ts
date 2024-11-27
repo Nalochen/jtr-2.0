@@ -8,7 +8,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../business-rules/auth/auth.service';
 
 import { registerForm } from '../../../../../../libs/business-domain/register/src/lib/form-controls/register-form.control';
-import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum, InfoButtonComponent } from '../../ui-shared';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+  InfoButtonComponent,
+} from '../../ui-shared';
 import { PageRegisterHeaderComponent } from './page-register-header/page-register-header.component';
 import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -23,7 +28,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     ButtonComponent,
     VisibilityButtonComponent,
     PageRegisterHeaderComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './page-register.component.html',
   styleUrl: './page-register.component.less',
@@ -42,7 +47,7 @@ export class PageRegisterComponent {
       return;
     }
 
-    this.authService.register(this.form.controls.username.getRawValue(), this.form.controls.password.getRawValue());
+    this.authService.register(this.form.getRawValue());
 
     this.form.reset();
 

@@ -13,13 +13,14 @@ import { MatDividerModule } from '@angular/material/divider';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { EditTeamForm } from '../../../../../../../libs/business-domain/team/src/lib/form-controls/edit-team-form.control';
+import { EditTeamForm } from '@jtr/business-domain/team';
+
 import {
   DataContainerComponent,
   DataContainerRowComponent,
 } from '../../../ui-shared';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TranslatePipe } from '@ngx-translate/core';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
   selector: 'team-training',
@@ -32,7 +33,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatDividerModule,
     InputTextareaModule,
     ReactiveFormsModule,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './team-information-training.component.html',
   styleUrl: './team-information-training.component.less',
