@@ -1,0 +1,153 @@
+<div [formGroup]="form">
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
+    <div class="headline" ngProjectAs="container-headline">
+      <h3>{{ 'create-tournament.count-teams' | translate }}</h3>
+      <div class="align-end">
+        <p-selectButton
+          [options]="teamCountOptions"
+          formControlName="teamCountButton"
+          optionLabel="label"
+          optionValue="value"
+        />
+        <input
+          class="total-count-teams-input"
+          pInputText
+          type="number"
+          [formControl]="form.controls.teamCountField"
+        >
+      </div>
+    </div>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
+    <h3 ngProjectAs="container-headline">{{ 'create-tournament.registration-procedure' | translate }}</h3>
+    <p-selectButton
+      ngProjectAs="container-content"
+      [options]="registrationProcedureOptions"
+      formControlName="registrationProcedure"
+      optionLabel="label"
+      optionValue="value"
+    />
+    <input
+      class="registration-procedure-input"
+      ngProjectAs="container-content"
+      pInputText
+      type="text"
+      [formControl]="form.controls.registrationProcedureText"
+    >
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
+    <div class="headline" ngProjectAs="container-headline">
+      <h3>{{ 'create-tournament.registration-start' | translate }}</h3>
+      <div class="align-end">
+        <input
+          class="registration-start-input"
+          pInputText
+          type="date"
+          [formControl]="form.controls.registrationStart"
+          value="form.controls.registrationStart.value | date: 'yyyy-MM-dd'"
+        >
+        <app-button
+          [color]="ButtonColorEnum.Red"
+          [type]="ButtonTypeEnum.Raised"
+          (click)="onOpenRegistrationNow()"
+        >
+          {{ 'create-tournament.now' | translate }}
+        </app-button>
+      </div>
+    </div>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
+    <h3 ngProjectAs="container-headline">{{ 'create-tournament.costs' | translate }}</h3>
+    <div class="cost-inputs" ngProjectAs="container-content">
+      <h5 class="registration-header">{{ 'create-tournament.registration' | translate }}</h5>
+      <input
+        class="registration-input"
+        pInputText
+        type="number"
+        [formControl]="form.controls.costs.controls.registrationFee"
+      >
+      <p-selectButton
+        class="registration-input-type"
+        [options]="pricingTypeOptions"
+        [formControl]="form.controls.costs.controls.registrationFeePricingType"
+        optionLabel="label"
+        optionValue="value"
+      />
+
+      <h5 class="deposit-header">{{ 'create-tournament.deposit' | translate }}</h5>
+      <input
+        class="deposit-input"
+        pInputText
+        type="number"
+        [formControl]="form.controls.costs.controls.deposit"
+      >
+      <p-selectButton
+        class="deposit-input-type"
+        [options]="pricingTypeOptions"
+        [formControl]="form.controls.costs.controls.depositPricingType"
+        optionLabel="label"
+        optionValue="value"
+      />
+
+      <h5 class="accommodation-header">{{ 'create-tournament.accommodation' | translate }}</h5>
+      <input
+        class="accommodation-input"
+        pInputText
+        type="number"
+        [formControl]="form.controls.costs.controls.accommodation"
+      >
+      <p-selectButton
+        class="accommodation-input-type"
+        [options]="pricingTypeOptions"
+        [formControl]="form.controls.costs.controls.accommodationPricingType"
+        optionLabel="label"
+        optionValue="value"
+      />
+
+      <h5 class="guests-header">{{ 'create-tournament.guests' | translate }}</h5>
+      <input
+        class="guests-input"
+        pInputText
+        type="number"
+        [formControl]="form.controls.costs.controls.guests"
+      >
+      <p-selectButton
+        class="guests-input-type"
+        [options]="pricingTypeOptions"
+        [formControl]="form.controls.costs.controls.guestsPricingType"
+        optionLabel="label"
+        optionValue="value"
+      />
+
+      <h5 class="costs-text-header">{{ 'create-tournament.comment' | translate }}</h5>
+      <input
+        class="costs-text-input"
+        pInputText
+        type="text"
+        placeholder="z.B. Zeltgebühr"
+        [formControl]="form.controls.costs.controls.additionalText"
+      >
+    </div>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
+    <h3 ngProjectAs="container-headline">{{ 'create-tournament.deadlines' | translate }}</h3>
+    <textarea
+      ngProjectAs="container-content"
+      pInputTextarea
+      type="text"
+      placeholder="{{ 'create-tournament.deadlines-placeholder' | translate }}"
+      [formControl]="form.controls.deadlines"
+      rows="3"
+      [autoResize]="true"
+    ></textarea>
+  </app-data-container-row>
+</div>

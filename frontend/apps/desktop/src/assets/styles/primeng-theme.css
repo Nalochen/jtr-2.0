@@ -1751,7 +1751,7 @@
   }
   .p-selectbutton .p-button {
     background: #ffffff;
-    border: 1px solid #ced4da;
+    border: 1px solid #e0e0e0;
     color: #000000;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
   }
@@ -1760,8 +1760,8 @@
     color: #6c757d;
   }
   .p-selectbutton .p-button:not(.p-disabled):not(.p-highlight):hover {
-    background: #e9ecef;
-    border-color: #ced4da;
+    background: #f8f8f8;
+    border-color: #e0e0e0;
     color: #000000;
   }
   .p-selectbutton .p-button:not(.p-disabled):not(.p-highlight):hover .p-button-icon-left,
@@ -1769,8 +1769,8 @@
     color: #6c757d;
   }
   .p-selectbutton .p-button.p-highlight {
-    background: #B8594A;
-    border-color: #B8594A;
+    background: #BCD7D6;
+    border-color: #b3cccb;
     color: #000000;
   }
   .p-selectbutton .p-button.p-highlight .p-button-icon-left,
@@ -1778,8 +1778,8 @@
     color: #000000;
   }
   .p-selectbutton .p-button.p-highlight:hover {
-    background: #034659;
-    border-color: #034659;
+    background: #A4C2C1;
+    border-color: #95b1b0;
     color: #000000;
   }
   .p-selectbutton .p-button.p-highlight:hover .p-button-icon-left,
@@ -6213,4 +6213,4 @@
 }
 /* Customizations to the designer theme should be defined here */
 
-/*# sourceMappingURL=theme.css.map */
+/*# sourceMappingURL=primeng-theme.css.map */

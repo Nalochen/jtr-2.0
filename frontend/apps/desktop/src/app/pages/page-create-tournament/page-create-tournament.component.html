@@ -1,0 +1,43 @@
+<h1 id="header">{{ 'create-tournament.create-tournament' | translate }}</h1>
+
+<page-create-tournament-navigation />
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <page-tournament-information-basic
+    [form]="form.controls.basic"
+  />
+
+  <p-divider id="registration" />
+
+  <page-create-tournament-information-registration
+    [form]="form.controls.registration"
+  />
+
+  <p-divider id="contact" />
+
+  <page-create-tournament-information-contact
+    [form]="form.controls.contact"
+  />
+
+  <p-divider id="accommodation" />
+
+  <page-create-tournament-information-accommodation
+    [form]="form.controls.accommodation"
+  />
+
+  <p-divider id="rules" />
+
+  <page-create-tournament-information-rules
+    [form]="form.controls.rules"
+  />
+
+  <p-divider id="additional" />
+
+  <page-create-tournament-information-additional
+    [form]="form.controls.additionalText"
+  />
+
+  <p-divider />
+
+  <page-create-tournament-submit />
+</form>
