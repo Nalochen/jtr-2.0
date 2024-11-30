@@ -1,0 +1,11 @@
+<h1>Ergebnisse eintragen</h1>
+<app-button [fullWidth]="true" [color]="ButtonColorEnum.White" [type]="ButtonTypeEnum.Raised">von Tugeny importieren</app-button>
+@let tournament = tournament$ | async;
+@let teams = teams$ | async;
+@if (teams) {
+  <results-input
+    [participatingTeams]="teams.participating"
+    [tournamentTeamCount]="tournament?.teamCount || null"
+  />
+}
+<app-button [fullWidth]="true" [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised">Speichern</app-button>
