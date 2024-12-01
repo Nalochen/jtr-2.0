@@ -1,0 +1,71 @@
+<p>Filter:</p>
+
+@for (team of participatingTeams; track index; let index = $index) {
+<p>test</p>
+  <div>
+    <div>
+      <img
+        src="{{ team.logo }}"
+        [alt]="team.name"
+        height="32"
+        width="32" />
+      <span>{{ team.name }}</span>
+    </div>
+    <div>
+      <app-button
+        pTooltip="E-Mail senden"
+        tooltipPosition="right"
+      >
+        <span class="material-icons-outlined">email</span>
+      </app-button>
+      <app-button
+        pTooltip="Team hat bezahlt"
+      >
+        <span class="material-icons-outlined">euro</span>
+      </app-button>
+      <app-button
+        pTooltip="auf die Warteliste setzen"
+      >
+        <span class="material-icons-outlined">remove</span>
+      </app-button>
+      <app-button
+        pTooltip="Team aus Registrierung löschen"
+      >
+        <span class="material-icons-outlined">delete</span>
+      </app-button>
+    </div>
+  </div>
+}
+<p-divider></p-divider>
+
+@for (team of waitingTeams; track index; let index = $index) {
+  <div>
+    <div>
+      <img
+        src="{{ team.logo }}"
+        [alt]="team.name"
+        height="32"
+        width="32" />
+      <span>{{ team.name }}</span>
+    </div>
+    <div>
+      <app-button
+        pTooltip="E-Mail senden"
+      >
+        <span class="material-icons-outlined">email</span>
+      </app-button>
+      <app-button
+        pTooltip="zu angemeldeten Teams hinzufügen"
+      >
+        <span class="material-icons-outlined">add</span>
+      </app-button>
+      <app-button
+        pTooltip="Team aus Registrierung löschen"
+      >
+        <span class="material-icons-outlined">delete</span>
+      </app-button>
+    </div>
+  </div>
+}
+<app-button [color]="ButtonColorEnum.White" [type]="ButtonTypeEnum.Raised">weiteres Team hinzufügen</app-button>
+<app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" [buttonType]="ButtonFunctionTypeEnum.SUBMIT">speichern</app-button>
