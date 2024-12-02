@@ -21,6 +21,7 @@ import { PageTournamentDetailsComponent } from './pages/page-tournament-details/
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
 import { SwaggerViewComponent } from './pages/swagger-view/swagger-view.component';
+import { PageManageTournamentComponent } from './pages/page-manage-tournament/page-manage-tournament.component';
 
 export const appRoutes: Route[] = [
   {
@@ -59,8 +60,19 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'create-tournament',
+    path: 'manage-tournament/tournament-information',
     component: PageCreateTournamentComponent,
+  },
+  {
+    path: 'manage-tournament/tournament-information/:tournamentId',
+    component: PageCreateTournamentComponent,
+  },
+  {
+    path: 'manage-tournament/:tournamentId',
+    component: PageManageTournamentComponent,
+    resolve: {
+      tournamentDetails: TournamentDetailsResolver,
+    },
   },
   {
     path: 'register',

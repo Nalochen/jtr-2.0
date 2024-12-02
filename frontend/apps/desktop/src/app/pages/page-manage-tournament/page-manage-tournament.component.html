@@ -1,0 +1,107 @@
+<h1>Turnier verwalten</h1>
+
+<h2>E-Mail an teilnehmende Teams versenden:</h2>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="subject">
+    <label for="subject" class="subject-label font-bold">Betreff:</label>
+    <input type="text" pInputText [formControl]="form.controls.mail.controls.subject" inputId="subject" class="subjet-input" />
+  </div>
+  <app-text-editor [form]="form.controls.mail"></app-text-editor>
+  <p class="font-bold">Empfänger:</p>
+  <div class="radio-buttons">
+    <div>
+      <input
+        type="radio"
+        name="recipient"
+        value="EmailRecipientEnum.ALL"
+        [formControl]="form.controls.teams"
+        inputId="EmailRecipientEnum.ALL" />
+      <label for="EmailRecipientEnum.ALL">
+        Alle Teams
+      </label>
+    </div>
+
+    <div>
+      <input
+        type="radio"
+        name="recipient"
+        value="EmailRecipientEnum.PARTICIPATING"
+        [formControl]="form.controls.teams"
+        inputId="EmailRecipientEnum.PARTICIPATING" />
+      <label for="EmailRecipientEnum.PARTICIPATING">
+        angemeldete Teams
+      </label>
+    </div>
+
+    <div>
+      <input
+        type="radio"
+        name="recipient"
+        value="EmailRecipientEnum.WAITING"
+        [formControl]="form.controls.teams"
+        inputId="EmailRecipientEnum.WAITING" />
+      <label for="EmailRecipientEnum.WAITING">
+        Teams auf der Warteliste
+      </label>
+    </div>
+
+    <div>
+      <input
+        type="radio"
+        name="recipient"
+        value="EmailRecipientEnum.NOT_PAYED"
+        [formControl]="form.controls.teams"
+        inputId="EmailRecipientEnum.NOT_PAYED" />
+      <label for="EmailRecipientEnum.NOT_PAYED">
+        noch nicht bezahlt
+      </label>
+    </div>
+
+    <div>
+      <input
+        type="radio"
+        name="recipient"
+        value="EmailRecipientEnum.INDIVIDUAL"
+        [formControl]="form.controls.teams"
+        inputId="EmailRecipientEnum.INDIVIDUAL" />
+      <label for="EmailRecipientEnum.INDIVIDUAL">
+        einzelne(s) Team(s)
+      </label>
+    </div>
+
+    @if (form.controls.teams.value == EmailRecipientEnum.INDIVIDUAL) {
+    <p>test</p>
+      @let teams = teams$ | async;
+      @for (team of teams?.participating; track team.id) {
+      <div>
+        <p>test</p>
+      </div>
+      }
+    }
+
+
+  </div>
+  <app-button
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Raised"
+    [buttonType]="ButtonFunctionTypeEnum.SUBMIT"
+  >abschicken</app-button>
+</form>
+<app-button
+  [color]="ButtonColorEnum.White"
+  [type]="ButtonTypeEnum.Raised"
+  [fullWidth]="true"
+  (click)="onManageTeams()"
+>Teams verwalten</app-button>
+<app-button
+  [color]="ButtonColorEnum.White"
+  [type]="ButtonTypeEnum.Raised"
+  [fullWidth]="true"
+  (click)="onEnterResults()"
+>Ergebnisse eintragen</app-button>
+<app-button
+  [color]="ButtonColorEnum.White"
+  [type]="ButtonTypeEnum.Raised"
+  [fullWidth]="true"
+  (click)="onEditInfos()"
+>Infos bearbeiten</app-button>
