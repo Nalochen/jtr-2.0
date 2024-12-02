@@ -1,13 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { AccommodationTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/accommodation-type.enum';
-import {
-  GastronomyAvailabilityEnum,
-  MealAvailabilityEnum
-} from '../../../../../../../libs/data-domain/tournament/enums/food-type.enum';
-
 import {
   AccommodationInformationForm
 } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
@@ -16,6 +10,12 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import {
+  TournamentFoodEvening,
+  TournamentFoodGastro,
+  TournamentFoodMorning,
+  TournamentFoodNoon
+} from '@jtr/data-domain/store';
 
 @Component({
   selector: 'page-create-tournament-information-accommodation',
@@ -46,6 +46,8 @@ export class PageCreateTournamentInformationAccommodationComponent {
     { label: 'other', value: AccommodationTypeEnum.OTHER },
   ];
 
-  public readonly mealAvailabilityOptions = Object.values(MealAvailabilityEnum)
-  public readonly gastronomyAvailabilityOptions = Object.values(GastronomyAvailabilityEnum)
+  public readonly breakfastAvailabilityOptions = Object.values(TournamentFoodMorning);
+  public readonly lunchAvailabilityOptions = Object.values(TournamentFoodNoon);
+  public readonly dinnerAvailabilityOptions = Object.values(TournamentFoodEvening);
+  public readonly gastronomyAvailabilityOptions = Object.values(TournamentFoodGastro)
 }

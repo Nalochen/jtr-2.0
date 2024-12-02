@@ -1,12 +1,12 @@
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AccommodationTypeEnum } from '../../../../../data-domain/tournament/enums/accommodation-type.enum';
-import {
-  GastronomyAvailabilityEnum,
-  MealAvailabilityEnum
-} from '../../../../../data-domain/tournament/enums/food-type.enum';
 import { PricingTypeEnum } from '../../../../../data-domain/tournament/enums/pricing-type.enum';
-import { RegistrationProcedureEnum } from '../../../../../data-domain/tournament/enums/registration-procedure.enum';
+import {
+  TournamentFoodEvening, TournamentFoodGastro,
+  TournamentFoodMorning, TournamentFoodNoon,
+  TournamentRegistrationProcedureType
+} from '@jtr/data-domain/store';
 
 export type CostsInformationForm = {
   registrationFee: FormControl<number | null>;
@@ -21,10 +21,10 @@ export type CostsInformationForm = {
 }
 
 export type FoodInformationForm = {
-  breakfast: FormControl<MealAvailabilityEnum | null>;
-  lunch: FormControl<MealAvailabilityEnum | null>;
-  dinner: FormControl<MealAvailabilityEnum | null>;
-  gastronomy: FormControl<GastronomyAvailabilityEnum | null>;
+  breakfast: FormControl<TournamentFoodMorning | null>;
+  lunch: FormControl<TournamentFoodNoon | null>;
+  dinner: FormControl<TournamentFoodEvening | null>;
+  gastronomy: FormControl<TournamentFoodGastro | null>;
 };
 
 export type ShoesInformationForm = {
@@ -47,7 +47,7 @@ export type BasicInformationForm = {
 export type RegistrationInformationForm = {
   teamCountButton: FormControl<number | null>;
   teamCountField: FormControl<number | null>;
-  registrationProcedure: FormControl<RegistrationProcedureEnum | null>
+  registrationProcedure: FormControl<TournamentRegistrationProcedureType | null>
   registrationProcedureText: FormControl<string | null>;
   registrationStart: FormControl<string | null>;
   costs: FormGroup<CostsInformationForm>;

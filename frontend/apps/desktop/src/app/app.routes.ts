@@ -66,6 +66,9 @@ export const appRoutes: Route[] = [
   {
     path: 'manage-tournament/tournament-information/:tournamentId',
     component: PageCreateTournamentComponent,
+    resolve: {
+      tournamentDetails: TournamentDetailsResolver,
+    },
   },
   {
     path: 'manage-tournament/:tournamentId',

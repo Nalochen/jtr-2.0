@@ -16,7 +16,7 @@
     <span class="material-icons-outlined" ngProjectAs="container-icon">call</span>
     <h3 ngProjectAs="container-headline">{{ 'create-tournament.contacts' | translate }}</h3>
     <div class="contact-content" ngProjectAs="container-content">
-      @for (contact of form.controls.contacts.value; track contact; let index = $index) {
+      @for (contact of form.controls.contacts.value; track index; let index = $index) {
       <div class="contact-input">
         <input
           class="contact-input-field"

@@ -1,14 +1,8 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { Subject, takeUntil } from 'rxjs';
-
 import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
-import {
-  RegistrationProcedureEnum
-} from '../../../../../../../libs/data-domain/tournament/enums/registration-procedure.enum';
-
 import {
   RegistrationInformationForm
 } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
@@ -17,6 +11,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { TournamentRegistrationProcedureType } from '@jtr/data-domain/store';
 
 export type TeamCountOption = { label: string, value: number };
 
@@ -60,10 +55,9 @@ export class PageCreateTournamentInformationRegistrationComponent implements OnI
   ];
 
   public registrationProcedureOptions = [
-    { label: 'first come first served', value: RegistrationProcedureEnum.FIRST_COME_FIRST_SERVED },
-    { label: 'draw', value: RegistrationProcedureEnum.DRAW },
-    { label: 'invitation', value: RegistrationProcedureEnum.INVITATION },
-    { label: 'other', value: RegistrationProcedureEnum.OTHER },
+    { label: 'first come first served', value: TournamentRegistrationProcedureType.FIRST_COME },
+    { label: 'draw', value: TournamentRegistrationProcedureType.LOTS },
+    { label: 'other', value: TournamentRegistrationProcedureType.OTHER },
   ];
 
   public pricingTypeOptions = [
