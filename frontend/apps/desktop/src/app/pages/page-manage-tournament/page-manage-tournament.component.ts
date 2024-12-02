@@ -9,14 +9,7 @@ import { tournamentDetailsSelector, tournamentDetailsTeamsSelector } from '@jtr/
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent, ButtonFunctionType, EditorComponent, ButtonTypeEnum, ButtonColorEnum } from '../../ui-shared';
 import { InputTextModule } from 'primeng/inputtext';
-
-export enum EmailRecipientEnum {
-  ALL = 'All Teams',
-  PARTICIPATING = 'Participating Teams',
-  WAITING = 'Waiting Teams',
-  NOT_PAYED = 'Not Payed Teams',
-  INDIVIDUAL = 'Individual Teams',
-}
+import { EmailRecipientEnum } from '../../../../../../libs/data-domain/tournament/enums/email-recipient.enum';
 
 @Component({
   standalone: true,

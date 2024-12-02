@@ -69,7 +69,7 @@
       </label>
     </div>
 
-    @if (form.controls.teams.value == EmailRecipientEnum.INDIVIDUAL) {
+    @if (form.controls.teams.value === EmailRecipientEnum.INDIVIDUAL) {
     <p>test</p>
       @let teams = teams$ | async;
       @for (team of teams?.participating; track team.id) {
