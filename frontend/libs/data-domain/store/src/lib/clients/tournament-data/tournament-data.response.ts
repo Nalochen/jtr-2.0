@@ -1,11 +1,11 @@
-import { TournamentSystemType } from '../../../../../tournament/enums/tournament-system.enum';
-import { TournamentRegistrationProcedureEnum } from '../../../../../tournament/enums/registration-procedure.enum';
 import {
   TournamentFoodEvening,
   TournamentFoodGastro,
   TournamentFoodMorning, TournamentFoodNoon
 } from '../../../../../tournament/enums/food.enum';
+import { TournamentRegistrationProcedureEnum } from '../../../../../tournament/enums/registration-procedure.enum';
 import { TournamentStatus } from '../../../../../tournament/enums/tournament-status.enum';
+import { TournamentSystemType } from '../../../../../tournament/enums/tournament-system.enum';
 
 export interface TournamentDate {
   start: string;

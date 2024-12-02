@@ -1,7 +1,14 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { Subject, takeUntil } from 'rxjs';
+
+import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
+import {
+  TournamentRegistrationProcedureEnum
+} from '../../../../../../../libs/data-domain/tournament/enums/registration-procedure.enum';
+
 import {
   RegistrationInformationForm
 } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
@@ -10,10 +17,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import {
-  TournamentRegistrationProcedureEnum
-} from '../../../../../../../libs/data-domain/tournament/enums/registration-procedure.enum';
-import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
 
 export type TeamCountOption = { label: string, value: number };
 

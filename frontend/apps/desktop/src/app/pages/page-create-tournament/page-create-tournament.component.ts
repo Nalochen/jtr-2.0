@@ -2,6 +2,16 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { Observable, Subject } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+
+import {
+  tournamentDetailsSelector
+} from '@jtr/business-domain/tournament';
+import { TournamentData } from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
+
 import {
   createTournamentFormControl
 } from '../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
@@ -31,14 +41,6 @@ import {
 } from './page-create-tournament-submit/page-create-tournament-submit.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DividerModule } from 'primeng/divider';
-import { Store } from '@ngrx/store';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { Observable, Subject } from 'rxjs';
-import { TournamentData } from '@jtr/data-domain/store';
-import {
-  tournamentDetailsRegistrationOpenAtSelector,
-  tournamentDetailsSelector
-} from '@jtr/business-domain/tournament';
 
 
 @Component({

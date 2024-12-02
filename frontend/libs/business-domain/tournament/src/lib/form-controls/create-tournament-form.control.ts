@@ -1,11 +1,12 @@
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { PricingTypeEnum } from '../../../../../data-domain/tournament/enums/pricing-type.enum';
+
+import { AccommodationTypeEnum } from '../../../../../data-domain/tournament/enums/accommodation-type.enum';
 import {
   TournamentFoodEvening, TournamentFoodGastro,
   TournamentFoodMorning,
   TournamentFoodNoon
 } from '../../../../../data-domain/tournament/enums/food.enum';
-import { AccommodationTypeEnum } from '../../../../../data-domain/tournament/enums/accommodation-type.enum';
+import { PricingTypeEnum } from '../../../../../data-domain/tournament/enums/pricing-type.enum';
 import {
   TournamentRegistrationProcedureEnum
 } from '../../../../../data-domain/tournament/enums/registration-procedure.enum';

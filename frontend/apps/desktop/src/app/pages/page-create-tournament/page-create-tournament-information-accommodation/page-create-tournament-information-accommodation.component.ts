@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AccommodationTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/accommodation-type.enum';
+import {
+  TournamentFoodEvening, TournamentFoodGastro,
+  TournamentFoodMorning,
+  TournamentFoodNoon
+} from '../../../../../../../libs/data-domain/tournament/enums/food.enum';
+
 import {
   AccommodationInformationForm
 } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
@@ -9,12 +17,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { AccommodationTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/accommodation-type.enum';
-import {
-  TournamentFoodEvening, TournamentFoodGastro,
-  TournamentFoodMorning,
-  TournamentFoodNoon
-} from '../../../../../../../libs/data-domain/tournament/enums/food.enum';
 
 @Component({
   selector: 'page-create-tournament-information-accommodation',

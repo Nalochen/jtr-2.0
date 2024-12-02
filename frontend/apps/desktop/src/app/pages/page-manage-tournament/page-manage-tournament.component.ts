@@ -1,15 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { TranslatePipe } from '@ngx-translate/core';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { Observable, Subject, takeUntil } from 'rxjs';
-import { TournamentData, TournamentTeamsData } from '@jtr/data-domain/store';
-import { tournamentDetailsSelector, tournamentDetailsTeamsSelector } from '@jtr/business-domain/tournament';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ButtonComponent, ButtonFunctionType, EditorComponent, ButtonTypeEnum, ButtonColorEnum } from '../../ui-shared';
-import { InputTextModule } from 'primeng/inputtext';
+
+import { Observable, Subject, takeUntil } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+
+import { tournamentDetailsSelector, tournamentDetailsTeamsSelector } from '@jtr/business-domain/tournament';
+import { TournamentData, TournamentTeamsData } from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
+
 import { EmailRecipientEnum } from '../../../../../../libs/data-domain/tournament/enums/email-recipient.enum';
+
+import { ButtonColorEnum,ButtonComponent, ButtonFunctionType, ButtonTypeEnum, EditorComponent } from '../../ui-shared';
+import { TranslatePipe } from '@ngx-translate/core';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   standalone: true,
@@ -68,7 +73,6 @@ export class PageManageTournamentComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.changeDetectorRef.markForCheck();
-      console.log(this.form.controls.teams.value);
     });
 
     this.tournament$.pipe(takeUntil(this.destroy$)).subscribe((tournament) => {

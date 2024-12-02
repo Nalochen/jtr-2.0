@@ -1,8 +1,9 @@
-import { Editor, NgxEditorModule } from 'ngx-editor';
-import { ChangeDetectionStrategy, Component, input, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+
 import { TranslatePipe } from '@ngx-translate/core';
+import { Editor, NgxEditorModule } from 'ngx-editor';
 
 @Component({
   standalone: true,
