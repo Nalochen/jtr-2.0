@@ -1,0 +1,7 @@
+export enum EmailRecipientEnum {
+  ALL = 'ALL',
+  PARTICIPATING = 'PARTICIPATING',
+  WAITING = 'WAITING',
+  NOT_PAYED = 'NOT_PAYED',
+  INDIVIDUAL = 'INDIVIDUAL',
+}

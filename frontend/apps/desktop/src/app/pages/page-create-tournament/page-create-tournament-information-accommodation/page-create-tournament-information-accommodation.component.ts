@@ -4,9 +4,10 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AccommodationTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/accommodation-type.enum';
 import {
-  GastronomyAvailabilityEnum,
-  MealAvailabilityEnum
-} from '../../../../../../../libs/data-domain/tournament/enums/food-type.enum';
+  TournamentFoodEvening, TournamentFoodGastro,
+  TournamentFoodMorning,
+  TournamentFoodNoon
+} from '../../../../../../../libs/data-domain/tournament/enums/food.enum';
 
 import {
   AccommodationInformationForm
@@ -46,6 +47,8 @@ export class PageCreateTournamentInformationAccommodationComponent {
     { label: 'other', value: AccommodationTypeEnum.OTHER },
   ];
 
-  public readonly mealAvailabilityOptions = Object.values(MealAvailabilityEnum)
-  public readonly gastronomyAvailabilityOptions = Object.values(GastronomyAvailabilityEnum)
+  public readonly breakfastAvailabilityOptions = Object.values(TournamentFoodMorning);
+  public readonly lunchAvailabilityOptions = Object.values(TournamentFoodNoon);
+  public readonly dinnerAvailabilityOptions = Object.values(TournamentFoodEvening);
+  public readonly gastronomyAvailabilityOptions = Object.values(TournamentFoodGastro)
 }

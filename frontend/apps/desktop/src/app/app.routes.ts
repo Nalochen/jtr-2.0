@@ -13,6 +13,7 @@ import { UserDetailsResolver } from '@jtr/business-domain/user';
 
 import { PageCreateTournamentComponent } from './pages/page-create-tournament/page-create-tournament.component';
 import { PageManageTeamDetailsComponent } from './pages/page-manage-team/page-manage-team-details.component';
+import { PageManageTournamentComponent } from './pages/page-manage-tournament/page-manage-tournament.component';
 import { PageOutlineDemoComponent } from './pages/page-outline-demo/page-outline-demo.component';
 import { PageRegisterComponent } from './pages/page-register/page-register.component';
 import { PageTeamDetailsComponent } from './pages/page-team-details/page-team-details.component';
@@ -59,8 +60,22 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'create-tournament',
+    path: 'manage-tournament/tournament-information',
     component: PageCreateTournamentComponent,
+  },
+  {
+    path: 'manage-tournament/tournament-information/:tournamentId',
+    component: PageCreateTournamentComponent,
+    resolve: {
+      tournamentDetails: TournamentDetailsResolver,
+    },
+  },
+  {
+    path: 'manage-tournament/:tournamentId',
+    component: PageManageTournamentComponent,
+    resolve: {
+      tournamentDetails: TournamentDetailsResolver,
+    },
   },
   {
     path: 'register',

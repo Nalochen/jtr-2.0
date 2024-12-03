@@ -1,3 +1,12 @@
+import {
+  TournamentFoodEvening,
+  TournamentFoodGastro,
+  TournamentFoodMorning, TournamentFoodNoon
+} from '../../../../../tournament/enums/food.enum';
+import { TournamentRegistrationProcedureEnum } from '../../../../../tournament/enums/registration-procedure.enum';
+import { TournamentStatus } from '../../../../../tournament/enums/tournament-status.enum';
+import { TournamentSystemType } from '../../../../../tournament/enums/tournament-system.enum';
+
 export interface TournamentDate {
   start: string;
   end: string;
@@ -11,10 +20,6 @@ export interface TournamentCosts {
 export interface TournamentHouseRules {
   url: string;
   text: string;
-}
-
-export enum TournamentSystemType {
-  TUGENY = 'tugeny'
 }
 
 export interface TournamentSystem {
@@ -33,40 +38,10 @@ export interface TournamentAccommodation {
   type: string;
 }
 
-export enum TournamentRegistrationProcedureType {
-  FIRST_COME = 'first_come',
-  LOTS = 'lots',
-  OTHER = 'other',
-}
-
 export interface TournamentRegistrationProcedure {
   url: string;
-  type: TournamentRegistrationProcedureType;
+  type: TournamentRegistrationProcedureEnum;
   text: string;
-}
-
-export enum TournamentFoodEvening {
-  PROVIDED = 'provided',
-  GRILL_AVAILABLE = 'grill_available',
-  NO = 'no',
-}
-
-export enum TournamentFoodGastro {
-  ON_THE_COURSE = 'on_the_course',
-  NEAR = 'near',
-  FAR = 'far',
-  NO = 'no',
-}
-
-export enum TournamentFoodMorning {
-  PROVIDED = 'provided',
-  NO = 'no',
-}
-
-export enum TournamentFoodNoon {
-  PROVIDED = 'provided',
-  SNACKS = 'snacks',
-  NO = 'no',
 }
 
 export interface TournamentFood {
@@ -83,13 +58,6 @@ export interface TournamentShoes {
   studdedAllowed: boolean;
   text: string;
   url: string;
-}
-
-export enum TournamentStatus {
-  CREATED = 'created',
-  PUBLISHED = 'published',
-  CANCELED = 'canceled',
-  OVER = 'over',
 }
 
 export interface TournamentTeamsData {

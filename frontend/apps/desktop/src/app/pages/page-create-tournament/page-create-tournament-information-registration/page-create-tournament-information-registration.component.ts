@@ -6,7 +6,7 @@ import { Subject, takeUntil } from 'rxjs';
 
 import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
 import {
-  RegistrationProcedureEnum
+  TournamentRegistrationProcedureEnum
 } from '../../../../../../../libs/data-domain/tournament/enums/registration-procedure.enum';
 
 import {
@@ -60,10 +60,9 @@ export class PageCreateTournamentInformationRegistrationComponent implements OnI
   ];
 
   public registrationProcedureOptions = [
-    { label: 'first come first served', value: RegistrationProcedureEnum.FIRST_COME_FIRST_SERVED },
-    { label: 'draw', value: RegistrationProcedureEnum.DRAW },
-    { label: 'invitation', value: RegistrationProcedureEnum.INVITATION },
-    { label: 'other', value: RegistrationProcedureEnum.OTHER },
+    { label: 'first come first served', value: TournamentRegistrationProcedureEnum.FIRST_COME },
+    { label: 'draw', value: TournamentRegistrationProcedureEnum.LOTS },
+    { label: 'other', value: TournamentRegistrationProcedureEnum.OTHER },
   ];
 
   public pricingTypeOptions = [
