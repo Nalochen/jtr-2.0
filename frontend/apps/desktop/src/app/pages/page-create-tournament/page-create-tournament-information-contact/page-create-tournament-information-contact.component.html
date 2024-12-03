@@ -1,7 +1,11 @@
 <div [formGroup]="form">
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
-    <h3 ngProjectAs="container-headline">{{ 'create-tournament.schedule' | translate }}</h3>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >location_on</span
+    >
+    <h3 ngProjectAs="container-headline">
+      {{ 'create-tournament.schedule' | translate }}
+    </h3>
     <textarea
       ngProjectAs="container-content"
       pInputTextarea
@@ -13,20 +17,19 @@
   </app-data-container-row>
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">call</span>
-    <h3 ngProjectAs="container-headline">{{ 'create-tournament.contacts' | translate }}</h3>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >call</span
+    >
+    <h3 ngProjectAs="container-headline">
+      {{ 'create-tournament.contacts' | translate }}
+    </h3>
     <div class="contact-content" ngProjectAs="container-content">
-      @for (contact of form.controls.contacts.value; track index; let index = $index) {
+      @for (contact of form.controls.contacts.controls; track index; let index =
+      $index) {
       <div class="contact-input">
-        <input
-          class="contact-input-field"
-          pInputText
-          value="{{ contact }}"
-          id="contact"
-        />
-        <app-button
-          (click)="onRemoveContact(index)"
-        >
+        <input class="contact-input-field" pInputText [formControl]="contact" />
+
+        <app-button (click)="onRemoveContact(index)">
           <span class="material-icons-outlined">delete</span>
         </app-button>
       </div>

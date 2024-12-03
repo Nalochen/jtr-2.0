@@ -102,7 +102,7 @@ class TournamentRepository:
             'id': tournament.id,
             'name': tournament.name,
             'accommodation': {
-                'text': tournament.accommodation_text,
+                'location': tournament.accommodation_location,
                 'type': tournament.accommodation_type.value,
             },
             'additionalInformation': tournament.additional_information,
@@ -118,7 +118,7 @@ class TournamentRepository:
                 'start': tournament.start_date.isoformat(),
                 'end': tournament.end_date.isoformat()
             },
-            'deadlines': json.loads(str(tournament.deadlines)),
+            'deadlines': tournament.deadlines,
             'food': {
                 'morning': tournament.food_morning.value,
                 'noon': tournament.food_noon.value,
@@ -148,7 +148,7 @@ class TournamentRepository:
                 'url': tournament.pompf_check_url
             },
             'possibleSpace': tournament.possible_space,
-            'registrationOpenAt': tournament.registration_open_at.isoformat(),
+            'registrationStartDate': tournament.registration_start_date.isoformat(),
             'registrationProcedure': {
                 'text': tournament.registration_procedure_text,
                 'type': tournament.registration_procedure_type.value,
@@ -186,6 +186,33 @@ class TournamentRepository:
         ).filter(
             Tournaments.id == tournamentId
         ).first()
+
+    @staticmethod
+    def create(tournament: Tournaments) -> int:
+        try:
+            existingUsername = Tournaments.query.filter(
+                Users.username == user.username
+            ).count()
+
+            if existingUsername:
+                raise Exception('Username already in use.')
+
+            existingEmail = Users.query.filter(
+                Users.email == user.email
+            ).count()
+
+            if existingEmail:
+                raise Exception('Email already in use.')
+
+            db.session.add(user)
+            db.session.commit()
+
+            return user.id
+
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f'UserRepository | create | {e}')
+            raise e
 
     @staticmethod
     def delete(tournamentId: int) -> None:

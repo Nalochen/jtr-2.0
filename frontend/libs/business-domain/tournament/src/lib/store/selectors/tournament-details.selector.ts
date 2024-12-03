@@ -18,9 +18,10 @@ export const tournamentDetailsNameSelector = createSelector(
   (state: TournamentDetailsState) => state.tournamentDetails?.name
 );
 
-export const tournamentDetailsRegistrationOpenAtSelector = createSelector(
+export const tournamentDetailsregistrationStartDateSelector = createSelector(
   tournamentDetailsStateSelector,
-  (state: TournamentDetailsState) => state.tournamentDetails?.registrationOpenAt
+  (state: TournamentDetailsState) =>
+    state.tournamentDetails?.registrationStartDate
 );
 
 export const tournamentDetailsTeamsSelector = createSelector(

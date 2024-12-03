@@ -60,7 +60,7 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'manage-tournament/tournament-information',
+    path: 'create-tournament/tournament-information',
     component: PageCreateTournamentComponent,
   },
   {

@@ -1,0 +1,57 @@
+### Create a tournament
+### Execute ExternalApi/specs/requests/000-Authorization.http before using this!
+POST https://{{host}}/api/customer-frontend/create-tournament
+Content-Type: application/json
+Authorization: Bearer {{jwtToken}}
+
+{
+  "additionalInformation": "test",
+  "description": "test desc",
+  "startDate": "2021-12-31T00:00:00",
+  "endDate": "2021-12-31T23:59:59",
+  "startArrivalDate": "2021-12-31T00:00:00",
+  "endArrivalDate": "2021-12-31T23:59:59",
+  "address": "test address",
+  "possibleSpace": 6,
+  "registrationProcedureType": "first_come",
+  "registrationProcedureText": "test text",
+  "registrationStartDate": "2021-12-31T00:00:00",
+  "registrationCosts": 0,
+  "registrationCostsType": "per_user",
+  "depositCosts": 0,
+  "depositCostsType": "per_user",
+  "accommodationCosts": 0,
+  "accommodationCostsType": "per_user",
+  "guestCosts": 0,
+  "guestCostsType": "per_user",
+  "costsText": "test costs",
+  "deadlines": "test deadlines",
+  "schedule": "test schedule",
+  "contacts": [
+    "test1",
+    "test2"
+  ],
+  "accommodationType": "hotel",
+  "accommodationLocation": "test location",
+  "foodMorning": "none",
+  "foodNoon": "none",
+  "foodEvening": "none",
+  "foodGastro": "none",
+  "tournamentSystemText": "test text",
+  "tournamentSystemUrl": "test ",
+  "pompfCheckText": "test ",
+  "pompfCheckUrl": "test ",
+  "houseRulesText": "test ",
+  "houseRulesUrl": "test ",
+  "studdedShoesAllowed": false,
+  "cleatsShoesAllowed": false,
+  "camShoesAllowed": false,
+  "barefootAllowed": false,
+  "shoesText": "test"
+}
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
