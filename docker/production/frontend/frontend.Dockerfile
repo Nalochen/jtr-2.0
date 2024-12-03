@@ -3,7 +3,7 @@ FROM node:22.0-bullseye AS build
 
 WORKDIR /app
 
-COPY ../../../frontend .
+ADD ../../../frontend .
 
 RUN npm install
 RUN npm install -g nx
