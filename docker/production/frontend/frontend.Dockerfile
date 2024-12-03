@@ -4,4 +4,17 @@ FROM node:22.0-bullseye AS build
 WORKDIR /app
 
 ADD ../../../frontend .
-RUN ls
+
+RUN npm install
+RUN npm install -g nx
+
+RUN nx build desktop && nx build mobile
+
+# Stage 2
+FROM nginx:1.27.1-alpine AS ngi
+
+ADD docker/production/frontend/nginx.conf  /etc/nginx/conf.d/default.conf
+
+COPY --from=build /app/dist/apps /usr/share/nginx/html
+
+CMD ["nginx", "-g", "daemon off;"]
