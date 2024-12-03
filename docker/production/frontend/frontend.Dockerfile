@@ -13,7 +13,7 @@ RUN nx build desktop && nx build mobile
 # Stage 2
 FROM nginx:1.27.1-alpine AS ngi
 
-ADD docker/production/frontend/nginx.conf  /etc/nginx/conf.d/default.conf
+ADD ./nginx.conf  /etc/nginx/conf.d/default.conf
 
 COPY --from=build /app/dist/apps /usr/share/nginx/html
 
