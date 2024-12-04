@@ -72,13 +72,14 @@ class TournamentRepository:
         if not tournament:
             return None
 
-        participatesTeams = []
+        participatingTeams = []
         waitingTeams = []
 
         for team in tournament.teams:
             participation = db.session.query(participates_in).filter(
                 participates_in.c.team_id == team.id,
-                participates_in.c.tournament_id == tournament.id
+                participates_in.c.tournament_id == tournament.id,
+                participates_in.c.is_deleted == False
             ).first()
 
             teamData = {
@@ -92,12 +93,15 @@ class TournamentRepository:
                 'isMixTeam': team.is_mix_team,
                 'logo': team.logo,
                 'trainingTime': team.training_time,
-                'updatedAt': team.updated_at.isoformat()
+                'updatedAt': team.updated_at.isoformat(),
+                'hasPayed': participation.has_payed,
+                'placement': participation.placement,
+                'registrationOrder': participation.registration_order,
             }
-            if participation and participation.is_on_waiting_list:
+            if participation.is_on_waiting_list:
                 waitingTeams.append(teamData)
             else:
-                participatesTeams.append(teamData)
+                participatingTeams.append(teamData)
 
         return {
             'id': tournament.id,
@@ -114,8 +118,15 @@ class TournamentRepository:
             },
             'contacts': json.loads(str(tournament.contacts)),
             'costs': {
-                'team': tournament.costs_per_team,
-                'user': tournament.costs_per_user
+                'registrationCosts': tournament.registration_costs,
+                'registrationCostsType': tournament.registration_costs_type.value if tournament.registration_costs_type else None,
+                'depositCosts': tournament.registration_costs,
+                'depositCostsType': tournament.registration_costs_type.value if tournament.registration_costs_type else None,
+                'accommodationCosts': tournament.registration_costs,
+                'accommodationCostsType': tournament.registration_costs_type.value if tournament.registration_costs_type else None,
+                'guestCosts': tournament.registration_costs,
+                'guestCostsType': tournament.registration_costs_type.value if tournament.registration_costs_type else None,
+                'costsText': tournament.costs_text,
             },
             'createdAt': tournament.created_at.isoformat(),
             'date': {
@@ -124,10 +135,10 @@ class TournamentRepository:
             },
             'deadlines': tournament.deadlines,
             'food': {
-                'morning': tournament.food_morning.value,
-                'noon': tournament.food_noon.value,
-                'evening': tournament.food_evening.value,
-                'gastro': tournament.food_gastro.value
+                'morning': tournament.food_morning.value if tournament.food_morning else None,
+                'noon': tournament.food_noon.value if tournament.food_noon else None,
+                'evening': tournament.food_evening.value if tournament.food_evening else None,
+                'gastro': tournament.food_gastro.value if tournament.food_gastro else None,
             },
             'houseRules': {
                 'text': tournament.house_rules_text,
@@ -170,7 +181,7 @@ class TournamentRepository:
             'status': tournament.status.value,
             'teamCount': len(tournament.teams),
             'teams': {
-                'participating': participatesTeams,
+                'participating': participatingTeams,
                 'waiting': waitingTeams
             },
             'tournamentSystem': {

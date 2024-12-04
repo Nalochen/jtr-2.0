@@ -86,6 +86,23 @@ export interface TournamentTeamData {
   name: string;
   trainingTime: string;
   updatedAt: string;
+  hasPayed: boolean;
+  placement: number;
+  registrationOrder: number;
+}
+
+export interface TournamentOrganizerTeamData {
+  id: number;
+  aboutUs: string;
+  city: string;
+  contacts: string[];
+  createdAt: string;
+  founded: string;
+  isMixTeam: boolean;
+  logo: string;
+  name: string;
+  trainingTime: string;
+  updatedAt: string;
 }
 
 export interface TournamentData {
@@ -103,7 +120,7 @@ export interface TournamentData {
   houseRules: TournamentHouseRules;
   location: string;
   name: string;
-  organizer: TournamentTeamData;
+  organizer: TournamentOrganizerTeamData;
   pompfCheck: TournamentPompfCheck;
   possibleSpace: number;
   registrationStartDate: string;

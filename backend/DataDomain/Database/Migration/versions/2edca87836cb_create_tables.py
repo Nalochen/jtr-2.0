@@ -156,13 +156,13 @@ def upgrade():
                     sa.Column('deadlines', sa.Text(), nullable=False),
                     sa.Column('schedule', sa.Text(), nullable=True),
                     sa.Column('food_morning', sa.Enum(
-                        'PROVIDED', 'NO', name='tournamentfoodmorningtypesenum'), nullable=True),
+                        'PROVIDED', 'NONE', name='tournamentfoodmorningtypesenum'), nullable=True),
                     sa.Column('food_noon', sa.Enum(
-                        'PROVIDED', 'SNACKS', 'NO', name='tournamentfoodnoontypesenum'), nullable=True),
+                        'PROVIDED', 'SNACKS', 'NONE', name='tournamentfoodnoontypesenum'), nullable=True),
                     sa.Column('food_evening', sa.Enum('PROVIDED', 'GRILL_AVAILABLE',
-                                                      'NO', name='tournamentfoodeveningtypesenum'), nullable=True),
+                                                      'NONE', name='tournamentfoodeveningtypesenum'), nullable=True),
                     sa.Column('food_gastro', sa.Enum('ON_THE_COURSE', 'NEAR', 'FAR',
-                                                     'NO', name='tournamentfoodgastrotypesenum'), nullable=True),
+                                                     'NONE', name='tournamentfoodgastrotypesenum'), nullable=True),
                     sa.Column('shoes_text', sa.Text(), nullable=False),
                     sa.Column('shoes_url', sa.String(
                         length=255), nullable=False),
@@ -210,6 +210,8 @@ def upgrade():
                     sa.Column('has_played', sa.Boolean(),
                               server_default='0', nullable=False),
                     sa.Column('is_deleted', sa.Boolean(),
+                              server_default='0', nullable=False),
+                    sa.Column('has_payed', sa.Boolean(),
                               server_default='0', nullable=False),
                     sa.Column('is_on_waiting_list',
                               sa.Boolean(), nullable=False),
