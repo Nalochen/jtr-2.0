@@ -8,8 +8,7 @@ Authorization: Bearer {{jwtToken}}
   "birthdate": "1990-12-19T00:00:00",
   "city": "Berlin",
   "email": "joseph12435@gmail.de",
-  "name": "Joseph",
-  "picture": "https://www.example.com/picture.jpg"
+  "name": "Joseph"
 }
 
 > {%

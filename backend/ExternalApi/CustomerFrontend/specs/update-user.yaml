@@ -54,6 +54,8 @@ components:
         picture:
           type: string
           format: binary
+        pronoums:
+          type: string
         username:
           type: string
 

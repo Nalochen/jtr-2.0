@@ -44,6 +44,10 @@ class UpdateUserHandler:
         if name is not None:
             user.name = name
 
+        pronoums = data.get('pronoums')
+        if pronoums is not None:
+            user.pronoums = pronoums
+
         picture = data.get('picture')
         if picture is not None:
             # TODO: Add saving of image

@@ -81,6 +81,15 @@ class UpdateUserInputFilter(InputFilter):
         )
 
         self.add(
+            'pronoums',
+            required=False,
+            filters=[
+                StringTrimFilter(),
+                ToNullFilter()
+            ]
+        )
+
+        self.add(
             'username',
             required=False,
             filters=[
