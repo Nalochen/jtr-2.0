@@ -93,7 +93,7 @@ export interface TournamentData {
   accommodation: TournamentAccommodation;
   additionalInformation: string;
   address: string;
-  arrivalTime: string;
+  arrivalDate: TournamentDate;
   contacts: string[];
   costs: TournamentCosts;
   createdAt: string;

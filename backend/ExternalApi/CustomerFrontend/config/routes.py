@@ -109,7 +109,7 @@ def createTeam() -> Response:
 @customer_frontend.route('/create-tournament',
                          methods=['POST'], endpoint='create-tournament')
 @jwt_required()
-# @CreateTournamentInputFilter.validate()
+@CreateTournamentInputFilter.validate()
 def createTournament() -> Response:
     return CreateTournamentHandler().handle()
 

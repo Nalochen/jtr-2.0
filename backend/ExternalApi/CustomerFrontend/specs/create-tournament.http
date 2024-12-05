@@ -6,24 +6,25 @@ Authorization: Bearer {{jwtToken}}
 
 {
   "additionalInformation": "test",
+  "name": "test",
   "description": "test desc",
-  "startDate": "2021-12-31T00:00:00",
-  "endDate": "2021-12-31T23:59:59",
-  "startArrivalDate": "2021-12-31T00:00:00",
-  "endArrivalDate": "2021-12-31T23:59:59",
+  "startDate": "2021-12-31",
+  "endDate": "2021-12-31",
+  "startArrivalDate": "2021-12-31",
+  "endArrivalDate": "2021-12-31",
   "address": "test address",
   "possibleSpace": 6,
   "registrationProcedureType": "first_come",
   "registrationProcedureText": "test text",
-  "registrationStartDate": "2021-12-31T00:00:00",
-  "registrationCosts": 0,
-  "registrationCostsType": "per_user",
-  "depositCosts": 0,
-  "depositCostsType": "per_user",
-  "accommodationCosts": 0,
-  "accommodationCostsType": "per_user",
-  "guestCosts": 0,
-  "guestCostsType": "per_user",
+  "registrationStartDate": "2021-12-31",
+  "registrationCosts": 1,
+  "registrationCostsType": "per_team",
+  "depositCosts": 2,
+  "depositCostsType": "per_person",
+  "accommodationCosts": 3,
+  "accommodationCostsType": "per_team",
+  "guestCosts": 4,
+  "guestCostsType": "per_person",
   "costsText": "test costs",
   "deadlines": "test deadlines",
   "schedule": "test schedule",
@@ -47,7 +48,7 @@ Authorization: Bearer {{jwtToken}}
   "cleatsShoesAllowed": false,
   "camShoesAllowed": false,
   "barefootAllowed": false,
-  "shoesText": "test"
+  "shoesText": ""
 }
 
 > {%

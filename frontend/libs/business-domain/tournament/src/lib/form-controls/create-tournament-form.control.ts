@@ -34,7 +34,7 @@ export type ShoesInformationForm = {
   cam: FormControl<boolean>;
   cleats: FormControl<boolean>;
   barefoot: FormControl<boolean>;
-  shoesText: FormControl<string>;
+  shoesText: FormControl<string | null>;
 };
 
 export type BasicInformationForm = {
@@ -83,7 +83,7 @@ export type CreateTournamentForm = {
   contact: FormGroup<ContactInformationForm>;
   accommodation: FormGroup<AccommodationInformationForm>;
   rules: FormGroup<RulesInformationForm>;
-  costsText: FormControl<string>;
+  costsText: FormControl<string | null>;
 };
 
 export const basicInformationFormControl = new FormGroup<BasicInformationForm>({
@@ -209,9 +209,7 @@ export const rulesInformationFormControl = new FormGroup<RulesInformationForm>({
       nonNullable: true,
       validators: [Validators.required],
     }),
-    shoesText: new FormControl('', {
-      nonNullable: true,
-    }),
+    shoesText: new FormControl(''),
   }),
 });
 
@@ -221,7 +219,5 @@ export const createTournamentFormControl = new FormGroup<CreateTournamentForm>({
   contact: contactInformationFormControl,
   accommodation: accommodationInformationFormControl,
   rules: rulesInformationFormControl,
-  costsText: new FormControl('', {
-    nonNullable: true,
-  }),
+  costsText: new FormControl(''),
 });

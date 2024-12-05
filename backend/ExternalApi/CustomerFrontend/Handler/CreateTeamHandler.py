@@ -47,5 +47,6 @@ class CreateTeamHandler:
             return Response(status=500)
 
         return Response(
+            response=teamId,
             status=200
         )

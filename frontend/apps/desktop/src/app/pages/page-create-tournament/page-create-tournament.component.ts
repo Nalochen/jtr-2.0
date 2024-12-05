@@ -111,10 +111,16 @@ export class PageCreateTournamentComponent implements OnDestroy {
         ''
     );
     this.form.controls.basic.controls.arrivalStartDate.setValue(
-      this.datePipe.transform(Date.parse(tournament.arrivalTime), 'yyyy-MM-dd')
+      this.datePipe.transform(
+        Date.parse(tournament.arrivalDate.start),
+        'yyyy-MM-dd'
+      )
     );
     this.form.controls.basic.controls.arrivalEndDate.setValue(
-      this.datePipe.transform(Date.parse(tournament.arrivalTime), 'yyyy-MM-dd')
+      this.datePipe.transform(
+        Date.parse(tournament.arrivalDate.end),
+        'yyyy-MM-dd'
+      )
     );
     this.form.controls.basic.controls.address.setValue(tournament.address);
 

@@ -1,3 +1,4 @@
+import logging
 from datetime import datetime
 from typing import List
 
@@ -107,7 +108,10 @@ class TournamentRepository:
             },
             'additionalInformation': tournament.additional_information,
             'address': tournament.address,
-            'arrivalTime': tournament.arrival_time,
+            'arrivalDate': {
+                'start': tournament.start_arrival_date.isoformat(),
+                'end': tournament.end_arrival_date.isoformat(),
+            },
             'contacts': json.loads(str(tournament.contacts)),
             'costs': {
                 'team': tournament.costs_per_team,
@@ -190,28 +194,14 @@ class TournamentRepository:
     @staticmethod
     def create(tournament: Tournaments) -> int:
         try:
-            existingUsername = Tournaments.query.filter(
-                Users.username == user.username
-            ).count()
-
-            if existingUsername:
-                raise Exception('Username already in use.')
-
-            existingEmail = Users.query.filter(
-                Users.email == user.email
-            ).count()
-
-            if existingEmail:
-                raise Exception('Email already in use.')
-
-            db.session.add(user)
+            db.session.add(tournament)
             db.session.commit()
 
-            return user.id
+            return tournament.id
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'UserRepository | create | {e}')
+            logging.error(f'TournamentRepository | create | {e}')
             raise e
 
     @staticmethod

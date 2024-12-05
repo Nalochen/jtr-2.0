@@ -18,7 +18,9 @@
     <h4 ngProjectAs="container-headline">
       {{ 'page-tournament-details.arrival' | translate }}
     </h4>
-    <p ngProjectAs="container-content">{{ tournament.arrivalTime }}</p>
+    <p ngProjectAs="container-content">
+      {{ tournament.arrivalDate.start }} - {{ tournament.arrivalDate.end }}
+    </p>
   </app-data-container-row>
 
   <mat-divider />
