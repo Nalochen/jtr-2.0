@@ -1,9 +1,11 @@
 import {
-  TournamentFoodEvening,
-  TournamentFoodGastro,
-  TournamentFoodMorning, TournamentFoodNoon
+  TournamentFoodEveningEnum,
+  TournamentFoodGastroEnum,
+  TournamentFoodMorningEnum,
+  TournamentFoodNoonEnum,
 } from '../../../../../tournament/enums/food.enum';
-import { TournamentRegistrationProcedureEnum } from '../../../../../tournament/enums/registration-procedure.enum';
+import { PricingTypeEnum } from '../../../../../tournament/enums/pricing-type.enum';
+import { TournamentRegistrationProcedureTypeEnum } from '../../../../../tournament/enums/registration-procedure.enum';
 import { TournamentStatus } from '../../../../../tournament/enums/tournament-status.enum';
 import { TournamentSystemType } from '../../../../../tournament/enums/tournament-system.enum';
 
@@ -13,8 +15,15 @@ export interface TournamentDate {
 }
 
 export interface TournamentCosts {
-  user?: number;
-  team?: number;
+  registrationCosts?: number;
+  registrationCostsType?: PricingTypeEnum;
+  depositCosts?: number;
+  depositCostsType?: PricingTypeEnum;
+  accommodationCosts?: number;
+  accommodationCostsType?: PricingTypeEnum;
+  guestCosts?: number;
+  guestCostsType?: PricingTypeEnum;
+  costsText: string;
 }
 
 export interface TournamentHouseRules {
@@ -25,7 +34,7 @@ export interface TournamentHouseRules {
 export interface TournamentSystem {
   url: string;
   text: string;
-  type: TournamentSystemType
+  type: TournamentSystemType;
 }
 
 export interface TournamentPompfCheck {
@@ -34,21 +43,21 @@ export interface TournamentPompfCheck {
 }
 
 export interface TournamentAccommodation {
-  text: string;
+  location: string;
   type: string;
 }
 
 export interface TournamentRegistrationProcedure {
   url: string;
-  type: TournamentRegistrationProcedureEnum;
+  type: TournamentRegistrationProcedureTypeEnum;
   text: string;
 }
 
 export interface TournamentFood {
-  evening?: TournamentFoodEvening;
-  gastro?: TournamentFoodGastro;
-  morning?: TournamentFoodMorning;
-  noon?: TournamentFoodNoon;
+  evening?: TournamentFoodEveningEnum;
+  gastro?: TournamentFoodGastroEnum;
+  morning?: TournamentFoodMorningEnum;
+  noon?: TournamentFoodNoonEnum;
 }
 
 export interface TournamentShoes {
@@ -84,12 +93,12 @@ export interface TournamentData {
   accommodation: TournamentAccommodation;
   additionalInformation: string;
   address: string;
-  arrivalTime: string;
+  arrivalDate: TournamentDate;
   contacts: string[];
   costs: TournamentCosts;
   createdAt: string;
   date: TournamentDate;
-  deadlines: string[];
+  deadlines: string;
   food: TournamentFood;
   houseRules: TournamentHouseRules;
   location: string;
@@ -97,7 +106,7 @@ export interface TournamentData {
   organizer: TournamentTeamData;
   pompfCheck: TournamentPompfCheck;
   possibleSpace: number;
-  registrationOpenAt: string;
+  registrationStartDate: string;
   registrationProcedure: TournamentRegistrationProcedure;
   schedule?: string;
   shoes: TournamentShoes;

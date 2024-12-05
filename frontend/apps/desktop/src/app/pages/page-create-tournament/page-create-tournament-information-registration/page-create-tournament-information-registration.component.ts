@@ -1,24 +1,32 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
 import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
-import {
-  TournamentRegistrationProcedureEnum
-} from '../../../../../../../libs/data-domain/tournament/enums/registration-procedure.enum';
+import { TournamentRegistrationProcedureTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/registration-procedure.enum';
 
+import { RegistrationInformationForm } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import {
-  RegistrationInformationForm
-} from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
-import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum, DataContainerRowComponent, InfoButtonComponent } from '../../../ui-shared';
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+  DataContainerRowComponent,
+  InfoButtonComponent,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
 
-export type TeamCountOption = { label: string, value: number };
+export type TeamCountOption = { label: string; value: number };
 
 @Component({
   selector: 'page-create-tournament-information-registration',
@@ -34,15 +42,17 @@ export type TeamCountOption = { label: string, value: number };
     SelectButtonModule,
     ButtonComponent,
     DatePipe,
-    TranslatePipe
+    TranslatePipe,
   ],
   providers: [DatePipe],
   templateUrl:
     './page-create-tournament-information-registration.component.html',
   styleUrl: './page-create-tournament-information-registration.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageCreateTournamentInformationRegistrationComponent implements OnInit, OnDestroy {
+export class PageCreateTournamentInformationRegistrationComponent
+  implements OnInit, OnDestroy
+{
   @Input() public form!: FormGroup<RegistrationInformationForm>;
 
   public readonly ButtonColorEnum = ButtonColorEnum;
@@ -60,9 +70,12 @@ export class PageCreateTournamentInformationRegistrationComponent implements OnI
   ];
 
   public registrationProcedureOptions = [
-    { label: 'first come first served', value: TournamentRegistrationProcedureEnum.FIRST_COME },
-    { label: 'draw', value: TournamentRegistrationProcedureEnum.LOTS },
-    { label: 'other', value: TournamentRegistrationProcedureEnum.OTHER },
+    {
+      label: 'first come first served',
+      value: TournamentRegistrationProcedureTypeEnum.FIRST_COME,
+    },
+    { label: 'draw', value: TournamentRegistrationProcedureTypeEnum.LOTS },
+    { label: 'other', value: TournamentRegistrationProcedureTypeEnum.OTHER },
   ];
 
   public pricingTypeOptions = [
@@ -70,19 +83,19 @@ export class PageCreateTournamentInformationRegistrationComponent implements OnI
     { label: 'per Team', value: PricingTypeEnum.PER_TEAM },
   ];
 
-  constructor(private readonly datePipe: DatePipe) { }
+  constructor(private readonly datePipe: DatePipe) {}
 
   public ngOnInit() {
-    this.form.controls.teamCountField.valueChanges.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
-      if (this.form.controls.teamCountField.value) {
-        this.form.controls.teamCountButton.setValue(null);
-        this.form.controls.teamCountButton.disable();
-      } else {
-        this.form.controls.teamCountButton.enable();
-      }
-    });
+    this.form.controls.teamCountField.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        if (this.form.controls.teamCountField.value) {
+          this.form.controls.teamCountButton.setValue(null);
+          this.form.controls.teamCountButton.disable();
+        } else {
+          this.form.controls.teamCountButton.enable();
+        }
+      });
   }
 
   public ngOnDestroy() {
@@ -91,7 +104,10 @@ export class PageCreateTournamentInformationRegistrationComponent implements OnI
   }
 
   public onOpenRegistrationNow() {
-    const currentDateAndTime = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
-    this.form.controls.registrationStart.setValue(currentDateAndTime);
+    const currentDateAndTime = this.datePipe.transform(
+      new Date(),
+      'yyyy-MM-dd'
+    );
+    this.form.controls.registrationStartDate.setValue(currentDateAndTime);
   }
 }

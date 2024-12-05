@@ -15,6 +15,7 @@ export interface UserData {
   name?: string;
   isNameVisible: boolean;
   picture: string;
+  pronoums: string;
   teams: UserTeamData[];
   updatedAt: string;
   username: string;

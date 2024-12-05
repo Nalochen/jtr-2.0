@@ -44,6 +44,10 @@ class UpdateUserHandler:
         if name is not None:
             user.name = name
 
+        pronoums = data.get('pronoums')
+        if pronoums is not None:
+            user.pronoums = pronoums
+
         picture = data.get('picture')
         if picture is not None:
             # TODO: Add saving of image
@@ -57,7 +61,7 @@ class UpdateUserHandler:
             return Response(status=500)
 
         accessToken = create_access_token(
-            identity={'username': user.username}
+            identity=user.username
         )
 
         return Response(

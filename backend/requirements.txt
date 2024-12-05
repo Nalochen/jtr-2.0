@@ -1,3 +1,4 @@
+alembic
 autopep8
 celery
 cryptography

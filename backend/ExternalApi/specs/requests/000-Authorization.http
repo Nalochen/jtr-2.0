@@ -12,5 +12,5 @@ Content-Type: application/json
         client.assert(response.status === 200, "Response status is not 200");
     });
 
-    client.global.set("jwtToken", response.body.token);
+    client.global.set("jwtToken", response.body.token.toString());
 %}
