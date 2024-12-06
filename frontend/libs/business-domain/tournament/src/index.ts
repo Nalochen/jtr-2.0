@@ -1,9 +1,5 @@
 export * from './lib/store/actions/tournament-details.action';
-export * from './lib/store/actions/tournament-details-data-loaded-failed.action';
-export * from './lib/store/actions/tournament-details-data-loaded-success.action';
-export * from './lib/store/actions/tournament-overview-data-load.action';
 export * from './lib/store/actions/tournament-overview.action';
-export * from './lib/store/actions/tournament-overview-data-loaded-success.action';
 
 export * from './lib/store/effects/get-tournament-details-data.effect';
 export * from './lib/store/effects/get-tournament-overview-data.effect';
