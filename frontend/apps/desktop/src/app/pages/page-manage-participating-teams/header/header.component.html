@@ -1,0 +1,13 @@
+<h1>Teams verwalten</h1>
+
+<div class="filters">
+  <p>Filter:</p>
+  <app-chip
+    [color]="ButtonColorEnum.White"
+    [isClickable]="true"
+    [isClicked]="isClicked()"
+    (click)="onFilterNotPayed()"
+  >
+    noch nicht bezahlt
+  </app-chip>
+</div>
