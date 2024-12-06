@@ -20,7 +20,6 @@ export class JwtInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const token: string | null = this.authService.getToken();
-    console.log('token', token);
 
     if (token) {
       request = request.clone({
@@ -29,7 +28,7 @@ export class JwtInterceptor implements HttpInterceptor {
         },
       });
     }
-    console.log('request', request);
+
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401) {
