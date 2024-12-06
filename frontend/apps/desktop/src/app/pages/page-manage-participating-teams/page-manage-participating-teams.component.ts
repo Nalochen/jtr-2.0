@@ -1,18 +1,35 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil, withLatestFrom } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { tournamentDetailsSelector } from '@jtr/business-domain/tournament';
-import { TournamentData, TournamentTeamData } from '@jtr/data-domain/store';
+import { TeamOverviewData, TournamentData, TournamentTeamData, TournamentTeamsData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { TranslatePipe } from '@ngx-translate/core';
-import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum, ButtonFunctionType } from '../../ui-shared';
+import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum, ButtonFunctionType, ChipComponent } from '../../ui-shared';
 import { DividerModule } from 'primeng/divider';
 import { TooltipModule } from 'primeng/tooltip';
+import {
+  CdkDrag,
+  CdkDragDrop,
+  CdkDropList,
+  CdkDropListGroup,
+  moveItemInArray,
+  transferArrayItem
+} from '@angular/cdk/drag-drop';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { SubmitAreaComponent } from './submit-area/submit-area.component';
+import { DropListComponent } from './drop-list/drop-list.component';
+import { teamOverviewSelector } from '@jtr/business-domain/team';
+import {
+  TournamentDataService
+} from '../../../../../../libs/business-domain/tournament/src/lib/services/tournament-data.service';
 
 @Component({
   standalone: true,
@@ -21,35 +38,61 @@ import { TooltipModule } from 'primeng/tooltip';
     TranslatePipe,
     ButtonComponent,
     DividerModule,
-    TooltipModule
+    TooltipModule,
+    CdkDropListGroup,
+    CdkDropList,
+    CdkDrag,
+    DialogModule,
+    DropdownModule,
+    FormsModule,
+    ChipComponent,
+    HeaderComponent,
+    SubmitAreaComponent,
+    DropListComponent,
   ],
   templateUrl: './page-manage-participating-teams.component.html',
   styleUrl: './page-manage-participating-teams.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageManageParticipatingTeamsComponent implements OnDestroy {
+  public readonly tournamentDetailsTeams$ = this.tournamentDataService.tournamentDetailsTeams$;
+
   public readonly ButtonColorEnum = ButtonColorEnum;
   public readonly ButtonTypeEnum = ButtonTypeEnum;
   public readonly ButtonFunctionTypeEnum = ButtonFunctionType;
   public readonly destroy$ = new Subject<void>()
-  public readonly participatingTeams: TournamentTeamData[] = []
-  public readonly waitingTeams: TournamentTeamData[] = []
+  public participatingTeams: TournamentTeamData[] = []
+  public waitingTeams: TournamentTeamData[] = []
+  public filteredTeams: TeamOverviewData[] = [];
 
   @SingletonGetter()
-  public get tournament$(): Observable<TournamentData|null> {
-    return this.store$.select(tournamentDetailsSelector);
+  public get teams$(): Observable<TeamOverviewData[]> {
+    return this.store$.select(teamOverviewSelector);
   }
 
-  constructor(private store$: Store, private changeDetectorRef: ChangeDetectorRef) {
-    this.tournament$.pipe(takeUntil(this.destroy$)).subscribe((tournament) => {
-      if (!!tournament) {
-        this.participatingTeams.push(...tournament.teams.participating)
-        this.waitingTeams.push(...tournament.teams.waiting)
+  constructor(
+    private readonly store$: Store,
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly tournamentDataService: TournamentDataService
+  ) {
+    this.tournamentDetailsTeams$.pipe(
+      withLatestFrom(this.teams$),
+      takeUntil(this.destroy$)
+    ).subscribe(([tournamentTeams, teams]: [TournamentTeamsData | undefined, TeamOverviewData[]]) => {
+      if (!!tournamentTeams) {
+        const participatingTeams = [...tournamentTeams.participating];
+        const waitingTeams = [...tournamentTeams.waiting];
+
+        this.participatingTeams = participatingTeams;
+        this.waitingTeams = waitingTeams;
+        this.changeDetectorRef.markForCheck();
+
+        this.filteredTeams = teams.filter((team) => {
+          return !participatingTeams.some((participatingTeam) => participatingTeam.id === team.id) &&
+            !waitingTeams.some((waitingTeam) => waitingTeam.id === team.id);
+        });
       }
     })
-
-    this.changeDetectorRef.markForCheck();
-    console.log(this.participatingTeams)
   }
 
   public ngOnDestroy(): void {
@@ -57,11 +100,33 @@ export class PageManageParticipatingTeamsComponent implements OnDestroy {
     this.destroy$.complete();
   }
 
-  public sendEmail(): void {
-    window.alert('sendMail')
+  public onFilterNotPayed() {
+    //Action dispatchen die Daten im Store filtert
   }
 
-  public onSubmit(): void {
-    window.alert('submit');
+  public drop(event: CdkDragDrop<TournamentTeamData[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
+
+  public deleteTeam(index: number, isParticipating: boolean): void {
+    if (isParticipating) {
+      this.participatingTeams.splice(index, 1);
+    } else {
+      this.waitingTeams.splice(index, 1);
+    }
+  }
+
+  public save(): void {
+    // API aufrufen
+    // Weiterleiten
   }
 }
