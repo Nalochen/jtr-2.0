@@ -66,10 +66,11 @@ export const appRoutes: Route[] = [
     component: PageCreateTournamentComponent,
   },
   {
-    path: 'manage-tournament/participating-teams/:tournamentId',
+    path: 'create-tournament/participating-teams/:tournamentId',
     component: PageManageParticipatingTeamsComponent,
     resolve: {
       tournamentDetails: TournamentDetailsResolver,
+      teamDetails: TeamOverviewResolver,
     },
   },
   {

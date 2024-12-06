@@ -11,7 +11,7 @@ import {
 } from '@jtr/data-domain/store';
 
 import { loadTournamentOverviewData } from '../actions/tournament-overview-data-load.action';
-import { loadTournamentOverviewDataFailedAction } from '../actions/tournament-overview-data-loaded-failed.action';
+import { loadTournamentOverviewDataFailedAction } from '../actions/tournament-overview.action';
 import { loadTournamentOverviewDataSuccessAction } from '../actions/tournament-overview-data-loaded-success.action';
 
 @Injectable({

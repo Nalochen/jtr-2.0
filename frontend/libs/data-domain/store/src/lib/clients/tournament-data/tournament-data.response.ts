@@ -108,6 +108,7 @@ export interface TournamentTeamData {
   logo: string;
   name: string;
   trainingTime: string;
+  hasPaid: boolean;
   updatedAt: string;
 }
 
