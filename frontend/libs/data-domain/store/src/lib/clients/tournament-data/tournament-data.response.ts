@@ -1,13 +1,13 @@
 import {
+  PricingTypeEnum,
   TournamentFoodEveningEnum,
   TournamentFoodGastroEnum,
   TournamentFoodMorningEnum,
   TournamentFoodNoonEnum,
-} from '../../../../../tournament/enums/food.enum';
-import { PricingTypeEnum } from '../../../../../tournament/enums/pricing-type.enum';
-import { TournamentRegistrationProcedureTypeEnum } from '../../../../../tournament/enums/registration-procedure.enum';
-import { TournamentStatus } from '../../../../../tournament/enums/tournament-status.enum';
-import { TournamentSystemType } from '../../../../../tournament/enums/tournament-system.enum';
+  TournamentRegistrationProcedureTypeEnum,
+  TournamentStatus,
+  TournamentSystemType,
+} from '@jtr/data-domain/tournament-data';
 
 export interface TournamentDate {
   start: string;

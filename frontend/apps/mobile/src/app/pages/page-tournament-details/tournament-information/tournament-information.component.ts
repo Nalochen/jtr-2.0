@@ -12,8 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
 import { TournamentData, TournamentTeamData } from '@jtr/data-domain/store';
-
-import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
+import { PricingTypeEnum } from '@jtr/data-domain/tournament-data';
 
 import {
   ButtonColorEnum,

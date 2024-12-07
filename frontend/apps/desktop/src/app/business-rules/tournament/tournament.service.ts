@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { AccommodationTypeEnum } from '../../../../../../libs/data-domain/tournament/enums/accommodation-type.enum';
 import {
+  AccommodationTypeEnum,
+  PricingTypeEnum,
   TournamentFoodEveningEnum,
   TournamentFoodGastroEnum,
   TournamentFoodMorningEnum,
   TournamentFoodNoonEnum,
-} from '../../../../../../libs/data-domain/tournament/enums/food.enum';
-import { PricingTypeEnum } from '../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
+} from '@jtr/data-domain/tournament-data';
 
 const CREATE_TOURNAMENT_ENDPOINT = '/api/customer-frontend/create-tournament';
 const UPDATE_TOURNAMENT_ENDPOINT = '/api/customer-frontend/update-tournament';
