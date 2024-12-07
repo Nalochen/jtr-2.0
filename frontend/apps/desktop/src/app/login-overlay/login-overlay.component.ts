@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { AuthService } from '../business-rules/auth/auth.service';
 
@@ -14,6 +13,7 @@ import {
   ButtonTypeEnum,
 } from '../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { OverlayPanel } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'login-overlay',
@@ -24,12 +24,14 @@ import { TranslatePipe } from '@ngx-translate/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginOverlayComponent {
+  @Input() public loginOverlayPanel!: OverlayPanel;
+
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
   protected readonly ButtonFunctionType = ButtonFunctionType;
   protected readonly form = loginFormControl;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) {}
 
   public onSubmit(): void {
     if (!this.form.valid) {
@@ -56,6 +58,8 @@ export class LoginOverlayComponent {
     }
 
     this.form.reset();
+
+    this.loginOverlayPanel.hide();
   }
 
   private markAllFieldsAsTouched(form: FormGroup): void {
