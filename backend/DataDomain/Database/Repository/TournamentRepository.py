@@ -11,6 +11,8 @@ from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.db import db
 import json
 
+from DataDomain.Database.tools import getJwtIdentity
+
 
 class TournamentRepository:
     """Repository for tournament related queries"""
@@ -40,11 +42,11 @@ class TournamentRepository:
             Tournaments.id == TeamParticipation.c.tournament_id).join(
                 Teams,
                 Tournaments.organizer_id == Teams.id).filter(
-                    or_(
+                    and_(or_(
                         and_(
                             Tournaments.start_date <= currentTime,
                             Tournaments.end_date >= currentTime),
-                        Tournaments.start_date > currentTime)).group_by(
+                        Tournaments.start_date > currentTime), Tournaments.is_deleted == False)).group_by(
             Tournaments.id).order_by(
             Tournaments.start_date).all()
 
@@ -135,10 +137,10 @@ class TournamentRepository:
             },
             'deadlines': tournament.deadlines,
             'food': {
-                'morning': tournament.food_morning.value if tournament.food_morning else None,
-                'noon': tournament.food_noon.value if tournament.food_noon else None,
-                'evening': tournament.food_evening.value if tournament.food_evening else None,
-                'gastro': tournament.food_gastro.value if tournament.food_gastro else None,
+                'morning': tournament.food_morning.value,
+                'noon': tournament.food_noon.value,
+                'evening': tournament.food_evening.value,
+                'gastro': tournament.food_gastro.value,
             },
             'houseRules': {
                 'text': tournament.house_rules_text,
@@ -208,11 +210,37 @@ class TournamentRepository:
             db.session.add(tournament)
             db.session.commit()
 
+            user = getJwtIdentity()
+
+            logging.info(
+                f'TournamentRepository | Create | User [{
+                    user.id}] created tournament [{
+                    tournament.id}]')
+
             return tournament.id
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'TournamentRepository | create | {e}')
+            logging.error(f'TournamentRepository | Create | {e}')
+            raise e
+
+    @staticmethod
+    def update(tournament: Tournaments) -> None:
+        """Update tournament entry"""
+
+        try:
+            db.session.commit()
+
+            user = getJwtIdentity()
+
+            logging.info(
+                f'TournamentRepository | Update | User [{
+                    user.id}] updated tournament [{
+                    tournament.id}]')
+
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f'TournamentRepository | Update | {e}')
             raise e
 
     @staticmethod
@@ -237,8 +265,15 @@ class TournamentRepository:
             })
             db.session.commit()
 
+            user = getJwtIdentity()
+
+            logging.info(
+                f'TournamentRepository | Delete | User [{
+                    user.id}] deleted tournament [{tournamentId}]')
+
         except Exception as e:
             db.session.rollback()
+            logging.error(f'TournamentRepository | Delete | {e}')
             raise e
 
     @staticmethod

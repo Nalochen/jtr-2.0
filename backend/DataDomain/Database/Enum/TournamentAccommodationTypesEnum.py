@@ -10,4 +10,4 @@ class TournamentAccommodationTypesEnum(Enum):
 
     HOTEL = 'hotel'
 
-    NONE = 'none'
+    NO = 'no'

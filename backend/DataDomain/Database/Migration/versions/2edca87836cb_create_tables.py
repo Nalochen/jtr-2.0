@@ -156,13 +156,13 @@ def upgrade():
                     sa.Column('deadlines', sa.Text(), nullable=False),
                     sa.Column('schedule', sa.Text(), nullable=True),
                     sa.Column('food_morning', sa.Enum(
-                        'PROVIDED', 'NONE', name='tournamentfoodmorningtypesenum'), nullable=True),
+                        'PROVIDED', 'NO', name='tournamentfoodmorningtypesenum'), nullable=False),
                     sa.Column('food_noon', sa.Enum(
-                        'PROVIDED', 'SNACKS', 'NONE', name='tournamentfoodnoontypesenum'), nullable=True),
+                        'PROVIDED', 'SNACKS', 'NO', name='tournamentfoodnoontypesenum'), nullable=False),
                     sa.Column('food_evening', sa.Enum('PROVIDED', 'GRILL_AVAILABLE',
-                                                      'NONE', name='tournamentfoodeveningtypesenum'), nullable=True),
+                                                      'NO', name='tournamentfoodeveningtypesenum'), nullable=False),
                     sa.Column('food_gastro', sa.Enum('ON_THE_COURSE', 'NEAR', 'FAR',
-                                                     'NONE', name='tournamentfoodgastrotypesenum'), nullable=True),
+                                                     'NO', name='tournamentfoodgastrotypesenum'), nullable=False),
                     sa.Column('shoes_text', sa.Text(), nullable=False),
                     sa.Column('shoes_url', sa.String(
                         length=255), nullable=False),

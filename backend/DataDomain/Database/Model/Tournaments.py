@@ -153,24 +153,24 @@ class Tournaments(BaseModel, db.Model):
         nullable=True
     )
 
-    food_morning: Column[Optional[Enum]] = db.Column(
+    food_morning: Column[Enum] = db.Column(
         db.Enum(TournamentFoodMorningTypesEnum),
-        nullable=True
+        nullable=False
     )
 
-    food_noon: Column[Optional[Enum]] = db.Column(
+    food_noon: Column[Enum] = db.Column(
         db.Enum(TournamentFoodNoonTypesEnum),
-        nullable=True
+        nullable=False
     )
 
-    food_evening: Column[Optional[Enum]] = db.Column(
+    food_evening: Column[Enum] = db.Column(
         db.Enum(TournamentFoodEveningTypesEnum),
-        nullable=True
+        nullable=False
     )
 
-    food_gastro: Column[Optional[Enum]] = db.Column(
+    food_gastro: Column[Enum] = db.Column(
         db.Enum(TournamentFoodGastroTypesEnum),
-        nullable=True
+        nullable=False
     )
 
     shoes_text: Column[Text] = db.Column(

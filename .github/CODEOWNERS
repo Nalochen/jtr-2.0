@@ -2,6 +2,10 @@
 *         @Nalochen
 *         @StrykerDelkar
 
+/.github/ @ops-team
+
 /backend/ @backend-team
+
+/docker/ @ops-team
 
 /frontend/ @frontend-team

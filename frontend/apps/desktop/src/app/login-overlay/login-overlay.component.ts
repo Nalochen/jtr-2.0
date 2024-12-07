@@ -7,18 +7,18 @@ import { AuthService } from '../business-rules/auth/auth.service';
 
 import { loginFormControl } from '../../../../../libs/business-domain/login/src/lib/form-controls/login-form.control';
 import { isEmail } from '../../../../../libs/business-domain/login/src/lib/rules/is-email.rule';
-import { ButtonColorEnum, ButtonComponent, ButtonFunctionType,ButtonTypeEnum } from '../ui-shared';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonFunctionType,
+  ButtonTypeEnum,
+} from '../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'login-overlay',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ButtonComponent,
-    TranslatePipe
-  ],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, TranslatePipe],
   templateUrl: './login-overlay.component.html',
   styleUrl: './login-overlay.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,19 +45,17 @@ export class LoginOverlayComponent {
       this.authService.login({
         email: this.form.controls.emailOrUsername.value,
         username: null,
-        password: this.form.controls.password.value
+        password: this.form.controls.password.value,
       });
     } else {
       this.authService.login({
         email: null,
         username: this.form.controls.emailOrUsername.value,
-        password: this.form.controls.password.value
+        password: this.form.controls.password.value,
       });
     }
 
     this.form.reset();
-
-    this.router.navigate(['/tournament-overview']);
   }
 
   private markAllFieldsAsTouched(form: FormGroup): void {

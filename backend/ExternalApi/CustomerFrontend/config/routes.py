@@ -17,6 +17,7 @@ from ExternalApi.CustomerFrontend.Handler.GetTournamentOverviewHandler import Ge
 from ExternalApi.CustomerFrontend.Handler.GetUserDetailsHandler import GetUserDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.LoginUserHandler import LoginUserHandler
 from ExternalApi.CustomerFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
+from ExternalApi.CustomerFrontend.Handler.UpdateTournamentHandler import UpdateTournamentHandler
 from ExternalApi.CustomerFrontend.Handler.UpdateUserHandler import UpdateUserHandler
 from ExternalApi.CustomerFrontend.InputFilter.CreateParticipationInputFilter import CreateParticipationInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.CreateTeamInputFilter import CreateTeamInputFilter
@@ -31,6 +32,7 @@ from ExternalApi.CustomerFrontend.InputFilter.GetTournamentDetailsInputFilter im
 from ExternalApi.CustomerFrontend.InputFilter.GetUserDetailsInputFilter import GetUserDetailsInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.LoginUserInputFilter import LoginUserInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.UpdateTeamInputFilter import UpdateTeamInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.UpdateTournamentInputFilter import UpdateTournamentInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.UpdateUserInputFilter import UpdateUserInputFilter
 
 customer_frontend = Blueprint('customer-frontend', __name__)
@@ -41,27 +43,27 @@ customer_frontend = Blueprint('customer-frontend', __name__)
 @GetTournamentDetailsInputFilter.validate()
 # @cache.cached(key_prefix=create_tournament_cache_key)
 def getTournamentDetails(tournamentId: int) -> Response:
-    return GetTournamentDetailsHandler().handle(tournamentId)
+    return GetTournamentDetailsHandler.handle(tournamentId)
 
 
 @customer_frontend.route('/get-tournament-overview',
                          methods=['GET'], endpoint='get-tournament-overview')
 # @cache.cached(key_prefix='upcoming-tournaments')
 def getTournamentOverview() -> Response:
-    return GetTournamentOverviewHandler().handle()
+    return GetTournamentOverviewHandler.handle()
 
 
 @customer_frontend.route('/get-team-details/<teamId>',
                          methods=['GET'], endpoint='get-team-details')
 @GetTeamDetailsInputFilter.validate()
 def getTeamDetails(teamId: int) -> Response:
-    return GetTeamDetailsHandler().handle(teamId)
+    return GetTeamDetailsHandler.handle(teamId)
 
 
 @customer_frontend.route('/get-team-overview',
                          methods=['GET'], endpoint='get-team-overview')
 def getTeamOverview() -> Response:
-    return GetTeamOverviewHandler().handle()
+    return GetTeamOverviewHandler.handle()
 
 
 @customer_frontend.route('/get-user-details',
@@ -71,7 +73,7 @@ def getTeamOverview() -> Response:
 @GetUserDetailsInputFilter.validate()
 @jwt_required(optional=True)
 def getUserDetails(userId: int = None) -> Response:
-    return GetUserDetailsHandler().handle(userId)
+    return GetUserDetailsHandler.handle(userId)
 
 
 @customer_frontend.route('/update-team',
@@ -79,7 +81,15 @@ def getUserDetails(userId: int = None) -> Response:
 @jwt_required()
 @UpdateTeamInputFilter.validate()
 def updateTeam() -> Response:
-    return UpdateTeamHandler().handle()
+    return UpdateTeamHandler.handle()
+
+
+@customer_frontend.route('/update-tournament',
+                         methods=['PUT'], endpoint='update-tournament')
+@jwt_required()
+@UpdateTournamentInputFilter.validate()
+def updateTournament() -> Response:
+    return UpdateTournamentHandler.handle()
 
 
 @customer_frontend.route('/update-user',
@@ -87,7 +97,7 @@ def updateTeam() -> Response:
 @jwt_required()
 @UpdateUserInputFilter.validate()
 def updateUser() -> Response:
-    return UpdateUserHandler().handle()
+    return UpdateUserHandler.handle()
 
 
 @customer_frontend.route('/create-participation',
@@ -103,7 +113,7 @@ def createParticipation() -> Response:
 @jwt_required()
 @CreateTeamInputFilter.validate()
 def createTeam() -> Response:
-    return CreateTeamHandler().handle()
+    return CreateTeamHandler.handle()
 
 
 @customer_frontend.route('/create-tournament',
@@ -111,19 +121,19 @@ def createTeam() -> Response:
 @jwt_required()
 @CreateTournamentInputFilter.validate()
 def createTournament() -> Response:
-    return CreateTournamentHandler().handle()
+    return CreateTournamentHandler.handle()
 
 
 @customer_frontend.route('/login', methods=['POST'], endpoint='login')
 @LoginUserInputFilter.validate()
 def login() -> Response:
-    return LoginUserHandler().handle()
+    return LoginUserHandler.handle()
 
 
 @customer_frontend.route('/register', methods=['POST'], endpoint='register')
 @CreateUserInputFilter.validate()
 def register() -> Response:
-    return CreateUserHandler().handle()
+    return CreateUserHandler.handle()
 
 
 @customer_frontend.route('/delete-membership',
@@ -132,7 +142,7 @@ def register() -> Response:
 @jwt_required()
 @DeleteMembershipInputFilter.validate()
 def deleteMembership() -> Response:
-    return DeleteMembershipHandler().handle()
+    return DeleteMembershipHandler.handle()
 
 
 @customer_frontend.route('/delete-participation',
@@ -150,7 +160,7 @@ def deleteParticipation() -> Response:
 @jwt_required()
 @DeleteTeamInputFilter.validate()
 def deleteTeam() -> Response:
-    return DeleteTeamHandler().handle()
+    return DeleteTeamHandler.handle()
 
 
 @customer_frontend.route('/delete-tournament',
@@ -159,4 +169,4 @@ def deleteTeam() -> Response:
 @jwt_required()
 @DeleteTournamentInputFilter.validate()
 def deleteTournament() -> Response:
-    return DeleteTournamentHandler().handle()
+    return DeleteTournamentHandler.handle()

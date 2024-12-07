@@ -49,6 +49,8 @@ export class PageCreateTournamentComponent implements OnDestroy {
   public form = createTournamentFormControl;
   private readonly destroy$ = new Subject<void>();
 
+  private newTournament = true;
+
   @SingletonGetter()
   public get tournament$(): Observable<TournamentData | null> {
     return this.store$.select(tournamentDetailsSelector);
@@ -63,6 +65,7 @@ export class PageCreateTournamentComponent implements OnDestroy {
     this.tournament$.pipe().subscribe((tournament) => {
       if (tournament) {
         this.prefillFormValues(tournament);
+        this.newTournament = false;
       }
     });
   }
@@ -78,15 +81,31 @@ export class PageCreateTournamentComponent implements OnDestroy {
       return;
     }
 
-    const createTournamentResponse = await firstValueFrom(
-      this.tournamentService.create(this.form.getRawValue())
+    // Create new tournament
+    if (this.newTournament) {
+      const createTournamentResponse = await firstValueFrom(
+        this.tournamentService.create(this.form.getRawValue())
+      );
+
+      this.form.reset();
+
+      this.router.navigate([
+        '/tournament-details/' + createTournamentResponse.tournamentId,
+      ]);
+
+      return;
+    }
+
+    // Update existing tournament
+    const tournamentId = (await firstValueFrom(this.tournament$))?.id;
+
+    if (!tournamentId) {
+      return;
+    }
+
+    await firstValueFrom(
+      this.tournamentService.update(tournamentId, this.form.getRawValue())
     );
-
-    this.form.reset();
-
-    this.router.navigate([
-      '/tournament-details/' + createTournamentResponse.tournamentId,
-    ]);
   }
 
   private markAllFieldsAsTouched(form: FormGroup): void {
