@@ -10,8 +10,10 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
-import { TournamentRegistrationProcedureTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/registration-procedure.enum';
+import {
+  PricingTypeEnum,
+  TournamentRegistrationProcedureTypeEnum,
+} from '@jtr/data-domain/tournament-data';
 
 import { RegistrationInformationForm } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import {

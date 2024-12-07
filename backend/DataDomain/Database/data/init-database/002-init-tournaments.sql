@@ -47,7 +47,7 @@ INSERT IGNORE INTO tournaments (
     '',
     '123 Main St, Anytown, GER',
     10,
-    '2025-11-31',
+    '2025-11-28',
     '2025-12-03',
     20,
     'PER_PERSON',

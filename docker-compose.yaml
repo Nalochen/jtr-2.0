@@ -26,6 +26,7 @@ services:
       MYSQL_USER: 'user'
       RABBITMQ_DEFAULT_PASS: 'mypass'
       RABBITMQ_DEFAULT_USER: 'admin'
+      SECRET_KEY: 'secret'
     ports:
       - "5001:5001"
       - "5672:5672"

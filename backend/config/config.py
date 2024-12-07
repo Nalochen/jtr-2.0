@@ -21,7 +21,7 @@ class Config:
 
         app.config['MIGRATION_DIR'] = '/home/backend/DataDomain/Database/Migration' if os.getenv(
             'FLASK_ENV') == 'development' else '/app/DataDomain/Database/Migration'
-        app.config['SECRET_KEY'] = 'secret key'
+        app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
         app.config['CACHE_TYPE'] = 'redis'
         app.config['CACHE_REDIS_HOST'] = os.getenv('CACHE_REDIS_HOST')

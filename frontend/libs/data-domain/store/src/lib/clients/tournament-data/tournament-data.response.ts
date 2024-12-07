@@ -1,13 +1,13 @@
 import {
+  PricingTypeEnum,
   TournamentFoodEveningEnum,
   TournamentFoodGastroEnum,
   TournamentFoodMorningEnum,
   TournamentFoodNoonEnum,
-} from '../../../../../tournament/enums/food.enum';
-import { PricingTypeEnum } from '../../../../../tournament/enums/pricing-type.enum';
-import { TournamentRegistrationProcedureTypeEnum } from '../../../../../tournament/enums/registration-procedure.enum';
-import { TournamentStatus } from '../../../../../tournament/enums/tournament-status.enum';
-import { TournamentSystemType } from '../../../../../tournament/enums/tournament-system.enum';
+  TournamentRegistrationProcedureTypeEnum,
+  TournamentStatus,
+  TournamentSystemType,
+} from '@jtr/data-domain/tournament-data';
 
 export interface TournamentDate {
   start: string;
@@ -86,6 +86,23 @@ export interface TournamentTeamData {
   name: string;
   trainingTime: string;
   updatedAt: string;
+  hasPayed: boolean;
+  placement: number;
+  registrationOrder: number;
+}
+
+export interface TournamentOrganizerTeamData {
+  id: number;
+  aboutUs: string;
+  city: string;
+  contacts: string[];
+  createdAt: string;
+  founded: string;
+  isMixTeam: boolean;
+  logo: string;
+  name: string;
+  trainingTime: string;
+  updatedAt: string;
 }
 
 export interface TournamentData {
@@ -103,7 +120,7 @@ export interface TournamentData {
   houseRules: TournamentHouseRules;
   location: string;
   name: string;
-  organizer: TournamentTeamData;
+  organizer: TournamentOrganizerTeamData;
   pompfCheck: TournamentPompfCheck;
   possibleSpace: number;
   registrationStartDate: string;

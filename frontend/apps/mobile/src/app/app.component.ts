@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 
+import { Observable } from 'rxjs';
+
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from './business-rules/auth/auth.service';
@@ -22,7 +24,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     MatMenuModule,
     OverlayMenuComponent,
     TranslatePipe,
-    ButtonComponent
+    ButtonComponent,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -35,8 +37,8 @@ export class AppComponent {
   constructor(private readonly authService: AuthService) {}
 
   @SingletonGetter()
-  public get isLoggedIn$(): boolean {
-    return this.authService.isAuthenticated();
+  public get isLoggedIn$(): Observable<boolean> {
+    return this.authService.isAuthenticated$;
   }
 
   @ViewChild('overlay') public overlay!: OverlayMenuComponent;

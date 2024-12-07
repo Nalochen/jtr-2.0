@@ -1,18 +1,32 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable, Subject, takeUntil } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { tournamentDetailsSelector, tournamentDetailsTeamsSelector } from '@jtr/business-domain/tournament';
+import {
+  tournamentDetailsSelector,
+  tournamentDetailsTeamsSelector,
+} from '@jtr/business-domain/tournament';
 import { TournamentData, TournamentTeamsData } from '@jtr/data-domain/store';
+import { EmailRecipientEnum } from '@jtr/data-domain/tournament-data';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
-import { EmailRecipientEnum } from '../../../../../../libs/data-domain/tournament/enums/email-recipient.enum';
-
-import { ButtonColorEnum,ButtonComponent, ButtonFunctionType, ButtonTypeEnum, EditorComponent } from '../../ui-shared';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonFunctionType,
+  ButtonTypeEnum,
+  EditorComponent,
+} from '../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -24,7 +38,7 @@ import { InputTextModule } from 'primeng/inputtext';
     ReactiveFormsModule,
     EditorComponent,
     ButtonComponent,
-    InputTextModule
+    InputTextModule,
   ],
   templateUrl: './page-manage-tournament.component.html',
   styleUrl: './page-manage-tournament.component.less',
@@ -40,14 +54,14 @@ export class PageManageTournamentComponent implements OnInit, OnDestroy {
 
   public readonly form = new FormGroup<{
     mail: FormGroup<{
-      subject: FormControl<string | null>,
-      text: FormControl<string | null>,
-    }>,
-    teams: FormControl<EmailRecipientEnum | null>,
+      subject: FormControl<string | null>;
+      text: FormControl<string | null>;
+    }>;
+    teams: FormControl<EmailRecipientEnum | null>;
   }>({
     mail: new FormGroup<{
-      subject: FormControl<string | null>,
-      text: FormControl<string | null>,
+      subject: FormControl<string | null>;
+      text: FormControl<string | null>;
     }>({
       subject: new FormControl<string | null>(null),
       text: new FormControl<string | null>(null),
@@ -56,18 +70,18 @@ export class PageManageTournamentComponent implements OnInit, OnDestroy {
   });
 
   @SingletonGetter()
-  public get tournament$(): Observable<TournamentData|null> {
+  public get tournament$(): Observable<TournamentData | null> {
     return this.store$.select(tournamentDetailsSelector);
   }
 
   @SingletonGetter()
-  public get teams$(): Observable<TournamentTeamsData|undefined> {
+  public get teams$(): Observable<TournamentTeamsData | undefined> {
     return this.store$.select(tournamentDetailsTeamsSelector);
   }
 
   constructor(
     private store$: Store,
-    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly changeDetectorRef: ChangeDetectorRef
   ) {}
 
   public ngOnInit(): void {
@@ -100,6 +114,9 @@ export class PageManageTournamentComponent implements OnInit, OnDestroy {
   }
 
   public onEditInfos(): void {
-    window.open(`manage-tournament/tournament-information/${this.tournamentId}`, '_self');
+    window.open(
+      `manage-tournament/tournament-information/${this.tournamentId}`,
+      '_self'
+    );
   }
 }
