@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 
-import { tournamentDetailsDataStoreSlice } from '../states/tournament-details-data-store.slice';
 import { TournamentData } from '@jtr/data-domain/store';
 
 enum TournamentDetailsActions {

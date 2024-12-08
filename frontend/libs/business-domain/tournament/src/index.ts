@@ -23,3 +23,5 @@ export * from './lib/store/states/tournament-details-data-store.state';
 export * from './lib/store/states/tournament-overview-data-store.state';
 
 export * from './lib/store/types/loading-state.type';
+
+export * from './lib/services/tournament-data.service';

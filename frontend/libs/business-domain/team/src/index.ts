@@ -25,3 +25,5 @@ export * from './lib/store/states/team-details-data-store.state';
 export * from './lib/store/states/team-overview-data-store.state';
 
 export * from './lib/store/types/loading-state.type';
+
+export * from './lib/services/team-data.service';

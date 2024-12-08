@@ -13,11 +13,16 @@
 
 <p-dialog header="Add Team" [modal]="true" [(visible)]="addTeamVisible" [style]="{ width: '25rem' }">
   <div>
-    <p-dropdown
-      [options]="allTeams()"
-      [(ngModel)]="selectedTeam"
-      optionLabel="name"
-      placeholder="Select a Team" />
+    @let allTeams = allTeams$ | async;
+    @if (!!allTeams) {
+      <p-dropdown
+        [options]="allTeams"
+        [(ngModel)]="selectedTeam"
+        optionLabel="name"
+        [filter]="true"
+        filterBy="name"
+        placeholder="Select a Team" />
+    }
   </div>
   <ng-template pTemplate="footer">
     <app-button

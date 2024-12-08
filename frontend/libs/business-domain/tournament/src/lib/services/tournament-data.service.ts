@@ -1,13 +1,16 @@
-import { SingletonGetter } from '@jtr/infrastructure/cache';
+import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
-import { TournamentData, TournamentOverviewData, TournamentTeamsData } from '@jtr/data-domain/store';
+
+import { Store } from '@ngrx/store';
+
 import {
   tournamentDetailsNameSelector,
   tournamentDetailsRegistrationOpenAtSelector,
-  tournamentDetailsSelector, tournamentDetailsTeamsSelector, tournamentOverviewSelector, tournamentOverviewStateSelector
+  tournamentDetailsSelector, tournamentDetailsTeamsSelector, tournamentOverviewSelector
 } from '@jtr/business-domain/tournament';
-import { Store } from '@ngrx/store';
-import { Injectable } from '@angular/core';
+import { TournamentData, TournamentOverviewData, TournamentTeamsData } from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 @Injectable()
 export class TournamentDataService {

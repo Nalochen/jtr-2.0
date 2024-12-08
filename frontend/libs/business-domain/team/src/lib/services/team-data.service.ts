@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
+
 import { Observable } from 'rxjs';
-import { TeamData, TeamOverviewData } from '@jtr/data-domain/store';
+
+import { Store } from '@ngrx/store';
+
 import { teamDetailsNameSelector, teamDetailsSelector, teamOverviewSelector } from '@jtr/business-domain/team';
+import { TeamData, TeamOverviewData } from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 @Injectable()
 export class TeamDataService {

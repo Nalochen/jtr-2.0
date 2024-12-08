@@ -1,15 +1,11 @@
-<header
-  [isClicked]="isFilterNotPayedActive"
-  (filterNotPayed)="onFilterNotPayed()"
-></header>
+<header></header>
 
 <drop-list
   [participatingTeams]="participatingTeams"
   [waitingTeams]="waitingTeams"
   (deleteTeam)="deleteTeam($event.index, $event.isParticipating)"
-></drop-list>
+/>
 
 <submit-area
-  [allTeams]="filteredTeams"
   (saveForm)="save()"
-></submit-area>
+/>

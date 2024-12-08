@@ -1,8 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { teamDetailsDataStoreSlice } from '../states/team-details-data-store.slice';
 import { TeamData, TeamOverviewData } from '@jtr/data-domain/store';
-import { teamOverviewDataStoreSlice } from '../states/team-overview-data-store.slice';
 
 export enum TeamActionTypes {
   LoadTeamOverview = '[Team] Load Team Overview',

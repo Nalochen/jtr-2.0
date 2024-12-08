@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+
 import {
   loadTeamOverviewData,
   loadTeamOverviewDataFailedAction,

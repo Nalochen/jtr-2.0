@@ -1,10 +1,3 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, output, Signal } from '@angular/core';
-import { TournamentTeamData } from '@jtr/data-domain/store';
-import { TranslatePipe } from '@ngx-translate/core';
-import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum, ChipComponent } from '../../../ui-shared';
-import { DividerModule } from 'primeng/divider';
-import { TooltipModule } from 'primeng/tooltip';
 import {
   CdkDrag,
   CdkDragDrop,
@@ -13,9 +6,18 @@ import {
   moveItemInArray,
   transferArrayItem
 } from '@angular/cdk/drag-drop';
-import { DialogModule } from 'primeng/dialog';
-import { DropdownModule } from 'primeng/dropdown';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
+import { TournamentTeamData } from '@jtr/data-domain/store';
+
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum, ChipComponent } from '../../../ui-shared';
+import { TranslatePipe } from '@ngx-translate/core';
+import { DialogModule } from 'primeng/dialog';
+import { DividerModule } from 'primeng/divider';
+import { DropdownModule } from 'primeng/dropdown';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'drop-list',
@@ -60,7 +62,7 @@ export class DropListComponent {
   }
 
   public sendEmail(team: TournamentTeamData): void {
-    window.alert('sendMail')
+    window.alert('sendMail to ' + team.name);
   }
 
   public hasPaid(team: TournamentTeamData): void {

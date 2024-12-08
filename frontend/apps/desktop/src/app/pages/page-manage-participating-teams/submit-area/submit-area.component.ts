@@ -1,21 +1,28 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, input, output, Output } from '@angular/core';
-
-import { TranslatePipe } from '@ngx-translate/core';
 import {
-  ButtonTypeEnum,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  inject,
+  OnDestroy,
+  output
+} from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+import { Subject } from 'rxjs';
+
+import { TeamDataService } from '@jtr/business-domain/team';
+import { TournamentTeamData } from '@jtr/data-domain/store';
+
+import {
   ButtonColorEnum,
-  ChipComponent,
   ButtonComponent,
-  ButtonFunctionType
+  ButtonFunctionType,
+  ButtonTypeEnum,
 } from '../../../ui-shared';
-import { TournamentTeamsComponent } from '../../page-tournament-details/tournament-teams/tournament-teams.component';
-import { TeamOverviewData, TournamentTeamData } from '@jtr/data-domain/store';
-import { Store } from '@ngrx/store';
-import { takeUntil } from 'rxjs';
+import { TranslatePipe } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -29,14 +36,20 @@ import { FormsModule } from '@angular/forms';
     DropdownModule,
     FormsModule
   ],
+  providers: [
+    TeamDataService,
+  ],
   templateUrl: './submit-area.component.html',
   styleUrl: './submit-area.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SubmitAreaComponent {
-  public readonly allTeams = input.required<TeamOverviewData[]>();
-  public readonly saveForm = output<void>();
+export class SubmitAreaComponent implements OnDestroy {
+  private readonly teamDataService = inject(TeamDataService);
+  public readonly destroy$ = new Subject<void>()
 
+  public readonly allTeams$ = this.teamDataService.teams$;
+
+  public readonly saveForm = output<void>();
   public readonly ButtonColorEnum = ButtonColorEnum;
   public readonly ButtonTypeEnum = ButtonTypeEnum;
   public readonly ButtonFunctionTypeEnum = ButtonFunctionType;
@@ -44,7 +57,12 @@ export class SubmitAreaComponent {
   public addTeamVisible = false;
   public selectedTeam: TournamentTeamData | null = null;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   public openAddTeamOverlay(): void {
     this.addTeamVisible = true;

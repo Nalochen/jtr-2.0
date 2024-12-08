@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 import { MatChipsModule } from '@angular/material/chips';
+
 import { ButtonColorEnum } from '../button/enums/color.enum';
 
 

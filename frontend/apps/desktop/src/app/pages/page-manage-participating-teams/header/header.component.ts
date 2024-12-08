@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
+import { ButtonColorEnum, ButtonTypeEnum, ChipComponent } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ButtonTypeEnum, ButtonColorEnum, ChipComponent } from '../../../ui-shared';
 
 
 @Component({
@@ -18,14 +18,6 @@ import { ButtonTypeEnum, ButtonColorEnum, ChipComponent } from '../../../ui-shar
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  public isClicked = input.required<boolean>();
-  public readonly filterNotPayed = output<boolean>();
-
-
   public readonly ButtonColorEnum = ButtonColorEnum;
   public readonly ButtonTypeEnum = ButtonTypeEnum;
-
-  public onFilterNotPayed() {
-
-  }
 }
