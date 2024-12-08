@@ -1,5 +1,3 @@
-import logging
-
 from flask import g
 
 from DataDomain.Database.Repository.ParticipatesInRepository import ParticipatesInRepository

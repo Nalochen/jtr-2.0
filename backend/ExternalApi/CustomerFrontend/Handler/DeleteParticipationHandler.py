@@ -22,7 +22,7 @@ class DeleteParticipationHandler:
         tournamentId: int = data.get('tournamentId')
 
         if (not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId)
-                and not CheckForMembershipRoleService.isCurrentUserAdminOfOrganizingTeam(teamId, tournamentId)):
+                and not CheckForMembershipRoleService.isCurrentUserAdminOfOrganizingTeam(tournamentId)):
             return Response(status=403)
 
         if not self.participatesInRepository.exists(tournamentId, teamId):

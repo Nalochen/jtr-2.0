@@ -1,10 +1,10 @@
-import logging
 from dataclasses import dataclass
 from datetime import timedelta
 
 from DataDomain.Database.Enum.LockType import LockType
 from DataDomain.Database.Model.LoginAttempts import LoginAttempts
 from DataDomain.Database.db import db
+from Infrastructure.Logger.Logger import logger
 
 
 @dataclass
@@ -76,7 +76,7 @@ class LoginAttemptRepository:
 
         except Exception as e:
             db.session.rollback()
-            logging.error(
+            logger.error(
                 f'LoginAttemptRepository | increaseFailedAttempts | {e}')
             raise e
 
@@ -92,14 +92,14 @@ class LoginAttemptRepository:
             db.session.add(loginAttempt)
             db.session.commit()
 
-            logging.info(
+            logger.info(
                 f'LoginAttemptRepository | create | Created new failed login attempt for user {username}')
 
             return loginAttempt
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'LoginAttemptRepository | create | {e}')
+            logger.error(f'LoginAttemptRepository | create | {e}')
             raise e
 
     @staticmethod
@@ -110,36 +110,33 @@ class LoginAttemptRepository:
             loginAttempt = LoginAttempts.query.filter_by(
                 username=username).first()
 
-            logging.error(
-                "LoginUserHandler | Login attempt: " +
-                str(loginAttempt))
-
             if loginAttempt:
                 isLocked, lockType = loginAttempt.isLocked()
 
                 if isLocked:
 
                     if lockType == LockType.PERMANENTLY.value:
-                        logging.warning(f'LoginAttemptRepository | checkForFailedAttempts | User {
-                                        username} is permanently locked.')
+                        logger.warning(f'LoginAttemptRepository | checkForFailedAttempts | User {
+                            username} is permanently locked.')
                         return LoginAttemptResponse(
                             lockType=lockType,
                             lockedUntil=None
                         )
 
                     elif lockType == LockType.TEMPORARILY.value:
-                        logging.warning(f'LoginAttemptRepository | checkForFailedAttempts | User {
-                                        username} is temporarily locked.')
+                        logger.warning(f'LoginAttemptRepository | checkForFailedAttempts | User {
+                            username} is temporarily locked.')
                         return LoginAttemptResponse(
                             lockType=lockType,
                             lockedUntil=str(
-                                loginAttempt.last_attempt + timedelta(minutes=15)
+                                loginAttempt.last_attempt +
+                                timedelta(minutes=15)
                             )
                         )
 
             return False
 
         except Exception as e:
-            logging.error(
+            logger.error(
                 f'LoginAttemptRepository | checkForFailedAttempts | {e}')
             raise e

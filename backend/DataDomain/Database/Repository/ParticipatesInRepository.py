@@ -1,9 +1,8 @@
-import logging
-
 from sqlalchemy import func
 
 from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Database.db import db
+from Infrastructure.Logger.Logger import logger
 
 
 class ParticipatesInRepository:
@@ -35,9 +34,12 @@ class ParticipatesInRepository:
             )
             db.session.commit()
 
+            logger.info(f'ParticipatesInRepository | create | Created participates_in entry for tournament {
+                        tournamentId} and team {teamId}')
+
         except Exception as e:
             db.session.rollback()
-            logging.error(f'ParticipatesInRepository | delete | {e}')
+            logger.error(f'ParticipatesInRepository | delete | {e}')
             raise e
 
     @staticmethod
@@ -70,9 +72,12 @@ class ParticipatesInRepository:
             )
             db.session.commit()
 
+            logger.info(f'ParticipatesInRepository | delete | Deleted participates_in entry for tournament {
+                        tournamentId} and team {teamId}')
+
         except Exception as e:
             db.session.rollback()
-            logging.error(f'ParticipatesInRepository | delete | {e}')
+            logger.error(f'ParticipatesInRepository | delete | {e}')
             raise e
 
     def recreate(self, tournamentId: int, teamId: int) -> None:
@@ -92,9 +97,12 @@ class ParticipatesInRepository:
             )
             db.session.commit()
 
+            logger.info(f'ParticipatesInRepository | recreate | Recreated participates_in entry for tournament {
+                        tournamentId} and team {teamId}')
+
         except Exception as e:
             db.session.rollback()
-            logging.error(f'ParticipatesInRepository | recreate | {e}')
+            logger.error(f'ParticipatesInRepository | recreate | {e}')
             raise e
 
     @staticmethod
