@@ -40,6 +40,7 @@ class GetUserDetailsHandler:
             'createdAt': user.created_at.isoformat(),
             'isDeleted': user.is_deleted,
             'picture': user.picture,
+            'pronoums': user.pronoums,
             'teams': teams,
             'updatedAt': user.updated_at.isoformat(),
             'username': user.username,

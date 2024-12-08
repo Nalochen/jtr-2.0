@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 const LOGIN_ENDPOINT = '/api/customer-frontend/login';
@@ -13,7 +13,7 @@ export interface LoginRequestBody {
   password: string;
 }
 
-export interface RegisterFormBody {
+export interface RegisterRequestBody {
   birthdate: string | null;
   isBirthdateVisible: boolean;
   city: string | null;
@@ -35,23 +35,27 @@ export interface AuthResponse {
 export class AuthService {
   constructor(private readonly http: HttpClient) {}
 
-  public login(body: LoginRequestBody): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(LOGIN_ENDPOINT, body).pipe(
-      tap((response: AuthResponse) => {
-        if (response.token) {
-          this.setSession(response.token);
-        }
-      })
+  public async login(body: LoginRequestBody): Promise<AuthResponse> {
+    return await firstValueFrom(
+      this.http.post<AuthResponse>(LOGIN_ENDPOINT, body).pipe(
+        tap((response: AuthResponse) => {
+          if (response.token) {
+            this.setSession(response.token);
+          }
+        })
+      )
     );
   }
 
-  public register(body: RegisterFormBody): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(REGISTER_ENDPOINT, body).pipe(
-      tap((response: AuthResponse) => {
-        if (response.token) {
-          this.setSession(response.token);
-        }
-      })
+  public async register(body: RegisterRequestBody): Promise<AuthResponse> {
+    return await firstValueFrom(
+      this.http.post<AuthResponse>(REGISTER_ENDPOINT, body).pipe(
+        tap((response: AuthResponse) => {
+          if (response.token) {
+            this.setSession(response.token);
+          }
+        })
+      )
     );
   }
 

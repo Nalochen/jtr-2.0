@@ -2,12 +2,12 @@
   <team-header [form]="form" />
 
   <p class="small-text" *ngIf="team$ | async as team">
-    gegründet: {{ team.founded | date : 'dd.MM.yyyy' }}
+    {{ 'page-manage-team.founded' | translate }}: {{ team.founded | date : 'dd.MM.yyyy' }}
   </p>
   <div class="data-information">
-    <p>Wofür benutzen wir die Infos auf dieser Seite?</p>
+    <p>{{ 'page-manage-team.information-usage' | translate }}</p>
     <app-info-button>
-      <p>Info Text</p>
+      <p>{{ 'page-manage-team.information-usage-text' | translate }}</p>
     </app-info-button>
   </div>
 

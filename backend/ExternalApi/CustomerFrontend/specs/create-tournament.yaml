@@ -1,0 +1,134 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/customer-frontend/create-tournament:
+    post:
+      summary: Create tournament
+      operationId: createTournament
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTournamentRequestBody'
+
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTournamentResponseBody'
+
+        '400':
+          description: Bad Request
+
+        '401':
+          description: Unauthorized
+
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    CreateTournamentRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+        additionalInformation:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        startArrivalDate:
+          type: string
+          format: date-time
+        endArrivalDate:
+          type: string
+          format: date-time
+        address:
+          type: string
+        possibleSpace:
+          type: integer
+        registrationProcedureType:
+          type: string
+        registrationProcedureText:
+          type: string
+        registrationStartDate:
+          type: string
+          format: date-time
+        registrationCosts:
+          type: number
+        registrationCostsType:
+          type: string
+        depositCosts:
+          type: number
+        depositCostsType:
+          type: string
+        accommodationCosts:
+          type: number
+        accommodationCostsType:
+          type: string
+        guestCosts:
+          type: number
+        guestCostsType:
+          type: string
+        costsText:
+          type: string
+        deadlines:
+          type: string
+        schedule:
+          type: string
+        contacts:
+          type: array
+          items:
+            type: string
+        accommodationType:
+          type: string
+        accommodationLocation:
+          type: string
+        foodMorning:
+          type: string
+        foodNoon:
+          type: string
+        foodEvening:
+          type: string
+        foodGastro:
+          type: string
+        tournamentSystemText:
+          type: string
+        tournamentSystemUrl:
+          type: string
+        pompfCheckText:
+          type: string
+        pompfCheckUrl:
+          type: string
+        houseRulesText:
+          type: string
+        houseRulesUrl:
+          type: string
+        studdedShoesAllowed:
+          type: boolean
+        cleatsShoesAllowed:
+          type: boolean
+        camShoesAllowed:
+          type: boolean
+        barefootAllowed:
+          type: boolean
+        shoesText:
+          type: string
+
+    CreateTournamentResponseBody:
+      type: object
+      properties:
+        tournamentId:
+          type: number

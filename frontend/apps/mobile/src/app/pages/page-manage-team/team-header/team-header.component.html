@@ -1,0 +1,45 @@
+<div class="header" [formGroup]="form">
+  <div class="image-container">
+    <img
+      id="logo"
+      alt="Logo of {{ form.controls.name.value }}"
+      src="{{ form.controls.logo.value }}"
+    />
+    <app-button
+      (click)="onChangeLogo()"
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Round"
+    >
+      <span class="material-icons-outlined edit-icon">edit</span>
+    </app-button>
+  </div>
+
+  <div class="team-information">
+    <div class="meta-data">
+      @if (!form.controls.isMixTeam.value) {
+      <label for="city" id="cityLabel">{{ 'page-manage-team.city' | translate }}</label>
+      <input
+        pInputText
+        type="text"
+        formControlName="city"
+        value="{{ form.controls.city.value }}"
+        id="city"
+      />
+      } @else {
+      <p class="city">{{ 'page-manage-team.mix-team' | translate }}</p>
+      }
+      <div class="switch">
+        <p class="mixteam">{{ 'page-manage-team.mix-team' | translate }}?</p>
+        <p-inputSwitch formControlName="isMixTeam" />
+      </div>
+    </div>
+
+    <label for="name">{{ 'page-manage-team.name' | translate }}</label>
+    <input
+      pInputText
+      type="text"
+      id="name"
+      value="{{ form.controls.name.value }}"
+    />
+  </div>
+</div>

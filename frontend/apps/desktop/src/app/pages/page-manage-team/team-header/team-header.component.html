@@ -17,7 +17,7 @@
   <div class="team-information">
     <div class="meta-data">
       @if (!form.controls.isMixTeam.value) {
-      <label for="city" id="cityLabel">Stadt</label>
+      <label for="city" id="cityLabel">{{ 'page-manage-team.city' | translate }}</label>
       <input
         pInputText
         type="text"
@@ -26,15 +26,15 @@
         id="city"
       />
       } @else {
-      <h3 class="city">Mixteam</h3>
+      <h3 class="city">{{ 'page-manage-team.mix-team' | translate }}</h3>
       }
       <div class="switch">
-        <h3 class="mixteam">Mixteam?</h3>
+        <h3 class="mixteam">{{ 'page-manage-team.mix-team' | translate }}?</h3>
         <p-inputSwitch formControlName="isMixTeam" />
       </div>
     </div>
 
-    <label for="name">Name</label>
+    <label for="name">{{ 'page-manage-team.name' | translate }}</label>
     <input
       pInputText
       type="text"

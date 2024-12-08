@@ -10,4 +10,4 @@ class TournamentFoodGastroTypesEnum(Enum):
 
     FAR = 'far'
 
-    NO = 'no'
+    NONE = 'none'
