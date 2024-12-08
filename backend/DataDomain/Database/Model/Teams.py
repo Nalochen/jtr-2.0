@@ -60,14 +60,14 @@ class Teams(BaseModel, db.Model):
     )
 
     contacts: Column[Text] = db.Column(
-        db.Text(),
+        db.Text,
         nullable=False,
         default='[]',
         doc='["string"]'
     )
 
     is_mix_team: Column[Optional[Boolean]] = db.Column(
-        db.Boolean(),
+        db.Boolean,
         nullable=True
     )
 

@@ -28,6 +28,7 @@ services:
       RABBITMQ_DEFAULT_USER: 'admin'
       SECRET_KEY: 'secret'
     ports:
+      - "3307:3307"
       - "5001:5001"
       - "5672:5672"
       - "15672:15672"

@@ -42,6 +42,28 @@ def upgrade():
                               server_default=sa.text('now()'), nullable=True),
                     sa.PrimaryKeyConstraint('id')
                     )
+    op.create_table(
+        'login_attempts',
+        sa.Column(
+            'id',
+            sa.Integer(),
+            nullable=False),
+        sa.Column(
+            'username',
+            sa.String(
+                length=100),
+            nullable=False),
+        sa.Column(
+            'attempts',
+            sa.Boolean(),
+            server_default='1',
+            nullable=False),
+        sa.Column(
+            'last_attempt',
+            sa.DateTime(),
+            server_default=sa.text('now()'),
+            nullable=True),
+        sa.PrimaryKeyConstraint('id'))
     op.create_table('users',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('username', sa.String(
