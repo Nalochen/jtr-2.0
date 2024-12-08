@@ -1,8 +1,8 @@
-import logging
 from sqlalchemy import and_
 
 from DataDomain.Database.Model.Users import Users
 from DataDomain.Database.db import db
+from Infrastructure.Logger.Logger import logger
 
 
 class UserRepository:
@@ -32,11 +32,15 @@ class UserRepository:
             db.session.add(user)
             db.session.commit()
 
+            logger.info(
+                f'UserRepository | create | User created with id {
+                    user.id}')
+
             return user.id
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'UserRepository | create | {e}')
+            logger.error(f'UserRepository | create | {e}')
             raise e
 
     @staticmethod
@@ -45,9 +49,13 @@ class UserRepository:
             db.session.add(user)
             db.session.commit()
 
+            logger.info(
+                f'UserRepository | update | User with id {
+                    user.id} updated')
+
         except Exception as e:
             db.session.rollback()
-            logging.error(f'UserRepository | update | {e}')
+            logger.error(f'UserRepository | update | {e}')
             raise e
 
     @staticmethod
@@ -55,12 +63,16 @@ class UserRepository:
         try:
             user = UserRepository.get(userId)
 
-            db.session.delete(user)
+            user.is_deleted = True
+
             db.session.commit()
+
+            logger.info(
+                f'UserRepository | delete | User with id {userId} deleted')
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'UserRepository | delete | {e}')
+            logger.error(f'UserRepository | delete | {e}')
             raise e
 
     @staticmethod

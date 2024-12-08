@@ -63,7 +63,9 @@
     "no-account": "No account yet?",
     "email-or-username": "E-Mail or Username",
     "password": "Password",
-    "login-button": "Login"
+    "login-button": "Login",
+    "locked-permanently": "The password was wrong too many times, check your emails to reset your password.",
+    "locked-temporarily": "The password was wrong too many times, try again in"
   },
   "register": {
     "welcome": "Welcome",
@@ -91,6 +93,12 @@
     "visibility": "Visibility",
     "private": "private",
     "public": "public"
-  }
+  },
+  "seconds": "seconds",
+  "minutes": "minutes",
+  "hours": "hours",
+  "days": "days",
+  "weeks": "weeks",
+  "months": "months",
+  "years": "jears"
 }
-

@@ -1,7 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, firstValueFrom, Observable, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  firstValueFrom,
+  Observable,
+  of,
+  tap,
+} from 'rxjs';
 import { map } from 'rxjs/operators';
 
 const LOGIN_ENDPOINT = '/api/customer-frontend/login';
@@ -26,7 +33,14 @@ export interface RegisterRequestBody {
 }
 
 export interface AuthResponse {
-  token: string;
+  token: string | undefined;
+  lockType: LockType | undefined;
+  lockedUntil: string | undefined;
+}
+
+export enum LockType {
+  TEMPORARILY = 'temporarily',
+  PERMANENTLY = 'permanently',
 }
 
 @Injectable({
@@ -55,6 +69,12 @@ export class AuthService {
           if (response.token) {
             this.setSession(response.token);
           }
+        }),
+        catchError((error) => {
+          if (error.status === 401 && error.error) {
+            return of(error.error as AuthResponse);
+          }
+          throw error;
         })
       )
     );

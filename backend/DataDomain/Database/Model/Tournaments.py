@@ -34,18 +34,18 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    start_date: Column[Text] = db.Column(
+    start_date: Column[DateTime] = db.Column(
         db.DateTime,
         nullable=False,
     )
 
-    end_date: Column[Text] = db.Column(
+    end_date: Column[DateTime] = db.Column(
         db.DateTime,
         nullable=False,
     )
 
     additional_information: Column[Text] = db.Column(
-        db.Text(),
+        db.Text,
         nullable=False,
         default=''
     )
@@ -60,12 +60,12 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    start_arrival_date: Column[Text] = db.Column(
+    start_arrival_date: Column[DateTime] = db.Column(
         db.DateTime,
         nullable=False
     )
 
-    end_arrival_date: Column[Text] = db.Column(
+    end_arrival_date: Column[DateTime] = db.Column(
         db.DateTime,
         nullable=False
     )
@@ -111,7 +111,7 @@ class Tournaments(BaseModel, db.Model):
     )
 
     costs_text: Column[Text] = db.Column(
-        db.Text(),
+        db.Text,
         nullable=False,
         default=''
     )
@@ -123,7 +123,7 @@ class Tournaments(BaseModel, db.Model):
     )
 
     contacts: Column[Text] = db.Column(
-        db.Text(),
+        db.Text,
         nullable=False,
         doc='["string"]'
     )
@@ -144,12 +144,12 @@ class Tournaments(BaseModel, db.Model):
     )
 
     deadlines: Column[Text] = db.Column(
-        db.Text(),
+        db.Text,
         nullable=False
     )
 
     schedule: Column[Optional[Text]] = db.Column(
-        db.Text(),
+        db.Text,
         nullable=True
     )
 
@@ -174,7 +174,7 @@ class Tournaments(BaseModel, db.Model):
     )
 
     shoes_text: Column[Text] = db.Column(
-        db.Text(),
+        db.Text,
         nullable=False
     )
 
@@ -184,27 +184,27 @@ class Tournaments(BaseModel, db.Model):
     )
 
     studded_shoes_allowed: Column[Boolean] = db.Column(
-        db.Boolean(),
+        db.Boolean,
         nullable=False
     )
 
     cam_shoes_allowed: Column[Boolean] = db.Column(
-        db.Boolean(),
+        db.Boolean,
         nullable=False
     )
 
     cleats_shoes_allowed: Column[Boolean] = db.Column(
-        db.Boolean(),
+        db.Boolean,
         nullable=False
     )
 
     barefoot_allowed: Column[Boolean] = db.Column(
-        db.Boolean(),
+        db.Boolean,
         nullable=False
     )
 
     house_rules_text: Column[Text] = db.Column(
-        db.Text(),
+        db.Text,
         nullable=False
     )
 
@@ -214,7 +214,7 @@ class Tournaments(BaseModel, db.Model):
     )
 
     tournament_system_text: Column[Text] = db.Column(
-        db.Text(),
+        db.Text,
         nullable=False
     )
 
@@ -229,7 +229,7 @@ class Tournaments(BaseModel, db.Model):
     )
 
     pompf_check_text: Column[Text] = db.Column(
-        db.Text(),
+        db.Text,
         nullable=False
     )
 
@@ -239,7 +239,7 @@ class Tournaments(BaseModel, db.Model):
     )
 
     registration_procedure_text: Column[Text] = db.Column(
-        db.Text(),
+        db.Text,
         nullable=True
     )
 
@@ -254,30 +254,30 @@ class Tournaments(BaseModel, db.Model):
     )
 
     registration_start_date: Column[DateTime] = db.Column(
-        db.DateTime(),
+        db.DateTime,
         nullable=False,
         server_default=func.now()
     )
 
     is_deleted: Column[Boolean] = db.Column(
-        db.Boolean(),
+        db.Boolean,
         nullable=False,
         server_default='0'
     )
 
     created_at: Column[DateTime] = db.Column(
-        db.DateTime(),
+        db.DateTime,
         server_default=func.now()
     )
 
     updated_at: Column[DateTime] = db.Column(
-        db.DateTime(),
+        db.DateTime,
         server_default=func.now(),
         onupdate=func.now()
     )
 
     organizer_id: Column[Integer] = db.Column(
-        db.Integer(),
+        db.Integer,
         db.ForeignKey('teams.id'),
         nullable=False,
     )

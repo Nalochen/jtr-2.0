@@ -32,7 +32,21 @@
         [color]="ButtonColorEnum.Red"
         [type]="ButtonTypeEnum.Flat"
         [buttonType]="ButtonFunctionType.SUBMIT"
-      >{{ 'login.login-button' | translate }}</app-button>
+        >{{ 'login.login-button' | translate }}</app-button
+      >
+
+      @if (loginAttemptResponse !== undefined) { @if
+      (loginAttemptResponse.lockType === LockType.TEMPORARILY) {
+      <h4>
+        {{ 'login.locked-permanently' | translate }}
+      </h4>
+      } @else if (loginAttemptResponse.lockType === LockType.PERMANENTLY) {
+      <h4>
+        {{ 'login.locked-temporarily' | translate }}
+        {{ loginAttemptResponse.lockedUntil | minutesDiff }}
+        {{ 'minutes' | translate }}
+      </h4>
+      } }
     </form>
   </div>
 </div>

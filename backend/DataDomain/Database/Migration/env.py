@@ -19,6 +19,7 @@ def get_engine():
     try:
         # this works with Flask-SQLAlchemy<3 and Alchemical
         return current_app.extensions['migrate'].db.get_engine()
+
     except (TypeError, AttributeError):
         # this works with Flask-SQLAlchemy>=3
         return current_app.extensions['migrate'].db.engine
@@ -28,6 +29,7 @@ def get_engine_url():
     try:
         return get_engine().url.render_as_string(hide_password=False).replace(
             '%', '%%')
+
     except AttributeError:
         return str(get_engine().url).replace('%', '%%')
 
@@ -61,8 +63,8 @@ def run_migrations_offline():
 
     Calls to context.execute() here emit the given string to the
     script output.
-
     """
+
     url = config.get_main_option("sqlalchemy.url")
     context.configure(
         url=url, target_metadata=get_metadata(), literal_binds=True
@@ -77,7 +79,6 @@ def run_migrations_online():
 
     In this scenario we need to create an Engine
     and associate a connection with the context.
-
     """
 
     # this callback is used to prevent an auto-migration from being generated
@@ -109,5 +110,6 @@ def run_migrations_online():
 
 if context.is_offline_mode():
     run_migrations_offline()
+
 else:
     run_migrations_online()

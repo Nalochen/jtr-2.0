@@ -1,4 +1,3 @@
-import logging
 from datetime import datetime
 from typing import List
 
@@ -12,6 +11,7 @@ from DataDomain.Database.db import db
 import json
 
 from DataDomain.Database.tools import getJwtIdentity
+from Infrastructure.Logger.Logger import logger
 
 
 class TournamentRepository:
@@ -212,16 +212,16 @@ class TournamentRepository:
 
             user = getJwtIdentity()
 
-            logging.info(
-                f'TournamentRepository | Create | User [{
-                    user.id}] created tournament [{
-                    tournament.id}]')
+            logger.info(
+                f'TournamentRepository | Create | User {
+                    user.id} created tournament {
+                    tournament.id}')
 
             return tournament.id
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'TournamentRepository | Create | {e}')
+            logger.error(f'TournamentRepository | Create | {e}')
             raise e
 
     @staticmethod
@@ -233,14 +233,14 @@ class TournamentRepository:
 
             user = getJwtIdentity()
 
-            logging.info(
-                f'TournamentRepository | Update | User [{
-                    user.id}] updated tournament [{
-                    tournament.id}]')
+            logger.info(
+                f'TournamentRepository | Update | User {
+                    user.id} updated tournament {
+                    tournament.id}')
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'TournamentRepository | Update | {e}')
+            logger.error(f'TournamentRepository | Update | {e}')
             raise e
 
     @staticmethod
@@ -267,13 +267,13 @@ class TournamentRepository:
 
             user = getJwtIdentity()
 
-            logging.info(
-                f'TournamentRepository | Delete | User [{
-                    user.id}] deleted tournament [{tournamentId}]')
+            logger.info(
+                f'TournamentRepository | Delete | User {
+                    user.id} deleted tournament {tournamentId}')
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'TournamentRepository | Delete | {e}')
+            logger.error(f'TournamentRepository | Delete | {e}')
             raise e
 
     @staticmethod

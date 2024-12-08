@@ -47,6 +47,12 @@ services:
       CELERY_BROKER_URL: 'amqp://admin:mypass@rabbitmq:5672'
       CELERY_RESULT_BACKEND: 'rpc://'
       DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
+      MAIL_SERVER: 'localhost'
+      MAIL_PORT: '1025'
+      MAIL_USE_TLS: 'False'
+      MAIL_USE_SSL: 'False'
+      MAIL_USERNAME: None
+      MAIL_PASSWORD: None
     depends_on:
       - mysql
       - rabbitmq

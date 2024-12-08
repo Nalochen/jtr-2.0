@@ -10,6 +10,7 @@ from ExternalApi.CustomerFrontend.config.routes import customer_frontend
 from ExternalApi.System.config.routes import system
 from config.cache import cache
 from config.config import Config
+from config.limiter import limiter
 
 
 def createApp() -> Flask:
@@ -44,3 +45,5 @@ celery = Celery(
     host=app.config['CELERY_BROKER_NAME'],
     broker=app.config['CELERY_BROKER_URL'],
     backend=app.config['CELERY_RESULT_BACKEND'])
+
+limiter.init_app(app)

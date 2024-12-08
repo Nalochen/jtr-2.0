@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { AuthService } from '../business-rules/auth/auth.service';
+import { AuthService, LockType } from '../business-rules/auth/auth.service';
 
 import { loginFormControl } from '../../../../../libs/business-domain/login/src/lib/form-controls/login-form.control';
 import { isEmail } from '../../../../../libs/business-domain/login/src/lib/rules/is-email.rule';
@@ -12,13 +12,25 @@ import {
   ButtonFunctionType,
   ButtonTypeEnum,
 } from '../ui-shared';
+import { MinutesDiffPipe } from './minutes-diff.pipe';
 import { TranslatePipe } from '@ngx-translate/core';
 import { OverlayPanel } from 'primeng/overlaypanel';
+
+export interface LoginAttemptResponse {
+  lockType: LockType | undefined;
+  lockedUntil: string | undefined;
+}
 
 @Component({
   selector: 'login-overlay',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, TranslatePipe],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ButtonComponent,
+    TranslatePipe,
+    MinutesDiffPipe,
+  ],
   templateUrl: './login-overlay.component.html',
   styleUrl: './login-overlay.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,32 +41,33 @@ export class LoginOverlayComponent {
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
   protected readonly ButtonFunctionType = ButtonFunctionType;
+  protected readonly LockType = LockType;
   protected readonly form = loginFormControl;
 
   constructor(private authService: AuthService) {}
 
-  public onSubmit(): void {
+  public loginAttemptResponse: LoginAttemptResponse | undefined;
+
+  public async onSubmit(): Promise<void> {
     if (!this.form.valid) {
       this.markAllFieldsAsTouched(this.form);
       return;
     }
 
-    if (!this.form.controls.password.value) {
-      return;
-    }
+    const emailOrUsername = this.form.controls.emailOrUsername.value;
 
-    if (isEmail(this.form.controls.emailOrUsername.value)) {
-      this.authService.login({
-        email: this.form.controls.emailOrUsername.value,
-        username: null,
-        password: this.form.controls.password.value,
-      });
-    } else {
-      this.authService.login({
-        email: null,
-        username: this.form.controls.emailOrUsername.value,
-        password: this.form.controls.password.value,
-      });
+    const loginResponse = await this.authService.login({
+      email: isEmail(emailOrUsername) ? emailOrUsername : null,
+      username: isEmail(emailOrUsername) ? null : emailOrUsername,
+      password: this.form.controls.password.value,
+    });
+
+    if (loginResponse.token === undefined) {
+      this.loginAttemptResponse = {
+        lockType: loginResponse.lockType,
+        lockedUntil: loginResponse.lockedUntil,
+      };
+      return;
     }
 
     this.form.reset();

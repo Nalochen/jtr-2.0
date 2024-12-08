@@ -1,7 +1,6 @@
-import logging
-
 from DataDomain.Database.Model.IsPartOf import is_part_of
 from DataDomain.Database.db import db
+from Infrastructure.Logger.Logger import logger
 
 
 class IsPartOfRepository:
@@ -32,9 +31,12 @@ class IsPartOfRepository:
             )
             db.session.commit()
 
+            logger.info(f'IsPartOfRepository | create | Created is_part_of entry for user {
+                        userId} in team {teamId}')
+
         except Exception as e:
             db.session.rollback()
-            logging.error(f'IsPartOfRepository | create | {e}')
+            logger.error(f'IsPartOfRepository | create | {e}')
             raise e
 
     @staticmethod
@@ -52,7 +54,10 @@ class IsPartOfRepository:
             })
             db.session.commit()
 
+            logger.info(f'IsPartOfRepository | delete | Deleted is_part_of entry for user {
+                        userId} in team {teamId}')
+
         except Exception as e:
             db.session.rollback()
-            logging.error(f'IsPartOfRepository | delete | {e}')
+            logger.error(f'IsPartOfRepository | delete | {e}')
             raise e

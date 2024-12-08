@@ -1,7 +1,7 @@
 import json
 from typing import Any
 from flask import Response as FlaskResponse
-from DataDomain.Model.CustonJSONEncoder import CustomJSONEncoder
+from DataDomain.Model.CustomJSONEncoder import CustomJSONEncoder
 
 
 class Response(FlaskResponse):

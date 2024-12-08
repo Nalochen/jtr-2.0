@@ -7,9 +7,12 @@ import pymysql
 from celery import Celery
 from celery.utils.log import get_task_logger
 
+from worker.Handler.SendMailHandler import SendMailHandler
+from worker.Model.SendMailTaskBody import SendMailTaskBody
+
 logger = get_task_logger(__name__)
 
-app = Celery(
+celery = Celery(
     os.getenv('CELERY_APP_NAME'),
     broker=os.getenv('CELERY_BROKER_URL'),
     backend=os.getenv('CELERY_RESULT_BACKEND'))
@@ -21,3 +24,8 @@ engine = create_engine(
     echo=True)
 
 db = scoped_session(sessionmaker(bind=engine))
+
+
+@celery.task
+def send_mail(data: SendMailTaskBody) -> None:
+    return SendMailHandler.handle(data)

@@ -1,5 +1,4 @@
 import json
-import logging
 from typing import List
 
 from sqlalchemy import func
@@ -11,6 +10,7 @@ from DataDomain.Database.Model.Teams import Teams
 from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.Model.Users import Users
 from DataDomain.Database.db import db
+from Infrastructure.Logger.Logger import logger
 
 
 class TeamRepository:
@@ -168,7 +168,7 @@ class TeamRepository:
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'TeamRepository | create |  {e}')
+            logger.error(f'TeamRepository | create |  {e}')
             raise e
 
     @staticmethod
@@ -180,7 +180,7 @@ class TeamRepository:
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'TeamRepository | update | {e}')
+            logger.error(f'TeamRepository | update | {e}')
             raise e
 
     @staticmethod
@@ -227,5 +227,5 @@ class TeamRepository:
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'TeamRepository | delete | {e}')
+            logger.error(f'TeamRepository | delete | {e}')
             raise e
