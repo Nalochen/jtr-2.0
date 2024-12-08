@@ -7,7 +7,9 @@ import {
   tournamentDetailsSelector, tournamentDetailsTeamsSelector, tournamentOverviewSelector, tournamentOverviewStateSelector
 } from '@jtr/business-domain/tournament';
 import { Store } from '@ngrx/store';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class TournamentDataService {
   @SingletonGetter()
   public get tournamentOverview$(): Observable<TournamentOverviewData[]> {

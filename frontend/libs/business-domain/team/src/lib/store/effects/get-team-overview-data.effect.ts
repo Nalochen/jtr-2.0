@@ -9,10 +9,11 @@ import {
   TeamOverviewData,
   TeamOverviewDataClient,
 } from '@jtr/data-domain/store';
-
-import { loadTeamOverviewData } from '../actions/team-overview-data-load.action';
-import { loadTeamOverviewDataFailedAction } from '../actions/team-overview-data-loaded-failed.action';
-import { loadTeamOverviewDataSuccessAction } from '../actions/team-overview-data-loaded-success.action';
+import {
+  loadTeamOverviewData,
+  loadTeamOverviewDataFailedAction,
+  loadTeamOverviewDataSuccessAction
+} from '../actions/team.action';
 
 @Injectable({
   providedIn: 'root',

@@ -1,8 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { loadTeamDetailsData } from '../actions/team-details-data-load.action';
-import { loadTeamDetailsDataFailedAction } from '../actions/team-details-data-loaded-failed.action';
-import { loadTeamDetailsDataSuccessAction } from '../actions/team-details-data-loaded-success.action';
+import {
+  loadTeamDetailsData,
+  loadTeamDetailsDataFailedAction,
+  loadTeamDetailsDataSuccessAction
+} from '../actions/team.action';
 import { teamDetailsDataInitialState } from '../states/team-details-data-store.initial-state';
 import { TeamDetailsState } from '../states/team-details-data-store.state';
 import { FAILED, IDLE, LOADING } from '../types/loading-state.type';

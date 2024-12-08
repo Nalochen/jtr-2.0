@@ -1,11 +1,6 @@
 export * from './lib/form-controls/edit-team-form.control';
 
-export * from './lib/store/actions/team-details-data-load.action';
-export * from './lib/store/actions/team-details-data-loaded-failed.action';
-export * from './lib/store/actions/team-details-data-loaded-success.action';
-export * from './lib/store/actions/team-overview-data-load.action';
-export * from './lib/store/actions/team-overview-data-loaded-failed.action';
-export * from './lib/store/actions/team-overview-data-loaded-success.action';
+export * from './lib/store/actions/team.action';
 
 export * from './lib/store/effects/get-team-details-data.effect';
 export * from './lib/store/effects/get-team-overview-data.effect';
