@@ -1,7 +1,10 @@
 import {CommonModule} from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import {
+  EditUserForm,
+} from '@jtr/business-domain/user';
+import { FormGroup } from '@angular/forms';
 import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum, InfoButtonComponent } from '../../../ui-shared';
-import { UserData } from '@jtr/data-domain/store';
 import { TranslatePipe } from '@ngx-translate/core';
 
 
@@ -18,8 +21,13 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './page-user-details-header.component.less',
 })
 export class PageUserDetailsHeaderComponent {
-  public readonly user = input.required<UserData>();
+  @Input() public form!: FormGroup<EditUserForm>;
+  @Input() public isLoggedIn$!: boolean;
 
   public readonly ButtonTypeEnum = ButtonTypeEnum;
   public readonly ButtonColorEnum = ButtonColorEnum;
+
+  public onChangeProfilePicture() {
+    window.alert('Change logo');
+  }
 }

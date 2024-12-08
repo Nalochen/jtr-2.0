@@ -1,20 +1,28 @@
-<div class="image-container">
+<div class="picture-name">
   <img
     id="logo"
-    alt="Logo of {{ form.controls.username.value }}"
-    src="{{ form.controls.profilePicture.value }}"
+    alt="Profile Picture of {{ user().username }}"
+    src="{{ user().picture }}"
+    height="100"
+    width="100"
   />
 
-  @if (isLoggedIn$) {
-  <app-button
-    (click)="onChangeProfilePicture()"
-    [color]="ButtonColorEnum.White"
-    [type]="ButtonTypeEnum.Round"
-  >
-    <span class="material-icons-outlined">edit</span>
-  </app-button>
+  @if (user().isNameVisible) {
+  <div class="names">
+    <h1>{{ user().name }}</h1>
+    <h3>{{ user().username }}</h3>
+  </div>
+  } @else {
+  <h1>{{ user().username }}</h1>
   }
 </div>
 
-<h1>{{ form.controls.name.value }}</h1>
-<h3>{{ form.controls.username.value }}</h3>
+@if (user().pronouns !== '') {
+<div class="pronouns">
+  <h3>Pronomen: {{ user().pronouns }}</h3>
+  <app-info-button>
+    <p class="i-headline">{{ 'register.pronouns' | translate }}</p>
+    <p>{{ 'register.pronouns-info' | translate }}</p>
+  </app-info-button>
+</div>
+}
