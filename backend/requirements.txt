@@ -6,6 +6,7 @@ flask
 flask_caching
 flask_cors
 flask_jwt_extended
+flask_limiter
 flask_migrate
 flask_sqlalchemy
 gunicorn
