@@ -22,7 +22,7 @@ class UpdateUserInputFilter(InputFilter):
             validators=[
                 RegexValidator(
                     ISO_DATE_REGEX,
-                    'Das Geburtsdatum muss im iso format haben.'
+                    'Das Geburtsdatum muss im iso format sein.'
                 )
             ]
         )
@@ -77,6 +77,15 @@ class UpdateUserInputFilter(InputFilter):
             ],
             validators=[
                 # TODO Image validator
+            ]
+        )
+
+        self.add(
+            'pronoums',
+            required=False,
+            filters=[
+                StringTrimFilter(),
+                ToNullFilter()
             ]
         )
 

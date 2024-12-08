@@ -29,7 +29,7 @@ class LoginUserHandler:
 
         if user and check_password_hash(user.password_hash, password):
             accessToken = create_access_token(
-                identity={'username': user.username}
+                identity=user.username
             )
 
             return Response(

@@ -1,5 +1,10 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 import {
@@ -24,14 +29,14 @@ export interface Team {
     ButtonComponent,
     TranslatePipe,
     DialogModule,
-    DropdownModule
+    DropdownModule,
   ],
   templateUrl: './tournament-registration.component.html',
   styleUrl: './tournament-registration.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentRegistrationComponent implements OnInit {
-  @Input() public registrationOpenAt!: string;
+  @Input() public registrationStartDate!: string;
 
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
@@ -42,18 +47,20 @@ export class TournamentRegistrationComponent implements OnInit {
     { name: 'The Walking Dead' },
     { name: 'The Living Dead' },
     { name: 'Cranium Ex Machina' },
-    { name: 'Leipziger Partyhände'}
+    { name: 'Leipziger Partyhände' },
   ];
   protected selectedTeam: Team | undefined;
-  protected form = new FormArray<FormGroup<{
-    name: FormControl<string | null>;
-  }>>([]);
+  protected form = new FormArray<
+    FormGroup<{
+      name: FormControl<string | null>;
+    }>
+  >([]);
 
   public ngOnInit() {
     this.teams.forEach((team) => {
       this.form.push(
         new FormGroup({
-          name: new FormControl(team.name)
+          name: new FormControl(team.name),
         })
       );
     });

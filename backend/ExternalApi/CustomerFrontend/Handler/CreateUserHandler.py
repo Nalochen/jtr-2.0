@@ -49,7 +49,7 @@ class CreateUserHandler:
             return Response(status=500)
 
         accessToken = create_access_token(
-            identity={'username': user.username}
+            identity=user.username
         )
 
         return Response(

@@ -1,7 +1,13 @@
-import { HttpEvent, HttpHandler, HttpInterceptor,HttpRequest } from '@angular/common/http';
+import {
+  HttpErrorResponse,
+  HttpEvent,
+  HttpHandler,
+  HttpInterceptor,
+  HttpRequest,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 import { AuthService } from '../auth/auth.service';
 
@@ -9,9 +15,12 @@ import { AuthService } from '../auth/auth.service';
 export class JwtInterceptor implements HttpInterceptor {
   constructor(private readonly authService: AuthService) {}
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  public intercept(
+    request: HttpRequest<unknown>,
+    next: HttpHandler
+  ): Observable<HttpEvent<unknown>> {
     const token: string | null = this.authService.getToken();
+    console.log('token', token);
 
     if (token) {
       request = request.clone({
@@ -20,7 +29,15 @@ export class JwtInterceptor implements HttpInterceptor {
         },
       });
     }
+    console.log('request', request);
+    return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.authService.logout();
+        }
 
-    return next.handle(request);
+        return throwError(() => error);
+      })
+    );
   }
 }

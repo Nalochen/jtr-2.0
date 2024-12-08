@@ -2,7 +2,7 @@ import json
 import logging
 from typing import List
 
-from sqlalchemy import func, Integer
+from sqlalchemy import func
 from sqlalchemy.orm import aliased
 
 from DataDomain.Database.Model.ParticipatesIn import participates_in

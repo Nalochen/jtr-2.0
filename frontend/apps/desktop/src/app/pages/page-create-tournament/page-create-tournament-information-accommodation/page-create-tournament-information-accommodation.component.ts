@@ -4,13 +4,13 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AccommodationTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/accommodation-type.enum';
 import {
-  GastronomyAvailabilityEnum,
-  MealAvailabilityEnum
-} from '../../../../../../../libs/data-domain/tournament/enums/food-type.enum';
+  TournamentFoodEveningEnum,
+  TournamentFoodGastroEnum,
+  TournamentFoodMorningEnum,
+  TournamentFoodNoonEnum,
+} from '../../../../../../../libs/data-domain/tournament/enums/food.enum';
 
-import {
-  AccommodationInformationForm
-} from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
+import { AccommodationInformationForm } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import { ButtonComponent, DataContainerRowComponent } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DropdownModule } from 'primeng/dropdown';
@@ -29,12 +29,12 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     SelectButtonModule,
     ButtonComponent,
     DropdownModule,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl:
     './page-create-tournament-information-accommodation.component.html',
   styleUrl: './page-create-tournament-information-accommodation.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageCreateTournamentInformationAccommodationComponent {
   @Input() public form!: FormGroup<AccommodationInformationForm>;
@@ -46,6 +46,16 @@ export class PageCreateTournamentInformationAccommodationComponent {
     { label: 'other', value: AccommodationTypeEnum.OTHER },
   ];
 
-  public readonly mealAvailabilityOptions = Object.values(MealAvailabilityEnum)
-  public readonly gastronomyAvailabilityOptions = Object.values(GastronomyAvailabilityEnum)
+  public readonly breakfastAvailabilityOptions = Object.values(
+    TournamentFoodMorningEnum
+  );
+  public readonly lunchAvailabilityOptions = Object.values(
+    TournamentFoodNoonEnum
+  );
+  public readonly dinnerAvailabilityOptions = Object.values(
+    TournamentFoodEveningEnum
+  );
+  public readonly gastronomyAvailabilityOptions = Object.values(
+    TournamentFoodGastroEnum
+  );
 }

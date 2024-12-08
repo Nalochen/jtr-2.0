@@ -8,4 +8,4 @@ class TournamentFoodNoonTypesEnum(Enum):
 
     SNACKS = 'snacks'
 
-    NO = 'no'
+    NONE = 'none'

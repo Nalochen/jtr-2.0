@@ -8,4 +8,4 @@ def getJwtIdentity() -> Users:
 
     username = get_jwt_identity()
 
-    return Users.query.filter_by(username=username['username']).first()
+    return Users.query.filter_by(username=username).first()

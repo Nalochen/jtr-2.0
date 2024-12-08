@@ -23,7 +23,7 @@ class CreateUserInputFilter(InputFilter):
             validators=[
                 RegexValidator(
                     ISO_DATE_REGEX,
-                    'Das Geburtsdatum muss im iso format haben.'
+                    'Das Geburtsdatum muss im iso format sein.'
                 )
             ]
         )

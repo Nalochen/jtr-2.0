@@ -1,10 +1,11 @@
 import json
-from typing import Dict, Any, List, Optional
+from typing import List, Optional
 
 from sqlalchemy import func, Column, Integer, DateTime, String, Text, Boolean, Enum
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
+from DataDomain.Database.Enum.TournamentCostTypesEnum import TournamentCostTypesEnum
 from DataDomain.Database.db import db
 from DataDomain.Database.Enum.TournamentAccommodationTypesEnum import TournamentAccommodationTypesEnum
 from DataDomain.Database.Enum.TournamentFoodEveningTypesEnum import TournamentFoodEveningTypesEnum
@@ -59,19 +60,60 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    arrival_time: Column[String] = db.Column(
-        db.String(20),
+    start_arrival_date: Column[Text] = db.Column(
+        db.DateTime,
         nullable=False
     )
 
-    costs_per_user: Column[Optional[Integer]] = db.Column(
+    end_arrival_date: Column[Text] = db.Column(
+        db.DateTime,
+        nullable=False
+    )
+
+    registration_costs: Column[Optional[Integer]] = db.Column(
         db.Integer,
         nullable=True
     )
 
-    costs_per_team: Column[Optional[Integer]] = db.Column(
+    registration_costs_type: Column[Optional[Enum]] = db.Column(
+        db.Enum(TournamentCostTypesEnum),
+        nullable=True
+    )
+
+    deposit_costs: Column[Optional[Integer]] = db.Column(
         db.Integer,
         nullable=True
+    )
+
+    deposit_costs_type: Column[Optional[Enum]] = db.Column(
+        db.Enum(TournamentCostTypesEnum),
+        nullable=True
+    )
+
+    accommodation_costs: Column[Optional[Integer]] = db.Column(
+        db.Integer,
+        nullable=True
+    )
+
+    accommodation_costs_type: Column[Optional[Enum]] = db.Column(
+        db.Enum(TournamentCostTypesEnum),
+        nullable=True
+    )
+
+    guest_costs: Column[Optional[Integer]] = db.Column(
+        db.Integer,
+        nullable=True
+    )
+
+    guest_costs_type: Column[Optional[Enum]] = db.Column(
+        db.Enum(TournamentCostTypesEnum),
+        nullable=True
+    )
+
+    costs_text: Column[Text] = db.Column(
+        db.Text(),
+        nullable=False,
+        default=''
     )
 
     status: Column[Enum] = db.Column(
@@ -91,7 +133,7 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    accommodation_text: Column[String] = db.Column(
+    accommodation_location: Column[String] = db.Column(
         db.String(255),
         nullable=False
     )
@@ -103,9 +145,7 @@ class Tournaments(BaseModel, db.Model):
 
     deadlines: Column[Text] = db.Column(
         db.Text(),
-        nullable=False,
-        default='[]',
-        doc='["string"]'
+        nullable=False
     )
 
     schedule: Column[Optional[Text]] = db.Column(
@@ -213,7 +253,7 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    registration_open_at: Column[DateTime] = db.Column(
+    registration_start_date: Column[DateTime] = db.Column(
         db.DateTime(),
         nullable=False,
         server_default=func.now()
@@ -253,84 +293,6 @@ class Tournaments(BaseModel, db.Model):
         back_populates='tournaments'
     )
 
-    def serialize(self) -> Dict[str, Any]:
-        """
-        Serializes the object as a dictionary.
-        """
-
-        serialized = super().serialize()
-
-        serialized['date'] = {
-            'start': serialized.pop('startDate').isoformat(),
-            'end': serialized.pop('endDate').isoformat()
-        }
-
-        serialized['deadlines'] = self.getDeadlines
-
-        serialized['contacts'] = self.getContacts
-
-        serialized['teamCount'] = len(self.teams)
-
-        serialized['status'] = serialized.pop('status').value
-
-        serialized['registrationOpenAt'] = serialized.pop(
-            'registrationOpenAt').isoformat()
-        serialized['createdAt'] = serialized.pop('createdAt').isoformat()
-        serialized['updatedAt'] = serialized.pop('updatedAt').isoformat()
-
-        serialized['costs'] = {
-            'user': serialized.pop('costsPerUser'),
-            'team': serialized.pop('costsPerTeam')
-        }
-
-        serialized['accommodation'] = {
-            'type': serialized.pop('accommodationType').value,
-            'text': serialized.pop('accommodationText'),
-        }
-
-        serialized['houseRules'] = {
-            'url': serialized.pop('houseRulesUrl'),
-            'text': serialized.pop('houseRulesText')
-        }
-
-        serialized['tournamentSystem'] = {
-            'url': serialized.pop('tournamentSystemUrl'),
-            'text': serialized.pop('tournamentSystemText'),
-            'type': serialized.pop('tournamentSystemType').value
-        }
-
-        serialized['pompfCheck'] = {
-            'url': serialized.pop('pompfCheckUrl'),
-            'text': serialized.pop('pompfCheckText')
-        }
-
-        serialized['registrationProcedure'] = {
-            'url': serialized.pop('registrationProcedureUrl'),
-            'type': serialized.pop('registrationProcedureType').value,
-            'text': serialized.pop('registrationProcedureText')
-        }
-
-        serialized['food'] = {
-            'morning': serialized.pop('foodMorning').value if serialized.get('foodMorning') else None,
-            'noon': serialized.pop('foodNoon').value if serialized.get('foodNoon') else None,
-            'evening': serialized.pop('foodEvening').value if serialized.get('foodEvening') else None,
-            'gastro': serialized.pop('foodGastro').value if serialized.get('foodGastro') else None}
-
-        serialized['shoes'] = {
-            'url': serialized.pop('shoesUrl'),
-            'text': serialized.pop('shoesText'),
-            'studdedAllowed': serialized.pop('studdedShoesAllowed'),
-            'camAllowed': serialized.pop('camShoesAllowed'),
-            'cleatsAllowed': serialized.pop('cleatsShoesAllowed'),
-            'barefootAllowed': serialized.pop('barefootAllowed')
-        }
-
-        serialized['teams'] = [team.serialize() for team in self.teams]
-        serialized['organizer'] = Teams.query.get(
-            serialized.pop('organizerId')).serialize()
-
-        return serialized
-
     @hybrid_property
     def getContacts(self) -> List[str]:
         """
@@ -338,11 +300,3 @@ class Tournaments(BaseModel, db.Model):
         """
 
         return json.loads(str(self.contacts))
-
-    @hybrid_property
-    def getDeadlines(self) -> List[str]:
-        """
-        Parses the JSON string from the database and returns the changes as a dictionary.
-        """
-
-        return json.loads(str(self.deadlines))

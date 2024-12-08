@@ -21,7 +21,7 @@
     [type]="ButtonTypeEnum.Raised"
     [buttonType]="ButtonFunctionType.SUBMIT"
     [fullWidth]="true"
-    (click)="onPublish()"
+    (click)="onPublish($event)"
   >
     {{ 'create-tournament.publish-tournament' | translate }}
   </app-button>
