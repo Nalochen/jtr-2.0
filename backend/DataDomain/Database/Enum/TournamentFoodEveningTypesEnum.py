@@ -8,4 +8,4 @@ class TournamentFoodEveningTypesEnum(Enum):
 
     GRILL_AVAILABLE = 'grill_available'
 
-    NONE = 'none'
+    NO = 'no'

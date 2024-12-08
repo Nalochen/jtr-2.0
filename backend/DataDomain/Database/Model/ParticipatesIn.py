@@ -54,6 +54,13 @@ participates_in = db.Table(
     ),
 
     db.Column(
+        'has_payed',
+        db.Boolean,
+        nullable=False,
+        server_default='0'
+    ),
+
+    db.Column(
         'created_at',
         db.DateTime,
         server_default=func.now()

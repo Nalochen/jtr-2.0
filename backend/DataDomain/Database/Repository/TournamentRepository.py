@@ -11,6 +11,8 @@ from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.db import db
 import json
 
+from DataDomain.Database.tools import getJwtIdentity
+
 
 class TournamentRepository:
     """Repository for tournament related queries"""
@@ -40,11 +42,11 @@ class TournamentRepository:
             Tournaments.id == TeamParticipation.c.tournament_id).join(
                 Teams,
                 Tournaments.organizer_id == Teams.id).filter(
-                    or_(
+                    and_(or_(
                         and_(
                             Tournaments.start_date <= currentTime,
                             Tournaments.end_date >= currentTime),
-                        Tournaments.start_date > currentTime)).group_by(
+                        Tournaments.start_date > currentTime), Tournaments.is_deleted == False)).group_by(
             Tournaments.id).order_by(
             Tournaments.start_date).all()
 
@@ -72,13 +74,14 @@ class TournamentRepository:
         if not tournament:
             return None
 
-        participatesTeams = []
+        participatingTeams = []
         waitingTeams = []
 
         for team in tournament.teams:
             participation = db.session.query(participates_in).filter(
                 participates_in.c.team_id == team.id,
-                participates_in.c.tournament_id == tournament.id
+                participates_in.c.tournament_id == tournament.id,
+                participates_in.c.is_deleted == False
             ).first()
 
             teamData = {
@@ -92,12 +95,15 @@ class TournamentRepository:
                 'isMixTeam': team.is_mix_team,
                 'logo': team.logo,
                 'trainingTime': team.training_time,
-                'updatedAt': team.updated_at.isoformat()
+                'updatedAt': team.updated_at.isoformat(),
+                'hasPayed': participation.has_payed,
+                'placement': participation.placement,
+                'registrationOrder': participation.registration_order,
             }
-            if participation and participation.is_on_waiting_list:
+            if participation.is_on_waiting_list:
                 waitingTeams.append(teamData)
             else:
-                participatesTeams.append(teamData)
+                participatingTeams.append(teamData)
 
         return {
             'id': tournament.id,
@@ -114,8 +120,15 @@ class TournamentRepository:
             },
             'contacts': json.loads(str(tournament.contacts)),
             'costs': {
-                'team': tournament.costs_per_team,
-                'user': tournament.costs_per_user
+                'registrationCosts': tournament.registration_costs,
+                'registrationCostsType': tournament.registration_costs_type.value if tournament.registration_costs_type else None,
+                'depositCosts': tournament.registration_costs,
+                'depositCostsType': tournament.registration_costs_type.value if tournament.registration_costs_type else None,
+                'accommodationCosts': tournament.registration_costs,
+                'accommodationCostsType': tournament.registration_costs_type.value if tournament.registration_costs_type else None,
+                'guestCosts': tournament.registration_costs,
+                'guestCostsType': tournament.registration_costs_type.value if tournament.registration_costs_type else None,
+                'costsText': tournament.costs_text,
             },
             'createdAt': tournament.created_at.isoformat(),
             'date': {
@@ -127,7 +140,7 @@ class TournamentRepository:
                 'morning': tournament.food_morning.value,
                 'noon': tournament.food_noon.value,
                 'evening': tournament.food_evening.value,
-                'gastro': tournament.food_gastro.value
+                'gastro': tournament.food_gastro.value,
             },
             'houseRules': {
                 'text': tournament.house_rules_text,
@@ -170,7 +183,7 @@ class TournamentRepository:
             'status': tournament.status.value,
             'teamCount': len(tournament.teams),
             'teams': {
-                'participating': participatesTeams,
+                'participating': participatingTeams,
                 'waiting': waitingTeams
             },
             'tournamentSystem': {
@@ -197,11 +210,37 @@ class TournamentRepository:
             db.session.add(tournament)
             db.session.commit()
 
+            user = getJwtIdentity()
+
+            logging.info(
+                f'TournamentRepository | Create | User [{
+                    user.id}] created tournament [{
+                    tournament.id}]')
+
             return tournament.id
 
         except Exception as e:
             db.session.rollback()
-            logging.error(f'TournamentRepository | create | {e}')
+            logging.error(f'TournamentRepository | Create | {e}')
+            raise e
+
+    @staticmethod
+    def update(tournament: Tournaments) -> None:
+        """Update tournament entry"""
+
+        try:
+            db.session.commit()
+
+            user = getJwtIdentity()
+
+            logging.info(
+                f'TournamentRepository | Update | User [{
+                    user.id}] updated tournament [{
+                    tournament.id}]')
+
+        except Exception as e:
+            db.session.rollback()
+            logging.error(f'TournamentRepository | Update | {e}')
             raise e
 
     @staticmethod
@@ -226,8 +265,15 @@ class TournamentRepository:
             })
             db.session.commit()
 
+            user = getJwtIdentity()
+
+            logging.info(
+                f'TournamentRepository | Delete | User [{
+                    user.id}] deleted tournament [{tournamentId}]')
+
         except Exception as e:
             db.session.rollback()
+            logging.error(f'TournamentRepository | Delete | {e}')
             raise e
 
     @staticmethod
