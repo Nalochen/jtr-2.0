@@ -59,7 +59,7 @@ class Users(BaseModel, db.Model):
         nullable=True
     )
 
-    pronoums: Column[Optional[String]] = db.Column(
+    pronouns: Column[Optional[String]] = db.Column(
         db.String(255),
         nullable=True
     )
