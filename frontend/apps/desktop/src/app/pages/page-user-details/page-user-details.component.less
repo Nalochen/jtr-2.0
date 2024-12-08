@@ -1,1 +1,39 @@
 @import 'colors-desktop';
+
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+page-user-details-header {
+  margin-bottom: 24px;
+}
+
+.city, .birthdate {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.team {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  padding: 4px;
+}
+
+.cta {
+  margin-top: 24px;
+}
+
+.team-button {
+  &:not(:last-of-type) {
+    margin-bottom: 16px;
+  }
+}
+
+img {
+  border-radius: 50%;
+}

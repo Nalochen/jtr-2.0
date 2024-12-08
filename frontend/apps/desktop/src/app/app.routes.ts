@@ -22,6 +22,7 @@ import { PageTournamentDetailsComponent } from './pages/page-tournament-details/
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
 import { SwaggerViewComponent } from './pages/swagger-view/swagger-view.component';
+import { PageManageUserDetailsComponent } from './pages/page-manage-user-details/page-manage-user-details.component';
 
 export const appRoutes: Route[] = [
   {
@@ -84,6 +85,13 @@ export const appRoutes: Route[] = [
   {
     path: 'user-details/:userId?',
     component: PageUserDetailsComponent,
+    resolve: {
+      userDetails: UserDetailsResolver,
+    },
+  },
+  {
+    path: 'manage-user-details/:userId?',
+    component: PageManageUserDetailsComponent,
     resolve: {
       userDetails: UserDetailsResolver,
     },

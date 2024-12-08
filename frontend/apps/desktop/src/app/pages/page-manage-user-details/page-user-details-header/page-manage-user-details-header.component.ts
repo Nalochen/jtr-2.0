@@ -10,17 +10,17 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
-  selector: 'page-user-details-header',
+  selector: 'page-manage-user-details-header',
   imports: [
     CommonModule,
     ButtonComponent,
     InfoButtonComponent,
     TranslatePipe
   ],
-  templateUrl: './page-user-details-header.component.html',
-  styleUrl: './page-user-details-header.component.less',
+  templateUrl: './page-manage-user-details-header.component.html',
+  styleUrl: './page-manage-user-details-header.component.less',
 })
-export class PageUserDetailsHeaderComponent {
+export class PageManageUserDetailsHeaderComponent {
   @Input() public form!: FormGroup<EditUserForm>;
   @Input() public isLoggedIn$!: boolean;
 
