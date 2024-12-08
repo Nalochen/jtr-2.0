@@ -4,8 +4,7 @@ import { Component, Input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 
 import { TournamentData } from '@jtr/data-domain/store';
-
-import { PricingTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/pricing-type.enum';
+import { PricingTypeEnum } from '@jtr/data-domain/tournament-data';
 
 import {
   ChipComponent,

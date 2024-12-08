@@ -6,4 +6,4 @@ class TournamentFoodMorningTypesEnum(Enum):
 
     PROVIDED = 'provided'
 
-    NONE = 'none'
+    NO = 'no'

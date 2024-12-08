@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -12,7 +12,7 @@ declare const SwaggerUIBundle: any;
 @Component({
   selector: 'app-swagger-view',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
   templateUrl: './swagger-view.component.html',
   styleUrl: './swagger-view.component.less',
 })

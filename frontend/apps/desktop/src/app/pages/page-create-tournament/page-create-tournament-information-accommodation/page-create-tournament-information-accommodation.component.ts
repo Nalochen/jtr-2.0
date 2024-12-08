@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AccommodationTypeEnum } from '../../../../../../../libs/data-domain/tournament/enums/accommodation-type.enum';
 import {
+  AccommodationTypeEnum,
   TournamentFoodEveningEnum,
   TournamentFoodGastroEnum,
   TournamentFoodMorningEnum,
   TournamentFoodNoonEnum,
-} from '../../../../../../../libs/data-domain/tournament/enums/food.enum';
+} from '@jtr/data-domain/tournament-data';
 
 import { AccommodationInformationForm } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import { ButtonComponent, DataContainerRowComponent } from '../../../ui-shared';

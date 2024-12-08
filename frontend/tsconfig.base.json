@@ -21,6 +21,9 @@
       ],
       "@jtr/business-domain/user": ["libs/business-domain/user/src/index.ts"],
       "@jtr/data-domain/store": ["libs/data-domain/store/src/index.ts"],
+      "@jtr/data-domain/tournament-data": [
+        "libs/data-domain/tournament-data/src/index.ts"
+      ],
       "@jtr/infrastructure/cache": ["libs/infrastructure/cache/src/index.ts"],
       "@jtr/infrastructure/svg-icons": [
         "libs/infrastructure/svg-icons/src/index.ts"

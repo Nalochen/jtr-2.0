@@ -15,13 +15,19 @@ from Infrastructure.InputFilter.Validator.IsInstanceValidator import IsInstanceV
 from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
 
 
-class CreateTournamentInputFilter(InputFilter):
-    """The input filter for the create-tournament route"""
+class UpdateTournamentInputFilter(InputFilter):
+    """The input filter for the update-tournament route"""
 
     def __init__(self):
-        """Initializes the CreateTournamentInputFilter"""
+        """Initializes the UpdateTournamentInputFilter"""
 
         super().__init__()
+
+        self.add(
+            'tournamentId',
+            required=True,
+            filters=[ToIntFilter(), ToNullFilter()]
+        )
 
         self.add(
             'additionalInformation',

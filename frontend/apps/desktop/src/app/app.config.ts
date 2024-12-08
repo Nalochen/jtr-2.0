@@ -3,6 +3,7 @@ import {
   HTTP_INTERCEPTORS,
   HttpClient,
   provideHttpClient,
+  withInterceptorsFromDi,
 } from '@angular/common/http';
 import localeDe from '@angular/common/locales/de';
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
@@ -44,12 +45,6 @@ export const appConfig: ApplicationConfig = {
       GetTournamentDetailsDataEffect,
       GetUserDetailsDataEffect,
     ]),
-    provideHttpClient(),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: JwtInterceptor,
-      multi: true,
-    },
     ...(TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -57,5 +52,11 @@ export const appConfig: ApplicationConfig = {
         deps: [HttpClient],
       },
     }).providers || []),
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
   ],
 };
