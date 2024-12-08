@@ -107,6 +107,22 @@
     />
   </div>
 
+  <div class="pronouns">
+    <div class="headline">
+      <label for="pronouns">{{ 'register.pronouns' | translate }}</label>
+      <app-info-button>
+        <p class="i-headline">{{ 'register.pronouns' | translate }}</p>
+        <p>{{ 'register.pronouns-info' | translate }}</p>
+      </app-info-button>
+    </div>
+    <input
+      type="text"
+      class="form-control"
+      [formControl]="form.controls.pronouns"
+      id="pronouns"
+    />
+  </div>
+
   <visibility-button
     class="name-button"
     [control]="form.controls.isNameVisible"

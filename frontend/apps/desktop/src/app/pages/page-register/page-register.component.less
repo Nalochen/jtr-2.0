@@ -5,7 +5,7 @@ form {
   display: grid;
   grid-template-columns: 1fr 32px;
   grid-template-rows: auto;
-  grid-template-areas: 'email .' 'username .' 'password .' 'password-repeat .' 'name name-button' 'city city-button' 'birthdate birthdate-button' 'register-button register-button';
+  grid-template-areas: 'email .' 'username .' 'password .' 'password-repeat .' 'name name-button' 'pronouns .' 'city city-button' 'birthdate birthdate-button' 'register-button register-button';
   grid-column-gap: 48px;
   grid-row-gap: 24px;
   align-items: end;
@@ -65,6 +65,10 @@ input {
 
 .name-button {
   grid-area: name-button;
+}
+
+.pronouns {
+  grid-area: pronouns;
 }
 
 .city {
