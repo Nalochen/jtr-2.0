@@ -1,7 +1,14 @@
 <div class="header">
-  <div mat-button class="home">
-    <span class="material-icons-outlined">image</span>
-    <h1>JTR 2.0</h1>
+  <div class="left">
+    <div mat-button class="home">
+      <span class="material-icons-outlined">image</span>
+      <h1>JTR 2.0</h1>
+    </div>
+    <img
+      src="assets/svgs/progress-pride-flag.svg"
+      alt="Pride Flag"
+      width="50"
+      height="50">
   </div>
   <nav>
     <a
@@ -39,6 +46,9 @@
     @if (isLoggedIn$ | async) {
     <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon">
       <span class="material-icons-outlined">account_circle</span>
+    </app-button>
+    <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon" (click)="logout()">
+      <span class="material-icons-outlined">logout</span>
     </app-button>
     } @else {
     <app-button

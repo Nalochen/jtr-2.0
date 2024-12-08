@@ -37,8 +37,14 @@ class GetUserDetailsHandler:
 
         response = {
             'id': user.id,
+            'birthdate': user.birthdate.isoformat(),
+            'city': user.city,
             'createdAt': user.created_at.isoformat(),
+            'isBirthdateVisible': user.birthdate_visibility,
+            'isCityVisible': user.city_visibility,
             'isDeleted': user.is_deleted,
+            'isNameVisible': user.name_visibility,
+            'name': user.name,
             'picture': user.picture,
             'pronouns': user.pronouns,
             'teams': teams,
