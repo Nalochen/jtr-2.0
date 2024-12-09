@@ -1,7 +1,9 @@
 services:
 
   jtr-development:
-    image: ghcr.io/leandercs/jtr:latest-arm64
+    build:
+      context: .
+      dockerfile: docker/development/Dockerfile
     container_name: jtr
     entrypoint: [ "/opt/scripts/provisioning/entrypoint.sh" ]
     environment:
