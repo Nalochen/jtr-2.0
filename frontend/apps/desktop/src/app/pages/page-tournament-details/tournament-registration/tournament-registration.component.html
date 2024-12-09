@@ -1,4 +1,7 @@
-<p>{{ 'page-tournament-details.registration-open' | translate }}: {{ registrationOpenAt | date : 'dd.MM' }}</p>
+<p>
+  {{ 'page-tournament-details.registration-open' | translate }}:
+  {{ registrationStartDate | date : 'dd.MM' }}
+</p>
 <app-button
   (click)="onShowDialog()"
   [type]="ButtonTypeEnum.Raised"
@@ -6,13 +9,18 @@
   [fullWidth]="true"
   >{{ 'page-tournament-details.register-team' | translate }}</app-button
 >
-<p-dialog [(visible)]="dialogVisible" header="{{ 'page-tournament-details.select-team' | translate }}" [modal]="true">
+<p-dialog
+  [(visible)]="dialogVisible"
+  header="{{ 'page-tournament-details.select-team' | translate }}"
+  [modal]="true"
+>
   <p-dropdown
     [options]="teams"
     formControlName="name"
     placeholder="{{ 'page-tournament-details.select-team' | translate }}"
     [editable]="true"
-    optionLabel="name" />
+    optionLabel="name"
+  />
 
   <app-button
     class="registrationButton"

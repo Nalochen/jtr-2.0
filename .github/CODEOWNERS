@@ -1,7 +1,10 @@
-*         @LeanderCS
-*         @Nalochen
-*         @StrykerDelkar
+*          @LeanderCS, @Nalochen, @StrykerDelkar
 
-/backend/ @backend-team
+/.github/  @ops-team
+/.github/CODEOWNERS @LeanderCS, @Nalochen
+
+/backend/  @backend-team
+
+/docker/   @ops-team
 
 /frontend/ @frontend-team

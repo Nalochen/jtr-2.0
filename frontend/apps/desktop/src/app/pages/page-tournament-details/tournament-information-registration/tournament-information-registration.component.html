@@ -1,37 +1,59 @@
 <app-data-container>
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
-    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.costs' | translate }}</h4>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >edit_note</span
+    >
+    <h4 ngProjectAs="container-headline">
+      {{ 'page-tournament-details.costs' | translate }}
+    </h4>
 
-    @if (tournament.costs.user) {
-      <p ngProjectAs="container-content">{{ tournament.costs.user | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de' }} {{ 'page-tournament-details.per-person' | translate }}</p>
-    }
+    @if (tournament.costs.registrationCosts) {
+    <p ngProjectAs="container-content">
+      {{
+        tournament.costs.registrationCosts
+          | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
+      }}
 
-    @if (tournament.costs.team) {
-      <p ngProjectAs="container-content">{{ tournament.costs.team | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de' }} {{ 'page-tournament-details.per-team' | translate }}</p>
+      {{
+        (tournament.costs.registrationCostsType === PricingTypeEnum.PER_PERSON
+          ? 'page-tournament-details.per-person'
+          : 'page-tournament-details.per-team'
+        ) | translate
+      }}
+    </p>
     }
   </app-data-container-row>
 
   <mat-divider />
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
-    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.registration-procedure' | translate }}</h4>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >edit_note</span
+    >
+    <h4 ngProjectAs="container-headline">
+      {{ 'page-tournament-details.registration-procedure' | translate }}
+    </h4>
 
-    <app-chip ngProjectAs="container-additional">{{ tournament.registrationProcedure.type }}</app-chip>
+    <app-chip ngProjectAs="container-additional">{{
+      tournament.registrationProcedure.type
+    }}</app-chip>
 
-    <p ngProjectAs="container-content">{{ tournament.registrationProcedure.text }}</p>
+    <p ngProjectAs="container-content">
+      {{ tournament.registrationProcedure.text }}
+    </p>
   </app-data-container-row>
 
   <mat-divider />
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">edit_note</span>
-    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.deadlines' | translate }}</h4>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >edit_note</span
+    >
+    <h4 ngProjectAs="container-headline">
+      {{ 'page-tournament-details.deadlines' | translate }}
+    </h4>
     <div ngProjectAs="container-content">
-      @for (deadline of tournament.deadlines; track deadline) {
-        <p>{{ deadline }}</p>
-      }
+      <p>{{ tournament.deadlines }}</p>
     </div>
   </app-data-container-row>
 </app-data-container>

@@ -1,11 +1,29 @@
+import {
+  PricingTypeEnum,
+  TournamentFoodEveningEnum,
+  TournamentFoodGastroEnum,
+  TournamentFoodMorningEnum,
+  TournamentFoodNoonEnum,
+  TournamentRegistrationProcedureTypeEnum,
+  TournamentStatus,
+  TournamentSystemType,
+} from '@jtr/data-domain/tournament-data';
+
 export interface TournamentDate {
   start: string;
   end: string;
 }
 
 export interface TournamentCosts {
-  user?: number;
-  team?: number;
+  registrationCosts?: number;
+  registrationCostsType?: PricingTypeEnum;
+  depositCosts?: number;
+  depositCostsType?: PricingTypeEnum;
+  accommodationCosts?: number;
+  accommodationCostsType?: PricingTypeEnum;
+  guestCosts?: number;
+  guestCostsType?: PricingTypeEnum;
+  costsText: string;
 }
 
 export interface TournamentHouseRules {
@@ -13,14 +31,10 @@ export interface TournamentHouseRules {
   text: string;
 }
 
-export enum TournamentSystemType {
-  TUGENY = 'tugeny'
-}
-
 export interface TournamentSystem {
   url: string;
   text: string;
-  type: TournamentSystemType
+  type: TournamentSystemType;
 }
 
 export interface TournamentPompfCheck {
@@ -29,51 +43,21 @@ export interface TournamentPompfCheck {
 }
 
 export interface TournamentAccommodation {
-  text: string;
+  location: string;
   type: string;
-}
-
-export enum TournamentRegistrationProcedureType {
-  FIRST_COME = 'first_come',
-  LOTS = 'lots',
-  OTHER = 'other',
 }
 
 export interface TournamentRegistrationProcedure {
   url: string;
-  type: TournamentRegistrationProcedureType;
+  type: TournamentRegistrationProcedureTypeEnum;
   text: string;
 }
 
-export enum TournamentFoodEvening {
-  PROVIDED = 'provided',
-  GRILL_AVAILABLE = 'grill_available',
-  NO = 'no',
-}
-
-export enum TournamentFoodGastro {
-  ON_THE_COURSE = 'on_the_course',
-  NEAR = 'near',
-  FAR = 'far',
-  NO = 'no',
-}
-
-export enum TournamentFoodMorning {
-  PROVIDED = 'provided',
-  NO = 'no',
-}
-
-export enum TournamentFoodNoon {
-  PROVIDED = 'provided',
-  SNACKS = 'snacks',
-  NO = 'no',
-}
-
 export interface TournamentFood {
-  evening?: TournamentFoodEvening;
-  gastro?: TournamentFoodGastro;
-  morning?: TournamentFoodMorning;
-  noon?: TournamentFoodNoon;
+  evening?: TournamentFoodEveningEnum;
+  gastro?: TournamentFoodGastroEnum;
+  morning?: TournamentFoodMorningEnum;
+  noon?: TournamentFoodNoonEnum;
 }
 
 export interface TournamentShoes {
@@ -83,13 +67,6 @@ export interface TournamentShoes {
   studdedAllowed: boolean;
   text: string;
   url: string;
-}
-
-export enum TournamentStatus {
-  CREATED = 'created',
-  PUBLISHED = 'published',
-  CANCELED = 'canceled',
-  OVER = 'over',
 }
 
 export interface TournamentTeamsData {
@@ -110,6 +87,23 @@ export interface TournamentTeamData {
   trainingTime: string;
   hasPaid: boolean;
   updatedAt: string;
+  hasPayed: boolean;
+  placement: number;
+  registrationOrder: number;
+}
+
+export interface TournamentOrganizerTeamData {
+  id: number;
+  aboutUs: string;
+  city: string;
+  contacts: string[];
+  createdAt: string;
+  founded: string;
+  isMixTeam: boolean;
+  logo: string;
+  name: string;
+  trainingTime: string;
+  updatedAt: string;
 }
 
 export interface TournamentData {
@@ -117,20 +111,20 @@ export interface TournamentData {
   accommodation: TournamentAccommodation;
   additionalInformation: string;
   address: string;
-  arrivalTime: string;
+  arrivalDate: TournamentDate;
   contacts: string[];
   costs: TournamentCosts;
   createdAt: string;
   date: TournamentDate;
-  deadlines: string[];
+  deadlines: string;
   food: TournamentFood;
   houseRules: TournamentHouseRules;
   location: string;
   name: string;
-  organizer: TournamentTeamData;
+  organizer: TournamentOrganizerTeamData;
   pompfCheck: TournamentPompfCheck;
   possibleSpace: number;
-  registrationOpenAt: string;
+  registrationStartDate: string;
   registrationProcedure: TournamentRegistrationProcedure;
   schedule?: string;
   shoes: TournamentShoes;

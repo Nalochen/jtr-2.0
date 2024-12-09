@@ -1,5 +1,8 @@
+import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+
+import { Observable } from 'rxjs';
 
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
@@ -18,6 +21,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     LoginOverlayComponent,
     OverlayPanelModule,
     TranslatePipe,
+    AsyncPipe,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -37,8 +41,8 @@ export class AppComponent {
   }
 
   @SingletonGetter()
-  public get isLoggedIn$(): boolean {
-    return this.authService.isAuthenticated();
+  public get isLoggedIn$(): Observable<boolean> {
+    return this.authService.isAuthenticated$;
   }
 
   public logout(): void {

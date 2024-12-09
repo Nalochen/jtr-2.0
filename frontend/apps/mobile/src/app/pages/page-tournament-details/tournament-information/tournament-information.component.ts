@@ -1,11 +1,18 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
-import { TournamentData,TournamentTeamData } from '@jtr/data-domain/store';
+import { TournamentData, TournamentTeamData } from '@jtr/data-domain/store';
+import { PricingTypeEnum } from '@jtr/data-domain/tournament-data';
 
 import {
   ButtonColorEnum,
@@ -15,19 +22,12 @@ import {
   DataContainerExpandableComponent,
   DataContainerRowComponent,
   InfoButtonComponent,
-  TeamComponent} from '../../../ui-shared';
-import {
-  TournamentInformationAdditionalComponent
-} from '../tournament-information-additional/tournament-information-additional.component';
-import {
-  TournamentInformationContactsComponent
-} from '../tournament-information-contacts/tournament-information-contacts.component';
-import {
-  TournamentInformationLocationComponent
-} from '../tournament-information-location/tournament-information-location.component';
-import {
-  TournamentInformationRulesComponent
-} from '../tournament-information-rules/tournament-information-rules.component';
+  TeamComponent,
+} from '../../../ui-shared';
+import { TournamentInformationAdditionalComponent } from '../tournament-information-additional/tournament-information-additional.component';
+import { TournamentInformationContactsComponent } from '../tournament-information-contacts/tournament-information-contacts.component';
+import { TournamentInformationLocationComponent } from '../tournament-information-location/tournament-information-location.component';
+import { TournamentInformationRulesComponent } from '../tournament-information-rules/tournament-information-rules.component';
 import { TournamentTeamsComponent } from '../tournament-teams/tournament-teams.component';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -42,7 +42,7 @@ export enum PanelTypes {
   Contacts = 'contacts',
   Location = 'location',
   Rules = 'rules',
-  Additional = 'additional'
+  Additional = 'additional',
 }
 
 @Component({
@@ -66,13 +66,13 @@ export enum PanelTypes {
     TournamentInformationContactsComponent,
     TournamentInformationRulesComponent,
     TournamentInformationLocationComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './tournament-information.component.html',
   styleUrl: './tournament-information.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TournamentInformationComponent implements OnInit{
+export class TournamentInformationComponent implements OnInit {
   @Input() public tournament!: TournamentData;
 
   public readonly ButtonColorEnum = ButtonColorEnum;
@@ -93,11 +93,11 @@ export class TournamentInformationComponent implements OnInit{
   constructor(private cdr: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
-    this.previewTeams = this.tournament.teams.participating.slice(0, 6)
+    this.previewTeams = this.tournament.teams.participating.slice(0, 6);
   }
 
   public get areAllPanelsOpen(): boolean {
-    return this.panels.every(panel => panel.isOpen);
+    return this.panels.every((panel) => panel.isOpen);
   }
 
   protected toggleAllPanels(): void {
@@ -119,4 +119,6 @@ export class TournamentInformationComponent implements OnInit{
 
     this.cdr.detectChanges();
   }
+
+  protected readonly PricingTypeEnum = PricingTypeEnum;
 }

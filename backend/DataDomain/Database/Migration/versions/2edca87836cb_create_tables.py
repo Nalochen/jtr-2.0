@@ -1,4 +1,4 @@
-"""Create users table
+"""Create base tables
 
 Revision ID: 2edca87836cb
 Revises:
@@ -55,6 +55,8 @@ def upgrade():
                     sa.Column('birthdate_visibility',
                               sa.Boolean(), nullable=False),
                     sa.Column('picture', sa.String(length=255), nullable=True),
+                    sa.Column('pronoums', sa.String(
+                        length=255), nullable=True),
                     sa.Column('city', sa.String(length=100), nullable=True),
                     sa.Column('city_visibility', sa.Boolean(), nullable=False),
                     sa.Column('is_deleted', sa.Boolean(),
@@ -85,17 +87,20 @@ def upgrade():
                 'MODERATOR',
                 name='userroletypesenum'),
             server_default='member',
-            nullable=False),
+            nullable=False
+        ),
         sa.Column(
             'is_deleted',
             sa.Boolean(),
             server_default='0',
-            nullable=False),
+            nullable=False
+        ),
         sa.Column(
             'created_at',
             sa.DateTime(),
             server_default=sa.text('now()'),
-            nullable=True),
+            nullable=True
+        ),
         sa.ForeignKeyConstraint(
             ['team_id'],
             ['teams.id'],
@@ -106,7 +111,9 @@ def upgrade():
         ),
         sa.PrimaryKeyConstraint(
             'user_id',
-            'team_id'))
+            'team_id'
+        )
+    )
     op.create_table('tournaments',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('name', sa.String(length=100), nullable=False),
@@ -117,29 +124,45 @@ def upgrade():
                     sa.Column('address', sa.String(
                         length=255), nullable=False),
                     sa.Column('possible_space', sa.Integer(), nullable=False),
-                    sa.Column('arrival_time', sa.String(
-                        length=20), nullable=False),
-                    sa.Column('costs_per_user', sa.Integer(), nullable=True),
-                    sa.Column('costs_per_team', sa.Integer(), nullable=True),
+                    sa.Column('start_arrival_date',
+                              sa.DateTime(), nullable=False),
+                    sa.Column('end_arrival_date',
+                              sa.DateTime(), nullable=False),
+                    sa.Column('registration_costs',
+                              sa.Integer(), nullable=True),
+                    sa.Column('registration_costs_type', sa.Enum('PER_PERSON', 'PER_TEAM',
+                                                                 name='tournamentcosttypesenum'), nullable=True),
+                    sa.Column('deposit_costs', sa.Integer(), nullable=True),
+                    sa.Column('deposit_costs_type', sa.Enum('PER_PERSON', 'PER_TEAM',
+                                                            name='tournamentcosttypesenum'), nullable=True),
+                    sa.Column('accommodation_costs',
+                              sa.Integer(), nullable=True),
+                    sa.Column('accommodation_costs_type', sa.Enum('PER_PERSON', 'PER_TEAM',
+                                                                  name='tournamentcosttypesenum'), nullable=True),
+                    sa.Column('guest_costs', sa.Integer(), nullable=True),
+                    sa.Column('guest_costs_type', sa.Enum('PER_PERSON', 'PER_TEAM',
+                                                          name='tournamentcosttypesenum'), nullable=True),
+                    sa.Column('costs_text',
+                              sa.Text(), nullable=False, default=''),
                     sa.Column('status', sa.Enum('CREATED', 'PUBLISHED', 'CANCELED', 'OVER',
                                                 name='tournamentstatustypesenum'), server_default='created', nullable=False),
                     sa.Column('contacts', sa.Text(), nullable=False),
                     sa.Column('accommodation_type', sa.Enum(
-                        'CAMPING', 'GYM', 'HOTEL', name='tournamentaccommodationtypesenum'), nullable=False),
-                    sa.Column('accommodation_text', sa.String(
+                        'CAMPING', 'GYM', 'HOTEL', 'NONE', name='tournamentaccommodationtypesenum'), nullable=False),
+                    sa.Column('accommodation_location', sa.String(
                         length=255), nullable=False),
                     sa.Column('location', sa.String(
                         length=30), nullable=False),
                     sa.Column('deadlines', sa.Text(), nullable=False),
                     sa.Column('schedule', sa.Text(), nullable=True),
                     sa.Column('food_morning', sa.Enum(
-                        'PROVIDED', 'NO', name='tournamentfoodmorningtypesenum'), nullable=True),
+                        'PROVIDED', 'NO', name='tournamentfoodmorningtypesenum'), nullable=False),
                     sa.Column('food_noon', sa.Enum(
-                        'PROVIDED', 'SNACKS', 'NO', name='tournamentfoodnoontypesenum'), nullable=True),
+                        'PROVIDED', 'SNACKS', 'NO', name='tournamentfoodnoontypesenum'), nullable=False),
                     sa.Column('food_evening', sa.Enum('PROVIDED', 'GRILL_AVAILABLE',
-                                                      'NO', name='tournamentfoodeveningtypesenum'), nullable=True),
+                                                      'NO', name='tournamentfoodeveningtypesenum'), nullable=False),
                     sa.Column('food_gastro', sa.Enum('ON_THE_COURSE', 'NEAR', 'FAR',
-                                                     'NO', name='tournamentfoodgastrotypesenum'), nullable=True),
+                                                     'NO', name='tournamentfoodgastrotypesenum'), nullable=False),
                     sa.Column('shoes_text', sa.Text(), nullable=False),
                     sa.Column('shoes_url', sa.String(
                         length=255), nullable=False),
@@ -169,7 +192,7 @@ def upgrade():
                         'FIRST_COME', 'LOTS', 'OTHER', name='tournamentregistrationproceduretypesenum'), nullable=False),
                     sa.Column('registration_procedure_url',
                               sa.String(length=255), nullable=False),
-                    sa.Column('registration_open_at', sa.DateTime(),
+                    sa.Column('registration_start_date', sa.DateTime(),
                               server_default=sa.text('now()'), nullable=False),
                     sa.Column('is_deleted', sa.Boolean(),
                               server_default='0', nullable=False),
@@ -182,19 +205,21 @@ def upgrade():
                     sa.PrimaryKeyConstraint('id')
                     )
     op.create_table('participates_in',
-                    sa.Column('tournament_id', sa.Integer(), nullable=False),
-                    sa.Column('team_id', sa.Integer(), nullable=False),
-                    sa.Column('placement', sa.Integer(), nullable=True),
-                    sa.Column('is_on_waiting_list',
-                              sa.Boolean(), nullable=False),
-                    sa.Column('has_played', sa.Boolean(),
-                              server_default='0', nullable=False),
-                    sa.Column('registration_order',
-                              sa.Integer(), nullable=False),
-                    sa.Column('is_deleted', sa.Boolean(),
-                              server_default='0', nullable=False),
                     sa.Column('created_at', sa.DateTime(),
                               server_default=sa.text('now()'), nullable=True),
+                    sa.Column('has_played', sa.Boolean(),
+                              server_default='0', nullable=False),
+                    sa.Column('is_deleted', sa.Boolean(),
+                              server_default='0', nullable=False),
+                    sa.Column('has_payed', sa.Boolean(),
+                              server_default='0', nullable=False),
+                    sa.Column('is_on_waiting_list',
+                              sa.Boolean(), nullable=False),
+                    sa.Column('placement', sa.Integer(), nullable=True),
+                    sa.Column('registration_order',
+                              sa.Integer(), nullable=False),
+                    sa.Column('team_id', sa.Integer(), nullable=False),
+                    sa.Column('tournament_id', sa.Integer(), nullable=False),
                     sa.ForeignKeyConstraint(['team_id'], ['teams.id'], ),
                     sa.ForeignKeyConstraint(['tournament_id'],
                                             ['tournaments.id'], ),
