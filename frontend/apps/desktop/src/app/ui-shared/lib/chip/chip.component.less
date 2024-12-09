@@ -1,6 +1,85 @@
-:host {
-  background-color: #DAEFF0;
+@import 'colors-desktop';
+
+.chip {
   padding: 0 20px;
   border-radius: 15px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  display: inline-block;
+}
+
+.white {
+  background-color: @color-bg-white;
+  color: @color-text-default;
+
+  &.isClickable:hover:not(.isClicked) {
+    background-color: @color-bg-white-hover;
+  }
+
+  &.isClicked {
+    background-color: @color-button-passive;
+  }
+
+  &.isClicked:hover {
+    background-color: @color-button-passive-hover;
+  }
+}
+
+.grey {
+  background-color: @color-bg-grey;
+  color: @color-text-default;
+
+  &.isClickable:hover:not(.isClicked) {
+    background-color: @color-bg-grey-hover;
+  }
+
+  &.isClicked {
+    background-color: @color-button-passive;
+  }
+
+  &.isClicked:hover {
+    background-color: @color-button-passive-hover;
+  }
+}
+
+.red {
+  background-color: @color-full;
+  color: @color-text-default;
+
+  &.isClickable:hover:not(.isClicked) {
+    background-color: @color-negative;
+  }
+
+  &.isClicked {
+    background-color: @color-red;
+    color: @color-text-white;
+  }
+
+  &.isClicked:hover {
+    background-color: @color-red-hover;
+    color: @color-text-white;
+  }
+}
+
+.light {
+  background-color: @color-bg-light;
+  color: @color-text-default;
+
+  &.isClickable:hover:not(.isClicked) {
+    background-color: @color-bg-light-hover;
+  }
+
+  &.isClicked {
+    background-color: @color-blue;
+    color: @color-text-white;
+  }
+
+  &.isClicked:hover {
+    background-color: @color-blue-hover;
+    color: @color-text-white;
+  }
+}
+
+.none {
+  background: none;
+  color: @color-text-default;
 }

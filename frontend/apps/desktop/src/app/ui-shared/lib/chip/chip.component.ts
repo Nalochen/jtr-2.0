@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { MatChipsModule } from '@angular/material/chips';
+
+import { ButtonColorEnum } from '../button/enums/color.enum';
 
 
 @Component({
@@ -11,4 +13,8 @@ import { MatChipsModule } from '@angular/material/chips';
   templateUrl: './chip.component.html',
   styleUrl: './chip.component.less',
 })
-export class ChipComponent {}
+export class ChipComponent {
+  @Input() public color: ButtonColorEnum = ButtonColorEnum.Light;
+  @Input() public isClickable = false;
+  @Input() public isClicked = false;
+}
