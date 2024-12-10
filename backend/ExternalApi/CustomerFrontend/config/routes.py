@@ -34,6 +34,7 @@ from ExternalApi.CustomerFrontend.InputFilter.LoginUserInputFilter import LoginU
 from ExternalApi.CustomerFrontend.InputFilter.UpdateTeamInputFilter import UpdateTeamInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.UpdateTournamentInputFilter import UpdateTournamentInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.UpdateUserInputFilter import UpdateUserInputFilter
+from config.limiter import limiter
 
 customer_frontend = Blueprint('customer-frontend', __name__)
 
@@ -126,6 +127,7 @@ def createTournament() -> Response:
 
 @customer_frontend.route('/login', methods=['POST'], endpoint='login')
 @LoginUserInputFilter.validate()
+@limiter.limit("5 per minute")
 def login() -> Response:
     return LoginUserHandler.handle()
 
