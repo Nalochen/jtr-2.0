@@ -13,6 +13,7 @@ export const registerForm = new FormGroup<{
   isNameVisible: FormControl<boolean>;
   password: FormControl<string>;
   username: FormControl<string>;
+  pronouns: FormControl<string>;
 }>(
   {
     birthdate: new FormControl(null),
@@ -46,6 +47,7 @@ export const registerForm = new FormGroup<{
       nonNullable: true,
       validators: [Validators.required, Validators.minLength(2)],
     }),
+    pronouns: new FormControl('', { nonNullable: true }),
   },
   { validators: PasswordsMatchValidator }
 );

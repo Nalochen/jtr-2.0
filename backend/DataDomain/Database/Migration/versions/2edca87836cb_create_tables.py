@@ -107,7 +107,7 @@ def upgrade():
                     sa.Column('birthdate_visibility',
                               sa.Boolean(), nullable=False),
                     sa.Column('picture', sa.String(length=255), nullable=True),
-                    sa.Column('pronoums', sa.String(
+                    sa.Column('pronouns', sa.String(
                         length=255), nullable=True),
                     sa.Column('city', sa.String(length=100), nullable=True),
                     sa.Column('city_visibility', sa.Boolean(), nullable=False),

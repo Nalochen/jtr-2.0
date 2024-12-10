@@ -81,7 +81,7 @@ class UpdateUserInputFilter(InputFilter):
         )
 
         self.add(
-            'pronoums',
+            'pronouns',
             required=False,
             filters=[
                 StringTrimFilter(),

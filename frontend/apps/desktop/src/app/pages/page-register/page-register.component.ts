@@ -15,7 +15,7 @@ import {
   ButtonTypeEnum,
   InfoButtonComponent,
 } from '../../ui-shared';
-import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
+import { VisibilityButtonComponent } from '../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

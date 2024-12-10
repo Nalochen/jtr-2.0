@@ -17,3 +17,5 @@ export * from './lib/store/states/user-details-data-store.slice';
 export * from './lib/store/states/user-details-data-store.state';
 
 export * from './lib/store/types/loading-state.type';
+
+export * from './lib/form-controls/edit-user-form.control';
