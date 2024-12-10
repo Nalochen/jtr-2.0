@@ -61,7 +61,7 @@ class UpdateUserHandler:
             return Response(status=500)
 
         accessToken = create_access_token(
-            identity=user.username
+            identity=user.id
         )
 
         return Response(
