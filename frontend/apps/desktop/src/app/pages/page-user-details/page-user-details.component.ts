@@ -55,4 +55,8 @@ export class PageUserDetailsComponent {
       '_self'
     )
   }
+
+  public addUserToTeam(): void {
+    window.alert('User added to team');
+  }
 }

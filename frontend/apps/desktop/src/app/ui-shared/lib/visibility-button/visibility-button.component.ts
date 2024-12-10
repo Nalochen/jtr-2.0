@@ -28,7 +28,6 @@ export class VisibilityButtonComponent implements OnInit {
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
   public ngOnInit(): void {
-    console.log(this.control());
     const controlValue = this.control().value;
 
     if(controlValue === null) {

@@ -93,8 +93,6 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
         } else {
           this.form.controls.birthdate.setValue('');
         }
-
-        console.log(this.form.controls.isCityVisible);
       }
     });
   }

@@ -58,6 +58,7 @@
     [color]="ButtonColorEnum.Red"
     [type]="ButtonTypeEnum.Raised"
     class="cta"
+    (click)="addUserToTeam()"
   >zu Team hinzufügen</app-button>
 } @else {
   <p>Benutzer nicht gefunden</p>

@@ -4,11 +4,17 @@
       <span class="material-icons-outlined">image</span>
       <h1>JTR 2.0</h1>
     </div>
-    <img
-      src="assets/svgs/progress-pride-flag.svg"
-      alt="Pride Flag"
-      width="50"
-      height="50">
+    <app-button
+      [type]="ButtonTypeEnum.Icon"
+      [color]="ButtonColorEnum.None"
+      (click)="prideFlag.toggle($event)"
+    >
+      <img
+        src="assets/svgs/progress-pride-flag.svg"
+        alt="Pride Flag"
+        width="50"
+        height="50">
+    </app-button>
   </div>
   <nav>
     <a
@@ -70,4 +76,11 @@
 
 <p-overlayPanel #login>
   <login-overlay [loginOverlayPanel]="login" />
+</p-overlayPanel>
+
+<p-overlayPanel #prideFlag>
+  <p>Jugger setzt sich immer stärker für seine Queeren Mitglieder ein.
+    So soll aus uns eine bunte und vielfältige Community werden,
+    in der alle Menschen willkommen sind.</p>
+    <a>Lies hierzu die Texte von Alex und Momo</a>
 </p-overlayPanel>
