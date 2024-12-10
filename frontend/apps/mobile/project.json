@@ -42,6 +42,7 @@
         ],
         "styles": [
           "apps/mobile/src/styles.less",
+          "node_modules/jtr-primeng-mo/jtr-primeng-mobile.css",
           {
             "input": "apps/mobile/src/assets/styles/material-theme.scss"
           }

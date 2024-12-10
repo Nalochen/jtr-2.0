@@ -44,6 +44,8 @@
     "@ngrx/store": "^18.1.1",
     "@ngx-translate/core": "^16.0.3",
     "@ngx-translate/http-loader": "^16.0.0",
+    "jtr-primeng-desktop": "^18.0.1",
+    "jtr-primeng-mobile": "^18.0.1",
     "material-design-icons": "^3.0.1",
     "moment-timezone": "^0.5.46",
     "ngrx-store-localstorage": "^18.0.0",
