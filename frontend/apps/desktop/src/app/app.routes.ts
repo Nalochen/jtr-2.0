@@ -15,6 +15,7 @@ import { PageCreateTournamentComponent } from './pages/page-create-tournament/pa
 import { PageEnterResultsComponent } from './pages/page-enter-results/page-enter-results.component';
 import { PageManageTeamDetailsComponent } from './pages/page-manage-team/page-manage-team-details.component';
 import { PageManageTournamentComponent } from './pages/page-manage-tournament/page-manage-tournament.component';
+import { PageManageUserDetailsComponent } from './pages/page-manage-user-details/page-manage-user-details.component';
 import { PageOutlineDemoComponent } from './pages/page-outline-demo/page-outline-demo.component';
 import { PageRegisterComponent } from './pages/page-register/page-register.component';
 import { PageTeamDetailsComponent } from './pages/page-team-details/page-team-details.component';
@@ -23,7 +24,6 @@ import { PageTournamentDetailsComponent } from './pages/page-tournament-details/
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
 import { SwaggerViewComponent } from './pages/swagger-view/swagger-view.component';
-import { PageManageUserDetailsComponent } from './pages/page-manage-user-details/page-manage-user-details.component';
 
 export const appRoutes: Route[] = [
   {

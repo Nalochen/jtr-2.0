@@ -1,20 +1,25 @@
 import {CommonModule} from '@angular/common';
 import { Component } from '@angular/core';
+
 import { Observable } from 'rxjs';
+
 import { Store } from '@ngrx/store';
+
 import { userDetailsSelector } from '@jtr/business-domain/user';
 import { UserData} from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
+
 import { AuthService } from '../../business-rules/auth/auth.service';
+
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonJustifyContentEnum,
+  ButtonTypeEnum,
+DataContainerComponent,
+  DataContainerRowComponent} from '../../ui-shared';
 import { PageUserDetailsHeaderComponent } from './page-user-details-header/page-user-details-header.component';
 import { TranslatePipe } from '@ngx-translate/core';
-import {
-  ButtonComponent,
-  ButtonTypeEnum,
-  ButtonColorEnum,
-  ButtonJustifyContentEnum,
-  DataContainerRowComponent, DataContainerComponent
-} from '../../ui-shared';
 
 @Component({
   standalone: true,

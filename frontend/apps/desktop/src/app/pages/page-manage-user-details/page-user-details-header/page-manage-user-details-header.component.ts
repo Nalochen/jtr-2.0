@@ -1,10 +1,12 @@
 import {CommonModule} from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
 import {
   EditUserForm,
 } from '@jtr/business-domain/user';
-import { FormGroup } from '@angular/forms';
-import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum, InfoButtonComponent } from '../../../ui-shared';
+
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum, InfoButtonComponent } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 

@@ -1,26 +1,31 @@
 import {CommonModule} from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { Observable, Subject, takeUntil } from 'rxjs';
+
 import { Store } from '@ngrx/store';
+
 import { userDetailsSelector } from '@jtr/business-domain/user';
-import { UserData} from '@jtr/data-domain/store';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { AuthService } from '../../business-rules/auth/auth.service';
-import { PageManageUserDetailsHeaderComponent } from './page-user-details-header/page-manage-user-details-header.component';
-import { TranslatePipe } from '@ngx-translate/core';
 import {
   editUserFormControl
 } from '@jtr/business-domain/user';
+import { UserData} from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
+
+import { AuthService } from '../../business-rules/auth/auth.service';
+
 import {
-  ButtonComponent,
-  ButtonTypeEnum,
   ButtonColorEnum,
-  InfoButtonComponent,
-  ButtonJustifyContentEnum,
+  ButtonComponent,
   ButtonFunctionType,
+  ButtonJustifyContentEnum,
+  ButtonTypeEnum,
+  InfoButtonComponent,
   VisibilityButtonComponent
 } from '../../ui-shared';
-import { ReactiveFormsModule } from '@angular/forms';
+import { PageManageUserDetailsHeaderComponent } from './page-user-details-header/page-manage-user-details-header.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -110,11 +115,11 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
   }
 
   public onFoundNewTeam(): void {
-    window.alert("Found new team");
+    window.alert('Found new team');
   }
 
   public onDeleteAccount(): void {
-    window.alert("Delete Account");
+    window.alert('Delete Account');
   }
 
   public onSubmit() {
