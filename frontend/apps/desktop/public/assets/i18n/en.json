@@ -58,7 +58,9 @@
     "register": "Register",
     "email-or-username": "E-Mail or Username",
     "password": "Password",
-    "login": "Login"
+    "login": "Login",
+    "locked-permanently": "The password was wrong too many times, check your emails to reset your password.",
+    "locked-temporarily": "The password was wrong too many times, try again in"
   },
   "register": {
     "welcome": "Welcome",
@@ -140,5 +142,12 @@
     "manage-teams": "Manage Teams",
     "save": "Save",
     "publish-tournament": "Publish Tournament"
-  }
+  },
+  "seconds": "seconds",
+  "minutes": "minutes",
+  "hours": "hours",
+  "days": "days",
+  "weeks": "weeks",
+  "months": "months",
+  "years": "jears"
 }

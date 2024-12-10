@@ -1,9 +1,15 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export const loginFormControl = new FormGroup<{
-  emailOrUsername: FormControl<string | null>;
-  password: FormControl<string | null>;
+  emailOrUsername: FormControl<string>;
+  password: FormControl<string>;
 }>({
-  emailOrUsername: new FormControl('', [Validators.required]),
-  password: new FormControl('', [Validators.required]),
+  emailOrUsername: new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required],
+  }),
+  password: new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required],
+  }),
 });
