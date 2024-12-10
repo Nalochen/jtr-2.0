@@ -1,5 +1,4 @@
-<h1>{{ 'register.welcome' | translate }}</h1>
-<h3>{{ 'register.register' | translate }}</h3>
+<page-manage-user-details-header [form]="form" [isLoggedIn$]="isLoggedIn$" />
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="email">
@@ -47,47 +46,6 @@
     } @if ((form.controls.username.dirty || form.controls.username.touched) &&
     form.controls.username.hasError('minlength')) {
     <p class="error-message">{{ 'register.username-min' | translate }}</p>
-    }
-  </div>
-
-  <div class="password">
-    <label for="password">{{ 'register.password' | translate }}</label>
-    <input
-      type="password"
-      class="form-control"
-      [formControl]="form.controls.password"
-      id="password"
-      [class.invalid]="
-        form.get('password')?.invalid &&
-        (form.controls.password.dirty || form.controls.password.touched)
-      "
-    />
-    @if ((form.controls.password.dirty || form.controls.password.touched) &&
-    form.controls.password.hasError('required')) {
-    <p class="error-message">{{ 'register.password-required' | translate }}</p>
-    } @if ((form.controls.password.dirty || form.controls.password.touched) &&
-    form.controls.password.hasError('minlength')) {
-    <p class="error-message">{{ 'register.password-min' | translate }}</p>
-    }
-  </div>
-
-  <div class="password-repeat">
-    <label for="confirmPassword">{{ 'register.password-confirmation' | translate }}</label>
-    <input
-      type="password"
-      class="form-control"
-      [formControl]="form.controls.confirmPassword"
-      id="confirmPassword"
-      [class.invalid]="
-        (form.controls.confirmPassword.dirty ||
-          form.controls.confirmPassword.touched) &&
-        form.hasError('passwordsMismatch')
-      "
-    />
-    @if ((form.controls.confirmPassword.dirty ||
-    form.controls.confirmPassword.touched) &&
-    form.hasError('passwordsMismatch')) {
-    <p class="error-message">{{ 'register.password-confirmation-mismatch' | translate }}</p>
     }
   </div>
 
@@ -169,8 +127,57 @@
     class="birthdate-button"
     [control]="form.controls.isBirthdateVisible"
   />
-
-  <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" [buttonType]="ButtonFunctionType.SUBMIT" [disabled]="!form.valid" class="register-button">
-    <p>{{ 'register.register-button' | translate }}</p>
-  </app-button>
 </form>
+
+
+  @let user = user$ | async;
+  @if (user?.teams) {
+  <h4>Teams:</h4>
+  @for (team of user?.teams; track team.id) {
+  <app-button
+    [color]="ButtonColorEnum.Grey"
+    [type]="ButtonTypeEnum.Raised"
+    [fullWidth]="true"
+    [justifyContent]="ButtonJustifyContentEnum.FLEX_START"
+    (click)="navigateToTeam(team.id)"
+    class="team-button"
+  >
+    <div class="team">
+      <img
+        id="logo"
+        alt="Logo of {{ team.name }}"
+        src="{{ team.logo }}"
+        height="30"
+        width="30"
+      >
+      <p>{{ team.name }}</p>
+    </div>
+  </app-button>
+  } @empty {
+  <p>Keine Teams vorhanden</p>
+  }
+  } @else {
+  <p>Keine Teams vorhanden</p>
+  }
+
+<div class="cta">
+  <app-button
+    [color]="ButtonColorEnum.White"
+    [type]="ButtonTypeEnum.Raised"
+    [fullWidth]="true"
+    (click)="onFoundNewTeam()"
+  >Team gründen</app-button>
+  <app-button
+    [color]="ButtonColorEnum.White"
+    [type]="ButtonTypeEnum.Raised"
+    [fullWidth]="true"
+    (click)="onDeleteAccount()"
+  >Account löschen</app-button>
+  <app-button
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Raised"
+    [fullWidth]="true"
+    [buttonType]="ButtonFunctionTypeEnum.SUBMIT"
+  >speichern</app-button>
+</div>
+
