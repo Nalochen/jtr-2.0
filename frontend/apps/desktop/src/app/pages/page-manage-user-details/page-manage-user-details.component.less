@@ -1,11 +1,16 @@
 @import 'colors-desktop';
 
+:host {
+  display: block;
+  padding-bottom: 48px;
+}
+
 form {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 32px;
   grid-template-rows: auto;
-  grid-template-areas: 'email .' 'username .' 'password .' 'password-repeat .' 'name name-button' 'pronouns .' 'city city-button' 'birthdate birthdate-button' 'register-button register-button';
+  grid-template-areas: 'email .' 'username .' 'name name-button' 'pronouns .' 'city city-button' 'birthdate birthdate-button' 'register-button register-button';
   grid-column-gap: 48px;
   grid-row-gap: 24px;
   align-items: end;
@@ -90,4 +95,31 @@ input {
 .error-message {
   margin-top: 4px !important;
   color: @color-red;
+}
+
+img {
+  border-radius: 50%;
+}
+
+.team {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  padding: 4px;
+}
+
+.team-button {
+  &:not(:last-of-type) {
+    margin-bottom: 16px;
+  }
+}
+
+.cta {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  gap: 16px;
+  margin-top: 24px;
 }

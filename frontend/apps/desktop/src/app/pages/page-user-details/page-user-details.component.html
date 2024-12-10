@@ -1,1 +1,65 @@
-<h1>Works!</h1>
+@let user = user$ | async;
+
+@if (!!user) {
+  <page-user-details-header [user]="user" />
+
+  @if (user?.isCityVisible && user?.isBirthdateVisible) {
+    <app-data-container>
+      @if (user?.isCityVisible) {
+        <app-data-container-row>
+          <div ngProjectAs="container-headline" class="city">
+            <h4>Stadt:</h4>
+            <p>{{user.city}}</p>
+          </div>
+        </app-data-container-row>
+      }
+
+      @if (user?.isBirthdateVisible) {
+        <app-data-container-row>
+          <div class="birthdate" ngProjectAs="container-headline">
+            <h4>Geburtstag:</h4>
+            <p>{{user.birthdate | date : 'dd.MM.yyyy'}}</p>
+          </div>
+        </app-data-container-row>
+      }
+    </app-data-container>
+  }
+
+  @if (user?.teams) {
+    <h4>Teams:</h4>
+    @for (team of user?.teams; track team.id) {
+      <app-button
+        [color]="ButtonColorEnum.Grey"
+        [type]="ButtonTypeEnum.Raised"
+        [fullWidth]="true"
+        [justifyContent]="ButtonJustifyContentEnum.FLEX_START"
+        (click)="navigateToTeam(team.id)"
+        class="team-button"
+      >
+        <div class="team">
+          <img
+            id="logo"
+            alt="Logo of {{ team.name }}"
+            src="{{ team.logo }}"
+            height="30"
+            width="30"
+          >
+          <p>{{ team.name }}</p>
+        </div>
+      </app-button>
+    } @empty {
+      <p>Keine Teams vorhanden</p>
+    }
+  } @else {
+    <p>Keine Teams vorhanden</p>
+  }
+
+  <app-button
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Raised"
+    class="cta"
+    (click)="addUserToTeam()"
+  >zu Team hinzufügen</app-button>
+} @else {
+  <p>Benutzer nicht gefunden</p>
+}

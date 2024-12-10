@@ -44,9 +44,9 @@ class UpdateUserHandler:
         if name is not None:
             user.name = name
 
-        pronoums = data.get('pronoums')
-        if pronoums is not None:
-            user.pronoums = pronoums
+        pronouns = data.get('pronouns')
+        if pronouns is not None:
+            user.pronouns = pronouns
 
         picture = data.get('picture')
         if picture is not None:
