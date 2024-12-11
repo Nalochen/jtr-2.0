@@ -143,6 +143,21 @@
     "save": "Speichern",
     "publish-tournament": "Turnier veröffentlichen"
   },
+  "manage-tournament": {
+    "manage-touranment": "Turnier verwalten",
+    "send-mail": "E-Mail an teilnehmende Teams versenden",
+    "subject": "Betreff",
+    "recipient": "Empfänger",
+    "all-teams": "Alle Teams",
+    "registered-teams": "Angemeldete Teams",
+    "waiting-teams": "Vorgemerkte Teams",
+    "not-payed-yet": "noch nicht bezahlt",
+    "single-teams": "Einzelne Teams",
+    "send": "Senden",
+    "edit-teams": "Teams verwalten",
+    "enter-results": "Ergebnisse eingeben",
+    "edit-tournament": "Infos bearbeiten"
+  },
   "seconds": "Sekunden",
   "minutes": "Minuten",
   "hours": "Stunden",
