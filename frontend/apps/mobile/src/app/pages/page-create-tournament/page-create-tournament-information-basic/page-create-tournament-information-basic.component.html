@@ -1,0 +1,69 @@
+<div [formGroup]="form">
+  <app-data-container-row>
+    <div class="headline" ngProjectAs="container-headline">
+      <h3>{{ 'create-tournament.name' | translate }}</h3>
+      <input
+        pInputText
+        type="text"
+        [formControl]="form.controls.name"
+      >
+    </div>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <div class="headline" ngProjectAs="container-headline">
+      <h3>{{ 'create-tournament.tournament-dates' | translate }}</h3>
+      <div class="dates-input">
+        <input
+          pInputText
+          type="date"
+          [formControl]="form.controls.tournamentStartDate"
+        >
+        <p class="minus">-</p>
+        <input
+          pInputText
+          type="date"
+          [formControl]="form.controls.tournamentEndDate"
+        >
+      </div>
+    </div>
+    <app-info-button ngProjectAs="container-additional">
+      <p>{{ 'create-tournament.tournament-dates-info' | translate }}</p>
+    </app-info-button>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
+    <div class="headline" ngProjectAs="container-headline">
+      <h3>{{ 'create-tournament.arrival-dates' | translate }}</h3>
+      <div class="dates-input">
+        <input
+          pInputText
+          type="date"
+          [formControl]="form.controls.arrivalStartDate"
+        >
+        <p class="minus">-</p>
+        <input
+          pInputText
+          type="date"
+          [formControl]="form.controls.arrivalEndDate"
+        >
+      </div>
+    </div>
+    <app-info-button ngProjectAs="container-additional">
+      <p>{{ 'create-tournament.arrival-dates-info' | translate }}</p>
+    </app-info-button>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
+    <div class="headline" ngProjectAs="container-headline">
+      <h3>{{ 'create-tournament.address' | translate }}</h3>
+      <input
+        pInputText
+        type="text"
+        [formControl]="form.controls.address"
+      >
+    </div>
+  </app-data-container-row>
+</div>
