@@ -2,12 +2,12 @@ import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../../ui-shared';
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../index';
 import { TranslatePipe } from '@ngx-translate/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
-  selector: 'visibility-button',
+  selector: 'app-visibility-button',
   standalone: true,
   imports: [
     CommonModule,
