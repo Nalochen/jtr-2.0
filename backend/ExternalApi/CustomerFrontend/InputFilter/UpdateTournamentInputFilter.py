@@ -7,10 +7,12 @@ from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import TournamentFoodN
 from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import TournamentRegistrationProcedureTypesEnum
 from Infrastructure.InputFilter.Enum.RegexEnum import ISO_DATE_REGEX
 from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
+from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
 from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
 from Infrastructure.InputFilter.Validator.InEnumValidator import InEnumValidator
+from Infrastructure.InputFilter.Validator.IsArrayValidator import IsArrayValidator
 from Infrastructure.InputFilter.Validator.IsInstanceValidator import IsInstanceValidator
 from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
 
@@ -26,25 +28,24 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'tournamentId',
             required=True,
-            filters=[ToIntFilter(), ToNullFilter()]
+            filters=[ToIntFilter()]
         )
 
         self.add(
             'additionalInformation',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter()]
         )
 
         self.add(
             'name',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter()]
         )
 
         self.add(
             'startDate',
             required=True,
-            filters=[ToNullFilter()],
             validators=[
                 RegexValidator(
                     ISO_DATE_REGEX,
@@ -56,7 +57,6 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'endDate',
             required=True,
-            filters=[ToNullFilter()],
             validators=[
                 RegexValidator(
                     ISO_DATE_REGEX,
@@ -92,19 +92,19 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'address',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter()]
         )
 
         self.add(
             'possibleSpace',
             required=True,
-            filters=[ToIntFilter(), ToNullFilter()]
+            filters=[ToIntFilter()]
         )
 
         self.add(
             'registrationProcedureType',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
             validators=[
                 InEnumValidator(
                     TournamentRegistrationProcedureTypesEnum
@@ -121,7 +121,7 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'registrationStartDate',
             required=True,
-            filters=[ToNullFilter()],
+            filters=[StringTrimFilter()],
             validators=[
                 RegexValidator(
                     ISO_DATE_REGEX,
@@ -133,7 +133,7 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'registrationCosts',
             required=True,
-            filters=[ToIntFilter(), ToNullFilter()]
+            filters=[ToIntFilter()]
         )
 
         self.add(
@@ -150,7 +150,7 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'depositCosts',
             required=True,
-            filters=[ToIntFilter(), ToNullFilter()]
+            filters=[ToIntFilter()]
         )
 
         self.add(
@@ -167,7 +167,7 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'accommodationCosts',
             required=True,
-            filters=[ToIntFilter(), ToNullFilter()]
+            filters=[ToIntFilter()]
         )
 
         self.add(
@@ -184,7 +184,7 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'guestCosts',
             required=True,
-            filters=[ToIntFilter(), ToNullFilter()]
+            filters=[ToIntFilter()]
         )
 
         self.add(
@@ -207,7 +207,7 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'deadlines',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
         )
 
         self.add(
@@ -219,18 +219,13 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'contacts',
             required=True,
-            filters=[ToNullFilter()],
-            validators=[
-                IsInstanceValidator(
-                    list
-                )
-            ]
+            validators=[IsArrayValidator()],
         )
 
         self.add(
             'accommodationType',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
             validators=[
                 InEnumValidator(
                     TournamentAccommodationTypesEnum
@@ -241,13 +236,13 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'accommodationLocation',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
         )
 
         self.add(
             'foodMorning',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
             validators=[
                 InEnumValidator(
                     TournamentFoodMorningTypesEnum
@@ -258,7 +253,7 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'foodNoon',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
             validators=[
                 InEnumValidator(
                     TournamentFoodNoonTypesEnum
@@ -269,7 +264,7 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'foodEvening',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
             validators=[
                 InEnumValidator(
                     TournamentFoodEveningTypesEnum
@@ -280,7 +275,7 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'foodGastro',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
             validators=[
                 InEnumValidator(
                     TournamentFoodGastroTypesEnum
@@ -291,61 +286,61 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'tournamentSystemText',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
         )
 
         self.add(
             'tournamentSystemUrl',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
         )
 
         self.add(
             'pompfCheckText',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
         )
 
         self.add(
             'pompfCheckUrl',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
         )
 
         self.add(
             'houseRulesText',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
         )
 
         self.add(
             'houseRulesUrl',
             required=True,
-            filters=[StringTrimFilter(), ToNullFilter()],
+            filters=[StringTrimFilter()],
         )
 
         self.add(
             'studdedShoesAllowed',
             required=True,
-            filters=[ToIntFilter(), ToNullFilter()],
+            filters=[ToBoolFilter()],
         )
 
         self.add(
             'cleatsShoesAllowed',
             required=True,
-            filters=[ToIntFilter(), ToNullFilter()],
+            filters=[ToBoolFilter()],
         )
 
         self.add(
             'camShoesAllowed',
             required=True,
-            filters=[ToIntFilter(), ToNullFilter()],
+            filters=[ToBoolFilter()],
         )
 
         self.add(
             'barefootAllowed',
             required=True,
-            filters=[ToIntFilter(), ToNullFilter()],
+            filters=[ToBoolFilter()],
         )
 
         self.add(

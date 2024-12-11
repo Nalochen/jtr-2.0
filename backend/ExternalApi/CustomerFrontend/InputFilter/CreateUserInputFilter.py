@@ -31,10 +31,7 @@ class CreateUserInputFilter(InputFilter):
         self.add(
             'isBirthdateVisible',
             required=True,
-            filters=[
-                ToBoolFilter(),
-                ToNullFilter()
-            ]
+            filters=[ToBoolFilter()]
         )
 
         self.add(
@@ -49,10 +46,7 @@ class CreateUserInputFilter(InputFilter):
         self.add(
             'isCityVisible',
             required=True,
-            filters=[
-                ToBoolFilter(),
-                ToNullFilter()
-            ]
+            filters=[ToBoolFilter()]
         )
 
         self.add(
@@ -82,26 +76,19 @@ class CreateUserInputFilter(InputFilter):
         self.add(
             'isNameVisible',
             required=True,
-            filters=[
-                ToBoolFilter(),
-                ToNullFilter()
-            ]
+            filters=[ToBoolFilter()]
         )
 
         self.add(
             'password',
             required=True,
-            filters=[
-                StringTrimFilter(),
-                ToNullFilter()
-            ]
+            filters=[StringTrimFilter()]
         )
 
         self.add(
             'username',
             required=True,
             filters=[
-                StringTrimFilter(),
-                ToNullFilter()
+                StringTrimFilter()
             ]
         )

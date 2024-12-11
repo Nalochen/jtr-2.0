@@ -4,6 +4,7 @@ from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
 from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
+from Infrastructure.InputFilter.Validator.IsArrayValidator import IsArrayValidator
 from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
 
 
@@ -74,4 +75,6 @@ class UpdateTeamInputFilter(InputFilter):
         self.add(
             'contacts',
             required=False,
+            filters=[ToNullFilter()],
+            validators=[IsArrayValidator()],
         )

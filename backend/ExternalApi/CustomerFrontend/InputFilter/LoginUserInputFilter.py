@@ -41,7 +41,6 @@ class LoginUserInputFilter(InputFilter):
             'password',
             required=True,
             filters=[
-                StringTrimFilter(),
-                ToNullFilter()
+                StringTrimFilter()
             ]
         )

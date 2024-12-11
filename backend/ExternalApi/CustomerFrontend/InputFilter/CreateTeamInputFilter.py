@@ -2,6 +2,7 @@ from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
 from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
+from Infrastructure.InputFilter.Validator.IsArrayValidator import IsArrayValidator
 
 
 class CreateTeamInputFilter(InputFilter):
@@ -14,8 +15,8 @@ class CreateTeamInputFilter(InputFilter):
 
         self.add(
             'name',
-            required=False,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            required=True,
+            filters=[StringTrimFilter()]
         )
 
         self.add(
@@ -27,7 +28,7 @@ class CreateTeamInputFilter(InputFilter):
         self.add(
             'isMixTeam',
             required=False,
-            filters=[ToBoolFilter()]
+            filters=[ToBoolFilter(), ToNullFilter()]
         )
 
         self.add(
@@ -45,4 +46,6 @@ class CreateTeamInputFilter(InputFilter):
         self.add(
             'contacts',
             required=False,
+            filters=[ToNullFilter()],
+            validators=[IsArrayValidator()],
         )
