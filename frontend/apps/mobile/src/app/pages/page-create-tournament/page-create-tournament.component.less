@@ -1,19 +1,21 @@
+@import 'colors-mobile';
+
 :host {
   padding-bottom: 32px;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-gap: 32px;
-  grid-template-areas: "header header" "navigation form";
+  display: block;
+  background-color: @color-bg-light;
 }
 
-h1 {
-  grid-area: header;
-}
-
-page-create-tournament-navigation {
-  grid-area: navigation;
+.header {
+  background-color: @color-blue;
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+  width: 100%;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 32px;
 }
 
 form {
-  grid-area: form;
+  padding: 0 8px;
 }

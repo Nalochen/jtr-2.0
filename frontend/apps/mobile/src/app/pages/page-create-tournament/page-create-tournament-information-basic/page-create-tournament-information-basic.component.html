@@ -1,31 +1,28 @@
 <div [formGroup]="form">
   <app-data-container-row>
-    <div class="headline" ngProjectAs="container-headline">
-      <h3>{{ 'create-tournament.name' | translate }}</h3>
-      <input
-        pInputText
-        type="text"
-        [formControl]="form.controls.name"
-      >
-    </div>
+    <p class="headline" ngProjectAs="container-headline">{{ 'create-tournament.name' | translate }}</p>
+    <input
+      pInputText
+      type="text"
+      [formControl]="form.controls.name"
+      ngProjectAs="container-content"
+    >
   </app-data-container-row>
 
   <app-data-container-row>
-    <div class="headline" ngProjectAs="container-headline">
-      <h3>{{ 'create-tournament.tournament-dates' | translate }}</h3>
-      <div class="dates-input">
-        <input
-          pInputText
-          type="date"
-          [formControl]="form.controls.tournamentStartDate"
-        >
-        <p class="minus">-</p>
-        <input
-          pInputText
-          type="date"
-          [formControl]="form.controls.tournamentEndDate"
-        >
-      </div>
+    <p class="headline" ngProjectAs="container-headline">{{ 'create-tournament.tournament-dates' | translate }}</p>
+    <div ngProjectAs="container-content" class="dates-input">
+      <input
+        pInputText
+        type="date"
+        [formControl]="form.controls.tournamentStartDate"
+      >
+      <p class="minus">-</p>
+      <input
+        pInputText
+        type="date"
+        [formControl]="form.controls.tournamentEndDate"
+      >
     </div>
     <app-info-button ngProjectAs="container-additional">
       <p>{{ 'create-tournament.tournament-dates-info' | translate }}</p>
@@ -33,22 +30,22 @@
   </app-data-container-row>
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
     <div class="headline" ngProjectAs="container-headline">
-      <h3>{{ 'create-tournament.arrival-dates' | translate }}</h3>
-      <div class="dates-input">
-        <input
-          pInputText
-          type="date"
-          [formControl]="form.controls.arrivalStartDate"
-        >
-        <p class="minus">-</p>
-        <input
-          pInputText
-          type="date"
-          [formControl]="form.controls.arrivalEndDate"
-        >
-      </div>
+      <span class="material-icons-outlined">location_on</span>
+      <p>{{ 'create-tournament.arrival-dates' | translate }}</p>
+    </div>
+    <div class="dates-input" ngProjectAs="container-content">
+      <input
+        pInputText
+        type="date"
+        [formControl]="form.controls.arrivalStartDate"
+      >
+      <p class="minus">-</p>
+      <input
+        pInputText
+        type="date"
+        [formControl]="form.controls.arrivalEndDate"
+      >
     </div>
     <app-info-button ngProjectAs="container-additional">
       <p>{{ 'create-tournament.arrival-dates-info' | translate }}</p>
@@ -56,14 +53,15 @@
   </app-data-container-row>
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
     <div class="headline" ngProjectAs="container-headline">
-      <h3>{{ 'create-tournament.address' | translate }}</h3>
-      <input
-        pInputText
-        type="text"
-        [formControl]="form.controls.address"
-      >
+      <span class="material-icons-outlined">location_on</span>
+      <p>{{ 'create-tournament.address' | translate }}</p>
     </div>
+    <input
+      ngProjectAs="container-content"
+      pInputText
+      type="text"
+      [formControl]="form.controls.address"
+    >
   </app-data-container-row>
 </div>

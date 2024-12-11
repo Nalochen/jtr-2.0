@@ -1,9 +1,9 @@
 .headline {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   width: 100%;
   align-items: center;
+  gap: 4px;
 }
 
 input {
@@ -12,11 +12,15 @@ input {
 
 .food {
   display: grid;
-  grid-template-columns: 10rem 1fr;
+  grid-template-columns: 6rem 1fr;
   grid-row-gap: 8px;
   align-items: center;
 }
 
 ::ng-deep .p-dropdown {
   width: 100%;
+}
+
+.material-icons-outlined {
+  font-size: 20px;
 }

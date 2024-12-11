@@ -1,21 +1,25 @@
 <div [formGroup]="form">
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
     <div class="headline" ngProjectAs="container-headline">
-      <h3>{{ 'create-tournament.accommodation' | translate }}</h3>
-      <p-selectButton
-        [options]="accommodationTypeOptions"
-        [formControl]="form.controls.accommodationType"
-        optionLabel="label"
-        optionValue="value"
-      />
+      <span class="material-icons-outlined">location_on</span>
+      <p>{{ 'create-tournament.accommodation' | translate }}</p>
     </div>
+    <p-selectButton
+      ngProjectAs="container-content"
+      [options]="accommodationTypeOptions"
+      [formControl]="form.controls.accommodationType"
+      optionLabel="label"
+      optionValue="value"
+    />
   </app-data-container-row>
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
-    <h3 ngProjectAs="container-headline">{{ 'create-tournament.accommodation-address' | translate }}</h3>
+    <div class="headline" ngProjectAs="container-headline">
+      <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
+      <p ngProjectAs="container-headline">{{ 'create-tournament.accommodation-address' | translate }}</p>
+    </div>
     <input
+      ngProjectAs="container-content"
       class="registration-procedure-input"
       ngProjectAs="container-content"
       pInputText
@@ -25,22 +29,24 @@
   </app-data-container-row>
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">location_on</span>
-    <h3 ngProjectAs="container-headline">{{ 'create-tournament.food' | translate }}</h3>
+    <div class="food" ngProjectAs="container-headline">
+      <span class="material-icons-outlined">location_on</span>
+      <p>{{ 'create-tournament.food' | translate }}</p>
+    </div>
     <div class="food" ngProjectAs="container-content">
-      <h5>{{ 'create-tournament.breakfast' | translate }}</h5>
+      <p>{{ 'create-tournament.breakfast' | translate }}</p>
       <p-dropdown
         [formControl]="form.controls.food.controls.breakfast"
         [options]="breakfastAvailabilityOptions" />
-      <h5>{{ 'create-tournament.lunch' | translate }}</h5>
+      <p>{{ 'create-tournament.lunch' | translate }}</p>
       <p-dropdown
         [formControl]="form.controls.food.controls.lunch"
         [options]="lunchAvailabilityOptions" />
-      <h5>{{ 'create-tournament.dinner' | translate }}</h5>
+      <p>{{ 'create-tournament.dinner' | translate }}</p>
       <p-dropdown
         [formControl]="form.controls.food.controls.dinner"
         [options]="dinnerAvailabilityOptions" />
-      <h5>{{ 'create-tournament.gastronomy' | translate }}</h5>
+      <p>{{ 'create-tournament.gastronomy' | translate }}</p>
       <p-dropdown
         [formControl]="form.controls.food.controls.gastronomy"
         [options]="gastronomyAvailabilityOptions" />

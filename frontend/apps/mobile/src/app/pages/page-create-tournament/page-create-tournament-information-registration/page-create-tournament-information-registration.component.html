@@ -1,34 +1,30 @@
 <div [formGroup]="form">
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon"
-      >edit</span
-    >
     <div class="headline" ngProjectAs="container-headline">
-      <h3>{{ 'create-tournament.count-teams' | translate }}</h3>
-      <div class="align-end">
-        <p-selectButton
-          [options]="teamCountOptions"
-          formControlName="teamCountButton"
-          optionLabel="label"
-          optionValue="value"
-        />
-        <input
-          class="total-count-teams-input"
-          pInputText
-          type="number"
-          [formControl]="form.controls.teamCountField"
-        />
-      </div>
+      <span class="material-icons-outlined">edit</span>
+      <p>{{ 'create-tournament.count-teams' | translate }}</p>
+    </div>
+    <div class="align-end" ngProjectAs="container-content">
+      <p-selectButton
+        [options]="teamCountOptions"
+        formControlName="teamCountButton"
+        optionLabel="label"
+        optionValue="value"
+      />
+      <input
+        class="total-count-teams-input"
+        pInputText
+        type="number"
+        [formControl]="form.controls.teamCountField"
+      />
     </div>
   </app-data-container-row>
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon"
-      >edit</span
-    >
-    <h3 ngProjectAs="container-headline">
-      {{ 'create-tournament.registration-procedure' | translate }}
-    </h3>
+    <div class="headline" ngProjectAs="container-headline">
+      <span class="material-icons-outlined">edit</span>
+      <p>{{ 'create-tournament.registration-procedure' | translate }}</p>
+    </div>
     <p-selectButton
       ngProjectAs="container-content"
       [options]="registrationProcedureOptions"
@@ -46,128 +42,128 @@
   </app-data-container-row>
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon"
-      >edit</span
-    >
     <div class="headline" ngProjectAs="container-headline">
-      <h3>{{ 'create-tournament.registration-start' | translate }}</h3>
-      <div class="align-end">
-        <input
-          class="registration-start-input"
-          pInputText
-          type="date"
-          [formControl]="form.controls.registrationStartDate"
-          value="{{
-            form.controls.registrationStartDate.value | date : 'yyyy-MM-dd'
-          }}"
-        />
-        <app-button
-          [color]="ButtonColorEnum.Red"
-          [type]="ButtonTypeEnum.Raised"
-          (click)="onOpenRegistrationNow()"
-        >
-          {{ 'create-tournament.now' | translate }}
-        </app-button>
-      </div>
+      <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
+      <p>{{ 'create-tournament.registration-start' | translate }}</p>
+    </div>
+    <div class="align-end" ngProjectAs="container-content">
+      <input
+        class="registration-start-input"
+        pInputText
+        type="date"
+        [formControl]="form.controls.registrationStartDate"
+        value="{{
+          form.controls.registrationStartDate.value | date : 'yyyy-MM-dd'
+        }}"
+      />
+      <app-button
+        [color]="ButtonColorEnum.Red"
+        [type]="ButtonTypeEnum.Raised"
+        (click)="onOpenRegistrationNow()"
+      >
+        {{ 'create-tournament.now' | translate }}
+      </app-button>
     </div>
   </app-data-container-row>
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon"
-      >edit</span
-    >
-    <h3 ngProjectAs="container-headline">
-      {{ 'create-tournament.costs' | translate }}
-    </h3>
+    <div class="headline costs-headline" ngProjectAs="container-headline">
+      <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
+      <p>{{ 'create-tournament.costs' | translate }}</p>
+    </div>
     <div class="cost-inputs" ngProjectAs="container-content">
-      <h5 class="registration-header">
+      <p class="costs-header">
         {{ 'create-tournament.registration' | translate }}
-      </h5>
-      <input
-        class="registration-input"
-        pInputText
-        type="number"
-        [formControl]="form.controls.costs.controls.registrationCosts"
-      />
-      <p-selectButton
-        class="registration-input-type"
-        [options]="pricingTypeOptions"
-        [formControl]="form.controls.costs.controls.registrationCostsType"
-        optionLabel="label"
-        optionValue="value"
-      />
+      </p>
+      <div class="costs-content">
+        <p-inputNumber
+          class="registration-input"
+          type="number"
+          [formControl]="form.controls.costs.controls.registrationCosts"
+        />
+        <p-selectButton
+          class="registration-input-type"
+          [options]="pricingTypeOptions"
+          [formControl]="form.controls.costs.controls.registrationCostsType"
+          optionLabel="label"
+          optionValue="value"
+        />
+      </div>
 
-      <h5 class="deposit-header">
+      <p class="costs-header">
         {{ 'create-tournament.deposit' | translate }}
-      </h5>
-      <input
-        class="deposit-input"
-        pInputText
-        type="number"
-        [formControl]="form.controls.costs.controls.depositCosts"
-      />
-      <p-selectButton
-        class="deposit-input-type"
-        [options]="pricingTypeOptions"
-        [formControl]="form.controls.costs.controls.depositCostsType"
-        optionLabel="label"
-        optionValue="value"
-      />
+      </p>
+      <div class="costs-content">
+        <p-inputNumber
+          class="deposit-input"
+          type="number"
+          [formControl]="form.controls.costs.controls.depositCosts"
+        />
+        <p-selectButton
+          class="deposit-input-type"
+          [options]="pricingTypeOptions"
+          [formControl]="form.controls.costs.controls.depositCostsType"
+          optionLabel="label"
+          optionValue="value"
+        />
+      </div>
 
-      <h5 class="accommodation-header">
+      <p class="costs-header">
         {{ 'create-tournament.accommodation' | translate }}
-      </h5>
-      <input
-        class="accommodation-input"
-        pInputText
-        type="number"
-        [formControl]="form.controls.costs.controls.accommodationCosts"
-      />
-      <p-selectButton
-        class="accommodation-input-type"
-        [options]="pricingTypeOptions"
-        [formControl]="form.controls.costs.controls.accommodationCostsType"
-        optionLabel="label"
-        optionValue="value"
-      />
+      </p>
+      <div class="costs-content">
+        <p-inputNumber
+          class="accommodation-input"
+          type="number"
+          [formControl]="form.controls.costs.controls.accommodationCosts"
+        />
+        <p-selectButton
+          class="accommodation-input-type"
+          [options]="pricingTypeOptions"
+          [formControl]="form.controls.costs.controls.accommodationCostsType"
+          optionLabel="label"
+          optionValue="value"
+        />
+      </div>
 
-      <h5 class="guests-header">
+      <p class="costs-header">
         {{ 'create-tournament.guests' | translate }}
-      </h5>
-      <input
-        class="guests-input"
-        pInputText
-        type="number"
-        [formControl]="form.controls.costs.controls.guestCosts"
-      />
-      <p-selectButton
-        class="guests-input-type"
-        [options]="pricingTypeOptions"
-        [formControl]="form.controls.costs.controls.guestCostsType"
-        optionLabel="label"
-        optionValue="value"
-      />
+      </p>
+      <div class="costs-content">
+        <p-inputNumber
+          class="guests-input"
+          type="number"
+          [formControl]="form.controls.costs.controls.guestCosts"
+        />
+        <p-selectButton
+          class="guests-input-type"
+          [options]="pricingTypeOptions"
+          [formControl]="form.controls.costs.controls.guestCostsType"
+          optionLabel="label"
+          optionValue="value"
+        />
+      </div>
 
-      <h5 class="costs-text-header">
+      <p class="costs-header">
         {{ 'create-tournament.comment' | translate }}
-      </h5>
-      <input
+      </p>
+      <textarea
         class="costs-text-input"
-        pInputText
+        pInputTextarea
         type="text"
         placeholder="z.B. Zeltgebühr"
         [formControl]="form.controls.costs.controls.costsText"
-      />
+        rows="1"
+        [autoResize]="true"
+      ></textarea>
     </div>
   </app-data-container-row>
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon"
-      >edit</span
-    >
-    <h3 ngProjectAs="container-headline">
-      {{ 'create-tournament.deadlines' | translate }}
-    </h3>
+    <div class="headline" ngProjectAs="container-headline">
+      <span class="material-icons-outlined" ngProjectAs="container-icon">edit</span>
+      <p>{{ 'create-tournament.deadlines' | translate }}</p>
+    </div>
     <textarea
       ngProjectAs="container-content"
       pInputTextarea

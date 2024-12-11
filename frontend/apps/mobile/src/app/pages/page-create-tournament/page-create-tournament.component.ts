@@ -18,7 +18,6 @@ import { PageTournamentInformationBasicComponent } from './page-create-tournamen
 import { PageCreateTournamentInformationContactComponent } from './page-create-tournament-information-contact/page-create-tournament-information-contact.component';
 import { PageCreateTournamentInformationRegistrationComponent } from './page-create-tournament-information-registration/page-create-tournament-information-registration.component';
 import { PageCreateTournamentInformationRulesComponent } from './page-create-tournament-information-rules/page-create-tournament-information-rules.component';
-import { PageCreateTournamentNavigationComponent } from './page-create-tournament-navigation/page-create-tournament-navigation.component';
 import { PageCreateTournamentSubmitComponent } from './page-create-tournament-submit/page-create-tournament-submit.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DividerModule } from 'primeng/divider';
@@ -28,7 +27,6 @@ import { TournamentService } from '../../../../../desktop/src/app/business-rules
   standalone: true,
   imports: [
     CommonModule,
-    PageCreateTournamentNavigationComponent,
     PageTournamentInformationBasicComponent,
     PageCreateTournamentInformationAccommodationComponent,
     PageCreateTournamentInformationContactComponent,

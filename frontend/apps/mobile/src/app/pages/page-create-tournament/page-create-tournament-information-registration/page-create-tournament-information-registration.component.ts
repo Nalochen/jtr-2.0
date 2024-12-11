@@ -21,6 +21,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ButtonComponent, DataContainerRowComponent, InfoButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../../ui-shared';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 export type TeamCountOption = { label: string; value: number };
 
@@ -39,6 +40,7 @@ export type TeamCountOption = { label: string; value: number };
     ButtonComponent,
     DatePipe,
     TranslatePipe,
+    InputNumberModule
   ],
   providers: [DatePipe],
   templateUrl:

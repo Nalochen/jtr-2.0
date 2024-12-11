@@ -5,9 +5,9 @@
 .headline {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   width: 100%;
   align-items: center;
+  gap: 4px;
 }
 
 .total-count-teams-input {
@@ -30,75 +30,32 @@
   margin-right: 8px;
 }
 
-.cost-inputs {
-  display: grid;
-  grid-template-columns: 3rem 10rem 1fr 16rem;
-  grid-gap: 8px;
-  grid-template-areas: ". registration-header registration-input registration-input-type"
-  ". deposit-header deposit-input deposit-input-type"
-  ". accommodation-header accommodation-input accommodation-input-type"
-  ". guests-header guests-input guests-input-type"
-  ". text-header text-input text-input";
-}
-
-.registration-header {
-  grid-area: registration-header;
-}
-
-.registration-input {
-  grid-area: registration-input;
-}
-
-.registration-input-type {
-  grid-area: registration-input-type;
-}
-
-.deposit-header {
-  grid-area: deposit-header;
-}
-
-.deposit-input {
-  grid-area: deposit-input;
-}
-
-.deposit-input-type {
-  grid-area: deposit-input-type;
-}
-
-.accommodation-header {
-  grid-area: accommodation-header;
-}
-
-.accommodation-input {
-  grid-area: accommodation-input;
-}
-
-.accommodation-input-type {
-  grid-area: accommodation-input-type;
-}
-
-.guests-header {
-  grid-area: guests-header;
-}
-
-.guests-input {
-  grid-area: guests-input;
-}
-
-.guests-input-type {
-  grid-area: guests-input-type;
-}
-
-.costs-text-header {
-  grid-area: text-header;
-}
-
-.costs-text-input {
-  grid-area: text-input;
-}
-
 textarea {
   width: 100%;
   resize: vertical;
   min-height: 35px;
+}
+
+.material-icons-outlined {
+  font-size: 20px;
+}
+
+.costs-content {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+::ng-deep .p-inputnumber-input {
+  max-width: 100px;
+}
+
+.costs-headline {
+  margin-bottom: 8px;
+}
+
+.costs-text-input {
+  width: 100%;
 }
