@@ -15,8 +15,9 @@ import {
   InfoButtonComponent,
 } from '../../ui-shared';
 import { PageRegisterHeaderComponent } from './page-register-header/page-register-header.component';
-import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
+
 
 @Component({
   standalone: true,
@@ -28,7 +29,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     ButtonComponent,
     VisibilityButtonComponent,
     PageRegisterHeaderComponent,
-    TranslatePipe,
+    TranslatePipe
   ],
   templateUrl: './page-register.component.html',
   styleUrl: './page-register.component.less',
