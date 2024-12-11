@@ -10,7 +10,7 @@ import { TournamentData, TournamentDataClient } from '@jtr/data-domain/store';
 import {
   loadTournamentDetailsData, loadTournamentDetailsDataFailedAction,
   loadTournamentDetailsDataSuccessAction
-} from '../actions/tournament-details.action';
+} from '../actions/tournament.action';
 
 @Injectable({
   providedIn: 'root',

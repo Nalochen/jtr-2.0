@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 
 import {
   tournamentDetailsNameSelector,
-  tournamentDetailsRegistrationOpenAtSelector,
   tournamentDetailsSelector, tournamentDetailsTeamsSelector, tournamentOverviewSelector
 } from '@jtr/business-domain/tournament';
 import { TournamentData, TournamentOverviewData, TournamentTeamsData } from '@jtr/data-domain/store';
@@ -27,11 +26,6 @@ export class TournamentDataService {
   @SingletonGetter()
   public get tournamentDetailsName$(): Observable<string | undefined> {
     return this.store$.select(tournamentDetailsNameSelector);
-  }
-
-  @SingletonGetter()
-  public get tournamentDetailsRegistrationOpenAt$(): Observable<string | undefined> {
-    return this.store$.select(tournamentDetailsRegistrationOpenAtSelector);
   }
 
   @SingletonGetter()

@@ -71,8 +71,8 @@ export class PageManageParticipatingTeamsComponent implements OnDestroy {
       takeUntil(this.destroy$)
     ).subscribe((tournamentTeams: TournamentTeamsData | undefined) => {
       if (tournamentTeams) {
-        const participatingTeams = [...tournamentTeams.participating];
-        const waitingTeams = [...tournamentTeams.waiting];
+        const participatingTeams = tournamentTeams.participating;
+        const waitingTeams = tournamentTeams.waiting;
 
         this.participatingTeams = participatingTeams;
         this.waitingTeams = waitingTeams;

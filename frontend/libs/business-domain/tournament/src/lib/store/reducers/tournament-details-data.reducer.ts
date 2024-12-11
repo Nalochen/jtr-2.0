@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   loadTournamentDetailsData, loadTournamentDetailsDataFailedAction,
   loadTournamentDetailsDataSuccessAction
-} from '../actions/tournament-details.action';
+} from '../actions/tournament.action';
 import { tournamentDetailsDataInitialState } from '../states/tournament-details-data-store.initial-state';
 import { TournamentDetailsState } from '../states/tournament-details-data-store.state';
 import { FAILED, IDLE, LOADING } from '../types/loading-state.type';
