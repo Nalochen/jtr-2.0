@@ -94,6 +94,21 @@
     "private": "private",
     "public": "public"
   },
+  "manage-tournament": {
+    "manage-touranment": "Manage Tournament",
+    "send-mail": "Send E-Mail to participating Teams",
+    "subject": "Subject",
+    "recipient": "Recipient",
+    "all-teams": "All Teams",
+    "registered-teams": "Registered Teams",
+    "waiting-teams": "Waiting Teams",
+    "not-payed-yet": "not payed yet",
+    "single-teams": "Single Teams",
+    "send": "Send",
+    "edit-teams": "Edit Teams",
+    "enter-results": "Enter Results",
+    "edit-tournament": "Edit Tournament"
+  },
   "seconds": "seconds",
   "minutes": "minutes",
   "hours": "hours",

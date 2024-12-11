@@ -10,7 +10,6 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { TournamentDataService } from '@jtr/business-domain/tournament';
 import { EmailRecipientEnum } from '@jtr/data-domain/tournament-data';
-
 import {
   ButtonColorEnum,
   ButtonComponent,
