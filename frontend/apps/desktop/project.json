@@ -42,6 +42,7 @@
         ],
         "styles": [
           "node_modules/swagger-ui-dist/swagger-ui.css",
+          "node_modules/jtr-primeng-de/jtr-primeng-de.css",
           "apps/desktop/src/styles.less",
           {
             "input": "apps/desktop/src/assets/styles/material-theme.scss"
