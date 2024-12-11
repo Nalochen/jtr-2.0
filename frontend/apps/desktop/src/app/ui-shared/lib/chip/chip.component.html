@@ -1,1 +1,8 @@
-<ng-content />
+<div
+  class="chip"
+  [ngClass]="[color]"
+  [class.isClicked]="isClicked"
+  [class.isClickable]="isClickable"
+>
+  <ng-content />
+</div>

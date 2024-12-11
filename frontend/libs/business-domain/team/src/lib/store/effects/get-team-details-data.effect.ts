@@ -7,9 +7,11 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import {TeamData, TeamDataClient} from '@jtr/data-domain/store';
 
-import { loadTeamDetailsData } from '../actions/team-details-data-load.action';
-import { loadTeamDetailsDataFailedAction } from '../actions/team-details-data-loaded-failed.action';
-import { loadTeamDetailsDataSuccessAction } from '../actions/team-details-data-loaded-success.action';
+import {
+  loadTeamDetailsData,
+  loadTeamDetailsDataFailedAction,
+  loadTeamDetailsDataSuccessAction
+} from '../actions/team.action';
 
 @Injectable({
   providedIn: 'root',

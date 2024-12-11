@@ -7,9 +7,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { TournamentData, TournamentDataClient } from '@jtr/data-domain/store';
 
-import { loadTournamentDetailsData } from '../actions/tournament-details-data-load.action';
-import { loadTournamentDetailsDataFailedAction } from '../actions/tournament-details-data-loaded-failed.action';
-import { loadTournamentDetailsDataSuccessAction } from '../actions/tournament-details-data-loaded-success.action';
+import {
+  loadTournamentDetailsData, loadTournamentDetailsDataFailedAction,
+  loadTournamentDetailsDataSuccessAction
+} from '../actions/tournament.action';
 
 @Injectable({
   providedIn: 'root',
