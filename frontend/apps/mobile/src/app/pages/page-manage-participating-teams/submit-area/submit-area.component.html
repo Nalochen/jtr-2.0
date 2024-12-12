@@ -1,0 +1,43 @@
+<app-button
+  [fullWidth]="true"
+  [color]="ButtonColorEnum.White"
+  [type]="ButtonTypeEnum.Raised"
+  (click)="openAddTeamOverlay()">{{ 'manage-tournament-teams.add-team' | translate }}</app-button>
+<app-button
+  class="submit"
+  [fullWidth]="true"
+  [color]="ButtonColorEnum.Red"
+  [type]="ButtonTypeEnum.Raised"
+  (click)="save()"
+>{{ 'manage-tournament-teams.save' | translate }}</app-button>
+
+<p-dialog header="Add Team" [modal]="true" [(visible)]="addTeamVisible" [style]="{ width: '25rem' }">
+  <div>
+    @let allTeams = allTeams$ | async;
+    @if (!!allTeams) {
+      <p-dropdown
+        [options]="allTeams"
+        [(ngModel)]="selectedTeam"
+        optionLabel="name"
+        [filter]="true"
+        filterBy="name"
+        placeholder="{{ 'manage-tournament-teams.select-team' | translate }}" />
+    }
+  </div>
+  <ng-template pTemplate="footer">
+    <app-button
+      (onClick)="closeAddTeamOverlay()"
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Raised"
+    >
+      {{ 'manage-tournament-teams.cancel' | translate }}
+    </app-button>
+    <app-button
+      (onClick)="addTeam()"
+      [color]="ButtonColorEnum.Red"
+      [type]="ButtonTypeEnum.Raised"
+    >
+      {{ 'manage-tournament-teams.add' | translate }}
+    </app-button>
+  </ng-template>
+</p-dialog>

@@ -160,6 +160,22 @@
     "enter-results": "Ergebnisse eingeben",
     "edit-tournament": "Infos bearbeiten"
   },
+  "enter-results": {
+    "enter-results": "Ergebnisse eintragen",
+    "import-from-tugeny": "von Tugeny importieren",
+    "no-teams": "Keine Teams vorhanden",
+    "save": "speichern"
+  },
+  "manage-tournament-teams": {
+    "manage-teams": "Teams verwalten",
+    "registered": "angemeldet",
+    "waiting": "vorgemerkt",
+    "add-team": "weiteres Team hinzufügen",
+    "save": "speichern",
+    "select-team": "Team auswählen",
+    "cancel": "abbrechen",
+    "add": "hinzufügen"
+  },
   "seconds": "Sekunden",
   "minutes": "Minuten",
   "hours": "Stunden",

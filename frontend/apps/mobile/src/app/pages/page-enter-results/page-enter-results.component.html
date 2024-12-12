@@ -1,0 +1,27 @@
+<h1>{{ 'enter-results.enter-results' | translate }}</h1>
+<app-button
+  (click)="onImport()"
+  class="tugeny"
+  [fullWidth]="true"
+  [color]="ButtonColorEnum.White"
+  [type]="ButtonTypeEnum.Raised"
+>{{ 'enter-results.import-from-tugeny' | translate }}</app-button>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="input">
+    @for (formGroup of form.controls.teams.controls; track formGroup.controls.teamId.value) {
+    <div [formGroup]="formGroup" class="team-input">
+      <p>{{ formGroup.controls.teamName.value }}</p>
+      <p-inputNumber [formControl]="formGroup.controls.score" />
+    </div>
+    } @empty {
+    <p>{{ 'enter-results.no-teams' | translate }}</p>
+    }
+  </div>
+  <app-button
+    class="save"
+    [fullWidth]="true"
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Raised"
+    [buttonType]="ButtonFunctionTypeEnum.SUBMIT"
+  >{{ 'enter-results.save' | translate }}</app-button>
+</form>

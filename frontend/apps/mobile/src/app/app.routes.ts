@@ -21,6 +21,12 @@ import { PageTeamOverviewComponent } from './pages/page-team-overview/page-team-
 import { PageTournamentDetailsComponent } from './pages/page-tournament-details/page-tournament-details.component';
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
+import {
+  PageEnterResultsComponent
+} from '../../../desktop/src/app/pages/page-enter-results/page-enter-results.component';
+import {
+  PageManageParticipatingTeamsComponent
+} from '../../../desktop/src/app/pages/page-manage-participating-teams/page-manage-participating-teams.component';
 
 export const appRoutes: Route[] = [
   {
@@ -81,6 +87,21 @@ export const appRoutes: Route[] = [
     component: PageManageTournamentComponent,
     resolve: {
       tournamentDetails: TournamentDetailsResolver,
+    },
+  },
+  {
+    path: 'manage-tournament/enter-results/:tournamentId',
+    component: PageEnterResultsComponent,
+    resolve: {
+      tournamentDetails: TournamentDetailsResolver,
+    },
+  },
+  {
+    path: 'manage-tournament/participating-teams/:tournamentId',
+    component: PageManageParticipatingTeamsComponent,
+    resolve: {
+      tournamentDetails: TournamentDetailsResolver,
+      teamDetails: TeamOverviewResolver,
     },
   },
   {
