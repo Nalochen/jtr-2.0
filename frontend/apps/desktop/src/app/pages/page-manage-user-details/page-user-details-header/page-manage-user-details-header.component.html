@@ -15,6 +15,6 @@
 
 @if (form.controls.pronouns.value !== '' && form.controls.pronouns.value !== null) {
 <div class="pronouns">
-  <h3>Pronomen: {{ form.controls.pronouns.value }}</h3>
+  <h3>{{ 'user-details.pronouns' | translate }}: {{ form.controls.pronouns.value }}</h3>
 </div>
 }

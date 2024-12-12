@@ -19,10 +19,10 @@
 
 @if (user().pronouns !== '') {
 <div class="pronouns">
-  <h3>Pronomen: {{ user().pronouns }}</h3>
+  <h3>{{ 'user-details.pronouns' | translate }}: {{ user().pronouns }}</h3>
   <app-info-button>
-    <p class="i-headline">{{ 'register.pronouns' | translate }}</p>
-    <p>{{ 'register.pronouns-info' | translate }}</p>
+    <p class="i-headline">{{ 'user-details.pronouns' | translate }}</p>
+    <p>{{ 'user-details.pronouns-info' | translate }}</p>
   </app-info-button>
 </div>
 }
