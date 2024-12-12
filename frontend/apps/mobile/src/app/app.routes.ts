@@ -20,6 +20,7 @@ import { PageTournamentDetailsComponent } from './pages/page-tournament-details/
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
 import { PageManageTournamentComponent } from './pages/page-manage-tournament/page-manage-tournament.component';
+import { PageCreateTournamentComponent } from './pages/page-create-tournament/page-create-tournament.component';
 
 export const appRoutes: Route[] = [
   {
@@ -55,6 +56,17 @@ export const appRoutes: Route[] = [
     component: PageTournamentOverviewComponent,
     resolve: {
       tournamentOverview: TournamentOverviewResolver,
+    },
+  },
+  {
+    path: 'create-tournament/tournament-information',
+    component: PageCreateTournamentComponent,
+  },
+  {
+    path: 'manage-tournament/tournament-information/:tournamentId',
+    component: PageCreateTournamentComponent,
+    resolve: {
+      tournamentDetails: TournamentDetailsResolver,
     },
   },
   {

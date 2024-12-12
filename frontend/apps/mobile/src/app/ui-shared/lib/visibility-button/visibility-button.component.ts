@@ -1,11 +1,10 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../index';
 import { TranslatePipe } from '@ngx-translate/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-
 @Component({
   selector: 'app-visibility-button',
   standalone: true,
@@ -28,7 +27,13 @@ export class VisibilityButtonComponent implements OnInit {
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
   public ngOnInit(): void {
-    this.control().setValue(this.visible);
+    const controlValue = this.control().value;
+
+    if(controlValue === null) {
+      this.control().setValue(this.visible);
+    } else {
+      this.visible = controlValue;
+    }
   }
 
   public toggleVisibility(value: boolean): void {
