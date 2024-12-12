@@ -1,0 +1,46 @@
+<div [formGroup]="form">
+  <app-data-container-row>
+    <div class="headline" ngProjectAs="container-headline">
+      <span class="material-icons-outlined"
+        >location_on</span
+      >
+      <p ngProjectAs="container-headline">
+        {{ 'create-tournament.schedule' | translate }}
+      </p>
+    </div>
+    <textarea
+      ngProjectAs="container-content"
+      pInputTextarea
+      type="text"
+      [formControl]="form.controls.schedule"
+      rows="3"
+      [autoResize]="true"
+    ></textarea>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <div class="headline" ngProjectAs="container-headline">
+      <span class="material-icons-outlined" ngProjectAs="container-icon"
+        >call</span
+      >
+      <p ngProjectAs="container-headline">
+        {{ 'create-tournament.contacts' | translate }}
+      </p>
+    </div>
+    <div class="contact-content" ngProjectAs="container-content">
+      @for (contact of form.controls.contacts.controls; track index; let index =
+      $index) {
+      <div class="contact-input">
+        <input class="contact-input-field" pInputText [formControl]="contact" />
+
+        <app-button (click)="onRemoveContact(index)">
+          <span class="material-icons-outlined">delete</span>
+        </app-button>
+      </div>
+      }
+      <app-button (click)="onNewContact()">
+        <span class="material-icons-outlined">add</span>
+      </app-button>
+    </div>
+  </app-data-container-row>
+</div>

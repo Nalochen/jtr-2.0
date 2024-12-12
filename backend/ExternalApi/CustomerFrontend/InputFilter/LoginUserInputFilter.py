@@ -2,6 +2,7 @@ from Infrastructure.InputFilter.Enum.RegexEnum import EMAIL_REGEX
 from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
+from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
 from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
 
 
@@ -19,7 +20,8 @@ class LoginUserInputFilter(InputFilter):
             filters=[
                 StringTrimFilter(),
                 ToNullFilter()
-            ]
+            ],
+            validators=[IsStringValidator()]
         )
 
         self.add(
@@ -41,7 +43,7 @@ class LoginUserInputFilter(InputFilter):
             'password',
             required=True,
             filters=[
-                StringTrimFilter(),
-                ToNullFilter()
-            ]
+                StringTrimFilter()
+            ],
+            validators=[IsStringValidator()]
         )

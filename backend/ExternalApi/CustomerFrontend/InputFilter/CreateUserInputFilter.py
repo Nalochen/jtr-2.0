@@ -3,6 +3,8 @@ from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
 from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
+from Infrastructure.InputFilter.Validator.IsBoolValidator import IsBoolValidator
+from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
 from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
 
 
@@ -31,28 +33,25 @@ class CreateUserInputFilter(InputFilter):
         self.add(
             'isBirthdateVisible',
             required=True,
-            filters=[
-                ToBoolFilter(),
-                ToNullFilter()
-            ]
+            filters=[ToBoolFilter()],
+            validators=[IsBoolValidator()]
         )
 
         self.add(
             'city',
             required=False,
             filters=[
-                ToBoolFilter(),
+                StringTrimFilter(),
                 ToNullFilter()
-            ]
+            ],
+            validators=[IsStringValidator()]
         )
 
         self.add(
             'isCityVisible',
             required=True,
-            filters=[
-                ToBoolFilter(),
-                ToNullFilter()
-            ]
+            filters=[ToBoolFilter()],
+            validators=[IsBoolValidator()]
         )
 
         self.add(
@@ -76,32 +75,29 @@ class CreateUserInputFilter(InputFilter):
             filters=[
                 StringTrimFilter(),
                 ToNullFilter()
-            ]
+            ],
+            validators=[IsStringValidator()]
         )
 
         self.add(
             'isNameVisible',
             required=True,
-            filters=[
-                ToBoolFilter(),
-                ToNullFilter()
-            ]
+            filters=[ToBoolFilter()],
+            validators=[IsBoolValidator()]
         )
 
         self.add(
             'password',
             required=True,
-            filters=[
-                StringTrimFilter(),
-                ToNullFilter()
-            ]
+            filters=[StringTrimFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
             'username',
             required=True,
             filters=[
-                StringTrimFilter(),
-                ToNullFilter()
-            ]
+                StringTrimFilter()
+            ],
+            validators=[IsStringValidator()]
         )

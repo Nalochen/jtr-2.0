@@ -60,14 +60,14 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    start_arrival_date: Column[DateTime] = db.Column(
+    start_arrival_date: Column[Optional[DateTime]] = db.Column(
         db.DateTime,
-        nullable=False
+        nullable=True
     )
 
-    end_arrival_date: Column[DateTime] = db.Column(
+    end_arrival_date: Column[Optional[DateTime]] = db.Column(
         db.DateTime,
-        nullable=False
+        nullable=True
     )
 
     registration_costs: Column[Optional[Integer]] = db.Column(
@@ -173,9 +173,9 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    shoes_text: Column[Text] = db.Column(
+    shoes_text: Column[Optional[Text]] = db.Column(
         db.Text,
-        nullable=False
+        nullable=True
     )
 
     shoes_url: Column[String] = db.Column(

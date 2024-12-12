@@ -48,7 +48,7 @@ class LoginUserHandler:
         # Verify password
         if user and check_password_hash(user.password_hash, password):
             accessToken = create_access_token(
-                identity=user.username
+                identity=user.id
             )
 
             return Response(

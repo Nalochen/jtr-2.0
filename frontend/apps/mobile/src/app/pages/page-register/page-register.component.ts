@@ -13,6 +13,7 @@ import {
   ButtonComponent,
   ButtonTypeEnum,
   InfoButtonComponent,
+  VisibilityButtonComponent
 } from '../../ui-shared';
 import { PageRegisterHeaderComponent } from './page-register-header/page-register-header.component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -27,9 +28,9 @@ import { VisibilityButtonComponent } from './visibility-button/visibility-button
     MatButtonModule,
     InfoButtonComponent,
     ButtonComponent,
-    VisibilityButtonComponent,
     PageRegisterHeaderComponent,
-    TranslatePipe
+    TranslatePipe,
+    VisibilityButtonComponent
   ],
   templateUrl: './page-register.component.html',
   styleUrl: './page-register.component.less',

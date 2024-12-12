@@ -34,6 +34,9 @@ from ExternalApi.CustomerFrontend.InputFilter.LoginUserInputFilter import LoginU
 from ExternalApi.CustomerFrontend.InputFilter.UpdateTeamInputFilter import UpdateTeamInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.UpdateTournamentInputFilter import UpdateTournamentInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.UpdateUserInputFilter import UpdateUserInputFilter
+from ExternalApi.CustomerFrontend.config.extensions import create_tournament_cache_key, create_team_cache_key, \
+    create_user_cache_key
+from config.cache import cache
 from config.limiter import limiter
 
 customer_frontend = Blueprint('customer-frontend', __name__)
@@ -42,14 +45,14 @@ customer_frontend = Blueprint('customer-frontend', __name__)
 @customer_frontend.route('/get-tournament-details/<tournamentId>',
                          methods=['GET'], endpoint='get-tournament-details')
 @GetTournamentDetailsInputFilter.validate()
-# @cache.cached(key_prefix=create_tournament_cache_key)
+@cache.cached(key_prefix=create_tournament_cache_key)
 def getTournamentDetails(tournamentId: int) -> Response:
     return GetTournamentDetailsHandler.handle(tournamentId)
 
 
 @customer_frontend.route('/get-tournament-overview',
                          methods=['GET'], endpoint='get-tournament-overview')
-# @cache.cached(key_prefix='upcoming-tournaments')
+@cache.cached(key_prefix='tournament-overview')
 def getTournamentOverview() -> Response:
     return GetTournamentOverviewHandler.handle()
 
@@ -57,12 +60,14 @@ def getTournamentOverview() -> Response:
 @customer_frontend.route('/get-team-details/<teamId>',
                          methods=['GET'], endpoint='get-team-details')
 @GetTeamDetailsInputFilter.validate()
+@cache.cached(key_prefix=create_team_cache_key)
 def getTeamDetails(teamId: int) -> Response:
     return GetTeamDetailsHandler.handle(teamId)
 
 
 @customer_frontend.route('/get-team-overview',
                          methods=['GET'], endpoint='get-team-overview')
+@cache.cached(key_prefix='team-overview')
 def getTeamOverview() -> Response:
     return GetTeamOverviewHandler.handle()
 
@@ -73,6 +78,7 @@ def getTeamOverview() -> Response:
                          methods=['GET'], endpoint='get-user-details')
 @GetUserDetailsInputFilter.validate()
 @jwt_required(optional=True)
+@cache.cached(key_prefix=create_user_cache_key)
 def getUserDetails(userId: int = None) -> Response:
     return GetUserDetailsHandler.handle(userId)
 
@@ -105,6 +111,7 @@ def updateUser() -> Response:
                          methods=['POST'], endpoint='create-participation')
 @jwt_required()
 @CreateParticipationInputFilter.validate()
+@limiter.limit("2 per minute")
 def createParticipation() -> Response:
     return CreateParticipationHandler().handle()
 
@@ -113,6 +120,7 @@ def createParticipation() -> Response:
                          methods=['POST'], endpoint='create-team')
 @jwt_required()
 @CreateTeamInputFilter.validate()
+@limiter.limit("2 per minute")
 def createTeam() -> Response:
     return CreateTeamHandler.handle()
 
@@ -121,6 +129,7 @@ def createTeam() -> Response:
                          methods=['POST'], endpoint='create-tournament')
 @jwt_required()
 @CreateTournamentInputFilter.validate()
+@limiter.limit("2 per minute")
 def createTournament() -> Response:
     return CreateTournamentHandler.handle()
 
@@ -134,6 +143,7 @@ def login() -> Response:
 
 @customer_frontend.route('/register', methods=['POST'], endpoint='register')
 @CreateUserInputFilter.validate()
+@limiter.limit("2 per minute")
 def register() -> Response:
     return CreateUserHandler.handle()
 

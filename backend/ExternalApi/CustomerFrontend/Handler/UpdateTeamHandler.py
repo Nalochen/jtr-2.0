@@ -6,6 +6,7 @@ from flask import g
 from DataDomain.Database.Repository.TeamRepository import TeamRepository
 from DataDomain.Model.Response import Response
 from ExternalApi.CustomerFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
+from ExternalApi.CustomerFrontend.config.extensions import clearTeamCache
 
 
 class UpdateTeamHandler:
@@ -62,6 +63,8 @@ class UpdateTeamHandler:
 
         try:
             TeamRepository.update()
+
+            clearTeamCache(teamId)
 
         except Exception:
             return Response(status=500)
