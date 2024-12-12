@@ -2,12 +2,9 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../index';
 import { TranslatePipe } from '@ngx-translate/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { ButtonComponent } from '../button/button.component';
-import { ButtonColorEnum } from '../button/enums/color.enum';
-import { ButtonTypeEnum } from '../button/enums/type.enum';
-
 @Component({
   selector: 'app-visibility-button',
   standalone: true,

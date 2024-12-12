@@ -146,6 +146,37 @@
     "save": "Save",
     "publish-tournament": "Publish"
   },
+  "manage-tournament": {
+    "manage-tournament": "Manage Tournament",
+    "send-mail": "Send E-Mail to participating Teams",
+    "subject": "Subject",
+    "recipient": "Recipient",
+    "all-teams": "All Teams",
+    "registered-teams": "Registered Teams",
+    "waiting-teams": "Waiting Teams",
+    "not-payed-yet": "not payed yet",
+    "single-teams": "Single Teams",
+    "send": "Send",
+    "edit-teams": "Edit Teams",
+    "enter-results": "Enter Results",
+    "edit-tournament": "Edit Tournament"
+  },
+  "enter-results": {
+    "enter-results": "Enter Results",
+    "import-from-tugeny": "Import from Tugeny",
+    "no-teams": "No Teams available",
+    "save": "save"
+  },
+  "manage-tournament-teams": {
+    "manage-teams": "Teams verwalten",
+    "registered": "angemeldet",
+    "waiting": "vorgemerkt",
+    "add-team": "weiteres Team hinzufügen",
+    "save": "speichern",
+    "select-team": "Team auswählen",
+    "cancel": "abbrechen",
+    "add": "hinzufügen"
+  },
   "seconds": "seconds",
   "minutes": "minutes",
   "hours": "hours",

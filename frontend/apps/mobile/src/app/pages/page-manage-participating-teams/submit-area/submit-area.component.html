@@ -1,15 +1,18 @@
-<app-button
-  [fullWidth]="true"
-  [color]="ButtonColorEnum.White"
-  [type]="ButtonTypeEnum.Raised"
-  (click)="openAddTeamOverlay()">{{ 'manage-tournament-teams.add-team' | translate }}</app-button>
-<app-button
-  class="submit"
-  [fullWidth]="true"
-  [color]="ButtonColorEnum.Red"
-  [type]="ButtonTypeEnum.Raised"
-  (click)="save()"
->{{ 'manage-tournament-teams.save' | translate }}</app-button>
+<div class="buttons">
+  <app-button
+    [color]="ButtonColorEnum.White"
+    [type]="ButtonTypeEnum.Fab"
+    (click)="openAddTeamOverlay()">
+    <span class="material-icons-outlined">add</span>
+  </app-button>
+  <app-button
+    class="submit"
+    [fullWidth]="true"
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Raised"
+    (click)="save()"
+  >{{ 'manage-tournament-teams.save' | translate }}</app-button>
+</div>
 
 <p-dialog header="Add Team" [modal]="true" [(visible)]="addTeamVisible" [style]="{ width: '25rem' }">
   <div>
