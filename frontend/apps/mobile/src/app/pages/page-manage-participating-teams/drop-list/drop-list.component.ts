@@ -9,9 +9,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { TournamentTeamData } from '@jtr/data-domain/store';
-
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum, ChipComponent } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';

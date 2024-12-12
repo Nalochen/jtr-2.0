@@ -8,9 +8,7 @@ import {
   output
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 import { Subject } from 'rxjs';
-
 import { TeamDataService } from '@jtr/business-domain/team';
 import { TournamentTeamData } from '@jtr/data-domain/store';
 
