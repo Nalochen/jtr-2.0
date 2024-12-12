@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export FLASK_ENV='development'
+export FLASK_ENV='testing'
 export CACHE_REDIS_HOST='localhost'
 export CACHE_REDIS_PORT='6379'
 export CELERY_APP_NAME='tasks'

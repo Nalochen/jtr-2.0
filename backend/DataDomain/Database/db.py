@@ -31,11 +31,10 @@ def executeSqlFile(filename: str) -> None:
         connection.close()
 
 
-def executeSqlCommandsToInitDatabase() -> None:
+def executeSqlCommandsToInitDatabase(app: Flask) -> None:
     """Executes the SQL commands in the init-database folder"""
 
-    folderPath = '/home/backend/DataDomain/Database/data/init-database' if os.getenv(
-        'FLASK_ENV') == 'development' else '/app/DataDomain/Database/data/init-database'
+    folderPath = f'{app.config('DATABASE_PATH')}/data/init-database'
 
     for filename in os.listdir(folderPath):
         if filename.endswith('.sql'):
@@ -50,4 +49,4 @@ def initDatabase(app: Flask) -> None:
     with app.app_context():
         upgrade()
 
-        executeSqlCommandsToInitDatabase()
+        executeSqlCommandsToInitDatabase(app)
