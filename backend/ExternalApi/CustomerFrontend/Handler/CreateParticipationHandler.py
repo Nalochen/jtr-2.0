@@ -3,6 +3,7 @@ from flask import g
 from DataDomain.Database.Repository.ParticipatesInRepository import ParticipatesInRepository
 from DataDomain.Model.Response import Response
 from ExternalApi.CustomerFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
+from Infrastructure.Logger.Logger import logger
 
 
 class CreateParticipationHandler:
@@ -21,16 +22,18 @@ class CreateParticipationHandler:
         teamId: int = data.get('teamId')
         tournamentId: int = data.get('tournamentId')
 
+        logger.info(f"Create participation of team {teamId} to tournament {tournamentId}")
+
         if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId):
             return Response(status=403)
 
         try:
-            if not self.participatesInRepository.exists(tournamentId, teamId):
+            if not ParticipatesInRepository.exists(tournamentId, teamId):
                 self.participatesInRepository.create(tournamentId, teamId)
 
                 return Response(status=200)
 
-            if not self.participatesInRepository.isDeleted(
+            if not ParticipatesInRepository.isDeleted(
                     tournamentId, teamId):
                 return Response(status=400)
 

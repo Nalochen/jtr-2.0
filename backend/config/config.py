@@ -32,3 +32,5 @@ class Config:
         app.config['CELERY_BROKER_URL'] = os.getenv('CELERY_BROKER_URL')
         app.config['CELERY_RESULT_BACKEND'] = os.getenv(
             'CELERY_RESULT_BACKEND')
+
+        app.config['JWT_VERIFY_SUB'] = False

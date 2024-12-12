@@ -3,6 +3,7 @@ from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
 from Infrastructure.InputFilter.Validator.IsArrayValidator import IsArrayValidator
+from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
 
 
 class CreateTeamInputFilter(InputFilter):
@@ -16,7 +17,8 @@ class CreateTeamInputFilter(InputFilter):
         self.add(
             'name',
             required=True,
-            filters=[StringTrimFilter()]
+            filters=[StringTrimFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
