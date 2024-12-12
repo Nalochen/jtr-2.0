@@ -79,7 +79,7 @@ class InputFilter:
 
     @classmethod
     def validate(cls):
-        """Decorator for validating input data in Flask routes"""
+        """Decorator for validating input data in routes"""
 
         def decorator(f):
             def wrapper(*args, **kwargs):

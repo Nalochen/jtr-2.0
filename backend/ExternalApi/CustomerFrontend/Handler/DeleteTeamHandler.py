@@ -3,6 +3,7 @@ from flask import g
 from DataDomain.Database.Repository.TeamRepository import TeamRepository
 from DataDomain.Model.Response import Response
 from ExternalApi.CustomerFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
+from ExternalApi.CustomerFrontend.config.extensions import clearTeamCache
 
 
 class DeleteTeamHandler:
@@ -19,14 +20,17 @@ class DeleteTeamHandler:
         team = TeamRepository.get(
             teamId=teamId
         )
+
         if not team:
             return Response(status=404)
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId):
+        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(team.id):
             return Response(status=403)
 
         try:
-            TeamRepository.delete(teamId=teamId)
+            TeamRepository.delete(teamId=team.id)
+
+            clearTeamCache(team.id)
 
         except Exception:
             return Response(status=500)
