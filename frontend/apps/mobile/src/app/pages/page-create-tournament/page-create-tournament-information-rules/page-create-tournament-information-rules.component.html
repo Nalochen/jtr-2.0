@@ -1,0 +1,103 @@
+<div [formGroup]="form">
+  <app-data-container-row>
+    <div class="headline" ngProjectAs="container-headline">
+      <span class="material-icons-outlined">rule</span>
+      <p>{{ 'create-tournament.tournament-system' | translate }}</p>
+    </div>
+    <div class="content" ngProjectAs="container-content">
+      <textarea
+        pInputTextarea
+        [formControl]="form.controls.tournamentSystem"
+        [autoResize]="true"></textarea>
+      <div class="link">
+        <p>{{ 'create-tournament.link' | translate }}:</p>
+        <input
+          pInputText
+          type="text"
+          [formControl]="form.controls.tournamentSystemLink"
+        >
+      </div>
+    </div>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <div class="headline" ngProjectAs="container-headline">
+      <span class="material-icons-outlined">rule</span>
+      <p>{{ 'create-tournament.pompf-check' | translate }}</p>
+    </div>
+    <app-info-button ngProjectAs="container-additional">
+      <p>{{ 'create-tournament.pompf-check-info' | translate }}</p>
+    </app-info-button>
+    <div class="content" ngProjectAs="container-content">
+      <textarea
+        pInputTextarea
+        [formControl]="form.controls.pompfCheck"
+        [autoResize]="true"></textarea>
+      <div class="link">
+        <p>{{ 'create-tournament.link' | translate }}:</p>
+        <input
+          pInputText
+          type="text"
+          [formControl]="form.controls.pompfCheckLink"
+        >
+      </div>
+    </div>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <div class="headline" ngProjectAs="container-headline">
+      <span class="material-icons-outlined">rule</span>
+      <p>{{ 'create-tournament.house-rules' | translate }}</p>
+    </div>
+    <div class="content" ngProjectAs="container-content">
+      <textarea
+        pInputTextarea
+        [formControl]="form.controls.houseRules"
+        [autoResize]="true"></textarea>
+      <div class="link">
+        <p>{{ 'create-tournament.link' | translate }}:</p>
+        <input
+          pInputText
+          type="text"
+          [formControl]="form.controls.houseRulesLink"
+        >
+      </div>
+    </div>
+  </app-data-container-row>
+
+  <app-data-container-row>
+    <div class="headline" ngProjectAs="container-headline">
+      <span class="material-icons-outlined">rule</span>
+      <p>{{ 'create-tournament.shoes' | translate }}</p>
+    </div>
+    <app-info-button ngProjectAs="container-additional">
+      <p><b>{{ 'create-tournament.shoes-information-nubbed-header' | translate }}</b> {{ 'create-tournament.shoes-information-nubbed' | translate }}</p>
+      <br>
+      <p><b>{{ 'create-tournament.shoes-information-cleaded-header' | translate }}</b> {{ 'create-tournament.shoes-information-cleaded' | translate }}</p>
+      <br>
+      <p><b>{{ 'create-tournament.shoes-information-studded-header' | translate }}</b> {{ 'create-tournament.shoes-information-studded' | translate }}</p>
+    </app-info-button>
+    <div class="content" ngProjectAs="container-content">
+      <div class="shoes-row">
+        <p>{{ 'create-tournament.shoes-information-nubbed-header' | translate }}</p>
+        <p-inputSwitch [formControl]="form.controls.shoes.controls.studded" />
+      </div>
+      <div class="shoes-row">
+        <p>{{ 'create-tournament.shoes-information-cleaded-header' | translate }}</p>
+        <p-inputSwitch [formControl]="form.controls.shoes.controls.cam" />
+      </div>
+      <div class="shoes-row">
+        <p>{{ 'create-tournament.shoes-information-studded-header' | translate }}</p>
+        <p-inputSwitch [formControl]="form.controls.shoes.controls.cleats" />
+      </div>
+      <div class="shoes-row">
+        <p>{{ 'create-tournament.shoes-information-barefoot-header' | translate }}</p>
+        <p-inputSwitch [formControl]="form.controls.shoes.controls.barefoot" />
+      </div>
+      <textarea
+        pInputTextarea
+        [formControl]="form.controls.shoes.controls.shoesText"
+        [autoResize]="true"></textarea>
+    </div>
+  </app-data-container-row>
+</div>
