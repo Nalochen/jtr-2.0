@@ -7,7 +7,10 @@ import {
   OnInit
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
 import { Subject, takeUntil } from 'rxjs';
+
+import { TeamDataService } from '@jtr/business-domain/team';
 import { TournamentDataService } from '@jtr/business-domain/tournament';
 import { EmailRecipientEnum } from '@jtr/data-domain/tournament-data';
 
@@ -20,7 +23,6 @@ import {
 } from '../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
-import { TeamDataService } from '@jtr/business-domain/team';
 
 @Component({
   standalone: true,
