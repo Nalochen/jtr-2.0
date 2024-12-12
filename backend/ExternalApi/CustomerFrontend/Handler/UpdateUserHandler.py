@@ -7,6 +7,8 @@ from werkzeug.security import generate_password_hash
 from DataDomain.Database.Repository.UserRepository import UserRepository
 from DataDomain.Database.tools import getJwtIdentity
 from DataDomain.Model.Response import Response
+from ExternalApi.CustomerFrontend.config.extensions import clearUserCache
+from config.cache import cache
 
 
 class UpdateUserHandler:
@@ -56,6 +58,8 @@ class UpdateUserHandler:
 
         try:
             UserRepository.update(user)
+
+            clearUserCache(user.id)
 
         except Exception:
             return Response(status=500)

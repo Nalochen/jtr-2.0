@@ -3,10 +3,10 @@ from datetime import datetime
 
 from flask import g
 
-from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
 from DataDomain.Model.Response import Response
 from ExternalApi.CustomerFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
+from ExternalApi.CustomerFrontend.config.extensions import clearTournamentCache
 
 
 class UpdateTournamentHandler:
@@ -83,6 +83,8 @@ class UpdateTournamentHandler:
 
         try:
             TournamentRepository.update(tournament)
+
+            clearTournamentCache(tournamentId)
 
         except Exception as e:
             return Response(response=e, status=500)

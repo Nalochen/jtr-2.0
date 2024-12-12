@@ -42,5 +42,6 @@ class Config:
 
             import warnings
 
-            warnings.filterwarnings("ignore",
-                                    message="Flask-Caching: CACHE_TYPE is set to null, caching is effectively disabled.")
+            warnings.filterwarnings(
+                "ignore",
+                message="Flask-Caching: CACHE_TYPE is set to null, caching is effectively disabled.")
