@@ -1,0 +1,20 @@
+<div class="picture-name">
+  <img
+    id="logo"
+    alt="Profile Picture of {{ form.controls.username.value }}"
+    src="{{ form.controls.profilePicture.value }}"
+    height="100"
+    width="100"
+  />
+
+  <div class="names">
+    <h1>{{ form.controls.name.value }}</h1>
+    <h3>{{ form.controls.username.value }}</h3>
+  </div>
+</div>
+
+@if (form.controls.pronouns.value !== '' && form.controls.pronouns.value !== null) {
+<div class="pronouns">
+  <h3>{{ 'user-details.pronouns' | translate }}: {{ form.controls.pronouns.value }}</h3>
+</div>
+}

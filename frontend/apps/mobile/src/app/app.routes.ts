@@ -25,6 +25,7 @@ import {
   PageManageParticipatingTeamsComponent
 } from './pages/page-manage-participating-teams/page-manage-participating-teams.component';
 import { PageEnterResultsComponent } from './pages/page-enter-results/page-enter-results.component';
+import { PageManageUserDetailsComponent } from './pages/page-manage-user-details/page-manage-user-details.component';
 
 export const appRoutes: Route[] = [
   {
@@ -106,6 +107,13 @@ export const appRoutes: Route[] = [
   {
     path: 'user-details/:userId?',
     component: PageUserDetailsComponent,
+    resolve: {
+      userDetails: UserDetailsResolver,
+    },
+  },
+  {
+    path: 'manage-user-details/:userId?',
+    component: PageManageUserDetailsComponent,
     resolve: {
       userDetails: UserDetailsResolver,
     },

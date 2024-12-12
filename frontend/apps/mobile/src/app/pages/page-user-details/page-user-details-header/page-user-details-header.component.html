@@ -1,0 +1,28 @@
+<div class="picture-name">
+  <img
+    id="logo"
+    alt="Profile Picture of {{ user().username }}"
+    src="{{ user().picture }}"
+    height="100"
+    width="100"
+  />
+
+  @if (user().isNameVisible) {
+  <div class="names">
+    <h1>{{ user().name }}</h1>
+    <h3>{{ user().username }}</h3>
+  </div>
+  } @else {
+  <h1>{{ user().username }}</h1>
+  }
+</div>
+
+@if (user().pronouns !== '') {
+<div class="pronouns">
+  <h3>{{ 'user-details.pronouns' | translate }}: {{ user().pronouns }}</h3>
+  <app-info-button>
+    <p class="i-headline">{{ 'user-details.pronouns' | translate }}</p>
+    <p>{{ 'user-details.pronouns-info' | translate }}</p>
+  </app-info-button>
+</div>
+}
