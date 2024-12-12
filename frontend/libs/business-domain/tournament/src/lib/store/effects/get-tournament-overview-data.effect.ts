@@ -9,10 +9,12 @@ import {
   TournamentOverviewData,
   TournamentOverviewDataClient,
 } from '@jtr/data-domain/store';
+import {
+  loadTournamentOverviewData,
+  loadTournamentOverviewDataFailedAction,
+  loadTournamentOverviewDataSuccessAction
+} from '../actions/tournament.action';
 
-import { loadTournamentOverviewData } from '../actions/tournament-overview-data-load.action';
-import { loadTournamentOverviewDataFailedAction } from '../actions/tournament-overview-data-loaded-failed.action';
-import { loadTournamentOverviewDataSuccessAction } from '../actions/tournament-overview-data-loaded-success.action';
 
 @Injectable({
   providedIn: 'root',

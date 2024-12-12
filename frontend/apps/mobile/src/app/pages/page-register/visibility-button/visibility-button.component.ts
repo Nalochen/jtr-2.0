@@ -7,7 +7,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
-  selector: 'visibility-button',
+  selector: 'app-visibility-button',
   standalone: true,
   imports: [
     CommonModule,

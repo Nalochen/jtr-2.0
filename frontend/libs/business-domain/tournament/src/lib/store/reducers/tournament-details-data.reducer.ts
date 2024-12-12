@@ -1,8 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { loadTournamentDetailsData } from '../actions/tournament-details-data-load.action';
-import { loadTournamentDetailsDataFailedAction } from '../actions/tournament-details-data-loaded-failed.action';
-import { loadTournamentDetailsDataSuccessAction } from '../actions/tournament-details-data-loaded-success.action';
+import {
+  loadTournamentDetailsData, loadTournamentDetailsDataFailedAction,
+  loadTournamentDetailsDataSuccessAction
+} from '../actions/tournament.action';
 import { tournamentDetailsDataInitialState } from '../states/tournament-details-data-store.initial-state';
 import { TournamentDetailsState } from '../states/tournament-details-data-store.state';
 import { FAILED, IDLE, LOADING } from '../types/loading-state.type';

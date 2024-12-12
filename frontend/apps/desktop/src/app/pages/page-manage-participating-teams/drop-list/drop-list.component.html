@@ -1,0 +1,86 @@
+<div cdkDropListGroup class="container">
+  <div class="drop-list-container">
+    <p>angemeldet:</p>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="participatingTeams()"
+      class="list"
+      (cdkDropListDropped)="drop($event)">
+      @for (team of participatingTeams(); track index; let index = $index) {
+      <div class="drop-list-box" cdkDrag>
+        <div class="custom-placeholder" *cdkDragPlaceholder></div>
+        <div class="team-infos">
+          <img
+            src="{{ team.logo }}"
+            [alt]="team.name"
+            height="32"
+            width="32" />
+          <span>{{ team.name }}</span>
+        </div>
+        <div class="team-actions">
+          <app-button
+            [type]="ButtonTypeEnum.Icon"
+            (click)="sendEmail(team)"
+          >
+            <span class="material-icons-outlined">email</span>
+          </app-button>
+          <app-button
+            [type]="ButtonTypeEnum.Round"
+            [color]="team.hasPaid ? ButtonColorEnum.Grey : ButtonColorEnum.White"
+            (click)="hasPaid(team)"
+          >
+            <span class="material-icons-outlined">euro</span>
+          </app-button>
+          <app-button
+            [type]="ButtonTypeEnum.Icon"
+            (click)="onDeleteTeam(index, true)"
+          >
+            <span class="material-icons-outlined">delete</span>
+          </app-button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+
+  <p-divider />
+
+  <div class="drop-list-container">
+    <p>vorgemerkt:</p>
+
+    <div
+      cdkDropList
+      [cdkDropListData]="waitingTeams()"
+      class="list"
+      (cdkDropListDropped)="drop($event)">
+      @for (team of waitingTeams(); track index; let index = $index) {
+      <div class="drop-list-box" cdkDrag>
+        <div class="custom-placeholder" *cdkDragPlaceholder></div>
+        <div class="team-infos">
+          <img
+            src="{{ team.logo }}"
+            [alt]="team.name"
+            height="32"
+            width="32" />
+          <span>{{ team.name }}</span>
+        </div>
+        <div class="team-actions">
+          <app-button
+            [type]="ButtonTypeEnum.Icon"
+            (click)="sendEmail(team)"
+          >
+            <span class="material-icons-outlined">email</span>
+          </app-button>
+          <app-button
+            [type]="ButtonTypeEnum.Icon"
+            (click)="onDeleteTeam(index, false)"
+          >
+            <span class="material-icons-outlined">delete</span>
+          </app-button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

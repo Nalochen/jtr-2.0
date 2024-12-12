@@ -1,0 +1,11 @@
+<header></header>
+
+<drop-list
+  [participatingTeams]="participatingTeams"
+  [waitingTeams]="waitingTeams"
+  (deleteTeam)="deleteTeam($event.index, $event.isParticipating)"
+/>
+
+<submit-area
+  (saveForm)="save()"
+/>
