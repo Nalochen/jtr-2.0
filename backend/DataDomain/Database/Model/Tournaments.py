@@ -173,9 +173,9 @@ class Tournaments(BaseModel, db.Model):
         nullable=False
     )
 
-    shoes_text: Column[Text] = db.Column(
+    shoes_text: Column[Optional[Text]] = db.Column(
         db.Text,
-        nullable=False
+        nullable=True
     )
 
     shoes_url: Column[String] = db.Column(

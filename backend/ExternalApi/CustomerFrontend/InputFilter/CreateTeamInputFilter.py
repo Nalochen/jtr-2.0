@@ -3,6 +3,7 @@ from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
 from Infrastructure.InputFilter.Validator.IsArrayValidator import IsArrayValidator
+from Infrastructure.InputFilter.Validator.IsBoolValidator import IsBoolValidator
 from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
 
 
@@ -24,30 +25,34 @@ class CreateTeamInputFilter(InputFilter):
         self.add(
             'city',
             required=False,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
             'isMixTeam',
             required=False,
-            filters=[ToBoolFilter(), ToNullFilter()]
+            filters=[ToBoolFilter(), ToNullFilter()],
+            validators=[IsBoolValidator()]
         )
 
         self.add(
             'trainingTime',
             required=False,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
             'aboutUs',
             required=False,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
             'contacts',
             required=False,
             filters=[ToNullFilter()],
-            validators=[IsArrayValidator()],
+            validators=[IsArrayValidator()]
         )

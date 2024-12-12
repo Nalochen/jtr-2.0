@@ -22,7 +22,8 @@ class CreateParticipationHandler:
         teamId: int = data.get('teamId')
         tournamentId: int = data.get('tournamentId')
 
-        logger.info(f"Create participation of team {teamId} to tournament {tournamentId}")
+        logger.info(f"Create participation of team {
+                    teamId} to tournament {tournamentId}")
 
         if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId):
             return Response(status=403)

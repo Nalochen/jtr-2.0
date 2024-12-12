@@ -39,6 +39,8 @@ class CreateTournamentHandler:
             'registrationProcedureType')
         tournament.registration_procedure_text = data.get(
             'registrationProcedureText')
+        tournament.registration_procedure_url = data.get(
+            'registrationProcedureUrl')
         tournament.registration_start_date = datetime.fromisoformat(
             data.get('registrationStartDate')) if data.get('registrationStartDate') else None
         tournament.registration_costs = data.get('registrationCosts')
@@ -59,12 +61,13 @@ class CreateTournamentHandler:
 
         tournament.accommodation_type = data.get('accommodationType')
         tournament.accommodation_location = data.get('accommodationLocation')
+        tournament.location = data.get('location')
         tournament.food_morning = data.get('foodMorning')
         tournament.food_noon = data.get('foodNoon')
         tournament.food_evening = data.get('foodEvening')
         tournament.food_gastro = data.get('foodGastro')
         tournament.tournament_system_text = data.get('tournamentSystemText')
-        # tournament.tournament_system_type = data.get('tournamentSystemType')
+        tournament.tournament_system_type = data.get('tournamentSystemType')
         tournament.tournament_system_url = data.get('tournamentSystemUrl')
         tournament.pompf_check_text = data.get('pompfCheckText')
         tournament.pompf_check_url = data.get('pompfCheckUrl')
@@ -75,7 +78,7 @@ class CreateTournamentHandler:
         tournament.cam_shoes_allowed = data.get('camShoesAllowed')
         tournament.barefoot_allowed = data.get('barefootAllowed')
         tournament.shoes_text = data.get('shoesText')
-        # tournament.shoes_url = data.get('shoesUrl')
+        tournament.shoes_url = data.get('shoesUrl')
 
         tournament.organizer_id = teamId
 

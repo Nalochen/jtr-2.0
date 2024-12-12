@@ -5,6 +5,7 @@ from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import TournamentFoo
 from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import TournamentFoodMorningTypesEnum
 from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
 from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import TournamentRegistrationProcedureTypesEnum
+from DataDomain.Database.Enum.TournamentSystemTypesEnum import TournamentSystemTypesEnum
 from Infrastructure.InputFilter.Enum.RegexEnum import ISO_DATE_REGEX
 from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
 from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
@@ -116,7 +117,8 @@ class CreateTournamentInputFilter(InputFilter):
         self.add(
             'registrationProcedureText',
             required=False,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
@@ -206,6 +208,7 @@ class CreateTournamentInputFilter(InputFilter):
             'costsText',
             required=False,
             filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
@@ -219,6 +222,7 @@ class CreateTournamentInputFilter(InputFilter):
             'schedule',
             required=False,
             filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
@@ -240,6 +244,13 @@ class CreateTournamentInputFilter(InputFilter):
 
         self.add(
             'accommodationLocation',
+            required=True,
+            filters=[StringTrimFilter()],
+            validators=[IsStringValidator()]
+        )
+
+        self.add(
+            'location',
             required=True,
             filters=[StringTrimFilter()],
             validators=[IsStringValidator()]
@@ -304,6 +315,16 @@ class CreateTournamentInputFilter(InputFilter):
         )
 
         self.add(
+            'tournamentSystemType',
+            required=True,
+            validators=[
+                InEnumValidator(
+                    TournamentSystemTypesEnum
+                )
+            ]
+        )
+
+        self.add(
             'pompfCheckText',
             required=True,
             filters=[StringTrimFilter()],
@@ -363,4 +384,19 @@ class CreateTournamentInputFilter(InputFilter):
             'shoesText',
             required=False,
             filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
+        )
+
+        self.add(
+            'shoesUrl',
+            required=True,
+            filters=[StringTrimFilter()],
+            validators=[IsStringValidator()]
+        )
+
+        self.add(
+            'registrationProcedureUrl',
+            required=True,
+            filters=[StringTrimFilter()],
+            validators=[IsStringValidator()]
         )

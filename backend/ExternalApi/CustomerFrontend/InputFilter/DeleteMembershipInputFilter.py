@@ -1,6 +1,7 @@
 from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
+from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
 
 
 class DeleteMembershipInputFilter(InputFilter):
@@ -16,6 +17,9 @@ class DeleteMembershipInputFilter(InputFilter):
             required=True,
             filters=[
                 ToIntFilter()
+            ],
+            validators=[
+                IsIntValidator()
             ]
         )
 
@@ -25,5 +29,8 @@ class DeleteMembershipInputFilter(InputFilter):
             filters=[
                 ToIntFilter(),
                 ToNullFilter()
+            ],
+            validators=[
+                IsIntValidator()
             ]
         )

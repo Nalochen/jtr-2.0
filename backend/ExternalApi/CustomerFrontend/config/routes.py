@@ -105,6 +105,7 @@ def updateUser() -> Response:
                          methods=['POST'], endpoint='create-participation')
 @jwt_required()
 @CreateParticipationInputFilter.validate()
+@limiter.limit("2 per minute")
 def createParticipation() -> Response:
     return CreateParticipationHandler().handle()
 
@@ -113,6 +114,7 @@ def createParticipation() -> Response:
                          methods=['POST'], endpoint='create-team')
 @jwt_required()
 @CreateTeamInputFilter.validate()
+@limiter.limit("2 per minute")
 def createTeam() -> Response:
     return CreateTeamHandler.handle()
 
@@ -121,6 +123,7 @@ def createTeam() -> Response:
                          methods=['POST'], endpoint='create-tournament')
 @jwt_required()
 @CreateTournamentInputFilter.validate()
+# @limiter.limit("2 per minute")
 def createTournament() -> Response:
     return CreateTournamentHandler.handle()
 
@@ -134,6 +137,7 @@ def login() -> Response:
 
 @customer_frontend.route('/register', methods=['POST'], endpoint='register')
 @CreateUserInputFilter.validate()
+@limiter.limit("2 per minute")
 def register() -> Response:
     return CreateUserHandler.handle()
 

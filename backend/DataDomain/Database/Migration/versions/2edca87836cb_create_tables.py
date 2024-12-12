@@ -215,7 +215,7 @@ def upgrade():
                                                       'NO', name='tournamentfoodeveningtypesenum'), nullable=False),
                     sa.Column('food_gastro', sa.Enum('ON_THE_COURSE', 'NEAR', 'FAR',
                                                      'NO', name='tournamentfoodgastrotypesenum'), nullable=False),
-                    sa.Column('shoes_text', sa.Text(), nullable=False),
+                    sa.Column('shoes_text', sa.Text(), nullable=True),
                     sa.Column('shoes_url', sa.String(
                         length=255), nullable=False),
                     sa.Column('studded_shoes_allowed',

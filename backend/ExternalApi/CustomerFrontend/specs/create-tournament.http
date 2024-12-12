@@ -34,11 +34,13 @@ Authorization: Bearer {{jwtToken}}
   ],
   "accommodationType": "hotel",
   "accommodationLocation": "test location",
-  "foodMorning": "none",
-  "foodNoon": "none",
-  "foodEvening": "none",
-  "foodGastro": "none",
+  "location": "keine angabe",
+  "foodMorning": "no",
+  "foodNoon": "no",
+  "foodEvening": "no",
+  "foodGastro": "no",
   "tournamentSystemText": "test text",
+  "tournamentSystemType": "tugeny",
   "tournamentSystemUrl": "test ",
   "pompfCheckText": "test ",
   "pompfCheckUrl": "test ",
@@ -48,7 +50,9 @@ Authorization: Bearer {{jwtToken}}
   "cleatsShoesAllowed": false,
   "camShoesAllowed": false,
   "barefootAllowed": false,
-  "shoesText": ""
+  "shoesText": "schuhe mitbringen",
+  "shoesUrl": "test",
+  "registrationProcedureUrl": "test"
 }
 
 > {%
