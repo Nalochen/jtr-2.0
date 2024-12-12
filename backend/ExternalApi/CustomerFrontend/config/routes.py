@@ -3,6 +3,7 @@ from flask_jwt_extended import jwt_required
 
 from DataDomain.Model.Response import Response
 from ExternalApi.CustomerFrontend.Handler.CreateParticipationHandler import CreateParticipationHandler
+from ExternalApi.CustomerFrontend.Handler.CreateResultHandler import CreateResultHandler
 from ExternalApi.CustomerFrontend.Handler.CreateTeamHandler import CreateTeamHandler
 from ExternalApi.CustomerFrontend.Handler.CreateTournamentHandler import CreateTournamentHandler
 from ExternalApi.CustomerFrontend.Handler.CreateUserHandler import CreateUserHandler
@@ -20,6 +21,7 @@ from ExternalApi.CustomerFrontend.Handler.UpdateTeamHandler import UpdateTeamHan
 from ExternalApi.CustomerFrontend.Handler.UpdateTournamentHandler import UpdateTournamentHandler
 from ExternalApi.CustomerFrontend.Handler.UpdateUserHandler import UpdateUserHandler
 from ExternalApi.CustomerFrontend.InputFilter.CreateParticipationInputFilter import CreateParticipationInputFilter
+from ExternalApi.CustomerFrontend.InputFilter.CreateResultInputFilter import CreateResultInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.CreateTeamInputFilter import CreateTeamInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.CreateTournamentInputFilter import CreateTournamentInputFilter
 from ExternalApi.CustomerFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
@@ -132,6 +134,15 @@ def createTeam() -> Response:
 @limiter.limit("2 per minute")
 def createTournament() -> Response:
     return CreateTournamentHandler.handle()
+
+
+@customer_frontend.route('/create-result',
+                         methods=['POST'], endpoint='create-result')
+@jwt_required()
+@CreateResultInputFilter.validate()
+@limiter.limit("2 per minute")
+def createResult() -> Response:
+    return CreateResultHandler.handle()
 
 
 @customer_frontend.route('/login', methods=['POST'], endpoint='login')

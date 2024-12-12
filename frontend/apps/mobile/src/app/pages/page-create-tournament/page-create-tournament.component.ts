@@ -11,6 +11,8 @@ import { tournamentDetailsSelector } from '@jtr/business-domain/tournament';
 import { TournamentData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
+import { TournamentService } from '../../../../../desktop/src/app/business-rules/tournament/tournament.service';
+
 import { createTournamentFormControl } from '../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import { PageCreateTournamentInformationAccommodationComponent } from './page-create-tournament-information-accommodation/page-create-tournament-information-accommodation.component';
 import { PageCreateTournamentInformationAdditionalComponent } from './page-create-tournament-information-additional/page-create-tournament-information-additional.component';
@@ -21,7 +23,6 @@ import { PageCreateTournamentInformationRulesComponent } from './page-create-tou
 import { PageCreateTournamentSubmitComponent } from './page-create-tournament-submit/page-create-tournament-submit.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DividerModule } from 'primeng/divider';
-import { TournamentService } from '../../../../../desktop/src/app/business-rules/tournament/tournament.service';
 
 @Component({
   standalone: true,
@@ -94,11 +95,7 @@ export class PageCreateTournamentComponent implements OnDestroy {
     }
 
     // Update existing tournament
-    const tournamentId = (await firstValueFrom(this.tournament$))?.id;
-
-    if (!tournamentId) {
-      return;
-    }
+    const tournamentId = (await firstValueFrom(this.tournament$))!.id;
 
     await firstValueFrom(
       this.tournamentService.update(tournamentId, this.form.getRawValue())

@@ -144,3 +144,26 @@ class ParticipatesInRepository:
             return 0
 
         return maxOrder + 1
+
+    @staticmethod
+    def createResult(tournamentId: int, teamId: int, placement: int) -> None:
+        """Create a result for a team in a tournament"""
+
+        try:
+            db.session.execute(
+                participates_in.update().values(
+                    placement=placement
+                ).where(
+                    participates_in.c.tournament_id == tournamentId,
+                    participates_in.c.team_id == teamId
+                )
+            )
+            db.session.commit()
+
+            logger.info(f'ParticipatesInRepository | createResult | Created result for team {
+                        teamId} in tournament {tournamentId}')
+
+        except Exception as e:
+            db.session.rollback()
+            logger.error(f'ParticipatesInRepository | createResult | {e}')
+            raise e

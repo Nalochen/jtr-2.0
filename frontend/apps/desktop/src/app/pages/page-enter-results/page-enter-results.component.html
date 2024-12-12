@@ -5,7 +5,7 @@
     @for (formGroup of form.controls.teams.controls; track formGroup.controls.teamId.value) {
     <div [formGroup]="formGroup" class="team-input">
       <p>{{ formGroup.controls.teamName.value }}</p>
-      <p-inputNumber [formControl]="formGroup.controls.score" />
+      <p-inputNumber [formControl]="formGroup.controls.placement" />
     </div>
     } @empty {
     <p>Keine Teams vorhanden</p>
