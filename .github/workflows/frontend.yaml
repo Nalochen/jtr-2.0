@@ -28,10 +28,15 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install --prefix frontend
+        run: npm ci --prefix frontend
 
       - name: Build project with nx
-        run: npm run nx build desktop --prefix frontend
+        run: |
+          set -x # Print commands and their arguments as they are executed.
+          set -e # Exit immediately if a command exits with a non-zero status.
+          set -u # Exit immediately if a variable is not defined.
+          
+          npm run nx build desktop --prefix frontend
 
   build-mobile:
     runs-on: ubuntu-latest
@@ -53,10 +58,15 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install --prefix frontend
+        run: npm ci --prefix frontend
 
       - name: Build project with nx
-        run: npm run nx build mobile --prefix frontend
+        run: |
+          set -x # Print commands and their arguments as they are executed.
+          set -e # Exit immediately if a command exits with a non-zero status.
+          set -u # Exit immediately if a variable is not defined.
+          
+          npm run nx build mobile --prefix frontend
 
   test:
     runs-on: ubuntu-latest
@@ -70,7 +80,7 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install --prefix frontend
+        run: npm ci --prefix frontend
 
       - name: Cache Node.js modules
         uses: actions/cache@v3
@@ -108,7 +118,7 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install --prefix frontend
+        run: npm ci --prefix frontend
 
       - name: Run code style checks on all projects
         run: |
