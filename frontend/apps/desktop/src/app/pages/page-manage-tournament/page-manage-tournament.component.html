@@ -72,7 +72,7 @@
     @if (form.controls.teams.value === 'INDIVIDUAL') {
       @let teams = teams$ | async;
       <div class="team-radio-buttons">
-        @for (team of teams?.participating; track team.id) {
+        @for (team of teams; track team.id) {
         <div>
           <input
             type="radio"

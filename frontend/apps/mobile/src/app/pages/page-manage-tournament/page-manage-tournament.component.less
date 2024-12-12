@@ -1,3 +1,11 @@
+@import 'colors-mobile';
+
+:host {
+  background-color: @color-bg-light;
+  display: block;
+  padding-bottom: 16px;
+}
+
 .radio-buttons {
   display: flex;
   flex-direction: column;
@@ -5,13 +13,12 @@
 }
 
 app-text-editor {
-  margin-top: 8px;
-  margin-bottom: 20px;
+  margin: 8px 0;
 }
 
 .subject {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 8px;
   display: block;
 }
 
@@ -31,4 +38,16 @@ app-text-editor {
 app-button {
   margin-top: 16px;
   display: block;
+}
+
+.header {
+  background-color: @color-blue;
+  display: flex;
+  justify-content: center;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 32px;
+}
+
+.content {
+  padding: 0 8px;
 }
