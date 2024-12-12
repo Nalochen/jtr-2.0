@@ -85,6 +85,8 @@
     "password-confirmation-mismatch": "Passwords do not match",
     "name": "Name",
     "name-info": "Your display name. It's best to enter the name here by which most people in the community know you.",
+    "pronouns": "Pronouns",
+    "pronouns-info": "This refers to third-person singular pronouns, such as \"her pompf\" or \"he runs\". By specifying them here, you help others speak or write about you correctly. The pronouns you prefer are not necessarily clear from your name or appearance. In english, examples of pronouns include \"he/him\", \"she/her\", \"they/them,\" and many other combinations. If you don't care or don't use pronouns at all, you can specify that as well.",
     "city": "City",
     "city-info": "Here you can specify the city you come from or where you train.",
     "birthdate": "Birthdate",
