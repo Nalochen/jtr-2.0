@@ -37,9 +37,9 @@ def upgrade():
                     sa.Column('is_deleted', sa.Boolean(),
                               server_default='0', nullable=False),
                     sa.Column('created_at', sa.DateTime(),
-                              server_default=sa.text('now()'), nullable=False),
+                              server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
                     sa.Column('updated_at', sa.DateTime(),
-                              server_default=sa.text('now()'), nullable=False),
+                              server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
                     sa.PrimaryKeyConstraint('id')
                     )
     op.create_table(
@@ -61,7 +61,7 @@ def upgrade():
         sa.Column(
             'last_attempt',
             sa.DateTime(),
-            server_default=sa.text('now()'),
+            server_default=sa.text('CURRENT_TIMESTAMP'),
             nullable=False),
         sa.PrimaryKeyConstraint('id'))
     op.create_table(
@@ -92,7 +92,7 @@ def upgrade():
         sa.Column(
             'created_at',
             sa.DateTime(),
-            server_default=sa.text('now()')),
+            server_default=sa.text('CURRENT_TIMESTAMP')),
         sa.PrimaryKeyConstraint('id'))
     op.create_table('users',
                     sa.Column('id', sa.Integer(), nullable=False),
@@ -114,9 +114,9 @@ def upgrade():
                     sa.Column('is_deleted', sa.Boolean(),
                               server_default='0', nullable=False),
                     sa.Column('created_at', sa.DateTime(),
-                              server_default=sa.text('now()'), nullable=False),
+                              server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
                     sa.Column('updated_at', sa.DateTime(),
-                              server_default=sa.text('now()'), nullable=False),
+                              server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
                     sa.PrimaryKeyConstraint('id'),
                     sa.UniqueConstraint('email'),
                     sa.UniqueConstraint('username')
@@ -150,7 +150,7 @@ def upgrade():
         sa.Column(
             'created_at',
             sa.DateTime(),
-            server_default=sa.text('now()'),
+            server_default=sa.text('CURRENT_TIMESTAMP'),
             nullable=True
         ),
         sa.ForeignKeyConstraint(
@@ -245,20 +245,20 @@ def upgrade():
                     sa.Column('registration_procedure_url',
                               sa.String(length=255), nullable=False),
                     sa.Column('registration_start_date', sa.DateTime(),
-                              server_default=sa.text('now()'), nullable=False),
+                              server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
                     sa.Column('is_deleted', sa.Boolean(),
                               server_default='0', nullable=False),
                     sa.Column('created_at', sa.DateTime(),
-                              server_default=sa.text('now()'), nullable=False),
+                              server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
                     sa.Column('updated_at', sa.DateTime(),
-                              server_default=sa.text('now()'), nullable=False),
+                              server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
                     sa.Column('organizer_id', sa.Integer(), nullable=False),
                     sa.ForeignKeyConstraint(['organizer_id'], ['teams.id'], ),
                     sa.PrimaryKeyConstraint('id')
                     )
     op.create_table('participates_in',
                     sa.Column('created_at', sa.DateTime(),
-                              server_default=sa.text('now()'), nullable=True),
+                              server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
                     sa.Column('has_played', sa.Boolean(),
                               server_default='0', nullable=False),
                     sa.Column('is_deleted', sa.Boolean(),

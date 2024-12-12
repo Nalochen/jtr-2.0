@@ -17,7 +17,6 @@ import {
 } from '../../ui-shared';
 import { PageRegisterHeaderComponent } from './page-register-header/page-register-header.component';
 import { TranslatePipe } from '@ngx-translate/core';
-import { VisibilityButtonComponent } from './visibility-button/visibility-button.component';
 
 
 @Component({

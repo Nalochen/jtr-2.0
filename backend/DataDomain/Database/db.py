@@ -49,4 +49,5 @@ def initDatabase(app: Flask) -> None:
     with app.app_context():
         upgrade()
 
-        executeSqlCommandsToInitDatabase(app)
+        if os.getenv('GENERATE_TEST_DATA'):
+            executeSqlCommandsToInitDatabase(app)

@@ -1,5 +1,11 @@
 #!/bin/bash
 
+cd ./backend
+
+set -x # Print commands and their arguments as they are executed.
+set -e # Exit immediately if a command exits with a non-zero status.
+set -u # Exit immediately if a variable is not defined.
+
 export FLASK_ENV='testing'
 export CACHE_REDIS_HOST='localhost'
 export CACHE_REDIS_PORT='6379'
@@ -23,7 +29,7 @@ export RABBITMQ_DEFAULT_PASS='mypass'
 export RABBITMQ_DEFAULT_USER='admin'
 export SECRET_KEY='secret'
 
-python3 ./backend/wsgi.py &
+exec gunicorn -b 0.0.0.0:5001 wsgi:app &
 
 SERVER_PID=$!
 
