@@ -19,7 +19,6 @@ import { TournamentTeamData, TournamentTeamsData } from '@jtr/data-domain/store'
 
 import { ButtonColorEnum, ButtonComponent, ButtonFunctionType, ButtonTypeEnum, ChipComponent } from '../../ui-shared';
 import { DropListComponent } from './drop-list/drop-list.component';
-import { HeaderComponent } from './header/header.component';
 import { SubmitAreaComponent } from './submit-area/submit-area.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
@@ -42,7 +41,6 @@ import { TooltipModule } from 'primeng/tooltip';
     DropdownModule,
     FormsModule,
     ChipComponent,
-    HeaderComponent,
     SubmitAreaComponent,
     DropListComponent,
   ],
