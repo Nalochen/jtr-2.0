@@ -16,12 +16,18 @@ import {
 } from '@jtr/data-domain/tournament-data';
 
 import { RegistrationInformationForm } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+  DataContainerRowComponent,
+  InfoButtonComponent,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
-import { ButtonComponent, DataContainerRowComponent, InfoButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../../ui-shared';
-import { InputNumberModule } from 'primeng/inputnumber';
 
 export type TeamCountOption = { label: string; value: number };
 
@@ -40,7 +46,7 @@ export type TeamCountOption = { label: string; value: number };
     ButtonComponent,
     DatePipe,
     TranslatePipe,
-    InputNumberModule
+    InputNumberModule,
   ],
   providers: [DatePipe],
   templateUrl:
