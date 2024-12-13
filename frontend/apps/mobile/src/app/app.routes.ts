@@ -21,6 +21,11 @@ import { PageTeamOverviewComponent } from './pages/page-team-overview/page-team-
 import { PageTournamentDetailsComponent } from './pages/page-tournament-details/page-tournament-details.component';
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
+import {
+  PageManageParticipatingTeamsComponent
+} from './pages/page-manage-participating-teams/page-manage-participating-teams.component';
+import { PageEnterResultsComponent } from './pages/page-enter-results/page-enter-results.component';
+import { PageManageUserDetailsComponent } from './pages/page-manage-user-details/page-manage-user-details.component';
 
 export const appRoutes: Route[] = [
   {
@@ -70,17 +75,25 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'manage-tournament/tournament-information/:tournamentId',
-    component: PageCreateTournamentComponent,
+    path: 'manage-tournament/:tournamentId',
+    component: PageManageTournamentComponent,
     resolve: {
       tournamentDetails: TournamentDetailsResolver,
     },
   },
   {
-    path: 'manage-tournament/:tournamentId',
-    component: PageManageTournamentComponent,
+    path: 'manage-tournament/enter-results/:tournamentId',
+    component: PageEnterResultsComponent,
     resolve: {
       tournamentDetails: TournamentDetailsResolver,
+    },
+  },
+  {
+    path: 'manage-tournament/participating-teams/:tournamentId',
+    component: PageManageParticipatingTeamsComponent,
+    resolve: {
+      tournamentDetails: TournamentDetailsResolver,
+      teamDetails: TeamOverviewResolver,
     },
   },
   {
@@ -94,6 +107,13 @@ export const appRoutes: Route[] = [
   {
     path: 'user-details/:userId?',
     component: PageUserDetailsComponent,
+    resolve: {
+      userDetails: UserDetailsResolver,
+    },
+  },
+  {
+    path: 'manage-user-details/:userId?',
+    component: PageManageUserDetailsComponent,
     resolve: {
       userDetails: UserDetailsResolver,
     },

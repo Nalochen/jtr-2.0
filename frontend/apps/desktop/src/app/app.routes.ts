@@ -90,7 +90,7 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'create-tournament/participating-teams/:tournamentId',
+    path: 'manage-tournament/participating-teams/:tournamentId',
     component: PageManageParticipatingTeamsComponent,
     resolve: {
       tournamentDetails: TournamentDetailsResolver,

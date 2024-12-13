@@ -1,12 +1,19 @@
 @import 'colors-mobile';
 
+:host {
+  display: block;
+}
+
 button {
   font-size: 16px !important;
   font-family: 'Helvetica Neue', sans-serif !important;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .white {
@@ -97,4 +104,20 @@ button {
   border-radius: 50%;
   padding: 5px;
   border: none;
+}
+
+.center {
+  justify-content: center;
+}
+
+.flex-start {
+  justify-content: flex-start;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.space-between {
+  justify-content: space-between;
 }

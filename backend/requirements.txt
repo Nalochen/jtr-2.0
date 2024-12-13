@@ -9,6 +9,7 @@ flask_jwt_extended
 flask_limiter
 flask_migrate
 flask_sqlalchemy
+flask_talisman
 gunicorn
 pipreqs
 pymysql

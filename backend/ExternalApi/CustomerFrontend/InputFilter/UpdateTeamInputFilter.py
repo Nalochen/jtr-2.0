@@ -4,6 +4,10 @@ from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
 from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
+from Infrastructure.InputFilter.Validator.IsArrayValidator import IsArrayValidator
+from Infrastructure.InputFilter.Validator.IsBoolValidator import IsBoolValidator
+from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
+from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
 from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
 
 
@@ -18,19 +22,24 @@ class UpdateTeamInputFilter(InputFilter):
         self.add(
             'teamId',
             required=True,
-            filters=[ToIntFilter()]
+            filters=[ToIntFilter()],
+            validators=[
+                IsIntValidator()
+            ]
         )
 
         self.add(
             'name',
             required=False,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
             'logo',
             required=False,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
@@ -50,28 +59,34 @@ class UpdateTeamInputFilter(InputFilter):
         self.add(
             'city',
             required=False,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
             'isMixTeam',
             required=False,
-            filters=[ToBoolFilter(), ToNullFilter()]
+            filters=[ToBoolFilter(), ToNullFilter()],
+            validators=[IsBoolValidator()]
         )
 
         self.add(
             'trainingTime',
             required=False,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
             'aboutUs',
             required=False,
-            filters=[StringTrimFilter(), ToNullFilter()]
+            filters=[StringTrimFilter(), ToNullFilter()],
+            validators=[IsStringValidator()]
         )
 
         self.add(
             'contacts',
             required=False,
+            filters=[ToNullFilter()],
+            validators=[IsArrayValidator()],
         )

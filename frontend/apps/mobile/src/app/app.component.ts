@@ -14,6 +14,7 @@ import { AuthService } from './business-rules/auth/auth.service';
 import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from './ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
   standalone: true,
@@ -25,6 +26,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     OverlayMenuComponent,
     TranslatePipe,
     ButtonComponent,
+    OverlayPanelModule
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -3,6 +3,7 @@ from flask import Flask
 
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
+from flask_talisman import Talisman
 from redis import Redis
 
 from DataDomain.Database.db import db
@@ -28,6 +29,13 @@ def createApp() -> Flask:
     db.init_app(app)
 
     Migrate(app, db, directory=app.config['MIGRATION_DIR'])
+
+    Talisman(app, content_security_policy={
+        'default-src': ["'self'"],
+        'script-src': ["'self'", "'unsafe-inline'"],
+        'style-src': ["'self'", "'unsafe-inline'"],
+        'img-src': ["'self'"],
+    })
 
     return app
 

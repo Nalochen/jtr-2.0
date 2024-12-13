@@ -1,0 +1,184 @@
+<page-manage-user-details-header [form]="form" [isLoggedIn$]="isLoggedIn$" />
+
+<div class="content">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="email">
+      <label for="email">{{ 'user-details.email' | translate }}</label>
+      <input
+        type="email"
+        class="form-control"
+        [formControl]="form.controls.email"
+        id="email"
+        [class.invalid]="
+          form.get('email')?.invalid &&
+          (form.controls.email.dirty || form.controls.email.touched)
+        "
+      />
+      @if ((form.controls.email.dirty || form.controls.email.touched) &&
+      form.controls.email.hasError('required')) {
+      <p class="error-message">{{ 'user-details.email-required' | translate }}</p>
+      } @if ((form.controls.email.dirty || form.controls.email.touched) &&
+      form.controls.email.hasError('email')) {
+      <p class="error-message">{{ 'user-details.email-invalid' | translate }}</p>
+      }
+    </div>
+
+    <div class="username">
+      <div class="headline">
+        <label for="username">{{ 'user-details.username' | translate }} {{ 'user-details.unique' | translate }}</label>
+        <app-info-button>
+          <p class="i-headline">{{ 'user-details.username' | translate }}</p>
+          <p>{{ 'user-details.username-info' | translate }}</p>
+        </app-info-button>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        [formControl]="form.controls.username"
+        id="username"
+        [class.invalid]="
+          form.get('username')?.invalid &&
+          (form.controls.username.dirty || form.controls.username.touched)
+        "
+      />
+      @if ((form.controls.username.dirty || form.controls.username.touched) &&
+      form.controls.username.hasError('required')) {
+      <p class="error-message">{{ 'user-details.username-required' | translate }}</p>
+      } @if ((form.controls.username.dirty || form.controls.username.touched) &&
+      form.controls.username.hasError('minlength')) {
+      <p class="error-message">{{ 'user-details.username-min' | translate }}</p>
+      }
+    </div>
+
+    <div class="name">
+      <div class="headline">
+        <label for="name">{{ 'user-details.name' | translate }}</label>
+        <app-info-button>
+          <p class="i-headline">{{ 'user-details.name' | translate }}</p>
+          <p>{{ 'user-details.name-info' | translate }}</p>
+        </app-info-button>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        [formControl]="form.controls.name"
+        id="name"
+      />
+    </div>
+
+    <div class="pronouns">
+      <div class="headline">
+        <label for="pronouns">{{ 'user-details.pronouns' | translate }}</label>
+        <app-info-button>
+          <p class="i-headline">{{ 'user-details.pronouns' | translate }}</p>
+          <p>{{ 'user-details.pronouns-info' | translate }}</p>
+        </app-info-button>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        [formControl]="form.controls.pronouns"
+        id="pronouns"
+      />
+    </div>
+
+    <app-visibility-button
+      class="name-button"
+      [control]="form.controls.isNameVisible"
+    />
+
+    <div class="city">
+      <div class="headline">
+        <label for="city">{{ 'user-details.city' | translate }}</label>
+        <app-info-button>
+          <p class="i-headline">{{ 'user-details.city' | translate }}</p>
+          <p>{{ 'user-details.city-info' | translate }}</p>
+        </app-info-button>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        [formControl]="form.controls.city"
+        id="city"
+      />
+    </div>
+
+    <app-visibility-button
+      class="city-button"
+      [control]="form.controls.isCityVisible"
+    />
+
+    <div class="birthdate">
+      <div class="headline">
+        <label for="birthdate">{{ 'user-details.birthdate' | translate }}</label>
+        <app-info-button>
+          <p class="i-headline">{{ 'user-details.birthdate' | translate }}</p>
+          <p>{{ 'user-detail.birthdate-info' | translate }}</p>
+        </app-info-button>
+      </div>
+      <input
+        type="date"
+        class="form-control"
+        [formControl]="form.controls.birthdate"
+        id="birthdate"
+      />
+    </div>
+
+    <app-visibility-button
+      class="birthdate-button"
+      [control]="form.controls.isBirthdateVisible"
+    />
+  </form>
+
+
+    @let user = user$ | async;
+    @if (user?.teams) {
+    <h4>Teams:</h4>
+    @for (team of user?.teams; track team.id) {
+    <app-button
+      [color]="ButtonColorEnum.Grey"
+      [type]="ButtonTypeEnum.Raised"
+      [fullWidth]="true"
+      [justifyContent]="ButtonJustifyContentEnum.FLEX_START"
+      (click)="navigateToTeam(team.id)"
+      class="team-button"
+    >
+      <div class="team">
+        <img
+          id="logo"
+          alt="Logo of {{ team.name }}"
+          src="{{ team.logo }}"
+          height="30"
+          width="30"
+        >
+        <p>{{ team.name }}</p>
+      </div>
+    </app-button>
+    } @empty {
+    <p>{{ 'user-details.no-teams' | translate }}</p>
+    }
+    } @else {
+    <p>{{ 'user-details.no-teams' | translate }}</p>
+    }
+
+  <div class="cta">
+    <app-button
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Raised"
+      [fullWidth]="true"
+      (click)="onFoundNewTeam()"
+    >{{ 'user-details.found-team' | translate }}</app-button>
+    <app-button
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Raised"
+      [fullWidth]="true"
+      (click)="onDeleteAccount()"
+    >{{ 'user-details.delete-account' | translate }}</app-button>
+    <app-button
+      [color]="ButtonColorEnum.Red"
+      [type]="ButtonTypeEnum.Raised"
+      [fullWidth]="true"
+      [buttonType]="ButtonFunctionTypeEnum.SUBMIT"
+    >{{ 'user-details.save' | translate }}</app-button>
+  </div>
+</div>

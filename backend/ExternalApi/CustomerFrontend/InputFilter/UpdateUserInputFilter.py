@@ -2,6 +2,7 @@ from Infrastructure.InputFilter.Enum.RegexEnum import EMAIL_REGEX, ISO_DATE_REGE
 from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
+from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
 from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
 
 
@@ -33,7 +34,8 @@ class UpdateUserInputFilter(InputFilter):
             filters=[
                 StringTrimFilter(),
                 ToNullFilter()
-            ]
+            ],
+            validators=[IsStringValidator()]
         )
 
         self.add(
@@ -57,7 +59,8 @@ class UpdateUserInputFilter(InputFilter):
             filters=[
                 StringTrimFilter(),
                 ToNullFilter()
-            ]
+            ],
+            validators=[IsStringValidator()]
         )
 
         self.add(
@@ -66,7 +69,8 @@ class UpdateUserInputFilter(InputFilter):
             filters=[
                 StringTrimFilter(),
                 ToNullFilter()
-            ]
+            ],
+            validators=[IsStringValidator()]
         )
 
         self.add(
@@ -86,7 +90,8 @@ class UpdateUserInputFilter(InputFilter):
             filters=[
                 StringTrimFilter(),
                 ToNullFilter()
-            ]
+            ],
+            validators=[IsStringValidator()]
         )
 
         self.add(
@@ -95,5 +100,6 @@ class UpdateUserInputFilter(InputFilter):
             filters=[
                 StringTrimFilter(),
                 ToNullFilter()
-            ]
+            ],
+            validators=[IsStringValidator()]
         )

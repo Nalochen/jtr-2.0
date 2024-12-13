@@ -29,6 +29,7 @@ export interface CreateTournamentRequestBody {
   registrationStartDate: string;
   registrationCosts?: number;
   registrationCostsType?: PricingTypeEnum;
+  registrationProcedureUrl: string;
   depositCosts?: number;
   depositCostsType?: PricingTypeEnum;
   accommodationCosts?: number;
@@ -41,12 +42,14 @@ export interface CreateTournamentRequestBody {
   contacts: string[];
   accommodationType: AccommodationTypeEnum;
   accommodationLocation: string;
+  location: string;
   foodMorning: TournamentFoodMorningEnum;
   foodNoon: TournamentFoodNoonEnum;
   foodEvening: TournamentFoodEveningEnum;
   foodGastro: TournamentFoodGastroEnum;
   tournamentSystemText: string;
   tournamentSystemUrl: string;
+  tournamentSystemType: string;
   pompfCheckText: string;
   pompfCheckUrl: string;
   houseRulesText: string;
@@ -56,6 +59,7 @@ export interface CreateTournamentRequestBody {
   camShoesAllowed: boolean;
   barefootAllowed: boolean;
   shoesText: string;
+  shoesUrl: string;
 }
 
 export interface CreateTournamentResponse {
@@ -77,6 +81,7 @@ export interface UpdateTournamentRequestBody {
   registrationStartDate: string;
   registrationCosts?: number;
   registrationCostsType?: PricingTypeEnum;
+  registrationProcedureUrl: string;
   depositCosts?: number;
   depositCostsType?: PricingTypeEnum;
   accommodationCosts?: number;
@@ -89,12 +94,14 @@ export interface UpdateTournamentRequestBody {
   contacts: string[];
   accommodationType: AccommodationTypeEnum;
   accommodationLocation: string;
+  location: string;
   foodMorning: TournamentFoodMorningEnum;
   foodNoon: TournamentFoodNoonEnum;
   foodEvening: TournamentFoodEveningEnum;
   foodGastro: TournamentFoodGastroEnum;
   tournamentSystemText: string;
   tournamentSystemUrl: string;
+  tournamentSystemType: string;
   pompfCheckText: string;
   pompfCheckUrl: string;
   houseRulesText: string;
@@ -104,6 +111,7 @@ export interface UpdateTournamentRequestBody {
   camShoesAllowed: boolean;
   barefootAllowed: boolean;
   shoesText: string;
+  shoesUrl: string;
 }
 
 @Injectable({
@@ -126,6 +134,7 @@ export class TournamentService {
         body.registration.teamCountButton ?? body.registration.teamCountField,
       registrationProcedureType: body.registration.registrationProcedureType,
       registrationProcedureText: body.registration.registrationProcedureText,
+      registrationProcedureUrl: 'test',
       registrationStartDate: body.registration.registrationStartDate,
       registrationCosts: body.registration.costs.registrationCosts,
       registrationCostsType: body.registration.costs.registrationCostsType,
@@ -141,12 +150,13 @@ export class TournamentService {
       contacts: body.contact.contacts,
       accommodationType: body.accommodation.accommodationType,
       accommodationLocation: body.accommodation.accommodationAddress,
+      location: 'Keine Angabe',
       foodMorning: body.accommodation.food.breakfast,
       foodNoon: body.accommodation.food.lunch,
       foodEvening: body.accommodation.food.dinner,
       foodGastro: body.accommodation.food.gastronomy,
       tournamentSystemText: body.rules.tournamentSystem,
-      // tournamentSystemType
+      tournamentSystemType: 'tugeny',
       tournamentSystemUrl: body.rules.tournamentSystemLink,
       pompfCheckText: body.rules.pompfCheck,
       pompfCheckUrl: body.rules.pompfCheckLink,
@@ -157,7 +167,7 @@ export class TournamentService {
       camShoesAllowed: body.rules.shoes.cam,
       barefootAllowed: body.rules.shoes.barefoot,
       shoesText: body.rules.shoes.shoesText,
-      //shoesUrl
+      shoesUrl: 'test',
     };
 
     return this.http.post<CreateTournamentResponse>(
@@ -181,6 +191,7 @@ export class TournamentService {
         body.registration.teamCountButton ?? body.registration.teamCountField,
       registrationProcedureType: body.registration.registrationProcedureType,
       registrationProcedureText: body.registration.registrationProcedureText,
+      registrationProcedureUrl: 'test',
       registrationStartDate: body.registration.registrationStartDate,
       registrationCosts: body.registration.costs.registrationCosts,
       registrationCostsType: body.registration.costs.registrationCostsType,
@@ -196,12 +207,13 @@ export class TournamentService {
       contacts: body.contact.contacts,
       accommodationType: body.accommodation.accommodationType,
       accommodationLocation: body.accommodation.accommodationAddress,
+      location: 'Keine Angabe',
       foodMorning: body.accommodation.food.breakfast,
       foodNoon: body.accommodation.food.lunch,
       foodEvening: body.accommodation.food.dinner,
       foodGastro: body.accommodation.food.gastronomy,
       tournamentSystemText: body.rules.tournamentSystem,
-      // tournamentSystemType
+      tournamentSystemType: 'tugeny',
       tournamentSystemUrl: body.rules.tournamentSystemLink,
       pompfCheckText: body.rules.pompfCheck,
       pompfCheckUrl: body.rules.pompfCheckLink,
@@ -212,10 +224,8 @@ export class TournamentService {
       camShoesAllowed: body.rules.shoes.cam,
       barefootAllowed: body.rules.shoes.barefoot,
       shoesText: body.rules.shoes.shoesText,
-      //shoesUrl
+      shoesUrl: 'test',
     };
-
-    console.log('func');
 
     return this.http.put(UPDATE_TOURNAMENT_ENDPOINT, request);
   }

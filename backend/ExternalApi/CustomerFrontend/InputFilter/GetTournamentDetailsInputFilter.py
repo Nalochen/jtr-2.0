@@ -1,5 +1,6 @@
 from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
+from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
 
 
 class GetTournamentDetailsInputFilter(InputFilter):
@@ -13,5 +14,8 @@ class GetTournamentDetailsInputFilter(InputFilter):
         self.add(
             'tournamentId',
             required=True,
-            filters=[ToIntFilter()]
+            filters=[ToIntFilter()],
+            validators=[
+                IsIntValidator()
+            ]
         )

@@ -18,11 +18,8 @@ class Config:
         app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
         app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-        app.config['MIGRATION_DIR'] = '/home/backend/DataDomain/Database/Migration' if os.getenv(
-            'FLASK_ENV') == 'development' else '/app/DataDomain/Database/Migration'
         app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
-        app.config['CACHE_TYPE'] = 'redis'
         app.config['CACHE_REDIS_HOST'] = os.getenv('CACHE_REDIS_HOST')
         app.config['CACHE_REDIS_PORT'] = os.getenv('CACHE_REDIS_PORT')
         app.config['CACHE_REDIS_DB'] = 0
@@ -32,3 +29,19 @@ class Config:
         app.config['CELERY_BROKER_URL'] = os.getenv('CELERY_BROKER_URL')
         app.config['CELERY_RESULT_BACKEND'] = os.getenv(
             'CELERY_RESULT_BACKEND')
+
+        app.config['JWT_VERIFY_SUB'] = False
+
+        if os.getenv('FLASK_ENV') == 'production':
+            app.config['MIGRATION_DIR'] = '/app/DataDomain/Database/Migration'
+            app.config['CACHE_TYPE'] = 'redis'
+
+        elif os.getenv('FLASK_ENV') == 'development':
+            app.config['MIGRATION_DIR'] = '/home/backend/DataDomain/Database/Migration'
+            app.config['CACHE_TYPE'] = 'null'
+
+            import warnings
+
+            warnings.filterwarnings(
+                "ignore",
+                message="Flask-Caching: CACHE_TYPE is set to null, caching is effectively disabled.")
