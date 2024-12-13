@@ -1,1 +1,13 @@
-<h1>Works</h1>
+<h1>{{ 'teams' | translate }}</h1>
+
+<input
+  type="text"
+  placeholder="{{ 'search' | translate }}"
+  [formControl]="searchForm"
+>
+
+@for (team of teams$ | async; track team.id) {
+<team-row
+  [team]="team"
+/>
+}
