@@ -7,9 +7,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { ButtonComponent } from '../button/button.component';
-import { ButtonColorEnum } from '../button/enums/color.enum';
-import { ButtonTypeEnum } from '../button/enums/type.enum';
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../index';
 import { TranslatePipe } from '@ngx-translate/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 

@@ -33,11 +33,15 @@ class Config:
         app.config['JWT_VERIFY_SUB'] = False
 
         if os.getenv('FLASK_ENV') == 'production':
-            app.config['MIGRATION_DIR'] = '/app/DataDomain/Database/Migration'
+            app.config['DATABASE_PATH'] = '/app/DataDomain/Database'
             app.config['CACHE_TYPE'] = 'redis'
 
+        elif os.getenv('FLASK_ENV') == 'testing':
+            app.config['DATABASE_PATH'] = 'backend/DataDomain/Database'
+            app.config['CACHE_TYPE'] = 'null'
+
         elif os.getenv('FLASK_ENV') == 'development':
-            app.config['MIGRATION_DIR'] = '/home/backend/DataDomain/Database/Migration'
+            app.config['DATABASE_PATH'] = '/home/backend/DataDomain/Database'
             app.config['CACHE_TYPE'] = 'null'
 
             import warnings

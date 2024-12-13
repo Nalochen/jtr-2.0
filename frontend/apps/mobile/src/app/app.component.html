@@ -1,7 +1,21 @@
 <div class="header">
-  <button mat-icon-button="home">
-    <span class="material-icons-outlined">image</span>
-  </button>
+  <div class="left">
+    <button mat-icon-button="home">
+      <span class="material-icons-outlined">image</span>
+    </button>
+    <app-button
+      [type]="ButtonTypeEnum.Icon"
+      [color]="ButtonColorEnum.None"
+      (click)="prideFlag.toggle($event)"
+    >
+      <img
+        src="assets/svgs/progress-pride-flag.svg"
+        alt="Pride Flag"
+        width="30"
+        height="30"
+      />
+    </app-button>
+  </div>
   <nav>
     <button mat-icon-button="search" class="search">
       <span class="material-icons-outlined">search</span>
@@ -12,7 +26,16 @@
   </nav>
 </div>
 <div class="content">
-  <router-outlet/>
+  <router-outlet />
 </div>
 
 <app-overlay-menu #overlay (close)="closeOverlay()" />
+
+<p-overlayPanel #prideFlag>
+  <p class="pride-text">
+    Jugger setzt sich immer stärker für seine Queeren Mitglieder ein. So soll
+    aus uns eine bunte und vielfältige Community werden, in der alle Menschen
+    willkommen sind.
+  </p>
+  <a class="pride-text">Lies hierzu die Texte von Alex und Momo</a>
+</p-overlayPanel>
