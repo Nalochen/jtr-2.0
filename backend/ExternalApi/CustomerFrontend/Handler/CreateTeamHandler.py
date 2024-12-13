@@ -3,11 +3,13 @@ from datetime import datetime
 
 from flask import g
 
+from DataDomain.Database.Enum.UserRoleTypesEnum import UserRoleTypesEnum
 from DataDomain.Database.Model.Teams import Teams
 from DataDomain.Database.Repository.IsPartOfRepository import IsPartOfRepository
 from DataDomain.Database.Repository.TeamRepository import TeamRepository
 from DataDomain.Database.tools import getJwtIdentity
 from DataDomain.Model.Response import Response
+from config.cache import cache
 
 
 class CreateTeamHandler:
@@ -40,8 +42,10 @@ class CreateTeamHandler:
             IsPartOfRepository.create(
                 userId=getJwtIdentity().id,
                 teamId=teamId,
-                userRole='admin'
+                userRole=UserRoleTypesEnum.ADMIN.value
             )
+
+            cache.delete('team-overview')
 
         except Exception:
             return Response(status=500)

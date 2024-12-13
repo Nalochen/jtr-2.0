@@ -1,5 +1,6 @@
 from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
+from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
 
 
 class GetUserDetailsInputFilter(InputFilter):
@@ -13,5 +14,8 @@ class GetUserDetailsInputFilter(InputFilter):
         self.add(
             'userId',
             required=False,
-            filters=[ToIntFilter()]
+            filters=[ToIntFilter()],
+            validators=[
+                IsIntValidator()
+            ]
         )

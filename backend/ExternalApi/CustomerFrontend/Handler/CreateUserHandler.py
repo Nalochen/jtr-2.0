@@ -7,6 +7,7 @@ from werkzeug.security import generate_password_hash
 from DataDomain.Database.Model.Users import Users
 from DataDomain.Database.Repository.UserRepository import UserRepository
 from DataDomain.Model.Response import Response
+from config.cache import cache
 
 
 class CreateUserHandler:
@@ -45,11 +46,13 @@ class CreateUserHandler:
         try:
             UserRepository.create(user)
 
+            cache.delete('user-overview')
+
         except Exception:
             return Response(status=500)
 
         accessToken = create_access_token(
-            identity=user.username
+            identity=user.id
         )
 
         return Response(

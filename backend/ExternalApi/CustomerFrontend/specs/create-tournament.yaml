@@ -108,6 +108,8 @@ components:
           type: string
         tournamentSystemUrl:
           type: string
+        tournamentSystemType:
+          type: string
         pompfCheckText:
           type: string
         pompfCheckUrl:
@@ -125,6 +127,10 @@ components:
         barefootAllowed:
           type: boolean
         shoesText:
+          type: string
+        shoesUrl:
+          type: string
+        registrationProcedureUrl:
           type: string
 
     CreateTournamentResponseBody:
