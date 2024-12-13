@@ -1,4 +1,4 @@
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import { userDetailsSelector } from '@jtr/business-domain/user';
-import { UserData} from '@jtr/data-domain/store';
+import { UserData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from '../../business-rules/auth/auth.service';
@@ -14,10 +14,11 @@ import { AuthService } from '../../business-rules/auth/auth.service';
 import {
   ButtonColorEnum,
   ButtonComponent,
-  ButtonTypeEnum,
   ButtonJustifyContentEnum,
-DataContainerComponent,
-  DataContainerRowComponent} from '../../ui-shared';
+  ButtonTypeEnum,
+  DataContainerComponent,
+  DataContainerRowComponent,
+} from '../../ui-shared';
 import { PageUserDetailsHeaderComponent } from './page-user-details-header/page-user-details-header.component';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -29,7 +30,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     TranslatePipe,
     ButtonComponent,
     DataContainerRowComponent,
-    DataContainerComponent
+    DataContainerComponent,
   ],
   templateUrl: './page-user-details.component.html',
   styleUrl: './page-user-details.component.less',
@@ -41,11 +42,11 @@ export class PageUserDetailsComponent {
 
   constructor(
     private store$: Store,
-    private readonly authService: AuthService,
+    private readonly authService: AuthService
   ) {}
 
   @SingletonGetter()
-  public get user$(): Observable<UserData|null> {
+  public get user$(): Observable<UserData | null> {
     return this.store$.select(userDetailsSelector);
   }
 
@@ -55,10 +56,7 @@ export class PageUserDetailsComponent {
   }
 
   public navigateToTeam(teamId: number): void {
-    window.open(
-      `team-details/${teamId}`,
-      '_self'
-    )
+    window.open(`team-details/${teamId}`, '_self');
   }
 
   public addUserToTeam(): void {

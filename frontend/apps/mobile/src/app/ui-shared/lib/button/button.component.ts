@@ -3,8 +3,8 @@ import { Component, Input } from '@angular/core';
 
 import { ButtonColorEnum } from './enums/color.enum';
 import { ButtonFunctionType } from './enums/function-type.enum';
-import { ButtonTypeEnum } from './enums/type.enum';
 import { ButtonJustifyContentEnum } from './enums/justify-content.enum';
+import { ButtonTypeEnum } from './enums/type.enum';
 
 @Component({
   selector: 'app-button',

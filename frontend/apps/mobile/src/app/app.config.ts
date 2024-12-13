@@ -21,7 +21,10 @@ import {
   GetTournamentDetailsDataEffect,
   GetTournamentOverviewDataEffect,
 } from '@jtr/business-domain/tournament';
-import { GetUserDetailsDataEffect } from '@jtr/business-domain/user';
+import {
+  GetUserDetailsDataEffect,
+  GetUserOverviewDataEffect,
+} from '@jtr/business-domain/user';
 
 import { JwtInterceptor } from './business-rules/interceptors/jwt.interceptor';
 import { metaReducers, reducers } from './business-rules/reducers';
@@ -44,6 +47,7 @@ export const appConfig: ApplicationConfig = {
       GetTournamentOverviewDataEffect,
       GetTournamentDetailsDataEffect,
       GetUserDetailsDataEffect,
+      GetUserOverviewDataEffect,
     ]),
     ...(TranslateModule.forRoot({
       loader: {

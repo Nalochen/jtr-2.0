@@ -6,28 +6,24 @@
       cdkDropList
       [cdkDropListData]="participatingTeams()"
       class="list"
-      (cdkDropListDropped)="drop($event)">
+      (cdkDropListDropped)="drop($event)"
+    >
       @for (team of participatingTeams(); track index; let index = $index) {
       <div class="drop-list-box" cdkDrag>
         <div class="custom-placeholder" *cdkDragPlaceholder></div>
         <div class="team-infos">
-          <img
-            src="{{ team.logo }}"
-            [alt]="team.name"
-            height="32"
-            width="32" />
+          <img src="{{ team.logo }}" [alt]="team.name" height="32" width="32" />
           <span>{{ team.name }}</span>
         </div>
         <div class="team-actions">
-          <app-button
-            [type]="ButtonTypeEnum.Icon"
-            (click)="sendEmail(team)"
-          >
+          <app-button [type]="ButtonTypeEnum.Icon" (click)="sendEmail(team)">
             <span class="material-icons-outlined">email</span>
           </app-button>
           <app-button
             [type]="ButtonTypeEnum.Round"
-            [color]="team.hasPaid ? ButtonColorEnum.Grey : ButtonColorEnum.White"
+            [color]="
+              team.hasPaid ? ButtonColorEnum.Grey : ButtonColorEnum.White
+            "
             (click)="hasPaid(team)"
           >
             <span class="material-icons-outlined">euro</span>
@@ -53,23 +49,17 @@
       cdkDropList
       [cdkDropListData]="waitingTeams()"
       class="list"
-      (cdkDropListDropped)="drop($event)">
+      (cdkDropListDropped)="drop($event)"
+    >
       @for (team of waitingTeams(); track index; let index = $index) {
       <div class="drop-list-box" cdkDrag>
         <div class="custom-placeholder" *cdkDragPlaceholder></div>
         <div class="team-infos">
-          <img
-            src="{{ team.logo }}"
-            [alt]="team.name"
-            height="32"
-            width="32" />
+          <img src="{{ team.logo }}" [alt]="team.name" height="32" width="32" />
           <span>{{ team.name }}</span>
         </div>
         <div class="team-actions">
-          <app-button
-            [type]="ButtonTypeEnum.Icon"
-            (click)="sendEmail(team)"
-          >
+          <app-button [type]="ButtonTypeEnum.Icon" (click)="sendEmail(team)">
             <span class="material-icons-outlined">email</span>
           </app-button>
           <app-button

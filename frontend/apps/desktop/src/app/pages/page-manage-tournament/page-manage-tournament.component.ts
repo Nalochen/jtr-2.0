@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, inject,
+  Component,
+  inject,
   OnDestroy,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -69,9 +70,7 @@ export class PageManageTournamentComponent implements OnInit, OnDestroy {
     teams: new FormControl<EmailRecipientEnum | null>(null),
   });
 
-  constructor(
-    private readonly changeDetectorRef: ChangeDetectorRef
-  ) {}
+  constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {

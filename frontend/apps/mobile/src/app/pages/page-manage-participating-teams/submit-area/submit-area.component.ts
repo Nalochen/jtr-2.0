@@ -5,10 +5,12 @@ import {
   Component,
   inject,
   OnDestroy,
-  output
+  output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { Subject } from 'rxjs';
+
 import { TeamDataService } from '@jtr/business-domain/team';
 import { TournamentTeamData } from '@jtr/data-domain/store';
 
@@ -22,7 +24,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 
-
 @Component({
   selector: 'submit-area',
   standalone: true,
@@ -32,18 +33,16 @@ import { DropdownModule } from 'primeng/dropdown';
     ButtonComponent,
     DialogModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [
-    TeamDataService,
-  ],
+  providers: [TeamDataService],
   templateUrl: './submit-area.component.html',
   styleUrl: './submit-area.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SubmitAreaComponent implements OnDestroy {
   private readonly teamDataService = inject(TeamDataService);
-  public readonly destroy$ = new Subject<void>()
+  public readonly destroy$ = new Subject<void>();
 
   public readonly allTeams$ = this.teamDataService.teams$;
 

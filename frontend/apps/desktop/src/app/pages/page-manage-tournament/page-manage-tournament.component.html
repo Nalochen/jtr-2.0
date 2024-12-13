@@ -3,8 +3,16 @@
 <h2>{{ 'manage-tournament.send-mail' | translate }}:</h2>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="subject">
-    <label for="subject" class="subject-label font-bold">{{ 'manage-tournament.subject' | translate }}:</label>
-    <input type="text" pInputText [formControl]="form.controls.mail.controls.subject" id="subject" class="subjet-input" />
+    <label for="subject" class="subject-label font-bold"
+      >{{ 'manage-tournament.subject' | translate }}:</label
+    >
+    <input
+      type="text"
+      pInputText
+      [formControl]="form.controls.mail.controls.subject"
+      id="subject"
+      class="subjet-input"
+    />
   </div>
   <app-text-editor [form]="form.controls.mail" />
   <p class="font-bold">{{ 'manage-tournament.recipient' | translate }}:</p>
@@ -15,7 +23,8 @@
         name="recipient"
         value="EmailRecipientEnum.ALL"
         [formControl]="form.controls.teams"
-        id="{{ EmailRecipientEnum.ALL }}" />
+        id="{{ EmailRecipientEnum.ALL }}"
+      />
       <label for="{{ EmailRecipientEnum.ALL }}">
         {{ 'manage-tournament.all-teams' | translate }}
       </label>
@@ -27,7 +36,8 @@
         name="recipient"
         value="EmailRecipientEnum.PARTICIPATING"
         [formControl]="form.controls.teams"
-        id="{{ EmailRecipientEnum.PARTICIPATING }}" />
+        id="{{ EmailRecipientEnum.PARTICIPATING }}"
+      />
       <label for="{{ EmailRecipientEnum.PARTICIPATING }}">
         {{ 'manage-tournament.registered-teams' | translate }}
       </label>
@@ -39,7 +49,8 @@
         name="recipient"
         value="EmailRecipientEnum.WAITING"
         [formControl]="form.controls.teams"
-        id="{{ EmailRecipientEnum.WAITING }}" />
+        id="{{ EmailRecipientEnum.WAITING }}"
+      />
       <label for="{{ EmailRecipientEnum.WAITING }}">
         {{ 'manage-tournament.waiting-teams' | translate }}
       </label>
@@ -51,7 +62,8 @@
         name="recipient"
         value="EmailRecipientEnum.NOT_PAYED"
         [formControl]="form.controls.teams"
-        id="{{ EmailRecipientEnum.NOT_PAYED }}" />
+        id="{{ EmailRecipientEnum.NOT_PAYED }}"
+      />
       <label for="{{ EmailRecipientEnum.NOT_PAYED }}">
         {{ 'manage-tournament.not-payed-yet' | translate }}
       </label>
@@ -63,53 +75,52 @@
         name="recipient"
         value="EmailRecipientEnum.INDIVIDUAL"
         [formControl]="form.controls.teams"
-        id="{{ EmailRecipientEnum.INDIVIDUAL }}" />
+        id="{{ EmailRecipientEnum.INDIVIDUAL }}"
+      />
       <label for="{{ EmailRecipientEnum.INDIVIDUAL }}">
         {{ 'manage-tournament.single-teams' | translate }}
       </label>
     </div>
 
-    @if (form.controls.teams.value === 'INDIVIDUAL') {
-      @let teams = teams$ | async;
-      <div class="team-radio-buttons">
-        @for (team of teams; track team.id) {
-        <div>
-          <input
-            type="radio"
-            name="recipient"
-            value="team.id"
-            id="team.id" />
-          <label for="team.id">
-            {{ team.name }}
-          </label>
-        </div>
-        }
+    @if (form.controls.teams.value === 'INDIVIDUAL') { @let teams = teams$ |
+    async;
+    <div class="team-radio-buttons">
+      @for (team of teams; track team.id) {
+      <div>
+        <input type="radio" name="recipient" value="team.id" id="team.id" />
+        <label for="team.id">
+          {{ team.name }}
+        </label>
       </div>
+      }
+    </div>
     }
-
-
   </div>
   <app-button
     [color]="ButtonColorEnum.Red"
     [type]="ButtonTypeEnum.Raised"
     [buttonType]="ButtonFunctionTypeEnum.SUBMIT"
-  >{{ 'manage-tournament.send' | translate }}</app-button>
+    >{{ 'manage-tournament.send' | translate }}</app-button
+  >
 </form>
 <app-button
   [color]="ButtonColorEnum.White"
   [type]="ButtonTypeEnum.Raised"
   [fullWidth]="true"
   (click)="onManageTeams()"
->{{ 'manage-tournament.edit-teams' | translate }}</app-button>
+  >{{ 'manage-tournament.edit-teams' | translate }}</app-button
+>
 <app-button
   [color]="ButtonColorEnum.White"
   [type]="ButtonTypeEnum.Raised"
   [fullWidth]="true"
   (click)="onEnterResults()"
->{{ 'manage-tournament.enter-results' | translate }}</app-button>
+  >{{ 'manage-tournament.enter-results' | translate }}</app-button
+>
 <app-button
   [color]="ButtonColorEnum.White"
   [type]="ButtonTypeEnum.Raised"
   [fullWidth]="true"
   (click)="onEditInfos()"
->{{ 'manage-tournament.edit-tournament' | translate }}</app-button>
+  >{{ 'manage-tournament.edit-tournament' | translate }}</app-button
+>

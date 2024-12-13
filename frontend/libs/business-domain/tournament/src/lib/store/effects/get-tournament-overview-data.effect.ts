@@ -13,7 +13,7 @@ import {
 import {
   loadTournamentOverviewData,
   loadTournamentOverviewDataFailedAction,
-  loadTournamentOverviewDataSuccessAction
+  loadTournamentOverviewDataSuccessAction,
 } from '../actions/tournament.action';
 
 @Injectable({

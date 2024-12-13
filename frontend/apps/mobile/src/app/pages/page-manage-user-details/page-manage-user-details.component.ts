@@ -1,15 +1,23 @@
-import {CommonModule} from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Observable, Subject, takeUntil } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { userDetailsSelector } from '@jtr/business-domain/user';
+import { CommonModule } from '@angular/common';
 import {
-  editUserFormControl
-} from '@jtr/business-domain/user';
-import { UserData} from '@jtr/data-domain/store';
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { Observable, Subject, takeUntil } from 'rxjs';
+
+import { Store } from '@ngrx/store';
+
+import { userDetailsSelector } from '@jtr/business-domain/user';
+import { editUserFormControl } from '@jtr/business-domain/user';
+import { UserData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
+
 import { AuthService } from '../../business-rules/auth/auth.service';
+
 import {
   ButtonColorEnum,
   ButtonComponent,
@@ -17,7 +25,7 @@ import {
   ButtonJustifyContentEnum,
   ButtonTypeEnum,
   InfoButtonComponent,
-  VisibilityButtonComponent
+  VisibilityButtonComponent,
 } from '../../ui-shared';
 import { PageManageUserDetailsHeaderComponent } from './page-user-details-header/page-manage-user-details-header.component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -31,7 +39,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     ButtonComponent,
     InfoButtonComponent,
     ReactiveFormsModule,
-    VisibilityButtonComponent
+    VisibilityButtonComponent,
   ],
   templateUrl: './page-manage-user-details.component.html',
   styleUrl: './page-manage-user-details.component.less',
@@ -47,11 +55,11 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private store$: Store,
-    private readonly authService: AuthService,
+    private readonly authService: AuthService
   ) {}
 
   @SingletonGetter()
-  public get user$(): Observable<UserData|null> {
+  public get user$(): Observable<UserData | null> {
     return this.store$.select(userDetailsSelector);
   }
 
@@ -61,9 +69,7 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit() {
-    this.user$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(user => {
+    this.user$.pipe(takeUntil(this.destroy$)).subscribe((user) => {
       if (user) {
         this.form.controls.profilePicture.setValue(user.picture);
 
@@ -89,7 +95,9 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
 
         if (user.birthdate) {
           this.form.controls.birthdate.setValue(user.birthdate);
-          this.form.controls.isBirthdateVisible.setValue(user.isBirthdateVisible);
+          this.form.controls.isBirthdateVisible.setValue(
+            user.isBirthdateVisible
+          );
         } else {
           this.form.controls.birthdate.setValue('');
         }
@@ -103,10 +111,7 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
   }
 
   public navigateToTeam(teamId: number): void {
-    window.open(
-      `team-details/${teamId}`,
-      '_self'
-    )
+    window.open(`team-details/${teamId}`, '_self');
   }
 
   public onFoundNewTeam(): void {

@@ -18,6 +18,8 @@ class TeamRepository:
 
     @staticmethod
     def getTeamOverview() -> List[dict]:
+        """Get team overview"""
+
         team_alias = aliased(Teams)
         subquery = db.session.query(
             team_alias.id,

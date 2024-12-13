@@ -26,7 +26,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     OverlayMenuComponent,
     TranslatePipe,
     ButtonComponent,
-    OverlayPanelModule
+    OverlayPanelModule,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',

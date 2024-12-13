@@ -4,13 +4,25 @@ import {
   CdkDropList,
   CdkDropListGroup,
   moveItemInArray,
-  transferArrayItem
+  transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { TournamentTeamData } from '@jtr/data-domain/store';
-import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum, ChipComponent } from '../../../ui-shared';
+
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+  ChipComponent,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
 import { DividerModule } from 'primeng/divider';
@@ -41,20 +53,24 @@ import { TooltipModule } from 'primeng/tooltip';
 export class DropListComponent {
   public readonly participatingTeams = input.required<TournamentTeamData[]>();
   public readonly waitingTeams = input.required<TournamentTeamData[]>();
-  public deleteTeam = output<{index: number, isParticipating: boolean}>();
+  public deleteTeam = output<{ index: number; isParticipating: boolean }>();
 
   public readonly ButtonColorEnum = ButtonColorEnum;
   public readonly ButtonTypeEnum = ButtonTypeEnum;
 
   public drop(event: CdkDragDrop<TournamentTeamData[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
-        event.currentIndex,
+        event.currentIndex
       );
     }
   }
@@ -68,6 +84,6 @@ export class DropListComponent {
   }
 
   public onDeleteTeam(index: number, isParticipating: boolean): void {
-    this.deleteTeam.emit({index, isParticipating});
+    this.deleteTeam.emit({ index, isParticipating });
   }
 }

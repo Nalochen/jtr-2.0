@@ -83,6 +83,13 @@ def getUserDetails(userId: int = None) -> Response:
     return GetUserDetailsHandler.handle(userId)
 
 
+@customer_frontend.route('/get-user-overview',
+                         methods=['GET'], endpoint='get-user-overview')
+@cache.cached(key_prefix='user-overview')
+def getUserOverview() -> Response:
+    return GetUserOverviewHandler.handle()
+
+
 @customer_frontend.route('/update-team',
                          methods=['PUT'], endpoint='update-team')
 @jwt_required()
