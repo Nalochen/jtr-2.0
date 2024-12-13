@@ -1,5 +1,6 @@
 export * from './lib/button/button.component';
 export * from './lib/button/enums/color.enum';
+export * from './lib/button/enums/justify-content.enum';
 export * from './lib/button/enums/type.enum';
 export * from './lib/button/enums/function-type.enum';
 export * from './lib/data-container/data-container.component';
@@ -12,3 +13,4 @@ export * from './lib/status-indicator/status-indicator.component';
 export * from './lib/team/team.component';
 export * from './lib/scroll-to-top/scroll-to-top.component';
 export * from './lib/visibility-button/visibility-button.component';
+export * from './lib/editor/editor.component';

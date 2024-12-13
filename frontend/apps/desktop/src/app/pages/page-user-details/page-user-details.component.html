@@ -8,7 +8,7 @@
       @if (user?.isCityVisible) {
         <app-data-container-row>
           <div ngProjectAs="container-headline" class="city">
-            <h4>Stadt:</h4>
+            <h4>{{ 'user-details.city' | translate }}:</h4>
             <p>{{user.city}}</p>
           </div>
         </app-data-container-row>
@@ -17,7 +17,7 @@
       @if (user?.isBirthdateVisible) {
         <app-data-container-row>
           <div class="birthdate" ngProjectAs="container-headline">
-            <h4>Geburtstag:</h4>
+            <h4>{{ 'user-details.birthdate' | translate }}:</h4>
             <p>{{user.birthdate | date : 'dd.MM.yyyy'}}</p>
           </div>
         </app-data-container-row>
@@ -26,7 +26,7 @@
   }
 
   @if (user?.teams) {
-    <h4>Teams:</h4>
+    <h4>{{ 'user-details.teams' | translate }}:</h4>
     @for (team of user?.teams; track team.id) {
       <app-button
         [color]="ButtonColorEnum.Grey"
@@ -48,10 +48,10 @@
         </div>
       </app-button>
     } @empty {
-      <p>Keine Teams vorhanden</p>
+      <p>{{ 'user-details.no-teams' | translate }}</p>
     }
   } @else {
-    <p>Keine Teams vorhanden</p>
+    <p>{{ 'user-details.no-teams' | translate }}</p>
   }
 
   <app-button
@@ -61,5 +61,5 @@
     (click)="addUserToTeam()"
   >zu Team hinzufügen</app-button>
 } @else {
-  <p>Benutzer nicht gefunden</p>
+  <p>{{ 'user-details.user-not-found' | translate }}</p>
 }
