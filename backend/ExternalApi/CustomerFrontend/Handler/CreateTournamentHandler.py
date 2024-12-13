@@ -79,7 +79,6 @@ class CreateTournamentHandler:
         tournament.cam_shoes_allowed = data.get('camShoesAllowed')
         tournament.barefoot_allowed = data.get('barefootAllowed')
         tournament.shoes_text = data.get('shoesText')
-        tournament.shoes_url = data.get('shoesUrl')
 
         tournament.organizer_id = teamId
 

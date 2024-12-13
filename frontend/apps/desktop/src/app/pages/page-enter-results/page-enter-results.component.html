@@ -1,8 +1,16 @@
 <h1>Ergebnisse eintragen</h1>
-<app-button (click)="onImport()" class="tugeny" [fullWidth]="true" [color]="ButtonColorEnum.White" [type]="ButtonTypeEnum.Raised">von Tugeny importieren</app-button>
+<app-button
+  (click)="onImport()"
+  class="tugeny"
+  [fullWidth]="true"
+  [color]="ButtonColorEnum.White"
+  [type]="ButtonTypeEnum.Raised"
+  >von Tugeny importieren</app-button
+>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="input">
-    @for (formGroup of form.controls.teams.controls; track formGroup.controls.teamId.value) {
+    @for (formGroup of form.controls.teams.controls; track
+    formGroup.controls.teamId.value) {
     <div [formGroup]="formGroup" class="team-input">
       <p>{{ formGroup.controls.teamName.value }}</p>
       <p-inputNumber [formControl]="formGroup.controls.placement" />
@@ -11,5 +19,12 @@
     <p>Keine Teams vorhanden</p>
     }
   </div>
-  <app-button class="save" [fullWidth]="true" [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" [buttonType]="ButtonFunctionTypeEnum.SUBMIT">Speichern</app-button>
+  <app-button
+    class="save"
+    [fullWidth]="true"
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Raised"
+    [buttonType]="ButtonFunctionTypeEnum.SUBMIT"
+    >Speichern</app-button
+  >
 </form>

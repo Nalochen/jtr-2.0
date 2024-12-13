@@ -177,8 +177,7 @@ class TournamentRepository:
                 'camAllowed': tournament.cam_shoes_allowed,
                 'cleatsAllowed': tournament.cleats_shoes_allowed,
                 'studdedAllowed': tournament.studded_shoes_allowed,
-                'text': tournament.shoes_text,
-                'url': tournament.shoes_url
+                'text': tournament.shoes_text
             },
             'status': tournament.status.value,
             'teamCount': len(tournament.teams),
