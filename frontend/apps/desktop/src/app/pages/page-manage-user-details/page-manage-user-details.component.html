@@ -2,7 +2,7 @@
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="email">
-    <label for="email">{{ 'register.email' | translate }}</label>
+    <label for="email">{{ 'user-details.email' | translate }}</label>
     <input
       type="email"
       class="form-control"
@@ -15,19 +15,22 @@
     />
     @if ((form.controls.email.dirty || form.controls.email.touched) &&
     form.controls.email.hasError('required')) {
-    <p class="error-message">{{ 'register.email-required' | translate }}</p>
+    <p class="error-message">{{ 'user-details.email-required' | translate }}</p>
     } @if ((form.controls.email.dirty || form.controls.email.touched) &&
     form.controls.email.hasError('email')) {
-    <p class="error-message">{{ 'register.email-invalid' | translate }}</p>
+    <p class="error-message">{{ 'user-details.email-invalid' | translate }}</p>
     }
   </div>
 
   <div class="username">
     <div class="headline">
-      <label for="username">{{ 'register.username' | translate }} {{ 'register.unique' | translate }}</label>
+      <label for="username"
+        >{{ 'user-details.username' | translate }}
+        {{ 'user-details.unique' | translate }}</label
+      >
       <app-info-button>
-        <p class="i-headline">{{ 'register.username' | translate }}</p>
-        <p>{{ 'register.username-info' | translate }}</p>
+        <p class="i-headline">{{ 'user-details.username' | translate }}</p>
+        <p>{{ 'user-details.username-info' | translate }}</p>
       </app-info-button>
     </div>
     <input
@@ -42,19 +45,21 @@
     />
     @if ((form.controls.username.dirty || form.controls.username.touched) &&
     form.controls.username.hasError('required')) {
-    <p class="error-message">{{ 'register.username-required' | translate }}</p>
+    <p class="error-message">
+      {{ 'user-details.username-required' | translate }}
+    </p>
     } @if ((form.controls.username.dirty || form.controls.username.touched) &&
     form.controls.username.hasError('minlength')) {
-    <p class="error-message">{{ 'register.username-min' | translate }}</p>
+    <p class="error-message">{{ 'user-details.username-min' | translate }}</p>
     }
   </div>
 
   <div class="name">
     <div class="headline">
-      <label for="name">{{ 'register.name' | translate }}</label>
+      <label for="name">{{ 'user-details.name' | translate }}</label>
       <app-info-button>
-        <p class="i-headline">{{ 'register.name' | translate }}</p>
-        <p>{{ 'register.name-info' | translate }}</p>
+        <p class="i-headline">{{ 'user-details.name' | translate }}</p>
+        <p>{{ 'user-details.name-info' | translate }}</p>
       </app-info-button>
     </div>
     <input
@@ -67,10 +72,10 @@
 
   <div class="pronouns">
     <div class="headline">
-      <label for="pronouns">{{ 'register.pronouns' | translate }}</label>
+      <label for="pronouns">{{ 'user-details.pronouns' | translate }}</label>
       <app-info-button>
-        <p class="i-headline">{{ 'register.pronouns' | translate }}</p>
-        <p>{{ 'register.pronouns-info' | translate }}</p>
+        <p class="i-headline">{{ 'user-details.pronouns' | translate }}</p>
+        <p>{{ 'user-details.pronouns-info' | translate }}</p>
       </app-info-button>
     </div>
     <input
@@ -88,10 +93,10 @@
 
   <div class="city">
     <div class="headline">
-      <label for="city">{{ 'register.city' | translate }}</label>
+      <label for="city">{{ 'user-details.city' | translate }}</label>
       <app-info-button>
-        <p class="i-headline">{{ 'register.city' | translate }}</p>
-        <p>{{ 'register.city-info' | translate }}</p>
+        <p class="i-headline">{{ 'user-details.city' | translate }}</p>
+        <p>{{ 'user-details.city-info' | translate }}</p>
       </app-info-button>
     </div>
     <input
@@ -109,10 +114,10 @@
 
   <div class="birthdate">
     <div class="headline">
-      <label for="birthdate">{{ 'register.birthdate' | translate }}</label>
+      <label for="birthdate">{{ 'user-details.birthdate' | translate }}</label>
       <app-info-button>
-        <p class="i-headline">{{ 'register.birthdate' | translate }}</p>
-        <p>{{ 'register.birthdate-info' | translate }}</p>
+        <p class="i-headline">{{ 'user-details.birthdate' | translate }}</p>
+        <p>{{ 'user-detail.birthdate-info' | translate }}</p>
       </app-info-button>
     </div>
     <input
@@ -129,36 +134,33 @@
   />
 </form>
 
-
-  @let user = user$ | async;
-  @if (user?.teams) {
-  <h4>Teams:</h4>
-  @for (team of user?.teams; track team.id) {
-  <app-button
-    [color]="ButtonColorEnum.Grey"
-    [type]="ButtonTypeEnum.Raised"
-    [fullWidth]="true"
-    [justifyContent]="ButtonJustifyContentEnum.FLEX_START"
-    (click)="navigateToTeam(team.id)"
-    class="team-button"
-  >
-    <div class="team">
-      <img
-        id="logo"
-        alt="Logo of {{ team.name }}"
-        src="{{ team.logo }}"
-        height="30"
-        width="30"
-      >
-      <p>{{ team.name }}</p>
-    </div>
-  </app-button>
-  } @empty {
-  <p>Keine Teams vorhanden</p>
-  }
-  } @else {
-  <p>Keine Teams vorhanden</p>
-  }
+@let user = user$ | async; @if (user?.teams) {
+<h4>Teams:</h4>
+@for (team of user?.teams; track team.id) {
+<app-button
+  [color]="ButtonColorEnum.Grey"
+  [type]="ButtonTypeEnum.Raised"
+  [fullWidth]="true"
+  [justifyContent]="ButtonJustifyContentEnum.FLEX_START"
+  (click)="navigateToTeam(team.id)"
+  class="team-button"
+>
+  <div class="team">
+    <img
+      id="logo"
+      alt="Logo of {{ team.name }}"
+      src="{{ team.logo }}"
+      height="30"
+      width="30"
+    />
+    <p>{{ team.name }}</p>
+  </div>
+</app-button>
+} @empty {
+<p>{{ 'user-details.no-teams' | translate }}</p>
+} } @else {
+<p>{{ 'user-details.no-teams' | translate }}</p>
+}
 
 <div class="cta">
   <app-button
@@ -166,18 +168,20 @@
     [type]="ButtonTypeEnum.Raised"
     [fullWidth]="true"
     (click)="onFoundNewTeam()"
-  >Team gründen</app-button>
+    >{{ 'user-details.found-team' | translate }}</app-button
+  >
   <app-button
     [color]="ButtonColorEnum.White"
     [type]="ButtonTypeEnum.Raised"
     [fullWidth]="true"
     (click)="onDeleteAccount()"
-  >Account löschen</app-button>
+    >{{ 'user-details.delete-account' | translate }}</app-button
+  >
   <app-button
     [color]="ButtonColorEnum.Red"
     [type]="ButtonTypeEnum.Raised"
     [fullWidth]="true"
     [buttonType]="ButtonFunctionTypeEnum.SUBMIT"
-  >speichern</app-button>
+    >{{ 'user-details.save' | translate }}</app-button
+  >
 </div>
-

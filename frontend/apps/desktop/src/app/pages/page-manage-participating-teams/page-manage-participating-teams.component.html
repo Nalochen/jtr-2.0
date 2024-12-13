@@ -1,4 +1,4 @@
-<header></header>
+<h1>{{ 'manage-tournament-teams.manage-teams' | translate }}</h1>
 
 <drop-list
   [participatingTeams]="participatingTeams"
@@ -6,6 +6,4 @@
   (deleteTeam)="deleteTeam($event.index, $event.isParticipating)"
 />
 
-<submit-area
-  (saveForm)="save()"
-/>
+<submit-area (saveForm)="save()" />

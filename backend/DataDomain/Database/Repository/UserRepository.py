@@ -1,3 +1,5 @@
+from typing import List
+
 from sqlalchemy import and_
 
 from DataDomain.Database.Model.Users import Users
@@ -11,6 +13,23 @@ class UserRepository:
     @staticmethod
     def get(userId: int) -> Users:
         return Users.query.get(userId)
+
+    @staticmethod
+    def getUserOverview() -> List[dict]:
+        """Get user overview"""
+
+        users = Users.query.filter(Users.is_deleted == False).all()
+
+        return [{
+            'id': user.id,
+            'username': user.username,
+            'name': user.name if user.name_visibility else None,
+            'birthdate': user.birthdate if user.birthdate_visibility else None,
+            'picture': user.picture,
+            'pronouns': user.pronouns,
+            'city': user.city if user.city_visibility else None,
+            'email': user.email
+        } for user in users]
 
     @staticmethod
     def create(user: Users) -> int:

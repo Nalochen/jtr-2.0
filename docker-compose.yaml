@@ -26,6 +26,7 @@ services:
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
       MYSQL_USER: 'user'
+      GENERATE_TEST_DATA: True
       RABBITMQ_DEFAULT_PASS: 'mypass'
       RABBITMQ_DEFAULT_USER: 'admin'
       SECRET_KEY: 'secret'

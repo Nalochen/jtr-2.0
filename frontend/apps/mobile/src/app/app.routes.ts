@@ -12,8 +12,12 @@ import {
 import { UserDetailsResolver } from '@jtr/business-domain/user';
 
 import { PageCreateTournamentComponent } from './pages/page-create-tournament/page-create-tournament.component';
+import { PageEnterResultsComponent } from './pages/page-enter-results/page-enter-results.component';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
+import { PageManageParticipatingTeamsComponent } from './pages/page-manage-participating-teams/page-manage-participating-teams.component';
 import { PageManageTeamDetailsComponent } from './pages/page-manage-team/page-manage-team-details.component';
+import { PageManageTournamentComponent } from './pages/page-manage-tournament/page-manage-tournament.component';
+import { PageManageUserDetailsComponent } from './pages/page-manage-user-details/page-manage-user-details.component';
 import { PageRegisterComponent } from './pages/page-register/page-register.component';
 import { PageTeamDetailsComponent } from './pages/page-team-details/page-team-details.component';
 import { PageTeamOverviewComponent } from './pages/page-team-overview/page-team-overview.component';
@@ -69,6 +73,28 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'manage-tournament/:tournamentId',
+    component: PageManageTournamentComponent,
+    resolve: {
+      tournamentDetails: TournamentDetailsResolver,
+    },
+  },
+  {
+    path: 'manage-tournament/enter-results/:tournamentId',
+    component: PageEnterResultsComponent,
+    resolve: {
+      tournamentDetails: TournamentDetailsResolver,
+    },
+  },
+  {
+    path: 'manage-tournament/participating-teams/:tournamentId',
+    component: PageManageParticipatingTeamsComponent,
+    resolve: {
+      tournamentDetails: TournamentDetailsResolver,
+      teamDetails: TeamOverviewResolver,
+    },
+  },
+  {
     path: 'register',
     component: PageRegisterComponent,
   },
@@ -79,6 +105,13 @@ export const appRoutes: Route[] = [
   {
     path: 'user-details/:userId?',
     component: PageUserDetailsComponent,
+    resolve: {
+      userDetails: UserDetailsResolver,
+    },
+  },
+  {
+    path: 'manage-user-details/:userId?',
+    component: PageManageUserDetailsComponent,
     resolve: {
       userDetails: UserDetailsResolver,
     },

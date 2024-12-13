@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r backend/requirements.txt
 
+      - name: Check server start
+        run: .github/scripts/check_server.sh
+
       - name: Run tests
         run: |
           set -x # Print commands and their arguments as they are executed.
