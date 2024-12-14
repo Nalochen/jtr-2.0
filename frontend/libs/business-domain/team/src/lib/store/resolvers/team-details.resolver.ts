@@ -17,9 +17,7 @@ export class TeamDetailsResolver implements Resolve<boolean> {
     const teamId = route.paramMap.get('teamId');
 
     if (teamId) {
-      this.store.dispatch(
-        loadTeamDetailsData({ teamId: +teamId })
-      );
+      this.store.dispatch(loadTeamDetailsData({ teamId: +teamId }));
     }
 
     return new Observable<boolean>((observer) => {

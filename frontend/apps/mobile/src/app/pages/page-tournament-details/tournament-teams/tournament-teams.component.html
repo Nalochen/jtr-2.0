@@ -1,8 +1,8 @@
 @for (team of registeredTeams; track team) {
-  <app-team class="team">
-    <span class="material-icons-outlined" ngProjectAs="team-logo">star</span>
-    <p ngProjectAs="team-name">{{ team.name }}</p>
-  </app-team>
+<app-team class="team">
+  <span class="material-icons-outlined" ngProjectAs="team-logo">star</span>
+  <p ngProjectAs="team-name">{{ team.name }}</p>
+</app-team>
 }
 
 <mat-divider />
@@ -10,9 +10,9 @@
 <p class="title">{{ 'page-tournament-details.waiting' | translate }}:</p>
 
 @for (team of reservedTeams; track team) {
-  <app-team class="team">
-    <span class="material-icons-outlined" ngProjectAs="team-logo">star</span>
-    <p ngProjectAs="team-name">{{ team.name }}</p>
-    <span class="material-icons-outlined" ngProjectAs="team-country">send</span>
-  </app-team>
+<app-team class="team">
+  <span class="material-icons-outlined" ngProjectAs="team-logo">star</span>
+  <p ngProjectAs="team-name">{{ team.name }}</p>
+  <span class="material-icons-outlined" ngProjectAs="team-country">send</span>
+</app-team>
 }

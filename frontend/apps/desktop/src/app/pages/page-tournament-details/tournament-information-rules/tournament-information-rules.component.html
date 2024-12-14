@@ -1,58 +1,132 @@
 <app-data-container>
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.pompf-check' | translate }}</h4>
-    <a ngProjectAs="container-additional" href="{{ tournament.pompfCheck.url }}" target="_blank">Link</a>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >menu_book</span
+    >
+    <h4 ngProjectAs="container-headline">
+      {{ 'page-tournament-details.pompf-check' | translate }}
+    </h4>
+    <a
+      ngProjectAs="container-additional"
+      href="{{ tournament.pompfCheck.url }}"
+      target="_blank"
+      >Link</a
+    >
     <p ngProjectAs="container-content">{{ tournament.pompfCheck.text }}</p>
   </app-data-container-row>
 
   <mat-divider />
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.tournament-system' | translate }}</h4>
-    <a ngProjectAs="container-additional" href="{{ tournament.tournamentSystem.url }}" target="_blank">tugeny</a>
-    <p ngProjectAs="container-content">{{ tournament.tournamentSystem.text }}</p>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >menu_book</span
+    >
+    <h4 ngProjectAs="container-headline">
+      {{ 'page-tournament-details.tournament-system' | translate }}
+    </h4>
+    <a
+      ngProjectAs="container-additional"
+      href="{{ tournament.tournamentSystem.url }}"
+      target="_blank"
+      >tugeny</a
+    >
+    <p ngProjectAs="container-content">
+      {{ tournament.tournamentSystem.text }}
+    </p>
   </app-data-container-row>
 
   <mat-divider />
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.house-rules' | translate }}</h4>
-    <a ngProjectAs="container-additional" href="{{ tournament.houseRules.url }}" target="_blank">Link</a>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >menu_book</span
+    >
+    <h4 ngProjectAs="container-headline">
+      {{ 'page-tournament-details.house-rules' | translate }}
+    </h4>
+    <a
+      ngProjectAs="container-additional"
+      href="{{ tournament.houseRules.url }}"
+      target="_blank"
+      >Link</a
+    >
     <p ngProjectAs="container-content">{{ tournament.houseRules.text }}</p>
   </app-data-container-row>
 
   <mat-divider />
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">menu_book</span>
-    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.shoes' | translate }}</h4>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >menu_book</span
+    >
+    <h4 ngProjectAs="container-headline">
+      {{ 'page-tournament-details.shoes' | translate }}
+    </h4>
 
     <app-info-button ngProjectAs="container-additional" position="left">
-      <p><b>{{ 'page-tournament-details.shoes-information-nubbed-header' | translate }}</b> {{ 'page-tournament-details.shoes-information-nubbed' | translate }}</p>
-      <br>
-      <p><b>{{ 'page-tournament-details.shoes-information-cleaded-header' | translate }}</b> {{ 'page-tournament-details.shoes-information-cleaded' | translate }}</p>
-      <br>
-      <p><b>{{ 'page-tournament-details.shoes-information-studded-header' | translate }}</b>{{ 'page-tournament-details.shoes-information-studded' | translate }}</p>
+      <p>
+        <b>{{
+          'page-tournament-details.shoes-information-nubbed-header' | translate
+        }}</b>
+        {{ 'page-tournament-details.shoes-information-nubbed' | translate }}
+      </p>
+      <br />
+      <p>
+        <b>{{
+          'page-tournament-details.shoes-information-cleaded-header' | translate
+        }}</b>
+        {{ 'page-tournament-details.shoes-information-cleaded' | translate }}
+      </p>
+      <br />
+      <p>
+        <b>{{
+          'page-tournament-details.shoes-information-studded-header' | translate
+        }}</b
+        >{{ 'page-tournament-details.shoes-information-studded' | translate }}
+      </p>
     </app-info-button>
 
     <div ngProjectAs="container-content" [formGroup]="form">
       <div class="shoe">
-        <p>{{ 'page-tournament-details.shoes-information-nubbed-header' | translate }}</p>
+        <p>
+          {{
+            'page-tournament-details.shoes-information-nubbed-header'
+              | translate
+          }}
+        </p>
         <p-inputSwitch formControlName="nubbedShoesAllowed" [disabled]="true" />
       </div>
       <div class="shoe">
-        <p>{{ 'page-tournament-details.shoes-information-cleaded-header' | translate }}</p>
-        <p-inputSwitch formControlName="cleadedShoesAllowed" [disabled]="true" />
+        <p>
+          {{
+            'page-tournament-details.shoes-information-cleaded-header'
+              | translate
+          }}
+        </p>
+        <p-inputSwitch
+          formControlName="cleadedShoesAllowed"
+          [disabled]="true"
+        />
       </div>
       <div class="shoe">
-        <p>{{ 'page-tournament-details.shoes-information-studded-header' | translate }}</p>
-        <p-inputSwitch formControlName="studdedShoesAllowed" [disabled]="true" />
+        <p>
+          {{
+            'page-tournament-details.shoes-information-studded-header'
+              | translate
+          }}
+        </p>
+        <p-inputSwitch
+          formControlName="studdedShoesAllowed"
+          [disabled]="true"
+        />
       </div>
       <div class="shoe">
-        <p>{{ 'page-tournament-details.shoes-information-barefoot-header' | translate }}</p>
+        <p>
+          {{
+            'page-tournament-details.shoes-information-barefoot-header'
+              | translate
+          }}
+        </p>
         <p-inputSwitch formControlName="barefootAllowed" [disabled]="true" />
       </div>
 

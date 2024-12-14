@@ -4,8 +4,6 @@
 
 <div class="tournaments">
   @for (tournament of tournaments$ | async; track tournament) {
-    <tournament-row
-      [tournament]="tournament"
-    />
+  <tournament-row [tournament]="tournament" />
   }
 </div>

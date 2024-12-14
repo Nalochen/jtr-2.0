@@ -13,7 +13,7 @@ import {
 import {
   loadTeamOverviewData,
   loadTeamOverviewDataFailedAction,
-  loadTeamOverviewDataSuccessAction
+  loadTeamOverviewDataSuccessAction,
 } from '../actions/team.action';
 
 @Injectable({
@@ -22,9 +22,7 @@ import {
 export class GetTeamOverviewDataEffect {
   private actions$ = inject(Actions);
 
-  constructor(
-    private teamOverviewDataClient: TeamOverviewDataClient
-  ) {}
+  constructor(private teamOverviewDataClient: TeamOverviewDataClient) {}
 
   public getTeamOverviewData$: Observable<unknown> = createEffect(() =>
     this.actions$.pipe(
@@ -36,9 +34,7 @@ export class GetTeamOverviewDataEffect {
               teamOverview: payload,
             })
           ),
-          catchError((error) =>
-            of(loadTeamOverviewDataFailedAction({ error }))
-          )
+          catchError((error) => of(loadTeamOverviewDataFailedAction({ error })))
         )
       )
     )

@@ -1,21 +1,29 @@
 <app-data-container>
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">contact_page</span>
-    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.awareness-team' | translate }}</h4>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >contact_page</span
+    >
+    <h4 ngProjectAs="container-headline">
+      {{ 'page-tournament-details.awareness-team' | translate }}
+    </h4>
 
     @for (contacts of tournament.contacts; track contacts) {
-      <p ngProjectAs="container-content">{{ contacts }}</p>
+    <p ngProjectAs="container-content">{{ contacts }}</p>
     }
   </app-data-container-row>
 
   <mat-divider />
 
   <app-data-container-row>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">contact_page</span>
-    <h4 ngProjectAs="container-headline">{{ 'page-tournament-details.organizer' | translate }}</h4>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >contact_page</span
+    >
+    <h4 ngProjectAs="container-headline">
+      {{ 'page-tournament-details.organizer' | translate }}
+    </h4>
 
     @for (contacts of tournament.organizer.contacts; track contacts) {
-      <p ngProjectAs="container-content">{{ contacts }}</p>
+    <p ngProjectAs="container-content">{{ contacts }}</p>
     }
   </app-data-container-row>
 </app-data-container>

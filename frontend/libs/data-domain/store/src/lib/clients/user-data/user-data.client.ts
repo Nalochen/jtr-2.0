@@ -13,9 +13,9 @@ let ENDPOINT = '/api/customer-frontend/get-user-details';
 export class UserDataClient {
   constructor(private http: HttpClient) {}
 
-  public getUserData$(userId: number|undefined): Observable<UserData> {
+  public getUserData$(userId: number | undefined): Observable<UserData> {
     if (userId !== undefined) {
-      ENDPOINT +=  '/' + userId.toString()
+      ENDPOINT += '/' + userId.toString();
     }
 
     return this.http.get<UserData>(ENDPOINT);

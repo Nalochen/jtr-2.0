@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
+import { BasicInformationForm } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import {
-  BasicInformationForm
-} from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
-import { DataContainerRowComponent, InfoButtonComponent } from '../../../ui-shared';
+  DataContainerRowComponent,
+  InfoButtonComponent,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 
@@ -18,11 +19,11 @@ import { InputTextModule } from 'primeng/inputtext';
     InputTextModule,
     ReactiveFormsModule,
     InfoButtonComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './page-create-tournament-information-basic.component.html',
   styleUrl: './page-create-tournament-information-basic.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageTournamentInformationBasicComponent {
   @Input() public form!: FormGroup<BasicInformationForm>;

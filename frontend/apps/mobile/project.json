@@ -9,12 +9,12 @@
     "compileMaterialTemplate": {
       "executor": "nx:run-commands",
       "options": {
-          "cwd": "apps/mobile",
-          "command": "npx sass src/assets/styles/material-theme.scss tmp/mobile-material-theme.css --load-path=../../node_modules"
+        "cwd": "apps/mobile",
+        "command": "npx sass src/assets/styles/material-theme.scss tmp/mobile-material-theme.css --load-path=../../node_modules"
       },
       "configurations": {
-          "production": {},
-          "development": {}
+        "production": {},
+        "development": {}
       },
       "defaultConfiguration": "production",
       "outputs": ["{workspaceRoot}/apps/mobile/tmp"]

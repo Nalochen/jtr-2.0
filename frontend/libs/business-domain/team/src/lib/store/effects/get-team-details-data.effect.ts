@@ -5,12 +5,12 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import {TeamData, TeamDataClient} from '@jtr/data-domain/store';
+import { TeamData, TeamDataClient } from '@jtr/data-domain/store';
 
 import {
   loadTeamDetailsData,
   loadTeamDetailsDataFailedAction,
-  loadTeamDetailsDataSuccessAction
+  loadTeamDetailsDataSuccessAction,
 } from '../actions/team.action';
 
 @Injectable({
@@ -31,9 +31,7 @@ export class GetTeamDetailsDataEffect {
               teamDetails: payload,
             })
           ),
-          catchError((error) =>
-            of(loadTeamDetailsDataFailedAction({ error }))
-          )
+          catchError((error) => of(loadTeamDetailsDataFailedAction({ error })))
         )
       )
     )

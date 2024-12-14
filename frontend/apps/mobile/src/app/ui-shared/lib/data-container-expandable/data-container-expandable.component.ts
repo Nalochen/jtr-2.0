@@ -1,4 +1,10 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -6,8 +12,9 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnChanges, Output,
-  SimpleChanges
+  OnChanges,
+  Output,
+  SimpleChanges,
 } from '@angular/core';
 
 @Component({
@@ -15,20 +22,26 @@ import {
   standalone: true,
   animations: [
     trigger('expandCollapse', [
-      state('collapsed', style({
-        height: '0px',
-        padding: '0',
-        overflow: 'hidden',
-        opacity: 0,
-      })),
-      state('expanded', style({
-        height: '*',
-        opacity: 1,
-        overflow: 'hidden',
-        padding: '0',
-      })),
+      state(
+        'collapsed',
+        style({
+          height: '0px',
+          padding: '0',
+          overflow: 'hidden',
+          opacity: 0,
+        })
+      ),
+      state(
+        'expanded',
+        style({
+          height: '*',
+          opacity: 1,
+          overflow: 'hidden',
+          padding: '0',
+        })
+      ),
       transition('collapsed <=> expanded', animate('300ms ease-in-out')),
-    ])
+    ]),
   ],
   imports: [CommonModule],
   templateUrl: './data-container-expandable.component.html',
@@ -38,7 +51,8 @@ import {
 export class DataContainerExpandableComponent implements OnChanges {
   @Input() public id = '';
   @Input() public isOpen = false;
-  @Output() public toggleVisibility: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() public toggleVisibility: EventEmitter<boolean> =
+    new EventEmitter<boolean>();
 
   constructor(private cdr: ChangeDetectorRef) {}
 

@@ -1,150 +1,151 @@
 @use '@angular/material' as mat;
 @include mat.core();
 
-
 $palette-custom_primary_theme: (
   0: #000000,
-  50: #2C0100,
+  50: #2c0100,
   100: #400100,
-  150: #4F0B04,
-  200: #5E160D,
-  250: #6D2117,
-  300: #7C2C21,
-  350: #8C372B,
-  400: #9B4335,
-  500: #BA5B4C,
-  600: #DA7363,
-  700: #FA8D7B,
-  800: #FFB4A7,
-  900: #FFDAD4,
-  950: #FFEDEA,
-  980: #FFF8F6,
-  990: #FFFBFF,
-  1000: #FFFFFF,
-  A100: #FFFFFF,
-  contrast: ()
+  150: #4f0b04,
+  200: #5e160d,
+  250: #6d2117,
+  300: #7c2c21,
+  350: #8c372b,
+  400: #9b4335,
+  500: #ba5b4c,
+  600: #da7363,
+  700: #fa8d7b,
+  800: #ffb4a7,
+  900: #ffdad4,
+  950: #ffedea,
+  980: #fff8f6,
+  990: #fffbff,
+  1000: #ffffff,
+  A100: #ffffff,
+  contrast: (),
 );
 
 $palette-custom_secondary_theme: (
   0: #000000,
-  50: #00131B,
-  100: #001F29,
-  150: #002A37,
+  50: #00131b,
+  100: #001f29,
+  150: #002a37,
   200: #003545,
   250: #004153,
-  300: #104D60,
-  350: #21596C,
-  400: #2F6579,
-  500: #4A7E93,
-  600: #6498AD,
-  700: #7FB3C9,
-  800: #9ACEE5,
-  900: #BAEAFF,
-  950: #DFF4FF,
-  980: #F3FAFF,
-  990: #FAFCFF,
-  1000: #FFFFFF,
-  A100: #FFFFFF,
-  contrast:()
+  300: #104d60,
+  350: #21596c,
+  400: #2f6579,
+  500: #4a7e93,
+  600: #6498ad,
+  700: #7fb3c9,
+  800: #9acee5,
+  900: #baeaff,
+  950: #dff4ff,
+  980: #f3faff,
+  990: #fafcff,
+  1000: #ffffff,
+  A100: #ffffff,
+  contrast: (),
 );
 
 $palette-custom_tertiary_theme: (
   0: #000000,
   50: #001414,
-  100: #051F1F,
-  150: #112A29,
-  200: #1C3434,
-  250: #27403F,
-  300: #334B4B,
-  350: #3E5756,
-  400: #4A6362,
-  500: #627C7B,
-  600: #7C9695,
-  700: #96B0AF,
-  800: #B1CCCB,
-  900: #CDE8E7,
-  950: #DBF6F5,
-  980: #E3FFFE,
-  990: #F1FFFE,
-  1000: #FFFFFF,
-  A100: #FFFFFF,
-  contrast:()
+  100: #051f1f,
+  150: #112a29,
+  200: #1c3434,
+  250: #27403f,
+  300: #334b4b,
+  350: #3e5756,
+  400: #4a6362,
+  500: #627c7b,
+  600: #7c9695,
+  700: #96b0af,
+  800: #b1cccb,
+  900: #cde8e7,
+  950: #dbf6f5,
+  980: #e3fffe,
+  990: #f1fffe,
+  1000: #ffffff,
+  A100: #ffffff,
+  contrast: (),
 );
 
 $palette-custom_neutral_theme: (
   0: #000000,
   50: #111111,
-  100: #1B1C1B,
+  100: #1b1c1b,
   150: #262626,
   200: #303030,
-  250: #3B3B3B,
+  250: #3b3b3b,
   300: #474746,
   350: #535252,
-  400: #5F5E5E,
+  400: #5f5e5e,
   500: #787776,
   600: #929090,
-  700: #ACABAA,
-  800: #C8C6C5,
-  900: #E4E2E1,
-  950: #F3F0EF,
-  980: #FBF9F8,
-  990: #FEFCFB,
-  1000: #FFFFFF,
-  A100: #FFFFFF,
-  contrast:()
+  700: #acabaa,
+  800: #c8c6c5,
+  900: #e4e2e1,
+  950: #f3f0ef,
+  980: #fbf9f8,
+  990: #fefcfb,
+  1000: #ffffff,
+  A100: #ffffff,
+  contrast: (),
 );
 
 $palette-custom_neutral-variant_theme: (
   0: #000000,
   50: #111111,
-  100: #1C1B1B,
+  100: #1c1b1b,
   150: #262625,
   200: #313030,
-  250: #3C3B3B,
+  250: #3c3b3b,
   300: #474646,
   350: #535252,
-  400: #5F5E5E,
+  400: #5f5e5e,
   500: #787776,
   600: #929090,
-  700: #ADABAA,
-  800: #C9C6C5,
-  900: #E5E2E1,
-  950: #F3F0EF,
-  980: #FCF8F8,
-  990: #F6FEFF,
-  1000: #FFFFFF,
-  A100: #FFFFFF,
-  contrast: ()
+  700: #adabaa,
+  800: #c9c6c5,
+  900: #e5e2e1,
+  950: #f3f0ef,
+  980: #fcf8f8,
+  990: #f6feff,
+  1000: #ffffff,
+  A100: #ffffff,
+  contrast: (),
 );
 
 $palette-custom_error_theme: (
   0: #000000,
-  50: #2C0100,
+  50: #2c0100,
   100: #400100,
-  150: #4F0B04,
-  200: #5E160D,
-  250: #6D2117,
-  300: #7C2C21,
-  350: #8C372B,
-  400: #9B4335,
-  500: #BA5B4C,
-  600: #DA7363,
-  700: #FA8D7B,
-  800: #FFB4A7,
-  900: #FFDAD4,
-  950: #FFEDEA,
-  980: #FFF8F6,
-  990: #FFFBFF,
-  1000: #FFFFFF,
-  A100: #FFFFFF,
-  contrast: ()
+  150: #4f0b04,
+  200: #5e160d,
+  250: #6d2117,
+  300: #7c2c21,
+  350: #8c372b,
+  400: #9b4335,
+  500: #ba5b4c,
+  600: #da7363,
+  700: #fa8d7b,
+  800: #ffb4a7,
+  900: #ffdad4,
+  950: #ffedea,
+  980: #fff8f6,
+  990: #fffbff,
+  1000: #ffffff,
+  A100: #ffffff,
+  contrast: (),
 );
 
 $custom_color_primary: mat.m2-define-palette($palette-custom_primary_theme);
 $custom_color_secondary: mat.m2-define-palette($palette-custom_secondary_theme);
 $custom_color_tertiary: mat.m2-define-palette($palette-custom_tertiary_theme);
 $custom_color_neutral: mat.m2-define-palette($palette-custom_neutral_theme);
-$custom_color_neutral-variant: mat.m2-define-palette($palette-custom_neutral-variant_theme);
+$custom_color_neutral-variant: mat.m2-define-palette(
+  $palette-custom_neutral-variant_theme
+);
 $custom_color_error: mat.m2-define-palette($palette-custom_error_theme);
 
 @mixin custom-theme() {
@@ -161,7 +162,7 @@ $custom_color_error: mat.m2-define-palette($palette-custom_error_theme);
       ),
       density: (
         scale: 0,
-      )
+      ),
     )
   );
 
@@ -169,4 +170,4 @@ $custom_color_error: mat.m2-define-palette($palette-custom_error_theme);
     @include mat.angular-material-theme($custom_theme);
     @include mat.all-component-themes($custom_theme);
   }
-};
+}
