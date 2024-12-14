@@ -6,7 +6,6 @@ import {
   TournamentFoodNoonEnum,
   TournamentRegistrationProcedureTypeEnum,
   TournamentStatus,
-  TournamentSystemType,
 } from '@jtr/data-domain/tournament-data';
 
 export interface TournamentDate {
@@ -34,7 +33,6 @@ export interface TournamentHouseRules {
 export interface TournamentSystem {
   url: string;
   text: string;
-  type: TournamentSystemType;
 }
 
 export interface TournamentPompfCheck {

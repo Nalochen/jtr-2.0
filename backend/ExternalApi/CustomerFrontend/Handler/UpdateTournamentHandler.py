@@ -68,7 +68,6 @@ class UpdateTournamentHandler:
         tournament.food_evening = data.get('foodEvening')
         tournament.food_gastro = data.get('foodGastro')
         tournament.tournament_system_text = data.get('tournamentSystemText')
-        tournament.tournament_system_type = data.get('tournamentSystemType')
         tournament.tournament_system_url = data.get('tournamentSystemUrl')
         tournament.pompf_check_text = data.get('pompfCheckText')
         tournament.pompf_check_url = data.get('pompfCheckUrl')

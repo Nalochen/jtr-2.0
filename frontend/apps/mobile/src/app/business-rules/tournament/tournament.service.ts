@@ -49,7 +49,6 @@ export interface CreateTournamentRequestBody {
   foodGastro: TournamentFoodGastroEnum;
   tournamentSystemText: string;
   tournamentSystemUrl: string;
-  tournamentSystemType: string;
   pompfCheckText: string;
   pompfCheckUrl: string;
   houseRulesText: string;
@@ -100,7 +99,6 @@ export interface UpdateTournamentRequestBody {
   foodGastro: TournamentFoodGastroEnum;
   tournamentSystemText: string;
   tournamentSystemUrl: string;
-  tournamentSystemType: string;
   pompfCheckText: string;
   pompfCheckUrl: string;
   houseRulesText: string;
@@ -154,7 +152,6 @@ export class TournamentService {
       foodEvening: body.accommodation.food.dinner,
       foodGastro: body.accommodation.food.gastronomy,
       tournamentSystemText: body.rules.tournamentSystem,
-      tournamentSystemType: 'tugeny',
       tournamentSystemUrl: body.rules.tournamentSystemLink,
       pompfCheckText: body.rules.pompfCheck,
       pompfCheckUrl: body.rules.pompfCheckLink,
@@ -210,7 +207,6 @@ export class TournamentService {
       foodEvening: body.accommodation.food.dinner,
       foodGastro: body.accommodation.food.gastronomy,
       tournamentSystemText: body.rules.tournamentSystem,
-      tournamentSystemType: 'tugeny',
       tournamentSystemUrl: body.rules.tournamentSystemLink,
       pompfCheckText: body.rules.pompfCheck,
       pompfCheckUrl: body.rules.pompfCheckLink,
