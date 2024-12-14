@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /home/frontend
+
+nx run-many --target=lint --all --fix
