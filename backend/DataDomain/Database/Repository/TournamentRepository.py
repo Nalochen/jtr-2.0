@@ -84,6 +84,9 @@ class TournamentRepository:
                 participates_in.c.is_deleted == False
             ).first()
 
+            if not participation:
+                continue
+
             teamData = {
                 'id': team.id,
                 'name': team.name,

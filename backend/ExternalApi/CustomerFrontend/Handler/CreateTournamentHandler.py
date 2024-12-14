@@ -87,8 +87,8 @@ class CreateTournamentHandler:
 
             cache.delete('tournament-overview')
 
-        except Exception as e:
-            return Response(response=e, status=500)
+        except Exception:
+            return Response(status=500)
 
         return Response(
             response=tournamentId,

@@ -85,8 +85,8 @@ class UpdateTournamentHandler:
 
             clearTournamentCache(tournamentId)
 
-        except Exception as e:
-            return Response(response=e, status=500)
+        except Exception:
+            return Response(status=500)
 
         return Response(
             status=200
