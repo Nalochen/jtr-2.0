@@ -1,12 +1,15 @@
 <h1>{{ 'teams' | translate }}</h1>
 
-<input
-  type="text"
-  placeholder="{{ 'search' | translate }}"
-  [formControl]="searchForm"
->
+<app-icon-field>
+  <input
+    type="text"
+    placeholder="{{ 'search' | translate }}"
+    [formControl]="searchForm"
+  >
+  <span class="material-icons-outlined">search</span>
+</app-icon-field>
 
-@for (team of teams$ | async; track team.id) {
+@for (team of dataSource; track team.id) {
 <team-row
   [team]="team"
 />

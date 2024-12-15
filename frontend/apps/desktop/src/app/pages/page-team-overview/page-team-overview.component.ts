@@ -1,41 +1,49 @@
-import {CommonModule} from '@angular/common';
-import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Component, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
+import { combineLatest, Observable, startWith } from 'rxjs';
+
 import { Store } from '@ngrx/store';
+
 import { teamOverviewSelector } from '@jtr/business-domain/team';
 import { TeamOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { TranslatePipe } from '@ngx-translate/core';
-import { map } from 'rxjs/operators';
+
+import { IconFieldComponent } from '../../ui-shared/lib/icon-field/icon-field.component';
 import { TeamRowComponent } from './team-row/team-row.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TranslatePipe, ReactiveFormsModule, TeamRowComponent],
+  imports: [CommonModule, TranslatePipe, ReactiveFormsModule, TeamRowComponent, IconFieldComponent],
   templateUrl: './page-team-overview.component.html',
   styleUrl: './page-team-overview.component.less',
 })
 export class PageTeamOverviewComponent {
-  public filteredTeams$: Observable<TeamOverviewData[]> = this.teams$;
+  public dataSource: TeamOverviewData[] = [];
   public searchForm = new FormControl('');
-
-  constructor(private store$: Store) {
-    this.searchForm.valueChanges.subscribe((value) => {
-      this.filteredTeams$ = this.teams$.pipe(
-        map((teams) =>
-          teams.filter((team) => {
-            if (!value) {
-              return false;
-            }
-            return team.name.toLowerCase().includes(value.toLowerCase());
-          }))
-      );
-    });
-  }
 
   @SingletonGetter()
   public get teams$(): Observable<TeamOverviewData[]> {
     return this.store$.select(teamOverviewSelector);
+  }
+
+  constructor(private store$: Store,   private readonly destroyRef: DestroyRef) {
+    combineLatest([this.teams$, this.searchForm.valueChanges.pipe(startWith(''))])
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(([teams, search]: [TeamOverviewData[], string | null]) => {
+        search = search?.toLowerCase() || '';
+
+        if (search === '') {
+          this.dataSource = teams;
+          return;
+        }
+
+        this.dataSource = teams.filter((team) => {
+          return team.name.toLowerCase().includes(search);
+        });
+      });
   }
 }

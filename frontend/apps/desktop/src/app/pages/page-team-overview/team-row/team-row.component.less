@@ -1,68 +1,24 @@
 @import 'colors-desktop';
 
 app-data-container {
-  display: grid;
-  grid-template-areas:
-    'logo date city teams registration rules'
-    'logo name name name contact on-site';
-  grid-template-columns:
-    48px fit-content(150px) fit-content(150px) 1fr fit-content(150px)
-    fit-content(150px);
-  grid-template-rows: auto;
-  grid-column-gap: 16px;
-}
-
-img {
-  grid-area: logo;
-  border-radius: 50%;
-}
-
-h2 {
-  grid-area: name;
-  font-weight: bold;
-  align-self: center;
-}
-
-.date {
-  grid-area: date;
-  align-self: baseline;
-}
-
-.city {
-  grid-area: city;
-  align-self: baseline;
-}
-
-.teams {
-  grid-area: teams;
-  align-self: baseline;
-}
-
-.registration {
-  grid-area: registration;
-}
-
-.rules {
-  grid-area: rules;
-}
-
-.contact {
-  grid-area: contact;
-}
-
-.on-site {
-  grid-area: on-site;
-}
-
-.material-icons-outlined {
-  color: @color-button-positive !important;
-}
-
-button {
-  justify-self: flex-start;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  width: fit-content;
-  padding: 0;
-  height: 24px;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.team-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
 }
