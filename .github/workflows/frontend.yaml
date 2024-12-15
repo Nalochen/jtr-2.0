@@ -36,6 +36,7 @@ jobs:
           set -e # Exit immediately if a command exits with a non-zero status.
           set -u # Exit immediately if a variable is not defined.
           
+          nx reset
           npm run nx build desktop --prefix frontend
 
   build-mobile:
@@ -66,6 +67,7 @@ jobs:
           set -e # Exit immediately if a command exits with a non-zero status.
           set -u # Exit immediately if a variable is not defined.
           
+          nx reset
           npm run nx build mobile --prefix frontend
 
   test:
@@ -96,6 +98,7 @@ jobs:
           set -e # Exit immediately if a command exits with a non-zero status.
           set -u # Exit immediately if a variable is not defined.
 
+          nx reset
           npm run test-changed --prefix frontend
 
   code-style:
@@ -126,4 +129,5 @@ jobs:
           set -e # Exit immediately if a command exits with a non-zero status.
           set -u # Exit immediately if a variable is not defined.
 
+          nx reset
           npm run lint-changed --prefix frontend
