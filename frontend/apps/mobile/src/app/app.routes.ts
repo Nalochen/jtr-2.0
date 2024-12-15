@@ -41,7 +41,7 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'team-overview',
+    path: 'teams-overview',
     component: PageTeamOverviewComponent,
     resolve: {
       teamDetails: TeamOverviewResolver,
