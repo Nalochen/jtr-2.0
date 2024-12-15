@@ -1,5 +1,5 @@
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {Component, Input} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { TeamOverviewData } from '@jtr/data-domain/store';
 
@@ -12,6 +12,7 @@ import { TeamArrowComponent } from '../team-arrow/team-arrow.component';
   imports: [CommonModule, NgOptimizedImage, DataContainerComponent, ButtonComponent, TeamArrowComponent],
   templateUrl: './team-row.component.html',
   styleUrl: './team-row.component.less',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamRowComponent {
   @Input() public team!: TeamOverviewData;
