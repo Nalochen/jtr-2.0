@@ -13,7 +13,7 @@
     formGroup.controls.teamId.value) {
     <div [formGroup]="formGroup" class="team-input">
       <p>{{ formGroup.controls.teamName.value }}</p>
-      <p-inputNumber [formControl]="formGroup.controls.score" />
+      <p-inputNumber [formControl]="formGroup.controls.placement" />
     </div>
     } @empty {
     <p>{{ 'enter-results.no-teams' | translate }}</p>

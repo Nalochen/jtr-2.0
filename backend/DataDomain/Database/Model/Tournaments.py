@@ -178,11 +178,6 @@ class Tournaments(BaseModel, db.Model):
         nullable=True
     )
 
-    shoes_url: Column[String] = db.Column(
-        db.String(255),
-        nullable=False
-    )
-
     studded_shoes_allowed: Column[Boolean] = db.Column(
         db.Boolean,
         nullable=False

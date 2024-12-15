@@ -59,7 +59,6 @@ export interface CreateTournamentRequestBody {
   camShoesAllowed: boolean;
   barefootAllowed: boolean;
   shoesText: string;
-  shoesUrl: string;
 }
 
 export interface CreateTournamentResponse {
@@ -111,7 +110,6 @@ export interface UpdateTournamentRequestBody {
   camShoesAllowed: boolean;
   barefootAllowed: boolean;
   shoesText: string;
-  shoesUrl: string;
 }
 
 @Injectable({
@@ -167,7 +165,6 @@ export class TournamentService {
       camShoesAllowed: body.rules.shoes.cam,
       barefootAllowed: body.rules.shoes.barefoot,
       shoesText: body.rules.shoes.shoesText,
-      shoesUrl: 'test',
     };
 
     return this.http.post<CreateTournamentResponse>(
@@ -224,7 +221,6 @@ export class TournamentService {
       camShoesAllowed: body.rules.shoes.cam,
       barefootAllowed: body.rules.shoes.barefoot,
       shoesText: body.rules.shoes.shoesText,
-      shoesUrl: 'test',
     };
 
     return this.http.put(UPDATE_TOURNAMENT_ENDPOINT, request);

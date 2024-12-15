@@ -51,7 +51,6 @@ Authorization: Bearer {{jwtToken}}
   "camShoesAllowed": false,
   "barefootAllowed": false,
   "shoesText": "schuhe mitbringen",
-  "shoesUrl": "test",
   "registrationProcedureUrl": "test"
 }
 
