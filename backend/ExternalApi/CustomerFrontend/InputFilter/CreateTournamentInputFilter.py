@@ -388,13 +388,6 @@ class CreateTournamentInputFilter(InputFilter):
         )
 
         self.add(
-            'shoesUrl',
-            required=True,
-            filters=[StringTrimFilter()],
-            validators=[IsStringValidator()]
-        )
-
-        self.add(
             'registrationProcedureUrl',
             required=True,
             filters=[StringTrimFilter()],
