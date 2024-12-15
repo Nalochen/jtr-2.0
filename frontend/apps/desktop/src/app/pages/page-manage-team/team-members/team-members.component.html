@@ -1,8 +1,7 @@
 <h3>{{ 'page-manage-team.members' | translate }}</h3>
 
 <app-data-container [formGroup]="form">
-  @for (member of
-  form.controls.members.value; track member.id) {
+  @for (member of form.controls.members.value; track member.id) {
   <app-data-container-row>
     <img
       ngProjectAs="container-icon"

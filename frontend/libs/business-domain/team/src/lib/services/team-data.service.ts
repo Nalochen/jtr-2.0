@@ -4,7 +4,11 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { teamDetailsNameSelector, teamDetailsSelector, teamOverviewSelector } from '@jtr/business-domain/team';
+import {
+  teamDetailsNameSelector,
+  teamDetailsSelector,
+  teamOverviewSelector,
+} from '@jtr/business-domain/team';
 import { TeamData, TeamOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 

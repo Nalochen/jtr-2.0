@@ -1,17 +1,29 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {Component, Input} from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
-import {MatIconButton} from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 
-import {TournamentOverviewData} from '@jtr/data-domain/store';
+import { TournamentOverviewData } from '@jtr/data-domain/store';
 
-import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum,DataContainerComponent } from '../../../ui-shared';
-import {StatusIndicatorComponent} from '../../../ui-shared/lib/status-indicator/status-indicator.component';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+  DataContainerComponent,
+} from '../../../ui-shared';
+import { StatusIndicatorComponent } from '../../../ui-shared/lib/status-indicator/status-indicator.component';
 
 @Component({
   selector: 'tournament-row',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, DataContainerComponent, MatIconButton, StatusIndicatorComponent, ButtonComponent],
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+    DataContainerComponent,
+    MatIconButton,
+    StatusIndicatorComponent,
+    ButtonComponent,
+  ],
   templateUrl: './tournament-row.component.html',
   styleUrl: './tournament-row.component.less',
 })

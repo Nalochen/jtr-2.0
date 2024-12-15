@@ -14,7 +14,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ReactiveFormsModule,
     DataContainerRowComponent,
     InputTextareaModule,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './page-create-tournament-information-additional.component.html',
   styleUrl: './page-create-tournament-information-additional.component.less',

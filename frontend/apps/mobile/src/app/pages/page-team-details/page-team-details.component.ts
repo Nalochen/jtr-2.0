@@ -1,4 +1,4 @@
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import {teamDetailsSelector} from '@jtr/business-domain/team';
-import {TeamData} from '@jtr/data-domain/store';
+import { teamDetailsSelector } from '@jtr/business-domain/team';
+import { TeamData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { TeamHeaderComponent } from './team-header/team-header.component';
@@ -19,7 +19,15 @@ import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tou
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TeamHeaderComponent, TeamMembersComponent, TeamInformationComponent, TeamOwnTournamentsComponent, TeamOtherTournamentsComponent, MatButtonModule],
+  imports: [
+    CommonModule,
+    TeamHeaderComponent,
+    TeamMembersComponent,
+    TeamInformationComponent,
+    TeamOwnTournamentsComponent,
+    TeamOtherTournamentsComponent,
+    MatButtonModule,
+  ],
   templateUrl: './page-team-details.component.html',
   styleUrl: './page-team-details.component.less',
 })
@@ -27,7 +35,7 @@ export class PageTeamDetailsComponent {
   constructor(private store$: Store) {}
 
   @SingletonGetter()
-  public get team$(): Observable<TeamData|null> {
+  public get team$(): Observable<TeamData | null> {
     return this.store$.select(teamDetailsSelector);
   }
 }

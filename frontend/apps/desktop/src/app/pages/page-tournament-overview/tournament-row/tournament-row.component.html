@@ -1,7 +1,15 @@
 <app-data-container>
-  <img ngSrc="{{ tournament.organizerLogo }}" width="50" height="50" alt="Logo of {{ tournament.name }}" />
+  <img
+    ngSrc="{{ tournament.organizerLogo }}"
+    width="50"
+    height="50"
+    alt="Logo of {{ tournament.name }}"
+  />
   <h2>{{ tournament.name }}</h2>
-  <p class="date">{{ tournament.startDate | date:"dd.MM" }} - {{ tournament.endDate | date:"dd.MM.YYYY" }}</p>
+  <p class="date">
+    {{ tournament.startDate | date : 'dd.MM' }} -
+    {{ tournament.endDate | date : 'dd.MM.YYYY' }}
+  </p>
   <p class="city">{{ tournament.location }}</p>
 
   <app-status-indicator
@@ -10,22 +18,38 @@
     class="teams"
   />
 
-  <app-button [type]="ButtonTypeEnum.Basic" class="registration" ngProjectAs="container-headline">
+  <app-button
+    [type]="ButtonTypeEnum.Basic"
+    class="registration"
+    ngProjectAs="container-headline"
+  >
     <span class="material-icons-outlined">keyboard_arrow_right</span>
     Registrierung
   </app-button>
 
-  <app-button [type]="ButtonTypeEnum.Basic" class="rules" ngProjectAs="container-headline">
+  <app-button
+    [type]="ButtonTypeEnum.Basic"
+    class="rules"
+    ngProjectAs="container-headline"
+  >
     <span class="material-icons-outlined">keyboard_arrow_right</span>
     Regeln
   </app-button>
 
-  <app-button [type]="ButtonTypeEnum.Basic" class="contact" ngProjectAs="container-headline">
+  <app-button
+    [type]="ButtonTypeEnum.Basic"
+    class="contact"
+    ngProjectAs="container-headline"
+  >
     <span class="material-icons-outlined">keyboard_arrow_right</span>
     Kontakt
   </app-button>
 
-  <app-button [type]="ButtonTypeEnum.Basic" class="on-site" ngProjectAs="container-headline">
+  <app-button
+    [type]="ButtonTypeEnum.Basic"
+    class="on-site"
+    ngProjectAs="container-headline"
+  >
     <span class="material-icons-outlined">keyboard_arrow_right</span>
     Vor Ort
   </app-button>

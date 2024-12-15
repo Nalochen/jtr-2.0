@@ -2,12 +2,21 @@
   <app-data-container-row ngProjectAs="panel-header">
     <div ngProjectAs="container-headline" class="headline">
       <div class="meta-data">
-        <p class="date">{{ tournament.startDate | date:"dd.MM" }} - {{ tournament.endDate | date:"dd.MM.YYYY" }}</p>
+        <p class="date">
+          {{ tournament.startDate | date : 'dd.MM' }} -
+          {{ tournament.endDate | date : 'dd.MM.YYYY' }}
+        </p>
         <p>{{ tournament.location }}</p>
       </div>
-      <app-status-indicator ngProjectAs="container-additional" [totalTeams]="tournament.totalTeams" [registeredTeams]="tournament.registeredTeams" />
+      <app-status-indicator
+        ngProjectAs="container-additional"
+        [totalTeams]="tournament.totalTeams"
+        [registeredTeams]="tournament.registeredTeams"
+      />
     </div>
-    <span class="material-icons-outlined" ngProjectAs="container-icon">event</span>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >event</span
+    >
     <h3 ngProjectAs="container-content" class="title">{{ tournament.name }}</h3>
   </app-data-container-row>
 

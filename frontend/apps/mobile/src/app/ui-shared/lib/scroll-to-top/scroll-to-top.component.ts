@@ -1,8 +1,11 @@
 import { CommonModule, DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { Component, HostListener, Inject } from '@angular/core';
 
-import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum } from '../../../ui-shared';
-
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+} from '../../../ui-shared';
 
 @Component({
   selector: 'app-scroll-to-top',
@@ -20,20 +23,30 @@ export class ScrollToTopComponent {
 
   @HostListener('window:scroll', [])
   public onWindowScroll(): void {
-    if (window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
+    if (
+      window.scrollY ||
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop > 100
+    ) {
       this.windowScrolled = true;
-    }
-    else if (this.windowScrolled && window.scrollY || this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
+    } else if (
+      (this.windowScrolled && window.scrollY) ||
+      (this.windowScrolled && window.pageYOffset) ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop < 10
+    ) {
       this.windowScrolled = false;
     }
   }
 
   public scrollToTop() {
     (function smoothScroll(): void {
-      const currentScroll: number = document.documentElement.scrollTop || document.body.scrollTop;
+      const currentScroll: number =
+        document.documentElement.scrollTop || document.body.scrollTop;
       if (currentScroll > 0) {
         window.requestAnimationFrame(smoothScroll);
-        window.scrollTo(0, currentScroll - (currentScroll / 8));
+        window.scrollTo(0, currentScroll - currentScroll / 8);
       }
     })();
   }

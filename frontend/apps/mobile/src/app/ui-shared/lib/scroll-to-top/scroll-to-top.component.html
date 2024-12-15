@@ -1,5 +1,10 @@
-<div class="scroll-to-top" [ngClass]="{'show-scrollTop': windowScrolled}">
-  <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" aria-pressed="true" (click)="scrollToTop()">
+<div class="scroll-to-top" [ngClass]="{ 'show-scrollTop': windowScrolled }">
+  <app-button
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Raised"
+    aria-pressed="true"
+    (click)="scrollToTop()"
+  >
     <span class="material-icons-outlined">keyboard_arrow_up</span>
   </app-button>
 </div>

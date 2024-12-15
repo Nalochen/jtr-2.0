@@ -5,7 +5,6 @@ import { MatChipsModule } from '@angular/material/chips';
 
 import { ButtonColorEnum } from '../button/enums/color.enum';
 
-
 @Component({
   selector: 'app-chip',
   standalone: true,

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd /home
+
+. backend/venv/bin/activate
+
+find ./backend -name '*.py' -not -path './backend/venv/*' -not -path './backend/worker/venv/*' -exec autopep8 --in-place --aggressive --aggressive {} \;

@@ -1,5 +1,10 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  OnInit,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../index';
@@ -14,7 +19,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     NgOptimizedImage,
     OverlayPanelModule,
     ButtonComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './visibility-button.component.html',
   styleUrl: './visibility-button.component.less',
@@ -30,7 +35,7 @@ export class VisibilityButtonComponent implements OnInit {
   public ngOnInit(): void {
     const controlValue = this.control().value;
 
-    if(controlValue === null) {
+    if (controlValue === null) {
       this.control().setValue(this.visible);
     } else {
       this.visible = controlValue;
@@ -38,7 +43,7 @@ export class VisibilityButtonComponent implements OnInit {
   }
 
   public toggleVisibility(value: boolean): void {
-    if(this.visible === value) {
+    if (this.visible === value) {
       return;
     }
     this.visible = value;

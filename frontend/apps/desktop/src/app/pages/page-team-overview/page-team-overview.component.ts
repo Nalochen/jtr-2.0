@@ -1,12 +1,12 @@
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import {teamOverviewSelector} from '@jtr/business-domain/team';
-import {TeamOverviewData} from '@jtr/data-domain/store';
+import { teamOverviewSelector } from '@jtr/business-domain/team';
+import { TeamOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 @Component({

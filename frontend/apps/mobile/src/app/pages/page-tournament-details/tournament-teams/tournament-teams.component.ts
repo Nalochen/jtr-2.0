@@ -1,12 +1,15 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
-import {TournamentTeamData} from '@jtr/data-domain/store';
+import { TournamentTeamData } from '@jtr/data-domain/store';
 
-import { DataContainerExpandableComponent, TeamComponent } from '../../../ui-shared';
+import {
+  DataContainerExpandableComponent,
+  TeamComponent,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -19,11 +22,11 @@ import { TranslatePipe } from '@ngx-translate/core';
     DataContainerExpandableComponent,
     TeamComponent,
     MatIcon,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './tournament-teams.component.html',
   styleUrl: './tournament-teams.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentTeamsComponent {
   @Input() public registeredTeams: TournamentTeamData[] = [];

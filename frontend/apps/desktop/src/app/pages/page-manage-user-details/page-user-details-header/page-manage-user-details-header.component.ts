@@ -1,24 +1,21 @@
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
+import { EditUserForm } from '@jtr/business-domain/user';
+
 import {
-  EditUserForm,
-} from '@jtr/business-domain/user';
-
-import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum, InfoButtonComponent } from '../../../ui-shared';
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+  InfoButtonComponent,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-
 
 @Component({
   standalone: true,
   selector: 'page-manage-user-details-header',
-  imports: [
-    CommonModule,
-    ButtonComponent,
-    InfoButtonComponent,
-    TranslatePipe
-  ],
+  imports: [CommonModule, ButtonComponent, InfoButtonComponent, TranslatePipe],
   templateUrl: './page-manage-user-details-header.component.html',
   styleUrl: './page-manage-user-details-header.component.less',
 })

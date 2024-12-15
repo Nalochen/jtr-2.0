@@ -1,9 +1,11 @@
 <app-data-container>
   @for (contact of team.contacts; track contact) {
-    <app-data-container-row>
-      <span class="material-icons-outlined" ngProjectAs="container-icon">contact_page</span>
+  <app-data-container-row>
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
+      >contact_page</span
+    >
 
-      <p ngProjectAs="container-headline">{{ contact }}</p>
-    </app-data-container-row>
+    <p ngProjectAs="container-headline">{{ contact }}</p>
+  </app-data-container-row>
   }
 </app-data-container>

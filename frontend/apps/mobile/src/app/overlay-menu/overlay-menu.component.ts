@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter,Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../ui-shared';
 import { TranslateService } from '@ngx-translate/core';
@@ -19,9 +19,7 @@ export class OverlayMenuComponent {
 
   @Output() public menuClose = new EventEmitter<void>();
 
-  constructor(
-    private translate: TranslateService
-  ) {
+  constructor(private translate: TranslateService) {
     const savedLanguage = sessionStorage.getItem('language') || 'de';
     this.translate.setDefaultLang(savedLanguage);
     this.translate.use(savedLanguage);

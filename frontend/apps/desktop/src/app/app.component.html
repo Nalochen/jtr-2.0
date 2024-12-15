@@ -13,7 +13,8 @@
         src="assets/svgs/progress-pride-flag.svg"
         alt="Pride Flag"
         width="50"
-        height="50">
+        height="50"
+      />
     </app-button>
   </div>
   <nav>
@@ -53,7 +54,11 @@
     <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon">
       <span class="material-icons-outlined">account_circle</span>
     </app-button>
-    <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon" (click)="logout()">
+    <app-button
+      [color]="ButtonColorEnum.None"
+      [type]="ButtonTypeEnum.Icon"
+      (click)="logout()"
+    >
       <span class="material-icons-outlined">logout</span>
     </app-button>
     } @else {
@@ -79,8 +84,10 @@
 </p-overlayPanel>
 
 <p-overlayPanel #prideFlag>
-  <p class="pride-text">Jugger setzt sich immer stärker für seine Queeren Mitglieder ein.
-    So soll aus uns eine bunte und vielfältige Community werden,
-    in der alle Menschen willkommen sind.</p>
+  <p class="pride-text">
+    Jugger setzt sich immer stärker für seine Queeren Mitglieder ein. So soll
+    aus uns eine bunte und vielfältige Community werden, in der alle Menschen
+    willkommen sind.
+  </p>
   <a class="pride-text">Lies hierzu die Texte von Alex und Momo</a>
 </p-overlayPanel>
