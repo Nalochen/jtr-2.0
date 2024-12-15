@@ -14,7 +14,6 @@ from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import TournamentFo
 from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
 from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import TournamentRegistrationProcedureTypesEnum
 from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
-from DataDomain.Database.Enum.TournamentSystemTypesEnum import TournamentSystemTypesEnum
 from DataDomain.Database.Model.BaseModel import BaseModel
 from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Database.Model.Teams import Teams
@@ -210,11 +209,6 @@ class Tournaments(BaseModel, db.Model):
 
     tournament_system_text: Column[Text] = db.Column(
         db.Text,
-        nullable=False
-    )
-
-    tournament_system_type: Column[Enum] = db.Column(
-        db.Enum(TournamentSystemTypesEnum),
         nullable=False
     )
 

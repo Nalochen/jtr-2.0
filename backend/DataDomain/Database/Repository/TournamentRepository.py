@@ -84,6 +84,9 @@ class TournamentRepository:
                 participates_in.c.is_deleted == False
             ).first()
 
+            if not participation:
+                continue
+
             teamData = {
                 'id': team.id,
                 'name': team.name,
@@ -91,7 +94,7 @@ class TournamentRepository:
                 'city': team.city,
                 'contacts': json.loads(str(team.contacts)),
                 'createdAt': team.created_at.isoformat(),
-                'founded': team.founded.isoformat(),
+                'founded': team.founded.isoformat() if team.founded else None,
                 'isMixTeam': team.is_mix_team,
                 'logo': team.logo,
                 'trainingTime': team.training_time,
@@ -115,8 +118,8 @@ class TournamentRepository:
             'additionalInformation': tournament.additional_information,
             'address': tournament.address,
             'arrivalDate': {
-                'start': tournament.start_arrival_date.isoformat(),
-                'end': tournament.end_arrival_date.isoformat(),
+                'start': tournament.start_arrival_date.isoformat() if tournament.start_arrival_date else None,
+                'end': tournament.end_arrival_date.isoformat() if tournament.end_arrival_date else None,
             },
             'contacts': json.loads(str(tournament.contacts)),
             'costs': {
@@ -187,7 +190,6 @@ class TournamentRepository:
             },
             'tournamentSystem': {
                 'text': tournament.tournament_system_text,
-                'type': tournament.tournament_system_type.value,
                 'url': tournament.tournament_system_url
             },
             'updatedAt': tournament.updated_at.isoformat()
