@@ -2,11 +2,12 @@
 
 <app-icon-field>
   <input
+    ngProjectAs="input"
     type="text"
     placeholder="{{ 'search' | translate }}"
     [formControl]="searchForm"
   >
-  <span class="material-icons-outlined">search</span>
+  <span ngProjectAs="icon" class="material-icons-outlined">search</span>
 </app-icon-field>
 
 @for (team of dataSource; track team.id) {

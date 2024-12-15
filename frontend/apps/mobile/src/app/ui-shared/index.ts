@@ -14,3 +14,4 @@ export * from './lib/team/team.component';
 export * from './lib/scroll-to-top/scroll-to-top.component';
 export * from './lib/visibility-button/visibility-button.component';
 export * from './lib/editor/editor.component';
+export * from './lib/icon-field/icon-field.component';
