@@ -66,7 +66,6 @@ export interface TournamentShoes {
   cleatsAllowed: boolean;
   studdedAllowed: boolean;
   text: string;
-  url: string;
 }
 
 export interface TournamentTeamsData {

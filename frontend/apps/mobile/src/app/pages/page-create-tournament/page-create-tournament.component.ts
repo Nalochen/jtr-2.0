@@ -95,11 +95,7 @@ export class PageCreateTournamentComponent implements OnDestroy {
     }
 
     // Update existing tournament
-    const tournamentId = (await firstValueFrom(this.tournament$))?.id;
-
-    if (!tournamentId) {
-      return;
-    }
+    const tournamentId = (await firstValueFrom(this.tournament$))!.id;
 
     await firstValueFrom(
       this.tournamentService.update(tournamentId, this.form.getRawValue())
