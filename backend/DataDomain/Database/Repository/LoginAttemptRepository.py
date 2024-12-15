@@ -38,9 +38,8 @@ class LoginAttemptRepository:
         return LoginAttempts.query.filter_by(
             username=username).first() is not None
 
-    def getDataOrCreateLoginAttempt(
-            self, username: str) -> LoginAttemptResponse:
-        """Get the LoginAttempt entry or create a new one"""
+    def createOrIncreaseAttempts(self, username: str) -> None:
+        """Create a new LoginAttempt entry or increase the attempts"""
 
         loginAttempt = self.exists(username)
 
@@ -52,13 +51,6 @@ class LoginAttemptRepository:
             if currentAttempts >= 8:
                 # Send email
                 pass
-
-        loginAttemptData = self.checkForFailedAttempts(username)
-
-        return {
-            'lockType': loginAttemptData.lockType,
-            'lockedUntil': loginAttemptData.lockedUntil
-        }
 
     @staticmethod
     def increaseFailedAttempts(username: str) -> int:
@@ -110,31 +102,32 @@ class LoginAttemptRepository:
             loginAttempt = LoginAttempts.query.filter_by(
                 username=username).first()
 
-            if loginAttempt:
-                isLocked, lockType = loginAttempt.isLocked()
+            if not loginAttempt:
+                return False
 
-                if isLocked:
+            isLocked, lockType = loginAttempt.isLocked()
 
-                    if lockType == LockType.PERMANENTLY.value:
-                        logger.warning(f'LoginAttemptRepository | checkForFailedAttempts | User {
-                            username} is permanently locked.')
-                        return LoginAttemptResponse(
-                            lockType=lockType,
-                            lockedUntil=None
-                        )
+            if not isLocked:
+                return False
 
-                    elif lockType == LockType.TEMPORARILY.value:
-                        logger.warning(f'LoginAttemptRepository | checkForFailedAttempts | User {
-                            username} is temporarily locked.')
-                        return LoginAttemptResponse(
-                            lockType=lockType,
-                            lockedUntil=str(
-                                loginAttempt.last_attempt +
-                                timedelta(minutes=15)
-                            )
-                        )
+            if lockType == LockType.PERMANENTLY.value:
+                logger.warning(f'LoginAttemptRepository | checkForFailedAttempts | User {
+                    username} is permanently locked.')
+                return LoginAttemptResponse(
+                    lockType=lockType,
+                    lockedUntil=None
+                )
 
-            return False
+            elif lockType == LockType.TEMPORARILY.value:
+                logger.warning(f'LoginAttemptRepository | checkForFailedAttempts | User {
+                    username} is temporarily locked.')
+                return LoginAttemptResponse(
+                    lockType=lockType,
+                    lockedUntil=str(
+                        loginAttempt.last_attempt +
+                        timedelta(minutes=15)
+                    )
+                )
 
         except Exception as e:
             logger.error(

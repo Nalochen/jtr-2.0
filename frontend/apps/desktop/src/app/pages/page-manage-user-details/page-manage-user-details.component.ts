@@ -6,6 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Observable, Subject, takeUntil } from 'rxjs';
 
@@ -17,6 +18,7 @@ import { UserData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from '../../business-rules/auth/auth.service';
+import { UserService } from '../../business-rules/user/user.service';
 
 import {
   ButtonColorEnum,
@@ -55,7 +57,9 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private store$: Store,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly userService: UserService,
+    private readonly router: Router
   ) {}
 
   @SingletonGetter()
@@ -71,36 +75,16 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     this.user$.pipe(takeUntil(this.destroy$)).subscribe((user) => {
       if (user) {
-        this.form.controls.profilePicture.setValue(user.picture);
-
-        if (user.name) {
-          this.form.controls.name.setValue(user.name);
-          this.form.controls.isNameVisible.setValue(user.isNameVisible);
-        } else {
-          this.form.controls.name.setValue('');
-        }
-
         this.form.controls.username.setValue(user.username);
-
-        if (user.pronouns) {
-          this.form.controls.pronouns.setValue(user.pronouns);
-        }
-
-        if (user.city) {
-          this.form.controls.city.setValue(user.city);
-          this.form.controls.isCityVisible.setValue(user.isCityVisible);
-        } else {
-          this.form.controls.city.setValue('');
-        }
-
-        if (user.birthdate) {
-          this.form.controls.birthdate.setValue(user.birthdate);
-          this.form.controls.isBirthdateVisible.setValue(
-            user.isBirthdateVisible
-          );
-        } else {
-          this.form.controls.birthdate.setValue('');
-        }
+        this.form.controls.email.setValue(user.email || '');
+        this.form.controls.name.setValue(user.name || '');
+        this.form.controls.isNameVisible.setValue(user.isNameVisible);
+        this.form.controls.birthdate.setValue(user.birthdate || '');
+        this.form.controls.isBirthdateVisible.setValue(user.isBirthdateVisible);
+        this.form.controls.profilePicture.setValue(user.picture);
+        this.form.controls.pronouns.setValue(user.pronouns || '');
+        this.form.controls.city.setValue(user.city || '');
+        this.form.controls.isCityVisible.setValue(user.isCityVisible);
       }
     });
   }
@@ -118,11 +102,20 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
     window.alert('Found new team');
   }
 
-  public onDeleteAccount(): void {
-    window.alert('Delete Account');
+  public async onDeleteAccount(): Promise<void> {
+    await this.userService.delete();
+
+    this.router.navigate(['/tournament-overview']);
   }
 
-  public onSubmit() {
-    window.alert('Submit');
+  public async onSubmit(): Promise<void> {
+    await this.userService.update({
+      birthdate: this.form.controls.birthdate.value,
+      city: this.form.controls.city.value,
+      email: this.form.controls.email.value,
+      name: this.form.controls.name.value,
+      pronouns: this.form.controls.pronouns.value,
+      username: this.form.controls.username.value,
+    });
   }
 }
