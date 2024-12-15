@@ -18,6 +18,7 @@ from ExternalApi.CustomerFrontend.Handler.GetTournamentOverviewHandler import Ge
 from ExternalApi.CustomerFrontend.Handler.GetUserDetailsHandler import GetUserDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.GetUserOverviewHandler import GetUserOverviewHandler
 from ExternalApi.CustomerFrontend.Handler.LoginUserHandler import LoginUserHandler
+from ExternalApi.CustomerFrontend.Handler.SendMailHandler import SendMailHandler
 from ExternalApi.CustomerFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
 from ExternalApi.CustomerFrontend.Handler.UpdateTournamentHandler import UpdateTournamentHandler
 from ExternalApi.CustomerFrontend.Handler.UpdateUserHandler import UpdateUserHandler
@@ -165,6 +166,11 @@ def login() -> Response:
 @limiter.limit("2 per minute")
 def register() -> Response:
     return CreateUserHandler.handle()
+
+
+@customer_frontend.route('/send', methods=['POST'], endpoint='send')
+def send() -> Response:
+    return SendMailHandler.handle()
 
 
 @customer_frontend.route('/delete-membership',

@@ -1,5 +1,6 @@
 from typing import List
 
+from worker.Model.SendMailTaskBody import SendMailTaskBody
 from worker.tasks import send_mail
 
 
@@ -16,8 +17,10 @@ class SendSingleMail:
         """Function to send the mail"""
 
         send_mail.apply_async(args=[
-            subject,
-            recipients,
-            body,
-            html
+            SendMailTaskBody(
+                subject,
+                recipients,
+                body,
+                html
+            ).__dict__
         ])

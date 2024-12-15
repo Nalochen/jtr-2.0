@@ -12,8 +12,5 @@ limiter = Limiter(
             os.getenv('CACHE_REDIS_PORT')}/0',
 )
 
-if os.getenv('FLASK_ENV') == 'production':
-    limiter['customer_frontend'].limit('1000 per day')
-
-elif os.getenv('FLASK_ENV') == 'development':
+if os.getenv('FLASK_ENV') == 'development':
     limiter = DummyLimiter()

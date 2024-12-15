@@ -44,7 +44,7 @@ services:
     container_name: worker
     environment:
       CELERY_APP_NAME: 'tasks'
-      CELERY_BROKER_URL: 'amqp://admin:mypass@rabbitmq:5672'
+      CELERY_BROKER_URL: 'amqp://guest:guest@rabbitmq:5672'
       CELERY_RESULT_BACKEND: 'rpc://'
       DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
       MAIL_SERVER: 'localhost'
@@ -70,7 +70,7 @@ services:
       CACHE_REDIS_HOST: 'redis'
       CACHE_REDIS_PORT: '6379'
       CELERY_BROKER_NAME: 'worker'
-      CELERY_BROKER_URL: 'amqp://admin:mypass@worker:5672'
+      CELERY_BROKER_URL: 'amqp://guest:guest@worker:5672'
       CELERY_RESULT_BACKEND: 'rpc://'
       DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
       SECRET_KEY: 'secret'
@@ -90,6 +90,9 @@ services:
     container_name: frontend
     ports:
       - "80:80"
+      - "443:443"
+    volumes:
+      - ./ngnix:/etc/nginx/ssl
 
 networks:
   backend_network:
