@@ -92,7 +92,7 @@ export class AuthService {
     );
   }
 
-  private setSession(token: string): void {
+  public setSession(token: string): void {
     localStorage.setItem('jwt', token);
     this.tokenSubject.next(token);
   }

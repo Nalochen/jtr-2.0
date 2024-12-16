@@ -12,7 +12,10 @@ class UserRepository:
 
     @staticmethod
     def get(userId: int) -> Users:
-        return Users.query.get(userId)
+        return Users.query.filter_by(
+            id=userId,
+            is_deleted=False
+        ).first()
 
     @staticmethod
     def getUserOverview() -> List[dict]:
@@ -119,4 +122,5 @@ class UserRepository:
         if email is not None:
             filters.append(Users.email == email)
 
-        return Users.query.filter(and_(*filters)).first()
+        return Users.query.filter(
+            and_(*filters, Users.is_deleted == False)).first()

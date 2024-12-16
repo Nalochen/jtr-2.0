@@ -5,7 +5,7 @@ from config.cache import cache
 def create_tournament_cache_key() -> str:
     """Create cache key for tournament"""
 
-    tournamentId = request.view_args['tournamentId']
+    tournamentId = request.view_args.get('tournamentId')
 
     return f"tournament-{tournamentId}"
 
@@ -29,7 +29,7 @@ def clearCompleteTournamentCache() -> None:
 def create_team_cache_key() -> str:
     """Create cache key for team"""
 
-    teamId = request.view_args['teamId']
+    teamId = request.view_args.get('teamId')
 
     return f"team-{teamId}"
 
@@ -50,10 +50,13 @@ def clearCompleteTeamCache() -> None:
     [cache.delete(key.decode('utf-8')) for key in teamKeys]
 
 
-def create_user_cache_key() -> str:
+def create_user_cache_key() -> str | None:
     """Create cache key for user"""
 
-    userId = request.view_args['userId']
+    userId = request.view_args.get('userId')
+
+    if userId is None:
+        return None
 
     return f"user-{userId}"
 

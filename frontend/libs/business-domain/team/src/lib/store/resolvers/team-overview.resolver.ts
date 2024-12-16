@@ -11,10 +11,10 @@ import { loadTeamOverviewData } from '@jtr/business-domain/team';
   providedIn: 'root',
 })
 export class TeamOverviewResolver implements Resolve<boolean> {
-  constructor(private store: Store) {}
+  constructor(private store$: Store) {}
 
   public resolve(): Observable<boolean> {
-    this.store.dispatch(loadTeamOverviewData());
+    this.store$.dispatch(loadTeamOverviewData());
 
     return new Observable<boolean>((observer) => {
       observer.next(true);

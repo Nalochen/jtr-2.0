@@ -11,12 +11,12 @@ import { loadUserDetailsData } from '@jtr/business-domain/user';
   providedIn: 'root',
 })
 export class UserDetailsResolver implements Resolve<boolean> {
-  constructor(private store: Store) {}
+  constructor(private store$: Store) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
     const userId = route.paramMap.get('userId');
 
-    this.store.dispatch(
+    this.store$.dispatch(
       loadUserDetailsData({ userId: userId ? +userId : undefined })
     );
 

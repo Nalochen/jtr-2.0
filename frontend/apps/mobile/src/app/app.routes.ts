@@ -103,6 +103,13 @@ export const appRoutes: Route[] = [
     component: PageLoginComponent,
   },
   {
+    path: 'user-details',
+    component: PageUserDetailsComponent,
+    resolve: {
+      userDetails: UserDetailsResolver,
+    },
+  },
+  {
     path: 'user-details/:userId?',
     component: PageUserDetailsComponent,
     resolve: {
@@ -110,7 +117,7 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'manage-user-details/:userId?',
+    path: 'manage-user-details',
     component: PageManageUserDetailsComponent,
     resolve: {
       userDetails: UserDetailsResolver,

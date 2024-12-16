@@ -7,13 +7,14 @@ export interface UserTeamData {
 export interface UserData {
   id: number;
   birthdate?: string;
-  isBirthdateVisible: boolean;
   city?: string;
-  isCityVisible: boolean;
   createdAt: string;
+  email?: string;
+  isBirthdateVisible: boolean;
+  isCityVisible: boolean;
   isDeleted: boolean;
-  name?: string;
   isNameVisible: boolean;
+  name?: string;
   picture: string;
   pronouns: string;
   teams: UserTeamData[];

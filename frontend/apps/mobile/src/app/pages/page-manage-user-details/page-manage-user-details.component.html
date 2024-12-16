@@ -1,7 +1,7 @@
 <page-manage-user-details-header [form]="form" [isLoggedIn$]="isLoggedIn$" />
 
 <div class="content">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="form">
     <div class="email">
       <label for="email">{{ 'user-details.email' | translate }}</label>
       <input
@@ -141,9 +141,11 @@
     />
   </form>
 
-  @let user = user$ | async; @if (user?.teams) {
+  @if ((user$ | async)?.teams; as teams) {
+
   <h4>Teams:</h4>
-  @for (team of user?.teams; track team.id) {
+
+  @for (team of teams; track team.id) {
   <app-button
     [color]="ButtonColorEnum.Grey"
     [type]="ButtonTypeEnum.Raised"
@@ -163,6 +165,7 @@
       <p>{{ team.name }}</p>
     </div>
   </app-button>
+
   } @empty {
   <p>{{ 'user-details.no-teams' | translate }}</p>
   } } @else {
@@ -189,6 +192,7 @@
       [type]="ButtonTypeEnum.Raised"
       [fullWidth]="true"
       [buttonType]="ButtonFunctionTypeEnum.SUBMIT"
+      (click)="onSubmit()"
       >{{ 'user-details.save' | translate }}</app-button
     >
   </div>

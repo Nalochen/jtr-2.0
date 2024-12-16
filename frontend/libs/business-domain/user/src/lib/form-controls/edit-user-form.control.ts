@@ -1,27 +1,41 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export type EditUserForm = {
-  profilePicture: FormControl<string | null>;
+  profilePicture: FormControl<string>;
   name: FormControl<string | null>;
-  isNameVisible: FormControl<boolean | null>;
-  username: FormControl<string | null>;
+  isNameVisible: FormControl<boolean>;
+  username: FormControl<string>;
   pronouns: FormControl<string | null>;
   email: FormControl<string | null>;
   city: FormControl<string | null>;
-  isCityVisible: FormControl<boolean | null>;
+  isCityVisible: FormControl<boolean>;
   birthdate: FormControl<string | null>;
-  isBirthdateVisible: FormControl<boolean | null>;
+  isBirthdateVisible: FormControl<boolean>;
 };
 
 export const editUserFormControl = new FormGroup<EditUserForm>({
-  profilePicture: new FormControl(''),
+  profilePicture: new FormControl('', {
+    nonNullable: true,
+  }),
   name: new FormControl(''),
-  isNameVisible: new FormControl(null),
-  username: new FormControl(''),
+  isNameVisible: new FormControl(true, {
+    nonNullable: true,
+    validators: [Validators.required],
+  }),
+  username: new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required],
+  }),
   pronouns: new FormControl(''),
   email: new FormControl(''),
   city: new FormControl(''),
-  isCityVisible: new FormControl(null),
+  isCityVisible: new FormControl(true, {
+    nonNullable: true,
+    validators: [Validators.required],
+  }),
   birthdate: new FormControl(''),
-  isBirthdateVisible: new FormControl(null),
+  isBirthdateVisible: new FormControl(true, {
+    nonNullable: true,
+    validators: [Validators.required],
+  }),
 });
