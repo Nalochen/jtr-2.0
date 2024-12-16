@@ -2,17 +2,14 @@ from DataDomain.Database.Repository.UserRepository import UserRepository
 from DataDomain.Model.Response import Response
 
 
-class GetTeamOverviewHandler:
-    """Handler for getting User overview"""
+class GetUserOverviewHandler:
+    """Handler for getting user overview"""
 
     @staticmethod
     def handle() -> Response:
-        """Get User overview"""
+        """Get user overview"""
 
         user = UserRepository.getUserOverview()
-
-        if user is None:
-            return Response(status=404, response='User not found')
 
         return Response(
             response=user,

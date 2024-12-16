@@ -1,7 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, catchError, firstValueFrom, Observable, of, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  firstValueFrom,
+  Observable,
+  of,
+  tap,
+} from 'rxjs';
 import { map } from 'rxjs/operators';
 
 const LOGIN_ENDPOINT = '/api/customer-frontend/login';

@@ -4,9 +4,7 @@ import { teamOverviewDataStoreSlice } from '../states/team-overview-data-store.s
 import { TeamOverviewState } from '../states/team-overview-data-store.state';
 
 export const teamOverviewStateSelector =
-  createFeatureSelector<TeamOverviewState>(
-    teamOverviewDataStoreSlice
-  );
+  createFeatureSelector<TeamOverviewState>(teamOverviewDataStoreSlice);
 
 export const teamOverviewSelector = createSelector(
   teamOverviewStateSelector,

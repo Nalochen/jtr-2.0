@@ -11,7 +11,7 @@ import { tournamentDetailsSelector } from '@jtr/business-domain/tournament';
 import { TournamentData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
-import { TournamentService } from '../../../../../desktop/src/app/business-rules/tournament/tournament.service';
+import { TournamentService } from '../../business-rules/tournament/tournament.service';
 
 import { createTournamentFormControl } from '../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import { PageCreateTournamentInformationAccommodationComponent } from './page-create-tournament-information-accommodation/page-create-tournament-information-accommodation.component';

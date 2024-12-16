@@ -1,11 +1,15 @@
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 
-import {TournamentData} from '@jtr/data-domain/store';
+import { TournamentData } from '@jtr/data-domain/store';
 
-import {ChipComponent, DataContainerExpandableComponent, DataContainerRowComponent} from '../../../ui-shared';
+import {
+  ChipComponent,
+  DataContainerExpandableComponent,
+  DataContainerRowComponent,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -17,12 +21,12 @@ import { TranslatePipe } from '@ngx-translate/core';
     DataContainerRowComponent,
     MatDividerModule,
     ChipComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './tournament-information-location.component.html',
   styleUrl: './tournament-information-location.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentInformationLocationComponent extends DataContainerExpandableComponent {
-    @Input() public tournament!: TournamentData;
+  @Input() public tournament!: TournamentData;
 }

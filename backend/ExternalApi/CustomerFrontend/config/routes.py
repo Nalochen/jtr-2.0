@@ -16,6 +16,7 @@ from ExternalApi.CustomerFrontend.Handler.GetTeamOverviewHandler import GetTeamO
 from ExternalApi.CustomerFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentOverviewHandler import GetTournamentOverviewHandler
 from ExternalApi.CustomerFrontend.Handler.GetUserDetailsHandler import GetUserDetailsHandler
+from ExternalApi.CustomerFrontend.Handler.GetUserOverviewHandler import GetUserOverviewHandler
 from ExternalApi.CustomerFrontend.Handler.LoginUserHandler import LoginUserHandler
 from ExternalApi.CustomerFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
 from ExternalApi.CustomerFrontend.Handler.UpdateTournamentHandler import UpdateTournamentHandler
@@ -122,7 +123,7 @@ def updateUser() -> Response:
 @CreateParticipationInputFilter.validate()
 @limiter.limit("2 per minute")
 def createParticipation() -> Response:
-    return CreateParticipationHandler().handle()
+    return CreateParticipationHandler.handle()
 
 
 @customer_frontend.route('/create-team',
@@ -181,7 +182,7 @@ def deleteMembership() -> Response:
 @jwt_required()
 @DeleteParticipationInputFilter.validate()
 def deleteParticipation() -> Response:
-    return DeleteParticipationHandler().handle()
+    return DeleteParticipationHandler.handle()
 
 
 @customer_frontend.route('/delete-team',

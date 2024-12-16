@@ -5,18 +5,15 @@ from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import TournamentFoo
 from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import TournamentFoodMorningTypesEnum
 from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
 from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import TournamentRegistrationProcedureTypesEnum
-from DataDomain.Database.Enum.TournamentSystemTypesEnum import TournamentSystemTypesEnum
 from Infrastructure.InputFilter.Enum.RegexEnum import ISO_DATE_REGEX
 from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
 from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
 from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
-from Infrastructure.InputFilter.Filter.ToStringFilter import ToStrFilter
 from Infrastructure.InputFilter.InputFilter import InputFilter
 from Infrastructure.InputFilter.Validator.InEnumValidator import InEnumValidator
 from Infrastructure.InputFilter.Validator.IsArrayValidator import IsArrayValidator
 from Infrastructure.InputFilter.Validator.IsBoolValidator import IsBoolValidator
-from Infrastructure.InputFilter.Validator.IsInstanceValidator import IsInstanceValidator
 from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
 from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
 from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
@@ -312,16 +309,6 @@ class CreateTournamentInputFilter(InputFilter):
             required=True,
             filters=[StringTrimFilter()],
             validators=[IsStringValidator()]
-        )
-
-        self.add(
-            'tournamentSystemType',
-            required=True,
-            validators=[
-                InEnumValidator(
-                    TournamentSystemTypesEnum
-                )
-            ]
         )
 
         self.add(

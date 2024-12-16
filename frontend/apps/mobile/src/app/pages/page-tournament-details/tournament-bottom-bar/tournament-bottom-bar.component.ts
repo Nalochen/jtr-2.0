@@ -1,7 +1,12 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum,ScrollToTopComponent } from '../../../ui-shared';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+  ScrollToTopComponent,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -12,7 +17,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     NgOptimizedImage,
     ButtonComponent,
     ScrollToTopComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './tournament-bottom-bar.component.html',
   styleUrl: './tournament-bottom-bar.component.less',

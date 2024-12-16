@@ -16,13 +16,16 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { Subject, takeUntil } from 'rxjs';
+import { firstValueFrom, Subject, takeUntil } from 'rxjs';
 
 import { TournamentDataService } from '@jtr/business-domain/tournament';
 import {
+  TeamOverviewData,
   TournamentTeamData,
   TournamentTeamsData,
 } from '@jtr/data-domain/store';
+
+import { ManageParticipationService } from '../../business-rules/tournament/manage-participation.service';
 
 import {
   ButtonColorEnum,
@@ -42,20 +45,20 @@ import { TooltipModule } from 'primeng/tooltip';
 @Component({
   standalone: true,
   imports: [
-    CommonModule,
-    TranslatePipe,
     ButtonComponent,
-    DividerModule,
-    TooltipModule,
-    CdkDropListGroup,
-    CdkDropList,
     CdkDrag,
-    DialogModule,
-    DropdownModule,
-    FormsModule,
+    CdkDropList,
+    CdkDropListGroup,
     ChipComponent,
-    SubmitAreaComponent,
+    CommonModule,
+    DialogModule,
+    DividerModule,
+    DropdownModule,
     DropListComponent,
+    FormsModule,
+    SubmitAreaComponent,
+    TooltipModule,
+    TranslatePipe,
   ],
   providers: [TournamentDataService],
   templateUrl: './page-manage-participating-teams.component.html',
@@ -63,19 +66,11 @@ import { TooltipModule } from 'primeng/tooltip';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageManageParticipatingTeamsComponent implements OnDestroy {
-  private readonly tournamentDataService = inject(TournamentDataService);
-  public readonly tournamentDetailsTeams$ =
-    this.tournamentDataService.tournamentDetailsTeams$;
-
-  public readonly ButtonColorEnum = ButtonColorEnum;
-  public readonly ButtonTypeEnum = ButtonTypeEnum;
-  public readonly ButtonFunctionTypeEnum = ButtonFunctionType;
-  public readonly destroy$ = new Subject<void>();
-  public participatingTeams: TournamentTeamData[] = [];
-  public waitingTeams: TournamentTeamData[] = [];
-
-  constructor(private readonly changeDetectorRef: ChangeDetectorRef) {
-    this.tournamentDetailsTeams$
+  constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly manageParticipationService: ManageParticipationService
+  ) {
+    this.teams$
       .pipe(takeUntil(this.destroy$))
       .subscribe((tournamentTeams: TournamentTeamsData | undefined) => {
         if (tournamentTeams) {
@@ -88,13 +83,25 @@ export class PageManageParticipatingTeamsComponent implements OnDestroy {
         }
       });
   }
+  private readonly tournamentDataService = inject(TournamentDataService);
+
+  public readonly teams$ = this.tournamentDataService.tournamentDetailsTeams$;
+  public readonly tournament$ = this.tournamentDataService.tournamentDetails$;
+  public readonly destroy$ = new Subject<void>();
+
+  public readonly ButtonColorEnum = ButtonColorEnum;
+  public readonly ButtonTypeEnum = ButtonTypeEnum;
+  public readonly ButtonFunctionTypeEnum = ButtonFunctionType;
+
+  public participatingTeams: TournamentTeamData[] = [];
+  public waitingTeams: TournamentTeamData[] = [];
 
   public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
 
-  public drop(event: CdkDragDrop<TournamentTeamData[]>) {
+  public drop(event: CdkDragDrop<TeamOverviewData[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -111,16 +118,19 @@ export class PageManageParticipatingTeamsComponent implements OnDestroy {
     }
   }
 
-  public deleteTeam(index: number, isParticipating: boolean): void {
-    if (isParticipating) {
-      this.participatingTeams.splice(index, 1);
-    } else {
-      this.waitingTeams.splice(index, 1);
-    }
-  }
+  public async deleteTeam(
+    index: number,
+    isParticipating: boolean
+  ): Promise<void> {
+    await firstValueFrom(
+      this.manageParticipationService.delete({
+        tournamentId: 1,
+        teamId: isParticipating
+          ? this.participatingTeams[index].id
+          : this.waitingTeams[index].id,
+      })
+    );
 
-  public save(): void {
-    // API aufrufen
-    // Weiterleiten
+    await this.tournamentDataService.reloadTournamentDetails();
   }
 }

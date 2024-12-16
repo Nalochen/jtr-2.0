@@ -1,18 +1,19 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   inject,
-  OnDestroy,
-  output
+  Input,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { Subject } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 import { TeamDataService } from '@jtr/business-domain/team';
-import { TournamentTeamData } from '@jtr/data-domain/store';
+import { TournamentDataService } from '@jtr/business-domain/tournament';
+import { TeamOverviewData, TournamentTeamData } from '@jtr/data-domain/store';
+
+import { ManageParticipationService } from '../../../business-rules/tournament/manage-participation.service';
 
 import {
   ButtonColorEnum,
@@ -24,7 +25,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 
-
 @Component({
   selector: 'submit-area',
   standalone: true,
@@ -34,35 +34,30 @@ import { DropdownModule } from 'primeng/dropdown';
     ButtonComponent,
     DialogModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [
-    TeamDataService,
-  ],
+  providers: [TeamDataService],
   templateUrl: './submit-area.component.html',
   styleUrl: './submit-area.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SubmitAreaComponent implements OnDestroy {
+export class SubmitAreaComponent {
+  constructor(
+    private readonly tournamentDataService: TournamentDataService,
+    private readonly manageParticipationService: ManageParticipationService
+  ) {}
   private readonly teamDataService = inject(TeamDataService);
-  public readonly destroy$ = new Subject<void>()
 
-  public readonly allTeams$ = this.teamDataService.teams$;
+  public teams$: Observable<TeamOverviewData[]> = this.teamDataService.teams$;
 
-  public readonly saveForm = output<void>();
-  public readonly ButtonColorEnum = ButtonColorEnum;
-  public readonly ButtonTypeEnum = ButtonTypeEnum;
-  public readonly ButtonFunctionTypeEnum = ButtonFunctionType;
+  @Input() public tournamentId!: number;
 
   public addTeamVisible = false;
   public selectedTeam: TournamentTeamData | null = null;
 
-  constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
-
-  public ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
+  public readonly ButtonColorEnum = ButtonColorEnum;
+  public readonly ButtonTypeEnum = ButtonTypeEnum;
+  public readonly ButtonFunctionTypeEnum = ButtonFunctionType;
 
   public openAddTeamOverlay(): void {
     this.addTeamVisible = true;
@@ -70,18 +65,20 @@ export class SubmitAreaComponent implements OnDestroy {
 
   public closeAddTeamOverlay(): void {
     this.addTeamVisible = false;
-    this.changeDetectorRef.markForCheck();
   }
 
-  public addTeam(): void {
+  public async addTeam(): Promise<void> {
     if (!this.selectedTeam) {
       return;
     }
-    // API aufrufen
-    // Daten neu laden
-  }
 
-  public save(): void {
-    this.saveForm.emit();
+    await firstValueFrom(
+      this.manageParticipationService.create({
+        tournamentId: this.tournamentId,
+        teamId: this.selectedTeam.id,
+      })
+    );
+
+    await this.tournamentDataService.reloadTournamentDetails();
   }
 }

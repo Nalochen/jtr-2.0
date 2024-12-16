@@ -8,8 +8,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TournamentData, TournamentDataClient } from '@jtr/data-domain/store';
 
 import {
-  loadTournamentDetailsData, loadTournamentDetailsDataFailedAction,
-  loadTournamentDetailsDataSuccessAction
+  loadTournamentDetailsData,
+  loadTournamentDetailsDataFailedAction,
+  loadTournamentDetailsDataSuccessAction,
 } from '../actions/tournament.action';
 
 @Injectable({

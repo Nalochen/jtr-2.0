@@ -40,7 +40,6 @@ Authorization: Bearer {{jwtToken}}
   "foodEvening": "no",
   "foodGastro": "no",
   "tournamentSystemText": "test text",
-  "tournamentSystemType": "tugeny",
   "tournamentSystemUrl": "test ",
   "pompfCheckText": "test ",
   "pompfCheckUrl": "test ",

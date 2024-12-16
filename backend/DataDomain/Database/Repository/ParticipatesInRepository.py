@@ -1,6 +1,7 @@
 from sqlalchemy import func
 
 from DataDomain.Database.Model.ParticipatesIn import participates_in
+from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.db import db
 from Infrastructure.Logger.Logger import logger
 
@@ -25,11 +26,18 @@ class ParticipatesInRepository:
         try:
             maxOrder = self.nextFreeRegistrationOrder(tournamentId)
 
+            tournament = Tournaments.query.get(tournamentId)
+
+            isOnWaitingList = False
+            if maxOrder > tournament.possible_space:
+                isOnWaitingList = True
+
             db.session.execute(
                 participates_in.insert().values(
                     tournament_id=tournamentId,
                     team_id=teamId,
-                    registration_order=maxOrder
+                    registration_order=maxOrder,
+                    is_on_waiting_list=isOnWaitingList
                 )
             )
             db.session.commit()
@@ -66,9 +74,11 @@ class ParticipatesInRepository:
             ).filter(
                 participates_in.c.tournament_id == tournamentId,
                 participates_in.c.team_id == teamId
-            ).update().values(
-                is_deleted=True,
-                registration_order=None
+            ).update(
+                values={
+                    'is_deleted': True,
+                    'registration_order': 0
+                }
             )
             db.session.commit()
 
@@ -91,14 +101,16 @@ class ParticipatesInRepository:
             ).filter(
                 participates_in.c.tournament_id == tournamentId,
                 participates_in.c.team_id == teamId
-            ).update().values(
-                is_deleted=False,
-                registration_order=maxOrder
+            ).update(
+                values={
+                    'is_deleted': False,
+                    'registration_order': maxOrder
+                }
             )
             db.session.commit()
 
-            logger.info(f'ParticipatesInRepository | recreate | Recreated participates_in entry for tournament {
-                        tournamentId} and team {teamId}')
+            logger.error(f'ParticipatesInRepository | recreate | Recreated participates_in entry for tournament {
+                tournamentId} and team {teamId}')
 
         except Exception as e:
             db.session.rollback()
@@ -141,7 +153,7 @@ class ParticipatesInRepository:
         ).scalar()
 
         if maxOrder is None:
-            return 0
+            return 1
 
         return maxOrder + 1
 

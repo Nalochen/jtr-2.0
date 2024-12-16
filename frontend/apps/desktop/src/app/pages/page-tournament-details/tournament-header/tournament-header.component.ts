@@ -1,7 +1,7 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {Component, Input} from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
-import {TournamentData} from '@jtr/data-domain/store';
+import { TournamentData } from '@jtr/data-domain/store';
 
 @Component({
   selector: 'tournament-header',

@@ -1,8 +1,8 @@
-
-
 <app-data-container [formGroup]="form">
   <app-data-container-row>
-    <h5 ngProjectAs="container-headline">{{ 'page-manage-team.members' | translate }}</h5>
+    <h5 ngProjectAs="container-headline">
+      {{ 'page-manage-team.members' | translate }}
+    </h5>
   </app-data-container-row>
 
   @for (member of form.controls.members.value; track member.id) {
