@@ -15,6 +15,7 @@
     "test": "nx run-many --all --target=test --parallel=true --maxParallel=4 --watch=false",
     "test:desktop": "nx run desktop:test",
     "test:mobile": "nx run mobile:test",
+    "test:all": "nx run-many --target=test --all --parallel=true --maxParallel=4 --watch=false",
     "test-changed": "nx run-many --target=test --all --base=origin/main --parallel=true --maxParallel=4 --watch=false",
     "e2e": "ng e2e",
     "lint": "nx run-many --all --target=lint --parallel=true --maxParallel=4",

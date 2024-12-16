@@ -3,19 +3,23 @@
 ## Serve
 
 ```sh
-nx serve (desktop|mobile)
+docker exec jtr (fe-serve-mobile|fe-serve-desktop)
 ```
 
 ## Tests
 
 ```sh
-nx run-many --target=test --all
+docker exec jtr fe-test
 ```
 
 ## Code Style
 
 ```sh
-nx run-many --target=lint --all --fix
+docker exec jtr fe-format
+```
+
+```sh
+docker exec jtr fe-lint
 ```
 
 ## Run e2e tests
