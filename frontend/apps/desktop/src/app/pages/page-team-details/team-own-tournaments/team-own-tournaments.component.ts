@@ -1,10 +1,10 @@
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {Component, Input} from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 import { TeamData } from '@jtr/data-domain/store';
 
 import { ButtonComponent } from '../../../ui-shared';
-import {TranslatePipe} from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'team-own-tournaments',

@@ -27,7 +27,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     InfoButtonComponent,
     ButtonComponent,
     VisibilityButtonComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './page-register.component.html',
   styleUrl: './page-register.component.less',

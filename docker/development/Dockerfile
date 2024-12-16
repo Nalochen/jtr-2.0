@@ -15,15 +15,18 @@ RUN apt-get update && \
         python3.12-venv \
         rabbitmq-server \
         redis-server \
-        sudo  \
+        sudo \
+        npm \
         git && \
     rm -rf /var/lib/apt/lists/*
 
 RUN rabbitmq-plugins enable rabbitmq_management
 
 COPY docker/development/provisioning /opt/scripts/provisioning
+COPY docker/development/scripts /usr/local/bin
 
 RUN find /opt/scripts -type f -name "*.sh" -exec chmod +x {} \;
+RUN find /usr/local/bin -type f -name "*" -exec chmod +x {} \;
 
 EXPOSE 3307 5001 5672 15672
 

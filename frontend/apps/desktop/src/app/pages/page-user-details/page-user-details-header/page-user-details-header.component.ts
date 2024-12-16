@@ -1,21 +1,20 @@
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 import { UserData } from '@jtr/data-domain/store';
 
-import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum, InfoButtonComponent } from '../../../ui-shared';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+  InfoButtonComponent,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-
 
 @Component({
   standalone: true,
   selector: 'page-user-details-header',
-  imports: [
-    CommonModule,
-    ButtonComponent,
-    InfoButtonComponent,
-    TranslatePipe
-  ],
+  imports: [CommonModule, ButtonComponent, InfoButtonComponent, TranslatePipe],
   templateUrl: './page-user-details-header.component.html',
   styleUrl: './page-user-details-header.component.less',
 })

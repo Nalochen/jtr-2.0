@@ -8,7 +8,7 @@ export enum TeamActionTypes {
   LoadTeamOverviewFailure = '[Team] Load Team Overview Failure',
   LoadTeamDetails = '[Team] Load Team Details',
   LoadTeamDetailsSuccess = '[Team] Load Team Details Success',
-  LoadTeamDetailsFailure = '[Team] Load Team Details Failure'
+  LoadTeamDetailsFailure = '[Team] Load Team Details Failure',
 }
 
 export const loadTeamOverviewData = createAction(
@@ -25,7 +25,6 @@ export const loadTeamOverviewDataFailedAction = createAction(
   props<{ error: string }>()
 );
 
-
 export const loadTeamDetailsData = createAction(
   TeamActionTypes.LoadTeamDetails,
   props<{ teamId: number }>()
@@ -35,7 +34,6 @@ export const loadTeamDetailsDataSuccessAction = createAction(
   TeamActionTypes.LoadTeamDetailsSuccess,
   props<{ teamDetails: TeamData }>()
 );
-
 
 export const loadTeamDetailsDataFailedAction = createAction(
   TeamActionTypes.LoadTeamDetailsFailure,

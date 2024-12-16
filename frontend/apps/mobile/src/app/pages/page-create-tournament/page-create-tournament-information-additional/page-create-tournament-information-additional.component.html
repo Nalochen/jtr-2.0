@@ -1,8 +1,11 @@
 <app-data-container-row>
-  <p ngProjectAs="container-headline">{{ 'create-tournament.additional-information' | translate }}</p>
+  <p ngProjectAs="container-headline">
+    {{ 'create-tournament.additional-information' | translate }}
+  </p>
   <textarea
     ngProjectAs="container-content"
     pInputTextarea
     [formControl]="form"
-    [autoResize]="true"></textarea>
+    [autoResize]="true"
+  ></textarea>
 </app-data-container-row>

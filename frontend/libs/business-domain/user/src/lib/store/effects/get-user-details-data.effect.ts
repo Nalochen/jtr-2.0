@@ -5,7 +5,7 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import {UserData, UserDataClient} from '@jtr/data-domain/store';
+import { UserData, UserDataClient } from '@jtr/data-domain/store';
 
 import { loadUserDetailsData } from '../actions/user-details-data-load.action';
 import { loadUserDetailsDataFailedAction } from '../actions/user-details-data-loaded-failed.action';
@@ -29,9 +29,7 @@ export class GetUserDetailsDataEffect {
               userDetails: payload,
             })
           ),
-          catchError((error) =>
-            of(loadUserDetailsDataFailedAction({ error }))
-          )
+          catchError((error) => of(loadUserDetailsDataFailedAction({ error })))
         )
       )
     )

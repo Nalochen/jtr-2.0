@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 
@@ -17,15 +21,13 @@ import { DialogModule } from 'primeng/dialog';
   styleUrls: ['./info-button.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-
 export class InfoButtonComponent {
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonFunctionType = ButtonFunctionType;
   public visible = false;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
-  }
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   public showDialog() {
     this.visible = true;
@@ -37,4 +39,3 @@ export class InfoButtonComponent {
     this.changeDetectorRef.markForCheck();
   }
 }
-

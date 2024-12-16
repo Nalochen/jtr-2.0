@@ -108,8 +108,6 @@ components:
           type: string
         tournamentSystemUrl:
           type: string
-        tournamentSystemType:
-          type: string
         pompfCheckText:
           type: string
         pompfCheckUrl:

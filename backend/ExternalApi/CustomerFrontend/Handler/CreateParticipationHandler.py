@@ -9,12 +9,8 @@ from Infrastructure.Logger.Logger import logger
 class CreateParticipationHandler:
     """Handler for applying team to a tournament"""
 
-    def __init__(self):
-        """Initializes the CreateParticipationHandler"""
-
-        self.participatesInRepository = ParticipatesInRepository()
-
-    def handle(self) -> Response:
+    @staticmethod
+    def handle() -> Response:
         """Create participation of team"""
 
         data = g.validatedData
@@ -30,7 +26,7 @@ class CreateParticipationHandler:
 
         try:
             if not ParticipatesInRepository.exists(tournamentId, teamId):
-                self.participatesInRepository.create(tournamentId, teamId)
+                ParticipatesInRepository().create(tournamentId, teamId)
 
                 return Response(status=200)
 
@@ -38,7 +34,7 @@ class CreateParticipationHandler:
                     tournamentId, teamId):
                 return Response(status=400)
 
-            self.participatesInRepository.recreate(tournamentId, teamId)
+            ParticipatesInRepository().recreate(tournamentId, teamId)
 
         except Exception:
             return Response(status=500)

@@ -1,9 +1,17 @@
-<img alt="Logo of {{ tournament.name }}" width="150" height="150" ngSrc="{{ tournament.organizer.logo }}">
+<img
+  alt="Logo of {{ tournament.name }}"
+  width="150"
+  height="150"
+  ngSrc="{{ tournament.organizer.logo }}"
+/>
 
 <div class="tournament-information">
   <div class="meta-data">
     <div class="event-information">
-      <h3 class="date">{{ tournament.date.start | date:"dd.MM.YYYY" }} - {{ tournament.date.end | date:"dd.MM.YYYY" }}</h3>
+      <h3 class="date">
+        {{ tournament.date.start | date : 'dd.MM.YYYY' }} -
+        {{ tournament.date.end | date : 'dd.MM.YYYY' }}
+      </h3>
 
       <h3 class="city">{{ tournament.location }}</h3>
     </div>

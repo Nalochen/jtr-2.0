@@ -6,14 +6,6 @@
   >
     <span class="material-icons-outlined">add</span>
   </app-button>
-  <app-button
-    class="submit"
-    [fullWidth]="true"
-    [color]="ButtonColorEnum.Red"
-    [type]="ButtonTypeEnum.Raised"
-    (click)="save()"
-    >{{ 'manage-tournament-teams.save' | translate }}</app-button
-  >
 </div>
 
 <p-dialog
@@ -23,9 +15,9 @@
   [style]="{ width: '25rem' }"
 >
   <div>
-    @let allTeams = allTeams$ | async; @if (!!allTeams) {
+    @if (teams$ | async; as teams) {
     <p-dropdown
-      [options]="allTeams"
+      [options]="teams"
       [(ngModel)]="selectedTeam"
       optionLabel="name"
       [filter]="true"
@@ -36,14 +28,14 @@
   </div>
   <ng-template pTemplate="footer">
     <app-button
-      (onClick)="closeAddTeamOverlay()"
+      (click)="closeAddTeamOverlay()"
       [color]="ButtonColorEnum.White"
       [type]="ButtonTypeEnum.Raised"
     >
       {{ 'manage-tournament-teams.cancel' | translate }}
     </app-button>
     <app-button
-      (onClick)="addTeam()"
+      (click)="addTeam(); closeAddTeamOverlay()"
       [color]="ButtonColorEnum.Red"
       [type]="ButtonTypeEnum.Raised"
     >

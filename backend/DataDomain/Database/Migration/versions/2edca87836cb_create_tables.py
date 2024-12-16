@@ -229,8 +229,6 @@ def upgrade():
                         length=255), nullable=False),
                     sa.Column('tournament_system_text',
                               sa.Text(), nullable=False),
-                    sa.Column('tournament_system_type', sa.Enum(
-                        'TUGENY', name='tournamentsystemtypesenum'), nullable=False),
                     sa.Column('tournament_system_url', sa.String(
                         length=255), nullable=False),
                     sa.Column('pompf_check_text', sa.Text(), nullable=False),

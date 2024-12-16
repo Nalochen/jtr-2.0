@@ -1,12 +1,21 @@
-import {CommonModule} from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
 
-import {TournamentData} from '@jtr/data-domain/store';
+import { TournamentData } from '@jtr/data-domain/store';
 
-import {DataContainerExpandableComponent, DataContainerRowComponent, InfoButtonComponent} from '../../../ui-shared';
+import {
+  DataContainerExpandableComponent,
+  DataContainerRowComponent,
+  InfoButtonComponent,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { InputSwitchModule } from 'primeng/inputswitch';
 
@@ -21,21 +30,24 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     MatDividerModule,
     TranslatePipe,
     InputSwitchModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './tournament-information-rules.component.html',
   styleUrl: './tournament-information-rules.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TournamentInformationRulesComponent extends DataContainerExpandableComponent implements OnInit {
-    @Input() public tournament!: TournamentData;
+export class TournamentInformationRulesComponent
+  extends DataContainerExpandableComponent
+  implements OnInit
+{
+  @Input() public tournament!: TournamentData;
 
   protected form = new FormGroup({
     nubbedShoesAllowed: new FormControl({ value: false, disabled: true }),
     cleadedShoesAllowed: new FormControl({ value: false, disabled: true }),
     studdedShoesAllowed: new FormControl({ value: false, disabled: true }),
     barefootAllowed: new FormControl({ value: false, disabled: true }),
-  })
+  });
 
   public ngOnInit(): void {
     this.form.setValue({
@@ -43,6 +55,6 @@ export class TournamentInformationRulesComponent extends DataContainerExpandable
       cleadedShoesAllowed: this.tournament.shoes.cleatsAllowed,
       studdedShoesAllowed: this.tournament.shoes.studdedAllowed,
       barefootAllowed: this.tournament.shoes.barefootAllowed,
-    })
+    });
   }
 }

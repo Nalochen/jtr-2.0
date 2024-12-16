@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  OnDestroy,
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { TranslatePipe } from '@ngx-translate/core';
@@ -14,10 +19,12 @@ import { Editor, NgxEditorModule } from 'ngx-editor';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditorComponent implements OnDestroy {
-  public readonly form = input.required<FormGroup<{
-    subject: FormControl<string | null>,
-    text: FormControl<string | null>,
-  }>>({})
+  public readonly form = input.required<
+    FormGroup<{
+      subject: FormControl<string | null>;
+      text: FormControl<string | null>;
+    }>
+  >({});
   protected readonly editor: Editor = new Editor();
 
   public ngOnDestroy(): void {

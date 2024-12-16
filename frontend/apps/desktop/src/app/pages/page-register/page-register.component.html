@@ -25,7 +25,10 @@
 
   <div class="username">
     <div class="headline">
-      <label for="username">{{ 'register.username' | translate }} {{ 'register.unique' | translate }}</label>
+      <label for="username"
+        >{{ 'register.username' | translate }}
+        {{ 'register.unique' | translate }}</label
+      >
       <app-info-button>
         <p class="i-headline">{{ 'register.username' | translate }}</p>
         <p>{{ 'register.username-info' | translate }}</p>
@@ -72,7 +75,9 @@
   </div>
 
   <div class="password-repeat">
-    <label for="confirmPassword">{{ 'register.password-confirmation' | translate }}</label>
+    <label for="confirmPassword">{{
+      'register.password-confirmation' | translate
+    }}</label>
     <input
       type="password"
       class="form-control"
@@ -87,7 +92,9 @@
     @if ((form.controls.confirmPassword.dirty ||
     form.controls.confirmPassword.touched) &&
     form.hasError('passwordsMismatch')) {
-    <p class="error-message">{{ 'register.password-confirmation-mismatch' | translate }}</p>
+    <p class="error-message">
+      {{ 'register.password-confirmation-mismatch' | translate }}
+    </p>
     }
   </div>
 
@@ -170,7 +177,13 @@
     [control]="form.controls.isBirthdateVisible"
   />
 
-  <app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised" [buttonType]="ButtonFunctionType.SUBMIT" [disabled]="!form.valid" class="register-button">
+  <app-button
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Raised"
+    [buttonType]="ButtonFunctionType.SUBMIT"
+    [disabled]="!form.valid"
+    class="register-button"
+  >
     <p>{{ 'register.register-button' | translate }}</p>
   </app-button>
 </form>

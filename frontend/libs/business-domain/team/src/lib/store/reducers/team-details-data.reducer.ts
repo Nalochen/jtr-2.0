@@ -3,7 +3,7 @@ import { createReducer, on } from '@ngrx/store';
 import {
   loadTeamDetailsData,
   loadTeamDetailsDataFailedAction,
-  loadTeamDetailsDataSuccessAction
+  loadTeamDetailsDataSuccessAction,
 } from '../actions/team.action';
 import { teamDetailsDataInitialState } from '../states/team-details-data-store.initial-state';
 import { TeamDetailsState } from '../states/team-details-data-store.state';

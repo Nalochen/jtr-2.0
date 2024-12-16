@@ -6,4 +6,6 @@
   (deleteTeam)="deleteTeam($event.index, $event.isParticipating)"
 />
 
-<submit-area (saveForm)="save()" />
+@if (tournament$ | async; as tournament) {
+<submit-area [tournamentId]="tournament.id" />
+}

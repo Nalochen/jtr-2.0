@@ -8,7 +8,7 @@ enum TournamentActions {
   LoadTournamentDetailsSuccess = '[Tournament Details Data Store] Load Tournament Details Success',
   LoadTournamentOverviewData = 'LoadTournamentOverviewData',
   LoadTournamentOverviewDataSuccess = 'LoadTournamentOverviewDataSuccess',
-  LoadTournamentOverviewDataFailed = 'LoadTournamentOverviewDataFailed'
+  LoadTournamentOverviewDataFailed = 'LoadTournamentOverviewDataFailed',
 }
 
 export const loadTournamentDetailsData = createAction(
@@ -39,4 +39,3 @@ export const loadTournamentOverviewDataFailedAction = createAction(
   TournamentActions.LoadTournamentOverviewDataFailed,
   props<{ error: string }>()
 );
-
