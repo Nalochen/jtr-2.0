@@ -28,8 +28,6 @@ export class PageTeamOverviewComponent {
   }
 
   constructor(private store$: Store, private readonly destroyRef: DestroyRef, private readonly changeDetectorRef: ChangeDetectorRef) {
-    console.log(this.dataSource);
-
     combineLatest([this.teams$, this.searchForm.valueChanges.pipe(startWith(''))])
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(([teams, search]: [TeamOverviewData[], string | null]) => {
