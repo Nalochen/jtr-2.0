@@ -8,8 +8,113 @@ INSERT IGNORE INTO participates_in (
 ) VALUES (
     1,
     1,
-    3,
-    FALSE,
+    NULL,
+    TRUE,
     FALSE,
     1
+),
+       (
+    1,
+    2,
+    NULL,
+    FALSE,
+    FALSE,
+    2
+),
+       (
+    1,
+    3,
+    NULL,
+    TRUE,
+    FALSE,
+    3
+),
+       (
+    1,
+    4,
+    NULL,
+    FALSE,
+    FALSE,
+    4
+),
+       (
+    1,
+    5,
+    NULL,
+    TRUE,
+    FALSE,
+    5
+),
+       (
+    1,
+    6,
+    NULL,
+    FALSE,
+    FALSE,
+    6
+),
+       (
+    1,
+    7,
+    NULL,
+    TRUE,
+    FALSE,
+    7
+),
+       (
+    1,
+    8,
+    NULL,
+    FALSE,
+    FALSE,
+    8
+),
+       (
+    1,
+    9,
+    NULL,
+    FALSE,
+    FALSE,
+    9
+),
+       (
+    1,
+    10,
+    NULL,
+    FALSE,
+    FALSE,
+    10
+),
+       (
+    1,
+    11,
+    NULL,
+    FALSE,
+    FALSE,
+    11
+),
+       (
+    1,
+    12,
+    NULL,
+    FALSE,
+    FALSE,
+    12
+),
+       (
+    1,
+    13,
+    NULL,
+    TRUE,
+    FALSE,
+    13
+),
+       (
+    1,
+    14,
+    NULL,
+    TRUE,
+    FALSE,
+    14
 );
+
