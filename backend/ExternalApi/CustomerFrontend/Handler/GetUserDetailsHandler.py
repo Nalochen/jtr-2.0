@@ -20,14 +20,15 @@ class GetUserDetailsHandler:
         if userId is None:
             user = getJwtIdentity()
 
+            profileOfCurrentUser = True
+
         else:
             user = UserRepository.get(userId)
 
+            profileOfCurrentUser = get_jwt_identity() and (getJwtIdentity().id == user.id)
+
             if user is None or user.is_deleted:
                 return Response(status=404, response='User not found')
-
-        ownProfileOfCurrentUser = (
-            get_jwt_identity() and getJwtIdentity().id) == userId
 
         teams = [{
             'id': team.id,
@@ -37,14 +38,12 @@ class GetUserDetailsHandler:
 
         response = {
             'id': user.id,
-            'birthdate': user.birthdate.isoformat(),
-            'city': user.city,
             'createdAt': user.created_at.isoformat(),
+            'email': user.email,
             'isBirthdateVisible': user.birthdate_visibility,
             'isCityVisible': user.city_visibility,
             'isDeleted': user.is_deleted,
             'isNameVisible': user.name_visibility,
-            'name': user.name,
             'picture': user.picture,
             'pronouns': user.pronouns,
             'teams': teams,
@@ -52,20 +51,14 @@ class GetUserDetailsHandler:
             'username': user.username,
         }
 
-        if ownProfileOfCurrentUser:
-            response['email'] = user.email
-            response['isCityVisible'] = user.city_visibility
-            response['isNameVisible'] = user.name_visibility
-            response['isBirthdateVisible'] = user.birthdate_visibility
+        if user.name_visibility or profileOfCurrentUser:
+            response['name'] = user.name
 
-            if user.name_visibility:
-                response['name'] = user.name
+        if user.birthdate_visibility or profileOfCurrentUser:
+            response['birthdate'] = user.birthdate.isoformat()
 
-            if user.birthdate_visibility:
-                response['birthdate'] = user.birthdate.isoformat()
-
-            if user.city_visibility:
-                response['city'] = user.city
+        if user.city_visibility or profileOfCurrentUser:
+            response['city'] = user.city
 
         return Response(
             response=response,

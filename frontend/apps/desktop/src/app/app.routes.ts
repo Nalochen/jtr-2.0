@@ -100,14 +100,21 @@ export const appRoutes: Route[] = [
     component: PageRegisterComponent,
   },
   {
-    path: 'user-details/:userId?',
+    path: 'user-details',
     component: PageUserDetailsComponent,
     resolve: {
       userDetails: UserDetailsResolver,
     },
   },
   {
-    path: 'manage-user-details/:userId?',
+    path: 'user-details/:userId',
+    component: PageUserDetailsComponent,
+    resolve: {
+      userDetails: UserDetailsResolver,
+    },
+  },
+  {
+    path: 'manage-user-details',
     component: PageManageUserDetailsComponent,
     resolve: {
       userDetails: UserDetailsResolver,

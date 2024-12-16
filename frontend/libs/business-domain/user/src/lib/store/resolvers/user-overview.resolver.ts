@@ -11,10 +11,10 @@ import { loadUserOverviewData } from '@jtr/business-domain/user';
   providedIn: 'root',
 })
 export class UserOverviewResolver implements Resolve<boolean> {
-  constructor(private store: Store) {}
+  constructor(private store$: Store) {}
 
   public resolve(): Observable<boolean> {
-    this.store.dispatch(loadUserOverviewData());
+    this.store$.dispatch(loadUserOverviewData());
 
     return new Observable<boolean>((observer) => {
       observer.next(true);

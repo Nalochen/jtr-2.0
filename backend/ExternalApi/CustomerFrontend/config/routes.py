@@ -11,6 +11,7 @@ from ExternalApi.CustomerFrontend.Handler.DeleteMembershipHandler import DeleteM
 from ExternalApi.CustomerFrontend.Handler.DeleteParticipationHandler import DeleteParticipationHandler
 from ExternalApi.CustomerFrontend.Handler.DeleteTeamHandler import DeleteTeamHandler
 from ExternalApi.CustomerFrontend.Handler.DeleteTournamentHandler import DeleteTournamentHandler
+from ExternalApi.CustomerFrontend.Handler.DeleteUserHandler import DeleteUserHandler
 from ExternalApi.CustomerFrontend.Handler.GetTeamDetailsHandler import GetTeamDetailsHandler
 from ExternalApi.CustomerFrontend.Handler.GetTeamOverviewHandler import GetTeamOverviewHandler
 from ExternalApi.CustomerFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
@@ -201,3 +202,11 @@ def deleteTeam() -> Response:
 @DeleteTournamentInputFilter.validate()
 def deleteTournament() -> Response:
     return DeleteTournamentHandler.handle()
+
+
+@customer_frontend.route('/delete-user',
+                         methods=['DELETE'],
+                         endpoint='delete-user')
+@jwt_required()
+def deleteUser() -> Response:
+    return DeleteUserHandler.handle()
