@@ -1,6 +1,6 @@
 ### Create a tournament
 ### Execute ExternalApi/specs/requests/000-Authorization.http before using this!
-POST https://{{host}}/api/tournament-frontend/update-tournament
+PUT https://{{host}}/api/tournament-frontend/update-tournament
 Content-Type: application/json
 Authorization: Bearer {{jwtToken}}
 

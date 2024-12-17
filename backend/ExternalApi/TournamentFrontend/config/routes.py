@@ -10,6 +10,7 @@ from ExternalApi.TournamentFrontend.Handler.DeleteTournamentHandler import Delet
 from ExternalApi.TournamentFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
 from ExternalApi.TournamentFrontend.Handler.GetTournamentOverviewHandler import GetTournamentOverviewHandler
 from ExternalApi.TournamentFrontend.Handler.UpdateTournamentHandler import UpdateTournamentHandler
+from ExternalApi.TournamentFrontend.Handler.UpdateTournamentStatusHandler import UpdateTournamentStatusHandler
 from ExternalApi.TournamentFrontend.InputFilter.CreateParticipationInputFilter import CreateParticipationInputFilter
 from ExternalApi.TournamentFrontend.InputFilter.CreateResultInputFilter import CreateResultInputFilter
 from ExternalApi.TournamentFrontend.InputFilter.CreateTournamentInputFilter import CreateTournamentInputFilter
@@ -17,6 +18,8 @@ from ExternalApi.TournamentFrontend.InputFilter.DeleteParticipationInputFilter i
 from ExternalApi.TournamentFrontend.InputFilter.DeleteTournamentInputFilter import DeleteTournamentInputFilter
 from ExternalApi.TournamentFrontend.InputFilter.GetTournamentDetailsInputFilter import GetTournamentDetailsInputFilter
 from ExternalApi.TournamentFrontend.InputFilter.UpdateTournamentInputFilter import UpdateTournamentInputFilter
+from ExternalApi.TournamentFrontend.InputFilter.UpdateTournamentStatusInputFilter import \
+    UpdateTournamentStatusInputFilter
 from ExternalApi.TournamentFrontend.config.extensions import create_tournament_cache_key
 from config.cache import cache
 from config.limiter import limiter
@@ -45,6 +48,14 @@ def getTournamentOverview() -> Response:
 @UpdateTournamentInputFilter.validate()
 def updateTournament() -> Response:
     return UpdateTournamentHandler.handle()
+
+
+@tournament_frontend.route('/update-tournament-status',
+                           methods=['PUT'], endpoint='update-tournament-status')
+@jwt_required()
+@UpdateTournamentStatusInputFilter.validate()
+def updateTournamentStatus() -> Response:
+    return UpdateTournamentStatusHandler.handle()
 
 
 @tournament_frontend.route('/create-tournament',
