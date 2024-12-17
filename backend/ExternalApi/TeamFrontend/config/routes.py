@@ -24,8 +24,8 @@ team_frontend = Blueprint('team-frontend', __name__)
                      methods=['GET'], endpoint='get-team-details')
 @GetTeamDetailsInputFilter.validate()
 @cache.cached(key_prefix=create_team_cache_key)
-def getTeamDetails(teamId: int) -> Response:
-    return GetTeamDetailsHandler.handle(teamId)
+def getTeamDetails(teamId) -> Response:
+    return GetTeamDetailsHandler.handle()
 
 
 @team_frontend.route('/get-team-overview',

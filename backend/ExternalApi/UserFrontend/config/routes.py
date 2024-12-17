@@ -6,10 +6,14 @@ from ExternalApi.UserFrontend.Handler.CreateUserHandler import CreateUserHandler
 from ExternalApi.UserFrontend.Handler.DeleteUserHandler import DeleteUserHandler
 from ExternalApi.UserFrontend.Handler.GetUserDetailsHandler import GetUserDetailsHandler
 from ExternalApi.UserFrontend.Handler.GetUserOverviewHandler import GetUserOverviewHandler
+from ExternalApi.UserFrontend.Handler.IsAdminOnOrganizerHandler import IsAdminOfOrganizerHandler
+from ExternalApi.UserFrontend.Handler.IsAdminOnTeamHandler import IsAdminOfTeamHandler
 from ExternalApi.UserFrontend.Handler.LoginUserHandler import LoginUserHandler
 from ExternalApi.UserFrontend.Handler.UpdateUserHandler import UpdateUserHandler
 from ExternalApi.UserFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
 from ExternalApi.UserFrontend.InputFilter.GetUserDetailsInputFilter import GetUserDetailsInputFilter
+from ExternalApi.UserFrontend.InputFilter.IsAdminOfOrganizerInputFilter import IsAdminOfOrganizerInputFilter
+from ExternalApi.UserFrontend.InputFilter.IsAdminOfTeamInputFilter import IsAdminOfTeamInputFilter
 from ExternalApi.UserFrontend.InputFilter.LoginUserInputFilter import LoginUserInputFilter
 from ExternalApi.UserFrontend.InputFilter.UpdateUserInputFilter import UpdateUserInputFilter
 from ExternalApi.UserFrontend.config.extensions import create_user_cache_key
@@ -26,8 +30,8 @@ user_frontend = Blueprint('user-frontend', __name__)
 @GetUserDetailsInputFilter.validate()
 @jwt_required(optional=True)
 @cache.cached(key_prefix=create_user_cache_key)
-def getUserDetails(userId: int = None) -> Response:
-    return GetUserDetailsHandler.handle(userId)
+def getUserDetails(userId=None) -> Response:
+    return GetUserDetailsHandler.handle()
 
 
 @user_frontend.route('/get-user-overview',
@@ -35,6 +39,20 @@ def getUserDetails(userId: int = None) -> Response:
 @cache.cached(key_prefix='user-overview')
 def getUserOverview() -> Response:
     return GetUserOverviewHandler.handle()
+
+
+@user_frontend.route('/is-admin-of-team/<teamId>',
+                     methods=['GET'], endpoint='is-admin-of-team')
+@IsAdminOfTeamInputFilter.validate()
+def isAdminOfTeam(teamId) -> Response:
+    return IsAdminOfTeamHandler.handle()
+
+
+@user_frontend.route('/is-admin-of-organizer/<tournamentId>',
+                     methods=['GET'], endpoint='is-admin-of-organizer')
+@IsAdminOfOrganizerInputFilter.validate()
+def isAdminOfOrganizer(tournamentId) -> Response:
+    return IsAdminOfOrganizerHandler.handle()
 
 
 @user_frontend.route('/update-user',

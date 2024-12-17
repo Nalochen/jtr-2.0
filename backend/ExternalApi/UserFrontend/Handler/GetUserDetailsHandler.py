@@ -1,3 +1,4 @@
+from flask import g
 from flask_jwt_extended import get_jwt_identity
 
 from DataDomain.Database.Repository.UserRepository import UserRepository
@@ -9,8 +10,12 @@ class GetUserDetailsHandler:
     """Handler for getting user details"""
 
     @staticmethod
-    def handle(userId: int | None) -> Response:
+    def handle() -> Response:
         """Get user details by id or current user, if user has a session"""
+
+        data = g.validatedData
+
+        userId: int | None = data.get('userId')
 
         if userId is None and get_jwt_identity() is None:
             return Response(

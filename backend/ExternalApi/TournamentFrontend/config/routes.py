@@ -28,8 +28,8 @@ tournament_frontend = Blueprint('tournament-frontend', __name__)
                            methods=['GET'], endpoint='get-tournament-details')
 @GetTournamentDetailsInputFilter.validate()
 @cache.cached(key_prefix=create_tournament_cache_key)
-def getTournamentDetails(tournamentId: int) -> Response:
-    return GetTournamentDetailsHandler.handle(tournamentId)
+def getTournamentDetails(tournamentId) -> Response:
+    return GetTournamentDetailsHandler.handle()
 
 
 @tournament_frontend.route('/get-tournament-overview',
