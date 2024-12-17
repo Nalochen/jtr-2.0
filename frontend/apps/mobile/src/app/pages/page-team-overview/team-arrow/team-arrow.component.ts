@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {MatIconButton} from '@angular/material/button';
 
 import { ButtonComponent, DataContainerComponent } from '../../../ui-shared';
-import { StatusIndicatorComponent } from '../../../ui-shared/lib/status-indicator/status-indicator.component';
+import { StatusIndicatorComponent } from '../../../ui-shared';
 
 @Component({
   selector: 'arrow',

@@ -1,1 +1,33 @@
-@import 'colors-mobile';
+@import "colors-mobile";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 56px);
+}
+
+.header {
+  padding: 16px;
+}
+
+input {
+  width: 100%;
+  padding: 8px 44px 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: transparent;
+  color: @color-text-default;
+  font-size: 16px;
+  line-height: 1;
+  outline: none;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.teams {
+  display: flex;
+  flex-direction: column;
+  background-color: @color-bg-light;
+  flex-grow: 1;
+  padding: 16px 10px;
+  border-radius: 20px 20px 0 0;
+}
