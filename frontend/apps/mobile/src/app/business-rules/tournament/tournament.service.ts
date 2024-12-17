@@ -12,8 +12,8 @@ import {
   TournamentFoodNoonEnum,
 } from '@jtr/data-domain/tournament-data';
 
-const CREATE_TOURNAMENT_ENDPOINT = '/api/customer-frontend/create-tournament';
-const UPDATE_TOURNAMENT_ENDPOINT = '/api/customer-frontend/update-tournament';
+const CREATE_TOURNAMENT_ENDPOINT = '/api/tournament-frontend/create-tournament';
+const UPDATE_TOURNAMENT_ENDPOINT = '/api/tournament-frontend/update-tournament';
 
 export interface CreateTournamentRequestBody {
   additionalInformation: string;

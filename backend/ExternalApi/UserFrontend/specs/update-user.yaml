@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/user-frontend/update-user:
+    put:
+      summary: Update user
+      operationId: updateUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequestBody'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateUserResponseBody'
+
+        '400':
+          description: Bad Request
+
+        '401':
+          description: Unauthorized
+
+        '404':
+          description: User not Found
+
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    UpdateUserRequestBody:
+      type: object
+      properties:
+        birthdate:
+          type: string
+          format: date
+        city:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        password:
+          type: string
+        picture:
+          type: string
+          format: binary
+        pronouns:
+          type: string
+        username:
+          type: string
+
+    UpdateUserResponseBody:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOifghjkgfdsfghj

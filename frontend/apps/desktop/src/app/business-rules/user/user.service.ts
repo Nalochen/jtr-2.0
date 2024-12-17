@@ -5,8 +5,8 @@ import { firstValueFrom, tap } from 'rxjs';
 
 import { AuthService } from '../auth/auth.service';
 
-const CREATE_USER_ENDPOINT = '/api/customer-frontend/update-user';
-const DELETE_USER_ENDPOINT = '/api/customer-frontend/delete-user';
+const CREATE_USER_ENDPOINT = '/api/user-frontend/update-user';
+const DELETE_USER_ENDPOINT = '/api/user-frontend/delete-user';
 
 export interface UpdateUserRequestBody {
   birthdate: string | null;

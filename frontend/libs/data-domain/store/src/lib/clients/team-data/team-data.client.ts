@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { TeamData } from './team-data.response';
 
-const ENDPOINT = '/api/customer-frontend/get-team-details/';
+const ENDPOINT = '/api/team-frontend/get-team-details/';
 
 @Injectable({
   providedIn: 'root',

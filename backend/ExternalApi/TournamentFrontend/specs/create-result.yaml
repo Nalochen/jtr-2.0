@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/tournament-frontend/create-result:
+    post:
+      summary: Create result of team
+      operationId: createResult
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateResultRequestBody'
+
+      responses:
+        '200':
+          description: OK
+
+        '400':
+          description: Bad Request
+
+        '401':
+          description: Unauthorized
+
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    CreateResultRequestBody:
+      type: object
+      properties:
+        tournamentId:
+          type: number
+        resultElements:
+          type: array
+          items:
+              $ref: '#/components/schemas/ResultElement'
+
+    ResultElement:
+      type: object
+      properties:
+        teamId:
+          type: number
+        placement:
+          type: number
