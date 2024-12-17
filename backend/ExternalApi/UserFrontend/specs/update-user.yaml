@@ -51,9 +51,6 @@ components:
           type: string
         password:
           type: string
-        picture:
-          type: string
-          format: binary
         pronouns:
           type: string
         username:

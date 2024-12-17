@@ -45,9 +45,6 @@ components:
           format: email
         name:
           type: string
-        picture:
-          type: string
-          format: binary
 
     RegisterResponseBody:
       type: object

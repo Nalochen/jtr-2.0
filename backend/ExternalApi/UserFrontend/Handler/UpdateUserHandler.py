@@ -49,12 +49,6 @@ class UpdateUserHandler:
         if pronouns is not None:
             user.pronouns = pronouns
 
-        picture = data.get('picture')
-        if picture is not None:
-            # TODO: Add saving of image
-
-            user.picture = picture
-
         try:
             UserRepository.update(user)
 

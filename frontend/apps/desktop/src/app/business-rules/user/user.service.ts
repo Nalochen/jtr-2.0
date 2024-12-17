@@ -5,7 +5,8 @@ import { firstValueFrom, tap } from 'rxjs';
 
 import { AuthService } from '../auth/auth.service';
 
-const CREATE_USER_ENDPOINT = '/api/user-frontend/update-user';
+const UPDATE_USER_ENDPOINT = '/api/user-frontend/update-user';
+const UPDATE_USER_PICTURE_ENDPOINT = '/api/user-frontend/update-user-picture';
 const DELETE_USER_ENDPOINT = '/api/user-frontend/delete-user';
 
 export interface UpdateUserRequestBody {
@@ -34,7 +35,7 @@ export class UserService {
     request: UpdateUserRequestBody
   ): Promise<UpdateUserResponse> {
     return await firstValueFrom(
-      this.http.put<UpdateUserResponse>(CREATE_USER_ENDPOINT, request).pipe(
+      this.http.put<UpdateUserResponse>(UPDATE_USER_ENDPOINT, request).pipe(
         tap((response: UpdateUserResponse) => {
           this.authService.setSession(response.token);
         })
@@ -42,9 +43,27 @@ export class UserService {
     );
   }
 
+  public async updatePicture(file: File): Promise<void> {
+    const base64 = await this.fileToBase64(file);
+    const request = {
+      picture: base64
+    };
+
+    await firstValueFrom(this.http.put<void>(UPDATE_USER_PICTURE_ENDPOINT, request));
+  }
+
   public async delete(): Promise<void> {
     await firstValueFrom(this.http.delete<void>(DELETE_USER_ENDPOINT));
 
     this.authService.logout();
+  }
+
+  private fileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result?.toString().split(',')[1] || '');
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file);
+    });
   }
 }

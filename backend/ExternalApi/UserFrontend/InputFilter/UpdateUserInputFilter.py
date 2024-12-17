@@ -74,17 +74,6 @@ class UpdateUserInputFilter(InputFilter):
         )
 
         self.add(
-            'picture',
-            required=False,
-            filters=[
-                ToNullFilter()
-            ],
-            validators=[
-                # TODO Image validator
-            ]
-        )
-
-        self.add(
             'pronouns',
             required=False,
             filters=[

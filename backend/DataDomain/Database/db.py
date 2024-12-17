@@ -34,7 +34,7 @@ def executeSqlFile(filename: str) -> None:
 def executeSqlCommandsToInitDatabase(app: Flask) -> None:
     """Executes the SQL commands in the init-database folder"""
 
-    folderPath = f'{app.config['DATABASE_PATH']}/data/init-database'
+    folderPath = os.path.join(app.config['DATABASE_PATH'], 'data/init-database')
 
     for filename in os.listdir(folderPath):
         if filename.endswith('.sql'):

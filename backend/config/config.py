@@ -9,7 +9,7 @@ class Config:
     """Configuration class for the Flask app"""
 
     @staticmethod
-    def init_app(app):
+    def init_app(app) -> None:
         """Initializes the Flask app with the given configuration"""
 
         CORS(app)
@@ -34,17 +34,22 @@ class Config:
         app.config['JWT_VERIFY_SUB'] = False
         app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=30)
 
+        app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 # 4MB
+
         if os.getenv('FLASK_ENV') == 'production':
             app.config['DATABASE_PATH'] = '/app/DataDomain/Database'
             app.config['CACHE_TYPE'] = 'redis'
+            app.config['UPLOAD_FOLDER'] = '/app/DataDomain/assets'
 
         elif os.getenv('FLASK_ENV') == 'testing':
             app.config['DATABASE_PATH'] = 'backend/DataDomain/Database'
             app.config['CACHE_TYPE'] = 'null'
+            app.config['UPLOAD_FOLDER'] = 'backend/DataDomain/assets'
 
         elif os.getenv('FLASK_ENV') == 'development':
             app.config['DATABASE_PATH'] = '/home/backend/DataDomain/Database'
             app.config['CACHE_TYPE'] = 'null'
+            app.config['UPLOAD_FOLDER'] = '/home/backend/DataDomain/assets'
 
             import warnings
 

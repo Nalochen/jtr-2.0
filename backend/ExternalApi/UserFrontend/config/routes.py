@@ -10,12 +10,14 @@ from ExternalApi.UserFrontend.Handler.IsAdminOnOrganizerHandler import IsAdminOf
 from ExternalApi.UserFrontend.Handler.IsAdminOnTeamHandler import IsAdminOfTeamHandler
 from ExternalApi.UserFrontend.Handler.LoginUserHandler import LoginUserHandler
 from ExternalApi.UserFrontend.Handler.UpdateUserHandler import UpdateUserHandler
+from ExternalApi.UserFrontend.Handler.UpdateUserPictureHandler import UpdateUserPictureHandler
 from ExternalApi.UserFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
 from ExternalApi.UserFrontend.InputFilter.GetUserDetailsInputFilter import GetUserDetailsInputFilter
 from ExternalApi.UserFrontend.InputFilter.IsAdminOfOrganizerInputFilter import IsAdminOfOrganizerInputFilter
 from ExternalApi.UserFrontend.InputFilter.IsAdminOfTeamInputFilter import IsAdminOfTeamInputFilter
 from ExternalApi.UserFrontend.InputFilter.LoginUserInputFilter import LoginUserInputFilter
 from ExternalApi.UserFrontend.InputFilter.UpdateUserInputFilter import UpdateUserInputFilter
+from ExternalApi.UserFrontend.InputFilter.UpdateUserPictureInputFilter import UpdateUserPictureInputFilter
 from ExternalApi.UserFrontend.config.extensions import create_user_cache_key
 from config.cache import cache
 from config.limiter import limiter
@@ -61,6 +63,14 @@ def isAdminOfOrganizer(tournamentId) -> Response:
 @UpdateUserInputFilter.validate()
 def updateUser() -> Response:
     return UpdateUserHandler.handle()
+
+
+@user_frontend.route('/update-user-picture',
+                     methods=['PUT'], endpoint='update-user-picture')
+@jwt_required()
+@UpdateUserPictureInputFilter.validate()
+def updateUserPicture() -> Response:
+    return UpdateUserPictureHandler().handle()
 
 
 @user_frontend.route('/login', methods=['POST'], endpoint='login')

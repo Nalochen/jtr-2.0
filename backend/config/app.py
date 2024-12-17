@@ -1,3 +1,5 @@
+import os
+
 from celery import Celery
 from flask import Flask
 
@@ -34,7 +36,7 @@ def createApp() -> Flask:
 
     db.init_app(app)
 
-    Migrate(app, db, directory=f'{app.config['DATABASE_PATH']}/Migration')
+    Migrate(app, db, directory=os.path.join(app.config['DATABASE_PATH'], 'Migration'))
 
     Talisman(app, content_security_policy={
         'default-src': ["'self'"],
