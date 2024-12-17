@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, current_app
 from flask_jwt_extended import jwt_required
 
 from DataDomain.Model.Response import Response
@@ -6,6 +6,7 @@ from ExternalApi.UserFrontend.Handler.CreateUserHandler import CreateUserHandler
 from ExternalApi.UserFrontend.Handler.DeleteUserHandler import DeleteUserHandler
 from ExternalApi.UserFrontend.Handler.GetUserDetailsHandler import GetUserDetailsHandler
 from ExternalApi.UserFrontend.Handler.GetUserOverviewHandler import GetUserOverviewHandler
+from ExternalApi.UserFrontend.Handler.GetUserPictureHandler import GetUserPictureHandler
 from ExternalApi.UserFrontend.Handler.IsAdminOnOrganizerHandler import IsAdminOfOrganizerHandler
 from ExternalApi.UserFrontend.Handler.IsAdminOnTeamHandler import IsAdminOfTeamHandler
 from ExternalApi.UserFrontend.Handler.LoginUserHandler import LoginUserHandler
@@ -13,12 +14,13 @@ from ExternalApi.UserFrontend.Handler.UpdateUserHandler import UpdateUserHandler
 from ExternalApi.UserFrontend.Handler.UpdateUserPictureHandler import UpdateUserPictureHandler
 from ExternalApi.UserFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
 from ExternalApi.UserFrontend.InputFilter.GetUserDetailsInputFilter import GetUserDetailsInputFilter
+from ExternalApi.UserFrontend.InputFilter.GetUserPictureInputFilter import GetUserPictureInputFilter
 from ExternalApi.UserFrontend.InputFilter.IsAdminOfOrganizerInputFilter import IsAdminOfOrganizerInputFilter
 from ExternalApi.UserFrontend.InputFilter.IsAdminOfTeamInputFilter import IsAdminOfTeamInputFilter
 from ExternalApi.UserFrontend.InputFilter.LoginUserInputFilter import LoginUserInputFilter
 from ExternalApi.UserFrontend.InputFilter.UpdateUserInputFilter import UpdateUserInputFilter
 from ExternalApi.UserFrontend.InputFilter.UpdateUserPictureInputFilter import UpdateUserPictureInputFilter
-from ExternalApi.UserFrontend.config.extensions import create_user_cache_key
+from ExternalApi.UserFrontend.config.extensions import create_user_cache_key, create_user_picture_cache_key
 from config.cache import cache
 from config.limiter import limiter
 
@@ -41,6 +43,14 @@ def getUserDetails(userId=None) -> Response:
 @cache.cached(key_prefix='user-overview')
 def getUserOverview() -> Response:
     return GetUserOverviewHandler.handle()
+
+
+@user_frontend.route('/get-user-picture/<userId>',
+                     methods=['GET'], endpoint='get-user-picture')
+@GetUserPictureInputFilter.validate()
+@cache.cached(key_prefix=create_user_picture_cache_key)
+def getUserPicture(userId) -> Response:
+    return GetUserPictureHandler.handle()
 
 
 @user_frontend.route('/is-admin-of-team/<teamId>',
@@ -69,6 +79,7 @@ def updateUser() -> Response:
                      methods=['PUT'], endpoint='update-user-picture')
 @jwt_required()
 @UpdateUserPictureInputFilter.validate()
+@limiter.limit("3 per minute")
 def updateUserPicture() -> Response:
     return UpdateUserPictureHandler().handle()
 

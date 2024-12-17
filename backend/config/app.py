@@ -36,7 +36,12 @@ def createApp() -> Flask:
 
     db.init_app(app)
 
-    Migrate(app, db, directory=os.path.join(app.config['DATABASE_PATH'], 'Migration'))
+    Migrate(
+        app,
+        db,
+        directory=os.path.join(
+            app.config['DATABASE_PATH'],
+            'Migration'))
 
     Talisman(app, content_security_policy={
         'default-src': ["'self'"],

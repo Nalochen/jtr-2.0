@@ -3,6 +3,7 @@ import os
 import uuid
 
 from PIL import Image
+from flask import current_app
 from werkzeug.utils import secure_filename
 
 
@@ -20,7 +21,7 @@ class PictureService:
         if not isAnimated and image.mode in ("RGBA", "P"):
             image = image.convert("RGB")
 
-        maxSize = 4 * 1024 * 1024  # 4 MB
+        maxSize = current_app.config['MAX_CONTENT_LENGTH']
 
         if len(decodedPicture) > maxSize:
             if not isAnimated:
@@ -30,7 +31,8 @@ class PictureService:
                 image = image.resize((newWidth, newHeight), Image.ANTIALIAS)
 
             else:
-                raise ValueError("Das GIF ist zu groß, kann aber nicht automatisch skaliert werden.")
+                raise ValueError(
+                    "Das GIF ist zu groß, kann aber nicht automatisch skaliert werden.")
 
         return image
 
@@ -49,7 +51,9 @@ class PictureService:
     def createUserPicturePath(filename: str) -> str:
         """Creates the path to a user picture"""
 
-        uploadFolder = os.path.join('/home/backend/DataDomain/assets', 'user-pictures')
+        uploadFolder = os.path.join(
+            current_app.config['UPLOAD_FOLDER'],
+            'user-pictures')
 
         savePath = os.path.join(uploadFolder, filename)
 

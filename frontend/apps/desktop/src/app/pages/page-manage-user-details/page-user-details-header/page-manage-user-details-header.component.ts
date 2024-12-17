@@ -4,6 +4,8 @@ import { FormGroup } from '@angular/forms';
 
 import { EditUserForm } from '@jtr/business-domain/user';
 
+import { UserService } from '../../../business-rules/user/user.service';
+
 import {
   ButtonColorEnum,
   ButtonComponent,
@@ -11,7 +13,6 @@ import {
   InfoButtonComponent,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-import { UserService } from '../../../business-rules/user/user.service';
 
 @Component({
   standalone: true,
@@ -21,10 +22,11 @@ import { UserService } from '../../../business-rules/user/user.service';
   styleUrl: './page-manage-user-details-header.component.less',
 })
 export class PageManageUserDetailsHeaderComponent {
-  constructor (private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) {}
 
   @Input() public form!: FormGroup<EditUserForm>;
   @Input() public isLoggedIn$!: boolean;
+  @Input() public userId?: number;
 
   public readonly ButtonTypeEnum = ButtonTypeEnum;
   public readonly ButtonColorEnum = ButtonColorEnum;
@@ -37,5 +39,9 @@ export class PageManageUserDetailsHeaderComponent {
 
       await this.userService.updatePicture(selectedFile);
     }
+  }
+
+  public getPictureUrl(): string {
+    return this.userId ? this.userService.getPictureUrl(this.userId) : '';
   }
 }

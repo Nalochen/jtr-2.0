@@ -13,6 +13,17 @@ def create_user_cache_key() -> str | None:
     return f"user-{userId}"
 
 
+def create_user_picture_cache_key() -> str | None:
+    """Create cache key for user"""
+
+    userId = request.view_args.get('userId')
+
+    if userId is None:
+        return None
+
+    return f"user-picture-{userId}"
+
+
 def clearUserCache(userId: int) -> None:
     """Clear cache for user"""
 

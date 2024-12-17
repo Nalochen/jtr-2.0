@@ -46,10 +46,12 @@ export class UserService {
   public async updatePicture(file: File): Promise<void> {
     const base64 = await this.fileToBase64(file);
     const request = {
-      picture: base64
+      picture: base64,
     };
 
-    await firstValueFrom(this.http.put<void>(UPDATE_USER_PICTURE_ENDPOINT, request));
+    await firstValueFrom(
+      this.http.put<void>(UPDATE_USER_PICTURE_ENDPOINT, request)
+    );
   }
 
   public async delete(): Promise<void> {
@@ -58,11 +60,16 @@ export class UserService {
     this.authService.logout();
   }
 
+  public getPictureUrl(userId: number): string {
+    return `/api/user-frontend/get-user-picture/${userId}`;
+  }
+
   private fileToBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = () => resolve(reader.result?.toString().split(',')[1] || '');
-      reader.onerror = error => reject(error);
+      reader.onload = () =>
+        resolve(reader.result?.toString().split(',')[1] || '');
+      reader.onerror = (error) => reject(error);
       reader.readAsDataURL(file);
     });
   }

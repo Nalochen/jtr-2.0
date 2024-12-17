@@ -12,7 +12,13 @@ class Config:
     def init_app(app) -> None:
         """Initializes the Flask app with the given configuration"""
 
-        CORS(app)
+        CORS(app, resources={
+            r"/uploads/*": {"origins": [
+                "http://localhost:4200",
+                "http://localhost:80",
+                "https://localhost:443"
+            ]}
+        })
 
         pymysql.install_as_MySQLdb()
 
@@ -34,7 +40,7 @@ class Config:
         app.config['JWT_VERIFY_SUB'] = False
         app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=30)
 
-        app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024 # 4MB
+        app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024  # 4MB
 
         if os.getenv('FLASK_ENV') == 'production':
             app.config['DATABASE_PATH'] = '/app/DataDomain/Database'

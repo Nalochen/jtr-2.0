@@ -2,7 +2,7 @@
   <img
     id="logo"
     alt="Profile Picture of {{ form.controls.username.value }}"
-    src="{{ form.controls.profilePicture.value }}"
+    src="{{ getPictureUrl() }}"
     height="100"
     width="100"
     (click)="fileInput.click()"
@@ -11,7 +11,7 @@
   <input
     type="file"
     #fileInput
-    style="display: none;"
+    style="display: none"
     (change)="onFileSelected($event)"
   />
 
