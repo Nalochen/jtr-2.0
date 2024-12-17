@@ -12,6 +12,7 @@ import {
   DataContainerComponent,
 } from '../../../ui-shared';
 import { StatusIndicatorComponent } from '../../../ui-shared/lib/status-indicator/status-indicator.component';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'tournament-row',
@@ -23,6 +24,8 @@ import { StatusIndicatorComponent } from '../../../ui-shared/lib/status-indicato
     MatIconButton,
     StatusIndicatorComponent,
     ButtonComponent,
+    RouterLink,
+    RouterOutlet,
   ],
   templateUrl: './tournament-row.component.html',
   styleUrl: './tournament-row.component.less',
@@ -32,4 +35,10 @@ export class TournamentRowComponent {
 
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
+
+  constructor() {}
+
+  public onDetailsClick(): void {
+    window.open(`tournament-details/${this.tournament.id}`, '_self');
+  }
 }
