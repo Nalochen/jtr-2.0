@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 import pymysql
 from flask_cors import CORS
@@ -31,6 +32,7 @@ class Config:
             'CELERY_RESULT_BACKEND')
 
         app.config['JWT_VERIFY_SUB'] = False
+        app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=30)
 
         if os.getenv('FLASK_ENV') == 'production':
             app.config['DATABASE_PATH'] = '/app/DataDomain/Database'
