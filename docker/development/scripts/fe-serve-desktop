@@ -2,4 +2,4 @@
 
 cd /home/frontend
 
-nx serve desktop
+npm run start:desktop

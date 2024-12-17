@@ -2,4 +2,4 @@
 
 cd /home/frontend
 
-nx serve mobile
+npm run start:mobile
