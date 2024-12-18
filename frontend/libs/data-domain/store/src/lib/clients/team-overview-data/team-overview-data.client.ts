@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { TeamOverviewData } from './team-overview-data.response';
 
-const ENDPOINT = '/api/customer-frontend/get-team-overview';
+const ENDPOINT = '/api/team-frontend/get-team-overview';
 
 @Injectable({
   providedIn: 'root',

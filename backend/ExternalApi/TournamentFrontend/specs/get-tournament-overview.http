@@ -1,0 +1,8 @@
+### Get tournaments overview
+GET https://{{host}}/api/tournament-frontend/get-tournament-overview
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

@@ -7,7 +7,7 @@ import { MemoryCache } from '@jtr/infrastructure/cache';
 
 import { TournamentOverviewData } from './tournament-overview-data.response';
 
-const ENDPOINT = '/api/customer-frontend/get-tournament-overview';
+const ENDPOINT = '/api/tournament-frontend/get-tournament-overview';
 
 @Injectable({
   providedIn: 'root',

@@ -11,8 +11,8 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const LOGIN_ENDPOINT = '/api/customer-frontend/login';
-const REGISTER_ENDPOINT = '/api/customer-frontend/register';
+const LOGIN_ENDPOINT = '/api/user-frontend/login';
+const REGISTER_ENDPOINT = '/api/user-frontend/register';
 
 export interface LoginRequestBody {
   username: string | null;

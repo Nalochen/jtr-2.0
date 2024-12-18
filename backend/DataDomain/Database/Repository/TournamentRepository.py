@@ -4,6 +4,7 @@ from typing import List
 from sqlalchemy import func, or_, and_
 from sqlalchemy.orm import aliased, joinedload
 
+from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
 from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Database.Model.Teams import Teams
 from DataDomain.Database.Model.Tournaments import Tournaments
@@ -42,11 +43,14 @@ class TournamentRepository:
             Tournaments.id == TeamParticipation.c.tournament_id).join(
                 Teams,
                 Tournaments.organizer_id == Teams.id).filter(
-                    and_(or_(
-                        and_(
-                            Tournaments.start_date <= currentTime,
-                            Tournaments.end_date >= currentTime),
-                        Tournaments.start_date > currentTime), Tournaments.is_deleted == False)).group_by(
+                    and_(
+                        or_(
+                            and_(
+                                Tournaments.start_date <= currentTime,
+                                Tournaments.end_date >= currentTime),
+                            Tournaments.start_date > currentTime),
+                        Tournaments.is_deleted == False,
+                        Tournaments.status == TournamentStatusTypesEnum.PUBLISHED.value)).group_by(
             Tournaments.id).order_by(
             Tournaments.start_date).all()
 

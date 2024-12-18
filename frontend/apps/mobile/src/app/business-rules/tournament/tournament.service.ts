@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 import {
   AccommodationTypeEnum,
@@ -10,10 +10,13 @@ import {
   TournamentFoodGastroEnum,
   TournamentFoodMorningEnum,
   TournamentFoodNoonEnum,
+  TournamentStatus,
 } from '@jtr/data-domain/tournament-data';
 
-const CREATE_TOURNAMENT_ENDPOINT = '/api/customer-frontend/create-tournament';
-const UPDATE_TOURNAMENT_ENDPOINT = '/api/customer-frontend/update-tournament';
+const CREATE_TOURNAMENT_ENDPOINT = '/api/tournament-frontend/create-tournament';
+const UPDATE_TOURNAMENT_ENDPOINT = '/api/tournament-frontend/update-tournament';
+const UPDATE_TOURNAMENT_STATUS_ENDPOINT =
+  '/api/tournament-frontend/update-tournament-status';
 
 export interface CreateTournamentRequestBody {
   additionalInformation: string;
@@ -108,6 +111,11 @@ export interface UpdateTournamentRequestBody {
   camShoesAllowed: boolean;
   barefootAllowed: boolean;
   shoesText: string;
+}
+
+export interface UpdateTournamentStatusRequestBody {
+  tournamentId: number;
+  status: TournamentStatus;
 }
 
 @Injectable({
@@ -220,5 +228,13 @@ export class TournamentService {
     };
 
     return this.http.put(UPDATE_TOURNAMENT_ENDPOINT, request);
+  }
+
+  public async updateStatus(
+    request: UpdateTournamentStatusRequestBody
+  ): Promise<void> {
+    return await firstValueFrom(
+      this.http.put<void>(UPDATE_TOURNAMENT_STATUS_ENDPOINT, request)
+    );
   }
 }

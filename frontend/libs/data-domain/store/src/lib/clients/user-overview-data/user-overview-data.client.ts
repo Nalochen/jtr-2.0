@@ -7,7 +7,7 @@ import { MemoryCache } from '@jtr/infrastructure/cache';
 
 import { UserOverviewData } from './user-overview-data.response';
 
-const ENDPOINT = '/api/customer-frontend/get-user-overview';
+const ENDPOINT = '/api/user-frontend/get-user-overview';
 
 @Injectable({
   providedIn: 'root',

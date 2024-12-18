@@ -74,6 +74,8 @@ services:
       CELERY_RESULT_BACKEND: 'rpc://'
       DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
       SECRET_KEY: 'secret'
+    volumes:
+      - docker/production/assets:/app/DataDomain/assets
     ports:
       - "5001:5001"
     depends_on:
