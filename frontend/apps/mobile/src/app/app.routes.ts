@@ -62,6 +62,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'tournaments-overview/previous',
+    component: PageTournamentOverviewComponent,
+    resolve: {
+      tournamentOverview: TournamentOverviewResolver,
+    },
+  },
+  {
     path: 'create-tournament/tournament-information',
     component: PageCreateTournamentComponent,
   },

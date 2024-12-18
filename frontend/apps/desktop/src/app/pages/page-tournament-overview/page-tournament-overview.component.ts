@@ -9,8 +9,8 @@ import { tournamentOverviewSelector } from '@jtr/business-domain/tournament';
 import { TournamentOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
-import { TournamentRowComponent } from './tournament-row/tournament-row.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { TournamentRowComponent } from '../../ui-shared';
 
 @Component({
   standalone: true,

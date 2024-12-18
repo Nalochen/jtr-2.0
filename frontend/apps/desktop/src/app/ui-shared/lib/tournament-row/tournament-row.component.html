@@ -16,10 +16,12 @@
     </p>
     <p class="city">{{ tournament.location }}</p>
 
+    @if (!isPreviousTournament) {
     <app-status-indicator
       [registeredTeams]="tournament.registeredTeams"
       [totalTeams]="tournament.totalTeams"
       class="teams"
     />
+    }
   </app-data-container>
 </app-button>

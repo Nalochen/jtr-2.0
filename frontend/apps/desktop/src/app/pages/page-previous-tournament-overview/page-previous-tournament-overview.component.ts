@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -15,10 +15,11 @@ import { TournamentRowComponent } from '../../ui-shared';
 @Component({
   standalone: true,
   imports: [CommonModule, TournamentRowComponent, TranslatePipe],
-  templateUrl: './page-tournament-overview.component.html',
-  styleUrl: './page-tournament-overview.component.less',
+  templateUrl: './page-previous-tournament-overview.component.html',
+  styleUrl: './page-previous-tournament-overview.component.less',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageTournamentOverviewComponent {
+export class PagePreviousTournamentOverviewComponent {
   constructor(private store$: Store) {}
 
   @SingletonGetter()

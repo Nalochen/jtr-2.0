@@ -8,11 +8,14 @@
             {{ tournament.endDate | date : 'dd.MM' }}
           </p>
           <p>{{ tournament.location }}</p>
+
+          @if (!isPreviousTournament) {
           <app-status-indicator
             ngProjectAs="container-additional"
             [totalTeams]="tournament.totalTeams"
             [registeredTeams]="tournament.registeredTeams"
           />
+          }
         </div>
       </div>
       <span class="material-icons-outlined" ngProjectAs="container-icon"

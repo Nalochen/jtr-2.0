@@ -15,10 +15,10 @@ import { TournamentRowComponent } from '../../ui-shared';
 @Component({
   standalone: true,
   imports: [CommonModule, TournamentRowComponent, TranslatePipe],
-  templateUrl: './page-tournament-overview.component.html',
-  styleUrl: './page-tournament-overview.component.less',
+  templateUrl: './page-tournament-overview-previous.component.html',
+  styleUrl: './page-tournament-overview-previous.component.less',
 })
-export class PageTournamentOverviewComponent {
+export class PageTournamentOverviewPreviousComponent {
   constructor(private store$: Store) {}
 
   @SingletonGetter()
