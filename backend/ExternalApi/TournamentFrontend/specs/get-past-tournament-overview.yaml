@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/tournament-frontend/get-past-tournament-overview:
+    get:
+      summary: Get past tournament overview
+      description: Returns a list of the past tournaments.
+      responses:
+        '200':
+          description: A list of tournaments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    location:
+                      type: string
+                    name:
+                      type: string
+                    organizerLogo:
+                      type: string
+                    registeredTeams:
+                      type: number
+                    startDate:
+                      type: string
+                      format: date-time
+                    totalTeams:
+                      type: number
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal server error"

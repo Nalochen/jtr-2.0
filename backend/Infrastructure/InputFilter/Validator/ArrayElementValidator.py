@@ -19,5 +19,5 @@ class ArrayElementValidator(BaseValidator):
             try:
                 self.elementFilter.validateData(element)
 
-            except ValidationError as e:
-                raise ValidationError(f"Invalid element in array: {str(e)}")
+            except ValidationError:
+                raise ValidationError(f"Invalid element in array")
