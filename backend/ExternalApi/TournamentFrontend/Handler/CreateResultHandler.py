@@ -3,8 +3,10 @@ from typing import List
 
 from flask import g
 
+from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
 from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.Repository.ParticipatesInRepository import ParticipatesInRepository
+from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
 from DataDomain.Model.Response import Response
 from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
 from ExternalApi.TournamentFrontend.config.extensions import clearTournamentCache
@@ -45,6 +47,11 @@ class CreateResultHandler:
                     tournament.id, resultElement.teamId, resultElement.placement)
 
             clearTournamentCache(tournament.id)
+
+            if ParticipatesInRepository.allPlacementsSet(tournament.id):
+                tournament.status = TournamentStatusTypesEnum.OVER.value
+
+            TournamentRepository.update(tournament)
 
         except Exception:
             return Response(status=500)

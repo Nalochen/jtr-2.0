@@ -7,6 +7,7 @@ from ExternalApi.TournamentFrontend.Handler.CreateResultHandler import CreateRes
 from ExternalApi.TournamentFrontend.Handler.CreateTournamentHandler import CreateTournamentHandler
 from ExternalApi.TournamentFrontend.Handler.DeleteParticipationHandler import DeleteParticipationHandler
 from ExternalApi.TournamentFrontend.Handler.DeleteTournamentHandler import DeleteTournamentHandler
+from ExternalApi.TournamentFrontend.Handler.GetPastTournamentOverviewHandler import GetPastTournamentOverviewHandler
 from ExternalApi.TournamentFrontend.Handler.GetTournamentDetailsHandler import GetTournamentDetailsHandler
 from ExternalApi.TournamentFrontend.Handler.GetTournamentOverviewHandler import GetTournamentOverviewHandler
 from ExternalApi.TournamentFrontend.Handler.UpdateTournamentHandler import UpdateTournamentHandler
@@ -40,6 +41,13 @@ def getTournamentDetails(tournamentId) -> Response:
 @cache.cached(key_prefix='tournament-overview')
 def getTournamentOverview() -> Response:
     return GetTournamentOverviewHandler.handle()
+
+
+@tournament_frontend.route('/get-past-tournament-overview',
+                           methods=['GET'], endpoint='get-past-tournament-overview')
+@cache.cached(key_prefix='past-tournament-overview')
+def getPastTournamentOverview() -> Response:
+    return GetPastTournamentOverviewHandler.handle()
 
 
 @tournament_frontend.route('/update-tournament',

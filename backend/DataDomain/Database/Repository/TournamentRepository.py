@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List
 
-from sqlalchemy import func, or_, and_
+from sqlalchemy import func, or_, and_, desc
 from sqlalchemy.orm import aliased, joinedload
 
 from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
@@ -19,12 +19,10 @@ class TournamentRepository:
     """Repository for tournament related queries"""
 
     @staticmethod
-    def getTournamentOverview(
-            currentTime: datetime = None) -> List[dict]:
+    def getTournamentOverview() -> List[dict]:
         """Get tournament overview"""
 
-        if currentTime is None:
-            currentTime = datetime.now()
+        currentTime = datetime.now()
 
         TeamParticipation = aliased(participates_in)
 
@@ -38,21 +36,28 @@ class TournamentRepository:
             Tournaments.possible_space,
             func.count(
                 TeamParticipation.c.team_id).label('registered_teams'),
-            Tournaments.location).outerjoin(
+            Tournaments.location
+        ).outerjoin(
             TeamParticipation,
-            Tournaments.id == TeamParticipation.c.tournament_id).join(
-                Teams,
-                Tournaments.organizer_id == Teams.id).filter(
-                    and_(
-                        or_(
-                            and_(
-                                Tournaments.start_date <= currentTime,
-                                Tournaments.end_date >= currentTime),
-                            Tournaments.start_date > currentTime),
-                        Tournaments.is_deleted == False,
-                        Tournaments.status == TournamentStatusTypesEnum.PUBLISHED.value)).group_by(
-            Tournaments.id).order_by(
-            Tournaments.start_date).all()
+            Tournaments.id == TeamParticipation.c.tournament_id
+        ).join(
+            Teams,
+            Tournaments.organizer_id == Teams.id
+        ).filter(
+            or_(
+                and_(
+                    Tournaments.start_date <= currentTime,
+                    Tournaments.end_date >= currentTime
+                ),
+                Tournaments.start_date > currentTime
+            ),
+            Tournaments.is_deleted == False,
+            Tournaments.status == TournamentStatusTypesEnum.PUBLISHED.value
+        ).group_by(
+            Tournaments.id
+        ).order_by(
+            Tournaments.start_date
+        ).all()
 
         return [{
             'id': tournament.id,
@@ -61,8 +66,52 @@ class TournamentRepository:
             'startDate': tournament.start_date.isoformat(),
             'endDate': tournament.end_date.isoformat(),
             'totalTeams': tournament.possible_space,
-            'registeredTeams': int(
-                tournament.registered_teams) if tournament.registered_teams else 0,
+            'registeredTeams': tournament.registered_teams or 0,
+            'location': tournament.location
+        } for tournament in tournaments]
+
+    @staticmethod
+    def getPastTournamentOverview() -> List[dict]:
+        """Get past tournament overview"""
+
+        TeamParticipation = aliased(participates_in)
+
+        tournaments = db.session.query(
+            Tournaments.id,
+            Tournaments.organizer_id,
+            Tournaments.name,
+            Tournaments.start_date,
+            Tournaments.end_date,
+            Teams.logo.label('logo'),
+            Tournaments.possible_space,
+            func.count(
+                TeamParticipation.c.team_id).label('registered_teams'),
+            Tournaments.location
+        ).outerjoin(
+            TeamParticipation,
+            Tournaments.id == TeamParticipation.c.tournament_id
+        ).join(
+            Teams,
+            Tournaments.organizer_id == Teams.id
+        ).filter(
+            Tournaments.is_deleted == False,
+            Tournaments.status == TournamentStatusTypesEnum.OVER.value
+        ).group_by(
+            Tournaments.id
+        ).order_by(
+            desc(
+                Tournaments.start_date
+            )
+        ).all()
+
+        return [{
+            'id': tournament.id,
+            'name': tournament.name,
+            'organizerLogo': tournament.logo,
+            'startDate': tournament.start_date.isoformat(),
+            'endDate': tournament.end_date.isoformat(),
+            'totalTeams': tournament.possible_space,
+            'registeredTeams': tournament.registered_teams or 0,
             'location': tournament.location
         } for tournament in tournaments]
 
@@ -82,7 +131,9 @@ class TournamentRepository:
         waitingTeams = []
 
         for team in tournament.teams:
-            participation = db.session.query(participates_in).filter(
+            participation = db.session.query(
+                participates_in
+            ).filter(
                 participates_in.c.team_id == team.id,
                 participates_in.c.tournament_id == tournament.id,
                 participates_in.c.is_deleted == False
