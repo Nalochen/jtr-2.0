@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -33,7 +33,8 @@ export class AppComponent {
 
   constructor(
     private readonly authService: AuthService,
-    private translate: TranslateService
+    private readonly translate: TranslateService,
+    private readonly router: Router
   ) {
     const savedLanguage = sessionStorage.getItem('language') || 'de';
     this.translate.setDefaultLang(savedLanguage);
@@ -47,6 +48,8 @@ export class AppComponent {
 
   public logout(): void {
     this.authService.logout();
+
+    this.router.navigate(['/']);
   }
 
   public switchLanguage(language: string) {

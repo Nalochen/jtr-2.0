@@ -56,6 +56,7 @@ def getUserPicture(userId) -> Response:
 @user_frontend.route('/is-admin-of-team/<teamId>',
                      methods=['GET'], endpoint='is-admin-of-team')
 @IsAdminOfTeamInputFilter.validate()
+@jwt_required()
 def isAdminOfTeam(teamId) -> Response:
     return IsAdminOfTeamHandler.handle()
 
@@ -63,6 +64,7 @@ def isAdminOfTeam(teamId) -> Response:
 @user_frontend.route('/is-admin-of-organizer/<tournamentId>',
                      methods=['GET'], endpoint='is-admin-of-organizer')
 @IsAdminOfOrganizerInputFilter.validate()
+@jwt_required()
 def isAdminOfOrganizer(tournamentId) -> Response:
     return IsAdminOfOrganizerHandler.handle()
 
