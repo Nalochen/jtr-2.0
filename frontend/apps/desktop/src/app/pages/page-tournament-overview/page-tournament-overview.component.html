@@ -3,3 +3,9 @@
 @for (tournament of tournaments$ | async; track tournament) {
 <tournament-row [tournament]="tournament" [isPreviousTournament]="false" />
 }
+
+<app-button
+  [color]="ButtonColorEnum.White"
+  [type]="ButtonTypeEnum.Raised"
+  (click)="navigateToPreviousTournaments()"
+>{{ 'to-previous-tournaments' | translate }}</app-button>

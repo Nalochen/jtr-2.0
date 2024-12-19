@@ -37,9 +37,9 @@ export class TournamentRowComponent {
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
-  constructor() {}
+  constructor(private readonly router: Router) {}
 
   public onDetailsClick(): void {
-    window.open(`tournament-details/${this.tournament.id}`, '_self');
+    this.router.navigate([`tournament-details/${this.tournament.id}`]);
   }
 }

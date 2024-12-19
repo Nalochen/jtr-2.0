@@ -26,8 +26,8 @@ import { PageTournamentOverviewComponent } from './pages/page-tournament-overvie
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
 import { SwaggerViewComponent } from './pages/swagger-view/swagger-view.component';
 import {
-  PagePreviousTournamentOverviewComponent
-} from './pages/page-previous-tournament-overview/page-previous-tournament-overview.component';
+  PageTournamentOverviewPreviousComponent
+} from './pages/page-tournament-overview-previous/page-tournament-overview-previous.component';
 
 export const appRoutes: Route[] = [
   {
@@ -67,7 +67,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'tournaments-overview/previous',
-    component: PagePreviousTournamentOverviewComponent,
+    component: PageTournamentOverviewPreviousComponent,
     resolve: {
       tournamentOverview: TournamentOverviewResolver,
     },

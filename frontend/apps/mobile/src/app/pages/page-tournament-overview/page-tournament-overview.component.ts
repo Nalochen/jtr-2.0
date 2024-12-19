@@ -10,19 +10,27 @@ import { TournamentOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { TranslatePipe } from '@ngx-translate/core';
-import { TournamentRowComponent } from '../../ui-shared';
+import { TournamentRowComponent, ButtonTypeEnum, ButtonColorEnum, ButtonComponent } from '../../ui-shared';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TournamentRowComponent, TranslatePipe],
+  imports: [CommonModule, TournamentRowComponent, TranslatePipe, ButtonComponent],
   templateUrl: './page-tournament-overview.component.html',
   styleUrl: './page-tournament-overview.component.less',
 })
 export class PageTournamentOverviewComponent {
-  constructor(private store$: Store) {}
+  public ButtonTypeEnum = ButtonTypeEnum;
+  public ButtonColorEnum = ButtonColorEnum;
+
+  constructor(private readonly store$: Store) {}
 
   @SingletonGetter()
   public get tournaments$(): Observable<TournamentOverviewData[]> {
     return this.store$.select(tournamentOverviewSelector);
+  }
+
+  public navigateToPreviousTournaments(): void {
+    window.open('tournaments-overview/previous', '_self');
   }
 }

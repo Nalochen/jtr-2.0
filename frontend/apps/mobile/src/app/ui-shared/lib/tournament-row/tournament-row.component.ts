@@ -11,6 +11,7 @@ import {
   DataContainerRowComponent,
   StatusIndicatorComponent
 } from '../../index';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'tournament-row',
