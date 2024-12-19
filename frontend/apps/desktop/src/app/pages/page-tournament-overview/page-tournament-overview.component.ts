@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -9,9 +10,8 @@ import { tournamentOverviewSelector } from '@jtr/business-domain/tournament';
 import { TournamentOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum,TournamentRowComponent } from '../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-import { ButtonComponent, TournamentRowComponent, ButtonColorEnum, ButtonTypeEnum } from '../../ui-shared';
-import { Router } from '@angular/router';
 
 @Component({
   standalone: true,

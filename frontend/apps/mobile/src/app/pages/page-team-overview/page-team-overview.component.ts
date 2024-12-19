@@ -2,11 +2,15 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+
 import { combineLatest, Observable, startWith } from 'rxjs';
+
 import { Store } from '@ngrx/store';
+
 import { teamOverviewSelector } from '@jtr/business-domain/team';
 import { TeamOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
+
 import { IconFieldComponent } from '../../ui-shared';
 import { TeamRowComponent } from './team-row/team-row.component';
 import { TranslatePipe } from '@ngx-translate/core';

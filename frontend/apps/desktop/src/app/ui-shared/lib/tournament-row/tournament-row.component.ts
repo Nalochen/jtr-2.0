@@ -1,5 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 import { MatIconButton } from '@angular/material/button';
 
@@ -12,7 +13,6 @@ import {
   DataContainerComponent,
 } from '../../index';
 import { StatusIndicatorComponent } from '../status-indicator/status-indicator.component';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'tournament-row',
