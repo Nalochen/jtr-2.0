@@ -1,0 +1,5 @@
+<h1>{{ 'previous-tournaments' | translate }}</h1>
+
+@for (tournament of tournaments$ | async; track tournament) {
+<tournament-row [tournament]="tournament" [isPreviousTournament]="true" />
+}

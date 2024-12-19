@@ -10,6 +10,7 @@ app-data-container {
     fit-content(150px);
   grid-template-rows: auto;
   grid-column-gap: 16px;
+  width: 100%;
 }
 
 img {
@@ -19,8 +20,7 @@ img {
 
 h2 {
   grid-area: name;
-  font-weight: bold;
-  align-self: center;
+  text-align: start;
 }
 
 .date {
@@ -58,11 +58,11 @@ h2 {
   color: @color-button-positive !important;
 }
 
-button {
-  justify-self: flex-start;
-  display: flex;
-  align-items: center;
-  width: fit-content;
-  padding: 0;
-  height: 24px;
+app-button:hover {
+  cursor: pointer;
+}
+
+.button-text:hover {
+  color: @color-blue;
+  text-decoration: underline;
 }
