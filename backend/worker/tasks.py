@@ -12,15 +12,13 @@ from .Model.SendMailTaskBody import SendMailTaskBody
 
 celery = Celery(
     os.getenv('CELERY_APP_NAME'),
-    broker=os.getenv('CELERY_BROKER_URL', 'amqp://guest:guest@localhost:5672'),
-    backend=os.getenv('CELERY_RESULT_BACKEND', 'rpc://'))
+    broker=os.getenv('CELERY_BROKER_URL'),
+    backend=os.getenv('CELERY_RESULT_BACKEND'))
 
 pymysql.install_as_MySQLdb()
 
 engine = create_engine(
-    os.getenv(
-        'DATABASE_URL',
-        'mysql+pymysql://user:password@localhost:3307/jtr'),
+    os.getenv('DATABASE_URL'),
     echo=True)
 
 db = scoped_session(sessionmaker(bind=engine))
