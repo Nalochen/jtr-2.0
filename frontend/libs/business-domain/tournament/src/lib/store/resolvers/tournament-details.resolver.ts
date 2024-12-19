@@ -11,13 +11,13 @@ import { loadTournamentDetailsData } from '@jtr/business-domain/tournament';
   providedIn: 'root',
 })
 export class TournamentDetailsResolver implements Resolve<boolean> {
-  constructor(private store: Store) {}
+  constructor(private store$: Store) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
     const tournamentId = route.paramMap.get('tournamentId');
 
     if (tournamentId) {
-      this.store.dispatch(
+      this.store$.dispatch(
         loadTournamentDetailsData({ tournamentId: +tournamentId })
       );
     }

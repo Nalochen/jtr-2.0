@@ -11,13 +11,13 @@ import { loadTeamDetailsData } from '@jtr/business-domain/team';
   providedIn: 'root',
 })
 export class ManageTeamDetailsResolver implements Resolve<boolean> {
-  constructor(private store: Store) {}
+  constructor(private store$: Store) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
     const teamId = route.paramMap.get('teamId');
 
     if (teamId) {
-      this.store.dispatch(loadTeamDetailsData({ teamId: +teamId }));
+      this.store$.dispatch(loadTeamDetailsData({ teamId: +teamId }));
     }
 
     return new Observable<boolean>((observer) => {

@@ -2,4 +2,4 @@
 
 cd /home/frontend
 
-nx build desktop
+npm run build:desktop

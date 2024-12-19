@@ -10,3 +10,4 @@ export * from './lib/info-button/info-button.component';
 export * from './lib/team/team.component';
 export * from './lib/editor/editor.component';
 export * from './lib/visibility-button/visibility-button.component';
+export * from './lib/icon-field/icon-field.component';

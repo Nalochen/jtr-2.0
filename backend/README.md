@@ -3,20 +3,20 @@
 ## Docker
 
 ```sh
-docker exec -it backend /bin/sh
+docker exec -it jtr /bin/sh
 ```
 
 ## Testing
     
 ```sh
-docker exec backend pytest
+docker exec jtr be-test
 ```
 
 
 ## Code Style
 
 ```sh
-find ./backend -name '*.py' -not -path './backend/venv/*' -not -path './backend/worker/venv/*' -exec autopep8 --in-place --aggressive --aggressive {} \;
+docker exec jtr be-format
 ```
 
 

@@ -29,6 +29,12 @@ class LoginUserHandler:
 
         user = UserRepository.getUserByUsernameOrEmail(username, email)
 
+        if user is None:
+            return Response(
+                response='Falsche Anmeldedaten.',
+                status=401
+            )
+
         # Check if user is locked
         if LoginAttemptRepository.isLocked(user.username):
             loginAttemptData = LoginAttemptRepository.checkForFailedAttempts(
@@ -46,7 +52,7 @@ class LoginUserHandler:
             )
 
         # Verify password
-        if user and check_password_hash(user.password_hash, password):
+        if check_password_hash(user.password_hash, password):
             accessToken = create_access_token(
                 identity=user.id
             )
@@ -59,10 +65,9 @@ class LoginUserHandler:
             )
 
         # Create/Increase failed attempts
-        loginAttemptResponse = LoginAttemptRepository(
-        ).getDataOrCreateLoginAttempt(user.username)
+        LoginAttemptRepository().createOrIncreaseAttempts(user.username)
 
         return Response(
-            response=loginAttemptResponse,
+            response='Falsche Anmeldedaten.',
             status=401
         )

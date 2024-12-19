@@ -5,7 +5,7 @@ Content-Type: application/json
 Authorization: Bearer {{jwtToken}}
 
 {
-  "birthdate": "1990-12-19T00:00:00",
+  "birthdate": "1990-12-19",
   "city": "Berlin",
   "email": "joseph12435@gmail.de",
   "name": "Joseph"

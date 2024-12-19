@@ -1,1 +1,17 @@
-<h1>Works</h1>
+<h1>{{ 'teams' | translate }}</h1>
+
+<app-icon-field>
+  <input
+    ngProjectAs="input"
+    type="text"
+    placeholder="{{ 'search' | translate }}"
+    [formControl]="searchForm"
+  >
+  <span ngProjectAs="icon" class="material-icons-outlined">search</span>
+</app-icon-field>
+
+@for (team of dataSource; track team.id) {
+<team-row
+  [team]="team"
+/>
+}

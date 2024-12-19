@@ -2,4 +2,4 @@
 
 cd /home/frontend
 
-nx format:write
+npm run nx format:write
