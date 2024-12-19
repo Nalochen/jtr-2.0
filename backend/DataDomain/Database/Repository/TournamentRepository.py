@@ -74,6 +74,8 @@ class TournamentRepository:
     def getPastTournamentOverview() -> List[dict]:
         """Get past tournament overview"""
 
+        currentTime = datetime.now()
+
         TeamParticipation = aliased(participates_in)
 
         tournaments = db.session.query(
@@ -94,8 +96,8 @@ class TournamentRepository:
             Teams,
             Tournaments.organizer_id == Teams.id
         ).filter(
-            Tournaments.is_deleted == False,
-            Tournaments.status == TournamentStatusTypesEnum.OVER.value
+            Tournaments.end_date < currentTime,
+            Tournaments.is_deleted == False
         ).group_by(
             Tournaments.id
         ).order_by(
