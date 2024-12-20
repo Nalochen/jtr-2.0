@@ -11,6 +11,9 @@ import {
 } from '@jtr/business-domain/tournament';
 import { UserDetailsResolver } from '@jtr/business-domain/user';
 
+import { TeamGuard } from './business-rules/guards/team.guard';
+import { TournamentGuard } from './business-rules/guards/tournament.guard';
+
 import { PageCreateTournamentComponent } from './pages/page-create-tournament/page-create-tournament.component';
 import { PageEnterResultsComponent } from './pages/page-enter-results/page-enter-results.component';
 import { PageManageParticipatingTeamsComponent } from './pages/page-manage-participating-teams/page-manage-participating-teams.component';
@@ -40,6 +43,7 @@ export const appRoutes: Route[] = [
     resolve: {
       manageTeamDetails: ManageTeamDetailsResolver,
     },
+    canActivate: [TeamGuard],
   },
   {
     path: 'teams-overview',
@@ -72,6 +76,7 @@ export const appRoutes: Route[] = [
     resolve: {
       tournamentDetails: TournamentDetailsResolver,
     },
+    canActivate: [TournamentGuard],
   },
   {
     path: 'manage-tournament/:tournamentId',
@@ -79,6 +84,7 @@ export const appRoutes: Route[] = [
     resolve: {
       tournamentDetails: TournamentDetailsResolver,
     },
+    canActivate: [TournamentGuard],
   },
   {
     path: 'manage-tournament/enter-results/:tournamentId',
@@ -86,6 +92,7 @@ export const appRoutes: Route[] = [
     resolve: {
       tournamentDetails: TournamentDetailsResolver,
     },
+    canActivate: [TournamentGuard],
   },
   {
     path: 'manage-tournament/participating-teams/:tournamentId',
@@ -94,6 +101,7 @@ export const appRoutes: Route[] = [
       tournamentDetails: TournamentDetailsResolver,
       teamDetails: TeamOverviewResolver,
     },
+    canActivate: [TournamentGuard],
   },
   {
     path: 'register',
