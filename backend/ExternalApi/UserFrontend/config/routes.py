@@ -1,4 +1,4 @@
-from flask import Blueprint, current_app
+from flask import Blueprint
 from flask_jwt_extended import jwt_required
 
 from DataDomain.Model.Response import Response
@@ -10,6 +10,7 @@ from ExternalApi.UserFrontend.Handler.GetUserPictureHandler import GetUserPictur
 from ExternalApi.UserFrontend.Handler.IsAdminOnOrganizerHandler import IsAdminOfOrganizerHandler
 from ExternalApi.UserFrontend.Handler.IsAdminOnTeamHandler import IsAdminOfTeamHandler
 from ExternalApi.UserFrontend.Handler.LoginUserHandler import LoginUserHandler
+from ExternalApi.UserFrontend.Handler.SendMailHandler import SendMailHandler
 from ExternalApi.UserFrontend.Handler.UpdateUserHandler import UpdateUserHandler
 from ExternalApi.UserFrontend.Handler.UpdateUserPictureHandler import UpdateUserPictureHandler
 from ExternalApi.UserFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
@@ -98,6 +99,11 @@ def login() -> Response:
 @limiter.limit("2 per minute")
 def register() -> Response:
     return CreateUserHandler.handle()
+
+
+@user_frontend.route('/send', methods=['POST'], endpoint='send')
+def send() -> Response:
+    return SendMailHandler.handle()
 
 
 @user_frontend.route('/delete-user',

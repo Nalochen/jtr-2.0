@@ -6,21 +6,22 @@ set -x # Print commands and their arguments as they are executed.
 set -e # Exit immediately if a command exits with a non-zero status.
 set -u # Exit immediately if a variable is not defined.
 
-export FLASK_ENV='testing'
 export CACHE_REDIS_HOST='localhost'
 export CACHE_REDIS_PORT='6379'
 export CELERY_APP_NAME='tasks'
 export CELERY_BROKER_NAME='worker'
-export CELERY_BROKER_URL='amqp://admin:mypass@localhost:5672'
+export CELERY_BROKER_URL='amqp://guest:guest@localhost:5672'
 export CELERY_RESULT_BACKEND='rpc://'
 export DATABASE_URL='sqlite:///test.db'
-export MAIL_SERVER='localhost'
-export MAIL_PORT='1025'
-export MAIL_USE_TLS='False'
-export MAIL_USE_SSL='False'
-export MAIL_USERNAME=None
-export MAIL_PASSWORD=None
+export FLASK_ENV='testing'
+export GENERATE_TEST_DATA=True
 export MAIL_DEFAULT_SENDER='jtr@localhost'
+export MAIL_PASSWORD=None
+export MAIL_PORT='1025'
+export MAIL_SERVER='localhost'
+export MAIL_USE_SSL='False'
+export MAIL_USE_TLS='False'
+export MAIL_USERNAME=None
 export MYSQL_DATABASE='jtr'
 export MYSQL_PASSWORD='password'
 export MYSQL_ROOT_PASSWORD='password'

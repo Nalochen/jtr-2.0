@@ -1,8 +1,8 @@
 from flask_mail import Message
 
-from worker.MailConfig import mail
-from worker.Model.SendMailTaskBody import SendMailTaskBody
-from worker.tasks import logger
+from ..MailConfig import mail
+from ..Model.SendMailTaskBody import SendMailTaskBody
+from ..config.logger import logger
 
 
 class SendMailHandler:

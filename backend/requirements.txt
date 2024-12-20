@@ -7,6 +7,7 @@ flask_caching
 flask_cors
 flask_jwt_extended
 flask_limiter
+flask_mail
 flask_migrate
 flask_sqlalchemy
 flask_talisman

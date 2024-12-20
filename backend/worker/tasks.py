@@ -5,12 +5,10 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 import pymysql
 
 from celery import Celery
-from celery.utils.log import get_task_logger
 
-from worker.Handler.SendMailHandler import SendMailHandler
-from worker.Model.SendMailTaskBody import SendMailTaskBody
+from .Handler.SendMailHandler import SendMailHandler
+from .Model.SendMailTaskBody import SendMailTaskBody
 
-logger = get_task_logger(__name__)
 
 celery = Celery(
     os.getenv('CELERY_APP_NAME'),

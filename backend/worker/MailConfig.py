@@ -6,7 +6,7 @@ class MailConfig:
     """Mail configuration"""
 
     MAIL_SERVER = os.getenv('MAIL_SERVER')
-    MAIL_PORT = int(os.getenv('MAIL_PORT'))
+    MAIL_PORT = int(os.getenv('MAIL_PORT', '1025'))
     MAIL_USE_TLS = bool(os.getenv('MAIL_USE_TLS'))
     MAIL_USE_SSL = bool(os.getenv('MAIL_USE_SSL'))
     MAIL_USERNAME = os.getenv('MAIL_USERNAME')
