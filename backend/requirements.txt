@@ -12,6 +12,7 @@ flask_migrate
 flask_sqlalchemy
 flask_talisman
 gunicorn
+pillow
 pipreqs
 pymysql
 pytest

@@ -1,8 +1,0 @@
-### Creates a new user
-POST https://{{host}}/api/customer-frontend/send
-
-> {%
-    client.test("It should return a successful status code", function() {
-        client.assert(response.status === 200, "Response status is not 200");
-    });
-%}

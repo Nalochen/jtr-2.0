@@ -12,6 +12,11 @@ export const userDetailsSelector = createSelector(
   (state: UserDetailsState) => state.userDetails
 );
 
+export const userDetailsIdSelector = createSelector(
+  userDetailsStateSelector,
+  (state: UserDetailsState) => state.userDetails?.id
+);
+
 export const userDetailsNameSelector = createSelector(
   userDetailsStateSelector,
   (state: UserDetailsState) => state.userDetails?.name

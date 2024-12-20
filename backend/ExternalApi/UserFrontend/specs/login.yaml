@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/user-frontend/login:
+    post:
+      summary: Logs user in
+      description: Returns the JWT access token for the user session.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequestBody'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponseBody'
+
+        '404':
+          description: User not Found
+
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    LoginRequestBody:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    LoginResponseBody:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOifghjkgfdsfghj
