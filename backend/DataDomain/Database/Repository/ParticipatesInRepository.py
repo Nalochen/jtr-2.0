@@ -179,3 +179,16 @@ class ParticipatesInRepository:
             db.session.rollback()
             logger.error(f'ParticipatesInRepository | createResult | {e}')
             raise e
+
+    @staticmethod
+    def allPlacementsSet(tournamentId: int) -> bool:
+        """Check if all participates_in entries for a tournament have a placement set"""
+
+        count = db.session.query(
+            func.count(participates_in.c.team_id)
+        ).filter(
+            participates_in.c.tournament_id == tournamentId,
+            participates_in.c.placement is None
+        ).scalar()
+
+        return count == 0
