@@ -60,6 +60,7 @@ export class PageManageTeamDetailsComponent implements OnInit, OnDestroy {
         return;
       }
 
+      this.form.controls.id.setValue(team?.id);
       this.form.controls.aboutUs.setValue(team?.aboutUs);
       this.form.controls.city.setValue(team?.city);
       team?.contacts.forEach((contact) => {
@@ -67,7 +68,6 @@ export class PageManageTeamDetailsComponent implements OnInit, OnDestroy {
       });
       this.form.controls.contacts.setValue(team?.contacts);
       this.form.controls.isMixTeam.setValue(team?.isMixTeam);
-      this.form.controls.logo.setValue(team?.logo);
 
       team?.members.forEach((member) => {
         this.form.controls.members.value.push({

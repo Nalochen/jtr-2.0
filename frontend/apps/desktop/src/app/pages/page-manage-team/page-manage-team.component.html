@@ -1,7 +1,10 @@
-<div [formGroup]="form" class="form-group">
-  <team-header [form]="form" />
+@let team = team$ | async;
 
-  <p class="small-text" *ngIf="team$ | async as team">
+<div [formGroup]="form" class="form-group">
+  <team-header [form]="form" [teamId]="team?.id" />
+
+  @if (team) {
+  <p class="small-text">
     {{ 'page-manage-team.founded' | translate }}:
     {{ team.founded | date : 'dd.MM.yyyy' }}
   </p>
@@ -11,6 +14,7 @@
       <p>{{ 'page-manage-team.information-usage-text' | translate }}</p>
     </app-info-button>
   </div>
+  }
 
   <section class="content">
     <team-information [form]="form" />
