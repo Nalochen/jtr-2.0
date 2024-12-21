@@ -1,23 +1,30 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  Input,
-  OnDestroy,
-  OnInit,
 } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { Subject, takeUntil } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 
-import { EditTeamForm } from '@jtr/business-domain/team';
+import { teamDetailsSelector } from '@jtr/business-domain/team';
 
 import {
+  ButtonComponent,
   DataContainerComponent,
   DataContainerRowComponent,
+  ButtonColorEnum,
+  ButtonTypeEnum
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
+import { TeamData, TournamentTeamData, UserOverviewData } from '@jtr/data-domain/store';
+import { Store } from '@ngrx/store';
+import { DialogModule } from 'primeng/dialog';
+import { userOverviewSelector } from '@jtr/business-domain/user';
+import { DropdownModule } from 'primeng/dropdown';
+import { map } from 'rxjs/operators';
+import { concatLatestFrom } from '@ngrx/operators';
 
 @Component({
   selector: 'team-members',
@@ -29,26 +36,52 @@ import { TranslatePipe } from '@ngx-translate/core';
     DataContainerRowComponent,
     ReactiveFormsModule,
     TranslatePipe,
+    ButtonComponent,
+    DialogModule,
+    DropdownModule,
+    FormsModule
   ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamMembersComponent implements OnInit, OnDestroy {
-  @Input() public form!: FormGroup<EditTeamForm>;
+export class TeamMembersComponent {
+  protected readonly ButtonColorEnum = ButtonColorEnum;
+  protected readonly ButtonTypeEnum = ButtonTypeEnum;
+  protected isAddMemberOverlayVisible = false;
+  protected selectedUser: UserOverviewData | null = null;
+  protected possibleUsers: UserOverviewData[] = [];
 
-  private readonly destroy$ = new Subject<void>();
-
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
-
-  public ngOnInit(): void {
-    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.changeDetectorRef.markForCheck();
+  constructor(private readonly store$: Store) {
+    this.users$.pipe(
+      concatLatestFrom(() => this.team$),
+    ).subscribe(([users, team]) => {
+      if (users && team) {
+        this.possibleUsers = users.filter(user => !team.members.some(member => member.id === user.id));
+      }
     });
   }
 
-  public ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+  @SingletonGetter()
+  public get team$(): Observable<TeamData | null> {
+    return this.store$.select(teamDetailsSelector);
+  }
+
+  @SingletonGetter()
+  public get users$(): Observable<UserOverviewData[] | null> {
+    return this.store$.select(userOverviewSelector);
+  }
+
+  public onAddMember() {
+    //add Member to team
+    //Seite neu laden
+  }
+
+  public openAddMemberOverlay() {
+    this.isAddMemberOverlayVisible = true;
+  }
+
+  public closeAddMemberOverlay() {
+    this.isAddMemberOverlayVisible = false;
   }
 }

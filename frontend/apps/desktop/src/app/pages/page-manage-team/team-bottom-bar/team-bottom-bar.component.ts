@@ -16,23 +16,24 @@ import { Router } from '@angular/router';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 import { TeamData } from '@jtr/data-domain/store';
 import { Store } from '@ngrx/store';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'team-bottom-bar',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, ButtonComponent, TranslatePipe],
+  imports: [CommonModule, NgOptimizedImage, ButtonComponent, TranslatePipe, DialogModule],
   templateUrl: './team-bottom-bar.component.html',
   styleUrl: './team-bottom-bar.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    TeamService,
-    TeamDataService,
+    TeamDataService, TeamService
   ]
 })
 export class TeamBottomBarComponent {
   @Input() public form!: FormGroup<EditTeamForm>;
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
+  protected isDeleteDialogVisible = false;
 
   @SingletonGetter()
   public get team$(): Observable<TeamData | null> {
@@ -45,6 +46,10 @@ export class TeamBottomBarComponent {
     private readonly router: Router,
     private readonly store$: Store
   ) {}
+
+  public onOpenDeleteDialog() {
+    this.isDeleteDialogVisible = true;
+  }
 
   public async onDeleteTeam() {
     const teamId = (await firstValueFrom(this.team$))!.id;
