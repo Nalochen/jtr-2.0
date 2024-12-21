@@ -12,7 +12,7 @@ services:
     volumes:
       - mysql_db_data:/var/lib/mysql
     ports:
-      - "3307:3306"
+      - "3306:3306"
     networks:
       - backend_network
 
@@ -48,9 +48,8 @@ services:
       CELERY_RESULT_BACKEND: 'rpc://'
       DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
       MAIL_SERVER: 'localhost'
-      MAIL_PORT: '1025'
-      MAIL_USE_TLS: 'False'
-      MAIL_USE_SSL: 'False'
+      MAIL_PORT: '25'
+      MAIL_USE_TLS: 'True'
       MAIL_USERNAME: None
       MAIL_PASSWORD: None
     depends_on:
@@ -79,7 +78,7 @@ services:
       - ./nginx:/nginx
       - docker/production/assets:/app/DataDomain/assets
     ports:
-      - "5001:5001"
+      - "6000:6000"
     depends_on:
       - mysql
       - redis

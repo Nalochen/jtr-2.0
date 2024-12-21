@@ -1,5 +1,3 @@
-aiosmtpd
 celery
-flask_mail
 pymysql
 sqlalchemy

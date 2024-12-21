@@ -1,6 +1,5 @@
 import os
 
-from celery import Celery
 from flask import Flask
 
 from flask_jwt_extended import JWTManager
@@ -61,10 +60,5 @@ redis = Redis(
     host=app.config['CACHE_REDIS_HOST'],
     port=app.config['CACHE_REDIS_PORT'],
     db=app.config['CACHE_REDIS_DB'])
-
-celery = Celery(
-    host=app.config['CELERY_BROKER_NAME'],
-    broker=app.config['CELERY_BROKER_URL'],
-    backend=app.config['CELERY_RESULT_BACKEND'])
 
 limiter.init_app(app)

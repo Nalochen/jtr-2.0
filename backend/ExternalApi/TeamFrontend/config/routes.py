@@ -47,7 +47,7 @@ def updateTeam() -> Response:
                      methods=['POST'], endpoint='create-team')
 @jwt_required()
 @CreateTeamInputFilter.validate()
-@limiter.limit("2 per minute")
+@limiter.limit('2 per minute')
 def createTeam() -> Response:
     return CreateTeamHandler.handle()
 

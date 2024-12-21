@@ -14,6 +14,6 @@ RUN chmod +x /opt/scripts/entrypoint.sh
 
 ENV PYTHONPATH=/app
 
-EXPOSE 5001
+EXPOSE 6000
 
 CMD ["/opt/scripts/entrypoint.sh"]

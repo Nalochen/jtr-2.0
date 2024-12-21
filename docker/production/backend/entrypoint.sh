@@ -7,4 +7,4 @@ done
 echo "MySQL started"
 
 # Starte die Anwendung mit Gunicorn
-exec gunicorn --certfile=/nginx/nginx.crt --keyfile=/nginx/nginx.key -b 0.0.0.0:5001 wsgi:app
+exec gunicorn --certfile=/nginx/nginx.crt --keyfile=/nginx/nginx.key -b 0.0.0.0:6000 wsgi:app

@@ -82,21 +82,21 @@ def updateUser() -> Response:
                      methods=['PUT'], endpoint='update-user-picture')
 @jwt_required()
 @UpdateUserPictureInputFilter.validate()
-@limiter.limit("3 per minute")
+@limiter.limit('3 per minute')
 def updateUserPicture() -> Response:
     return UpdateUserPictureHandler().handle()
 
 
 @user_frontend.route('/login', methods=['POST'], endpoint='login')
 @LoginUserInputFilter.validate()
-@limiter.limit("5 per minute")
+@limiter.limit('5 per minute')
 def login() -> Response:
     return LoginUserHandler.handle()
 
 
 @user_frontend.route('/register', methods=['POST'], endpoint='register')
 @CreateUserInputFilter.validate()
-@limiter.limit("2 per minute")
+@limiter.limit('2 per minute')
 def register() -> Response:
     return CreateUserHandler.handle()
 
