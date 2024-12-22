@@ -76,7 +76,7 @@ services:
       GENERATE_TEST_DATA: True
     volumes:
       - ./nginx:/nginx
-      - docker/production/assets:/app/DataDomain/assets
+      - ./assets:/app/DataDomain/assets
     ports:
       - "6000:6000"
     depends_on:
