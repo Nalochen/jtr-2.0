@@ -42,6 +42,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     InfoButtonComponent,
     ReactiveFormsModule,
     VisibilityButtonComponent,
+    PageManageUserDetailsHeaderComponent,
   ],
   templateUrl: './page-manage-user-details.component.html',
   styleUrl: './page-manage-user-details.component.less',

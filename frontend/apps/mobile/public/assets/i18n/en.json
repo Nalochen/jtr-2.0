@@ -1,6 +1,10 @@
 {
   "tournament-details": "Tournament Details",
   "tournaments": "Tournaments",
+  "previous-tournaments": "Previous Tournaments",
+  "to-previous-tournaments": "To Previous Tournaments",
+  "teams": "Teams",
+  "search": "Search",
   "participated-tournaments": "Participated Tournaments",
   "page-tournament-details": {
     "collapse-all": "Close all",

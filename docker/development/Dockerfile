@@ -16,8 +16,8 @@ RUN apt-get update && \
         rabbitmq-server \
         redis-server \
         sudo \
-        npm \
-        git && \
+        vim \
+        npm && \
     rm -rf /var/lib/apt/lists/*
 
 RUN rabbitmq-plugins enable rabbitmq_management

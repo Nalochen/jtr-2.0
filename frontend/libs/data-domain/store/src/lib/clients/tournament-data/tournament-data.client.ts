@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { TournamentData } from './tournament-data.response';
 
-const ENDPOINT = '/api/customer-frontend/get-tournament-details/';
+const ENDPOINT = '/api/tournament-frontend/get-tournament-details/';
 
 @Injectable({
   providedIn: 'root',

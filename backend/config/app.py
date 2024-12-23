@@ -1,3 +1,5 @@
+import os
+
 from celery import Celery
 from flask import Flask
 
@@ -7,7 +9,9 @@ from flask_talisman import Talisman
 from redis import Redis
 
 from DataDomain.Database.db import db
-from ExternalApi.CustomerFrontend.config.routes import customer_frontend
+from ExternalApi.TeamFrontend.config.routes import team_frontend
+from ExternalApi.TournamentFrontend.config.routes import tournament_frontend
+from ExternalApi.UserFrontend.config.routes import user_frontend
 from ExternalApi.System.config.routes import system
 from config.cache import cache
 from config.config import Config
@@ -20,15 +24,24 @@ def createApp() -> Flask:
     app = Flask(__name__)
     Config.init_app(app)
 
-    app.register_blueprint(customer_frontend,
-                           url_prefix='/api/customer-frontend')
+    app.register_blueprint(team_frontend,
+                           url_prefix='/api/team-frontend')
+    app.register_blueprint(tournament_frontend,
+                           url_prefix='/api/tournament-frontend')
+    app.register_blueprint(user_frontend,
+                           url_prefix='/api/user-frontend')
     app.register_blueprint(system, url_prefix='/api/system')
 
     cache.init_app(app)
 
     db.init_app(app)
 
-    Migrate(app, db, directory=f'{app.config['DATABASE_PATH']}/Migration')
+    Migrate(
+        app,
+        db,
+        directory=os.path.join(
+            app.config['DATABASE_PATH'],
+            'Migration'))
 
     Talisman(app, content_security_policy={
         'default-src': ["'self'"],

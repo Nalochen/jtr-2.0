@@ -1,0 +1,23 @@
+### Create a team
+### Execute ExternalApi/specs/requests/000-Authorization.http before using this!
+POST https://{{host}}/api/team-frontend/create-team
+Content-Type: application/json
+Authorization: Bearer {{jwtToken}}
+
+{
+  "name": "Team 2",
+  "city": "Hamburg",
+  "isMixTeam": false,
+  "trainingTime": "Montags 10 Uhr",
+  "aboutUs": "Lorem ipsum",
+  "contacts": [
+    "Contact 3",
+    "Contact 4"
+  ]
+}
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

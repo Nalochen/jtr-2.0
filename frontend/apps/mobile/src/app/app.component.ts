@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
@@ -36,7 +36,10 @@ export class AppComponent {
   public readonly ButtonColorEnum = ButtonColorEnum;
   public readonly ButtonTypeEnum = ButtonTypeEnum;
 
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router
+  ) {}
 
   @SingletonGetter()
   public get isLoggedIn$(): Observable<boolean> {
@@ -55,5 +58,7 @@ export class AppComponent {
 
   public logout(): void {
     this.authService.logout();
+
+    this.router.navigate(['/']);
   }
 }

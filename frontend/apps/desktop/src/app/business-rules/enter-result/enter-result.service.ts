@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-const CREATE_RESULT_ENDPOINT = '/api/customer-frontend/create-result';
+const CREATE_RESULT_ENDPOINT = '/api/tournament-frontend/create-result';
 
 export interface EnterResultRequestBodyElement {
   teamId: number;

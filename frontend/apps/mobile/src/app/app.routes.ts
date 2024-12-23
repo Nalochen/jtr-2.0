@@ -11,6 +11,9 @@ import {
 } from '@jtr/business-domain/tournament';
 import { UserDetailsResolver } from '@jtr/business-domain/user';
 
+import { TeamGuard } from './business-rules/guards/team.guard';
+import { TournamentGuard } from './business-rules/guards/tournament.guard';
+
 import { PageCreateTournamentComponent } from './pages/page-create-tournament/page-create-tournament.component';
 import { PageEnterResultsComponent } from './pages/page-enter-results/page-enter-results.component';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
@@ -23,6 +26,9 @@ import { PageTeamDetailsComponent } from './pages/page-team-details/page-team-de
 import { PageTeamOverviewComponent } from './pages/page-team-overview/page-team-overview.component';
 import { PageTournamentDetailsComponent } from './pages/page-tournament-details/page-tournament-details.component';
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
+import {
+  PageTournamentOverviewPreviousComponent
+} from './pages/page-tournament-overview-previous/page-tournament-overview-previous.component';
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
 
 export const appRoutes: Route[] = [
@@ -39,9 +45,10 @@ export const appRoutes: Route[] = [
     resolve: {
       manageTeamDetails: ManageTeamDetailsResolver,
     },
+    canActivate: [TeamGuard],
   },
   {
-    path: 'team-overview',
+    path: 'teams-overview',
     component: PageTeamOverviewComponent,
     resolve: {
       teamDetails: TeamOverviewResolver,
@@ -62,6 +69,13 @@ export const appRoutes: Route[] = [
     },
   },
   {
+    path: 'tournaments-overview/previous',
+    component: PageTournamentOverviewPreviousComponent,
+    resolve: {
+      tournamentOverview: TournamentOverviewResolver,
+    },
+  },
+  {
     path: 'create-tournament/tournament-information',
     component: PageCreateTournamentComponent,
   },
@@ -71,6 +85,7 @@ export const appRoutes: Route[] = [
     resolve: {
       tournamentDetails: TournamentDetailsResolver,
     },
+    canActivate: [TournamentGuard],
   },
   {
     path: 'manage-tournament/:tournamentId',
@@ -78,6 +93,7 @@ export const appRoutes: Route[] = [
     resolve: {
       tournamentDetails: TournamentDetailsResolver,
     },
+    canActivate: [TournamentGuard],
   },
   {
     path: 'manage-tournament/enter-results/:tournamentId',
@@ -85,6 +101,7 @@ export const appRoutes: Route[] = [
     resolve: {
       tournamentDetails: TournamentDetailsResolver,
     },
+    canActivate: [TournamentGuard],
   },
   {
     path: 'manage-tournament/participating-teams/:tournamentId',
@@ -93,6 +110,7 @@ export const appRoutes: Route[] = [
       tournamentDetails: TournamentDetailsResolver,
       teamDetails: TeamOverviewResolver,
     },
+    canActivate: [TournamentGuard],
   },
   {
     path: 'register',

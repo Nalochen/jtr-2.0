@@ -1,4 +1,8 @@
-<page-manage-user-details-header [form]="form" [isLoggedIn$]="isLoggedIn$" />
+<page-manage-user-details-header
+  [form]="form"
+  [isLoggedIn$]="isLoggedIn$"
+  [userId]="(user$ | async)?.id"
+/>
 
 <div class="content">
   <form [formGroup]="form">

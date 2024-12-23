@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/user-frontend/get-user-overview:
+    get:
+      summary: Get user overview
+      operationId: getUserOverview
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserOverviewResponseBody'
+
+components:
+  schemas:
+    UserOverviewResponseBody:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        name:
+          type: string
+        birthdate:
+          type: string
+          format: date
+        picture:
+          type: string
+        pronouns:
+          type: string
+        city:
+          type: string
+        email:
+          type: string
