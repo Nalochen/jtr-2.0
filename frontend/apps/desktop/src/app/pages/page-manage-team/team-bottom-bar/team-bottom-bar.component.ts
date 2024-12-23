@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { EditTeamForm, TeamDataService, teamDetailsSelector } from '@jtr/business-domain/team';
 
@@ -65,6 +65,7 @@ export class TeamBottomBarComponent {
 
   public async onSaveTeam() {
     if (this.form.invalid) {
+      this.markAllFieldsAsTouched(this.form);
       return;
     }
 
@@ -83,5 +84,14 @@ export class TeamBottomBarComponent {
     );
 
     await this.teamDataService.reloadTeamDetails();
+  }
+
+  private markAllFieldsAsTouched(form: FormGroup): void {
+    Object.keys(form.controls).forEach((field) => {
+      const control = form.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      }
+    });
   }
 }

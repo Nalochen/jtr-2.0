@@ -1,8 +1,8 @@
-{
+module.exports = {
   "/api": {
     "target": "https://localhost:5001",
-    "secure": true,
+    "secure": false,
     "logLevel": "debug",
-    "changeOrigin": true
-  }
-}
+    "changeOrigin": true,
+  },
+};

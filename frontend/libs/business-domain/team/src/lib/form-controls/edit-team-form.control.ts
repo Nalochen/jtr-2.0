@@ -1,4 +1,12 @@
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from '@angular/forms';
 
 import { UserRole } from '@jtr/data-domain/store';
 
@@ -8,10 +16,9 @@ export const editTeamForm = new FormGroup<EditTeamForm>({
   city: new FormControl('', {nonNullable: true}),
   contacts: new FormArray<FormControl<string | null>>([]),
   isMixTeam: new FormControl(false, {nonNullable: true, validators: [Validators.required]}),
-  members: new FormArray<FormControl<TeamUserDataForm>>([]),
   name: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
   trainingTime: new FormControl('', {nonNullable: false}),
-});
+}, {validators: mixteamOrCityValidator()});
 
 export type EditTeamForm = {
   id: FormControl<number | null>;
@@ -19,7 +26,6 @@ export type EditTeamForm = {
   city: FormControl<string | null>;
   contacts: FormArray<FormControl<string | null>>;
   isMixTeam: FormControl<boolean | null>;
-  members: FormArray<FormControl<TeamUserDataForm>>;
   name: FormControl<string | null>;
   trainingTime: FormControl<string | null>;
 };
@@ -29,3 +35,16 @@ export type TeamUserDataForm = {
   name: FormControl<string | null>;
   role: FormControl<UserRole | null>;
 };
+
+export function mixteamOrCityValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const isMixTeam = control.get('isMixTeam')?.value;
+    const city = control.get('city')?.value;
+
+    if (!isMixTeam && !city) {
+      return {mixteamOrCityRequired: true};
+    }
+
+    return null;
+  };
+}

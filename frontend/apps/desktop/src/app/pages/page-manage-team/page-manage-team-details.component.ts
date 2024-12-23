@@ -69,14 +69,6 @@ export class PageManageTeamDetailsComponent implements OnInit, OnDestroy {
       this.form.controls.contacts.setValue(team?.contacts);
       this.form.controls.isMixTeam.setValue(team?.isMixTeam);
 
-      team?.members.forEach((member) => {
-        this.form.controls.members.value.push({
-          id: new FormControl(member.id),
-          name: new FormControl(member.name),
-          role: new FormControl(member.role),
-        });
-      });
-
       this.form.controls.name.setValue(team?.name);
       this.form.controls.trainingTime.setValue(team?.trainingTime);
 

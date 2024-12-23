@@ -9,9 +9,9 @@ import {
 } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 
-import { EditTeamForm } from '@jtr/business-domain/team';
+import { EditTeamForm, teamDetailsSelector } from '@jtr/business-domain/team';
 
 import {
   ButtonColorEnum,
@@ -21,6 +21,9 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
+import { TeamData } from '@jtr/data-domain/store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'team-header',
@@ -44,7 +47,12 @@ export class TeamHeaderComponent implements OnInit, OnDestroy {
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  @SingletonGetter()
+  public get team$(): Observable<TeamData | null> {
+    return this.store$.select(teamDetailsSelector);
+  }
+
+  constructor(private readonly changeDetectorRef: ChangeDetectorRef, private readonly store$: Store) {}
 
   public ngOnInit(): void {
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {

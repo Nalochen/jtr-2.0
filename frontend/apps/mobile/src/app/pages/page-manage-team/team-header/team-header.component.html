@@ -1,9 +1,11 @@
+@let team = team$ | async;
+
 <div class="header" [formGroup]="form">
   <div class="image-container">
     <img
       id="logo"
       alt="Logo of {{ form.controls.name.value }}"
-      src="{{ form.controls.logo.value }}"
+      src="{{ team.logo }}"
     />
     <app-button
       (click)="onChangeLogo()"

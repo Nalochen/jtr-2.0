@@ -18,13 +18,14 @@ import {
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { TeamData, TournamentTeamData, UserOverviewData } from '@jtr/data-domain/store';
+import { TeamData, UserOverviewData } from '@jtr/data-domain/store';
 import { Store } from '@ngrx/store';
 import { DialogModule } from 'primeng/dialog';
 import { userOverviewSelector } from '@jtr/business-domain/user';
 import { DropdownModule } from 'primeng/dropdown';
-import { map } from 'rxjs/operators';
 import { concatLatestFrom } from '@ngrx/operators';
+import { MenuItem } from 'primeng/api';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'team-members',
@@ -39,7 +40,8 @@ import { concatLatestFrom } from '@ngrx/operators';
     ButtonComponent,
     DialogModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
+    OverlayPanelModule,
   ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',
@@ -51,8 +53,26 @@ export class TeamMembersComponent {
   protected isAddMemberOverlayVisible = false;
   protected selectedUser: UserOverviewData | null = null;
   protected possibleUsers: UserOverviewData[] = [];
+  protected items: MenuItem[] | undefined;
+
 
   constructor(private readonly store$: Store) {
+    this.items = [
+      {
+        label: 'Options',
+        items: [
+          {
+            label: 'Refresh',
+            icon: 'pi pi-refresh'
+          },
+          {
+            label: 'Export',
+            icon: 'pi pi-upload'
+          }
+        ]
+      }
+    ];
+
     this.users$.pipe(
       concatLatestFrom(() => this.team$),
     ).subscribe(([users, team]) => {
