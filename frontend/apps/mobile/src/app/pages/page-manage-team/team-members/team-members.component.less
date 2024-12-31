@@ -10,15 +10,32 @@ h3 {
 
 img {
   border-radius: 50%;
-  margin-right: 8px;
 }
 
-.single-member {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.align-self-end {
+  align-self: flex-end;
+}
 
-  &:not(:last-of-type) {
-    margin-top: 16px;
-  }
+app-data-container {
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep .p-dialog-content {
+  overflow-y: visible;
+}
+
+::ng-deep .p-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+::ng-deep .p-dropdown {
+  width: 100%;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

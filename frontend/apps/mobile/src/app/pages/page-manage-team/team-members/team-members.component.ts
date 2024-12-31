@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
 } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 
@@ -22,6 +22,9 @@ import { Store } from '@ngrx/store';
 import { concatLatestFrom } from '@ngrx/operators';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 import { userOverviewSelector } from '@jtr/business-domain/user';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'team-members',
@@ -33,7 +36,11 @@ import { userOverviewSelector } from '@jtr/business-domain/user';
     DataContainerRowComponent,
     ReactiveFormsModule,
     TranslatePipe,
-    ButtonComponent
+    ButtonComponent,
+    OverlayPanelModule,
+    DialogModule,
+    DropdownModule,
+    FormsModule
   ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',

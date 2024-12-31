@@ -31,6 +31,7 @@
           <span class="material-icons-outlined">delete</span>
           <p>{{ 'page-manage-team.remove-member' | translate }}</p>
         </app-button>
+        @if (member.role !== 'admin') {
         <app-button
           class="menu-button"
           [color]="ButtonColorEnum.White"
@@ -39,6 +40,8 @@
           <span class="material-icons-outlined">admin_panel_settings</span>
           <p>{{ 'page-manage-team.make-admin' | translate }}</p>
         </app-button>
+        }
+        @if (member.role === 'member') {
         <app-button
           class="menu-button"
           [color]="ButtonColorEnum.White"
@@ -47,14 +50,17 @@
           <span class="material-icons-outlined">add_moderator</span>
           <p>{{ 'page-manage-team.make-moderator' | translate }}</p>
         </app-button>
+        }
+        @if (member.role === 'moderator') {
         <app-button
           class="menu-button"
           [color]="ButtonColorEnum.White"
           [type]="ButtonTypeEnum.Basic"
         >
           <span class="material-icons-outlined">remove_moderator</span>
-          <p>{{ 'page-manage-team.make-admin' | translate }}</p>
+          <p>{{ 'page-manage-team.delete-moderator' | translate }}</p>
         </app-button>
+        }
       </div>
     </p-overlayPanel>
   </app-data-container-row>
