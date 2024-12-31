@@ -15,11 +15,13 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 import { TeamData } from '@jtr/data-domain/store';
 import { TeamService } from '../../../business-rules/team/team.service';
+import { Router } from '@angular/router';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'team-bottom-bar',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, ButtonComponent, TranslatePipe],
+  imports: [CommonModule, NgOptimizedImage, ButtonComponent, TranslatePipe, DialogModule],
   providers: [
     TeamDataService, TeamService
   ],
@@ -31,6 +33,7 @@ export class TeamBottomBarComponent {
   @Input() public form!: FormGroup<EditTeamForm>;
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
+  protected isDeleteDialogVisible = false;
 
   @SingletonGetter()
   public get team$(): Observable<TeamData | null> {
@@ -40,11 +43,24 @@ export class TeamBottomBarComponent {
   constructor(
     private readonly store$: Store,
     private readonly teamService: TeamService,
-    private readonly teamDataService: TeamDataService
+    private readonly teamDataService: TeamDataService,
+    private readonly router: Router
   ) {}
 
-  public onDeleteTeam() {
-    window.alert('Delete team');
+  public onOpenDeleteDialog() {
+    this.isDeleteDialogVisible = true;
+  }
+
+  public async onDeleteTeam() {
+    const teamId = (await firstValueFrom(this.team$))!.id;
+
+    await firstValueFrom(
+      this.teamService.delete({
+        teamId: teamId,
+      })
+    );
+
+    await this.router.navigate(['/']);
   }
 
   public async onSaveTeam() {
