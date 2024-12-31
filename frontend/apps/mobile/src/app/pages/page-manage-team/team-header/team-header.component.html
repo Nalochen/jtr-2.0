@@ -8,12 +8,18 @@
       src="{{ getPictureUrl() }}"
     />
     <app-button
-      (click)="onFileSelected($event)"
+      (click)="fileInput.click()"
       [color]="ButtonColorEnum.White"
       [type]="ButtonTypeEnum.Round"
     >
       <span class="material-icons-outlined edit-icon">edit</span>
     </app-button>
+    <input
+      class="file-input"
+      type="file"
+      #fileInput
+      (change)="onFileSelected($event)"
+    />
   </div>
 
   <div class="team-information">
