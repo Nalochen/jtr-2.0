@@ -17,7 +17,67 @@ INSERT IGNORE INTO users (
     True,
     '1990-01-01',
     False,
-    'https://example.com/picture.png',
+    'https://howtodoright.com/wp-content/uploads/2017/07/sheep-on-green-grass.jpg',
     'Berlin',
      True
+),
+(
+'Nalochen',
+'scrypt:32768:8:1$1zBx79UnutJvoemC$21b21a9f0c795f613b476b01691c862219a40520161d341b493324580ea50a2c3aa8a651e942bf4b9c391b94edb0026130f2476a9b6a4a5998e2accb5213b335',
+'unger.juli@gmx.de',
+'Nalo Unger',
+True,
+'1990-01-01',
+True,
+'http://upload.wikimedia.org/wikipedia/commons/d/d0/Lundy_sheep_(head_detail).JPG',
+'Hamburg',
+True
+),
+(
+'Jonas K',
+'scrypt:32768:8:1$1zBx79UnutJvoemC$21b21a9f0c795f613b476b01691c862219a40520161d341b493324580ea50a2c3aa8a651e942bf4b9c391b94edb0026130f2476a9b6a4a5998e2accb5213b335',
+'maxi@gmail.de',
+'Jonas Kopka',
+False,
+'1990-01-01',
+False,
+'http://wallsdesk.com/wp-content/uploads/2017/01/Sheep-Desktop-Wallpaper-.jpg',
+'Berlin',
+False
+),
+(
+'Lynkiboy Godfather of Zahnradschild',
+'scrypt:32768:8:1$1zBx79UnutJvoemC$21b21a9f0c795f613b476b01691c862219a40520161d341b493324580ea50a2c3aa8a651e942bf4b9c391b94edb0026130f2476a9b6a4a5998e2accb5213b335',
+'maxi@gmail.de',
+'Lynk',
+False,
+'1990-01-01',
+False,
+'https://howtodoright.com/wp-content/uploads/2017/07/sheep-on-green-grass.jpg',
+'Gießen',
+True
+),
+(
+'Gabo! Gabo! Gabo!',
+'scrypt:32768:8:1$1zBx79UnutJvoemC$21b21a9f0c795f613b476b01691c862219a40520161d341b493324580ea50a2c3aa8a651e942bf4b9c391b94edb0026130f2476a9b6a4a5998e2accb5213b335',
+'maxi@gmail.de',
+'Gabo',
+False,
+'1990-01-01',
+True,
+'http://upload.wikimedia.org/wikipedia/commons/d/d0/Lundy_sheep_(head_detail).JPG',
+'München',
+False
+),
+(
+'Q-Till',
+'scrypt:32768:8:1$1zBx79UnutJvoemC$21b21a9f0c795f613b476b01691c862219a40520161d341b493324580ea50a2c3aa8a651e942bf4b9c391b94edb0026130f2476a9b6a4a5998e2accb5213b335',
+'maxi@gmail.de',
+'Till',
+True,
+'1990-01-01',
+False,
+'http://wallsdesk.com/wp-content/uploads/2017/01/Sheep-Desktop-Wallpaper-.jpg',
+'Leipzig',
+True
 );
