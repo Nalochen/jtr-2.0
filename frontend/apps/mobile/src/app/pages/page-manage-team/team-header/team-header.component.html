@@ -4,11 +4,11 @@
   <div class="image-container">
     <img
       id="logo"
-      alt="Logo of {{ form.controls.name.value }}"
-      src="{{ team.logo }}"
+      alt="Logo of {{ team?.name }}"
+      src="{{ getPictureUrl() }}"
     />
     <app-button
-      (click)="onChangeLogo()"
+      (click)="onFileSelected($event)"
       [color]="ButtonColorEnum.White"
       [type]="ButtonTypeEnum.Round"
     >

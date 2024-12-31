@@ -16,6 +16,8 @@ import { TeamInformationComponent } from './team-information/team-information.co
 import { TeamMembersComponent } from './team-members/team-members.component';
 import { TeamOtherTournamentsComponent } from './team-other-tournaments/team-other-tournaments.component';
 import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tournaments.component';
+import { Router } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   standalone: true,
@@ -32,10 +34,26 @@ import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tou
   styleUrl: './page-team-details.component.less',
 })
 export class PageTeamDetailsComponent {
-  constructor(private store$: Store) {}
+  public teamId: number | null = null;
+
+  constructor(private readonly store$: Store, private readonly router: Router) {
+    this.team$.pipe(
+      takeUntilDestroyed(),
+    ).subscribe(
+      (team) => {
+        if (team) {
+          this.teamId = team.id;
+        }
+      }
+    );
+  }
 
   @SingletonGetter()
   public get team$(): Observable<TeamData | null> {
     return this.store$.select(teamDetailsSelector);
+  }
+
+  public redirectToManageTeam() {
+    this.router.navigate(['manage-team-details', this.teamId]);
   }
 }
