@@ -1,10 +1,10 @@
-@let team = team$ | async;
-
 <div class="header" [formGroup]="form">
   <div class="image-container">
     <img
       id="logo"
-      alt="Logo of {{ team?.name }}"
+      alt="Logo of {{ form.controls.name.value }}"
+      height="50"
+      width="50"
       src="{{ getPictureUrl() }}"
     />
     <app-button
@@ -25,9 +25,7 @@
   <div class="team-information">
     <div class="meta-data">
       @if (!form.controls.isMixTeam.value) {
-      <label for="city" id="cityLabel">{{
-        'page-manage-team.city' | translate
-      }}</label>
+      <label for="city" id="cityLabel">{{ 'page-manage-team.city' | translate }}</label>
       <input
         pInputText
         type="text"
@@ -43,13 +41,22 @@
         <p-inputSwitch formControlName="isMixTeam" />
       </div>
     </div>
+    @if ((form.controls.city.dirty || form.controls.city.touched || form.controls.isMixTeam.dirty || form.controls.isMixTeam.touched ) &&
+    form.hasError('mixteamOrCityRequired')) {
+    <p class="error-message small-text">{{ 'page-manage-team.city-or-mixteam-required' | translate }}</p>
+    }
 
     <label for="name">{{ 'page-manage-team.name' | translate }}</label>
     <input
       pInputText
       type="text"
       id="name"
-      value="{{ form.controls.name.value }}"
+      [formControl]="form.controls.name"
+      class="name"
     />
+    @if ((form.controls.name.dirty || form.controls.name.touched) &&
+    form.controls.name.hasError('required')) {
+    <p class="error-message small-text">{{ 'page-manage-team.name-required' | translate }}</p>
+    }
   </div>
 </div>

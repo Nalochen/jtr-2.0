@@ -24,7 +24,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 4px;
   align-items: center;
 }
 
@@ -40,11 +39,6 @@ label {
 
 p-inputswitch {
   margin-left: 8px;
-}
-
-img {
-  width: 50px;
-  height: 50px;
 }
 
 app-button {
@@ -64,7 +58,8 @@ app-button {
 }
 
 .city,
-.mixteam {
+.mixteam,
+.error-message {
   color: @color-red;
 }
 
@@ -74,4 +69,12 @@ app-button {
 
 .file-input {
   display: none;
+}
+
+.error-message {
+  margin-top: 4px !important;
+}
+
+.name {
+  margin-top: 4px;
 }

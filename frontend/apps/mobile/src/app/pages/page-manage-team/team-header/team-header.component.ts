@@ -4,12 +4,10 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
-  OnDestroy,
-  OnInit,
 } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { EditTeamForm, teamDetailsSelector } from '@jtr/business-domain/team';
 
@@ -42,10 +40,9 @@ import { TeamService } from '../../../../../../desktop/src/app/business-rules/te
   styleUrl: './team-header.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamHeaderComponent implements OnInit, OnDestroy {
+export class TeamHeaderComponent {
   @Input() public form!: FormGroup<EditTeamForm>;
   @Input() public teamId!: number | undefined;
-  private readonly destroy$ = new Subject<void>();
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
@@ -59,17 +56,6 @@ export class TeamHeaderComponent implements OnInit, OnDestroy {
     private readonly store$: Store,
     private readonly teamService: TeamService
 ) {}
-
-  public ngOnInit(): void {
-    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.changeDetectorRef.markForCheck();
-    });
-  }
-
-  public ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
 
   public async onFileSelected(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
