@@ -13,7 +13,7 @@ import {
   DataContainerComponent,
   DataContainerRowComponent,
   ButtonColorEnum,
-  ButtonTypeEnum
+  ButtonTypeEnum, ButtonComponent
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { TeamData, UserOverviewData } from '@jtr/data-domain/store';
@@ -33,6 +33,7 @@ import { userOverviewSelector } from '@jtr/business-domain/user';
     DataContainerRowComponent,
     ReactiveFormsModule,
     TranslatePipe,
+    ButtonComponent
   ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',
