@@ -10,9 +10,9 @@ class SendMailHandler:
         """Login user"""
 
         SendSingleMail.send(
-            subject="Test",
-            recipients=["slotosch.leander@outlook.de"],
-            body="Test"
+            subject='Test email',
+            recipients=['slotosch.leander@outlook.de'],
+            body='Dies ist eine Testnachricht'
         )
 
         return Response(

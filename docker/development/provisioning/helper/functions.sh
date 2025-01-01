@@ -98,8 +98,17 @@ function _run_command() {
     cd - 1>/dev/null || exit
 }
 
+wait_for_port() {
+    port=$1
+
+    while ! nc -z localhost "$port" > /dev/null 2>&1; do
+      sleep 1
+    done
+}
+
 export -f print_section
 export -f run_once
 export -f run_always
 export -f new_section
 export -f _run_command
+export -f wait_for_port

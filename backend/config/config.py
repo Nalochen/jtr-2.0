@@ -48,9 +48,15 @@ class Config:
             app.config['UPLOAD_FOLDER'] = '/app/DataDomain/assets'
 
         elif os.getenv('FLASK_ENV') == 'testing':
-            app.config['DATABASE_PATH'] = 'backend/DataDomain/Database'
+            app.config['DATABASE_PATH'] = 'DataDomain/Database'
             app.config['CACHE_TYPE'] = 'null'
-            app.config['UPLOAD_FOLDER'] = 'backend/DataDomain/assets'
+            app.config['UPLOAD_FOLDER'] = 'DataDomain/assets'
+
+            import warnings
+
+            warnings.filterwarnings(
+                "ignore",
+                message="Flask-Caching: CACHE_TYPE is set to null, caching is effectively disabled.")
 
         elif os.getenv('FLASK_ENV') == 'development':
             app.config['DATABASE_PATH'] = '/home/backend/DataDomain/Database'

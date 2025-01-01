@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-export APPLICATION_ENV="development"
-APPLICATION_DATABASES="jtr"
-
 is_schema_update_required="0"
 found_databases="0"
 expected_databases="5"
@@ -12,7 +9,7 @@ determine_available_databases () {
 }
 
 create_databases () {
-  for DB in ${APPLICATION_DATABASES}; do
+  for DB in ${MYSQL_DATABASE}; do
       sudo mysql --execute="DROP DATABASE IF EXISTS ${DB};"
       sudo mysql --execute="CREATE DATABASE ${DB};"
   done
