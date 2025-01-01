@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { UserData } from './user-data.response';
 
-let ENDPOINT = '/api/customer-frontend/get-user-details';
+let ENDPOINT = '/api/user-frontend/get-user-details';
 
 @Injectable({
   providedIn: 'root',

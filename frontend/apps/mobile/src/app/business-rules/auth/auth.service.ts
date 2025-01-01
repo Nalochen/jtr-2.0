@@ -11,8 +11,11 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const LOGIN_ENDPOINT = '/api/customer-frontend/login';
-const REGISTER_ENDPOINT = '/api/customer-frontend/register';
+const LOGIN_ENDPOINT = '/api/user-frontend/login';
+const REGISTER_ENDPOINT = '/api/user-frontend/register';
+const IS_ADMIN_OF_TEAM_ENDPOINT = '/api/user-frontend/is-admin-of-team';
+const IS_ADMIN_OF_ORGANIZER_ENDPOINT =
+  '/api/user-frontend/is-admin-of-organizer';
 
 export interface LoginRequestBody {
   username: string | null;
@@ -89,6 +92,16 @@ export class AuthService {
           }
         })
       )
+    );
+  }
+
+  public isAdminOfTeam(teamId: number): Observable<boolean> {
+    return this.http.get<boolean>(`${IS_ADMIN_OF_TEAM_ENDPOINT}/${teamId}`);
+  }
+
+  public isAdminOfOrganizer(tournamentId: number): Observable<boolean> {
+    return this.http.get<boolean>(
+      `${IS_ADMIN_OF_ORGANIZER_ENDPOINT}/${tournamentId}`
     );
   }
 

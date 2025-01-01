@@ -1,5 +1,5 @@
 ### Log user in and save JWT token
-POST https://{{host}}/api/customer-frontend/login
+POST https://{{host}}/api/user-frontend/login
 Content-Type: application/json
 
 {

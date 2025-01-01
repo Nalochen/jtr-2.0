@@ -1,0 +1,10 @@
+### Delete a user
+### Execute ExternalApi/specs/requests/000-Authorization.http before using this!
+DELETE https://{{host}}/api/user-frontend/delete-user
+Authorization: Bearer {{jwtToken}}
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

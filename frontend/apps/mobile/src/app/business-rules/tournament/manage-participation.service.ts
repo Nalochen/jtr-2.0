@@ -4,9 +4,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 const CREATE_PARTICIPATION_ENDPOINT =
-  '/api/customer-frontend/create-participation';
+  '/api/tournament-frontend/create-participation';
 const DELETE_PARTICIPATION_ENDPOINT =
-  '/api/customer-frontend/delete-participation';
+  '/api/tournament-frontend/delete-participation';
 
 export interface CreateParticipationRequestBody {
   tournamentId: number;
