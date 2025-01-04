@@ -11,3 +11,18 @@ docker build -t jtr-prod-frontend -f docker/production/frontend/frontend.Dockerf
 ## Use
 
 docker run -d -p 80:80 jtr-prod-frontend
+
+
+## Development
+
+### Test nginx
+
+```bash
+sudo nginx -t
+```
+
+### Restart nginx
+
+```bash
+sudo systemctl reload nginx
+```

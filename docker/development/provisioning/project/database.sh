@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 export APPLICATION_ENV="development"
 APPLICATION_DATABASES="jtr"

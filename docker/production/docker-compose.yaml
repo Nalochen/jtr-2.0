@@ -60,6 +60,21 @@ services:
     networks:
       - backend_network
 
+  certbot:
+    build:
+      context: ../../
+      dockerfile: docker/production/certbot/certbot.Dockerfile
+    container_name: certbot
+    environment:
+      CERTBOT_DOMAIN: 'jugger-tourna.de'
+      CERTBOT_EMAIL: 'slotosch.leander@outlook.de'
+    volumes:
+      - certs:/etc/letsencrypt
+      - webroot:/usr/share/nginx/html/desktop
+    networks:
+      - backend_network
+    restart: always
+
   backend:
     build:
       context: ../../
@@ -76,14 +91,15 @@ services:
       SECRET_KEY: 'secret'
       GENERATE_TEST_DATA: True
     volumes:
-      - ./nginx:/nginx
-      - docker/production/assets:/app/DataDomain/assets
+      - certs:/etc/letsencrypt
+      - ./assets:/app/DataDomain/assets
     ports:
       - "5001:5001"
     depends_on:
       - mysql
       - redis
       - rabbitmq
+      - certbot
     networks:
       - backend_network
 
@@ -93,10 +109,13 @@ services:
       dockerfile: docker/production/frontend/frontend.Dockerfile
     container_name: frontend
     volumes:
-      - ./nginx:/etc/nginx/ssl
+      - certs:/etc/letsencrypt
+      - webroot:/usr/share/nginx/html/desktop
     ports:
       - "80:80"
       - "443:443"
+    depends_on:
+      - certbot
     networks:
       - backend_network
 
@@ -106,3 +125,5 @@ networks:
 
 volumes:
   mysql_db_data: {}
+  certs:
+  webroot:
