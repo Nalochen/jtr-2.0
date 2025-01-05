@@ -6,5 +6,7 @@ while ! nc -z mysql 3306; do
 done
 echo "MySQL started"
 
-# Starte die Anwendung mit Gunicorn
-exec gunicorn --certfile=/nginx/nginx.crt --keyfile=/nginx/nginx.key -b 0.0.0.0:6000 wsgi:app
+exec gunicorn \
+  --certfile="${SSL_CERT_PATH}" \
+  --keyfile="${SSL_KEY_PATH}" \
+  -b 0.0.0.0:8080 wsgi:app

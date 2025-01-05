@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 cd /home/backend
 
@@ -11,7 +11,7 @@ sleep 3
 echo "Backend started on pid: $!"
 
 while true; do
-  if ! nc -z localhost "6000" > /dev/null 2>&1; then
+  if ! nc -z localhost "8080" > /dev/null 2>&1; then
     echo
     echo "Error occurred in backend backend service, try to restart..."
     echo

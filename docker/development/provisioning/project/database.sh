@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 is_schema_update_required="0"
 found_databases="0"

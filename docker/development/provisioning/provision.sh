@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 exec > >(tee -a /var/log/provision.log) 2> >(tee -a /var/log/provision_error.log >&2)
 

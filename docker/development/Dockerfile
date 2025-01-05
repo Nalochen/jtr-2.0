@@ -28,6 +28,6 @@ COPY docker/development/scripts /usr/local/bin
 RUN find /opt/scripts -type f -name "*.sh" -exec chmod +x {} \;
 RUN find /usr/local/bin -type f -name "*" -exec chmod +x {} \;
 
-EXPOSE 3306 6000 15672
+EXPOSE 3306 8080 15672
 
 ENTRYPOINT ["/opt/scripts/provisioning/provision.sh"]

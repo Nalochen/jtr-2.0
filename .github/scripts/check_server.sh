@@ -28,7 +28,7 @@ export RABBITMQ_DEFAULT_PASS='mypass'
 export RABBITMQ_DEFAULT_USER='admin'
 export SECRET_KEY='secret'
 
-exec gunicorn -b 0.0.0.0:6000 wsgi:app &
+exec gunicorn -b 0.0.0.0:8080 wsgi:app &
 
 SERVER_PID=$!
 

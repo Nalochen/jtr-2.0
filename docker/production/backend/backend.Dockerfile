@@ -12,8 +12,12 @@ COPY docker/production/backend/entrypoint.sh /opt/scripts/entrypoint.sh
 
 RUN chmod +x /opt/scripts/entrypoint.sh
 
-ENV PYTHONPATH=/app
+VOLUME ["/etc/letsencrypt"]
 
-EXPOSE 6000
+ENV PYTHONPATH=/app
+ENV SSL_CERT_PATH=/etc/letsencrypt/live/jugger-tourna.de/fullchain.pem
+ENV SSL_KEY_PATH=/etc/letsencrypt/live/jugger-tourna.de/privkey.pem
+
+EXPOSE 8080
 
 CMD ["/opt/scripts/entrypoint.sh"]

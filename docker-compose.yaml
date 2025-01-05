@@ -31,7 +31,7 @@ services:
       SECRET_KEY: 'secret'
     ports:
       - "3306:3306"
-      - "6000:6000"
+      - "8080:8080"
       - "15672:15672"
     volumes:
       - .:/home:delegated

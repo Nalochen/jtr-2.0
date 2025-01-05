@@ -49,7 +49,7 @@ services:
       DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
       MAIL_SERVER: 'localhost'
       MAIL_PORT: '25'
-      MAIL_USE_TLS: 'True'
+      MAIL_USE_TLS: 'False'
       MAIL_USERNAME: None
       MAIL_PASSWORD: None
     depends_on:
@@ -58,6 +58,21 @@ services:
       - backend
     networks:
       - backend_network
+
+  certbot:
+    build:
+      context: ../../
+      dockerfile: docker/production/certbot/certbot.Dockerfile
+    container_name: certbot
+    environment:
+      CERTBOT_DOMAIN: 'jugger-tourna.de'
+      CERTBOT_EMAIL: 'slotosch.leander@outlook.de'
+    volumes:
+      - certs:/etc/letsencrypt
+      - webroot:/usr/share/nginx/html/desktop
+    networks:
+      - backend_network
+    restart: always
 
   backend:
     build:
@@ -75,14 +90,15 @@ services:
       SECRET_KEY: 'secret'
       GENERATE_TEST_DATA: True
     volumes:
-      - ./nginx:/nginx
+      - certs:/etc/letsencrypt
       - ./assets:/app/DataDomain/assets
     ports:
-      - "6000:6000"
+      - "8080:8080"
     depends_on:
       - mysql
       - redis
       - rabbitmq
+      - certbot
     networks:
       - backend_network
 
@@ -92,10 +108,13 @@ services:
       dockerfile: docker/production/frontend/frontend.Dockerfile
     container_name: frontend
     volumes:
-      - ./nginx:/etc/nginx/ssl
+      - certs:/etc/letsencrypt
+      - webroot:/usr/share/nginx/html/desktop
     ports:
       - "80:80"
       - "443:443"
+    depends_on:
+      - certbot
     networks:
       - backend_network
 
@@ -105,3 +124,5 @@ networks:
 
 volumes:
   mysql_db_data: {}
+  certs:
+  webroot:
