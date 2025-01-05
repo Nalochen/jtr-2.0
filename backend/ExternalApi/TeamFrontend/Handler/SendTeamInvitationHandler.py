@@ -40,7 +40,7 @@ class SendTeamInvitationHandler:
                 status=400)
 
         try:
-            hash = TeamInvitationRepository().create(
+            hash = TeamInvitationRepository.create(
                 userId=userId,
                 teamId=teamId
             )

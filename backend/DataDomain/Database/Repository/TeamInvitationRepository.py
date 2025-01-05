@@ -29,7 +29,8 @@ class TeamInvitationRepository:
             )
         ).scalar()
 
-    def create(self, userId: int, teamId: int) -> str:
+    @staticmethod
+    def create(userId: int, teamId: int) -> str:
         """Create a new team_invitations entry"""
 
         try:

@@ -1,6 +1,7 @@
 import json
-from typing import Optional, List, Text, Dict, Any
-from sqlalchemy import func, Integer, Column, String, DateTime, Boolean, Float
+from datetime import datetime
+from typing import List, Dict, Any
+from sqlalchemy import func
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
@@ -14,75 +15,75 @@ class Teams(BaseModel, db.Model):
 
     __tablename__ = 'teams'
 
-    id: Column[Integer] = db.Column(
+    id: int = db.Column(
         db.Integer,
         primary_key=True
     )
 
-    name: Column[String] = db.Column(
+    name: str = db.Column(
         db.String(100),
         nullable=False
     )
 
-    logo: Column[Optional[String]] = db.Column(
+    logo: str | None = db.Column(
         db.String(255),
         nullable=True
     )
 
-    founded: Column[Optional[DateTime]] = db.Column(
+    founded: datetime | None = db.Column(
         db.DateTime,
         nullable=True
     )
 
-    points: Column[Float] = db.Column(
+    points: float = db.Column(
         db.Float,
         server_default='0'
     )
 
-    city: Column[Optional[String]] = db.Column(
+    city: str | None = db.Column(
         db.String(100),
         nullable=True
     )
 
-    training_time: Column[Optional[String]] = db.Column(
+    training_time: str | None = db.Column(
         db.String(100),
         nullable=True
     )
 
-    training_time_updated_at: Column[Optional[DateTime]] = db.Column(
+    training_time_updated_at: datetime | None = db.Column(
         db.DateTime,
         nullable=True
     )
 
-    about_us: Column[Optional[String]] = db.Column(
+    about_us: str | None = db.Column(
         db.String(100),
         nullable=True,
     )
 
-    contacts: Column[Text] = db.Column(
+    contacts: str = db.Column(
         db.Text,
         nullable=False,
         default='[]',
         doc='["string"]'
     )
 
-    is_mix_team: Column[Optional[Boolean]] = db.Column(
+    is_mix_team: bool | None = db.Column(
         db.Boolean,
         nullable=True
     )
 
-    is_deleted: Column[Boolean] = db.Column(
+    is_deleted: bool = db.Column(
         db.Boolean,
         nullable=False,
         server_default='0'
     )
 
-    created_at: Column[DateTime] = db.Column(
+    created_at: datetime = db.Column(
         db.DateTime,
         server_default=func.now()
     )
 
-    updated_at: Column[DateTime] = db.Column(
+    updated_at: datetime = db.Column(
         db.DateTime,
         server_default=func.now(),
         onupdate=func.now()

@@ -16,6 +16,7 @@ class TournamentSubscriptionRepository:
         return db.session.query(
             tournament_subscriptions
         ).filter(
+            tournament_subscriptions.c.user_id == userId,
             tournament_subscriptions.c.tournament_id == tournamentId
         ).first()
 

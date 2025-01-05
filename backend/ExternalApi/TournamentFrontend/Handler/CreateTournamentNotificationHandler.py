@@ -18,7 +18,7 @@ class CreateTournamentNotificationHandler:
         data = g.validatedData
 
         tournamentId: int = data.get('tournamentId')
-        message: int = data.get('message')
+        message: str = data.get('message')
 
         tournament = TournamentRepository.get(tournamentId)
         if not tournament:
@@ -33,7 +33,7 @@ class CreateTournamentNotificationHandler:
                 tournament.id)
 
             SendTournamentSubscriptionNotificationsMail.send(
-                tournament.id, recipients, message)
+                recipients, tournament, message)
 
         except Exception:
             return Response(status=500)

@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from typing import List, Optional
 
 from sqlalchemy import func, Column, Integer, DateTime, String, Text, Boolean, Enum
@@ -23,93 +24,93 @@ class Tournaments(BaseModel, db.Model):
 
     __tablename__ = 'tournaments'
 
-    id: Column[Integer] = db.Column(
+    id: int = db.Column(
         db.Integer,
         primary_key=True
     )
 
-    name: Column[String] = db.Column(
+    name: str = db.Column(
         db.String(100),
         nullable=False
     )
 
-    start_date: Column[DateTime] = db.Column(
+    start_date: datetime = db.Column(
         db.DateTime,
         nullable=False,
     )
 
-    end_date: Column[DateTime] = db.Column(
+    end_date: datetime = db.Column(
         db.DateTime,
         nullable=False,
     )
 
-    additional_information: Column[Text] = db.Column(
+    additional_information: str = db.Column(
         db.Text,
         nullable=False,
         default=''
     )
 
-    address: Column[String] = db.Column(
+    address: str = db.Column(
         db.String(255),
         nullable=False
     )
 
-    possible_space: Column[Integer] = db.Column(
+    possible_space: int = db.Column(
         db.Integer,
         nullable=False
     )
 
-    start_arrival_date: Column[Optional[DateTime]] = db.Column(
+    start_arrival_date: datetime | None = db.Column(
         db.DateTime,
         nullable=True
     )
 
-    end_arrival_date: Column[Optional[DateTime]] = db.Column(
+    end_arrival_date: datetime | None = db.Column(
         db.DateTime,
         nullable=True
     )
 
-    registration_costs: Column[Optional[Integer]] = db.Column(
+    registration_costs: int | None = db.Column(
         db.Integer,
         nullable=True
     )
 
-    registration_costs_type: Column[Optional[Enum]] = db.Column(
+    registration_costs_type: TournamentCostTypesEnum | None = db.Column(
         db.Enum(TournamentCostTypesEnum),
         nullable=True
     )
 
-    deposit_costs: Column[Optional[Integer]] = db.Column(
+    deposit_costs: int | None = db.Column(
         db.Integer,
         nullable=True
     )
 
-    deposit_costs_type: Column[Optional[Enum]] = db.Column(
+    deposit_costs_type: TournamentCostTypesEnum | None = db.Column(
         db.Enum(TournamentCostTypesEnum),
         nullable=True
     )
 
-    accommodation_costs: Column[Optional[Integer]] = db.Column(
+    accommodation_costs: int | None = db.Column(
         db.Integer,
         nullable=True
     )
 
-    accommodation_costs_type: Column[Optional[Enum]] = db.Column(
+    accommodation_costs_type: TournamentCostTypesEnum | None = db.Column(
         db.Enum(TournamentCostTypesEnum),
         nullable=True
     )
 
-    guest_costs: Column[Optional[Integer]] = db.Column(
+    guest_costs: int | None = db.Column(
         db.Integer,
         nullable=True
     )
 
-    guest_costs_type: Column[Optional[Enum]] = db.Column(
+    guest_costs_type: TournamentCostTypesEnum | None = db.Column(
         db.Enum(TournamentCostTypesEnum),
         nullable=True
     )
 
-    costs_text: Column[Text] = db.Column(
+    costs_text: str = db.Column(
         db.Text,
         nullable=False,
         default=''
@@ -121,151 +122,149 @@ class Tournaments(BaseModel, db.Model):
         server_default=TournamentStatusTypesEnum.CREATED.value
     )
 
-    contacts: Column[Text] = db.Column(
+    contacts: str = db.Column(
         db.Text,
         nullable=False,
         doc='["string"]'
     )
 
-    accommodation_type: Column[Enum] = db.Column(
+    accommodation_type: TournamentAccommodationTypesEnum = db.Column(
         Enum(TournamentAccommodationTypesEnum),
         nullable=False
     )
 
-    accommodation_location: Column[String] = db.Column(
+    accommodation_location: str = db.Column(
         db.String(255),
         nullable=False
     )
 
-    location: Column[String] = db.Column(
+    location: str = db.Column(
         db.String(30),
         nullable=False
     )
 
-    deadlines: Column[Text] = db.Column(
+    deadlines: str = db.Column(
         db.Text,
         nullable=False
     )
 
-    schedule: Column[Optional[Text]] = db.Column(
+    schedule: str | None = db.Column(
         db.Text,
         nullable=True
     )
 
-    food_morning: Column[Enum] = db.Column(
+    food_morning: TournamentFoodMorningTypesEnum = db.Column(
         db.Enum(TournamentFoodMorningTypesEnum),
         nullable=False
     )
 
-    food_noon: Column[Enum] = db.Column(
+    food_noon: TournamentFoodNoonTypesEnum = db.Column(
         db.Enum(TournamentFoodNoonTypesEnum),
         nullable=False
     )
 
-    food_evening: Column[Enum] = db.Column(
+    food_evening: TournamentFoodEveningTypesEnum = db.Column(
         db.Enum(TournamentFoodEveningTypesEnum),
         nullable=False
     )
 
-    food_gastro: Column[Enum] = db.Column(
+    food_gastro: TournamentFoodGastroTypesEnum = db.Column(
         db.Enum(TournamentFoodGastroTypesEnum),
         nullable=False
     )
 
-    shoes_text: Column[Optional[Text]] = db.Column(
+    shoes_text: str | None = db.Column(
         db.Text,
         nullable=True
     )
 
-    studded_shoes_allowed: Column[Boolean] = db.Column(
+    studded_shoes_allowed: bool = db.Column(
         db.Boolean,
         nullable=False
     )
 
-    cam_shoes_allowed: Column[Boolean] = db.Column(
+    cam_shoes_allowed: bool = db.Column(
         db.Boolean,
         nullable=False
     )
 
-    cleats_shoes_allowed: Column[Boolean] = db.Column(
+    cleats_shoes_allowed: bool = db.Column(
         db.Boolean,
         nullable=False
     )
 
-    barefoot_allowed: Column[Boolean] = db.Column(
+    barefoot_allowed: bool = db.Column(
         db.Boolean,
         nullable=False
     )
 
-    house_rules_text: Column[Text] = db.Column(
+    house_rules_text: str = db.Column(
         db.Text,
         nullable=False
     )
 
-    house_rules_url: Column[String] = db.Column(
+    house_rules_url: str = db.Column(
         db.String(255),
         nullable=False
     )
 
-    tournament_system_text: Column[Text] = db.Column(
+    tournament_system_text: str = db.Column(
         db.Text,
         nullable=False
     )
 
-    tournament_system_url: Column[String] = db.Column(
+    tournament_system_url: str = db.Column(
         db.String(255),
         nullable=False
     )
 
-    pompf_check_text: Column[Text] = db.Column(
+    pompf_check_text: str = db.Column(
         db.Text,
         nullable=False
     )
 
-    pompf_check_url: Column[String] = db.Column(
+    pompf_check_url: str = db.Column(
         db.String(255),
         nullable=False
     )
 
-    registration_procedure_text: Column[Text] = db.Column(
+    registration_procedure_text: str = db.Column(
         db.Text,
         nullable=True
     )
 
-    registration_procedure_type: Column[Enum] = db.Column(
-        Enum(TournamentRegistrationProcedureTypesEnum),
-        nullable=False
-    )
+    registration_procedure_type: TournamentRegistrationProcedureTypesEnum = db.Column(
+        Enum(TournamentRegistrationProcedureTypesEnum), nullable=False)
 
-    registration_procedure_url: Column[Text] = db.Column(
+    registration_procedure_url: str = db.Column(
         db.String(255),
         nullable=False
     )
 
-    registration_start_date: Column[DateTime] = db.Column(
+    registration_start_date: datetime = db.Column(
         db.DateTime,
         nullable=False,
         server_default=func.now()
     )
 
-    is_deleted: Column[Boolean] = db.Column(
+    is_deleted: bool = db.Column(
         db.Boolean,
         nullable=False,
         server_default='0'
     )
 
-    created_at: Column[DateTime] = db.Column(
+    created_at: datetime = db.Column(
         db.DateTime,
         server_default=func.now()
     )
 
-    updated_at: Column[DateTime] = db.Column(
+    updated_at: datetime = db.Column(
         db.DateTime,
         server_default=func.now(),
         onupdate=func.now()
     )
 
-    organizer_id: Column[Integer] = db.Column(
+    organizer_id: int = db.Column(
         db.Integer,
         db.ForeignKey('teams.id'),
         nullable=False,

@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from sqlalchemy import Integer, Column, String, DateTime, func
+from sqlalchemy import func
 
 from DataDomain.Database.Enum.LockType import LockType
 from DataDomain.Database.Model.BaseModel import BaseModel
@@ -11,23 +11,23 @@ class LoginAttempts(BaseModel, db.Model):
 
     __tablename__ = 'login_attempts'
 
-    id: Column[Integer] = db.Column(
+    id: int = db.Column(
         db.Integer,
         primary_key=True
     )
 
-    username: Column[String] = db.Column(
+    username: str = db.Column(
         db.String(100),
         nullable=False
     )
 
-    attempts: Column[Integer] = db.Column(
+    attempts: int = db.Column(
         db.Integer,
         server_default='1',
         nullable=False
     )
 
-    last_attempt: Column[DateTime] = db.Column(
+    last_attempt: datetime = db.Column(
         db.DateTime,
         nullable=False,
         server_default=func.now(),
