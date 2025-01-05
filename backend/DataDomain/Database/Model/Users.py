@@ -1,6 +1,6 @@
 from typing import Optional, List, Any, Dict
 
-from sqlalchemy import func, Integer, Column, String, DateTime, Boolean, text
+from sqlalchemy import func, Integer, Column, String, DateTime, Boolean
 from sqlalchemy.orm import Mapped
 
 from DataDomain.Database.Model.IsPartOf import is_part_of

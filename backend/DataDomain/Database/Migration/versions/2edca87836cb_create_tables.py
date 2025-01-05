@@ -268,10 +268,30 @@ def upgrade():
                               sa.Integer(), nullable=False),
                     sa.Column('team_id', sa.Integer(), nullable=False),
                     sa.Column('tournament_id', sa.Integer(), nullable=False),
-                    sa.ForeignKeyConstraint(['team_id'], ['teams.id'], ),
+                    sa.ForeignKeyConstraint(['team_id'], ['teams.id']),
                     sa.ForeignKeyConstraint(['tournament_id'],
-                                            ['tournaments.id'], ),
+                                            ['tournaments.id']),
                     sa.PrimaryKeyConstraint('tournament_id', 'team_id')
+                    )
+    op.create_table('team_invitations',
+                    sa.Column('created_at', sa.DateTime(),
+                              server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
+                    sa.Column('hash', sa.String(length=255), nullable=False),
+                    sa.Column('team_id', sa.Integer(), nullable=False),
+                    sa.Column('user_id', sa.Integer(), nullable=False),
+                    sa.ForeignKeyConstraint(['team_id'], ['teams.id']),
+                    sa.ForeignKeyConstraint(['user_id'], ['users.id']),
+                    sa.PrimaryKeyConstraint('team_id', 'user_id')
+                    )
+    op.create_table('tournament_subscriptions',
+                    sa.Column('created_at', sa.DateTime(),
+                              server_default=sa.text('CURRENT_TIMESTAMP'), nullable=True),
+                    sa.Column('tournament_id', sa.Integer(), nullable=False),
+                    sa.Column('user_id', sa.Integer(), nullable=False),
+                    sa.ForeignKeyConstraint(['tournament_id'],
+                                            ['tournaments.id']),
+                    sa.ForeignKeyConstraint(['user_id'], ['users.id']),
+                    sa.PrimaryKeyConstraint('tournament_id', 'user_id')
                     )
     # ### end Alembic commands ###
 

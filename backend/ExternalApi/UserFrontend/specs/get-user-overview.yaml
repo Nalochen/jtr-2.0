@@ -22,7 +22,7 @@ components:
       type: object
       properties:
         id:
-          type: integer
+          type: number
         username:
           type: string
         name:

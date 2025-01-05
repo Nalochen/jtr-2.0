@@ -58,7 +58,7 @@ components:
         address:
           type: string
         possibleSpace:
-          type: integer
+          type: number
         registrationProcedureType:
           type: string
         registrationProcedureText:
