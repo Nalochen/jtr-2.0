@@ -1,6 +1,7 @@
 ### Accept a team invitation
 ### Execute ExternalApi/specs/requests/000-Authorization.http before using this!
-POST https://{{host}}/api/team-frontend/accept-team-invitation/a1fd9a83f2854ebdb71007c14aa0e4ad
+### Execute ExternalApi/TeamFrontend/specs/send-team-invitation.http before using this to recieve the hash!
+POST https://{{host}}/api/team-frontend/accept-team-invitation/{{hash}}
 Authorization: Bearer {{jwtToken}}
 
 > {%

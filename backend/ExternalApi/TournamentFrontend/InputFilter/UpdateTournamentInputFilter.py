@@ -1,3 +1,9 @@
+from flask_inputfilter import InputFilter
+from flask_inputfilter.Enum.RegexEnum import RegexEnum
+from flask_inputfilter.Filter import ToIntegerFilter, StringTrimFilter, ToNullFilter, ToBoolFilter
+from flask_inputfilter.Validator import IsIntegerValidator, IsStringValidator, RegexValidator, InEnumValidator, \
+    IsArrayValidator, IsBoolValidator
+
 from DataDomain.Database.Enum.TournamentAccommodationTypesEnum import TournamentAccommodationTypesEnum
 from DataDomain.Database.Enum.TournamentCostTypesEnum import TournamentCostTypesEnum
 from DataDomain.Database.Enum.TournamentFoodEveningTypesEnum import TournamentFoodEveningTypesEnum
@@ -5,18 +11,6 @@ from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import TournamentFoo
 from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import TournamentFoodMorningTypesEnum
 from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
 from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import TournamentRegistrationProcedureTypesEnum
-from Infrastructure.InputFilter.Enum.RegexEnum import RegexEnum
-from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
-from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
-from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
-from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
-from Infrastructure.InputFilter.InputFilter import InputFilter
-from Infrastructure.InputFilter.Validator.InEnumValidator import InEnumValidator
-from Infrastructure.InputFilter.Validator.IsArrayValidator import IsArrayValidator
-from Infrastructure.InputFilter.Validator.IsBoolValidator import IsBoolValidator
-from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
-from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
-from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
 
 
 class UpdateTournamentInputFilter(InputFilter):
@@ -30,9 +24,9 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'tournamentId',
             required=True,
-            filters=[ToIntFilter()],
+            filters=[ToIntegerFilter()],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )
 
@@ -90,7 +84,7 @@ class UpdateTournamentInputFilter(InputFilter):
             filters=[ToNullFilter()],
             validators=[
                 RegexValidator(
-                    ISO_DATE_REGEX,
+                    RegexEnum.ISO_DATE.value,
                     'Das EndAnkunftsdatum muss im iso format sein.'
                 )
             ]
@@ -106,8 +100,8 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'possibleSpace',
             required=True,
-            filters=[ToIntFilter()],
-            validators=[IsIntValidator()]
+            filters=[ToIntegerFilter()],
+            validators=[IsIntegerValidator()]
         )
 
         self.add(
@@ -133,7 +127,7 @@ class UpdateTournamentInputFilter(InputFilter):
             required=True,
             validators=[
                 RegexValidator(
-                    ISO_DATE_REGEX,
+                    RegexEnum.ISO_DATE.value,
                     'Das Anmeldedatum muss im iso format sein.'
                 )
             ]
@@ -142,8 +136,8 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'registrationCosts',
             required=True,
-            filters=[ToIntFilter()],
-            validators=[IsIntValidator()]
+            filters=[ToIntegerFilter()],
+            validators=[IsIntegerValidator()]
         )
 
         self.add(
@@ -160,8 +154,8 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'depositCosts',
             required=True,
-            filters=[ToIntFilter()],
-            validators=[IsIntValidator()]
+            filters=[ToIntegerFilter()],
+            validators=[IsIntegerValidator()]
         )
 
         self.add(
@@ -178,9 +172,9 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'accommodationCosts',
             required=True,
-            filters=[ToIntFilter()],
+            filters=[ToIntegerFilter()],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )
 
@@ -198,9 +192,9 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'guestCosts',
             required=True,
-            filters=[ToIntFilter()],
+            filters=[ToIntegerFilter()],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )
 

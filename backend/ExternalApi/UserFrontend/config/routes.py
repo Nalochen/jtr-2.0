@@ -14,6 +14,7 @@ from ExternalApi.UserFrontend.Handler.LoginUserHandler import LoginUserHandler
 from ExternalApi.UserFrontend.Handler.SendMailHandler import SendMailHandler
 from ExternalApi.UserFrontend.Handler.UpdateUserHandler import UpdateUserHandler
 from ExternalApi.UserFrontend.Handler.UpdateUserPictureHandler import UpdateUserPictureHandler
+from ExternalApi.UserFrontend.InputFilter.CreatePasswordResetInputFilter import CreatePasswordResetInputFilter
 from ExternalApi.UserFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
 from ExternalApi.UserFrontend.InputFilter.GetUserDetailsInputFilter import GetUserDetailsInputFilter
 from ExternalApi.UserFrontend.InputFilter.GetUserPictureInputFilter import GetUserPictureInputFilter
@@ -112,6 +113,12 @@ def register() -> Response:
 @user_frontend.route('/send', methods=['POST'], endpoint='send')
 def send() -> Response:
     return SendMailHandler.handle()
+
+
+@user_frontend.route('/create-password-reset', methods=['POST'], endpoint='create-password-reset')
+@CreatePasswordResetInputFilter.validate()
+def createPasswordReset() -> Response:
+    return CreatePasswordResetHandler.handle()
 
 
 @user_frontend.route('/delete-user',

@@ -1,6 +1,6 @@
-from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
-from Infrastructure.InputFilter.InputFilter import InputFilter
-from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
+from flask_inputfilter import InputFilter
+from flask_inputfilter.Filter import ToIntegerFilter
+from flask_inputfilter.Validator import IsIntegerValidator
 
 
 class IsAdminOfTeamInputFilter(InputFilter):
@@ -14,8 +14,8 @@ class IsAdminOfTeamInputFilter(InputFilter):
         self.add(
             'teamId',
             required=True,
-            filters=[ToIntFilter()],
+            filters=[ToIntegerFilter()],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )
