@@ -4,6 +4,7 @@ from flask_jwt_extended import jwt_required
 from DataDomain.Model.Response import Response
 from ExternalApi.UserFrontend.Handler.CreateUserHandler import CreateUserHandler
 from ExternalApi.UserFrontend.Handler.DeleteUserHandler import DeleteUserHandler
+from ExternalApi.UserFrontend.Handler.GetAdminOnTeamHandler import GetAdminOfTeamsHandler
 from ExternalApi.UserFrontend.Handler.GetUserDetailsHandler import GetUserDetailsHandler
 from ExternalApi.UserFrontend.Handler.GetUserOverviewHandler import GetUserOverviewHandler
 from ExternalApi.UserFrontend.Handler.GetUserPictureHandler import GetUserPictureHandler
@@ -52,6 +53,13 @@ def getUserOverview() -> Response:
 @cache.cached(key_prefix=create_user_picture_cache_key)
 def getUserPicture(userId) -> Response:
     return GetUserPictureHandler.handle()
+
+
+@user_frontend.route('/get-admin-teams',
+                     methods=['GET'], endpoint='get-admin-teams')
+@jwt_required()
+def getAdminOfTeams() -> Response:
+    return GetAdminOfTeamsHandler.handle()
 
 
 @user_frontend.route('/is-admin-of-team/<teamId>',
