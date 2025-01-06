@@ -1,9 +1,11 @@
 import json
+from datetime import datetime
 from typing import List
 
 from sqlalchemy import func
 from sqlalchemy.orm import aliased
 
+from DataDomain.Database.Enum.UserRoleTypesEnum import UserRoleTypesEnum
 from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Database.Model.IsPartOf import is_part_of
 from DataDomain.Database.Model.Teams import Teams
@@ -153,16 +155,64 @@ class TeamRepository:
         }
 
     @staticmethod
+    def teamsOfUser(userId: int) -> List[Teams]:
+        """Get all teams of a user"""
+
+        return db.session.query(
+            Teams
+        ).join(
+            is_part_of, is_part_of.c.team_id == Teams.id
+        ).filter(
+            is_part_of.c.user_id == userId,
+            is_part_of.c.is_deleted == False
+        ).all()
+
+    @staticmethod
+    def teamsOfAdmin(userId: int) -> List[Teams]:
+        """Get all teams where the user is an admin"""
+
+        return db.session.query(
+            Teams
+        ).join(
+            is_part_of, is_part_of.c.team_id == Teams.id
+        ).filter(
+            is_part_of.c.user_id == userId,
+            is_part_of.c.is_deleted == False,
+            is_part_of.c.user_role.in_(
+                [UserRoleTypesEnum.ADMIN.value, UserRoleTypesEnum.MODERATOR.value])
+        ).all()
+
+    @staticmethod
     def get(teamId: int) -> Teams:
         """Get team by id"""
 
         return Teams.query.get(teamId)
 
     @staticmethod
-    def create(team: Teams) -> int:
+    def create(
+            name: str,
+            city: str | None,
+            isMixTeam: bool | None,
+            trainingTime: str | None,
+            aboutUs: str | None,
+            contacts: List[str] | None) -> int:
         """Create a new team entry"""
 
         try:
+            team = Teams()
+
+            team.name = name
+            team.city = city
+            team.is_mix_team = isMixTeam
+            team.training_time = trainingTime
+            team.about_us = aboutUs
+
+            if contacts is not None:
+                team.contacts = json.dumps(contacts)
+
+            if trainingTime is not None:
+                team.training_time_updated_at = datetime.now()
+
             db.session.add(team)
             db.session.commit()
 

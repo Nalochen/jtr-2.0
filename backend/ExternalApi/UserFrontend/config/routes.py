@@ -4,6 +4,7 @@ from flask_jwt_extended import jwt_required
 from DataDomain.Model.Response import Response
 from ExternalApi.UserFrontend.Handler.CreateUserHandler import CreateUserHandler
 from ExternalApi.UserFrontend.Handler.DeleteUserHandler import DeleteUserHandler
+from ExternalApi.UserFrontend.Handler.GetAdminOnTeamHandler import GetAdminOfTeamsHandler
 from ExternalApi.UserFrontend.Handler.GetUserDetailsHandler import GetUserDetailsHandler
 from ExternalApi.UserFrontend.Handler.GetUserOverviewHandler import GetUserOverviewHandler
 from ExternalApi.UserFrontend.Handler.GetUserPictureHandler import GetUserPictureHandler
@@ -54,6 +55,13 @@ def getUserPicture(userId) -> Response:
     return GetUserPictureHandler.handle()
 
 
+@user_frontend.route('/get-admin-teams',
+                     methods=['GET'], endpoint='get-admin-teams')
+@jwt_required()
+def getAdminOfTeams() -> Response:
+    return GetAdminOfTeamsHandler.handle()
+
+
 @user_frontend.route('/is-admin-of-team/<teamId>',
                      methods=['GET'], endpoint='is-admin-of-team')
 @IsAdminOfTeamInputFilter.validate()
@@ -82,21 +90,21 @@ def updateUser() -> Response:
                      methods=['PUT'], endpoint='update-user-picture')
 @jwt_required()
 @UpdateUserPictureInputFilter.validate()
-@limiter.limit("3 per minute")
+@limiter.limit('3 per minute')
 def updateUserPicture() -> Response:
     return UpdateUserPictureHandler().handle()
 
 
 @user_frontend.route('/login', methods=['POST'], endpoint='login')
 @LoginUserInputFilter.validate()
-@limiter.limit("5 per minute")
+@limiter.limit('5 per minute')
 def login() -> Response:
     return LoginUserHandler.handle()
 
 
 @user_frontend.route('/register', methods=['POST'], endpoint='register')
 @CreateUserInputFilter.validate()
-@limiter.limit("2 per minute")
+@limiter.limit('2 per minute')
 def register() -> Response:
     return CreateUserHandler.handle()
 

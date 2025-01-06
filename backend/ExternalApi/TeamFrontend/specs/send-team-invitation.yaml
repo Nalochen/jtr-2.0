@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/team-frontend/send-team-invitation:
+    post:
+      summary: Send team invitation
+      operationId: sendTeamInvitation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendTeamInvitationRequestBody'
+
+      responses:
+        '200':
+          description: OK
+
+        '400':
+          description: Bad Request
+
+        '401':
+          description: Unauthorized
+
+        '403':
+          description: Forbidden
+
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    SendTeamInvitationRequestBody:
+      type: object
+      properties:
+        userId:
+          type: number
+        teamId:
+          type: number

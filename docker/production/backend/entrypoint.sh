@@ -9,4 +9,4 @@ echo "MySQL started"
 exec gunicorn \
   --certfile="${SSL_CERT_PATH}" \
   --keyfile="${SSL_KEY_PATH}" \
-  -b 0.0.0.0:5001 wsgi:app
+  -b 0.0.0.0:8080 wsgi:app

@@ -178,7 +178,7 @@
   />
 
   <app-button
-    [color]="ButtonColorEnum.Red"
+    [color]="form.valid ? ButtonColorEnum.Red : ButtonColorEnum.Grey"
     [type]="ButtonTypeEnum.Raised"
     [buttonType]="ButtonFunctionType.SUBMIT"
     [disabled]="!form.valid"

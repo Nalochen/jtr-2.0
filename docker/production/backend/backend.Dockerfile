@@ -18,6 +18,6 @@ ENV PYTHONPATH=/app
 ENV SSL_CERT_PATH=/etc/letsencrypt/live/jugger-tourna.de/fullchain.pem
 ENV SSL_KEY_PATH=/etc/letsencrypt/live/jugger-tourna.de/privkey.pem
 
-EXPOSE 5001
+EXPOSE 8080
 
 CMD ["/opt/scripts/entrypoint.sh"]

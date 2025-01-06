@@ -5,20 +5,19 @@ services:
       context: .
       dockerfile: docker/development/Dockerfile
     container_name: jtr
-    entrypoint: [ "/opt/scripts/provisioning/entrypoint.sh" ]
+    entrypoint: [ "/opt/scripts/provisioning/provision.sh" ]
     environment:
       FLASK_ENV: 'development'
-      CACHE_REDIS_HOST: 'localhost'
+      CACHE_REDIS_HOST: '0.0.0.0'
       CACHE_REDIS_PORT: '6379'
       CELERY_APP_NAME: 'tasks'
       CELERY_BROKER_NAME: 'worker'
       CELERY_BROKER_URL: 'amqp://guest:guest@localhost:5672'
       CELERY_RESULT_BACKEND: 'rpc://'
-      DATABASE_URL: 'mysql+pymysql://user:password@localhost:3307/jtr'
-      MAIL_SERVER: 'localhost'
-      MAIL_PORT: '1025'
+      DATABASE_URL: 'mysql+pymysql://user:password@localhost:3306/jtr'
+      MAIL_SERVER: '0.0.0.0'
+      MAIL_PORT: '25'
       MAIL_USE_TLS: 'False'
-      MAIL_USE_SSL: 'False'
       MAIL_USERNAME: None
       MAIL_PASSWORD: None
       MAIL_DEFAULT_SENDER: 'jtr@localhost'
@@ -27,13 +26,12 @@ services:
       MYSQL_ROOT_PASSWORD: 'password'
       MYSQL_USER: 'user'
       GENERATE_TEST_DATA: True
-      RABBITMQ_DEFAULT_PASS: 'mypass'
-      RABBITMQ_DEFAULT_USER: 'admin'
+      RABBITMQ_PASS: 'mypass'
+      RABBITMQ_USER: 'admin'
       SECRET_KEY: 'secret'
     ports:
-      - "3307:3307"
-      - "5001:5001"
-      - "5672:5672"
+      - "3306:3306"
+      - "8080:8080"
       - "15672:15672"
     volumes:
       - .:/home:delegated

@@ -34,6 +34,6 @@ components:
       type: object
       properties:
         tournamentId:
-          type: integer
+          type: number
         status:
           type: string

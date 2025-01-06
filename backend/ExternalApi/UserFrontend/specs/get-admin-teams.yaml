@@ -1,0 +1,29 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/user-frontend/get-admin-teams:
+    get:
+      summary: Get teams where the current user is admin or moderator
+      operationId: getAdminTeams
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAdminTeamsResponseBody'
+
+components:
+  schemas:
+    GetAdminTeamsResponseBody:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        logo:
+          type: string

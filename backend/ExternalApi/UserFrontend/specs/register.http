@@ -5,6 +5,7 @@ Content-Type: application/json
 {
     "username": "Maxi",
     "password": "123456",
+    "email": "maxi@gmail.de",
     "isBirthdateVisible": true,
     "birthdate": "1990-01-01",
     "isCityVisible": true,

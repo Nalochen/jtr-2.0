@@ -72,6 +72,7 @@
     "register": "Register",
     "email-or-username": "E-Mail or Username",
     "password": "Password",
+    "forgot-password": "Forgot Password",
     "login": "Login",
     "locked-permanently": "The password was wrong too many times, check your emails to reset your password.",
     "locked-temporarily": "The password was wrong too many times, try again in"

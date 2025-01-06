@@ -77,6 +77,8 @@
     "no-account": "Noch keinen Account?",
     "email-or-username": "E-Mail oder Benutzername",
     "password": "Passwort",
+    "forgot-password": "Passwort vergessen",
+    "login-button": "Login",
     "locked-permanently": "Das Passwort wurde zu oft falsch eingegeben, überprüfe deine E-mails um dein Passwort zurückzusetzen.",
     "locked-temporarily": "Das Passwort wurde zu oft falsch eingegeben, versuche es erneut in"
   },

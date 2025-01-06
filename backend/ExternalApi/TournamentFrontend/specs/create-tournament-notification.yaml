@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/tournament-frontend/create-tournament-notification:
+    post:
+      summary: Create tournament notification
+      operationId: createTournamentNotification
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTournamentNotificationRequestBody'
+
+      responses:
+        '200':
+          description: OK
+
+        '400':
+          description: Bad Request
+
+        '401':
+          description: Unauthorized
+
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    CreateTournamentNotificationRequestBody:
+      type: object
+      properties:
+        tournamentId:
+          type: number
+        message:
+          type: string
