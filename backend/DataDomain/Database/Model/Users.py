@@ -29,6 +29,11 @@ class Users(BaseModel, db.Model):
         nullable=False
     )
 
+    password_reset_hash: str = db.Column(
+        db.String(255),
+        nullable=True
+    )
+
     email: str | None = db.Column(
         db.String(100),
         unique=True,

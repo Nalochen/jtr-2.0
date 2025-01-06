@@ -2,6 +2,8 @@ from flask import Blueprint
 from flask_jwt_extended import jwt_required
 
 from DataDomain.Model.Response import Response
+from ExternalApi.UserFrontend.Handler.CreateNewPasswordHandler import CreateNewPasswordHandler
+from ExternalApi.UserFrontend.Handler.CreatePasswordResetHandler import CreatePasswordResetHandler
 from ExternalApi.UserFrontend.Handler.CreateUserHandler import CreateUserHandler
 from ExternalApi.UserFrontend.Handler.DeleteUserHandler import DeleteUserHandler
 from ExternalApi.UserFrontend.Handler.GetAdminOnTeamHandler import GetAdminOfTeamsHandler
@@ -14,6 +16,7 @@ from ExternalApi.UserFrontend.Handler.LoginUserHandler import LoginUserHandler
 from ExternalApi.UserFrontend.Handler.SendMailHandler import SendMailHandler
 from ExternalApi.UserFrontend.Handler.UpdateUserHandler import UpdateUserHandler
 from ExternalApi.UserFrontend.Handler.UpdateUserPictureHandler import UpdateUserPictureHandler
+from ExternalApi.UserFrontend.InputFilter.CreateNewPasswordInputFilter import CreateNewPasswordInputFilter
 from ExternalApi.UserFrontend.InputFilter.CreatePasswordResetInputFilter import CreatePasswordResetInputFilter
 from ExternalApi.UserFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
 from ExternalApi.UserFrontend.InputFilter.GetUserDetailsInputFilter import GetUserDetailsInputFilter
@@ -117,13 +120,22 @@ def send() -> Response:
 
 @user_frontend.route('/create-password-reset', methods=['POST'], endpoint='create-password-reset')
 @CreatePasswordResetInputFilter.validate()
+@limiter.limit('2 per minute')
 def createPasswordReset() -> Response:
     return CreatePasswordResetHandler.handle()
+
+
+@user_frontend.route('/create-new-password', methods=['POST'], endpoint='create-new-password')
+@CreateNewPasswordInputFilter.validate()
+@limiter.limit('2 per minute')
+def createNewPassword() -> Response:
+    return CreateNewPasswordHandler.handle()
 
 
 @user_frontend.route('/delete-user',
                      methods=['DELETE'],
                      endpoint='delete-user')
 @jwt_required()
+@limiter.limit('2 per minute')
 def deleteUser() -> Response:
     return DeleteUserHandler.handle()

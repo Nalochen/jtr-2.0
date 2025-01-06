@@ -2,15 +2,14 @@ from DataDomain.Database.Model.Users import Users
 from Infrastructure.Mail.SendSingleMail import SendSingleMail
 
 
-class SendTeamInvitationMail:
-    """Email a user about a new team invitation."""
+class SendPasswordResetMail:
+    """Email a user about a password reset request."""
 
     def send(self, user: Users, hash: str) -> None:
-
         emailBody = self.createEmailBody(user, hash)
 
         SendSingleMail.send(
-            subject='Neue Einladung zu einem Team',
+            subject='Reset password',
             recipients=[user.email],
             body=emailBody
         )

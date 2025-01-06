@@ -7,6 +7,7 @@ from Infrastructure.Mail.Tournament.SendTournamentSubscriptionNotificationMail i
 
 
 class SendTournamentSubscriptionNotificationsMail:
+    """Email all users about a tournament update."""
 
     @staticmethod
     def send(

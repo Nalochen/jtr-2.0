@@ -100,6 +100,8 @@ def upgrade():
                         length=100), nullable=False),
                     sa.Column('password_hash', sa.String(
                         length=255), nullable=False),
+                    sa.Column('password_reset_hash', sa.String(
+                        length=255), nullable=True),
                     sa.Column('email', sa.String(length=100), nullable=True),
                     sa.Column('name', sa.String(length=100), nullable=True),
                     sa.Column('name_visibility', sa.Boolean(), nullable=False),
