@@ -1,11 +1,12 @@
 import {
+  AccommodationTypeEnum,
   PricingTypeEnum,
   TournamentFoodEveningEnum,
   TournamentFoodGastroEnum,
   TournamentFoodMorningEnum,
   TournamentFoodNoonEnum,
   TournamentRegistrationProcedureTypeEnum,
-  TournamentStatus,
+  TournamentStatus
 } from '@jtr/data-domain/tournament-data';
 
 export interface TournamentDate {
@@ -42,7 +43,7 @@ export interface TournamentPompfCheck {
 
 export interface TournamentAccommodation {
   location: string;
-  type: string;
+  type: AccommodationTypeEnum;
 }
 
 export interface TournamentRegistrationProcedure {

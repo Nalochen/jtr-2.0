@@ -1,6 +1,6 @@
 export enum AccommodationTypeEnum {
-  CAMPING = 'CAMPING',
-  GYM = 'GYM',
-  OTHER = 'OTHER',
-  NONE = 'NONE',
+  CAMPING = 'camping',
+  GYM = 'gym',
+  OTHER = 'other',
+  NONE = 'none',
 }

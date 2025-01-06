@@ -47,9 +47,23 @@
     <p ngProjectAs="container-content">
       {{ tournament.accommodation.location }}
     </p>
-    <app-chip ngProjectAs="container-additional">{{
-      tournament.accommodation.type
-    }}</app-chip>
+    @if (tournament.costs.accommodationCosts) {
+    <p ngProjectAs="container-content">
+      {{ 'page-tournament-details.costs' | translate }}:
+      {{
+        tournament.costs.accommodationCosts
+          | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
+      }}
+
+      {{
+      (tournament.costs.accommodationCostsType === PricingTypeEnum.PER_PERSON
+        ? 'page-tournament-details.per-person'
+        : 'page-tournament-details.per-team'
+      ) | translate
+      }}
+    </p>
+    }
+    <app-chip ngProjectAs="container-additional">{{ chipText | translate }}</app-chip>
   </app-data-container-row>
 
   <mat-divider />

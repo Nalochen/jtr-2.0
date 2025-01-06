@@ -30,4 +30,15 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class TournamentInformationRegistrationComponent {
   @Input() public tournament!: TournamentData;
   protected readonly PricingTypeEnum = PricingTypeEnum;
+
+  public get chipText(): string {
+    switch (this.tournament.registrationProcedure?.type) {
+      case 'first_come':
+        return 'page-tournament-details.registration-procedure-first-come';
+      case 'lots':
+        return 'page-tournament-details.registration-procedure-lots';
+      default:
+        return 'page-tournament-details.registration-procedure-other';
+    }
+  }
 }

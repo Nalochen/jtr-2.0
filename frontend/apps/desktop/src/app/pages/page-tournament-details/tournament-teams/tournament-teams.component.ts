@@ -32,9 +32,16 @@ export class TournamentTeamsComponent implements OnInit {
 
   public participatingTeams: TournamentTeamData[] = [];
   public waitingTeams: TournamentTeamData[] = [];
+  public showPlacement = false;
 
   public ngOnInit(): void {
-    this.participatingTeams = this.teams.participating;
-    this.waitingTeams = this.teams.waiting;
+    this.showPlacement = this.teams.participating.map((team) => team.placement).some((placement) => placement !== null);
+
+    if(this.showPlacement) {
+      this.participatingTeams = [...this.teams.participating].sort((a, b) => a.placement - b.placement);
+    } else {
+      this.participatingTeams = [...this.teams.participating].sort((a, b) => a.registrationOrder - b.registrationOrder);
+      this.waitingTeams = [...this.teams.waiting].sort((a, b) => a.registrationOrder - b.registrationOrder);
+    }
   }
 }
