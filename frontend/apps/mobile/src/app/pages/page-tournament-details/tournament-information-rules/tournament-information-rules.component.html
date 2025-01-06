@@ -6,9 +6,11 @@
     <h5 ngProjectAs="container-headline">
       {{ 'page-tournament-details.pompf-check' | translate }}
     </h5>
+    @if (tournament.pompfCheck.url) {
     <a ngProjectAs="container-additional" href="{{ tournament.pompfCheck.url }}"
       >Link</a
     >
+    }
     <p ngProjectAs="container-content">{{ tournament.pompfCheck.text }}</p>
   </app-data-container-row>
 
@@ -21,12 +23,14 @@
     <h5 ngProjectAs="container-headline">
       {{ 'page-tournament-details.tournament-system' | translate }}
     </h5>
+    @if (tournament.tournamentSystem.url) {
     <a
       ngProjectAs="container-additional"
       href="{{ tournament.tournamentSystem.url }}"
       target="_blank"
       >tugeny</a
     >
+    }
     <p ngProjectAs="container-content">
       {{ tournament.tournamentSystem.text }}
     </p>
@@ -41,9 +45,11 @@
     <h5 ngProjectAs="container-headline">
       {{ 'page-tournament-details.house-rules' | translate }}
     </h5>
+    @if (tournament.houseRules.url) {
     <a ngProjectAs="container-additional" href="{{ tournament.houseRules.url }}"
       >Link</a
     >
+    }
     <p ngProjectAs="container-content">{{ tournament.houseRules.text }}</p>
   </app-data-container-row>
 
