@@ -35,7 +35,8 @@ jobs:
           set -e # Exit immediately if a command exits with a non-zero status.
           set -u # Exit immediately if a variable is not defined.
 
-          PYTHONPATH=backend pytest
+          # We currently have no tests
+          #PYTHONPATH=backend pytest
 
   code-style:
     runs-on: ubuntu-latest
