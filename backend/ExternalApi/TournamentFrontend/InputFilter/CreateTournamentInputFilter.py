@@ -5,7 +5,7 @@ from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import TournamentFoo
 from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import TournamentFoodMorningTypesEnum
 from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
 from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import TournamentRegistrationProcedureTypesEnum
-from Infrastructure.InputFilter.Enum.RegexEnum import ISO_DATE_REGEX
+from Infrastructure.InputFilter.Enum.RegexEnum import RegexEnum
 from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
 from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
 from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
@@ -46,7 +46,7 @@ class CreateTournamentInputFilter(InputFilter):
             required=True,
             validators=[
                 RegexValidator(
-                    ISO_DATE_REGEX,
+                    RegexEnum.ISO_DATE.value,
                     'Das Startdatum muss im iso format sein.'
                 )
             ]
@@ -57,7 +57,7 @@ class CreateTournamentInputFilter(InputFilter):
             required=True,
             validators=[
                 RegexValidator(
-                    ISO_DATE_REGEX,
+                    RegexEnum.ISO_DATE.value,
                     'Das Enddatum muss im iso format sein.'
                 )
             ]
@@ -69,7 +69,7 @@ class CreateTournamentInputFilter(InputFilter):
             filters=[ToNullFilter()],
             validators=[
                 RegexValidator(
-                    ISO_DATE_REGEX,
+                    RegexEnum.ISO_DATE.value,
                     'Das StartAnkunftsdatum muss im iso format sein.'
                 )
             ]

@@ -42,13 +42,11 @@ class TournamentSubscriptionRepository:
             )
         ).scalar()
 
-    def create(self, userId: int, tournamentId: int) -> None:
+    @staticmethod
+    def create(userId: int, tournamentId: int) -> None:
         """Create a new tournament_subscriptions entry"""
 
         try:
-            if self.exists(userId, tournamentId):
-                return self.recreate(userId, tournamentId)
-
             db.session.execute(
                 tournament_subscriptions.insert().values(
                     user_id=userId,
@@ -70,15 +68,12 @@ class TournamentSubscriptionRepository:
         """Set is_deleted on tournament_subscriptions entry to True"""
 
         try:
-            db.session.query(
-                tournament_subscriptions
-            ).filter(
-                tournament_subscriptions.c.user_id == userId,
-                tournament_subscriptions.c.tournament_id == tournamentId
-            ).update({
-                'is_deleted': True
-            })
-            db.session.commit()
+            db.session.execute(
+                tournament_subscriptions.delete().where(
+                    tournament_subscriptions.c.user_id == userId,
+                    tournament_subscriptions.c.tournament_id == tournamentId
+                )
+            )
 
             logger.info(f'TournamentSubscriptionsRepository | delete | Deleted tournament_subscriptions entry for user {
                         userId} and tournament {tournamentId}')
@@ -86,28 +81,4 @@ class TournamentSubscriptionRepository:
         except Exception as e:
             db.session.rollback()
             logger.error(f'TournamentSubscriptionsRepository | delete | {e}')
-            raise e
-
-    @staticmethod
-    def recreate(userId: int, tournamentId: int) -> None:
-        """Set is_deleted on tournament_subscriptions entry to False"""
-
-        try:
-            db.session.query(
-                tournament_subscriptions
-            ).filter(
-                tournament_subscriptions.c.user_id == userId,
-                tournament_subscriptions.c.tournament_id == tournamentId
-            ).update({
-                'is_deleted': False
-            })
-            db.session.commit()
-
-            logger.info(
-                f'TournamentSubscriptionsRepository | recreate | Recreated tournament_subscriptions entry for user {
-                    userId} and tournament {tournamentId}')
-
-        except Exception as e:
-            db.session.rollback()
-            logger.error(f'TournamentSubscriptionsRepository | recreate | {e}')
             raise e

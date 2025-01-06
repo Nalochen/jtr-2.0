@@ -22,7 +22,8 @@ class CreateTournamentSubscriptionHandler:
             return Response(status=404)
 
         try:
-            TournamentSubscriptionRepository().create(tournament.id, getJwtIdentity().id)
+            TournamentSubscriptionRepository.create(
+                tournament.id, getJwtIdentity().id)
 
         except Exception:
             return Response(status=500)
