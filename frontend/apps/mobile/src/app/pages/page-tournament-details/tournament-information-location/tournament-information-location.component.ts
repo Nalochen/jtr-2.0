@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 
 import { TournamentData } from '@jtr/data-domain/store';
+import { AccommodationTypeEnum, PricingTypeEnum } from '@jtr/data-domain/tournament-data';
 
 import {
   ChipComponent,
@@ -11,7 +12,6 @@ import {
   DataContainerRowComponent,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-import { AccommodationTypeEnum, PricingTypeEnum } from '@jtr/data-domain/tournament-data';
 
 @Component({
   selector: 'tournament-information-location',

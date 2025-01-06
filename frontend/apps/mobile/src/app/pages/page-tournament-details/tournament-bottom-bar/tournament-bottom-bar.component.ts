@@ -1,5 +1,8 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+
+import { ManageParticipationService } from '../../../business-rules/tournament/manage-participation.service';
 
 import {
   ButtonColorEnum,
@@ -9,8 +12,6 @@ import {
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { ManageParticipationService } from '../../../business-rules/tournament/manage-participation.service';
 import { DropdownModule } from 'primeng/dropdown';
 
 export interface Team {
@@ -33,7 +34,7 @@ export interface Team {
   styleUrl: './tournament-bottom-bar.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TournamentBottomBarComponent {
+export class TournamentBottomBarComponent implements OnInit {
   @Input() public tournamentId!: number;
   @Input() public registrationStartDate!: string;
 

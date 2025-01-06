@@ -3,14 +3,15 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { MatDivider } from '@angular/material/divider';
 
+import { TournamentData } from '@jtr/data-domain/store';
+import { PricingTypeEnum } from '@jtr/data-domain/tournament-data';
+
 import {
   ChipComponent,
   DataContainerExpandableComponent,
   DataContainerRowComponent
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-import { TournamentData } from '@jtr/data-domain/store';
-import { PricingTypeEnum } from '@jtr/data-domain/tournament-data';
 
 @Component({
   selector: 'tournament-information-registration',

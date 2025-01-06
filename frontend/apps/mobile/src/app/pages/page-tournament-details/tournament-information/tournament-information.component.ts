@@ -26,12 +26,12 @@ import {
 import { TournamentInformationAdditionalComponent } from '../tournament-information-additional/tournament-information-additional.component';
 import { TournamentInformationContactsComponent } from '../tournament-information-contacts/tournament-information-contacts.component';
 import { TournamentInformationLocationComponent } from '../tournament-information-location/tournament-information-location.component';
-import { TournamentInformationRulesComponent } from '../tournament-information-rules/tournament-information-rules.component';
-import { TournamentTeamsComponent } from '../tournament-teams/tournament-teams.component';
-import { TranslatePipe } from '@ngx-translate/core';
 import {
   TournamentInformationRegistrationComponent
 } from '../tournament-information-registration/tournament-information-registration.component';
+import { TournamentInformationRulesComponent } from '../tournament-information-rules/tournament-information-rules.component';
+import { TournamentTeamsComponent } from '../tournament-teams/tournament-teams.component';
+import { TranslatePipe } from '@ngx-translate/core';
 
 export interface Panel {
   id: string;

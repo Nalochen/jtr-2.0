@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
+import { ManageParticipationService } from '../../../business-rules/tournament/manage-participation.service';
+
 import {
   ButtonColorEnum,
   ButtonComponent,
@@ -15,8 +17,6 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
-import { TournamentDataService } from '@jtr/business-domain/tournament';
-import { ManageParticipationService } from '../../../business-rules/tournament/manage-participation.service';
 
 export interface Team {
   name: string;
