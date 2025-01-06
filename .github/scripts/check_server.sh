@@ -17,10 +17,8 @@ export FLASK_ENV='testing'
 export GENERATE_TEST_DATA=True
 export MAIL_DEFAULT_SENDER='jtr@localhost'
 export MAIL_PASSWORD=None
-export MAIL_PORT='1025'
+export MAIL_PORT='25'
 export MAIL_SERVER='localhost'
-export MAIL_USE_SSL='False'
-export MAIL_USE_TLS='False'
 export MAIL_USERNAME=None
 export MYSQL_DATABASE='jtr'
 export MYSQL_PASSWORD='password'
@@ -30,7 +28,7 @@ export RABBITMQ_DEFAULT_PASS='mypass'
 export RABBITMQ_DEFAULT_USER='admin'
 export SECRET_KEY='secret'
 
-exec gunicorn -b 0.0.0.0:5001 wsgi:app &
+exec gunicorn -b 0.0.0.0:8080 wsgi:app &
 
 SERVER_PID=$!
 
