@@ -3,17 +3,16 @@ info:
   title: Customer Frontend API
   version: 1.0.0
 paths:
-  /api/tournament-frontend/update-tournament-status:
-    put:
-      summary: Update tournament status
-      operationId: updateTournamentStatus
+  /api/tournament-frontend/create-tournament-subscription:
+    post:
+      summary: Create tournament subscription
+      operationId: createTournamentSubscription
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateTournamentStatusRequestBody'
-
+              $ref: '#/components/schemas/CreateTournamentSubscriptionRequestBody'
 
       responses:
         '200':
@@ -30,10 +29,8 @@ paths:
 
 components:
   schemas:
-    UpdateTournamentStatusRequestBody:
+    CreateTournamentSubscriptionRequestBody:
       type: object
       properties:
         tournamentId:
           type: number
-        status:
-          type: string

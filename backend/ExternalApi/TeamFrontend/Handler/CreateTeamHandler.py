@@ -21,23 +21,15 @@ class CreateTeamHandler:
 
         data = g.validatedData
 
-        team = Teams()
-
-        team.name = data.get('name')
-        team.city = data.get('city')
-        team.is_mix_team = data.get('isMixTeam')
-        team.training_time = data.get('trainingTime')
-        team.about_us = data.get('aboutUs')
-
-        contacts = data.get('contacts')
-        if contacts is not None:
-            team.contacts = json.dumps(contacts)
-
-        if data.get('trainingTime') is not None:
-            team.training_time_updated_at = datetime.now()
-
         try:
-            teamId = TeamRepository.create(team)
+            teamId = TeamRepository.create(
+                name=data.get('name'),
+                city=data.get('city'),
+                isMixTeam=data.get('isMixTeam'),
+                trainingTime=data.get('trainingTime'),
+                aboutUs=data.get('aboutUs'),
+                contacts=data.get('contacts')
+            )
 
             IsPartOfRepository.create(
                 userId=getJwtIdentity().id,

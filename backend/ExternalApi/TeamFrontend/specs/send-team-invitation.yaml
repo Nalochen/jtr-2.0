@@ -3,17 +3,16 @@ info:
   title: Customer Frontend API
   version: 1.0.0
 paths:
-  /api/tournament-frontend/update-tournament-status:
-    put:
-      summary: Update tournament status
-      operationId: updateTournamentStatus
+  /api/team-frontend/send-team-invitation:
+    post:
+      summary: Send team invitation
+      operationId: sendTeamInvitation
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateTournamentStatusRequestBody'
-
+              $ref: '#/components/schemas/SendTeamInvitationRequestBody'
 
       responses:
         '200':
@@ -25,15 +24,18 @@ paths:
         '401':
           description: Unauthorized
 
+        '403':
+          description: Forbidden
+
         '500':
           description: Internal Server Error
 
 components:
   schemas:
-    UpdateTournamentStatusRequestBody:
+    SendTeamInvitationRequestBody:
       type: object
       properties:
-        tournamentId:
+        userId:
           type: number
-        status:
-          type: string
+        teamId:
+          type: number

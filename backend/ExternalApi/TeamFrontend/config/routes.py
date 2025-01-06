@@ -2,16 +2,20 @@ from flask import Blueprint
 from flask_jwt_extended import jwt_required
 
 from DataDomain.Model.Response import Response
+from ExternalApi.TeamFrontend.Handler.AcceptTeamInvitationHandler import AcceptTeamInvitationHandler
 from ExternalApi.TeamFrontend.Handler.CreateTeamHandler import CreateTeamHandler
 from ExternalApi.TeamFrontend.Handler.DeleteMembershipHandler import DeleteMembershipHandler
 from ExternalApi.TeamFrontend.Handler.DeleteTeamHandler import DeleteTeamHandler
 from ExternalApi.TeamFrontend.Handler.GetTeamDetailsHandler import GetTeamDetailsHandler
 from ExternalApi.TeamFrontend.Handler.GetTeamOverviewHandler import GetTeamOverviewHandler
+from ExternalApi.TeamFrontend.Handler.SendTeamInvitationHandler import SendTeamInvitationHandler
 from ExternalApi.TeamFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
+from ExternalApi.TeamFrontend.InputFilter.AcceptTeamInvitationInputFilter import AcceptTeamInvitationInputFilter
 from ExternalApi.TeamFrontend.InputFilter.CreateTeamInputFilter import CreateTeamInputFilter
 from ExternalApi.TeamFrontend.InputFilter.DeleteMembershipInputFilter import DeleteMembershipInputFilter
 from ExternalApi.TeamFrontend.InputFilter.DeleteTeamInputFilter import DeleteTeamInputFilter
 from ExternalApi.TeamFrontend.InputFilter.GetTeamDetailsInputFilter import GetTeamDetailsInputFilter
+from ExternalApi.TeamFrontend.InputFilter.SendTeamInvitationInputFilter import SendTeamInvitationInputFilter
 from ExternalApi.TeamFrontend.InputFilter.UpdateTeamInputFilter import UpdateTeamInputFilter
 from ExternalApi.TeamFrontend.config.extensions import create_team_cache_key
 from config.cache import cache
@@ -50,6 +54,24 @@ def updateTeam() -> Response:
 @limiter.limit("2 per minute")
 def createTeam() -> Response:
     return CreateTeamHandler.handle()
+
+
+@team_frontend.route('/send-team-invitation',
+                     methods=['POST'], endpoint='send-team-invitation')
+@jwt_required()
+@SendTeamInvitationInputFilter.validate()
+@limiter.limit('2 per minute')
+def sendTeamInvitation() -> Response:
+    return SendTeamInvitationHandler.handle()
+
+
+@team_frontend.route('/accept-team-invitation/<hash>',
+                     methods=['POST'], endpoint='accept-team-invitation')
+@jwt_required()
+@AcceptTeamInvitationInputFilter.validate()
+@limiter.limit('2 per minute')
+def acceptTeamInvitation(hash) -> Response:
+    return AcceptTeamInvitationHandler.handle()
 
 
 @team_frontend.route('/delete-membership',

@@ -1,6 +1,3 @@
-import json
-from datetime import datetime
-
 from flask import g
 
 from DataDomain.Database.Repository.TournamentRepository import TournamentRepository

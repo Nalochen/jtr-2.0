@@ -1,7 +1,8 @@
 import json
+from datetime import datetime
 from typing import Dict, Any, Self
 
-from sqlalchemy import func, Integer, Column, Text, DateTime
+from sqlalchemy import func, Integer, Column, Text, DateTime, JSON
 from sqlalchemy.ext.hybrid import hybrid_property
 
 from DataDomain.Database.db import db
@@ -12,28 +13,28 @@ class TeamVersions(BaseModel, db.Model):
 
     __tablename__ = 'team_versions'
 
-    id: Column[Integer] = db.Column(
+    id: int = db.Column(
         db.Integer,
         primary_key=True
     )
 
-    version: Column[Integer] = db.Column(
+    version: int = db.Column(
         db.Integer,
         nullable=False
     )
 
-    changes: Column[Text] = db.Column(
+    changes: str = db.Column(
         'changes',
-        db.Text,
+        db.JSON,
         nullable=False
     )
 
-    updated_at: Column[DateTime] = db.Column(
+    updated_at: datetime = db.Column(
         db.DateTime,
         server_default=func.now()
     )
 
-    team_id: Column[Integer] = db.Column(
+    team_id: int = db.Column(
         db.Integer,
         db.ForeignKey('teams.id'),
         nullable=False,

@@ -1,6 +1,7 @@
+from datetime import datetime
 from typing import Optional, List, Any, Dict
 
-from sqlalchemy import func, Integer, Column, String, DateTime, Boolean, text
+from sqlalchemy import func, Integer, Column, String, DateTime, Boolean
 from sqlalchemy.orm import Mapped
 
 from DataDomain.Database.Model.IsPartOf import is_part_of
@@ -12,80 +13,80 @@ class Users(BaseModel, db.Model):
 
     __tablename__ = 'users'
 
-    id: Column[Integer] = db.Column(
+    id: int = db.Column(
         db.Integer,
         primary_key=True
     )
 
-    username: Column[String] = db.Column(
+    username: str = db.Column(
         db.String(100),
         nullable=False,
         unique=True
     )
 
-    password_hash: Column[String] = db.Column(
+    password_hash: str = db.Column(
         db.String(255),
         nullable=False
     )
 
-    email: Column[Optional[String]] = db.Column(
+    email: str | None = db.Column(
         db.String(100),
         unique=True,
         nullable=True
     )
 
-    name: Column[Optional[String]] = db.Column(
+    name: str | None = db.Column(
         db.String(100),
         nullable=True
     )
 
-    name_visibility: Column[Boolean] = db.Column(
+    name_visibility: bool = db.Column(
         db.Boolean,
         nullable=False
     )
 
-    birthdate: Column[Optional[DateTime]] = db.Column(
+    birthdate: datetime | None = db.Column(
         db.Date,
         nullable=True
     )
 
-    birthdate_visibility: Column[Boolean] = db.Column(
+    birthdate_visibility: bool = db.Column(
         db.Boolean,
         nullable=False
     )
 
-    picture: Column[Optional[String]] = db.Column(
+    picture: str | None = db.Column(
         db.String(255),
         nullable=True
     )
 
-    pronouns: Column[Optional[String]] = db.Column(
+    pronouns: str | None = db.Column(
         db.String(255),
         nullable=True
     )
 
-    city: Column[Optional[String]] = db.Column(
+    city: str | None = db.Column(
         db.String(100),
         nullable=True
     )
 
-    city_visibility: Column[Boolean] = db.Column(
+    city_visibility: bool = db.Column(
         db.Boolean,
         nullable=False
     )
 
-    is_deleted: Column[Boolean] = db.Column(
+    is_deleted: bool = db.Column(
         db.Boolean,
         nullable=False,
         server_default='0'
     )
 
-    created_at: Column[DateTime] = db.Column(
+    created_at: datetime = db.Column(
         db.DateTime,
         server_default=func.now()
     )
 
-    updated_at: Column[DateTime] = db.Column(
+    updated_at: datetime = db.Column(
         db.DateTime,
         server_default=func.now(),
         onupdate=func.now()

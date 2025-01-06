@@ -3,17 +3,16 @@ info:
   title: Customer Frontend API
   version: 1.0.0
 paths:
-  /api/tournament-frontend/update-tournament-status:
-    put:
-      summary: Update tournament status
-      operationId: updateTournamentStatus
+  /api/tournament-frontend/delete-tournament-subscription:
+    delete:
+      summary: Delete tournament subscription
+      operationId: deleteTournamentSubscription
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateTournamentStatusRequestBody'
-
+              $ref: '#/components/schemas/DeleteTournamentSubscriptionRequestBody'
 
       responses:
         '200':
@@ -30,10 +29,10 @@ paths:
 
 components:
   schemas:
-    UpdateTournamentStatusRequestBody:
+    DeleteTournamentSubscriptionRequestBody:
       type: object
+      required:
+        - tournamentId
       properties:
         tournamentId:
           type: number
-        status:
-          type: string

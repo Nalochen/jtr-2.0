@@ -1,4 +1,4 @@
-from Infrastructure.InputFilter.Enum.RegexEnum import EMAIL_REGEX, ISO_DATE_REGEX
+from Infrastructure.InputFilter.Enum.RegexEnum import RegexEnum
 from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
 from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
 from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
@@ -24,7 +24,7 @@ class CreateUserInputFilter(InputFilter):
             ],
             validators=[
                 RegexValidator(
-                    ISO_DATE_REGEX,
+                    RegexEnum.ISO_DATE.value,
                     'Das Geburtsdatum muss im iso format sein.'
                 )
             ]
@@ -63,7 +63,7 @@ class CreateUserInputFilter(InputFilter):
             ],
             validators=[
                 RegexValidator(
-                    EMAIL_REGEX,
+                    RegexEnum.EMAIL.value,
                     'Die Email muss das Format einer Email haben.'
                 )
             ]

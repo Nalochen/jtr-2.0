@@ -1,4 +1,4 @@
-from Infrastructure.InputFilter.Enum.RegexEnum import ISO_DATE_REGEX
+from Infrastructure.InputFilter.Enum.RegexEnum import RegexEnum
 from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
 from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
 from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
@@ -50,7 +50,7 @@ class UpdateTeamInputFilter(InputFilter):
             ],
             validators=[
                 RegexValidator(
-                    ISO_DATE_REGEX,
+                    RegexEnum.ISO_DATE.value,
                     'Das Geburtsdatum muss im iso format haben.'
                 )
             ]
