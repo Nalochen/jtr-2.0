@@ -1,8 +1,17 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { firstValueFrom, Observable } from 'rxjs';
+
+import { Store } from '@ngrx/store';
 
 import { EditTeamForm, TeamDataService, teamDetailsSelector } from '@jtr/business-domain/team';
+import { TeamData } from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
+
+import { TeamService } from '../../../business-rules/team/team.service';
 
 import {
   ButtonColorEnum,
@@ -10,12 +19,6 @@ import {
   ButtonTypeEnum,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-import { firstValueFrom, Observable } from 'rxjs';
-import { TeamService } from '../../../business-rules/team/team.service';
-import { Router } from '@angular/router';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { TeamData } from '@jtr/data-domain/store';
-import { Store } from '@ngrx/store';
 import { DialogModule } from 'primeng/dialog';
 
 @Component({
@@ -79,7 +82,7 @@ export class TeamBottomBarComponent {
         isMixTeam: this.form.controls.isMixTeam.value || undefined,
         trainingTime: this.form.controls.trainingTime.value || undefined,
         aboutUs: this.form.controls.aboutUs.value || undefined,
-        contacts: this.form.controls.contacts.value.filter((item): item is string => item !== null && item !== "") || [],
+        contacts: this.form.controls.contacts.value.filter((item): item is string => item !== null && item !== '') || [],
       })
     );
 

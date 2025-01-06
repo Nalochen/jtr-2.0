@@ -9,7 +9,13 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 
+import { Store } from '@ngrx/store';
+
 import { EditTeamForm, teamDetailsSelector } from '@jtr/business-domain/team';
+import { TeamData } from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
+
+import { TeamService } from '../../../../../../desktop/src/app/business-rules/team/team.service';
 
 import {
   ButtonColorEnum,
@@ -19,10 +25,6 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { TeamData } from '@jtr/data-domain/store';
-import { Store } from '@ngrx/store';
-import { TeamService } from '../../../../../../desktop/src/app/business-rules/team/team.service';
 
 @Component({
   selector: 'team-header',

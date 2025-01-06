@@ -5,26 +5,26 @@ import {
 } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { filter, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+
+import { concatLatestFrom } from '@ngrx/operators';
+import { Store } from '@ngrx/store';
 
 import { teamDetailsSelector } from '@jtr/business-domain/team';
+import { userOverviewSelector } from '@jtr/business-domain/user';
+import { TeamData, UserOverviewData } from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import {
-  ButtonComponent,
-  DataContainerComponent,
-  DataContainerRowComponent,
   ButtonColorEnum,
-  ButtonTypeEnum
-} from '../../../ui-shared';
+  ButtonComponent,
+  ButtonTypeEnum,
+  DataContainerComponent,
+  DataContainerRowComponent} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { TeamData, UserOverviewData } from '@jtr/data-domain/store';
-import { Store } from '@ngrx/store';
-import { DialogModule } from 'primeng/dialog';
-import { userOverviewSelector } from '@jtr/business-domain/user';
-import { DropdownModule } from 'primeng/dropdown';
-import { concatLatestFrom } from '@ngrx/operators';
 import { MenuItem } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({

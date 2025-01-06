@@ -9,9 +9,13 @@ import {
 } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
-import { EditTeamForm, teamDetailsSelector } from '@jtr/business-domain/team';
+import { Store } from '@ngrx/store';
+
+import { EditTeamForm } from '@jtr/business-domain/team';
+
+import { TeamService } from '../../../business-rules/team/team.service';
 
 import {
   ButtonColorEnum,
@@ -21,10 +25,6 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { TeamData } from '@jtr/data-domain/store';
-import { Store } from '@ngrx/store';
-import { TeamService } from '../../../business-rules/team/team.service';
 
 @Component({
   selector: 'team-header',

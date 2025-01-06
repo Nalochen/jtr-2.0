@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 
@@ -16,8 +18,6 @@ import { TeamInformationComponent } from './team-information/team-information.co
 import { TeamMembersComponent } from './team-members/team-members.component';
 import { TeamOtherTournamentsComponent } from './team-other-tournaments/team-other-tournaments.component';
 import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tournaments.component';
-import { Router } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   standalone: true,

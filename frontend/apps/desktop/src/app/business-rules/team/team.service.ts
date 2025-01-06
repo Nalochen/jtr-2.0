@@ -2,10 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { firstValueFrom, Observable } from 'rxjs';
-import { tournamentDetailsSelector } from '@jtr/business-domain/tournament';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { TournamentData } from '@jtr/data-domain/store';
+
 import { Store } from '@ngrx/store';
+
+import { tournamentDetailsSelector } from '@jtr/business-domain/tournament';
+import { TournamentData } from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 const CREATE_TEAM_ENDPOINT =
   '/api/team-frontend/create-team';

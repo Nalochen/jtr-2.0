@@ -7,24 +7,24 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable } from 'rxjs';
 
+import { concatLatestFrom } from '@ngrx/operators';
+import { Store } from '@ngrx/store';
+
 import { teamDetailsSelector } from '@jtr/business-domain/team';
+import { userOverviewSelector } from '@jtr/business-domain/user';
+import { TeamData, UserOverviewData } from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import {
-  DataContainerComponent,
-  DataContainerRowComponent,
   ButtonColorEnum,
-  ButtonTypeEnum, ButtonComponent
-} from '../../../ui-shared';
+ButtonComponent,
+  ButtonTypeEnum,   DataContainerComponent,
+  DataContainerRowComponent} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-import { TeamData, UserOverviewData } from '@jtr/data-domain/store';
 import { MenuItem } from 'primeng/api';
-import { Store } from '@ngrx/store';
-import { concatLatestFrom } from '@ngrx/operators';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { userOverviewSelector } from '@jtr/business-domain/user';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'team-members',

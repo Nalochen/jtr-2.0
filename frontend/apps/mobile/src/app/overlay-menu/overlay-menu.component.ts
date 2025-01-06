@@ -1,12 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Observable } from 'rxjs';
+
+import { SingletonGetter } from '@jtr/infrastructure/cache';
+
+import { AuthService } from '../business-rules/auth/auth.service';
 
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../ui-shared';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-import { Observable } from 'rxjs';
-import { AuthService } from '../business-rules/auth/auth.service';
 
 @Component({
   selector: 'app-overlay-menu',
