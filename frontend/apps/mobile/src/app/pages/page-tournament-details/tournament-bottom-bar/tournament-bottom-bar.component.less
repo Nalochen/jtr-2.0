@@ -2,13 +2,34 @@
 
 :host {
   background-color: @color-bg-grey;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
   padding: 16px;
   width: 100%;
-  box-sizing: border-box;
   position: fixed;
   bottom: 0;
   height: 70px;
+}
+
+p {
+  margin-bottom: 8px !important;
+}
+
+::ng-deep .p-dropdown {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+::ng-deep .p-dialog-content {
+  overflow-y: visible;
+}
+
+::ng-deep .p-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

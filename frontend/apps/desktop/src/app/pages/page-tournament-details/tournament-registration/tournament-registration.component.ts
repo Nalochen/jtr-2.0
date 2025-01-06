@@ -82,7 +82,7 @@ export class TournamentRegistrationComponent implements OnInit {
     this.dialogVisible = false;
     this.manageParticipationService.create({
       tournamentId: this.tournamentId,
-      //add reals teams
+      //add real teams
       teamId: 1,
     })
   }
