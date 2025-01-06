@@ -1,10 +1,10 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
-import { TournamentTeamData } from '@jtr/data-domain/store';
+import { TournamentTeamData, TournamentTeamsData } from '@jtr/data-domain/store';
 
 import {
   DataContainerExpandableComponent,
@@ -28,7 +28,19 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './tournament-teams.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TournamentTeamsComponent {
-  @Input() public registeredTeams: TournamentTeamData[] = [];
-  @Input() public reservedTeams: TournamentTeamData[] = [];
+export class TournamentTeamsComponent implements OnInit {
+  @Input() public teams!: TournamentTeamsData;
+  @Input() public showPlacement = false;
+
+  public participatingTeams: TournamentTeamData[] = [];
+  public waitingTeams: TournamentTeamData[] = [];
+
+  public ngOnInit(): void {
+    if(this.showPlacement) {
+      this.participatingTeams = [...this.teams.participating].sort((a, b) => a.placement - b.placement);
+    } else {
+      this.participatingTeams = [...this.teams.participating].sort((a, b) => a.registrationOrder - b.registrationOrder);
+      this.waitingTeams = [...this.teams.waiting].sort((a, b) => a.registrationOrder - b.registrationOrder);
+    }
+  }
 }

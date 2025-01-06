@@ -23,91 +23,31 @@
   >
     @if (panel.isOpen) {
     <p class="title" ngProjectAs="panel-header">
-      {{ 'page-tournament-details.registered' | translate }}:
+      {{ showPlacement ? ('page-tournament-details.ranking' | translate) : ('page-tournament-details.registered' | translate) }}:
     </p>
     } @else {
-    <section ngProjectAs="panel-header">
+    <section ngProjectAs="panel-header" class="teams-previews">
       @if (tournament.teams.participating.length === 0 &&
       tournament.teams.waiting.length === 0) {
       <p>{{ 'page-tournament-details.no-registered-teams' | translate }}</p>
       } @else { @for (team of previewTeams; track team) {
-      <span class="material-icons-outlined">star</span>
+      <img ngProjectAs="team-logo" [src]="team.logo" alt="logo" height="32" width="32"/>
       }}
     </section>
     }
 
     <tournament-teams
       ngProjectAs="panel-content"
-      [registeredTeams]="tournament.teams.participating"
-      [reservedTeams]="tournament.teams.waiting"
+      [teams]="tournament.teams"
+      [showPlacement]="showPlacement"
     />
   </app-data-container-expandable>
   } @case (PanelTypes.Registration) {
-  <app-data-container-expandable
+  <tournament-information-registration
     [id]="panel.id"
     [isOpen]="panel.isOpen"
-    (toggleVisibility)="togglePanel(panel.id, $event)"
-  >
-    <app-data-container-row ngProjectAs="panel-header">
-      <span class="material-icons-outlined" ngProjectAs="container-icon"
-        >edit_note</span
-      >
-      <h5 ngProjectAs="container-headline">
-        {{ 'page-tournament-details.costs' | translate }}
-      </h5>
-
-      @if (tournament.costs.registrationCosts) {
-      <p ngProjectAs="container-content">
-        {{
-          tournament.costs.registrationCosts
-            | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
-        }}
-
-        {{
-          (tournament.costs.registrationCostsType === PricingTypeEnum.PER_PERSON
-            ? 'page-tournament-details.per-person'
-            : 'page-tournament-details.per-team'
-          ) | translate
-        }}
-      </p>
-      }
-    </app-data-container-row>
-
-    <mat-divider ngProjectAs="panel-content" />
-
-    <app-data-container-row
-      class="first-content-row"
-      ngProjectAs="panel-content"
-    >
-      <span class="material-icons-outlined" ngProjectAs="container-icon"
-        >edit_note</span
-      >
-      <h5 ngProjectAs="container-headline">
-        {{ 'page-tournament-details.registration-procedure' | translate }}
-      </h5>
-      <app-chip ngProjectAs="container-additional">{{
-        tournament.registrationProcedure.type
-      }}</app-chip>
-
-      <p ngProjectAs="container-content">
-        {{ tournament.registrationProcedure.text }}
-      </p>
-    </app-data-container-row>
-
-    <mat-divider ngProjectAs="panel-content" />
-
-    <app-data-container-row ngProjectAs="panel-content">
-      <span class="material-icons-outlined" ngProjectAs="container-icon"
-        >edit_note</span
-      >
-      <h5 ngProjectAs="container-headline">
-        {{ 'page-tournament-details.deadlines' | translate }}
-      </h5>
-      <div ngProjectAs="container-content">
-        <p>{{ tournament.deadlines }}</p>
-      </div>
-    </app-data-container-row>
-  </app-data-container-expandable>
+    [tournament]="tournament"
+  />
   } @case (PanelTypes.Contacts) {
   <tournament-information-contacts
     [id]="panel.id"
