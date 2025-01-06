@@ -8,7 +8,7 @@ class IsAdminOfOrganizerHandler:
 
     @staticmethod
     def handle() -> Response:
-        """"""
+        """Handle the request to check if the user is an admin of the organizing team"""
 
         data = g.validatedData
 
