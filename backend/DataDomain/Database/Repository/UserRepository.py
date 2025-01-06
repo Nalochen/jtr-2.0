@@ -87,8 +87,8 @@ class UserRepository:
             )
             db.session.commit()
 
-            logger.info(
-                f'UserRepository | createPasswordResetHash | Password reset hash created for User {userId} updated')
+            logger.info(f'UserRepository | createPasswordResetHash | Password reset hash created for User {
+                userId} updated')
 
             return randomHash
 
@@ -167,7 +167,8 @@ class UserRepository:
         ).first()
 
     @staticmethod
-    def updatePasswordAndClearPasswordResetHash(userId: int, passwordHash: str) -> None:
+    def updatePasswordAndClearPasswordResetHash(
+            userId: int, passwordHash: str) -> None:
         """Clear the password reset hash for a user"""
 
         try:

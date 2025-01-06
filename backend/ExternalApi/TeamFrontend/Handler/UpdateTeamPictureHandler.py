@@ -1,14 +1,15 @@
 import base64
 
 from flask import g
-from DataDomain.Database.Repository.UserRepository import UserRepository
-from DataDomain.Database.tools import getJwtIdentity
+
+from DataDomain.Database.Repository.TeamRepository import TeamRepository
 from DataDomain.Model.Response import Response
+from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
 from ExternalApi.UserFrontend.Service.PictureService import PictureService
 from ExternalApi.UserFrontend.Service.PictureTypeEnum import PictureTypeEnum
 
 
-class UpdateUserPictureHandler:
+class UpdateTeamPictureHandler:
     """Handler for updating a user picture"""
 
     @staticmethod
@@ -17,17 +18,24 @@ class UpdateUserPictureHandler:
 
         data = g.validatedData
 
+        teamId: int = data.get('teamId')
         pictureData: str = data.get('picture')
 
-        user = getJwtIdentity()
+        team = TeamRepository.get(teamId)
+
+        if team is None:
+            return Response(status=404)
+
+        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(team.id):
+            return Response(status=403)
 
         try:
             decodedData = base64.b64decode(pictureData)
 
-            user.picture = PictureService.savePicture(
-                decodedData, PictureTypeEnum.USER)
+            team.picture = PictureService.savePicture(
+                decodedData, PictureTypeEnum.TEAM)
 
-            UserRepository.update(user)
+            TeamRepository.update()
 
         except Exception:
             return Response(status=500)

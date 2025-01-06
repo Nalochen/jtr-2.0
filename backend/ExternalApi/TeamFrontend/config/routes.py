@@ -10,6 +10,7 @@ from ExternalApi.TeamFrontend.Handler.GetTeamDetailsHandler import GetTeamDetail
 from ExternalApi.TeamFrontend.Handler.GetTeamOverviewHandler import GetTeamOverviewHandler
 from ExternalApi.TeamFrontend.Handler.SendTeamInvitationHandler import SendTeamInvitationHandler
 from ExternalApi.TeamFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
+from ExternalApi.TeamFrontend.Handler.UpdateTeamPictureHandler import UpdateTeamPictureHandler
 from ExternalApi.TeamFrontend.InputFilter.AcceptTeamInvitationInputFilter import AcceptTeamInvitationInputFilter
 from ExternalApi.TeamFrontend.InputFilter.CreateTeamInputFilter import CreateTeamInputFilter
 from ExternalApi.TeamFrontend.InputFilter.DeleteMembershipInputFilter import DeleteMembershipInputFilter
@@ -17,6 +18,7 @@ from ExternalApi.TeamFrontend.InputFilter.DeleteTeamInputFilter import DeleteTea
 from ExternalApi.TeamFrontend.InputFilter.GetTeamDetailsInputFilter import GetTeamDetailsInputFilter
 from ExternalApi.TeamFrontend.InputFilter.SendTeamInvitationInputFilter import SendTeamInvitationInputFilter
 from ExternalApi.TeamFrontend.InputFilter.UpdateTeamInputFilter import UpdateTeamInputFilter
+from ExternalApi.TeamFrontend.InputFilter.UpdateTeamPictureInputFilter import UpdateTeamPictureInputFilter
 from ExternalApi.TeamFrontend.config.extensions import create_team_cache_key
 from config.cache import cache
 from config.limiter import limiter
@@ -45,6 +47,15 @@ def getTeamOverview() -> Response:
 @UpdateTeamInputFilter.validate()
 def updateTeam() -> Response:
     return UpdateTeamHandler.handle()
+
+
+@team_frontend.route('/update-team-picture',
+                     methods=['PUT'], endpoint='update-team-picture')
+@jwt_required()
+@UpdateTeamPictureInputFilter.validate()
+@limiter.limit('3 per minute')
+def updateTeamPicture() -> Response:
+    return UpdateTeamPictureHandler.handle()
 
 
 @team_frontend.route('/create-team',

@@ -16,6 +16,6 @@ class UpdateUserPictureInputFilter(InputFilter):
             required=True,
             validators=[
                 IsBase64ImageValidator(),
-                IsBase64ImageCorrectSizeValidator(minSize=1, maxSize=current_app.config['MAX_CONTENT_LENGTH'])
-            ]
-        )
+                IsBase64ImageCorrectSizeValidator(
+                    minSize=1,
+                    maxSize=current_app.config['MAX_CONTENT_LENGTH'])])

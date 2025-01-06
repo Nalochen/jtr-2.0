@@ -96,7 +96,7 @@ def updateUser() -> Response:
 @UpdateUserPictureInputFilter.validate()
 @limiter.limit('3 per minute')
 def updateUserPicture() -> Response:
-    return UpdateUserPictureHandler().handle()
+    return UpdateUserPictureHandler.handle()
 
 
 @user_frontend.route('/login', methods=['POST'], endpoint='login')
@@ -118,14 +118,18 @@ def send() -> Response:
     return SendMailHandler.handle()
 
 
-@user_frontend.route('/create-password-reset', methods=['POST'], endpoint='create-password-reset')
+@user_frontend.route('/create-password-reset',
+                     methods=['POST'],
+                     endpoint='create-password-reset')
 @CreatePasswordResetInputFilter.validate()
 @limiter.limit('2 per minute')
 def createPasswordReset() -> Response:
     return CreatePasswordResetHandler.handle()
 
 
-@user_frontend.route('/create-new-password', methods=['POST'], endpoint='create-new-password')
+@user_frontend.route('/create-new-password',
+                     methods=['POST'],
+                     endpoint='create-new-password')
 @CreateNewPasswordInputFilter.validate()
 @limiter.limit('2 per minute')
 def createNewPassword() -> Response:
