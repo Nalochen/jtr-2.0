@@ -48,6 +48,11 @@ export class LoginOverlayComponent {
 
   public loginAttemptResponse: LoginAttemptResponse | undefined;
 
+  public forgotPassword(): void {
+    this.loginOverlayPanel.hide();
+    //do something
+  }
+
   public async onSubmit(): Promise<void> {
     if (!this.form.valid) {
       this.markAllFieldsAsTouched(this.form);

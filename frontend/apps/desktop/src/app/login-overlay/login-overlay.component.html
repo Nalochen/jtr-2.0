@@ -1,6 +1,6 @@
 <h4>Login</h4>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="no-account">
+  <div class="link">
     <p>{{ 'login.no-account' | translate }}</p>
     <a href="/register">{{ 'login.register' | translate }}</a>
   </div>
@@ -18,7 +18,14 @@
   </div>
 
   <div class="password">
-    <label for="password">{{ 'login.password' | translate }}</label>
+    <div class="link">
+      <label for="password">{{ 'login.password' | translate }}</label>
+      <app-button
+        (click)="forgotPassword()"
+      >
+        <p class="forgot-password">{{ 'login.forgot-password' | translate }}</p>
+      </app-button>
+    </div>
     <input
       type="password"
       class="form-control"

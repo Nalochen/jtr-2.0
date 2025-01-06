@@ -5,6 +5,7 @@ from typing import List
 from sqlalchemy import func
 from sqlalchemy.orm import aliased
 
+from DataDomain.Database.Enum.UserRoleTypesEnum import UserRoleTypesEnum
 from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Database.Model.IsPartOf import is_part_of
 from DataDomain.Database.Model.Teams import Teams
@@ -152,6 +153,34 @@ class TeamRepository:
             'trainingTime': team.training_time,
             'trainingTimeUpdatedAt': team.training_time_updated_at.isoformat() if team.training_time_updated_at else None,
         }
+
+    @staticmethod
+    def teamsOfUser(userId: int) -> List[Teams]:
+        """Get all teams of a user"""
+
+        return db.session.query(
+            Teams
+        ).join(
+            is_part_of, is_part_of.c.team_id == Teams.id
+        ).filter(
+            is_part_of.c.user_id == userId,
+            is_part_of.c.is_deleted == False
+        ).all()
+
+    @staticmethod
+    def teamsOfAdmin(userId: int) -> List[Teams]:
+        """Get all teams where the user is an admin"""
+
+        return db.session.query(
+            Teams
+        ).join(
+            is_part_of, is_part_of.c.team_id == Teams.id
+        ).filter(
+            is_part_of.c.user_id == userId,
+            is_part_of.c.is_deleted == False,
+            is_part_of.c.user_role.in_(
+                [UserRoleTypesEnum.ADMIN.value, UserRoleTypesEnum.MODERATOR.value])
+        ).all()
 
     @staticmethod
     def get(teamId: int) -> Teams:
