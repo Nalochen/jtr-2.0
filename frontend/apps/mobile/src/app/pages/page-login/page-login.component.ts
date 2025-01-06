@@ -52,6 +52,10 @@ export class PageLoginComponent {
 
   public loginAttemptResponse: LoginAttemptResponse | undefined;
 
+  public forgotPassword(): void {
+    //to do
+  }
+
   public async onSubmit(): Promise<void> {
     if (!this.form.valid) {
       this.markAllFieldsAsTouched(this.form);
