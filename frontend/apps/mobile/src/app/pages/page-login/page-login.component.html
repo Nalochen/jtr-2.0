@@ -3,7 +3,7 @@
 
   <div class="content">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="row no-account">
+      <div class="row link">
         <p>{{ 'login.no-account' | translate }}</p>
         <a href="/register">{{ 'login.register' | translate }}</a>
       </div>
@@ -19,7 +19,14 @@
       </div>
 
       <div class="row">
-        <label for="password">{{ 'login.password' | translate }}</label>
+        <div class="link">
+          <label for="password">{{ 'login.password' | translate }}</label>
+          <app-button
+            (click)="forgotPassword()"
+          >
+            <p class="forgot-password">{{ 'login.forgot-password' | translate }}</p>
+          </app-button>
+        </div>
         <input
           type="password"
           class="form-control"

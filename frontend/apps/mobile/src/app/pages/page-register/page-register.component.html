@@ -1,194 +1,192 @@
-<div class="background">
-  <page-register-header />
+<page-register-header />
 
-  <div class="content">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="email">
-        <label for="email">{{ 'register.email' | translate }}</label>
-        <input
-          type="email"
-          class="form-control"
-          [formControl]="form.controls.email"
-          id="email"
-          [class.invalid]="
-            form.get('email')?.invalid &&
-            (form.controls.email.dirty || form.controls.email.touched)
-          "
-        />
-        @if ((form.controls.email.dirty || form.controls.email.touched) &&
-        form.controls.email.hasError('required')) {
-        <p class="error-message">{{ 'register.email-required' | translate }}</p>
-        } @if ((form.controls.email.dirty || form.controls.email.touched) &&
-        form.controls.email.hasError('email')) {
-        <p class="error-message">{{ 'register.email-invalid' | translate }}</p>
-        }
-      </div>
-
-      <div class="username">
-        <div class="headline">
-          <label for="username"
-            >{{ 'register.username' | translate }}
-            {{ 'register.unique' | translate }}</label
-          >
-          <app-info-button>
-            <p class="i-headline">{{ 'register.username' | translate }}</p>
-            <p>{{ 'register.username-info' | translate }}</p>
-          </app-info-button>
-        </div>
-        <input
-          type="text"
-          class="form-control"
-          [formControl]="form.controls.username"
-          id="username"
-          [class.invalid]="
-            form.get('username')?.invalid &&
-            (form.controls.username.dirty || form.controls.username.touched)
-          "
-        />
-        @if ((form.controls.username.dirty || form.controls.username.touched) &&
-        form.controls.username.hasError('required')) {
-        <p class="error-message">
-          {{ 'register.username-required' | translate }}
-        </p>
-        } @if ((form.controls.username.dirty || form.controls.username.touched)
-        && form.controls.username.hasError('minlength')) {
-        <p class="error-message">{{ 'register.username-min' | translate }}</p>
-        }
-      </div>
-
-      <div class="pronouns">
-        <div class="headline">
-          <label for="pronouns">{{ 'register.pronouns' | translate }}</label>
-          <app-info-button>
-            <p class="i-headline">{{ 'register.pronouns' | translate }}</p>
-            <p>{{ 'register.pronouns-info' | translate }}</p>
-          </app-info-button>
-        </div>
-        <input
-          type="text"
-          class="form-control"
-          [formControl]="form.controls.pronouns"
-          id="pronouns"
-          [class.invalid]="
-            form.get('pronouns')?.invalid &&
-            (form.controls.pronouns.dirty || form.controls.pronouns.touched)
-          "
-        />
-      </div>
-
-      <div class="password">
-        <label for="password">{{ 'register.password' | translate }}</label>
-        <input
-          type="password"
-          class="form-control"
-          [formControl]="form.controls.password"
-          id="password"
-          [class.invalid]="
-            form.get('password')?.invalid &&
-            (form.controls.password.dirty || form.controls.password.touched)
-          "
-        />
-        @if ((form.controls.password.dirty || form.controls.password.touched) &&
-        form.controls.password.hasError('required')) {
-        <p class="error-message">
-          {{ 'register.password-required' | translate }}
-        </p>
-        } @if ((form.controls.password.dirty || form.controls.password.touched)
-        && form.controls.password.hasError('minlength')) {
-        <p class="error-message">{{ 'register.password-min' | translate }}</p>
-        }
-      </div>
-
-      <div class="password-repeat">
-        <label for="confirmPassword">{{
-          'register.password-confirmation' | translate
-        }}</label>
-        <input
-          type="password"
-          class="form-control"
-          [formControl]="form.controls.confirmPassword"
-          id="confirmPassword"
-          [class.invalid]="
-            (form.controls.confirmPassword.dirty ||
-              form.controls.confirmPassword.touched) &&
-            form.hasError('passwordsMismatch')
-          "
-        />
-        @if ((form.controls.confirmPassword.dirty ||
-        form.controls.confirmPassword.touched) &&
-        form.hasError('passwordsMismatch')) {
-        <p class="error-message">
-          {{ 'register.password-confirmation-mismatch' | translate }}
-        </p>
-        }
-      </div>
-
-      <div class="name">
-        <div class="headline">
-          <label for="name">{{ 'register.name' | translate }}</label>
-          <app-info-button>
-            <p class="i-headline">{{ 'register.name' | translate }}</p>
-            <p>{{ 'register.name-info' | translate }}</p>
-          </app-info-button>
-        </div>
-        <input
-          type="text"
-          class="form-control"
-          [formControl]="form.controls.name"
-          id="name"
-        />
-      </div>
-
-      <app-visibility-button
-        class="name-button"
-        [control]="form.controls.isNameVisible"
+<div class="content">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="email">
+      <label for="email">{{ 'register.email' | translate }}</label>
+      <input
+        type="email"
+        class="form-control"
+        [formControl]="form.controls.email"
+        id="email"
+        [class.invalid]="
+          form.get('email')?.invalid &&
+          (form.controls.email.dirty || form.controls.email.touched)
+        "
       />
+      @if ((form.controls.email.dirty || form.controls.email.touched) &&
+      form.controls.email.hasError('required')) {
+      <p class="error-message">{{ 'register.email-required' | translate }}</p>
+      } @if ((form.controls.email.dirty || form.controls.email.touched) &&
+      form.controls.email.hasError('email')) {
+      <p class="error-message">{{ 'register.email-invalid' | translate }}</p>
+      }
+    </div>
 
-      <div class="city">
-        <div class="headline">
-          <label for="city">{{ 'register.city' | translate }}</label>
-          <app-info-button>
-            <p class="i-headline">{{ 'register.city' | translate }}</p>
-            <p>{{ 'register.city-info' | translate }}</p>
-          </app-info-button>
-        </div>
-        <input
-          type="text"
-          class="form-control"
-          [formControl]="form.controls.city"
-          id="city"
-        />
+    <div class="username">
+      <div class="headline">
+        <label for="username"
+          >{{ 'register.username' | translate }}
+          {{ 'register.unique' | translate }}</label
+        >
+        <app-info-button>
+          <p class="i-headline">{{ 'register.username' | translate }}</p>
+          <p>{{ 'register.username-info' | translate }}</p>
+        </app-info-button>
       </div>
-
-      <app-visibility-button
-        class="city-button"
-        [control]="form.controls.isCityVisible"
+      <input
+        type="text"
+        class="form-control"
+        [formControl]="form.controls.username"
+        id="username"
+        [class.invalid]="
+          form.get('username')?.invalid &&
+          (form.controls.username.dirty || form.controls.username.touched)
+        "
       />
+      @if ((form.controls.username.dirty || form.controls.username.touched) &&
+      form.controls.username.hasError('required')) {
+      <p class="error-message">
+        {{ 'register.username-required' | translate }}
+      </p>
+      } @if ((form.controls.username.dirty || form.controls.username.touched)
+      && form.controls.username.hasError('minlength')) {
+      <p class="error-message">{{ 'register.username-min' | translate }}</p>
+      }
+    </div>
 
-      <div class="birthdate">
-        <div class="headline">
-          <label for="birthdate">{{ 'register.birthdate' | translate }}</label>
-          <app-info-button>
-            <p class="i-headline">{{ 'register.birthdate' | translate }}</p>
-            <p>{{ 'register.birthdate-info' | translate }}</p>
-          </app-info-button>
-        </div>
-        <input
-          type="date"
-          class="form-control"
-          [formControl]="form.controls.birthdate"
-          id="birthdate"
-        />
+    <div class="pronouns">
+      <div class="headline">
+        <label for="pronouns">{{ 'register.pronouns' | translate }}</label>
+        <app-info-button>
+          <p class="i-headline">{{ 'register.pronouns' | translate }}</p>
+          <p>{{ 'register.pronouns-info' | translate }}</p>
+        </app-info-button>
       </div>
-
-      <app-visibility-button
-        class="birthdate-button"
-        [control]="form.controls.isBirthdateVisible"
+      <input
+        type="text"
+        class="form-control"
+        [formControl]="form.controls.pronouns"
+        id="pronouns"
+        [class.invalid]="
+          form.get('pronouns')?.invalid &&
+          (form.controls.pronouns.dirty || form.controls.pronouns.touched)
+        "
       />
+    </div>
 
-      <button type="submit" class="register-button" [disabled]="!form.valid">
-        <p>{{ 'register.register-button' | translate }}</p>
-      </button>
-    </form>
-  </div>
+    <div class="password">
+      <label for="password">{{ 'register.password' | translate }}</label>
+      <input
+        type="password"
+        class="form-control"
+        [formControl]="form.controls.password"
+        id="password"
+        [class.invalid]="
+          form.get('password')?.invalid &&
+          (form.controls.password.dirty || form.controls.password.touched)
+        "
+      />
+      @if ((form.controls.password.dirty || form.controls.password.touched) &&
+      form.controls.password.hasError('required')) {
+      <p class="error-message">
+        {{ 'register.password-required' | translate }}
+      </p>
+      } @if ((form.controls.password.dirty || form.controls.password.touched)
+      && form.controls.password.hasError('minlength')) {
+      <p class="error-message">{{ 'register.password-min' | translate }}</p>
+      }
+    </div>
+
+    <div class="password-repeat">
+      <label for="confirmPassword">{{
+        'register.password-confirmation' | translate
+      }}</label>
+      <input
+        type="password"
+        class="form-control"
+        [formControl]="form.controls.confirmPassword"
+        id="confirmPassword"
+        [class.invalid]="
+          (form.controls.confirmPassword.dirty ||
+            form.controls.confirmPassword.touched) &&
+          form.hasError('passwordsMismatch')
+        "
+      />
+      @if ((form.controls.confirmPassword.dirty ||
+      form.controls.confirmPassword.touched) &&
+      form.hasError('passwordsMismatch')) {
+      <p class="error-message">
+        {{ 'register.password-confirmation-mismatch' | translate }}
+      </p>
+      }
+    </div>
+
+    <div class="name">
+      <div class="headline">
+        <label for="name">{{ 'register.name' | translate }}</label>
+        <app-info-button>
+          <p class="i-headline">{{ 'register.name' | translate }}</p>
+          <p>{{ 'register.name-info' | translate }}</p>
+        </app-info-button>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        [formControl]="form.controls.name"
+        id="name"
+      />
+    </div>
+
+    <app-visibility-button
+      class="name-button"
+      [control]="form.controls.isNameVisible"
+    />
+
+    <div class="city">
+      <div class="headline">
+        <label for="city">{{ 'register.city' | translate }}</label>
+        <app-info-button>
+          <p class="i-headline">{{ 'register.city' | translate }}</p>
+          <p>{{ 'register.city-info' | translate }}</p>
+        </app-info-button>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        [formControl]="form.controls.city"
+        id="city"
+      />
+    </div>
+
+    <app-visibility-button
+      class="city-button"
+      [control]="form.controls.isCityVisible"
+    />
+
+    <div class="birthdate">
+      <div class="headline">
+        <label for="birthdate">{{ 'register.birthdate' | translate }}</label>
+        <app-info-button>
+          <p class="i-headline">{{ 'register.birthdate' | translate }}</p>
+          <p>{{ 'register.birthdate-info' | translate }}</p>
+        </app-info-button>
+      </div>
+      <input
+        type="date"
+        class="form-control"
+        [formControl]="form.controls.birthdate"
+        id="birthdate"
+      />
+    </div>
+
+    <app-visibility-button
+      class="birthdate-button"
+      [control]="form.controls.isBirthdateVisible"
+    />
+
+    <button type="submit" class="register-button" [disabled]="!form.valid">
+      <p>{{ 'register.register-button' | translate }}</p>
+    </button>
+  </form>
 </div>
