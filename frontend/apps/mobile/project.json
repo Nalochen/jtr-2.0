@@ -86,7 +86,7 @@
           "buildTarget": "mobile:build:production"
         },
         "development": {
-          "proxyConfig": "proxy.conf.js",
+          "proxyConfig": "proxy.conf.json",
           "buildTarget": "mobile:build:development"
         }
       },

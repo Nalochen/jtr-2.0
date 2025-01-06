@@ -90,7 +90,7 @@
           "buildTarget": "desktop:build:production"
         },
         "development": {
-          "proxyConfig": "proxy.conf.js",
+          "proxyConfig": "proxy.conf.json",
           "buildTarget": "desktop:build:development"
         }
       },
