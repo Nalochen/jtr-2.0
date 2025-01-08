@@ -1,4 +1,5 @@
 alembic
+autoflake
 autopep8
 celery
 cryptography
@@ -12,6 +13,7 @@ flask_migrate
 flask_sqlalchemy
 flask_talisman
 gunicorn
+isort
 pillow
 pipreqs
 pymysql

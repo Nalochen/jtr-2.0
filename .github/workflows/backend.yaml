@@ -49,8 +49,8 @@ jobs:
         with:
           python-version: 3.13
 
-      - name: Install autopep8
-        run: pip install autopep8
+      - name: Install autopep8 and flake8
+        run: pip install autopep8 flake8
 
       - name: Run code style checks
         run: |
@@ -59,3 +59,4 @@ jobs:
           set -u # Exit immediately if a variable is not defined.
 
           find ./backend -name '*.py' | xargs -I {} autopep8 --diff --exit-code {}
+          PYTHONPATH=backend flake8

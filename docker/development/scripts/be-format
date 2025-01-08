@@ -1,7 +1,17 @@
 #!/bin/bash
 
-cd /home
+cd /home/backend
 
-. backend/venv/bin/activate
+. venv/bin/activate
 
-find ./backend -name '*.py' -not -path './backend/venv/*' -not -path './backend/worker/venv/*' -exec autopep8 --in-place --aggressive --aggressive {} \;
+echo 'Running isort'
+PYTHONPATH=backend isort .
+
+echo 'Running autoflake'
+PYTHONPATH=backend autoflake --in-place --remove-all-unused-imports --recursive .
+
+echo 'Running autopep8'
+
+find . -name '*.py' -not -path './venv/*' -not -path './worker/venv/*' -exec autopep8 --in-place --aggressive --aggressive {} \;
+
+echo 'Script completed'
