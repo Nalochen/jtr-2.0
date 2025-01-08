@@ -13,9 +13,11 @@ from ExternalApi.TournamentFrontend.Handler.CreateTournamentHandler import (
     CreateTournamentHandler,
 )
 from ExternalApi.TournamentFrontend.Handler.CreateTournamentNotificationHandler import (
-    CreateTournamentNotificationHandler, )
+    CreateTournamentNotificationHandler,
+)
 from ExternalApi.TournamentFrontend.Handler.CreateTournamentSubscriptionHandler import (
-    CreateTournamentSubscriptionHandler, )
+    CreateTournamentSubscriptionHandler,
+)
 from ExternalApi.TournamentFrontend.Handler.DeleteParticipationHandler import (
     DeleteParticipationHandler,
 )
@@ -23,40 +25,53 @@ from ExternalApi.TournamentFrontend.Handler.DeleteTournamentHandler import (
     DeleteTournamentHandler,
 )
 from ExternalApi.TournamentFrontend.Handler.DeleteTournamentSubscriptionHandler import (
-    DeleteTournamentSubscriptionHandler, )
+    DeleteTournamentSubscriptionHandler,
+)
 from ExternalApi.TournamentFrontend.Handler.GetPastTournamentOverviewHandler import (
-    GetPastTournamentOverviewHandler, )
+    GetPastTournamentOverviewHandler,
+)
 from ExternalApi.TournamentFrontend.Handler.GetTournamentDetailsHandler import (
-    GetTournamentDetailsHandler, )
+    GetTournamentDetailsHandler,
+)
 from ExternalApi.TournamentFrontend.Handler.GetTournamentOverviewHandler import (
-    GetTournamentOverviewHandler, )
+    GetTournamentOverviewHandler,
+)
 from ExternalApi.TournamentFrontend.Handler.UpdateTournamentHandler import (
     UpdateTournamentHandler,
 )
 from ExternalApi.TournamentFrontend.Handler.UpdateTournamentStatusHandler import (
-    UpdateTournamentStatusHandler, )
+    UpdateTournamentStatusHandler,
+)
 from ExternalApi.TournamentFrontend.InputFilter.CreateParticipationInputFilter import (
-    CreateParticipationInputFilter, )
+    CreateParticipationInputFilter,
+)
 from ExternalApi.TournamentFrontend.InputFilter.CreateResultInputFilter import (
-    CreateResultInputFilter, )
+    CreateResultInputFilter,
+)
 from ExternalApi.TournamentFrontend.InputFilter.CreateTournamentInputFilter import (
-    CreateTournamentInputFilter, )
+    CreateTournamentInputFilter,
+)
 from ExternalApi.TournamentFrontend.InputFilter.CreateTournamentNotificationInputFilter import (
     CreateTournamentNotificationInputFilter, )
 from ExternalApi.TournamentFrontend.InputFilter.CreateTournamentSubscriptionInputFilter import (
     CreateTournamentSubscriptionInputFilter, )
 from ExternalApi.TournamentFrontend.InputFilter.DeleteParticipationInputFilter import (
-    DeleteParticipationInputFilter, )
+    DeleteParticipationInputFilter,
+)
 from ExternalApi.TournamentFrontend.InputFilter.DeleteTournamentInputFilter import (
-    DeleteTournamentInputFilter, )
+    DeleteTournamentInputFilter,
+)
 from ExternalApi.TournamentFrontend.InputFilter.DeleteTournamentSubscriptionInputFilter import (
     DeleteTournamentSubscriptionInputFilter, )
 from ExternalApi.TournamentFrontend.InputFilter.GetTournamentDetailsInputFilter import (
-    GetTournamentDetailsInputFilter, )
+    GetTournamentDetailsInputFilter,
+)
 from ExternalApi.TournamentFrontend.InputFilter.UpdateTournamentInputFilter import (
-    UpdateTournamentInputFilter, )
+    UpdateTournamentInputFilter,
+)
 from ExternalApi.TournamentFrontend.InputFilter.UpdateTournamentStatusInputFilter import (
-    UpdateTournamentStatusInputFilter, )
+    UpdateTournamentStatusInputFilter,
+)
 
 tournament_frontend = Blueprint('tournament-frontend', __name__)
 

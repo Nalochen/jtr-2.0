@@ -23,7 +23,8 @@ from ExternalApi.TeamFrontend.Handler.UpdateTeamPictureHandler import (
     UpdateTeamPictureHandler,
 )
 from ExternalApi.TeamFrontend.InputFilter.AcceptTeamInvitationInputFilter import (
-    AcceptTeamInvitationInputFilter, )
+    AcceptTeamInvitationInputFilter,
+)
 from ExternalApi.TeamFrontend.InputFilter.CreateTeamInputFilter import (
     CreateTeamInputFilter,
 )
@@ -37,7 +38,8 @@ from ExternalApi.TeamFrontend.InputFilter.GetTeamDetailsInputFilter import (
     GetTeamDetailsInputFilter,
 )
 from ExternalApi.TeamFrontend.InputFilter.SendTeamInvitationInputFilter import (
-    SendTeamInvitationInputFilter, )
+    SendTeamInvitationInputFilter,
+)
 from ExternalApi.TeamFrontend.InputFilter.UpdateTeamInputFilter import (
     UpdateTeamInputFilter,
 )

@@ -9,7 +9,8 @@ from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
     CheckForMembershipRoleService,
 )
 from Infrastructure.Mail.Tournament.SendTournamentSubscriptionNotificationsMail import (
-    SendTournamentSubscriptionNotificationsMail, )
+    SendTournamentSubscriptionNotificationsMail,
+)
 
 
 class CreateTournamentNotificationHandler:

@@ -1,12 +1,16 @@
+#[tool.autopep8]
+#max-line-length = 90
+#aggressive = 2
+
 [tool.isort]
 profile = 'black'
-skip = ['venv', '.venv']
+skip = ['venv', '.venv', '*.md']
 line_length = 90
 
 [tool.autoflake]
 remove-all-unused-imports = true
-exclude = ['venv', '.venv']
+exclude = ['venv', '.venv', '*.md']
 
-[flake8]
+[tool.flake8]
 exclude = ['__init__.py', 'venv', '.venv', '*.md']
 max-line-length = 90

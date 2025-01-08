@@ -34,7 +34,8 @@ from ExternalApi.UserFrontend.InputFilter.CreateNewPasswordInputFilter import (
     CreateNewPasswordInputFilter,
 )
 from ExternalApi.UserFrontend.InputFilter.CreatePasswordResetInputFilter import (
-    CreatePasswordResetInputFilter, )
+    CreatePasswordResetInputFilter,
+)
 from ExternalApi.UserFrontend.InputFilter.CreateUserInputFilter import (
     CreateUserInputFilter,
 )
@@ -45,7 +46,8 @@ from ExternalApi.UserFrontend.InputFilter.GetUserPictureInputFilter import (
     GetUserPictureInputFilter,
 )
 from ExternalApi.UserFrontend.InputFilter.IsAdminOfOrganizerInputFilter import (
-    IsAdminOfOrganizerInputFilter, )
+    IsAdminOfOrganizerInputFilter,
+)
 from ExternalApi.UserFrontend.InputFilter.IsAdminOfTeamInputFilter import (
     IsAdminOfTeamInputFilter,
 )
