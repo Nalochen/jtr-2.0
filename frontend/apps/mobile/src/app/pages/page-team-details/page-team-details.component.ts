@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 
@@ -32,10 +34,26 @@ import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tou
   styleUrl: './page-team-details.component.less',
 })
 export class PageTeamDetailsComponent {
-  constructor(private store$: Store) {}
+  public teamId: number | null = null;
+
+  constructor(private readonly store$: Store, private readonly router: Router) {
+    this.team$.pipe(
+      takeUntilDestroyed(),
+    ).subscribe(
+      (team) => {
+        if (team) {
+          this.teamId = team.id;
+        }
+      }
+    );
+  }
 
   @SingletonGetter()
   public get team$(): Observable<TeamData | null> {
     return this.store$.select(teamDetailsSelector);
+  }
+
+  public redirectToManageTeam() {
+    this.router.navigate(['manage-team-details', this.teamId]);
   }
 }

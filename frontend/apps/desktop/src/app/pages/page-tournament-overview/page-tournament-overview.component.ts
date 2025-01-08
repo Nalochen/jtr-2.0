@@ -15,7 +15,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TournamentRowComponent, TranslatePipe, ButtonComponent],
+  imports: [CommonModule, TranslatePipe, ButtonComponent, TournamentRowComponent],
   templateUrl: './page-tournament-overview.component.html',
   styleUrl: './page-tournament-overview.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,

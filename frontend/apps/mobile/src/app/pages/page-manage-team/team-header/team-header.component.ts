@@ -4,14 +4,18 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
-  OnDestroy,
-  OnInit,
 } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { Subject, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { EditTeamForm } from '@jtr/business-domain/team';
+import { Store } from '@ngrx/store';
+
+import { EditTeamForm, teamDetailsSelector } from '@jtr/business-domain/team';
+import { TeamData } from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
+
+import { TeamService } from '../../../../../../desktop/src/app/business-rules/team/team.service';
 
 import {
   ButtonColorEnum,
@@ -38,26 +42,34 @@ import { InputTextModule } from 'primeng/inputtext';
   styleUrl: './team-header.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamHeaderComponent implements OnInit, OnDestroy {
+export class TeamHeaderComponent {
   @Input() public form!: FormGroup<EditTeamForm>;
-  private readonly destroy$ = new Subject<void>();
+  @Input() public teamId!: number | undefined;
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
-
-  public ngOnInit(): void {
-    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.changeDetectorRef.markForCheck();
-    });
+  @SingletonGetter()
+  public get team$(): Observable<TeamData | null> {
+    return this.store$.select(teamDetailsSelector);
   }
 
-  public ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+  constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly store$: Store,
+    private readonly teamService: TeamService
+) {}
+
+  public async onFileSelected(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const selectedFile = input.files[0];
+
+      await this.teamService.updatePicture(selectedFile);
+    }
   }
 
-  public onChangeLogo() {
-    window.alert('Change logo');
+  public getPictureUrl(): string {
+    return this.teamId ? this.teamService.getPictureUrl(this.teamId) : '';
   }
 }

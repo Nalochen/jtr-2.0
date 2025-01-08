@@ -1,20 +1,116 @@
 <h3>{{ 'page-manage-team.members' | translate }}</h3>
 
-<app-data-container [formGroup]="form">
-  @for (member of form.controls.members.value; track member.id) {
+@let team = team$ | async;
+
+<app-data-container>
+  @for (member of team?.members; track member.id) {
   <app-data-container-row>
     <img
       ngProjectAs="container-icon"
-      alt="Profilbild von {{ member }}"
-      src="https://example.com/picture.png"
+      alt="Profilbild von {{ member.name }}"
+      src="{{ member.picture }}"
       width="28"
       height="28"
     />
-    <p>{{ member.name }}</p>
+    <p ngProjectAs="container-headline">{{ member.name }}</p>
+    <app-button
+      ngProjectAs="container-additional"
+      [type]="ButtonTypeEnum.Icon"
+      (click)="menu.toggle($event)"
+      class="align-self-end"
+    >
+      <span class="material-icons-outlined">more_vert</span>
+    </app-button>
+    <p-overlayPanel #menu>
+      <div class="menu-buttons">
+        <app-button
+          class="menu-button"
+          [color]="ButtonColorEnum.White"
+          [type]="ButtonTypeEnum.Basic"
+        >
+          <span class="material-icons-outlined">delete</span>
+          <p>{{ 'page-manage-team.remove-member' | translate }}</p>
+        </app-button>
+        @switch (member.role) {
+          @case ('admin') {
+          <app-button
+            class="menu-button"
+            [color]="ButtonColorEnum.White"
+            [type]="ButtonTypeEnum.Basic"
+          >
+            <span class="material-icons-outlined">admin_panel_settings</span>
+            <p>{{ 'page-manage-team.make-admin' | translate }}</p>
+          </app-button>
+          }
+          @case ('member') {
+          <app-button
+            class="menu-button"
+            [color]="ButtonColorEnum.White"
+            [type]="ButtonTypeEnum.Basic"
+          >
+            <span class="material-icons-outlined">add_moderator</span>
+            <p>{{ 'page-manage-team.make-moderator' | translate }}</p>
+          </app-button>
+          }
+          @case ('moderator') {
+          <app-button
+            class="menu-button"
+            [color]="ButtonColorEnum.White"
+            [type]="ButtonTypeEnum.Basic"
+          >
+            <span class="material-icons-outlined">remove_moderator</span>
+            <p>{{ 'page-manage-team.delete-moderator' | translate }}</p>
+          </app-button>
+          }
+        }
+      </div>
+    </p-overlayPanel>
   </app-data-container-row>
   } @empty {
   <div class="noMembers">
     <p>{{ 'page-manage-team.no-members' | translate }}</p>
   </div>
   }
+  <app-button
+    [fullWidth]="false"
+    (click)="openAddMemberOverlay()"
+    class="align-self-end"
+  >
+    <span class="material-icons-outlined">add</span>
+  </app-button>
 </app-data-container>
+
+<p-dialog header="{{ 'page-manage-team.add-member' | translate }}" [modal]="true" [(visible)]="isAddMemberOverlayVisible">
+  <div>
+    @if (possibleUsers) {
+    <p-dropdown
+      [options]="possibleUsers"
+      [(ngModel)]="selectedUser"
+      optionLabel="name"
+      [filter]="true"
+      filterBy="name"
+      placeholder="{{ 'page-manage-team.select-user' | translate }}"
+    />
+    }
+  </div>
+
+  <ng-template pTemplate="footer">
+    <app-button
+      (click)="closeAddMemberOverlay()"
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Raised"
+      class="align-self-end"
+    >
+      {{ 'page-manage-team.cancel' | translate }}
+    </app-button>
+
+    <app-button
+      (click)="onAddMember(); closeAddMemberOverlay()"
+      [color]="ButtonColorEnum.Red"
+      [type]="ButtonTypeEnum.Raised"
+      class="align-self-end"
+    >
+      {{ 'page-manage-team.add-member' | translate }}
+    </app-button>
+  </ng-template>
+</p-dialog>

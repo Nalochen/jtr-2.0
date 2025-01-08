@@ -9,7 +9,7 @@ import {
   TournamentDetailsResolver,
   TournamentOverviewResolver,
 } from '@jtr/business-domain/tournament';
-import { UserDetailsResolver } from '@jtr/business-domain/user';
+import { UserDetailsResolver, UserOverviewResolver } from '@jtr/business-domain/user';
 
 import { TeamGuard } from './business-rules/guards/team.guard';
 import { TournamentGuard } from './business-rules/guards/tournament.guard';
@@ -44,6 +44,7 @@ export const appRoutes: Route[] = [
     component: PageManageTeamDetailsComponent,
     resolve: {
       manageTeamDetails: ManageTeamDetailsResolver,
+      userOverview: UserOverviewResolver,
     },
     canActivate: [TeamGuard],
   },

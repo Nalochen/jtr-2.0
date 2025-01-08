@@ -11,7 +11,11 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
+import { Store } from '@ngrx/store';
+
 import { EditTeamForm } from '@jtr/business-domain/team';
+
+import { TeamService } from '../../../business-rules/team/team.service';
 
 import {
   ButtonColorEnum,
@@ -40,11 +44,16 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class TeamHeaderComponent implements OnInit, OnDestroy {
   @Input() public form!: FormGroup<EditTeamForm>;
+  @Input() public teamId!: number | undefined;
   private readonly destroy$ = new Subject<void>();
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly store$: Store,
+    private readonly teamService: TeamService
+  ) {}
 
   public ngOnInit(): void {
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
@@ -57,7 +66,17 @@ export class TeamHeaderComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  public onChangeLogo() {
-    window.alert('Change logo');
+  public async onFileSelected(event: Event): Promise<void> {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const selectedFile = input.files[0];
+
+      await this.teamService.updatePicture(selectedFile);
+    }
+  }
+
+  public getPictureUrl(): string {
+    return this.teamId ? this.teamService.getPictureUrl(this.teamId) : '';
   }
 }

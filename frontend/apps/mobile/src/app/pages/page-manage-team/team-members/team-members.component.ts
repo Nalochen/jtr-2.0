@@ -1,23 +1,30 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  Input,
-  OnDestroy,
-  OnInit,
 } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { Subject, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { EditTeamForm } from '@jtr/business-domain/team';
+import { concatLatestFrom } from '@ngrx/operators';
+import { Store } from '@ngrx/store';
+
+import { teamDetailsSelector } from '@jtr/business-domain/team';
+import { userOverviewSelector } from '@jtr/business-domain/user';
+import { TeamData, UserOverviewData } from '@jtr/data-domain/store';
+import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import {
-  DataContainerComponent,
-  DataContainerRowComponent,
-} from '../../../ui-shared';
+  ButtonColorEnum,
+ButtonComponent,
+  ButtonTypeEnum,   DataContainerComponent,
+  DataContainerRowComponent} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { MenuItem } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @Component({
   selector: 'team-members',
@@ -29,26 +36,71 @@ import { TranslatePipe } from '@ngx-translate/core';
     DataContainerRowComponent,
     ReactiveFormsModule,
     TranslatePipe,
+    ButtonComponent,
+    OverlayPanelModule,
+    DialogModule,
+    DropdownModule,
+    FormsModule
   ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamMembersComponent implements OnInit, OnDestroy {
-  @Input() public form!: FormGroup<EditTeamForm>;
+export class TeamMembersComponent {
+  protected readonly ButtonColorEnum = ButtonColorEnum;
+  protected readonly ButtonTypeEnum = ButtonTypeEnum;
+  protected isAddMemberOverlayVisible = false;
+  protected selectedUser: UserOverviewData | null = null;
+  protected possibleUsers: UserOverviewData[] = [];
+  protected items: MenuItem[] | undefined;
 
-  private readonly destroy$ = new Subject<void>();
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(private readonly store$: Store) {
+    this.items = [
+      {
+        label: 'Options',
+        items: [
+          {
+            label: 'Refresh',
+            icon: 'pi pi-refresh'
+          },
+          {
+            label: 'Export',
+            icon: 'pi pi-upload'
+          }
+        ]
+      }
+    ];
 
-  public ngOnInit(): void {
-    this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      this.changeDetectorRef.markForCheck();
+    this.users$.pipe(
+      concatLatestFrom(() => this.team$),
+    ).subscribe(([users, team]) => {
+      if (users && team) {
+        this.possibleUsers = users.filter(user => !team.members.some(member => member.id === user.id));
+      }
     });
   }
 
-  public ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
+  @SingletonGetter()
+  public get team$(): Observable<TeamData | null> {
+    return this.store$.select(teamDetailsSelector);
+  }
+
+  @SingletonGetter()
+  public get users$(): Observable<UserOverviewData[] | null> {
+    return this.store$.select(userOverviewSelector);
+  }
+
+  public onAddMember() {
+    //add Member to team
+    //Seite neu laden
+  }
+
+  public openAddMemberOverlay() {
+    this.isAddMemberOverlayVisible = true;
+  }
+
+  public closeAddMemberOverlay() {
+    this.isAddMemberOverlayVisible = false;
   }
 }
