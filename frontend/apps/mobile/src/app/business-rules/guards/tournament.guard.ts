@@ -20,13 +20,13 @@ export class TournamentGuard implements CanActivate {
         if (isAdmin) {
           return true;
         } else {
-          this.router.navigate([`/tournament-details/${tournamentId}`]);
+          this.router.navigate(['tournament-details', tournamentId]);
 
           return false;
         }
       }),
       catchError(() => {
-        this.router.navigate([`/tournament-details/${tournamentId}`]);
+        this.router.navigate(['tournament-details', tournamentId]);
 
         return [false];
       })

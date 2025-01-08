@@ -1,7 +1,6 @@
-from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
-from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
-from Infrastructure.InputFilter.InputFilter import InputFilter
-from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
+from flask_inputfilter import InputFilter
+from flask_inputfilter.Filter import ToIntegerFilter, ToNullFilter
+from flask_inputfilter.Validator import IsIntegerValidator
 
 
 class DeleteMembershipInputFilter(InputFilter):
@@ -16,10 +15,10 @@ class DeleteMembershipInputFilter(InputFilter):
             'teamId',
             required=True,
             filters=[
-                ToIntFilter()
+                ToIntegerFilter()
             ],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )
 
@@ -27,10 +26,10 @@ class DeleteMembershipInputFilter(InputFilter):
             'userId',
             required=False,
             filters=[
-                ToIntFilter(),
+                ToIntegerFilter(),
                 ToNullFilter()
             ],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )

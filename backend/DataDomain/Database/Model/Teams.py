@@ -1,14 +1,15 @@
 import json
 from datetime import datetime
-from typing import List, Dict, Any
+from typing import Any, Dict, List
+
 from sqlalchemy import func
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
-from DataDomain.Database.Model.BaseModel import BaseModel
-from DataDomain.Database.Model.ParticipatesIn import participates_in
-from DataDomain.Database.Model.IsPartOf import is_part_of
 from DataDomain.Database.db import db
+from DataDomain.Database.Model.BaseModel import BaseModel
+from DataDomain.Database.Model.IsPartOf import is_part_of
+from DataDomain.Database.Model.ParticipatesIn import participates_in
 
 
 class Teams(BaseModel, db.Model):

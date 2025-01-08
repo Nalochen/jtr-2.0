@@ -1,13 +1,11 @@
 import os
+from collections import defaultdict
 from typing import List
 
 import yaml
-from collections import defaultdict
-
 from flask import Blueprint
 
 from DataDomain.Model.Response import Response
-
 
 externalApiFolder = Blueprint(
     'external_api',

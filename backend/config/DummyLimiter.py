@@ -17,5 +17,3 @@ class DummyLimiter:
 
     def init_app(self, app) -> None:
         """Initializes the Flask app with the given configuration"""
-
-        pass

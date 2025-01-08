@@ -1,6 +1,6 @@
-from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
-from Infrastructure.InputFilter.InputFilter import InputFilter
-from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
+from flask_inputfilter import InputFilter
+from flask_inputfilter.Filter import ToIntegerFilter
+from flask_inputfilter.Validator import IsIntegerValidator
 
 
 class SendTeamInvitationInputFilter(InputFilter):
@@ -14,13 +14,13 @@ class SendTeamInvitationInputFilter(InputFilter):
         self.add(
             'userId',
             required=True,
-            filters=[ToIntFilter()],
-            validators=[IsIntValidator()]
+            filters=[ToIntegerFilter()],
+            validators=[IsIntegerValidator()]
         )
 
         self.add(
             'teamId',
             required=True,
-            filters=[ToIntFilter()],
-            validators=[IsIntValidator()]
+            filters=[ToIntegerFilter()],
+            validators=[IsIntegerValidator()]
         )

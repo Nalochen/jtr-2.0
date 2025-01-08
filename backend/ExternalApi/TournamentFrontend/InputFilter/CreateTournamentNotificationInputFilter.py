@@ -1,8 +1,6 @@
-from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
-from Infrastructure.InputFilter.Filter.ToStringFilter import ToStrFilter
-from Infrastructure.InputFilter.InputFilter import InputFilter
-from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
-from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
+from flask_inputfilter import InputFilter
+from flask_inputfilter.Filter import ToIntegerFilter, ToStringFilter
+from flask_inputfilter.Validator import IsIntegerValidator, IsStringValidator
 
 
 class CreateTournamentNotificationInputFilter(InputFilter):
@@ -17,10 +15,10 @@ class CreateTournamentNotificationInputFilter(InputFilter):
             'tournamentId',
             required=True,
             filters=[
-                ToIntFilter()
+                ToIntegerFilter()
             ],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )
 
@@ -28,7 +26,7 @@ class CreateTournamentNotificationInputFilter(InputFilter):
             'message',
             required=True,
             filters=[
-                ToStrFilter()
+                ToStringFilter()
             ],
             validators=[
                 IsStringValidator()

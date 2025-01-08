@@ -1,6 +1,6 @@
-from Infrastructure.InputFilter.Filter.ToStringFilter import ToStrFilter
-from Infrastructure.InputFilter.InputFilter import InputFilter
-from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
+from flask_inputfilter import InputFilter
+from flask_inputfilter.Filter import ToStringFilter
+from flask_inputfilter.Validator import IsStringValidator
 
 
 class AcceptTeamInvitationInputFilter(InputFilter):
@@ -14,6 +14,6 @@ class AcceptTeamInvitationInputFilter(InputFilter):
         self.add(
             'hash',
             required=True,
-            filters=[ToStrFilter()],
+            filters=[ToStringFilter()],
             validators=[IsStringValidator()]
         )

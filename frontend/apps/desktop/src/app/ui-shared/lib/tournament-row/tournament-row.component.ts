@@ -40,6 +40,6 @@ export class TournamentRowComponent {
   constructor(private readonly router: Router) {}
 
   public onDetailsClick(): void {
-    this.router.navigate([`tournament-details/${this.tournament.id}`]);
+    this.router.navigate(['tournament-details', this.tournament.id]);
   }
 }

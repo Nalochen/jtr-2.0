@@ -1,4 +1,4 @@
-from typing import List, TypedDict, Optional
+from typing import List, Optional, TypedDict
 
 
 class SendMailTaskBody(TypedDict):

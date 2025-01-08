@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from sqlalchemy import func, JSON
+from sqlalchemy import func
 
-from DataDomain.Database.Model.BaseModel import BaseModel
 from DataDomain.Database.db import db
+from DataDomain.Database.Model.BaseModel import BaseModel
 
 
 class Logs(BaseModel, db.Model):

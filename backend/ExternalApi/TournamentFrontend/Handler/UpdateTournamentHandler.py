@@ -5,8 +5,10 @@ from flask import g
 
 from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
 from ExternalApi.TournamentFrontend.config.extensions import clearTournamentCache
+from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
+    CheckForMembershipRoleService,
+)
 
 
 class UpdateTournamentHandler:

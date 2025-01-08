@@ -3,6 +3,7 @@ from Infrastructure.Mail.SendSingleMail import SendSingleMail
 
 
 class SendTeamInvitationMail:
+    """Email a user about a new team invitation."""
 
     def send(self, user: Users, hash: str) -> None:
 

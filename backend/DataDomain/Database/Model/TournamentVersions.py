@@ -1,8 +1,8 @@
 import json
 from datetime import datetime
-from typing import Dict, Any, Self
+from typing import Any, Dict, Self
 
-from sqlalchemy import func, DateTime, Column, Text, Integer, JSON
+from sqlalchemy import func
 from sqlalchemy.ext.hybrid import hybrid_property
 
 from DataDomain.Database.db import db

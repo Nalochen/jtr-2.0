@@ -20,13 +20,13 @@ export class TeamGuard implements CanActivate {
         if (isAdmin) {
           return true;
         } else {
-          this.router.navigate([`/team-details/${teamId}`]);
+          this.router.navigate(['team-details', teamId]);
 
           return false;
         }
       }),
       catchError(() => {
-        this.router.navigate([`/team-details/${teamId}`]);
+        this.router.navigate(['team-details', teamId]);
 
         return [false];
       })
