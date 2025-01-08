@@ -1,6 +1,6 @@
 from flask_inputfilter import InputFilter
 from flask_inputfilter.Enum.RegexEnum import RegexEnum
-from flask_inputfilter.Filter import ToIntegerFilter, StringTrimFilter, ToNullFilter, ToBoolFilter
+from flask_inputfilter.Filter import ToIntegerFilter, StringTrimFilter, ToNullFilter, ToBooleanFilter
 from flask_inputfilter.Validator import IsIntegerValidator, IsStringValidator, RegexValidator, InEnumValidator, \
     IsArrayValidator, IsBoolValidator
 
@@ -350,28 +350,28 @@ class UpdateTournamentInputFilter(InputFilter):
         self.add(
             'studdedShoesAllowed',
             required=True,
-            filters=[ToBoolFilter()],
+            filters=[ToBooleanFilter()],
             validators=[IsBoolValidator()]
         )
 
         self.add(
             'cleatsShoesAllowed',
             required=True,
-            filters=[ToBoolFilter()],
+            filters=[ToBooleanFilter()],
             validators=[IsBoolValidator()]
         )
 
         self.add(
             'camShoesAllowed',
             required=True,
-            filters=[ToBoolFilter()],
+            filters=[ToBooleanFilter()],
             validators=[IsBoolValidator()]
         )
 
         self.add(
             'barefootAllowed',
             required=True,
-            filters=[ToBoolFilter()],
+            filters=[ToBooleanFilter()],
             validators=[IsBoolValidator()]
         )
 

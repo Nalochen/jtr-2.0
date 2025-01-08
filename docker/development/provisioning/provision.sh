@@ -53,6 +53,6 @@ new_section "Finish"
 run_nothing "Provisioning done."
 
 run_always "Listen to backend logs" \
-  tail -f /var/log/backend.log &
+  . "/bin/bash ${SCRIPT_DIR}/project/listen-backend.sh"
 
 wait

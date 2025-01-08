@@ -5,7 +5,7 @@ cryptography
 flask
 flask_caching
 flask_cors
-flask_inputfilter
+flask_inputfilter==0.0.3
 flask_jwt_extended
 flask_limiter
 flask_migrate

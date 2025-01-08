@@ -1,6 +1,6 @@
 from flask_inputfilter import InputFilter
 from flask_inputfilter.Enum.RegexEnum import RegexEnum
-from flask_inputfilter.Filter import ToNullFilter, ToBoolFilter, StringTrimFilter
+from flask_inputfilter.Filter import ToNullFilter, ToBooleanFilter, StringTrimFilter
 from flask_inputfilter.Validator import RegexValidator, IsBoolValidator, IsStringValidator
 
 
@@ -29,7 +29,7 @@ class CreateUserInputFilter(InputFilter):
         self.add(
             'isBirthdateVisible',
             required=True,
-            filters=[ToBoolFilter()],
+            filters=[ToBooleanFilter()],
             validators=[IsBoolValidator()]
         )
 
@@ -46,7 +46,7 @@ class CreateUserInputFilter(InputFilter):
         self.add(
             'isCityVisible',
             required=True,
-            filters=[ToBoolFilter()],
+            filters=[ToBooleanFilter()],
             validators=[IsBoolValidator()]
         )
 
@@ -78,7 +78,7 @@ class CreateUserInputFilter(InputFilter):
         self.add(
             'isNameVisible',
             required=True,
-            filters=[ToBoolFilter()],
+            filters=[ToBooleanFilter()],
             validators=[IsBoolValidator()]
         )
 

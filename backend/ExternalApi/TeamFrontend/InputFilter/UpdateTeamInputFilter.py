@@ -1,6 +1,6 @@
 from flask_inputfilter import InputFilter
 from flask_inputfilter.Enum.RegexEnum import RegexEnum
-from flask_inputfilter.Filter import ToIntegerFilter, StringTrimFilter, ToNullFilter, ToBoolFilter
+from flask_inputfilter.Filter import ToIntegerFilter, StringTrimFilter, ToNullFilter, ToBooleanFilter
 from flask_inputfilter.Validator import IsIntegerValidator, IsStringValidator, RegexValidator, IsBoolValidator, \
     IsArrayValidator
 
@@ -60,7 +60,7 @@ class UpdateTeamInputFilter(InputFilter):
         self.add(
             'isMixTeam',
             required=False,
-            filters=[ToBoolFilter(), ToNullFilter()],
+            filters=[ToBooleanFilter(), ToNullFilter()],
             validators=[IsBoolValidator()]
         )
 
