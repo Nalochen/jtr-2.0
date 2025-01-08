@@ -5,7 +5,7 @@
     <p class="small-text" *ngIf="team$ | async as team">
       gegründet: {{ team.founded | date : 'dd.MM.YYYY' }}
     </p>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="redirectToManageTeam()">
       <span class="material-icons">edit</span>
     </button>
   </div>

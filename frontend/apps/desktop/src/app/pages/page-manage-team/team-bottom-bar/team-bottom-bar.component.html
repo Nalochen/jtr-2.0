@@ -1,11 +1,12 @@
 <div>
   <app-button
-    (click)="onDeleteTeam()"
+    (click)="onOpenDeleteDialog()"
     [color]="ButtonColorEnum.White"
     [type]="ButtonTypeEnum.Raised"
   >
     <p>{{ 'page-manage-team.delete-team' | translate }}</p>
   </app-button>
+
   <app-button
     (click)="onSaveTeam()"
     [color]="ButtonColorEnum.Red"
@@ -14,3 +15,22 @@
     <p>{{ 'page-manage-team.save' | translate }}</p>
   </app-button>
 </div>
+
+<p-dialog header="{{ 'page-manage-team.confirmation' | translate }}?" [modal]="true" [(visible)]="isDeleteDialogVisible" [style]="{ width: '25rem' }">
+  <div class="delete-overlay">
+    <app-button
+      (click)="isDeleteDialogVisible = false"
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Raised"
+    >
+      <p>{{ 'page-manage-team.cancel' | translate }}</p>
+    </app-button>
+    <app-button
+      (click)="onDeleteTeam()"
+      [color]="ButtonColorEnum.Red"
+      [type]="ButtonTypeEnum.Raised"
+    >
+      <p>{{ 'page-manage-team.delete-team' | translate }}</p>
+    </app-button>
+  </div>
+</p-dialog>

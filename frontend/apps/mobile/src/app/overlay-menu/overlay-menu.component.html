@@ -1,13 +1,17 @@
 <div class="overlay" *ngIf="isOpen">
   <button class="close-button" (click)="closeMenu()">✕</button>
   <div class="menu-links">
-    <button (click)="closeMenu()">Turniere</button>
-    <button (click)="closeMenu()">Teams</button>
-    <button (click)="closeMenu()">Account</button>
-    <button (click)="closeMenu()">Linksammlung</button>
-    <button (click)="closeMenu()">Login</button>
-    <button (click)="closeMenu()">Über uns</button>
-    <button (click)="closeMenu()">Impressum</button>
+    <button (click)="onRedirectToTournaments()">Turniere</button>
+    <button (click)="onRedirectToTeams()">Teams</button>
+    <button (click)="onRedirectToAccount()">Account</button>
+    <button (click)="onRedirectToLinks()">Linksammlung</button>
+    @if (isLoggedIn$ | async) {
+    <button (click)="logout()">Logout</button>
+    } @else {
+    <button (click)="onRedirectToLogin()">Login</button>
+    }
+    <button (click)="onRedirectToAboutUs()">Über uns</button>
+    <button (click)="onRedirectToImpressum()">Impressum</button>
   </div>
   <div class="language">
     <app-button
