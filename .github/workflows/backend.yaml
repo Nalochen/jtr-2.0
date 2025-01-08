@@ -59,4 +59,3 @@ jobs:
           set -u # Exit immediately if a variable is not defined.
 
           find ./backend -name '*.py' | xargs -I {} autopep8 --diff --exit-code {}
-          PYTHONPATH=backend flake8

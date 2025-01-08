@@ -32,8 +32,9 @@ class DeleteMembershipHandler:
         if not isPartOfEntry:
             return Response(status=404)
 
-        if data.get(
-                'userId') and not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId):
+        if (data.get(
+                'userId') and not CheckForMembershipRoleService.
+                isCurrentUserAdminOfTeam(teamId)):
             return Response(status=403)
 
         try:

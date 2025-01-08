@@ -29,7 +29,7 @@ class UserRepository:
     def getUserOverview() -> List[dict]:
         """Get user overview"""
 
-        users = Users.query.filter(Users.is_deleted == False).all()
+        users = Users.query.filter(Users.is_deleted is False).all()
 
         return [{
             'id': user.id,
@@ -87,8 +87,8 @@ class UserRepository:
             )
             db.session.commit()
 
-            logger.info(f'UserRepository | createPasswordResetHash | Password reset hash created for User {
-                userId} updated')
+            logger.info(f'UserRepository | createPasswordResetHash | '
+                        f'Password reset hash created for User {userId} updated')
 
             return randomHash
 
@@ -155,7 +155,7 @@ class UserRepository:
             filters.append(Users.email == email)
 
         return Users.query.filter(
-            and_(*filters, Users.is_deleted == False)).first()
+            and_(*filters, Users.is_deleted is False)).first()
 
     @staticmethod
     def checkPasswordResetHash(hash: str) -> Users | None:
@@ -163,7 +163,7 @@ class UserRepository:
 
         return Users.query.filter(
             Users.password_reset_hash == hash,
-            Users.is_deleted == False
+            Users.is_deleted is False
         ).first()
 
     @staticmethod
@@ -183,7 +183,8 @@ class UserRepository:
             db.session.commit()
 
             logger.info(
-                f'UserRepository | clearPasswordResetHash | Password reset hash cleared for User {userId}')
+                f'UserRepository | clearPasswordResetHash | '
+                f'Password reset hash cleared for User {userId}')
 
         except Exception as e:
             db.session.rollback()

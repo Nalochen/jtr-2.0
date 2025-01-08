@@ -45,7 +45,8 @@ class CreateTournamentHandler:
         tournament.registration_procedure_url = data.get(
             'registrationProcedureUrl')
         tournament.registration_start_date = datetime.fromisoformat(
-            data.get('registrationStartDate')) if data.get('registrationStartDate') else None
+            data.get('registrationStartDate')) \
+            if data.get('registrationStartDate') else None
         tournament.registration_costs = data.get('registrationCosts')
         tournament.registration_costs_type = data.get('registrationCostsType')
         tournament.deposit_costs = data.get('depositCosts')

@@ -15,7 +15,7 @@ class IsPartOfRepository:
         ).filter(
             is_part_of.c.user_id == userId,
             is_part_of.c.team_id == teamId,
-            is_part_of.c.is_deleted == False
+            is_part_of.c.is_deleted is False
         ).first()
 
     @staticmethod

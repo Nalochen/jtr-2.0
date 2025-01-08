@@ -26,7 +26,8 @@ class DeleteParticipationHandler:
                     teamId} to tournament {tournamentId}")
 
         if (not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId)
-                and not CheckForMembershipRoleService.isCurrentUserAdminOfOrganizingTeam(tournamentId)):
+                and not CheckForMembershipRoleService.
+                isCurrentUserAdminOfOrganizingTeam(tournamentId)):
             return Response(status=403)
 
         if not ParticipatesInRepository.exists(tournamentId, teamId):
