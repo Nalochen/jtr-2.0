@@ -3,7 +3,9 @@ from werkzeug.security import generate_password_hash
 
 from DataDomain.Database.Repository.UserRepository import UserRepository
 from DataDomain.Model.Response import Response
-from Infrastructure.Mail.User.SendPasswordResetSuccessMail import SendPasswordResetSuccessMail
+from Infrastructure.Mail.User.SendPasswordResetSuccessMail import (
+    SendPasswordResetSuccessMail,
+)
 
 
 class CreateNewPasswordHandler:

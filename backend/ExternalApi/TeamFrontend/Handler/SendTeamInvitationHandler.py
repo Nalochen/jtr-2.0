@@ -1,9 +1,13 @@
 from flask import g
 
-from DataDomain.Database.Repository.TeamInvitationRepository import TeamInvitationRepository
+from DataDomain.Database.Repository.TeamInvitationRepository import (
+    TeamInvitationRepository,
+)
 from DataDomain.Database.Repository.UserRepository import UserRepository
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
+from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
+    CheckForMembershipRoleService,
+)
 from Infrastructure.Mail.Team.SendTeamInvitationMail import SendTeamInvitationMail
 
 

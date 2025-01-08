@@ -1,6 +1,6 @@
 from flask_inputfilter import InputFilter
-from flask_inputfilter.Filter import ToIntegerFilter, StringTrimFilter
-from flask_inputfilter.Validator import IsIntegerValidator, InEnumValidator
+from flask_inputfilter.Filter import StringTrimFilter, ToIntegerFilter
+from flask_inputfilter.Validator import InEnumValidator, IsIntegerValidator
 
 from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
 

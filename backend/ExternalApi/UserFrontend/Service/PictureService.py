@@ -2,8 +2,8 @@ import io
 import os
 import uuid
 
-from PIL import Image
 from flask import current_app
+from PIL import Image
 from werkzeug.utils import secure_filename
 
 from ExternalApi.UserFrontend.Service.PictureTypeEnum import PictureTypeEnum

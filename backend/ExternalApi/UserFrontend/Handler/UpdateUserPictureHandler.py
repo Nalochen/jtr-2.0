@@ -1,6 +1,7 @@
 import base64
 
 from flask import g
+
 from DataDomain.Database.Repository.UserRepository import UserRepository
 from DataDomain.Database.tools import getJwtIdentity
 from DataDomain.Model.Response import Response

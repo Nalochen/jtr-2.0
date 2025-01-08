@@ -1,7 +1,9 @@
 from flask import g
 
 from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
-from DataDomain.Database.Repository.TournamentSubscriptionRepository import TournamentSubscriptionRepository
+from DataDomain.Database.Repository.TournamentSubscriptionRepository import (
+    TournamentSubscriptionRepository,
+)
 from DataDomain.Database.tools import getJwtIdentity
 from DataDomain.Model.Response import Response
 

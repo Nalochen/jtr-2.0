@@ -3,11 +3,13 @@ from datetime import datetime
 
 from flask import g
 
+from config.cache import cache
 from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
-from config.cache import cache
+from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
+    CheckForMembershipRoleService,
+)
 
 
 class CreateTournamentHandler:

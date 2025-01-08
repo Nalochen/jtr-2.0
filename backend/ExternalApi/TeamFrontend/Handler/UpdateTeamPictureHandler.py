@@ -4,7 +4,9 @@ from flask import g
 
 from DataDomain.Database.Repository.TeamRepository import TeamRepository
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
+from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
+    CheckForMembershipRoleService,
+)
 from ExternalApi.UserFrontend.Service.PictureService import PictureService
 from ExternalApi.UserFrontend.Service.PictureTypeEnum import PictureTypeEnum
 

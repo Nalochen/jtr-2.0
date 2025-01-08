@@ -1,8 +1,12 @@
 from flask import g
 
-from DataDomain.Database.Repository.ParticipatesInRepository import ParticipatesInRepository
+from DataDomain.Database.Repository.ParticipatesInRepository import (
+    ParticipatesInRepository,
+)
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
+from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
+    CheckForMembershipRoleService,
+)
 from Infrastructure.Logger.Logger import logger
 
 

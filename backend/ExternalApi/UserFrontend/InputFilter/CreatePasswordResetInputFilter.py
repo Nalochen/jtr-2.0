@@ -1,5 +1,5 @@
 from flask_inputfilter import InputFilter
-from flask_inputfilter.Filter import StringTrimFilter, ToNullFilter
+from flask_inputfilter.Filter import StringTrimFilter
 from flask_inputfilter.Validator import IsStringValidator
 
 

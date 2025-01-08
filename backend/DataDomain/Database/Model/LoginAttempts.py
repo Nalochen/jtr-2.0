@@ -2,9 +2,9 @@ from datetime import datetime, timedelta
 
 from sqlalchemy import func
 
+from DataDomain.Database.db import db
 from DataDomain.Database.Enum.LockType import LockType
 from DataDomain.Database.Model.BaseModel import BaseModel
-from DataDomain.Database.db import db
 
 
 class LoginAttempts(BaseModel, db.Model):

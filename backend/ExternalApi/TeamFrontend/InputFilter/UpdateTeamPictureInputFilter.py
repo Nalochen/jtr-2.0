@@ -1,7 +1,11 @@
 from flask import current_app
 from flask_inputfilter import InputFilter
 from flask_inputfilter.Filter import ToIntegerFilter
-from flask_inputfilter.Validator import IsBase64ImageValidator, IsBase64ImageCorrectSizeValidator, IsIntegerValidator
+from flask_inputfilter.Validator import (
+    IsBase64ImageCorrectSizeValidator,
+    IsBase64ImageValidator,
+    IsIntegerValidator,
+)
 
 
 class UpdateTeamPictureInputFilter(InputFilter):

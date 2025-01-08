@@ -1,6 +1,6 @@
 import os
 
-from flask import g, current_app, send_from_directory
+from flask import current_app, g, send_from_directory
 
 from DataDomain.Database.Repository.UserRepository import UserRepository
 from DataDomain.Model.Response import Response

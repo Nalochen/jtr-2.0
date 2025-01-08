@@ -1,6 +1,10 @@
 from flask_inputfilter import InputFilter
-from flask_inputfilter.Filter import StringTrimFilter, ToNullFilter, ToBooleanFilter
-from flask_inputfilter.Validator import IsStringValidator, IsBoolValidator, IsArrayValidator
+from flask_inputfilter.Filter import StringTrimFilter, ToBooleanFilter, ToNullFilter
+from flask_inputfilter.Validator import (
+    IsArrayValidator,
+    IsBoolValidator,
+    IsStringValidator,
+)
 
 
 class CreateTeamInputFilter(InputFilter):

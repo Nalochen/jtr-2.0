@@ -1,16 +1,39 @@
 from flask_inputfilter import InputFilter
 from flask_inputfilter.Enum.RegexEnum import RegexEnum
-from flask_inputfilter.Filter import ToIntegerFilter, StringTrimFilter, ToNullFilter, ToBooleanFilter
-from flask_inputfilter.Validator import IsIntegerValidator, IsStringValidator, RegexValidator, InEnumValidator, \
-    IsArrayValidator, IsBoolValidator
+from flask_inputfilter.Filter import (
+    StringTrimFilter,
+    ToBooleanFilter,
+    ToIntegerFilter,
+    ToNullFilter,
+)
+from flask_inputfilter.Validator import (
+    InEnumValidator,
+    IsArrayValidator,
+    IsBoolValidator,
+    IsIntegerValidator,
+    IsStringValidator,
+    RegexValidator,
+)
 
-from DataDomain.Database.Enum.TournamentAccommodationTypesEnum import TournamentAccommodationTypesEnum
+from DataDomain.Database.Enum.TournamentAccommodationTypesEnum import (
+    TournamentAccommodationTypesEnum,
+)
 from DataDomain.Database.Enum.TournamentCostTypesEnum import TournamentCostTypesEnum
-from DataDomain.Database.Enum.TournamentFoodEveningTypesEnum import TournamentFoodEveningTypesEnum
-from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import TournamentFoodGastroTypesEnum
-from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import TournamentFoodMorningTypesEnum
-from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import TournamentFoodNoonTypesEnum
-from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import TournamentRegistrationProcedureTypesEnum
+from DataDomain.Database.Enum.TournamentFoodEveningTypesEnum import (
+    TournamentFoodEveningTypesEnum,
+)
+from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import (
+    TournamentFoodGastroTypesEnum,
+)
+from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import (
+    TournamentFoodMorningTypesEnum,
+)
+from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import (
+    TournamentFoodNoonTypesEnum,
+)
+from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import (
+    TournamentRegistrationProcedureTypesEnum,
+)
 
 
 class UpdateTournamentInputFilter(InputFilter):

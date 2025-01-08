@@ -1,16 +1,15 @@
+import json
 from datetime import datetime
 from typing import List
 
-from sqlalchemy import func, or_, and_, desc
+from sqlalchemy import and_, desc, func, or_
 from sqlalchemy.orm import aliased, joinedload
 
+from DataDomain.Database.db import db
 from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
 from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Database.Model.Teams import Teams
 from DataDomain.Database.Model.Tournaments import Tournaments
-from DataDomain.Database.db import db
-import json
-
 from DataDomain.Database.tools import getJwtIdentity
 from Infrastructure.Logger.Logger import logger
 

@@ -5,13 +5,13 @@ from typing import List
 from sqlalchemy import func
 from sqlalchemy.orm import aliased
 
+from DataDomain.Database.db import db
 from DataDomain.Database.Enum.UserRoleTypesEnum import UserRoleTypesEnum
-from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Database.Model.IsPartOf import is_part_of
+from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Database.Model.Teams import Teams
 from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.Model.Users import Users
-from DataDomain.Database.db import db
 from Infrastructure.Logger.Logger import logger
 
 

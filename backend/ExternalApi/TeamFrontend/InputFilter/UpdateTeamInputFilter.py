@@ -1,8 +1,18 @@
 from flask_inputfilter import InputFilter
 from flask_inputfilter.Enum.RegexEnum import RegexEnum
-from flask_inputfilter.Filter import ToIntegerFilter, StringTrimFilter, ToNullFilter, ToBooleanFilter
-from flask_inputfilter.Validator import IsIntegerValidator, IsStringValidator, RegexValidator, IsBoolValidator, \
-    IsArrayValidator
+from flask_inputfilter.Filter import (
+    StringTrimFilter,
+    ToBooleanFilter,
+    ToIntegerFilter,
+    ToNullFilter,
+)
+from flask_inputfilter.Validator import (
+    IsArrayValidator,
+    IsBoolValidator,
+    IsIntegerValidator,
+    IsStringValidator,
+    RegexValidator,
+)
 
 
 class UpdateTeamInputFilter(InputFilter):

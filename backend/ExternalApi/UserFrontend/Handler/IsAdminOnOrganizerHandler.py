@@ -1,6 +1,9 @@
 from flask import g
+
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
+from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
+    CheckForMembershipRoleService,
+)
 
 
 class IsAdminOfOrganizerHandler:

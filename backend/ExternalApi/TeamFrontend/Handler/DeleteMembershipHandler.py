@@ -3,7 +3,9 @@ from flask import g
 from DataDomain.Database.Repository.IsPartOfRepository import IsPartOfRepository
 from DataDomain.Database.tools import getJwtIdentity
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
+from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
+    CheckForMembershipRoleService,
+)
 
 
 class DeleteMembershipHandler:

@@ -1,34 +1,61 @@
 from flask import Blueprint
 from flask_jwt_extended import jwt_required
 
+from config.cache import cache
+from config.limiter import limiter
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Handler.CreateNewPasswordHandler import CreateNewPasswordHandler
-from ExternalApi.UserFrontend.Handler.CreatePasswordResetHandler import CreatePasswordResetHandler
+from ExternalApi.UserFrontend.config.extensions import (
+    create_user_cache_key,
+    create_user_picture_cache_key,
+)
+from ExternalApi.UserFrontend.Handler.CreateNewPasswordHandler import (
+    CreateNewPasswordHandler,
+)
+from ExternalApi.UserFrontend.Handler.CreatePasswordResetHandler import (
+    CreatePasswordResetHandler,
+)
 from ExternalApi.UserFrontend.Handler.CreateUserHandler import CreateUserHandler
 from ExternalApi.UserFrontend.Handler.DeleteUserHandler import DeleteUserHandler
 from ExternalApi.UserFrontend.Handler.GetAdminOnTeamHandler import GetAdminOfTeamsHandler
 from ExternalApi.UserFrontend.Handler.GetUserDetailsHandler import GetUserDetailsHandler
 from ExternalApi.UserFrontend.Handler.GetUserOverviewHandler import GetUserOverviewHandler
 from ExternalApi.UserFrontend.Handler.GetUserPictureHandler import GetUserPictureHandler
-from ExternalApi.UserFrontend.Handler.IsAdminOnOrganizerHandler import IsAdminOfOrganizerHandler
+from ExternalApi.UserFrontend.Handler.IsAdminOnOrganizerHandler import (
+    IsAdminOfOrganizerHandler,
+)
 from ExternalApi.UserFrontend.Handler.IsAdminOnTeamHandler import IsAdminOfTeamHandler
 from ExternalApi.UserFrontend.Handler.LoginUserHandler import LoginUserHandler
 from ExternalApi.UserFrontend.Handler.SendMailHandler import SendMailHandler
 from ExternalApi.UserFrontend.Handler.UpdateUserHandler import UpdateUserHandler
-from ExternalApi.UserFrontend.Handler.UpdateUserPictureHandler import UpdateUserPictureHandler
-from ExternalApi.UserFrontend.InputFilter.CreateNewPasswordInputFilter import CreateNewPasswordInputFilter
-from ExternalApi.UserFrontend.InputFilter.CreatePasswordResetInputFilter import CreatePasswordResetInputFilter
-from ExternalApi.UserFrontend.InputFilter.CreateUserInputFilter import CreateUserInputFilter
-from ExternalApi.UserFrontend.InputFilter.GetUserDetailsInputFilter import GetUserDetailsInputFilter
-from ExternalApi.UserFrontend.InputFilter.GetUserPictureInputFilter import GetUserPictureInputFilter
-from ExternalApi.UserFrontend.InputFilter.IsAdminOfOrganizerInputFilter import IsAdminOfOrganizerInputFilter
-from ExternalApi.UserFrontend.InputFilter.IsAdminOfTeamInputFilter import IsAdminOfTeamInputFilter
+from ExternalApi.UserFrontend.Handler.UpdateUserPictureHandler import (
+    UpdateUserPictureHandler,
+)
+from ExternalApi.UserFrontend.InputFilter.CreateNewPasswordInputFilter import (
+    CreateNewPasswordInputFilter,
+)
+from ExternalApi.UserFrontend.InputFilter.CreatePasswordResetInputFilter import (
+    CreatePasswordResetInputFilter, )
+from ExternalApi.UserFrontend.InputFilter.CreateUserInputFilter import (
+    CreateUserInputFilter,
+)
+from ExternalApi.UserFrontend.InputFilter.GetUserDetailsInputFilter import (
+    GetUserDetailsInputFilter,
+)
+from ExternalApi.UserFrontend.InputFilter.GetUserPictureInputFilter import (
+    GetUserPictureInputFilter,
+)
+from ExternalApi.UserFrontend.InputFilter.IsAdminOfOrganizerInputFilter import (
+    IsAdminOfOrganizerInputFilter, )
+from ExternalApi.UserFrontend.InputFilter.IsAdminOfTeamInputFilter import (
+    IsAdminOfTeamInputFilter,
+)
 from ExternalApi.UserFrontend.InputFilter.LoginUserInputFilter import LoginUserInputFilter
-from ExternalApi.UserFrontend.InputFilter.UpdateUserInputFilter import UpdateUserInputFilter
-from ExternalApi.UserFrontend.InputFilter.UpdateUserPictureInputFilter import UpdateUserPictureInputFilter
-from ExternalApi.UserFrontend.config.extensions import create_user_cache_key, create_user_picture_cache_key
-from config.cache import cache
-from config.limiter import limiter
+from ExternalApi.UserFrontend.InputFilter.UpdateUserInputFilter import (
+    UpdateUserInputFilter,
+)
+from ExternalApi.UserFrontend.InputFilter.UpdateUserPictureInputFilter import (
+    UpdateUserPictureInputFilter,
+)
 
 user_frontend = Blueprint('user-frontend', __name__)
 

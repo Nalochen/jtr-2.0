@@ -1,6 +1,10 @@
 from flask_inputfilter import InputFilter
 from flask_inputfilter.Filter import ToIntegerFilter
-from flask_inputfilter.Validator import IsIntegerValidator, IsArrayValidator, ArrayElementValidator
+from flask_inputfilter.Validator import (
+    ArrayElementValidator,
+    IsArrayValidator,
+    IsIntegerValidator,
+)
 
 
 class CreateResultInputFilter(InputFilter):

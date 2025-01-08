@@ -3,8 +3,8 @@ from typing import List
 
 from sqlalchemy import and_
 
-from DataDomain.Database.Model.Users import Users
 from DataDomain.Database.db import db
+from DataDomain.Database.Model.Users import Users
 from Infrastructure.Logger.Logger import logger
 
 
