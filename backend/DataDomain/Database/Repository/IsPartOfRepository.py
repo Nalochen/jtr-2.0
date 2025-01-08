@@ -1,5 +1,5 @@
-from DataDomain.Database.Model.IsPartOf import is_part_of
 from DataDomain.Database.db import db
+from DataDomain.Database.Model.IsPartOf import is_part_of
 from Infrastructure.Logger.Logger import logger
 
 
@@ -15,7 +15,7 @@ class IsPartOfRepository:
         ).filter(
             is_part_of.c.user_id == userId,
             is_part_of.c.team_id == teamId,
-            is_part_of.c.is_deleted == False
+            is_part_of.c.is_deleted is False
         ).first()
 
     @staticmethod

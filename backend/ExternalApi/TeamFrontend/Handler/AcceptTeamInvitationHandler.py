@@ -2,13 +2,11 @@ from flask import g
 
 from DataDomain.Database.Enum.UserRoleTypesEnum import UserRoleTypesEnum
 from DataDomain.Database.Repository.IsPartOfRepository import IsPartOfRepository
-from DataDomain.Database.Repository.TeamInvitationRepository import TeamInvitationRepository
-from DataDomain.Database.Repository.TeamRepository import TeamRepository
-from DataDomain.Database.Repository.UserRepository import UserRepository
+from DataDomain.Database.Repository.TeamInvitationRepository import (
+    TeamInvitationRepository,
+)
 from DataDomain.Database.tools import getJwtIdentity
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
-from Infrastructure.Mail.Team.SendTeamInvitationMail import SendTeamInvitationMail
 
 
 class AcceptTeamInvitationHandler:

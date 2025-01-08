@@ -1,9 +1,10 @@
+import uuid
 from typing import List
 
 from sqlalchemy import and_
 
-from DataDomain.Database.Model.Users import Users
 from DataDomain.Database.db import db
+from DataDomain.Database.Model.Users import Users
 from Infrastructure.Logger.Logger import logger
 
 
@@ -18,10 +19,17 @@ class UserRepository:
         ).first()
 
     @staticmethod
+    def getByEmail(email: str) -> Users:
+        return Users.query.filter_by(
+            email=email,
+            is_deleted=False
+        ).first()
+
+    @staticmethod
     def getUserOverview() -> List[dict]:
         """Get user overview"""
 
-        users = Users.query.filter(Users.is_deleted == False).all()
+        users = Users.query.filter(Users.is_deleted is False).all()
 
         return [{
             'id': user.id,
@@ -63,6 +71,30 @@ class UserRepository:
         except Exception as e:
             db.session.rollback()
             logger.error(f'UserRepository | create | {e}')
+            raise e
+
+    @staticmethod
+    def createPasswordResetHash(userId: int) -> str:
+        try:
+            randomHash = uuid.uuid4().hex
+
+            Users.query.filter(
+                Users.id == userId,
+            ).update(
+                values={
+                    'password_reset_hash': randomHash,
+                }
+            )
+            db.session.commit()
+
+            logger.info(f'UserRepository | createPasswordResetHash | '
+                        f'Password reset hash created for User {userId} updated')
+
+            return randomHash
+
+        except Exception as e:
+            db.session.rollback()
+            logger.error(f'UserRepository | update | {e}')
             raise e
 
     @staticmethod
@@ -123,4 +155,38 @@ class UserRepository:
             filters.append(Users.email == email)
 
         return Users.query.filter(
-            and_(*filters, Users.is_deleted == False)).first()
+            and_(*filters, Users.is_deleted is False)).first()
+
+    @staticmethod
+    def checkPasswordResetHash(hash: str) -> Users | None:
+        """Check if a password reset hash is valid"""
+
+        return Users.query.filter(
+            Users.password_reset_hash == hash,
+            Users.is_deleted is False
+        ).first()
+
+    @staticmethod
+    def updatePasswordAndClearPasswordResetHash(
+            userId: int, passwordHash: str) -> None:
+        """Clear the password reset hash for a user"""
+
+        try:
+            Users.query.filter(
+                Users.id == userId
+            ).update(
+                values={
+                    'password_hash': passwordHash,
+                    'password_reset_hash': None
+                }
+            )
+            db.session.commit()
+
+            logger.info(
+                f'UserRepository | clearPasswordResetHash | '
+                f'Password reset hash cleared for User {userId}')
+
+        except Exception as e:
+            db.session.rollback()
+            logger.error(f'UserRepository | clearPasswordResetHash | {e}')
+            raise e

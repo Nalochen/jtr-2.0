@@ -7,7 +7,6 @@ paths:
     get:
       summary: Get teams where the current user is admin or moderator
       operationId: getAdminTeams
-
       responses:
         '200':
           description: OK

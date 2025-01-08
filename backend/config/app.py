@@ -1,20 +1,19 @@
 import os
 
 from flask import Flask
-
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from flask_talisman import Talisman
 from redis import Redis
 
-from DataDomain.Database.db import db
-from ExternalApi.TeamFrontend.config.routes import team_frontend
-from ExternalApi.TournamentFrontend.config.routes import tournament_frontend
-from ExternalApi.UserFrontend.config.routes import user_frontend
-from ExternalApi.System.config.routes import system
 from config.cache import cache
 from config.config import Config
 from config.limiter import limiter
+from DataDomain.Database.db import db
+from ExternalApi.System.config.routes import system
+from ExternalApi.TeamFrontend.config.routes import team_frontend
+from ExternalApi.TournamentFrontend.config.routes import tournament_frontend
+from ExternalApi.UserFrontend.config.routes import user_frontend
 
 
 def createApp() -> Flask:

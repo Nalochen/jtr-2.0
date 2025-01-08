@@ -1,6 +1,6 @@
-from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
-from Infrastructure.InputFilter.InputFilter import InputFilter
-from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
+from flask_inputfilter import InputFilter
+from flask_inputfilter.Filter import ToIntegerFilter
+from flask_inputfilter.Validator import IsIntegerValidator
 
 
 class DeleteTournamentInputFilter(InputFilter):
@@ -15,9 +15,9 @@ class DeleteTournamentInputFilter(InputFilter):
             'tournamentId',
             required=True,
             filters=[
-                ToIntFilter()
+                ToIntegerFilter()
             ],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )

@@ -1,14 +1,18 @@
-from Infrastructure.InputFilter.Enum.RegexEnum import RegexEnum
-from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
-from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
-from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
-from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
-from Infrastructure.InputFilter.InputFilter import InputFilter
-from Infrastructure.InputFilter.Validator.IsArrayValidator import IsArrayValidator
-from Infrastructure.InputFilter.Validator.IsBoolValidator import IsBoolValidator
-from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
-from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
-from Infrastructure.InputFilter.Validator.RegexValidator import RegexValidator
+from flask_inputfilter import InputFilter
+from flask_inputfilter.Enum.RegexEnum import RegexEnum
+from flask_inputfilter.Filter import (
+    StringTrimFilter,
+    ToBooleanFilter,
+    ToIntegerFilter,
+    ToNullFilter,
+)
+from flask_inputfilter.Validator import (
+    IsArrayValidator,
+    IsBoolValidator,
+    IsIntegerValidator,
+    IsStringValidator,
+    RegexValidator,
+)
 
 
 class UpdateTeamInputFilter(InputFilter):
@@ -22,9 +26,9 @@ class UpdateTeamInputFilter(InputFilter):
         self.add(
             'teamId',
             required=True,
-            filters=[ToIntFilter()],
+            filters=[ToIntegerFilter()],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )
 
@@ -66,7 +70,7 @@ class UpdateTeamInputFilter(InputFilter):
         self.add(
             'isMixTeam',
             required=False,
-            filters=[ToBoolFilter(), ToNullFilter()],
+            filters=[ToBooleanFilter(), ToNullFilter()],
             validators=[IsBoolValidator()]
         )
 

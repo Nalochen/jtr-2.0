@@ -1,8 +1,12 @@
 from flask import g
 
-from DataDomain.Database.Repository.ParticipatesInRepository import ParticipatesInRepository
+from DataDomain.Database.Repository.ParticipatesInRepository import (
+    ParticipatesInRepository,
+)
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
+from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
+    CheckForMembershipRoleService,
+)
 from Infrastructure.Logger.Logger import logger
 
 
@@ -22,7 +26,8 @@ class DeleteParticipationHandler:
                     teamId} to tournament {tournamentId}")
 
         if (not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId)
-                and not CheckForMembershipRoleService.isCurrentUserAdminOfOrganizingTeam(tournamentId)):
+                and not CheckForMembershipRoleService.
+                isCurrentUserAdminOfOrganizingTeam(tournamentId)):
             return Response(status=403)
 
         if not ParticipatesInRepository.exists(tournamentId, teamId):

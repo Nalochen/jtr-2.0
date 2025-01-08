@@ -1,7 +1,7 @@
 import uuid
 
-from DataDomain.Database.Model.TeamInvitations import team_invitations
 from DataDomain.Database.db import db
+from DataDomain.Database.Model.TeamInvitations import team_invitations
 from Infrastructure.Logger.Logger import logger
 
 

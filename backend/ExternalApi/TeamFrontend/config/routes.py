@@ -1,25 +1,51 @@
 from flask import Blueprint
 from flask_jwt_extended import jwt_required
 
+from config.cache import cache
+from config.limiter import limiter
 from DataDomain.Model.Response import Response
-from ExternalApi.TeamFrontend.Handler.AcceptTeamInvitationHandler import AcceptTeamInvitationHandler
+from ExternalApi.TeamFrontend.config.extensions import create_team_cache_key
+from ExternalApi.TeamFrontend.Handler.AcceptTeamInvitationHandler import (
+    AcceptTeamInvitationHandler,
+)
 from ExternalApi.TeamFrontend.Handler.CreateTeamHandler import CreateTeamHandler
-from ExternalApi.TeamFrontend.Handler.DeleteMembershipHandler import DeleteMembershipHandler
+from ExternalApi.TeamFrontend.Handler.DeleteMembershipHandler import (
+    DeleteMembershipHandler,
+)
 from ExternalApi.TeamFrontend.Handler.DeleteTeamHandler import DeleteTeamHandler
 from ExternalApi.TeamFrontend.Handler.GetTeamDetailsHandler import GetTeamDetailsHandler
 from ExternalApi.TeamFrontend.Handler.GetTeamOverviewHandler import GetTeamOverviewHandler
-from ExternalApi.TeamFrontend.Handler.SendTeamInvitationHandler import SendTeamInvitationHandler
+from ExternalApi.TeamFrontend.Handler.SendTeamInvitationHandler import (
+    SendTeamInvitationHandler,
+)
 from ExternalApi.TeamFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
-from ExternalApi.TeamFrontend.InputFilter.AcceptTeamInvitationInputFilter import AcceptTeamInvitationInputFilter
-from ExternalApi.TeamFrontend.InputFilter.CreateTeamInputFilter import CreateTeamInputFilter
-from ExternalApi.TeamFrontend.InputFilter.DeleteMembershipInputFilter import DeleteMembershipInputFilter
-from ExternalApi.TeamFrontend.InputFilter.DeleteTeamInputFilter import DeleteTeamInputFilter
-from ExternalApi.TeamFrontend.InputFilter.GetTeamDetailsInputFilter import GetTeamDetailsInputFilter
-from ExternalApi.TeamFrontend.InputFilter.SendTeamInvitationInputFilter import SendTeamInvitationInputFilter
-from ExternalApi.TeamFrontend.InputFilter.UpdateTeamInputFilter import UpdateTeamInputFilter
-from ExternalApi.TeamFrontend.config.extensions import create_team_cache_key
-from config.cache import cache
-from config.limiter import limiter
+from ExternalApi.TeamFrontend.Handler.UpdateTeamPictureHandler import (
+    UpdateTeamPictureHandler,
+)
+from ExternalApi.TeamFrontend.InputFilter.AcceptTeamInvitationInputFilter import (
+    AcceptTeamInvitationInputFilter,
+)
+from ExternalApi.TeamFrontend.InputFilter.CreateTeamInputFilter import (
+    CreateTeamInputFilter,
+)
+from ExternalApi.TeamFrontend.InputFilter.DeleteMembershipInputFilter import (
+    DeleteMembershipInputFilter,
+)
+from ExternalApi.TeamFrontend.InputFilter.DeleteTeamInputFilter import (
+    DeleteTeamInputFilter,
+)
+from ExternalApi.TeamFrontend.InputFilter.GetTeamDetailsInputFilter import (
+    GetTeamDetailsInputFilter,
+)
+from ExternalApi.TeamFrontend.InputFilter.SendTeamInvitationInputFilter import (
+    SendTeamInvitationInputFilter,
+)
+from ExternalApi.TeamFrontend.InputFilter.UpdateTeamInputFilter import (
+    UpdateTeamInputFilter,
+)
+from ExternalApi.TeamFrontend.InputFilter.UpdateTeamPictureInputFilter import (
+    UpdateTeamPictureInputFilter,
+)
 
 team_frontend = Blueprint('team-frontend', __name__)
 
@@ -45,6 +71,15 @@ def getTeamOverview() -> Response:
 @UpdateTeamInputFilter.validate()
 def updateTeam() -> Response:
     return UpdateTeamHandler.handle()
+
+
+@team_frontend.route('/update-team-picture',
+                     methods=['PUT'], endpoint='update-team-picture')
+@jwt_required()
+@UpdateTeamPictureInputFilter.validate()
+@limiter.limit('3 per minute')
+def updateTeamPicture() -> Response:
+    return UpdateTeamPictureHandler.handle()
 
 
 @team_frontend.route('/create-team',

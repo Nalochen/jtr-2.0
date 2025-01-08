@@ -1,6 +1,9 @@
-from Infrastructure.InputFilter.InputFilter import InputFilter
-from Infrastructure.InputFilter.Validator.CheckBase64ImageSizeValidator import CheckBase64ImageSizeValidator
-from Infrastructure.InputFilter.Validator.IsBase64ImageValidator import IsBase64ImageValidator
+from flask import current_app
+from flask_inputfilter import InputFilter
+from flask_inputfilter.Validator import (
+    IsBase64ImageCorrectSizeValidator,
+    IsBase64ImageValidator,
+)
 
 
 class UpdateUserPictureInputFilter(InputFilter):
@@ -16,6 +19,6 @@ class UpdateUserPictureInputFilter(InputFilter):
             required=True,
             validators=[
                 IsBase64ImageValidator(),
-                CheckBase64ImageSizeValidator()
-            ]
-        )
+                IsBase64ImageCorrectSizeValidator(
+                    minSize=1,
+                    maxSize=current_app.config['MAX_CONTENT_LENGTH'])])

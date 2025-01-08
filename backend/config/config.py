@@ -56,7 +56,8 @@ class Config:
 
             warnings.filterwarnings(
                 "ignore",
-                message="Flask-Caching: CACHE_TYPE is set to null, caching is effectively disabled.")
+                message="Flask-Caching: CACHE_TYPE is set to null, "
+                        "caching is effectively disabled.")
 
         elif os.getenv('FLASK_ENV') == 'development':
             app.config['DATABASE_PATH'] = '/home/backend/DataDomain/Database'
@@ -67,4 +68,5 @@ class Config:
 
             warnings.filterwarnings(
                 "ignore",
-                message="Flask-Caching: CACHE_TYPE is set to null, caching is effectively disabled.")
+                message="Flask-Caching: CACHE_TYPE is set to null, "
+                        "caching is effectively disabled.")

@@ -1,8 +1,10 @@
-from Infrastructure.InputFilter.Filter.ToIntFilter import ToIntFilter
-from Infrastructure.InputFilter.InputFilter import InputFilter
-from Infrastructure.InputFilter.Validator.ArrayElementValidator import ArrayElementValidator
-from Infrastructure.InputFilter.Validator.IsArrayValidator import IsArrayValidator
-from Infrastructure.InputFilter.Validator.IsIntValidator import IsIntValidator
+from flask_inputfilter import InputFilter
+from flask_inputfilter.Filter import ToIntegerFilter
+from flask_inputfilter.Validator import (
+    ArrayElementValidator,
+    IsArrayValidator,
+    IsIntegerValidator,
+)
 
 
 class CreateResultInputFilter(InputFilter):
@@ -17,10 +19,10 @@ class CreateResultInputFilter(InputFilter):
             'tournamentId',
             required=True,
             filters=[
-                ToIntFilter()
+                ToIntegerFilter()
             ],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )
 
@@ -29,20 +31,20 @@ class CreateResultInputFilter(InputFilter):
             'teamId',
             required=True,
             filters=[
-                ToIntFilter()
+                ToIntegerFilter()
             ],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )
         resultElementFilter.add(
             'placement',
             required=True,
             filters=[
-                ToIntFilter()
+                ToIntegerFilter()
             ],
             validators=[
-                IsIntValidator()
+                IsIntegerValidator()
             ]
         )
 

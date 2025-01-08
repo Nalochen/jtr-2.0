@@ -1,16 +1,15 @@
+import json
 from datetime import datetime
 from typing import List
 
-from sqlalchemy import func, or_, and_, desc
+from sqlalchemy import and_, desc, func, or_
 from sqlalchemy.orm import aliased, joinedload
 
+from DataDomain.Database.db import db
 from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
 from DataDomain.Database.Model.ParticipatesIn import participates_in
 from DataDomain.Database.Model.Teams import Teams
 from DataDomain.Database.Model.Tournaments import Tournaments
-from DataDomain.Database.db import db
-import json
-
 from DataDomain.Database.tools import getJwtIdentity
 from Infrastructure.Logger.Logger import logger
 
@@ -51,7 +50,7 @@ class TournamentRepository:
                 ),
                 Tournaments.start_date > currentTime
             ),
-            Tournaments.is_deleted == False,
+            Tournaments.is_deleted is False,
             Tournaments.status == TournamentStatusTypesEnum.PUBLISHED.value
         ).group_by(
             Tournaments.id
@@ -97,7 +96,7 @@ class TournamentRepository:
             Tournaments.organizer_id == Teams.id
         ).filter(
             Tournaments.end_date < currentTime,
-            Tournaments.is_deleted == False
+            Tournaments.is_deleted is False
         ).group_by(
             Tournaments.id
         ).order_by(
@@ -138,7 +137,7 @@ class TournamentRepository:
             ).filter(
                 participates_in.c.team_id == team.id,
                 participates_in.c.tournament_id == tournament.id,
-                participates_in.c.is_deleted == False
+                participates_in.c.is_deleted is False
             ).first()
 
             if not participation:

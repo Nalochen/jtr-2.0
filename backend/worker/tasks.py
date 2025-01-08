@@ -1,15 +1,13 @@
-import os
 import logging
+import os
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
 import pymysql
-
 from celery import Celery
-
-from Model.SendMailTaskBody import SendMailTaskBody
 from Handler.SendMailHandler import SendMailHandler
 from MailConfig import MailConfig
+from Model.SendMailTaskBody import SendMailTaskBody
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
 
 celery = Celery(
     os.getenv('CELERY_APP_NAME'),

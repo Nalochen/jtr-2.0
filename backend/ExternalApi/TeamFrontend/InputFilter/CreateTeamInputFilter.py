@@ -1,10 +1,10 @@
-from Infrastructure.InputFilter.Filter.StringTrimFilter import StringTrimFilter
-from Infrastructure.InputFilter.Filter.ToBoolFilter import ToBoolFilter
-from Infrastructure.InputFilter.Filter.ToNullFilter import ToNullFilter
-from Infrastructure.InputFilter.InputFilter import InputFilter
-from Infrastructure.InputFilter.Validator.IsArrayValidator import IsArrayValidator
-from Infrastructure.InputFilter.Validator.IsBoolValidator import IsBoolValidator
-from Infrastructure.InputFilter.Validator.IsStringValidator import IsStringValidator
+from flask_inputfilter import InputFilter
+from flask_inputfilter.Filter import StringTrimFilter, ToBooleanFilter, ToNullFilter
+from flask_inputfilter.Validator import (
+    IsArrayValidator,
+    IsBoolValidator,
+    IsStringValidator,
+)
 
 
 class CreateTeamInputFilter(InputFilter):
@@ -32,7 +32,7 @@ class CreateTeamInputFilter(InputFilter):
         self.add(
             'isMixTeam',
             required=False,
-            filters=[ToBoolFilter(), ToNullFilter()],
+            filters=[ToBooleanFilter(), ToNullFilter()],
             validators=[IsBoolValidator()]
         )
 

@@ -4,6 +4,7 @@ from Infrastructure.Mail.SendSingleMail import SendSingleMail
 
 
 class SendTournamentSubscriptionNotificationMail:
+    """Email a user about a tournament update."""
 
     def send(self, user: Users, tournament: Tournaments, message: str) -> None:
 

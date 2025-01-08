@@ -5,9 +5,8 @@ Revises:
 Create Date: 2024-11-19 12:41:37.434612
 
 """
-from alembic import op
 import sqlalchemy as sa
-
+from alembic import op
 
 # revision identifiers, used by Alembic.
 revision = '2edca87836cb'
@@ -100,6 +99,8 @@ def upgrade():
                         length=100), nullable=False),
                     sa.Column('password_hash', sa.String(
                         length=255), nullable=False),
+                    sa.Column('password_reset_hash', sa.String(
+                        length=255), nullable=True),
                     sa.Column('email', sa.String(length=100), nullable=True),
                     sa.Column('name', sa.String(length=100), nullable=True),
                     sa.Column('name_visibility', sa.Boolean(), nullable=False),

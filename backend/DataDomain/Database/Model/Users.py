@@ -1,12 +1,12 @@
 from datetime import datetime
-from typing import Optional, List, Any, Dict
+from typing import Any, Dict, List
 
-from sqlalchemy import func, Integer, Column, String, DateTime, Boolean
+from sqlalchemy import func
 from sqlalchemy.orm import Mapped
 
-from DataDomain.Database.Model.IsPartOf import is_part_of
 from DataDomain.Database.db import db
 from DataDomain.Database.Model.BaseModel import BaseModel
+from DataDomain.Database.Model.IsPartOf import is_part_of
 
 
 class Users(BaseModel, db.Model):
@@ -27,6 +27,11 @@ class Users(BaseModel, db.Model):
     password_hash: str = db.Column(
         db.String(255),
         nullable=False
+    )
+
+    password_reset_hash: str = db.Column(
+        db.String(255),
+        nullable=True
     )
 
     email: str | None = db.Column(

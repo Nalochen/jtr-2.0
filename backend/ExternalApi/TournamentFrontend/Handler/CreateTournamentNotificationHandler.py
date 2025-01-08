@@ -1,11 +1,16 @@
 from flask import g
 
 from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
-from DataDomain.Database.Repository.TournamentSubscriptionRepository import TournamentSubscriptionRepository
+from DataDomain.Database.Repository.TournamentSubscriptionRepository import (
+    TournamentSubscriptionRepository,
+)
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
-from Infrastructure.Mail.Tournament.SendTournamentSubscriptionNotificationsMail import \
-    SendTournamentSubscriptionNotificationsMail
+from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
+    CheckForMembershipRoleService,
+)
+from Infrastructure.Mail.Tournament.SendTournamentSubscriptionNotificationsMail import (
+    SendTournamentSubscriptionNotificationsMail,
+)
 
 
 class CreateTournamentNotificationHandler:

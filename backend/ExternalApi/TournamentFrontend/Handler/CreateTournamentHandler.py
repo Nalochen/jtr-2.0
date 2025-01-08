@@ -3,11 +3,13 @@ from datetime import datetime
 
 from flask import g
 
+from config.cache import cache
 from DataDomain.Database.Model.Tournaments import Tournaments
 from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
 from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import CheckForMembershipRoleService
-from config.cache import cache
+from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
+    CheckForMembershipRoleService,
+)
 
 
 class CreateTournamentHandler:
@@ -43,7 +45,8 @@ class CreateTournamentHandler:
         tournament.registration_procedure_url = data.get(
             'registrationProcedureUrl')
         tournament.registration_start_date = datetime.fromisoformat(
-            data.get('registrationStartDate')) if data.get('registrationStartDate') else None
+            data.get('registrationStartDate')) \
+            if data.get('registrationStartDate') else None
         tournament.registration_costs = data.get('registrationCosts')
         tournament.registration_costs_type = data.get('registrationCostsType')
         tournament.deposit_costs = data.get('depositCosts')
