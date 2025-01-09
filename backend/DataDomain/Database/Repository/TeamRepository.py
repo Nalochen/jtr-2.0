@@ -128,7 +128,7 @@ class TeamRepository:
             'aboutUs': team.about_us,
             'city': team.city,
             'contacts': json.loads(str(team.contacts)),
-            'founded': team.founded.isoformat() if team.founded else None,
+            'founded': team.created_at.isoformat(),
             'isMixTeam': team.is_mix_team,
             'lastOrganizedTournament': organizedTournaments[0].end_date.isoformat() if organizedTournaments else None,
             'lastParticipatedTournament': pastTournaments[0].end_date.isoformat() if pastTournaments else None,
