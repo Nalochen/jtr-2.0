@@ -39,7 +39,7 @@ class TeamRepository:
         ).join(
             subquery, Teams.id == subquery.c.id
         ).filter(
-            Teams.is_deleted is False
+            Teams.is_deleted == False
         ).order_by(
             Teams.points.desc()
         ).all()
@@ -78,7 +78,7 @@ class TeamRepository:
             Tournaments, Tournaments.organizer_id == Teams.id
         ).filter(
             Teams.id == teamId,
-            Teams.is_deleted is False
+            Teams.is_deleted == False
         ).group_by(
             Teams.id
         ).first()
@@ -95,7 +95,7 @@ class TeamRepository:
             is_part_of, is_part_of.c.user_id == Users.id
         ).filter(
             is_part_of.c.team_id == teamId,
-            is_part_of.c.is_deleted is False
+            is_part_of.c.is_deleted == False
         ).all()
 
         pastTournaments = db.session.query(
@@ -107,7 +107,7 @@ class TeamRepository:
             participates_in, participates_in.c.tournament_id == Tournaments.id
         ).filter(
             participates_in.c.team_id == teamId,
-            participates_in.c.is_deleted is False
+            participates_in.c.is_deleted == False
         ).order_by(
             Tournaments.created_at.desc()
         ).all()
@@ -118,7 +118,7 @@ class TeamRepository:
             Tournaments.end_date
         ).filter(
             Tournaments.organizer_id == teamId,
-            Tournaments.is_deleted is False
+            Tournaments.is_deleted == False
         ).order_by(
             Tournaments.created_at.desc()
         ).all()
@@ -164,7 +164,7 @@ class TeamRepository:
             is_part_of, is_part_of.c.team_id == Teams.id
         ).filter(
             is_part_of.c.user_id == userId,
-            is_part_of.c.is_deleted is False
+            is_part_of.c.is_deleted == False
         ).all()
 
     @staticmethod
@@ -177,13 +177,13 @@ class TeamRepository:
             is_part_of, is_part_of.c.team_id == Teams.id
         ).filter(
             is_part_of.c.user_id == userId,
-            is_part_of.c.is_deleted is False,
+            is_part_of.c.is_deleted == False,
             is_part_of.c.user_role.in_(
                 [UserRoleTypesEnum.ADMIN.value, UserRoleTypesEnum.MODERATOR.value])
         ).all()
 
     @staticmethod
-    def get(teamId: int) -> Teams:
+    def get(teamId: int) -> Teams | None:
         """Get team by id"""
 
         return Teams.query.get(teamId)

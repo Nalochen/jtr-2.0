@@ -15,8 +15,31 @@ class IsPartOfRepository:
         ).filter(
             is_part_of.c.user_id == userId,
             is_part_of.c.team_id == teamId,
-            is_part_of.c.is_deleted is False
+            is_part_of.c.is_deleted == False
         ).first()
+
+    @staticmethod
+    def update(userId: int, teamId: int, userRole: str) -> None:
+        """Update is_part_of entry"""
+
+        try:
+            db.session.query(
+                is_part_of
+            ).filter(
+                is_part_of.c.user_id == userId,
+                is_part_of.c.team_id == teamId
+            ).update({
+                'user_role': userRole
+            })
+            db.session.commit()
+
+            logger.info(f'IsPartOfRepository | update | Updated is_part_of entry for user {
+                        userId} in team {teamId}')
+
+        except Exception as e:
+            db.session.rollback()
+            logger.error(f'IsPartOfRepository | update | {e}')
+            raise e
 
     @staticmethod
     def create(userId: int, teamId: int, userRole: str) -> None:

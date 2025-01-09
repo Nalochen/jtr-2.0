@@ -149,7 +149,7 @@ class ParticipatesInRepository:
             )
         ).filter(
             participates_in.c.tournament_id == tournamentId,
-            participates_in.c.is_deleted is False
+            participates_in.c.is_deleted == False
         ).scalar()
 
         if maxOrder is None:

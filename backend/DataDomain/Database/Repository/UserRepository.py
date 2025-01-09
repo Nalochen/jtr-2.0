@@ -29,7 +29,7 @@ class UserRepository:
     def getUserOverview() -> List[dict]:
         """Get user overview"""
 
-        users = Users.query.filter(Users.is_deleted is False).all()
+        users = Users.query.filter(Users.is_deleted == False).all()
 
         return [{
             'id': user.id,
@@ -155,7 +155,7 @@ class UserRepository:
             filters.append(Users.email == email)
 
         return Users.query.filter(
-            and_(*filters, Users.is_deleted is False)).first()
+            and_(*filters, Users.is_deleted == False)).first()
 
     @staticmethod
     def checkPasswordResetHash(hash: str) -> Users | None:
@@ -163,7 +163,7 @@ class UserRepository:
 
         return Users.query.filter(
             Users.password_reset_hash == hash,
-            Users.is_deleted is False
+            Users.is_deleted == False
         ).first()
 
     @staticmethod

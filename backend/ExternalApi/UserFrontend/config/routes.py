@@ -157,7 +157,7 @@ def createPasswordReset() -> Response:
 
 
 @user_frontend.route('/create-new-password',
-                     methods=['POST'],
+                     methods=['PUT'],
                      endpoint='create-new-password')
 @CreateNewPasswordInputFilter.validate()
 @limiter.limit('2 per minute')

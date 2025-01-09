@@ -18,6 +18,9 @@ from ExternalApi.TeamFrontend.Handler.GetTeamOverviewHandler import GetTeamOverv
 from ExternalApi.TeamFrontend.Handler.SendTeamInvitationHandler import (
     SendTeamInvitationHandler,
 )
+from ExternalApi.TeamFrontend.Handler.UpdateMembershipHandler import (
+    UpdateMembershipHandler,
+)
 from ExternalApi.TeamFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
 from ExternalApi.TeamFrontend.Handler.UpdateTeamPictureHandler import (
     UpdateTeamPictureHandler,
@@ -39,6 +42,9 @@ from ExternalApi.TeamFrontend.InputFilter.GetTeamDetailsInputFilter import (
 )
 from ExternalApi.TeamFrontend.InputFilter.SendTeamInvitationInputFilter import (
     SendTeamInvitationInputFilter,
+)
+from ExternalApi.TeamFrontend.InputFilter.UpdateMembershipInputFilter import (
+    UpdateMembershipInputFilter,
 )
 from ExternalApi.TeamFrontend.InputFilter.UpdateTeamInputFilter import (
     UpdateTeamInputFilter,
@@ -63,6 +69,14 @@ def getTeamDetails(teamId) -> Response:
 @cache.cached(key_prefix='team-overview')
 def getTeamOverview() -> Response:
     return GetTeamOverviewHandler.handle()
+
+
+@team_frontend.route('/update-membership',
+                     methods=['PUT'], endpoint='update-membership')
+@jwt_required()
+@UpdateMembershipInputFilter.validate()
+def updateMembership() -> Response:
+    return UpdateMembershipHandler.handle()
 
 
 @team_frontend.route('/update-team',

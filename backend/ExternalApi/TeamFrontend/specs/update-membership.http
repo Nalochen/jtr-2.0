@@ -1,0 +1,17 @@
+### Update a membership
+### Execute ExternalApi/specs/requests/000-Authorization.http before using this!
+PUT https://{{host}}/api/team-frontend/update-membership
+Content-Type: application/json
+Authorization: Bearer {{jwtToken}}
+
+{
+  "teamId": 1,
+  "userId": 2,
+  "userRole": "admin"
+}
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

@@ -24,11 +24,11 @@ class UpdateTeamHandler:
 
         team = TeamRepository.get(teamId)
 
-        if team is None:
+        if not team:
             return Response(status=404)
 
-        if CheckForMembershipRoleService.isCurrentUserAdminOfTeam(
-                team.id) is None:
+        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(
+                team.id):
             return Response(status=403)
 
         name = data.get('name')

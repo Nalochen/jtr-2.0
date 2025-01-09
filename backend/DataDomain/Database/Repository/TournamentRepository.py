@@ -50,7 +50,7 @@ class TournamentRepository:
                 ),
                 Tournaments.start_date > currentTime
             ),
-            Tournaments.is_deleted is False,
+            Tournaments.is_deleted == False,
             Tournaments.status == TournamentStatusTypesEnum.PUBLISHED.value
         ).group_by(
             Tournaments.id
@@ -96,7 +96,7 @@ class TournamentRepository:
             Tournaments.organizer_id == Teams.id
         ).filter(
             Tournaments.end_date < currentTime,
-            Tournaments.is_deleted is False
+            Tournaments.is_deleted == False
         ).group_by(
             Tournaments.id
         ).order_by(
@@ -137,7 +137,7 @@ class TournamentRepository:
             ).filter(
                 participates_in.c.team_id == team.id,
                 participates_in.c.tournament_id == tournament.id,
-                participates_in.c.is_deleted is False
+                participates_in.c.is_deleted == False
             ).first()
 
             if not participation:

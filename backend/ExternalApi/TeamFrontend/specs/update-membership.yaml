@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/team-frontend/update-membership:
+    put:
+      summary: Update membership
+      operationId: updateMembership
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMembershipRequestBody'
+
+      responses:
+        '200':
+          description: OK
+
+        '400':
+          description: Bad Request
+
+        '401':
+          description: Unauthorized
+
+        '404':
+          description: Team not Found
+
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    UpdateMembershipRequestBody:
+      type: object
+      required:
+        - teamId
+        - userId
+        - userRole
+      properties:
+        teamId:
+          type: number
+        userId:
+          type: number
+        userRole:
+          type: string

@@ -24,7 +24,7 @@ class CreateNewPasswordHandler:
 
         if not user:
             return Response(
-                status=404
+                status=400
             )
 
         try:
