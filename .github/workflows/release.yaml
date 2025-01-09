@@ -1,8 +1,8 @@
 name: Create new release
 
-on: workflow_dispatch
-#  release:
-#    types: [created]
+on:
+  release:
+    types: [publish]
 
 jobs:
   push_frontend_to_registry:
