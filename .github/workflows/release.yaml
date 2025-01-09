@@ -8,6 +8,7 @@ jobs:
   push_frontend_to_registry:
     name: Push frontend docker image to Docker Hub
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     permissions:
       packages: write
       contents: read
@@ -49,6 +50,7 @@ jobs:
   push_backend_to_registry:
     name: Push backend docker image to Docker Hub
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     permissions:
       packages: write
       contents: read
@@ -90,6 +92,7 @@ jobs:
   push_worker_to_registry:
     name: Push worker docker image to Docker Hub
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     permissions:
       packages: write
       contents: read
@@ -131,6 +134,7 @@ jobs:
   push_certbot_to_registry:
     name: Push certbot docker image to Docker Hub
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     permissions:
       packages: write
       contents: read
