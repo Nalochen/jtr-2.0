@@ -23,6 +23,11 @@ class Users(BaseModel, db.Model):
         unique=True
     )
 
+    escaped_username: str = db.Column(
+        db.String(100),
+        nullable=False
+    )
+
     password_hash: str = db.Column(
         db.String(255),
         nullable=False

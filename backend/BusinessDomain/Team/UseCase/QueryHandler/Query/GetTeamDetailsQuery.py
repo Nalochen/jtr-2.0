@@ -1,5 +1,7 @@
+from dataclasses import dataclass
+
+
+@dataclass
 class GetTeamDetailsQuery:
 
-    def __init__(self, escapedName: str) -> None:
-
-        self.escapedName = escapedName
+    escapedName: str

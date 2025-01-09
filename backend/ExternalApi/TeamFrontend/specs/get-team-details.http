@@ -1,5 +1,5 @@
 ### Get team details
-GET https://{{host}}/api/team-frontend/get-team-details/1
+GET https://{{host}}/api/team-frontend/get-team-details/rigor-mortis
 
 > {%
     client.test("It should return a successful status code", function() {

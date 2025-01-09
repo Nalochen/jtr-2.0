@@ -20,6 +20,8 @@ def upgrade():
     op.create_table('teams',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('name', sa.String(length=100), nullable=False),
+                    sa.Column('escaped_name', sa.String(
+                        length=100), nullable=False),
                     sa.Column('logo', sa.String(length=255), nullable=True),
                     sa.Column('founded', sa.DateTime(), nullable=True),
                     sa.Column('points', sa.Float(),
@@ -39,7 +41,9 @@ def upgrade():
                               server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
                     sa.Column('updated_at', sa.DateTime(),
                               server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
-                    sa.PrimaryKeyConstraint('id')
+                    sa.PrimaryKeyConstraint('id'),
+                    sa.UniqueConstraint('name'),
+                    sa.UniqueConstraint('escaped_name')
                     )
     op.create_table(
         'login_attempts',
@@ -97,6 +101,8 @@ def upgrade():
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('username', sa.String(
                         length=100), nullable=False),
+                    sa.Column('escaped_username', sa.String(
+                        length=100), nullable=False),
                     sa.Column('password_hash', sa.String(
                         length=255), nullable=False),
                     sa.Column('password_reset_hash', sa.String(
@@ -120,7 +126,8 @@ def upgrade():
                               server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
                     sa.PrimaryKeyConstraint('id'),
                     sa.UniqueConstraint('email'),
-                    sa.UniqueConstraint('username')
+                    sa.UniqueConstraint('username'),
+                    sa.UniqueConstraint('escaped_username')
                     )
     op.create_table(
         'is_part_of',

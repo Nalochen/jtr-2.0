@@ -7,17 +7,17 @@ from BusinessDomain.Team.UseCase.QueryHandler.Result import GetTeamDetailsQueryR
 
 class GetTeamDetailsQueryHandler:
 
-    def __init__(self):
-        self.TeamRepository = TeamRepository
+    @staticmethod
+    def execute(query: GetTeamDetailsQuery):
 
-    def execute(self, query: GetTeamDetailsQuery) -> GetTeamDetailsQueryResult:
+        teamId: int = TeamRepository.getTeamIdByEscapedName(
+            query.escapedName)
 
-        teamId: int = self.TeamRepository.getTeamIdByEscapedName(query.escapedName)
-
-        teamDetails = self.TeamRepository.getTeamDetailsById(teamId)
-        teamMembers = self.TeamRepository.getTeamMembers(teamId)
-        teamPastTournaments = self.TeamRepository.getPastTournaments(teamId)
-        teamOrganizedTournaments = self.TeamRepository.getOrganizedTournaments(teamId)
+        teamDetails = TeamRepository.getTeamDetailsById(teamId)
+        teamMembers = TeamRepository.getTeamMembers(teamId)
+        teamPastTournaments = TeamRepository.getPastTournaments(teamId)
+        teamOrganizedTournaments = TeamRepository.getOrganizedTournaments(
+            teamId)
 
         return GetTeamDetailsQueryResult(
             id=teamDetails.id,
@@ -28,7 +28,7 @@ class GetTeamDetailsQueryHandler:
             city=teamDetails.city,
             aboutUs=teamDetails.about_us,
             contacts=json.loads(teamDetails.contacts),
-            founded=teamDetails.founded,
+            founded=teamDetails.created_at,
             isMixTeam=teamDetails.is_mix_team,
             lastOrganizedTournament=teamDetails.last_organized_tournament,
             lastParticipatedTournament=teamDetails.last_participated_tournament,

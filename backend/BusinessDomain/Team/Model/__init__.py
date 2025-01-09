@@ -2,3 +2,4 @@ from .MembersModel import MembersModel
 from .OrganizedTournamentsModel import OrganizedTournamentsModel
 from .PastTournamentsModel import PastTournamentsModel
 from .TeamDetailsModel import TeamDetailsModel
+from .TeamOverviewModel import TeamOverviewModelElement

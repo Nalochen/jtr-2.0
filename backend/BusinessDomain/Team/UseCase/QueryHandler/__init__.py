@@ -1,1 +1,2 @@
 from .GetTeamDetailsQueryHandler import GetTeamDetailsQueryHandler
+from .GetTeamOverviewQueryHandler import GetTeamOverviewQueryHandler

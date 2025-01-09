@@ -23,7 +23,8 @@ class GetTeamDetailsHandler:
                 status=404,
             )
 
-        team = GetTeamDetailsQueryHandler().execute(GetTeamDetailsQuery(escapedName))
+        team = GetTeamDetailsQueryHandler().execute(
+            GetTeamDetailsQuery(escapedName=escapedName))
 
         return Response(
             response=team,

@@ -13,7 +13,7 @@ class TeamDetailsModel:
     points: float
     city: Optional[str]
     is_mix_team: Optional[bool]
-    founded: datetime
+    created_at: datetime
     training_time: Optional[str]
     training_time_updated_at: Optional[datetime]
     contacts: str

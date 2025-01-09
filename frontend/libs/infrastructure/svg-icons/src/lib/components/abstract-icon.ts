@@ -92,7 +92,7 @@ export abstract class AbstractIconComponent implements OnInit, OnChanges {
   }
 
   public encodeSVG(data: string): string {
-    data = data.replace(/"/g, "'");
+    data = data.replace(/"/g, '\'');
 
     data = data.replace(/>\s{1,}</g, '><');
     data = data.replace(/\s{2,}/g, ' ');

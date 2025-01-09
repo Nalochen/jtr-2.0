@@ -2,15 +2,16 @@ import json
 from datetime import datetime
 from typing import List
 
-from sqlalchemy import func, or_
+from sqlalchemy import String, cast, func, or_
 from sqlalchemy.orm import aliased
 
 from BusinessDomain.Team.Model import (
     MembersModel,
     OrganizedTournamentsModel,
+    PastTournamentsModel,
     TeamDetailsModel,
+    TeamOverviewModelElement,
 )
-from BusinessDomain.Team.Model.PastTournamentsModel import PastTournamentsModel
 from DataDomain.Database import db
 from DataDomain.Database.Enum import UserRoleTypesEnum
 from DataDomain.Database.Model import (
@@ -27,7 +28,7 @@ class TeamRepository:
     """Repository for team related queries"""
 
     @staticmethod
-    def exists(teamId: int = None, escapedName: str = None) -> bool:
+    def exists(teamId: int, escapedName: str) -> bool:
         """Check if team exists"""
 
         return db.session.query(
@@ -40,7 +41,7 @@ class TeamRepository:
         ).scalar()
 
     @staticmethod
-    def getTeamOverview() -> List[dict]:
+    def getTeamOverview() -> List[TeamOverviewModelElement]:
         """Get team overview"""
 
         team_alias = aliased(Teams)
@@ -50,9 +51,10 @@ class TeamRepository:
             func.rank().over(order_by=team_alias.points.desc()).label('rank')
         ).subquery()
 
-        team = db.session.query(
+        return db.session.query(
             Teams.id,
             Teams.name,
+            Teams.escaped_name,
             Teams.logo,
             Teams.points,
             Teams.city,
@@ -64,15 +66,6 @@ class TeamRepository:
         ).order_by(
             Teams.points.desc()
         ).all()
-
-        return [{
-            'id': team.id,
-            'name': team.name,
-            'logo': team.logo,
-            'points': team.points,
-            'city': team.city,
-            'placement': team.placement
-        } for team in team]
 
     @staticmethod
     def getTeamDetailsById(teamId: int) -> TeamDetailsModel | None:
@@ -86,12 +79,13 @@ class TeamRepository:
             Teams.points,
             Teams.city,
             Teams.is_mix_team,
-            Teams.founded,
+            Teams.created_at,
             Teams.training_time,
             Teams.training_time_updated_at,
             Teams.contacts,
             Teams.about_us,
-            func.max(participates_in.c.created_at).label('last_participated_tournament'),
+            func.max(participates_in.c.created_at).label(
+                'last_participated_tournament'),
             func.max(Tournaments.created_at).label('last_organized_tournament')
         ).outerjoin(
             participates_in, participates_in.c.team_id == Teams.id
@@ -111,7 +105,7 @@ class TeamRepository:
         return db.session.query(
             Users.id,
             Users.name,
-            is_part_of.c.user_role.label('role'),
+            cast(is_part_of.c.user_role, String).label('role'),
             Users.picture
         ).join(
             is_part_of, is_part_of.c.user_id == Users.id

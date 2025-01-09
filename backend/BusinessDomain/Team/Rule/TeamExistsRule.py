@@ -4,7 +4,7 @@ from BusinessDomain.Team.Repository import TeamRepository
 class TeamExistsRule:
 
     @staticmethod
-    def applies(id: int, escapedName: str) -> bool:
+    def applies(id: int = None, escapedName: str = None) -> bool:
 
         if id is None and escapedName is None:
             return False
