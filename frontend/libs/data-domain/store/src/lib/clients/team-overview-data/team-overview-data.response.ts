@@ -3,6 +3,7 @@ export interface TeamOverviewData {
   city: string;
   logo: string;
   name: string;
+  escapedName: string
   placement: number;
   points: number;
 }

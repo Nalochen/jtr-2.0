@@ -32,6 +32,6 @@ export class TeamRowComponent {
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
   public navigateToTeam(): void {
-    window.open(`/team-details/${this.team.id}`, '_self');
+    window.open(`/team-details/${this.team.escapedName}`, '_self');
   }
 }

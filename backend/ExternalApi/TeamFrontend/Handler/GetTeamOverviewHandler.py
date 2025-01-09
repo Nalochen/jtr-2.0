@@ -1,4 +1,4 @@
-from DataDomain.Database.Repository import TeamRepository
+from BusinessDomain.Team.Repository import TeamRepository
 from DataDomain.Model import Response
 
 

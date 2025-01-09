@@ -2,9 +2,15 @@ import json
 from datetime import datetime
 from typing import List
 
-from sqlalchemy import func
+from sqlalchemy import func, or_
 from sqlalchemy.orm import aliased
 
+from BusinessDomain.Team.Model import (
+    MembersModel,
+    OrganizedTournamentsModel,
+    TeamDetailsModel,
+)
+from BusinessDomain.Team.Model.PastTournamentsModel import PastTournamentsModel
 from DataDomain.Database import db
 from DataDomain.Database.Enum import UserRoleTypesEnum
 from DataDomain.Database.Model import (
@@ -19,6 +25,19 @@ from Infrastructure.Logger import logger
 
 class TeamRepository:
     """Repository for team related queries"""
+
+    @staticmethod
+    def exists(teamId: int = None, escapedName: str = None) -> bool:
+        """Check if team exists"""
+
+        return db.session.query(
+            db.exists().where(
+                or_(
+                    Teams.id == teamId,
+                    Teams.escaped_name == escapedName
+                )
+            )
+        ).scalar()
 
     @staticmethod
     def getTeamOverview() -> List[dict]:
@@ -56,12 +75,13 @@ class TeamRepository:
         } for team in team]
 
     @staticmethod
-    def getTeamDetails(teamId: int) -> dict | None:
+    def getTeamDetailsById(teamId: int) -> TeamDetailsModel | None:
         """Get team details by id"""
 
-        team = db.session.query(
+        return db.session.query(
             Teams.id,
             Teams.name,
+            Teams.escaped_name,
             Teams.logo,
             Teams.points,
             Teams.city,
@@ -71,8 +91,7 @@ class TeamRepository:
             Teams.training_time_updated_at,
             Teams.contacts,
             Teams.about_us,
-            func.max(participates_in.c.created_at).label(
-                'last_participated_tournament'),
+            func.max(participates_in.c.created_at).label('last_participated_tournament'),
             func.max(Tournaments.created_at).label('last_organized_tournament')
         ).outerjoin(
             participates_in, participates_in.c.team_id == Teams.id
@@ -85,10 +104,11 @@ class TeamRepository:
             Teams.id
         ).first()
 
-        if not team:
-            return None
+    @staticmethod
+    def getTeamMembers(teamId: int) -> List[MembersModel]:
+        """Get team members by team id"""
 
-        members = db.session.query(
+        return db.session.query(
             Users.id,
             Users.name,
             is_part_of.c.user_role.label('role'),
@@ -100,7 +120,11 @@ class TeamRepository:
             is_part_of.c.is_deleted == False
         ).all()
 
-        pastTournaments = db.session.query(
+    @staticmethod
+    def getPastTournaments(teamId: int) -> List[PastTournamentsModel]:
+        """Get past tournaments by team id"""
+
+        return db.session.query(
             Tournaments.id,
             Tournaments.name,
             Tournaments.end_date,
@@ -114,7 +138,11 @@ class TeamRepository:
             Tournaments.created_at.desc()
         ).all()
 
-        organizedTournaments = db.session.query(
+    @staticmethod
+    def getOrganizedTournaments(teamId: int) -> List[OrganizedTournamentsModel]:
+        """Get organized tournaments by team id"""
+
+        return db.session.query(
             Tournaments.id,
             Tournaments.name,
             Tournaments.end_date
@@ -125,36 +153,29 @@ class TeamRepository:
             Tournaments.created_at.desc()
         ).all()
 
-        return {
-            'id': team.id,
-            'aboutUs': team.about_us,
-            'city': team.city,
-            'contacts': json.loads(str(team.contacts)),
-            'founded': team.created_at.isoformat(),
-            'isMixTeam': team.is_mix_team,
-            'lastOrganizedTournament': organizedTournaments[0].end_date.isoformat() if organizedTournaments else None,
-            'lastParticipatedTournament': pastTournaments[0].end_date.isoformat() if pastTournaments else None,
-            'logo': team.logo,
-            'members': [{
-                'id': member.id,
-                'name': member.name,
-                'role': member.role.value,
-                'picture': member.picture
-            } for member in members],
-            'name': team.name,
-            'organizedTournaments': [{
-                'id': tournament.id,
-                'name': tournament.name
-            } for tournament in organizedTournaments],
-            'pastTournaments': [{
-                'id': tournament.id,
-                'name': tournament.name,
-                'placement': tournament.placement
-            } for tournament in pastTournaments],
-            'points': team.points,
-            'trainingTime': team.training_time,
-            'trainingTimeUpdatedAt': team.training_time_updated_at.isoformat() if team.training_time_updated_at else None,
-        }
+    @staticmethod
+    def getTeamById(teamId: int) -> Teams | None:
+        """Get team by id"""
+
+        return db.session.query(
+            Teams
+        ).filter(
+            Teams.id == teamId,
+            Teams.is_deleted == False
+        ).first()
+
+    @staticmethod
+    def getTeamIdByEscapedName(escapedName: str) -> int | None:
+        """Get team id by escaped name"""
+
+        team = db.session.query(
+            Teams.id
+        ).filter(
+            Teams.escaped_name == escapedName,
+            Teams.is_deleted == False
+        ).first()
+
+        return team.id if team else None
 
     @staticmethod
     def teamsOfUser(userId: int) -> List[Teams]:
@@ -248,7 +269,7 @@ class TeamRepository:
                 participates_in.c.team_id == teamId,
                 participates_in.c.tournament_id.in_(
                     db.session.query(Tournaments.id).filter(
-                        Tournaments.start_date > func.now())
+                        Tournaments.end_date > func.now())
                 )
             ).update({
                 'is_deleted': True

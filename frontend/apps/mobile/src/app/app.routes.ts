@@ -130,7 +130,7 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'user-details/:userId?',
+    path: 'user-details/:escapedUsername?',
     component: PageUserDetailsComponent,
     resolve: {
       userDetails: UserDetailsResolver,

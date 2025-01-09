@@ -1,0 +1,1 @@
+from .GetTeamDetailsQueryResult import GetTeamDetailsQueryResult

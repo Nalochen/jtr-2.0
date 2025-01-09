@@ -5,7 +5,7 @@ from smtplib import SMTP
 
 from Model import SendMailTaskBody
 
-from config import logger, MailConfig
+from config import MailConfig, logger
 
 
 class SendMailHandler:
@@ -15,10 +15,10 @@ class SendMailHandler:
     def handle(data: SendMailTaskBody) -> None:
         """Send mail"""
 
-        subject = data.get('subject')
-        recipients = data.get('recipients')
-        body = data.get('body')
-        html = data.get('html')
+        subject = data.subject
+        recipients = data.recipients
+        body = data.body
+        html = data.html
 
         try:
             logger.info(f'Worker | SendMailHandler | Sending mail to {

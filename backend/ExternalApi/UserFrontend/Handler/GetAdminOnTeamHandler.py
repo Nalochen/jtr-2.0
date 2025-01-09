@@ -1,5 +1,5 @@
 
-from DataDomain.Database.Repository import TeamRepository
+from BusinessDomain.Team.Repository import TeamRepository
 from DataDomain.Database.tools import getJwtIdentity
 from DataDomain.Model import Response
 

@@ -1,9 +1,10 @@
 
 from flask import g
 
+from BusinessDomain.Team.Repository import TeamRepository
 from config import cache
 from DataDomain.Database.Enum import UserRoleTypesEnum
-from DataDomain.Database.Repository import IsPartOfRepository, TeamRepository
+from DataDomain.Database.Repository import IsPartOfRepository
 from DataDomain.Database.tools import getJwtIdentity
 from DataDomain.Model import Response
 

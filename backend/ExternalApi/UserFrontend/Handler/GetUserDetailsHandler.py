@@ -15,20 +15,20 @@ class GetUserDetailsHandler:
 
         data = g.validatedData
 
-        userId: int | None = data.get('userId')
+        escapedUsername: str | None = data.get('escapedUsername')
 
-        if userId is None and get_jwt_identity() is None:
+        if escapedUsername is None and get_jwt_identity() is None:
             return Response(
                 status=400,
-                response='userId or session is required')
+                response='Username or session is required')
 
-        if userId is None:
+        if escapedUsername is None:
             user = getJwtIdentity()
 
             profileOfCurrentUser = True
 
         else:
-            user = UserRepository.get(userId)
+            user = UserRepository.getUserByUsername(escapedUsername)
 
             profileOfCurrentUser = get_jwt_identity() and (getJwtIdentity().id == user.id)
 

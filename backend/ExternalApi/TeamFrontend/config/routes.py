@@ -31,11 +31,11 @@ from ExternalApi.TeamFrontend.InputFilter import (
 team_frontend = Blueprint('team-frontend', __name__)
 
 
-@team_frontend.route('/get-team-details/<teamId>',
+@team_frontend.route('/get-team-details/<escapedName>',
                      methods=['GET'], endpoint='get-team-details')
 @GetTeamDetailsInputFilter.validate()
 @cache.cached(key_prefix=create_team_cache_key)
-def getTeamDetails(teamId) -> Response:
+def getTeamDetails(escapedName) -> Response:
     return GetTeamDetailsHandler.handle()
 
 

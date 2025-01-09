@@ -14,10 +14,10 @@ export class UserDetailsResolver implements Resolve<boolean> {
   constructor(private store$: Store) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-    const userId = route.paramMap.get('userId');
+    const escapedUsername = route.paramMap.get('escapedUsername');
 
     this.store$.dispatch(
-      loadUserDetailsData({ userId: userId ? +userId : undefined })
+      loadUserDetailsData({ escapedUsername: escapedUsername || undefined })
     );
 
     return new Observable<boolean>((observer) => {

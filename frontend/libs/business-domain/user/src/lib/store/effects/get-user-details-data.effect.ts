@@ -23,7 +23,7 @@ export class GetUserDetailsDataEffect {
     this.actions$.pipe(
       ofType(loadUserDetailsData),
       switchMap((action) =>
-        this.userDataClient.getUserData$(action.userId).pipe(
+        this.userDataClient.getUserData$(action.escapedUsername).pipe(
           map((payload: UserData) =>
             loadUserDetailsDataSuccessAction({
               userDetails: payload,

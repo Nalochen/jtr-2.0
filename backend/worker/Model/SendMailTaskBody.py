@@ -1,10 +1,12 @@
-from typing import List, Optional, TypedDict
+from dataclasses import dataclass
+from typing import List, Optional
 
 
-class SendMailTaskBody(TypedDict):
+@dataclass
+class SendMailTaskBody:
     """Class representing the body of a SendMailTask"""
 
     subject: str
     recipients: List[str]
     body: str
-    html: Optional[str | None]
+    html: Optional[str]

@@ -24,6 +24,11 @@ class Teams(BaseModel, db.Model):
         nullable=False
     )
 
+    escaped_name: str = db.Column(
+        db.String(100),
+        nullable=False
+    )
+
     logo: str | None = db.Column(
         db.String(255),
         nullable=True

@@ -4,5 +4,5 @@ import { userDetailsDataStoreSlice } from '../states/user-details-data-store.sli
 
 export const loadUserDetailsData = createAction(
   `[${userDetailsDataStoreSlice}] Load User Details`,
-  props<{ userId: number | undefined }>()
+  props<{ escapedUsername: string | undefined }>()
 );

@@ -35,14 +35,14 @@ import { SwaggerViewComponent } from './pages/swagger-view/swagger-view.componen
 
 export const appRoutes: Route[] = [
   {
-    path: 'team-details/:teamId',
+    path: 'team-details/:escapedName',
     component: PageTeamDetailsComponent,
     resolve: {
       teamDetails: TeamDetailsResolver,
     },
   },
   {
-    path: 'manage-team-details/:teamId',
+    path: 'manage-team-details/:escapedName',
     component: PageManageTeamDetailsComponent,
     resolve: {
       manageTeamDetails: ManageTeamDetailsResolver,
@@ -127,7 +127,7 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'user-details/:userId',
+    path: 'user-details/:escapedUsername',
     component: PageUserDetailsComponent,
     resolve: {
       userDetails: UserDetailsResolver,

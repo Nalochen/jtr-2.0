@@ -2,7 +2,7 @@ import base64
 
 from flask import g
 
-from DataDomain.Database.Repository import TeamRepository
+from BusinessDomain.Team.Repository import TeamRepository
 from DataDomain.Model import Response
 from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
     CheckForMembershipRoleService,
