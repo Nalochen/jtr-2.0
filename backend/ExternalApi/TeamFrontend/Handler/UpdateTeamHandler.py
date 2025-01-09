@@ -3,8 +3,8 @@ from datetime import datetime
 
 from flask import g
 
-from DataDomain.Database.Repository.TeamRepository import TeamRepository
-from DataDomain.Model.Response import Response
+from DataDomain.Database.Repository import TeamRepository
+from DataDomain.Model import Response
 from ExternalApi.TeamFrontend.config.extensions import clearTeamCache
 from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
     CheckForMembershipRoleService,

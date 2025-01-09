@@ -9,7 +9,10 @@ import {
   TournamentDetailsResolver,
   TournamentOverviewResolver,
 } from '@jtr/business-domain/tournament';
-import { UserDetailsResolver, UserOverviewResolver } from '@jtr/business-domain/user';
+import {
+  UserDetailsResolver,
+  UserOverviewResolver,
+} from '@jtr/business-domain/user';
 
 import { TeamGuard } from './business-rules/guards/team.guard';
 import { TournamentGuard } from './business-rules/guards/tournament.guard';
@@ -26,9 +29,7 @@ import { PageTeamDetailsComponent } from './pages/page-team-details/page-team-de
 import { PageTeamOverviewComponent } from './pages/page-team-overview/page-team-overview.component';
 import { PageTournamentDetailsComponent } from './pages/page-tournament-details/page-tournament-details.component';
 import { PageTournamentOverviewComponent } from './pages/page-tournament-overview/page-tournament-overview.component';
-import {
-  PageTournamentOverviewPreviousComponent
-} from './pages/page-tournament-overview-previous/page-tournament-overview-previous.component';
+import { PageTournamentOverviewPreviousComponent } from './pages/page-tournament-overview-previous/page-tournament-overview-previous.component';
 import { PageUserDetailsComponent } from './pages/page-user-details/page-user-details.component';
 import { SwaggerViewComponent } from './pages/swagger-view/swagger-view.component';
 

@@ -1,5 +1,4 @@
-from DataDomain.Database.Model.Tournaments import Tournaments
-from DataDomain.Database.Model.Users import Users
+from DataDomain.Database.Model import Tournaments, Users
 from Infrastructure.Mail.SendSingleMail import SendSingleMail
 
 

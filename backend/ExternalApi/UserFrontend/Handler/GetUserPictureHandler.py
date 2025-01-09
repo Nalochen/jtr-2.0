@@ -2,8 +2,8 @@ import os
 
 from flask import current_app, g, send_from_directory
 
-from DataDomain.Database.Repository.UserRepository import UserRepository
-from DataDomain.Model.Response import Response
+from DataDomain.Database.Repository import UserRepository
+from DataDomain.Model import Response
 
 
 class GetUserPictureHandler:

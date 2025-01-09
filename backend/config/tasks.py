@@ -2,8 +2,8 @@ import os
 
 from celery import Celery
 
-from Infrastructure.Logger.Logger import logger
-from worker.Model.SendMailTaskBody import SendMailTaskBody
+from Infrastructure.Logger import logger
+from worker.Model import SendMailTaskBody
 
 celery = Celery(
     host=os.getenv('CELERY_BROKER_NAME'),

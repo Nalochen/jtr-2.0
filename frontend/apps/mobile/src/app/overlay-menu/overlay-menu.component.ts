@@ -47,38 +47,37 @@ export class OverlayMenuComponent {
 
   public onRedirectToTournaments() {
     this.router.navigate(['/tournament-overview']);
-    this.closeMenu()
+    this.closeMenu();
   }
 
   public onRedirectToTeams() {
     this.router.navigate(['/teams-overview']);
-    this.closeMenu()
+    this.closeMenu();
   }
-
 
   public onRedirectToAccount() {
     this.router.navigate(['/manage-user-details']);
-    this.closeMenu()
+    this.closeMenu();
   }
 
   public onRedirectToLinks() {
     //this.router.navigate(['']);
-    this.closeMenu()
+    this.closeMenu();
   }
 
   public onRedirectToLogin() {
     this.router.navigate(['/login']);
-    this.closeMenu()
+    this.closeMenu();
   }
 
   public onRedirectToAboutUs() {
     //this.router.navigate(['']);
-    this.closeMenu()
+    this.closeMenu();
   }
 
   public onRedirectToImpressum() {
     //this.router.navigate(['']);
-    this.closeMenu()
+    this.closeMenu();
   }
 
   @SingletonGetter()

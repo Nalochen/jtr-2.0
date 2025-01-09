@@ -1,9 +1,8 @@
 from typing import List
 
-from DataDomain.Database.db import db
-from DataDomain.Database.Model.TournamentSubscriptions import tournament_subscriptions
-from DataDomain.Database.Model.Users import Users
-from Infrastructure.Logger.Logger import logger
+from DataDomain.Database import db
+from DataDomain.Database.Model import Users, tournament_subscriptions
+from Infrastructure.Logger import logger
 
 
 class TournamentSubscriptionRepository:

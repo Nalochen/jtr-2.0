@@ -4,9 +4,9 @@ from flask import g
 from flask_jwt_extended import create_access_token
 from werkzeug.security import generate_password_hash
 
-from DataDomain.Database.Repository.UserRepository import UserRepository
+from DataDomain.Database.Repository import UserRepository
 from DataDomain.Database.tools import getJwtIdentity
-from DataDomain.Model.Response import Response
+from DataDomain.Model import Response
 from ExternalApi.UserFrontend.config.extensions import clearUserCache
 
 

@@ -1,5 +1,5 @@
-from DataDomain.Database.Repository.UserRepository import UserRepository
-from DataDomain.Model.Response import Response
+from DataDomain.Database.Repository import UserRepository
+from DataDomain.Model import Response
 
 
 class GetUserOverviewHandler:

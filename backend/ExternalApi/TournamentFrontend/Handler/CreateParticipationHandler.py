@@ -1,13 +1,11 @@
 from flask import g
 
-from DataDomain.Database.Repository.ParticipatesInRepository import (
-    ParticipatesInRepository,
-)
-from DataDomain.Model.Response import Response
+from DataDomain.Database.Repository import ParticipatesInRepository
+from DataDomain.Model import Response
 from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
     CheckForMembershipRoleService,
 )
-from Infrastructure.Logger.Logger import logger
+from Infrastructure.Logger import logger
 
 
 class CreateParticipationHandler:

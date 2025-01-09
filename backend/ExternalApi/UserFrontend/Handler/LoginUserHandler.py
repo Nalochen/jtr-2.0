@@ -3,9 +3,8 @@ from flask_jwt_extended import create_access_token
 from werkzeug.security import check_password_hash
 
 from DataDomain.Database.Enum.LockType import LockType
-from DataDomain.Database.Repository.LoginAttemptRepository import LoginAttemptRepository
-from DataDomain.Database.Repository.UserRepository import UserRepository
-from DataDomain.Model.Response import Response
+from DataDomain.Database.Repository import LoginAttemptRepository, UserRepository
+from DataDomain.Model import Response
 
 
 class LoginUserHandler:

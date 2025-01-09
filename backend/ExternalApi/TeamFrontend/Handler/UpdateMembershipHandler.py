@@ -1,8 +1,8 @@
 
 from flask import g
 
-from DataDomain.Database.Repository.IsPartOfRepository import IsPartOfRepository
-from DataDomain.Model.Response import Response
+from DataDomain.Database.Repository import IsPartOfRepository
+from DataDomain.Model import Response
 from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
     CheckForMembershipRoleService,
 )

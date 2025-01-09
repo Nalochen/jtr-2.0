@@ -1,7 +1,7 @@
 
-from DataDomain.Database.Repository.TeamRepository import TeamRepository
+from DataDomain.Database.Repository import TeamRepository
 from DataDomain.Database.tools import getJwtIdentity
-from DataDomain.Model.Response import Response
+from DataDomain.Model import Response
 
 
 class GetAdminOfTeamsHandler:

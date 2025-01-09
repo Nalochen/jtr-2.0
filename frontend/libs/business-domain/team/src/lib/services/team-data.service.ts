@@ -33,9 +33,7 @@ export class TeamDataService {
   public async reloadTeamDetails(): Promise<void> {
     const teamId = (await firstValueFrom(this.team$))!.id;
 
-    this.store$.dispatch(
-      loadTeamDetailsData({ teamId: teamId })
-    );
+    this.store$.dispatch(loadTeamDetailsData({ teamId: teamId }));
   }
 
   constructor(private readonly store$: Store) {}

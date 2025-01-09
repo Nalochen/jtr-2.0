@@ -1,6 +1,6 @@
 from flask import request
 
-from config.cache import cache
+from config import cache
 
 
 def create_user_cache_key() -> str | None:

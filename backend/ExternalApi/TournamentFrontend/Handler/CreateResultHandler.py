@@ -3,13 +3,10 @@ from typing import List
 
 from flask import g
 
-from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
-from DataDomain.Database.Model.Tournaments import Tournaments
-from DataDomain.Database.Repository.ParticipatesInRepository import (
-    ParticipatesInRepository,
-)
-from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
-from DataDomain.Model.Response import Response
+from DataDomain.Database.Enum import TournamentStatusTypesEnum
+from DataDomain.Database.Model import Tournaments
+from DataDomain.Database.Repository import ParticipatesInRepository, TournamentRepository
+from DataDomain.Model import Response
 from ExternalApi.TournamentFrontend.config.extensions import clearTournamentCache
 from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
     CheckForMembershipRoleService,

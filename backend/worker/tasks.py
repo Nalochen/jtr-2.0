@@ -3,9 +3,9 @@ import os
 
 import pymysql
 from celery import Celery
-from Handler.SendMailHandler import SendMailHandler
-from MailConfig import MailConfig
-from Model.SendMailTaskBody import SendMailTaskBody
+from Handler import SendMailHandler
+from config import MailConfig
+from Model import SendMailTaskBody
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 

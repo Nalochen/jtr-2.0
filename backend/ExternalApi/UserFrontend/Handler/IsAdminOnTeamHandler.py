@@ -1,6 +1,6 @@
 from flask import g
 
-from DataDomain.Model.Response import Response
+from DataDomain.Model import Response
 from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
     CheckForMembershipRoleService,
 )

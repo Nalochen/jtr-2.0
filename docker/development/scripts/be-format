@@ -12,6 +12,4 @@ PYTHONPATH=backend autoflake --in-place --remove-all-unused-imports --ignore-ini
 
 echo 'Running autopep8'
 #PYTHONPATH=backend autopep8 --in-place --recursive --global-config=./pyproject.toml --exclude=./venv --exclude=./worker/venv .
-find . -name '*.py' -not -path 'venv/*' -not -path 'worker/venv/*' -exec autopep8 --in-place --aggressive --aggressive --max-line-length 90 {} \;
-
-echo 'Script completed'
+find . -name '*.py' -not -path './venv/*' -not -path './worker/venv/*' -exec autopep8 --in-place --aggressive --aggressive --max-line-length 90 {} \;

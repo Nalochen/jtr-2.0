@@ -1,10 +1,7 @@
 from typing import List
 
-from DataDomain.Database.Model.Tournaments import Tournaments
-from DataDomain.Database.Model.Users import Users
-from Infrastructure.Mail.Tournament.SendTournamentSubscriptionNotificationMail import (
-    SendTournamentSubscriptionNotificationMail,
-)
+from DataDomain.Database.Model import Tournaments, Users
+from Infrastructure.Mail.Tournament import SendTournamentSubscriptionNotificationMail
 
 
 class SendTournamentSubscriptionNotificationsMail:

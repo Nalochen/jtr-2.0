@@ -1,9 +1,8 @@
-
 from flask import g
 
-from DataDomain.Database.Repository.UserRepository import UserRepository
-from DataDomain.Model.Response import Response
-from Infrastructure.Mail.User.SendPasswordResetMail import SendPasswordResetMail
+from DataDomain.Database.Repository import UserRepository
+from DataDomain.Model import Response
+from Infrastructure.Mail.User import SendPasswordResetMail
 
 
 class CreatePasswordResetHandler:

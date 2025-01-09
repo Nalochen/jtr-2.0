@@ -2,9 +2,9 @@ import base64
 
 from flask import g
 
-from DataDomain.Database.Repository.UserRepository import UserRepository
+from DataDomain.Database.Repository import UserRepository
 from DataDomain.Database.tools import getJwtIdentity
-from DataDomain.Model.Response import Response
+from DataDomain.Model import Response
 from ExternalApi.UserFrontend.Service.PictureService import PictureService
 from ExternalApi.UserFrontend.Service.PictureTypeEnum import PictureTypeEnum
 

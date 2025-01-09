@@ -1,5 +1,5 @@
 from flask_inputfilter import InputFilter
-from flask_inputfilter.Enum.RegexEnum import RegexEnum
+from flask_inputfilter.Enum import RegexEnum
 from flask_inputfilter.Filter import (
     StringTrimFilter,
     ToBooleanFilter,

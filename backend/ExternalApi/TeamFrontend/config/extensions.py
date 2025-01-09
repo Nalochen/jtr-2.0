@@ -1,6 +1,6 @@
 from flask import request
 
-from config.cache import cache
+from config import cache
 
 
 def create_team_cache_key() -> str:

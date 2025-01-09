@@ -1,6 +1,6 @@
-from DataDomain.Database.db import db
-from DataDomain.Database.Model.IsPartOf import is_part_of
-from Infrastructure.Logger.Logger import logger
+from DataDomain.Database import db
+from DataDomain.Database.Model import is_part_of
+from Infrastructure.Logger import logger
 
 
 class IsPartOfRepository:

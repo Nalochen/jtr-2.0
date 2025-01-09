@@ -1,6 +1,5 @@
-from DataDomain.Database.Enum.UserRoleTypesEnum import UserRoleTypesEnum
-from DataDomain.Database.Repository.IsPartOfRepository import IsPartOfRepository
-from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
+from DataDomain.Database.Enum import UserRoleTypesEnum
+from DataDomain.Database.Repository import IsPartOfRepository, TournamentRepository
 from DataDomain.Database.tools import getJwtIdentity
 
 

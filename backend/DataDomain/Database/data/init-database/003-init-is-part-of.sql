@@ -5,7 +5,7 @@ INSERT IGNORE INTO is_part_of (
 ) VALUES (
     1,
     1,
-    'moderator'
+    'admin'
 ),
 (
     2,

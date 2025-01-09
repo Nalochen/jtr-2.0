@@ -1,4 +1,4 @@
-from DataDomain.Database.Model.Users import Users
+from DataDomain.Database.Model import Users
 from Infrastructure.Mail.SendSingleMail import SendSingleMail
 
 

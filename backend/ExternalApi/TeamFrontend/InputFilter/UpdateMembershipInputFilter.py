@@ -2,7 +2,7 @@ from flask_inputfilter import InputFilter
 from flask_inputfilter.Filter import ToIntegerFilter
 from flask_inputfilter.Validator import InEnumValidator, IsIntegerValidator
 
-from DataDomain.Database.Enum.UserRoleTypesEnum import UserRoleTypesEnum
+from DataDomain.Database.Enum import UserRoleTypesEnum
 
 
 class UpdateMembershipInputFilter(InputFilter):

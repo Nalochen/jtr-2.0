@@ -16,7 +16,12 @@
   </app-button>
 </div>
 
-<p-dialog header="{{ 'page-manage-team.confirmation' | translate }}?" [modal]="true" [(visible)]="isDeleteDialogVisible" [style]="{ width: '25rem' }">
+<p-dialog
+  header="{{ 'page-manage-team.confirmation' | translate }}?"
+  [modal]="true"
+  [(visible)]="isDeleteDialogVisible"
+  [style]="{ width: '25rem' }"
+>
   <div class="delete-overlay">
     <app-button
       (click)="isDeleteDialogVisible = false"

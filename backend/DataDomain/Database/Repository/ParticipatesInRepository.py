@@ -1,9 +1,8 @@
 from sqlalchemy import func
 
-from DataDomain.Database.db import db
-from DataDomain.Database.Model.ParticipatesIn import participates_in
-from DataDomain.Database.Model.Tournaments import Tournaments
-from Infrastructure.Logger.Logger import logger
+from DataDomain.Database import db
+from DataDomain.Database.Model import Tournaments, participates_in
+from Infrastructure.Logger import logger
 
 
 class ParticipatesInRepository:

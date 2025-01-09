@@ -3,9 +3,9 @@ POST https://{{host}}/api/user-frontend/register
 Content-Type: application/json
 
 {
-    "username": "Maxi",
+    "username": "MaxPecu",
     "password": "123456",
-    "email": "maxi@gmail.de",
+    "email": "max-pecu@gmail.de",
     "isBirthdateVisible": true,
     "birthdate": "1990-01-01",
     "isCityVisible": true,

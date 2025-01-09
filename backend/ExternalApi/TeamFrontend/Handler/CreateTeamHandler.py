@@ -1,12 +1,11 @@
 
 from flask import g
 
-from config.cache import cache
-from DataDomain.Database.Enum.UserRoleTypesEnum import UserRoleTypesEnum
-from DataDomain.Database.Repository.IsPartOfRepository import IsPartOfRepository
-from DataDomain.Database.Repository.TeamRepository import TeamRepository
+from config import cache
+from DataDomain.Database.Enum import UserRoleTypesEnum
+from DataDomain.Database.Repository import IsPartOfRepository, TeamRepository
 from DataDomain.Database.tools import getJwtIdentity
-from DataDomain.Model.Response import Response
+from DataDomain.Model import Response
 
 
 class CreateTeamHandler:

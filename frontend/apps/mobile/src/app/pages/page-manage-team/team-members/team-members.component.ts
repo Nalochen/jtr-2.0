@@ -1,8 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable } from 'rxjs';
@@ -17,9 +14,11 @@ import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import {
   ButtonColorEnum,
-ButtonComponent,
-  ButtonTypeEnum,   DataContainerComponent,
-  DataContainerRowComponent} from '../../../ui-shared';
+  ButtonComponent,
+  ButtonTypeEnum,
+  DataContainerComponent,
+  DataContainerRowComponent,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { MenuItem } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
@@ -40,7 +39,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     OverlayPanelModule,
     DialogModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',
@@ -54,7 +53,6 @@ export class TeamMembersComponent {
   protected possibleUsers: UserOverviewData[] = [];
   protected items: MenuItem[] | undefined;
 
-
   constructor(private readonly store$: Store) {
     this.items = [
       {
@@ -62,23 +60,25 @@ export class TeamMembersComponent {
         items: [
           {
             label: 'Refresh',
-            icon: 'pi pi-refresh'
+            icon: 'pi pi-refresh',
           },
           {
             label: 'Export',
-            icon: 'pi pi-upload'
-          }
-        ]
-      }
+            icon: 'pi pi-upload',
+          },
+        ],
+      },
     ];
 
-    this.users$.pipe(
-      concatLatestFrom(() => this.team$),
-    ).subscribe(([users, team]) => {
-      if (users && team) {
-        this.possibleUsers = users.filter(user => !team.members.some(member => member.id === user.id));
-      }
-    });
+    this.users$
+      .pipe(concatLatestFrom(() => this.team$))
+      .subscribe(([users, team]) => {
+        if (users && team) {
+          this.possibleUsers = users.filter(
+            (user) => !team.members.some((member) => member.id === user.id)
+          );
+        }
+      });
   }
 
   @SingletonGetter()

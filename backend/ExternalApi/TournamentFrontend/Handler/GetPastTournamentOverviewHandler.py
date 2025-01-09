@@ -1,5 +1,5 @@
-from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
-from DataDomain.Model.Response import Response
+from DataDomain.Database.Repository import TournamentRepository
+from DataDomain.Model import Response
 
 
 class GetPastTournamentOverviewHandler:

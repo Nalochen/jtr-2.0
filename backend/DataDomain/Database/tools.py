@@ -1,6 +1,6 @@
 from flask_jwt_extended import get_jwt_identity
 
-from DataDomain.Database.Model.Users import Users
+from DataDomain.Database.Model import Users
 
 
 def getJwtIdentity() -> Users:

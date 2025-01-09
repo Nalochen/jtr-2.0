@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 from datetime import timedelta
 
-from DataDomain.Database.db import db
-from DataDomain.Database.Enum.LockType import LockType
-from DataDomain.Database.Model.LoginAttempts import LoginAttempts
-from Infrastructure.Logger.Logger import logger
+from DataDomain.Database import db
+from DataDomain.Database.Enum import LockType
+from DataDomain.Database.Model import LoginAttempts
+from Infrastructure.Logger import logger
 
 
 @dataclass

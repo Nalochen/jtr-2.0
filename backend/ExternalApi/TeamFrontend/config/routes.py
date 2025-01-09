@@ -1,55 +1,30 @@
 from flask import Blueprint
 from flask_jwt_extended import jwt_required
 
-from config.cache import cache
-from config.limiter import limiter
-from DataDomain.Model.Response import Response
-from ExternalApi.TeamFrontend.config.extensions import create_team_cache_key
-from ExternalApi.TeamFrontend.Handler.AcceptTeamInvitationHandler import (
+from config import cache, limiter
+from DataDomain.Model import Response
+from ExternalApi.TeamFrontend.config import create_team_cache_key
+from ExternalApi.TeamFrontend.Handler import (
     AcceptTeamInvitationHandler,
-)
-from ExternalApi.TeamFrontend.Handler.CreateTeamHandler import CreateTeamHandler
-from ExternalApi.TeamFrontend.Handler.DeleteMembershipHandler import (
+    CreateTeamHandler,
     DeleteMembershipHandler,
-)
-from ExternalApi.TeamFrontend.Handler.DeleteTeamHandler import DeleteTeamHandler
-from ExternalApi.TeamFrontend.Handler.GetTeamDetailsHandler import GetTeamDetailsHandler
-from ExternalApi.TeamFrontend.Handler.GetTeamOverviewHandler import GetTeamOverviewHandler
-from ExternalApi.TeamFrontend.Handler.SendTeamInvitationHandler import (
+    DeleteTeamHandler,
+    GetTeamDetailsHandler,
+    GetTeamOverviewHandler,
     SendTeamInvitationHandler,
-)
-from ExternalApi.TeamFrontend.Handler.UpdateMembershipHandler import (
     UpdateMembershipHandler,
-)
-from ExternalApi.TeamFrontend.Handler.UpdateTeamHandler import UpdateTeamHandler
-from ExternalApi.TeamFrontend.Handler.UpdateTeamPictureHandler import (
+    UpdateTeamHandler,
     UpdateTeamPictureHandler,
 )
-from ExternalApi.TeamFrontend.InputFilter.AcceptTeamInvitationInputFilter import (
+from ExternalApi.TeamFrontend.InputFilter import (
     AcceptTeamInvitationInputFilter,
-)
-from ExternalApi.TeamFrontend.InputFilter.CreateTeamInputFilter import (
     CreateTeamInputFilter,
-)
-from ExternalApi.TeamFrontend.InputFilter.DeleteMembershipInputFilter import (
     DeleteMembershipInputFilter,
-)
-from ExternalApi.TeamFrontend.InputFilter.DeleteTeamInputFilter import (
     DeleteTeamInputFilter,
-)
-from ExternalApi.TeamFrontend.InputFilter.GetTeamDetailsInputFilter import (
     GetTeamDetailsInputFilter,
-)
-from ExternalApi.TeamFrontend.InputFilter.SendTeamInvitationInputFilter import (
     SendTeamInvitationInputFilter,
-)
-from ExternalApi.TeamFrontend.InputFilter.UpdateMembershipInputFilter import (
     UpdateMembershipInputFilter,
-)
-from ExternalApi.TeamFrontend.InputFilter.UpdateTeamInputFilter import (
     UpdateTeamInputFilter,
-)
-from ExternalApi.TeamFrontend.InputFilter.UpdateTeamPictureInputFilter import (
     UpdateTeamPictureInputFilter,
 )
 

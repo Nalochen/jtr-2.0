@@ -3,10 +3,10 @@ from datetime import datetime
 
 from flask import g
 
-from config.cache import cache
-from DataDomain.Database.Model.Tournaments import Tournaments
-from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
-from DataDomain.Model.Response import Response
+from config import cache
+from DataDomain.Database.Model import Tournaments
+from DataDomain.Database.Repository import TournamentRepository
+from DataDomain.Model import Response
 from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
     CheckForMembershipRoleService,
 )

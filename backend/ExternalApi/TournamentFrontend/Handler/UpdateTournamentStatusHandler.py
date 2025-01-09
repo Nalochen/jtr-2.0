@@ -1,7 +1,7 @@
 from flask import g
 
-from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
-from DataDomain.Model.Response import Response
+from DataDomain.Database.Repository import TournamentRepository
+from DataDomain.Model import Response
 from ExternalApi.TournamentFrontend.config.extensions import clearTournamentCache
 from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
     CheckForMembershipRoleService,

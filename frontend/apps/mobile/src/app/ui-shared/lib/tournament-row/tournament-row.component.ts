@@ -9,7 +9,7 @@ import {
   ButtonComponent,
   DataContainerComponent,
   DataContainerRowComponent,
-  StatusIndicatorComponent
+  StatusIndicatorComponent,
 } from '../../index';
 
 @Component({

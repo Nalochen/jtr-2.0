@@ -5,13 +5,11 @@ from typing import List
 from sqlalchemy import and_, desc, func, or_
 from sqlalchemy.orm import aliased, joinedload
 
-from DataDomain.Database.db import db
-from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
-from DataDomain.Database.Model.ParticipatesIn import participates_in
-from DataDomain.Database.Model.Teams import Teams
-from DataDomain.Database.Model.Tournaments import Tournaments
+from DataDomain.Database import db
+from DataDomain.Database.Enum import TournamentStatusTypesEnum
+from DataDomain.Database.Model import Teams, Tournaments, participates_in
 from DataDomain.Database.tools import getJwtIdentity
-from Infrastructure.Logger.Logger import logger
+from Infrastructure.Logger import logger
 
 
 class TournamentRepository:
