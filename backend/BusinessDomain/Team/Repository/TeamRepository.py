@@ -1,5 +1,3 @@
-import json
-from datetime import datetime
 from typing import List
 
 from sqlalchemy import String, cast, func, or_
@@ -28,7 +26,7 @@ class TeamRepository:
     """Repository for team related queries"""
 
     @staticmethod
-    def exists(teamId: int, escapedName: str) -> bool:
+    def exists(teamId: int = None, escapedName: str = None) -> bool:
         """Check if team exists"""
 
         return db.session.query(
@@ -206,30 +204,10 @@ class TeamRepository:
         return Teams.query.get(teamId)
 
     @staticmethod
-    def create(
-            name: str,
-            city: str | None,
-            isMixTeam: bool | None,
-            trainingTime: str | None,
-            aboutUs: str | None,
-            contacts: List[str] | None) -> int:
+    def create(team: Teams) -> int:
         """Create a new team entry"""
 
         try:
-            team = Teams()
-
-            team.name = name
-            team.city = city
-            team.is_mix_team = isMixTeam
-            team.training_time = trainingTime
-            team.about_us = aboutUs
-
-            if contacts is not None:
-                team.contacts = json.dumps(contacts)
-
-            if trainingTime is not None:
-                team.training_time_updated_at = datetime.now()
-
             db.session.add(team)
             db.session.commit()
 

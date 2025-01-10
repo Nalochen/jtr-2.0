@@ -1,11 +1,9 @@
 from flask import g
 
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule
 from DataDomain.Database.Repository import TournamentRepository
 from DataDomain.Model import Response
 from ExternalApi.TournamentFrontend.config.extensions import clearTournamentCache
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
-)
 
 
 class DeleteTournamentHandler:
@@ -25,7 +23,7 @@ class DeleteTournamentHandler:
         if not tournament:
             return Response(status=404)
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(
+        if not IsCurrentUserAdminOfTeamRule.applies(
                 tournament.organizer_id):
             return Response(status=403)
 

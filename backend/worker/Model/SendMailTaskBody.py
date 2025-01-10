@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Optional
+from typing import List
 
 
 @dataclass
@@ -9,4 +9,4 @@ class SendMailTaskBody:
     subject: str
     recipients: List[str]
     body: str
-    html: Optional[str]
+    html: str | None

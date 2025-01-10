@@ -1,9 +1,7 @@
 from flask import g
 
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule
 from DataDomain.Model import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
-)
 
 
 class IsAdminOfTeamHandler:
@@ -17,7 +15,7 @@ class IsAdminOfTeamHandler:
 
         teamId: int = data.get('teamId')
 
-        isAdmin = CheckForMembershipRoleService.isCurrentUserAdminOfTeam(
+        isAdmin = IsCurrentUserAdminOfTeamRule.applies(
             teamId)
 
         return Response(

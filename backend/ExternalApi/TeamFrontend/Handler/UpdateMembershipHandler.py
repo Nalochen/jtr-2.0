@@ -1,11 +1,13 @@
-
 from flask import g
 
-from DataDomain.Database.Repository import IsPartOfRepository
-from DataDomain.Model import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
+from BusinessDomain.Membership.UseCase.CommandHandler import (
+    UpdateMembershipCommandHandler,
 )
+from BusinessDomain.Membership.UseCase.CommandHandler.Command import (
+    UpdateMembershipCommand,
+)
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule, IsUserPartOfTeamRule
+from DataDomain.Model import Response
 
 
 class UpdateMembershipHandler:
@@ -20,24 +22,23 @@ class UpdateMembershipHandler:
         userId: int = data.get('userId')
         userRole: str = data.get('userRole')
 
-        membership = IsPartOfRepository.get(userId, teamId)
-
-        if not membership:
+        if not IsUserPartOfTeamRule.applies(userId, teamId):
             return Response(status=404)
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(
-                membership.team_id):
+        if not IsCurrentUserAdminOfTeamRule.applies(teamId):
             return Response(status=403)
 
         try:
-            IsPartOfRepository.update(
-                userId=userId,
-                teamId=teamId,
-                userRole=userRole
+            UpdateMembershipCommandHandler.execute(
+                UpdateMembershipCommand(
+                    userId=userId,
+                    teamId=teamId,
+                    userRole=userRole
+                )
             )
 
-        except Exception as e:
-            return Response(status=500, response=str(e))
+        except Exception:
+            return Response(status=500)
 
         return Response(
             status=200

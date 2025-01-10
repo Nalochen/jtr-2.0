@@ -1,14 +1,11 @@
-import json
-from datetime import datetime
-
 from flask import g
 
-from BusinessDomain.Team.Repository import TeamRepository
+from BusinessDomain.Team.Rule import DoesTeamExistsRule
+from BusinessDomain.Team.UseCase.CommandHandler import UpdateTeamCommandHandler
+from BusinessDomain.Team.UseCase.CommandHandler.Command import UpdateTeamCommand
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule
 from DataDomain.Model import Response
 from ExternalApi.TeamFrontend.config.extensions import clearTeamCache
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
-)
 
 
 class UpdateTeamHandler:
@@ -22,49 +19,31 @@ class UpdateTeamHandler:
 
         teamId = data.get('teamId')
 
-        team = TeamRepository.get(teamId)
-
-        if not team:
+        if not DoesTeamExistsRule.applies(teamId):
             return Response(status=404)
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(
-                team.id):
+        # TODO: escapedName creation and check
+        escapedName = data.get('escapedName')
+
+        if not IsCurrentUserAdminOfTeamRule.applies(
+                teamId):
             return Response(status=403)
 
-        name = data.get('name')
-        if name is not None:
-            team.name = name
-
-        logo = data.get('logo')
-        if logo is not None:
-            team.logo = logo
-
-        founded = data.get('founded')
-        if founded is not None:
-            team.founded = datetime.fromisoformat(founded)
-
-        city = data.get('city')
-        if city is not None:
-            team.city = city
-
-        isMixTeam = data.get('isMixTeam')
-        if isMixTeam is not None:
-            team.isMixTeam = isMixTeam
-
-        trainingTime = data.get('trainingTime')
-        if trainingTime is not None:
-            team.trainingTime = trainingTime
-
-        aboutUs = data.get('aboutUs')
-        if aboutUs is not None:
-            team.aboutUs = aboutUs
-
-        contacts = data.get('contacts')
-        if contacts is not None:
-            team.contacts = json.dumps(contacts)
-
         try:
-            TeamRepository.update()
+            UpdateTeamCommandHandler.execute(
+                UpdateTeamCommand(
+                    aboutUs=data.get('aboutUs'),
+                    city=data.get('city'),
+                    contacts=data.get('contacts'),
+                    escapedName=escapedName,
+                    founded=data.get('founded'),
+                    isMixTeam=data.get('isMixTeam'),
+                    logo=data.get('logo'),
+                    name=data.get('name'),
+                    teamId=teamId,
+                    trainingTime=data.get('trainingTime')
+                )
+            )
 
             clearTeamCache(teamId)
 

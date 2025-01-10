@@ -1,7 +1,12 @@
 from flask import g
 
-from DataDomain.Database.Enum import UserRoleTypesEnum
-from DataDomain.Database.Repository import IsPartOfRepository, TeamInvitationRepository
+from BusinessDomain.Membership.UseCase.CommandHandler import (
+    CreateMembershipCommandHandler,
+)
+from BusinessDomain.Membership.UseCase.CommandHandler.Command import (
+    CreateMembershipCommand,
+)
+from BusinessDomain.Team.Rule import IsHashValidRule
 from DataDomain.Database.tools import getJwtIdentity
 from DataDomain.Model import Response
 
@@ -19,25 +24,14 @@ class AcceptTeamInvitationHandler:
         currentUserId: int = getJwtIdentity().id
 
         try:
-            validHash = TeamInvitationRepository.checkHash(
-                userId=currentUserId,
-                hash=hash
-            )
-
-            if not validHash:
+            if not IsHashValidRule.applies(currentUserId, hash):
                 return Response(status=400)
 
-            teamId = TeamInvitationRepository.getTeamIdByHash(hash)
-
-            IsPartOfRepository.create(
-                userId=currentUserId,
-                teamId=teamId,
-                userRole=UserRoleTypesEnum.MEMBER.value
-            )
-
-            TeamInvitationRepository.delete(
-                userId=currentUserId,
-                teamId=teamId
+            CreateMembershipCommandHandler.execute(
+                CreateMembershipCommand(
+                    userId=currentUserId,
+                    hash=hash
+                )
             )
 
         except Exception:

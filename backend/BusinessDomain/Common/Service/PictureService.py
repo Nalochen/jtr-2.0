@@ -6,7 +6,7 @@ from flask import current_app
 from PIL import Image
 from werkzeug.utils import secure_filename
 
-from ExternalApi.UserFrontend.Service.PictureTypeEnum import PictureTypeEnum
+from BusinessDomain.Common.Enum import PicturePathEnum, PictureTypeEnum
 
 
 class PictureService:
@@ -20,12 +20,7 @@ class PictureService:
 
         filename = PictureService.createPictureName(image)
 
-        if pictureType == PictureTypeEnum.USER:
-            savePath = PictureService.createUserPicturePath(filename)
-        elif pictureType == PictureTypeEnum.TEAM:
-            savePath = PictureService.createTeamPicturePath(filename)
-        else:
-            raise ValueError('Invalid picture type')
+        savePath = PictureService.createPicturePath(filename, pictureType)
 
         isAnimated = getattr(image, 'is_animated', False)
 
@@ -75,24 +70,19 @@ class PictureService:
         return filename
 
     @staticmethod
-    def createUserPicturePath(filename: str) -> str:
+    def createPicturePath(filename: str, pictureType: PictureTypeEnum) -> str:
         """Creates the path to a user picture"""
 
-        uploadFolder = os.path.join(
-            current_app.config['UPLOAD_FOLDER'],
-            'user-pictures')
-
-        savePath = os.path.join(uploadFolder, filename)
-
-        return savePath
-
-    @staticmethod
-    def createTeamPicturePath(filename: str) -> str:
-        """Creates the path to a team picture"""
+        if pictureType == PictureTypeEnum.USER:
+            folder = PicturePathEnum.USER_PICTURES_FOLDER.value
+        elif pictureType == PictureTypeEnum.TEAM:
+            folder = PicturePathEnum.TEAM_PICTURES_FOLDER.value
+        else:
+            raise ValueError('Invalid picture type')
 
         uploadFolder = os.path.join(
             current_app.config['UPLOAD_FOLDER'],
-            'team-pictures')
+            folder)
 
         savePath = os.path.join(uploadFolder, filename)
 

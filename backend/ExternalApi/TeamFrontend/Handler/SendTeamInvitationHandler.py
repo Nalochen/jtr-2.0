@@ -1,11 +1,12 @@
 from flask import g
 
-from DataDomain.Database.Repository import TeamInvitationRepository, UserRepository
-from DataDomain.Model import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
+from BusinessDomain.Team.UseCase.CommandHandler import SendTeamInvitationCommandHandler
+from BusinessDomain.Team.UseCase.CommandHandler.Command import (
+    SendMembershipInvitationCommand,
 )
-from Infrastructure.Mail.Team import SendTeamInvitationMail
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule, IsUserPartOfTeamRule
+from DataDomain.Database.Repository import UserRepository
+from DataDomain.Model import Response
 
 
 class SendTeamInvitationHandler:
@@ -20,12 +21,12 @@ class SendTeamInvitationHandler:
         userId: int = data.get('userId')
         teamId: int = data.get('teamId')
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId):
+        if not IsCurrentUserAdminOfTeamRule.applies(teamId):
             return Response(status=403)
 
         user = UserRepository.get(userId)
 
-        if CheckForMembershipRoleService.isUserPartOfTeam(userId, teamId):
+        if IsUserPartOfTeamRule.applies(userId, teamId):
             return Response(
                 response='User is already a member of team',
                 status=400)
@@ -41,14 +42,11 @@ class SendTeamInvitationHandler:
                 status=400)
 
         try:
-            hash = TeamInvitationRepository.create(
-                userId=userId,
-                teamId=teamId
-            )
-
-            SendTeamInvitationMail().send(
-                user=user,
-                hash=hash
+            SendTeamInvitationCommandHandler.execute(
+                SendMembershipInvitationCommand(
+                    user=user,
+                    teamId=teamId
+                )
             )
 
         except Exception:

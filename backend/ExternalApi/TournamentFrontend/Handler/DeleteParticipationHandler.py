@@ -1,10 +1,11 @@
 from flask import g
 
+from BusinessDomain.User.Rule import (
+    IsCurrentUserAdminOfOrganizingTeamRule,
+    IsCurrentUserAdminOfTeamRule,
+)
 from DataDomain.Database.Repository import ParticipatesInRepository
 from DataDomain.Model import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
-)
 from Infrastructure.Logger import logger
 
 
@@ -23,9 +24,8 @@ class DeleteParticipationHandler:
         logger.info(f"Delete participation of team {
                     teamId} to tournament {tournamentId}")
 
-        if (not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId)
-                and not CheckForMembershipRoleService.
-                isCurrentUserAdminOfOrganizingTeam(tournamentId)):
+        if (not IsCurrentUserAdminOfTeamRule.applies(teamId)
+                and not IsCurrentUserAdminOfOrganizingTeamRule.applies(tournamentId)):
             return Response(status=403)
 
         if not ParticipatesInRepository.exists(tournamentId, teamId):

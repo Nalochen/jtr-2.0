@@ -3,14 +3,12 @@ from typing import List
 
 from flask import g
 
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule
 from DataDomain.Database.Enum import TournamentStatusTypesEnum
 from DataDomain.Database.Model import Tournaments
 from DataDomain.Database.Repository import ParticipatesInRepository, TournamentRepository
 from DataDomain.Model import Response
 from ExternalApi.TournamentFrontend.config.extensions import clearTournamentCache
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
-)
 
 
 @dataclass
@@ -34,7 +32,7 @@ class CreateResultHandler:
 
         tournament = Tournaments.query.get(tournamentId)
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(
+        if not IsCurrentUserAdminOfTeamRule.applies(
                 tournament.organizer_id):
             return Response(status=403)
 

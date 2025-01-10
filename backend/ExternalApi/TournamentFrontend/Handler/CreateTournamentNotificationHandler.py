@@ -1,13 +1,11 @@
 from flask import g
 
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfOrganizingTeamRule
 from DataDomain.Database.Repository import (
     TournamentRepository,
     TournamentSubscriptionRepository,
 )
 from DataDomain.Model import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
-)
 from Infrastructure.Mail.Tournament import SendTournamentSubscriptionNotificationsMail
 
 
@@ -27,7 +25,7 @@ class CreateTournamentNotificationHandler:
         if not tournament:
             return Response(status=404)
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfOrganizingTeam(
+        if not IsCurrentUserAdminOfOrganizingTeamRule.applies(
                 tournament.id):
             return Response(status=403)
 

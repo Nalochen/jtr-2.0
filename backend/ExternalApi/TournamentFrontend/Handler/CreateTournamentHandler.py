@@ -3,13 +3,11 @@ from datetime import datetime
 
 from flask import g
 
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule
 from config import cache
 from DataDomain.Database.Model import Tournaments
 from DataDomain.Database.Repository import TournamentRepository
 from DataDomain.Model import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
-)
 
 
 class CreateTournamentHandler:
@@ -23,7 +21,7 @@ class CreateTournamentHandler:
 
         teamId: int = data.get('teamId') if data.get('teamId') else 1
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId):
+        if not IsCurrentUserAdminOfTeamRule.applies(teamId):
             return Response(status=403)
 
         tournament = Tournaments()

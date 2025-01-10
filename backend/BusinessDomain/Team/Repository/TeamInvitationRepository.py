@@ -1,4 +1,3 @@
-import uuid
 
 from DataDomain.Database import db
 from DataDomain.Database.Model import team_invitations
@@ -30,12 +29,10 @@ class TeamInvitationRepository:
         ).scalar()
 
     @staticmethod
-    def create(userId: int, teamId: int) -> str:
+    def create(userId: int, teamId: int, randomHash: str) -> None:
         """Create a new team_invitations entry"""
 
         try:
-            randomHash = uuid.uuid4().hex
-
             db.session.execute(
                 team_invitations.insert().values(
                     user_id=userId,
@@ -47,8 +44,6 @@ class TeamInvitationRepository:
 
             logger.info(f'TeamInvitationRepository | create | Created team_invitations entry for user {
                         userId} for team {teamId}')
-
-            return randomHash
 
         except Exception as e:
             db.session.rollback()

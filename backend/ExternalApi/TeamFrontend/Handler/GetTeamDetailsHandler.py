@@ -1,6 +1,6 @@
 from flask import g
 
-from BusinessDomain.Team.Rule.TeamExistsRule import TeamExistsRule
+from BusinessDomain.Team.Rule import DoesTeamExistsRule
 from BusinessDomain.Team.UseCase.QueryHandler import GetTeamDetailsQueryHandler
 from BusinessDomain.Team.UseCase.QueryHandler.Query import GetTeamDetailsQuery
 from DataDomain.Model import Response
@@ -17,7 +17,7 @@ class GetTeamDetailsHandler:
 
         escapedName: str = data.get('escapedName')
 
-        if not TeamExistsRule.applies(escapedName=escapedName):
+        if not DoesTeamExistsRule.applies(escapedName=escapedName):
             return Response(
                 response='Team does not exist',
                 status=404,

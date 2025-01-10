@@ -1,10 +1,8 @@
 from flask import g
 
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule
 from DataDomain.Database.Repository import ParticipatesInRepository
 from DataDomain.Model import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
-)
 from Infrastructure.Logger import logger
 
 
@@ -23,7 +21,7 @@ class CreateParticipationHandler:
         logger.info(f"Create participation of team {
                     teamId} to tournament {tournamentId}")
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId):
+        if not IsCurrentUserAdminOfTeamRule.applies(teamId):
             return Response(status=403)
 
         try:
