@@ -5,6 +5,7 @@ from sqlalchemy import func
 from sqlalchemy.orm import Mapped
 
 from DataDomain.Database import db
+from DataDomain.Database.Enum import UserLanguageTypesEnum
 from DataDomain.Database.Model import BaseModel, is_part_of
 
 
@@ -88,6 +89,11 @@ class Users(BaseModel, db.Model):
         db.Boolean,
         nullable=False,
         server_default='0'
+    )
+
+    language: UserLanguageTypesEnum = db.Column(
+        db.Enum(UserLanguageTypesEnum),
+        nullable=True
     )
 
     created_at: datetime = db.Column(

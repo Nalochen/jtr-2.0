@@ -1,5 +1,5 @@
 from DataDomain.Database.Model import Users
-from Infrastructure.Mail.SendSingleMail import SendSingleMail
+from Infrastructure.Mail import SendSingleMail
 
 
 class SendPasswordResetSuccessMail:

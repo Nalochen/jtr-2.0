@@ -1,7 +1,13 @@
 from flask import g
 
+from BusinessDomain.Tournament.Repository import TournamentRepository
+from BusinessDomain.Tournament.UseCase.CommandHandler import (
+    DeleteTournamentCommandHandler,
+)
+from BusinessDomain.Tournament.UseCase.CommandHandler.Command import (
+    DeleteTournamentCommand,
+)
 from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule
-from DataDomain.Database.Repository import TournamentRepository
 from DataDomain.Model import Response
 from ExternalApi.TournamentFrontend.config.extensions import clearTournamentCache
 
@@ -11,7 +17,6 @@ class DeleteTournamentHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Handles the delete-tournament route"""
 
         data = g.validatedData
 
@@ -28,7 +33,11 @@ class DeleteTournamentHandler:
             return Response(status=403)
 
         try:
-            TournamentRepository.delete(tournamentId=tournament.id)
+            DeleteTournamentCommandHandler.execute(
+                DeleteTournamentCommand(
+                    tournamentId=tournamentId
+                )
+            )
 
             clearTournamentCache(tournament.id)
 

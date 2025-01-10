@@ -1,9 +1,15 @@
 from flask import g
 
+from BusinessDomain.Participation.Rule import DoesParticipationExistsRule
+from BusinessDomain.Participation.UseCase.CommandHandler import (
+    CreateParticipationCommandHandler,
+)
+from BusinessDomain.Participation.UseCase.CommandHandler.Command import (
+    CreateParticipationCommand,
+)
+from BusinessDomain.Tournament.Rule import DoesTournamentExistsRule
 from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule
-from DataDomain.Database.Repository import ParticipatesInRepository
 from DataDomain.Model import Response
-from Infrastructure.Logger import logger
 
 
 class CreateParticipationHandler:
@@ -11,30 +17,25 @@ class CreateParticipationHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Create participation of team"""
 
         data = g.validatedData
 
         teamId: int = data.get('teamId')
         tournamentId: int = data.get('tournamentId')
 
-        logger.info(f"Create participation of team {
-                    teamId} to tournament {tournamentId}")
-
         if not IsCurrentUserAdminOfTeamRule.applies(teamId):
             return Response(status=403)
 
+        if not DoesTournamentExistsRule.applies(tournamentId):
+            return Response(status=404)
+
+        if not DoesParticipationExistsRule.applies(teamId, tournamentId):
+            return Response(status=409)
+
         try:
-            if not ParticipatesInRepository.exists(tournamentId, teamId):
-                ParticipatesInRepository().create(tournamentId, teamId)
-
-                return Response(status=200)
-
-            if not ParticipatesInRepository.isDeleted(
-                    tournamentId, teamId):
-                return Response(status=400)
-
-            ParticipatesInRepository().recreate(tournamentId, teamId)
+            CreateParticipationCommandHandler.execute(
+                CreateParticipationCommand(teamId=teamId, tournamentId=tournamentId)
+            )
 
         except Exception:
             return Response(status=500)

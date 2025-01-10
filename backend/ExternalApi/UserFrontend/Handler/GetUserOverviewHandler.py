@@ -1,4 +1,4 @@
-from DataDomain.Database.Repository import UserRepository
+from BusinessDomain.User.Repository import UserRepository
 from DataDomain.Model import Response
 
 
@@ -7,7 +7,6 @@ class GetUserOverviewHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Get user overview"""
 
         user = UserRepository.getUserOverview()
 

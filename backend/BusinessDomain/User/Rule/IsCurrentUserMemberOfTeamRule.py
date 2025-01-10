@@ -1,6 +1,6 @@
+from BusinessDomain.Membership.Repository import IsPartOfRepository
+from BusinessDomain.User.Rule.tools import getJwtIdentity
 from DataDomain.Database.Enum import UserRoleTypesEnum
-from DataDomain.Database.Repository import IsPartOfRepository
-from DataDomain.Database.tools import getJwtIdentity
 
 
 class IsCurrentUserMemberOfTeamRule:

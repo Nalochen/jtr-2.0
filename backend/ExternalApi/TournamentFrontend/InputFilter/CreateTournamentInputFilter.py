@@ -1,5 +1,5 @@
 from flask_inputfilter import InputFilter
-from flask_inputfilter.Enum import RegexEnum
+from flask_inputfilter.Enum.RegexEnum import RegexEnum
 from flask_inputfilter.Filter import (
     StringTrimFilter,
     ToBooleanFilter,
@@ -386,4 +386,10 @@ class CreateTournamentInputFilter(InputFilter):
             required=True,
             filters=[StringTrimFilter()],
             validators=[IsStringValidator()]
+        )
+
+        self.add(
+            'teamId',
+            required=True,
+            validators=[IsIntegerValidator()]
         )

@@ -120,6 +120,8 @@ def upgrade():
                     sa.Column('city_visibility', sa.Boolean(), nullable=False),
                     sa.Column('is_deleted', sa.Boolean(),
                               server_default='0', nullable=False),
+                    sa.Column('language', sa.Enum('DE', 'EN',
+                                                  name='userlanguagetypesenum'), nullable=True),
                     sa.Column('created_at', sa.DateTime(),
                               server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
                     sa.Column('updated_at', sa.DateTime(),

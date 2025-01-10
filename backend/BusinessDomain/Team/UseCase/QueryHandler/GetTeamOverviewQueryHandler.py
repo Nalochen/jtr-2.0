@@ -1,12 +1,13 @@
 from typing import List
 
-from BusinessDomain.Team.Repository.TeamRepository import TeamRepository
+from BusinessDomain.Team.Repository import TeamRepository
 from BusinessDomain.Team.UseCase.QueryHandler.Result import TeamOverviewQueryResult
 
 
 class GetTeamOverviewQueryHandler:
 
-    def execute(self) -> List[TeamOverviewQueryResult]:
+    @staticmethod
+    def execute() -> List[TeamOverviewQueryResult]:
 
         teams = TeamRepository.getTeamOverview()
 

@@ -1,4 +1,4 @@
-from DataDomain.Database.Repository import IsPartOfRepository
+from BusinessDomain.Membership.Repository import IsPartOfRepository
 
 
 class IsUserPartOfTeamRule:

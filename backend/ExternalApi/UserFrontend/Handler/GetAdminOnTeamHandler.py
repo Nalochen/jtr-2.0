@@ -1,6 +1,6 @@
 
 from BusinessDomain.Team.Repository import TeamRepository
-from DataDomain.Database.tools import getJwtIdentity
+from BusinessDomain.User.Rule.tools import getJwtIdentity
 from DataDomain.Model import Response
 
 

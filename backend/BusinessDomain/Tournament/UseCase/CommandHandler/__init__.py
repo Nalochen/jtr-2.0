@@ -1,0 +1,4 @@
+from .CreateTournamentCommandHandler import CreateTournamentCommandHandler
+from .DeleteTournamentCommandHandler import DeleteTournamentCommandHandler
+from .UpdateTournamentCommandHandler import UpdateTournamentCommandHandler
+from .UpdateTournamentStatusCommandHandler import UpdateTournamentStatusCommandHandler

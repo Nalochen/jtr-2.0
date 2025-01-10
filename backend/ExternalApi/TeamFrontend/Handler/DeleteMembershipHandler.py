@@ -7,7 +7,7 @@ from BusinessDomain.Membership.UseCase.CommandHandler.Command import (
     DeleteMembershipCommand,
 )
 from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule, IsUserPartOfTeamRule
-from DataDomain.Database.tools import getJwtIdentity
+from BusinessDomain.User.Rule.tools import getJwtIdentity
 from DataDomain.Model import Response
 
 
@@ -16,17 +16,13 @@ class DeleteMembershipHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Handles the delete-membership route"""
 
         data = g.validatedData
 
-        teamId = data.get('teamId')
-        userId = data.get('userId')
-
         currentUser = getJwtIdentity()
 
-        if not userId:
-            userId = currentUser.id
+        teamId = data.get('teamId')
+        userId = data.get('userId') or currentUser.id
 
         if not IsUserPartOfTeamRule.applies(userId, teamId):
             return Response(status=401)

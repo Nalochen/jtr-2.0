@@ -1,7 +1,7 @@
 from sqlalchemy import func
 
 from DataDomain.Database import db
-from DataDomain.Database.Model import Tournaments, participates_in
+from DataDomain.Database.Model import participates_in
 from Infrastructure.Logger import logger
 
 
@@ -16,26 +16,24 @@ class ParticipatesInRepository:
             participates_in
         ).filter(
             participates_in.c.tournament_id == tournamentId,
-            participates_in.c.team_id == teamId
+            participates_in.c.team_id == teamId,
+            participates_in.c.is_deleted == False
         ).first()
 
-    def create(self, tournamentId: int, teamId: int) -> None:
+    @staticmethod
+    def create(
+            tournamentId: int,
+            teamId: int,
+            registrationOrder: int,
+            isOnWaitingList: bool) -> None:
         """Create a new participates_in entry"""
 
         try:
-            maxOrder = self.nextFreeRegistrationOrder(tournamentId)
-
-            tournament = Tournaments.query.get(tournamentId)
-
-            isOnWaitingList = False
-            if maxOrder > tournament.possible_space:
-                isOnWaitingList = True
-
             db.session.execute(
                 participates_in.insert().values(
                     tournament_id=tournamentId,
                     team_id=teamId,
-                    registration_order=maxOrder,
+                    registration_order=registrationOrder,
                     is_on_waiting_list=isOnWaitingList
                 )
             )
@@ -89,10 +87,9 @@ class ParticipatesInRepository:
             logger.error(f'ParticipatesInRepository | delete | {e}')
             raise e
 
-    def recreate(self, tournamentId: int, teamId: int) -> None:
+    @staticmethod
+    def recreate(tournamentId: int, teamId: int, registrationOrder: int) -> None:
         """Recreate a participates_in entry"""
-
-        maxOrder = self.nextFreeRegistrationOrder(tournamentId)
 
         try:
             db.session.query(
@@ -103,7 +100,7 @@ class ParticipatesInRepository:
             ).update(
                 values={
                     'is_deleted': False,
-                    'registration_order': maxOrder
+                    'registration_order': registrationOrder
                 }
             )
             db.session.commit()
@@ -118,6 +115,18 @@ class ParticipatesInRepository:
 
     @staticmethod
     def exists(tournamentId: int, teamId: int) -> bool:
+        """Check if a participates_in entry exists"""
+
+        return db.session.query(
+            db.exists().where(
+                participates_in.c.tournament_id == tournamentId,
+                participates_in.c.team_id == teamId,
+                participates_in.c.is_deleted == False
+            )
+        ).scalar()
+
+    @staticmethod
+    def existsHard(tournamentId: int, teamId: int) -> bool:
         """Check if a participates_in entry exists"""
 
         return db.session.query(
@@ -139,10 +148,10 @@ class ParticipatesInRepository:
         ).scalar()
 
     @staticmethod
-    def nextFreeRegistrationOrder(tournamentId: int) -> int:
-        """Get the next free registration order for a tournament"""
+    def getMaxOrder(tournamentId: int) -> int | None:
+        """Get the highest registration order for a tournament"""
 
-        maxOrder = db.session.query(
+        return db.session.query(
             func.max(
                 participates_in.c.registration_order
             )
@@ -150,11 +159,6 @@ class ParticipatesInRepository:
             participates_in.c.tournament_id == tournamentId,
             participates_in.c.is_deleted == False
         ).scalar()
-
-        if maxOrder is None:
-            return 1
-
-        return maxOrder + 1
 
     @staticmethod
     def createResult(tournamentId: int, teamId: int, placement: int) -> None:

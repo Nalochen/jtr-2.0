@@ -1,5 +1,5 @@
 from DataDomain.Database.Model import Tournaments, Users
-from Infrastructure.Mail.SendSingleMail import SendSingleMail
+from Infrastructure.Mail import SendSingleMail
 
 
 class SendTournamentSubscriptionNotificationMail:

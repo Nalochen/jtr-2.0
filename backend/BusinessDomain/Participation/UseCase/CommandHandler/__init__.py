@@ -1,0 +1,3 @@
+from .CreateParticipationCommandHandler import CreateParticipationCommandHandler
+from .CreateResultCommandHandler import CreateResultCommandHandler
+from .DeleteParticipationCommandHandler import DeleteParticipationCommandHandler

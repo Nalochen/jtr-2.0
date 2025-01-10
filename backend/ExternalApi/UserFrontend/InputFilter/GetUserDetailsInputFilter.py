@@ -1,5 +1,5 @@
 from flask_inputfilter import InputFilter
-from flask_inputfilter.Filter import ToStringFilter
+from flask_inputfilter.Filter import ToNullFilter
 from flask_inputfilter.Validator import IsStringValidator
 
 
@@ -14,7 +14,7 @@ class GetUserDetailsInputFilter(InputFilter):
         self.add(
             'escapedUsername',
             required=False,
-            filters=[ToStringFilter()],
+            filters=[ToNullFilter()],
             validators=[
                 IsStringValidator()
             ]

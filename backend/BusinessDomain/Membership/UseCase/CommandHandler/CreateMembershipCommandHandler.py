@@ -1,9 +1,9 @@
+from BusinessDomain.Membership.Repository import IsPartOfRepository
 from BusinessDomain.Membership.UseCase.CommandHandler.Command import (
     CreateMembershipCommand,
 )
 from BusinessDomain.Team.Repository import TeamInvitationRepository
 from DataDomain.Database.Enum import UserRoleTypesEnum
-from DataDomain.Database.Repository import IsPartOfRepository
 
 
 class CreateMembershipCommandHandler:

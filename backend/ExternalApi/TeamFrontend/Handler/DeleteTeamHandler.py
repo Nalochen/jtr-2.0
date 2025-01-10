@@ -13,7 +13,6 @@ class DeleteTeamHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Handles the delete-team route"""
 
         data = g.validatedData
 

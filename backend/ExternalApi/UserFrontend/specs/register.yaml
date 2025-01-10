@@ -45,6 +45,8 @@ components:
           format: email
         name:
           type: string
+        language:
+          type: string
 
     RegisterResponseBody:
       type: object

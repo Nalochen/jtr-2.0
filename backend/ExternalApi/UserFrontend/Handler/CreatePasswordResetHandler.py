@@ -1,6 +1,6 @@
 from flask import g
 
-from DataDomain.Database.Repository import UserRepository
+from BusinessDomain.User.Repository import UserRepository
 from DataDomain.Model import Response
 from Infrastructure.Mail.User import SendPasswordResetMail
 
@@ -10,7 +10,6 @@ class CreatePasswordResetHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Create a password reset request"""
 
         data = g.validatedData
 

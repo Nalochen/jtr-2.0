@@ -1,6 +1,10 @@
 from flask import g
 
-from DataDomain.Database.Repository import TournamentRepository
+from BusinessDomain.Tournament.Rule import DoesTournamentExistsRule
+from BusinessDomain.Tournament.UseCase.QueryHandler import (
+    GetTournamentDetailsQueryHandler,
+)
+from BusinessDomain.Tournament.UseCase.QueryHandler.Query import GetTournamentDetailsQuery
 from DataDomain.Model import Response
 
 
@@ -9,15 +13,19 @@ class GetTournamentDetailsHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Get tournament details by id"""
 
         data = g.validatedData
 
-        tournament = TournamentRepository.getTournamentDetails(
-            data.get('tournamentId'))
+        tournamentId = data.get('tournamentId')
 
-        if tournament is None:
+        if not DoesTournamentExistsRule.applies(tournamentId):
             return Response(status=404, response='Tournament not found')
+
+        tournament = GetTournamentDetailsQueryHandler.execute(
+            GetTournamentDetailsQuery(
+                tournamentId=tournamentId
+            )
+        )
 
         return Response(
             response=tournament,

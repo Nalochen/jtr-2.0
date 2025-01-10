@@ -4,8 +4,8 @@ from flask import g
 
 from BusinessDomain.Common.Enum import PictureTypeEnum
 from BusinessDomain.Common.Service import PictureService
-from DataDomain.Database.Repository import UserRepository
-from DataDomain.Database.tools import getJwtIdentity
+from BusinessDomain.User.Repository import UserRepository
+from BusinessDomain.User.Rule.tools import getJwtIdentity
 from DataDomain.Model import Response
 
 
@@ -14,7 +14,6 @@ class UpdateUserPictureHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Update a user picture"""
 
         data = g.validatedData
 

@@ -1,4 +1,6 @@
-from DataDomain.Database.Repository import TournamentRepository
+from BusinessDomain.Tournament.UseCase.QueryHandler import (
+    GetTournamentOverviewQueryHandler,
+)
 from DataDomain.Model import Response
 
 
@@ -7,9 +9,8 @@ class GetTournamentOverviewHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Get tournament overview"""
 
-        tournaments = TournamentRepository.getTournamentOverview()
+        tournaments = GetTournamentOverviewQueryHandler.execute()
 
         return Response(
             response=tournaments,

@@ -1,18 +1,10 @@
-from dataclasses import dataclass
 from datetime import timedelta
 
+from BusinessDomain.User.Model import LoginAttemptResponse
 from DataDomain.Database import db
 from DataDomain.Database.Enum import LockType
 from DataDomain.Database.Model import LoginAttempts
 from Infrastructure.Logger import logger
-
-
-@dataclass
-class LoginAttemptResponse:
-    """The response for the checkForFailedAttempts method"""
-
-    lockType: LockType | None
-    lockedUntil: str | None
 
 
 class LoginAttemptRepository:

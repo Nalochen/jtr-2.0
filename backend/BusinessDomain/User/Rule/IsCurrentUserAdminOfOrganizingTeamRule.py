@@ -1,6 +1,7 @@
+from BusinessDomain.Membership.Repository import IsPartOfRepository
+from BusinessDomain.Tournament.Repository import TournamentRepository
+from BusinessDomain.User.Rule.tools import getJwtIdentity
 from DataDomain.Database.Enum import UserRoleTypesEnum
-from DataDomain.Database.Repository import IsPartOfRepository, TournamentRepository
-from DataDomain.Database.tools import getJwtIdentity
 
 
 class IsCurrentUserAdminOfOrganizingTeamRule:
@@ -11,6 +12,9 @@ class IsCurrentUserAdminOfOrganizingTeamRule:
         user = getJwtIdentity()
 
         organizingTeam = TournamentRepository.getOrganizingTeam(tournamentId)
+
+        if not organizingTeam:
+            return False
 
         isPartOf = IsPartOfRepository.get(user.id, organizingTeam.id)
 

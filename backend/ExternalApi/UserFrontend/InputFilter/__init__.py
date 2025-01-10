@@ -7,4 +7,5 @@ from .IsAdminOfOrganizerInputFilter import IsAdminOfOrganizerInputFilter
 from .IsAdminOfTeamInputFilter import IsAdminOfTeamInputFilter
 from .LoginUserInputFilter import LoginUserInputFilter
 from .UpdateUserInputFilter import UpdateUserInputFilter
+from .UpdateUserLanguageInputFilter import UpdateUserLanguageInputFilter
 from .UpdateUserPictureInputFilter import UpdateUserPictureInputFilter

@@ -24,7 +24,8 @@ class TeamInvitationRepository:
         return db.session.query(
             db.exists().where(
                 team_invitations.c.user_id == userId,
-                team_invitations.c.team_id == teamId
+                team_invitations.c.team_id == teamId,
+                team_invitations.c.is_deleted == False
             )
         ).scalar()
 

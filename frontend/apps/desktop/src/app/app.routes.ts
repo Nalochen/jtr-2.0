@@ -127,7 +127,7 @@ export const appRoutes: Route[] = [
     },
   },
   {
-    path: 'user-details/:escapedUsername',
+    path: 'user-details/:escapedUsername?',
     component: PageUserDetailsComponent,
     resolve: {
       userDetails: UserDetailsResolver,

@@ -37,7 +37,8 @@ class TournamentSubscriptionRepository:
         return db.session.query(
             db.exists().where(
                 tournament_subscriptions.c.user_id == userId,
-                tournament_subscriptions.c.tournament_id == tournamentId
+                tournament_subscriptions.c.tournament_id == tournamentId,
+                tournament_subscriptions.c.is_deleted == False
             )
         ).scalar()
 

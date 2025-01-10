@@ -33,7 +33,8 @@ class TeamRepository:
             db.exists().where(
                 or_(
                     Teams.id == teamId,
-                    Teams.escaped_name == escapedName
+                    Teams.escaped_name == escapedName,
+                    Teams.is_deleted == False
                 )
             )
         ).scalar()

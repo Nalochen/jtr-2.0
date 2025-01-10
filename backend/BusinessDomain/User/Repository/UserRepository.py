@@ -26,6 +26,15 @@ class UserRepository:
         ).first()
 
     @staticmethod
+    def exists(userId: int) -> bool:
+        return db.session.query(
+            db.exists().where(
+                Users.id == userId,
+                Users.is_deleted == False
+            )
+        ).scalar()
+
+    @staticmethod
     def getUserOverview() -> List[dict]:
         """Get user overview"""
 

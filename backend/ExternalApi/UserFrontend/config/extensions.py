@@ -1,7 +1,7 @@
 from flask import request
 
+from BusinessDomain.User.Repository import UserRepository
 from config import cache
-from DataDomain.Database.Repository import UserRepository
 
 
 def create_user_cache_key() -> str | None:

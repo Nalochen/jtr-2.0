@@ -4,8 +4,8 @@ from flask import g
 from flask_jwt_extended import create_access_token
 from werkzeug.security import generate_password_hash
 
-from DataDomain.Database.Repository import UserRepository
-from DataDomain.Database.tools import getJwtIdentity
+from BusinessDomain.User.Repository import UserRepository
+from BusinessDomain.User.Rule.tools import getJwtIdentity
 from DataDomain.Model import Response
 from ExternalApi.UserFrontend.config.extensions import clearUserCache
 
@@ -15,7 +15,6 @@ class UpdateUserHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Update a user"""
 
         data = g.validatedData
 

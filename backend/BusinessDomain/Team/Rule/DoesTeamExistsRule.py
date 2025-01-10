@@ -9,7 +9,4 @@ class DoesTeamExistsRule:
         if teamId is None and escapedName is None:
             return False
 
-        if TeamRepository.exists(teamId, escapedName):
-            return True
-
-        return False
+        return TeamRepository.exists(teamId, escapedName)

@@ -11,7 +11,6 @@ class GetTeamDetailsHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Get team details by id"""
 
         data = g.validatedData
 

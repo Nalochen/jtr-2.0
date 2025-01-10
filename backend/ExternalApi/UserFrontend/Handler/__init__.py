@@ -10,4 +10,5 @@ from .IsAdminOnOrganizerHandler import IsAdminOfOrganizerHandler
 from .IsAdminOnTeamHandler import IsAdminOfTeamHandler
 from .LoginUserHandler import LoginUserHandler
 from .UpdateUserHandler import UpdateUserHandler
+from .UpdateUserLanguageHandler import UpdateUserLanguageHandler
 from .UpdateUserPictureHandler import UpdateUserPictureHandler

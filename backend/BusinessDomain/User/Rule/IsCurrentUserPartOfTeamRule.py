@@ -1,5 +1,5 @@
-from DataDomain.Database.Repository import IsPartOfRepository
-from DataDomain.Database.tools import getJwtIdentity
+from BusinessDomain.Membership.Repository import IsPartOfRepository
+from BusinessDomain.User.Rule.tools import getJwtIdentity
 
 
 class IsCurrentUserPartOfTeamRule:

@@ -1,6 +1,3 @@
-from .IsPartOfRepository import IsPartOfRepository
 from .LoginAttemptRepository import LoginAttemptRepository
-from .ParticipatesInRepository import ParticipatesInRepository
-from .TournamentRepository import TournamentRepository
 from .TournamentSubscriptionRepository import TournamentSubscriptionRepository
 from .UserRepository import UserRepository

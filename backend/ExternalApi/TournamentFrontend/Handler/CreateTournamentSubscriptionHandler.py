@@ -1,10 +1,13 @@
 from flask import g
 
-from DataDomain.Database.Repository import (
-    TournamentRepository,
-    TournamentSubscriptionRepository,
+from BusinessDomain.Tournament.Rule import DoesTournamentExistsRule
+from BusinessDomain.User.Rule.tools import getJwtIdentity
+from BusinessDomain.User.UseCase.CommandHandler import (
+    CreateTournamentSubscriptionCommandHandler,
 )
-from DataDomain.Database.tools import getJwtIdentity
+from BusinessDomain.User.UseCase.CommandHandler.Command import (
+    CreateTournamentSubscriptionCommand,
+)
 from DataDomain.Model import Response
 
 
@@ -13,19 +16,21 @@ class CreateTournamentSubscriptionHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Create tournament subscriptions"""
 
         data = g.validatedData
 
         tournamentId: int = data.get('tournamentId')
 
-        tournament = TournamentRepository.get(tournamentId)
-        if not tournament:
+        if not DoesTournamentExistsRule.applies(tournamentId):
             return Response(status=404)
 
         try:
-            TournamentSubscriptionRepository.create(
-                tournament.id, getJwtIdentity().id)
+            CreateTournamentSubscriptionCommandHandler.execute(
+                CreateTournamentSubscriptionCommand(
+                    tournamentId=tournamentId,
+                    userId=getJwtIdentity().id
+                )
+            )
 
         except Exception:
             return Response(status=500)

@@ -20,6 +20,7 @@ from ExternalApi.UserFrontend.Handler import (
     IsAdminOfTeamHandler,
     LoginUserHandler,
     UpdateUserHandler,
+    UpdateUserLanguageHandler,
     UpdateUserPictureHandler,
 )
 from ExternalApi.UserFrontend.InputFilter import (
@@ -32,6 +33,7 @@ from ExternalApi.UserFrontend.InputFilter import (
     IsAdminOfTeamInputFilter,
     LoginUserInputFilter,
     UpdateUserInputFilter,
+    UpdateUserLanguageInputFilter,
     UpdateUserPictureInputFilter,
 )
 
@@ -102,6 +104,16 @@ def updateUser() -> Response:
 @limiter.limit('3 per minute')
 def updateUserPicture() -> Response:
     return UpdateUserPictureHandler.handle()
+
+
+@user_frontend.route('/update-user-language',
+                     methods=['PUT'],
+                     endpoint='update-user-language')
+@jwt_required()
+@UpdateUserLanguageInputFilter.validate()
+@limiter.limit('4 per minute')
+def updateUserLanguage() -> Response:
+    return UpdateUserLanguageHandler.handle()
 
 
 @user_frontend.route('/login', methods=['POST'], endpoint='login')

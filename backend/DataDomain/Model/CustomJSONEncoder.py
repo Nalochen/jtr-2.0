@@ -2,6 +2,7 @@ import json
 from dataclasses import asdict, is_dataclass
 from datetime import datetime
 from decimal import Decimal
+from enum import Enum
 
 from sqlalchemy import Row
 from sqlalchemy.exc import OperationalError
@@ -30,5 +31,8 @@ class CustomJSONEncoder(json.JSONEncoder):
 
         elif isinstance(obj, Row):
             return dict(obj._mapping)
+
+        elif isinstance(obj, Enum):
+            return obj.value
 
         return super().default(obj)

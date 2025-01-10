@@ -7,7 +7,7 @@ from BusinessDomain.Membership.UseCase.CommandHandler.Command import (
     CreateMembershipCommand,
 )
 from BusinessDomain.Team.Rule import IsHashValidRule
-from DataDomain.Database.tools import getJwtIdentity
+from BusinessDomain.User.Rule.tools import getJwtIdentity
 from DataDomain.Model import Response
 
 
@@ -16,7 +16,6 @@ class AcceptTeamInvitationHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Accept invitation of a user to join a team"""
 
         data = g.validatedData
 

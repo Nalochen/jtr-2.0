@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import {
   BehaviorSubject,
@@ -18,25 +19,27 @@ const IS_ADMIN_OF_ORGANIZER_ENDPOINT =
   '/api/user-frontend/is-admin-of-organizer';
 
 export interface LoginRequestBody {
-  username: string | null;
   email: string | null;
   password: string;
+  username: string | null;
 }
 
 export interface RegisterRequestBody {
   birthdate: string | null;
-  isBirthdateVisible: boolean;
   city: string | null;
-  isCityVisible: boolean;
   email: string | null;
-  name: string | null;
+  isBirthdateVisible: boolean;
+  isCityVisible: boolean;
   isNameVisible: boolean;
+  language: string;
+  name: string | null;
   password: string;
   username: string;
 }
 
 export interface AuthResponse {
   token: string | undefined;
+  language: string | undefined;
   lockType: LockType | undefined;
   lockedUntil: string | undefined;
 }
@@ -52,7 +55,10 @@ export enum LockType {
 export class AuthService {
   private tokenSubject: BehaviorSubject<string | null>;
 
-  constructor(private readonly http: HttpClient) {
+  constructor(
+    private readonly http: HttpClient,
+    private readonly router: Router
+  ) {
     const token = localStorage.getItem('jwt');
     this.tokenSubject = new BehaviorSubject<string | null>(token);
   }
@@ -71,6 +77,10 @@ export class AuthService {
         tap((response: AuthResponse) => {
           if (response.token) {
             this.setSession(response.token);
+          }
+
+          if (response.language) {
+            sessionStorage.setItem('language', response.language);
           }
         }),
         catchError((error) => {

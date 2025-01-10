@@ -1,7 +1,7 @@
 from flask import g
 from werkzeug.security import generate_password_hash
 
-from DataDomain.Database.Repository import UserRepository
+from BusinessDomain.User.Repository import UserRepository
 from DataDomain.Model import Response
 from Infrastructure.Mail.User import SendPasswordResetSuccessMail
 
@@ -11,7 +11,6 @@ class CreateNewPasswordHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Reset password"""
 
         data = g.validatedData
 

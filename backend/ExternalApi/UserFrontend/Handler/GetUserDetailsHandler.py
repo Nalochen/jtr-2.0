@@ -1,8 +1,8 @@
 from flask import g
 from flask_jwt_extended import get_jwt_identity
 
-from DataDomain.Database.Repository import UserRepository
-from DataDomain.Database.tools import getJwtIdentity
+from BusinessDomain.User.Repository import UserRepository
+from BusinessDomain.User.Rule.tools import getJwtIdentity
 from DataDomain.Model import Response
 
 
@@ -11,7 +11,6 @@ class GetUserDetailsHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Get user details by id or current user, if user has a session"""
 
         data = g.validatedData
 
@@ -22,18 +21,11 @@ class GetUserDetailsHandler:
                 status=400,
                 response='Username or session is required')
 
-        if escapedUsername is None:
-            user = getJwtIdentity()
+        user = getJwtIdentity() if escapedUsername is None \
+            else UserRepository.getUserByUsername(escapedUsername)
 
-            profileOfCurrentUser = True
-
-        else:
-            user = UserRepository.getUserByUsername(escapedUsername)
-
-            profileOfCurrentUser = get_jwt_identity() and (getJwtIdentity().id == user.id)
-
-            if user is None or user.is_deleted:
-                return Response(status=404, response='User not found')
+        profileOfCurrentUser = get_jwt_identity() and (
+            getJwtIdentity().id == user.id)
 
         teams = [{
             'id': team.id,

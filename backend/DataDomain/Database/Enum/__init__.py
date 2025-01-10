@@ -9,4 +9,5 @@ from .TournamentRegistrationProcedureTypesEnum import (
     TournamentRegistrationProcedureTypesEnum,
 )
 from .TournamentStatusTypesEnum import TournamentStatusTypesEnum
+from .UserLanguageTypesEnum import UserLanguageTypesEnum
 from .UserRoleTypesEnum import UserRoleTypesEnum

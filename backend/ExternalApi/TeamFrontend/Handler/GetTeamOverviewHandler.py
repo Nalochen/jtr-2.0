@@ -8,9 +8,8 @@ class GetTeamOverviewHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Get team overview"""
 
-        team = GetTeamOverviewQueryHandler().execute()
+        team = GetTeamOverviewQueryHandler.execute()
 
         return Response(
             response=team,

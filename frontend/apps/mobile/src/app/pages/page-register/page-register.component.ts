@@ -47,7 +47,18 @@ export class PageRegisterComponent {
       return;
     }
 
-    this.authService.register(this.form.getRawValue());
+    this.authService.register({
+      birthdate: this.form.controls.birthdate.value,
+      city: this.form.controls.city.value,
+      email: this.form.controls.email.value,
+      isBirthdateVisible: this.form.controls.isBirthdateVisible.value,
+      isCityVisible: this.form.controls.isCityVisible.value,
+      isNameVisible: this.form.controls.isNameVisible.value,
+      language: sessionStorage.getItem('language') || 'de',
+      name: this.form.controls.name.value,
+      password: this.form.controls.password.value,
+      username: this.form.controls.username.value,
+    });
 
     this.form.reset();
 

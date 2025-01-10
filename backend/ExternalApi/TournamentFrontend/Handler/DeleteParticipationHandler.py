@@ -1,12 +1,20 @@
 from flask import g
 
+from BusinessDomain.Participation.Rule import (
+    DoesParticipationExistsRule,
+    IsParticipationDeletedRule,
+)
+from BusinessDomain.Participation.UseCase.CommandHandler import (
+    DeleteParticipationCommandHandler,
+)
+from BusinessDomain.Participation.UseCase.CommandHandler.Command import (
+    DeleteParticipationCommand,
+)
 from BusinessDomain.User.Rule import (
     IsCurrentUserAdminOfOrganizingTeamRule,
     IsCurrentUserAdminOfTeamRule,
 )
-from DataDomain.Database.Repository import ParticipatesInRepository
 from DataDomain.Model import Response
-from Infrastructure.Logger import logger
 
 
 class DeleteParticipationHandler:
@@ -14,28 +22,29 @@ class DeleteParticipationHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Handles the delete-participation route"""
 
         data = g.validatedData
 
         teamId: int = data.get('teamId')
         tournamentId: int = data.get('tournamentId')
 
-        logger.info(f"Delete participation of team {
-                    teamId} to tournament {tournamentId}")
-
         if (not IsCurrentUserAdminOfTeamRule.applies(teamId)
                 and not IsCurrentUserAdminOfOrganizingTeamRule.applies(tournamentId)):
             return Response(status=403)
 
-        if not ParticipatesInRepository.exists(tournamentId, teamId):
+        if not DoesParticipationExistsRule.applies(tournamentId, teamId):
             return Response(status=404)
 
-        if ParticipatesInRepository.isDeleted(tournamentId, teamId):
+        if IsParticipationDeletedRule.applies(tournamentId, teamId):
             return Response(status=400)
 
         try:
-            ParticipatesInRepository.delete(tournamentId, teamId)
+            DeleteParticipationCommandHandler.execute(
+                DeleteParticipationCommand(
+                    teamId=teamId,
+                    tournamentId=tournamentId
+                )
+            )
 
         except Exception:
             return Response(status=500)

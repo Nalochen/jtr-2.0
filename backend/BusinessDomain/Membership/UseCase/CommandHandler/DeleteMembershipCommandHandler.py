@@ -1,7 +1,7 @@
+from BusinessDomain.Membership.Repository import IsPartOfRepository
 from BusinessDomain.Membership.UseCase.CommandHandler.Command import (
     DeleteMembershipCommand,
 )
-from DataDomain.Database.Repository import IsPartOfRepository
 from Infrastructure.Logger import logger
 
 

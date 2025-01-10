@@ -4,9 +4,9 @@ from flask import g
 from flask_jwt_extended import create_access_token
 from werkzeug.security import generate_password_hash
 
+from BusinessDomain.User.Repository import UserRepository
 from config import cache
 from DataDomain.Database.Model import Users
-from DataDomain.Database.Repository import UserRepository
 from DataDomain.Model import Response
 
 
@@ -15,7 +15,6 @@ class CreateUserHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Create a user and login"""
 
         data = g.validatedData
 
@@ -31,17 +30,10 @@ class CreateUserHandler:
         if birthdate is not None:
             user.birthdate = datetime.fromisoformat(birthdate)
 
-        city = data.get('city')
-        if city is not None:
-            user.city = city
-
-        email = data.get('email')
-        if email is not None:
-            user.email = email
-
-        name = data.get('name')
-        if name is not None:
-            user.name = name
+        user.city = data.get('city')
+        user.email = data.get('email')
+        user.name = data.get('name')
+        user.language = data.get('language')
 
         try:
             UserRepository.create(user)

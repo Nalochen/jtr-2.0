@@ -34,14 +34,14 @@ import { PageUserDetailsComponent } from './pages/page-user-details/page-user-de
 
 export const appRoutes: Route[] = [
   {
-    path: 'team-details/:teamId',
+    path: 'team-details/:escapedName',
     component: PageTeamDetailsComponent,
     resolve: {
       teamDetails: TeamDetailsResolver,
     },
   },
   {
-    path: 'manage-team-details/:teamId',
+    path: 'manage-team-details/:escapedName',
     component: PageManageTeamDetailsComponent,
     resolve: {
       manageTeamDetails: ManageTeamDetailsResolver,

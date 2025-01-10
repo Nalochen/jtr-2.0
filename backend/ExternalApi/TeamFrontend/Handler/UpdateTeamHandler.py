@@ -13,7 +13,6 @@ class UpdateTeamHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Update team"""
 
         data = g.validatedData
 

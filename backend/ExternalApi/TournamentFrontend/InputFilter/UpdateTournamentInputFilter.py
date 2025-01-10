@@ -15,23 +15,13 @@ from flask_inputfilter.Validator import (
     RegexValidator,
 )
 
-from DataDomain.Database.Enum.TournamentAccommodationTypesEnum import (
+from DataDomain.Database.Enum import (
     TournamentAccommodationTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentCostTypesEnum import TournamentCostTypesEnum
-from DataDomain.Database.Enum.TournamentFoodEveningTypesEnum import (
+    TournamentCostTypesEnum,
     TournamentFoodEveningTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import (
     TournamentFoodGastroTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import (
     TournamentFoodMorningTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import (
     TournamentFoodNoonTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import (
     TournamentRegistrationProcedureTypesEnum,
 )
 

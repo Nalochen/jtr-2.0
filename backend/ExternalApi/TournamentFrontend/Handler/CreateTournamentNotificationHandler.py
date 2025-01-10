@@ -1,12 +1,14 @@
 from flask import g
 
+from BusinessDomain.Tournament.Rule import DoesTournamentExistsRule
 from BusinessDomain.User.Rule import IsCurrentUserAdminOfOrganizingTeamRule
-from DataDomain.Database.Repository import (
-    TournamentRepository,
-    TournamentSubscriptionRepository,
+from BusinessDomain.User.UseCase.CommandHandler import (
+    CreateTournamentNotificationCommandHandler,
+)
+from BusinessDomain.User.UseCase.CommandHandler.Command import (
+    CreateTournamentNotificationCommand,
 )
 from DataDomain.Model import Response
-from Infrastructure.Mail.Tournament import SendTournamentSubscriptionNotificationsMail
 
 
 class CreateTournamentNotificationHandler:
@@ -14,27 +16,25 @@ class CreateTournamentNotificationHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Create tournament notifications"""
 
         data = g.validatedData
 
         tournamentId: int = data.get('tournamentId')
-        message: str = data.get('message')
 
-        tournament = TournamentRepository.get(tournamentId)
-        if not tournament:
+        if not DoesTournamentExistsRule.applies(tournamentId):
             return Response(status=404)
 
         if not IsCurrentUserAdminOfOrganizingTeamRule.applies(
-                tournament.id):
+                tournamentId):
             return Response(status=403)
 
         try:
-            recipients = TournamentSubscriptionRepository.getRecipients(
-                tournament.id)
-
-            SendTournamentSubscriptionNotificationsMail.send(
-                recipients, tournament, message)
+            CreateTournamentNotificationCommandHandler.execute(
+                CreateTournamentNotificationCommand(
+                    tournamentId=tournamentId,
+                    message=data.get('message')
+                )
+            )
 
         except Exception:
             return Response(status=500)

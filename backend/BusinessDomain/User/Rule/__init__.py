@@ -1,3 +1,4 @@
+from .DoesSubscriptionExistsRule import DoesSubscriptionExistsRule
 from .IsCurrentUserAdminOfOrganizingTeamRule import IsCurrentUserAdminOfOrganizingTeamRule
 from .IsCurrentUserAdminOfTeamRule import IsCurrentUserAdminOfTeamRule
 from .IsCurrentUserMemberOfTeamRule import IsCurrentUserMemberOfTeamRule

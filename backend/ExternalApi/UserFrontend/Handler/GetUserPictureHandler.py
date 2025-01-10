@@ -2,7 +2,7 @@ import os
 
 from flask import current_app, g, send_from_directory
 
-from DataDomain.Database.Repository import UserRepository
+from BusinessDomain.User.Repository import UserRepository
 from DataDomain.Model import Response
 
 
@@ -11,7 +11,6 @@ class GetUserPictureHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Get user picture"""
 
         data = g.validatedData
 

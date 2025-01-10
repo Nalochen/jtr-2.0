@@ -1,5 +1,5 @@
-from DataDomain.Database.Repository import UserRepository
-from DataDomain.Database.tools import getJwtIdentity
+from BusinessDomain.User.Repository import UserRepository
+from BusinessDomain.User.Rule.tools import getJwtIdentity
 from DataDomain.Model import Response
 
 
@@ -8,7 +8,6 @@ class DeleteUserHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Handles the delete-user route"""
 
         currentUser = getJwtIdentity()
 

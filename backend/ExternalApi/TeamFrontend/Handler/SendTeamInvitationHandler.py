@@ -4,8 +4,8 @@ from BusinessDomain.Team.UseCase.CommandHandler import SendTeamInvitationCommand
 from BusinessDomain.Team.UseCase.CommandHandler.Command import (
     SendMembershipInvitationCommand,
 )
+from BusinessDomain.User.Repository import UserRepository
 from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule, IsUserPartOfTeamRule
-from DataDomain.Database.Repository import UserRepository
 from DataDomain.Model import Response
 
 
@@ -14,7 +14,6 @@ class SendTeamInvitationHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Send invitation to a user to join a team"""
 
         data = g.validatedData
 

@@ -2,8 +2,8 @@ from flask import g
 from flask_jwt_extended import create_access_token
 from werkzeug.security import check_password_hash
 
-from DataDomain.Database.Enum.LockType import LockType
-from DataDomain.Database.Repository import LoginAttemptRepository, UserRepository
+from BusinessDomain.User.Repository import LoginAttemptRepository, UserRepository
+from DataDomain.Database.Enum import LockType
 from DataDomain.Model import Response
 
 
@@ -12,7 +12,6 @@ class LoginUserHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Login user"""
 
         data = g.validatedData
 
@@ -59,6 +58,7 @@ class LoginUserHandler:
             return Response(
                 response={
                     'token': accessToken,
+                    'language': user.language,
                 },
                 status=200,
             )

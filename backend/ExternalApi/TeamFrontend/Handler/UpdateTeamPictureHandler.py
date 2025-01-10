@@ -13,7 +13,6 @@ class UpdateTeamPictureHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Update a user picture"""
 
         data = g.validatedData
 
