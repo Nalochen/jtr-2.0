@@ -24,12 +24,16 @@ class CreateTournamentCommandHandler:
             tournament.end_date = datetime.fromisoformat(command.endDate)
             tournament.start_arrival_date = ParseIsoDateRule.applies(
                 command.startArrivalDate)
-            tournament.end_arrival_date = ParseIsoDateRule.applies(command.endArrivalDate)
+            tournament.end_arrival_date = ParseIsoDateRule.applies(
+                command.endArrivalDate)
             tournament.address = command.address
             tournament.possible_space = command.possibleSpace
-            tournament.registration_procedure_type = command.registrationProcedureType
-            tournament.registration_procedure_text = command.registrationProcedureText
-            tournament.registration_procedure_url = command.registrationProcedureUrl
+            tournament.registration_procedure_type = (
+                command.registrationProcedureType)
+            tournament.registration_procedure_text = (
+                command.registrationProcedureText)
+            tournament.registration_procedure_url = (
+                command.registrationProcedureUrl)
             tournament.registration_start_date = ParseIsoDateRule.applies(
                 command.registrationStartDate)
             tournament.registration_costs = command.registrationCosts
@@ -44,7 +48,8 @@ class CreateTournamentCommandHandler:
             tournament.deadlines = command.deadlines
             tournament.schedule = command.schedule
 
-            tournament.contacts = json.dumps(command.contacts) if command.contacts else []
+            tournament.contacts = json.dumps(
+                command.contacts) if command.contacts else []
 
             tournament.accommodation_type = command.accommodationType
             tournament.accommodation_location = command.accommodationLocation

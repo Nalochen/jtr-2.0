@@ -34,7 +34,10 @@ class CreateParticipationHandler:
 
         try:
             CreateParticipationCommandHandler.execute(
-                CreateParticipationCommand(teamId=teamId, tournamentId=tournamentId)
+                CreateParticipationCommand(
+                    teamId=teamId,
+                    tournamentId=tournamentId
+                )
             )
 
         except Exception:
