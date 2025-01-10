@@ -26,21 +26,18 @@ class TeamRepository:
     """Repository for team related queries"""
 
     @staticmethod
-    def exists(teamId: int = None, escapedName: str = None) -> bool:
-        """Check if team exists"""
+    def exists(teamId: int | None = None, escapedName: str | None = None) -> bool:
 
-        return db.session.query(
-            db.exists().where(
-                or_(
-                    Teams.id == teamId,
-                    Teams.escaped_name == escapedName,
-                    Teams.is_deleted == False
-                )
-            )
-        ).scalar()
+        return Teams.query.filter(
+            or_(
+                Teams.id == teamId,
+                Teams.escaped_name == escapedName
+            ),
+            Teams.is_deleted == False
+        ).count() > 0
 
     @staticmethod
-    def getTeamOverview() -> List[TeamOverviewModelElement]:
+    def all() -> List[TeamOverviewModelElement]:
         """Get team overview"""
 
         team_alias = aliased(Teams)

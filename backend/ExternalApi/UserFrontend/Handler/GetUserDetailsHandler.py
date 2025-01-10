@@ -1,8 +1,9 @@
 from flask import g
 from flask_jwt_extended import get_jwt_identity
 
-from BusinessDomain.User.Repository import UserRepository
-from BusinessDomain.User.Rule.tools import getJwtIdentity
+from BusinessDomain.User.Rule.DoesUserExistsRule import DoesUserExistsRule
+from BusinessDomain.User.UseCase.QueryHandler import GetUserDetailsQueryHandler
+from BusinessDomain.User.UseCase.QueryHandler.Query import GetUserDetailsQuery
 from DataDomain.Model import Response
 
 
@@ -21,43 +22,19 @@ class GetUserDetailsHandler:
                 status=400,
                 response='Username or session is required')
 
-        user = getJwtIdentity() if escapedUsername is None \
-            else UserRepository.getUserByUsername(escapedUsername)
+        if not DoesUserExistsRule.applies(escapedUsername=escapedUsername):
+            return Response(
+                status=404,
+                response='User not found'
+            )
 
-        profileOfCurrentUser = get_jwt_identity() and (
-            getJwtIdentity().id == user.id)
-
-        teams = [{
-            'id': team.id,
-            'logo': team.logo,
-            'name': team.name,
-        } for team in user.teams]
-
-        response = {
-            'id': user.id,
-            'createdAt': user.created_at.isoformat(),
-            'email': user.email,
-            'isBirthdateVisible': user.birthdate_visibility,
-            'isCityVisible': user.city_visibility,
-            'isDeleted': user.is_deleted,
-            'isNameVisible': user.name_visibility,
-            'picture': user.picture,
-            'pronouns': user.pronouns,
-            'teams': teams,
-            'updatedAt': user.updated_at.isoformat(),
-            'username': user.username,
-        }
-
-        if user.name_visibility or profileOfCurrentUser:
-            response['name'] = user.name
-
-        if user.birthdate_visibility or profileOfCurrentUser:
-            response['birthdate'] = user.birthdate.isoformat()
-
-        if user.city_visibility or profileOfCurrentUser:
-            response['city'] = user.city
+        user = GetUserDetailsQueryHandler.execute(
+            GetUserDetailsQuery(
+                escapedUsername=escapedUsername
+            )
+        )
 
         return Response(
-            response=response,
+            response=user,
             status=200,
         )

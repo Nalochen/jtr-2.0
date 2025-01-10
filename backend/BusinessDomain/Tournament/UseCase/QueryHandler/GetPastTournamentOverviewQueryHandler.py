@@ -9,7 +9,7 @@ class GetPastTournamentOverviewQueryHandler:
     @staticmethod
     def execute() -> List[TournamentOverviewResult]:
 
-        tournaments = TournamentRepository.getTournamentOverview()
+        tournaments = TournamentRepository.all()
 
         if not tournaments:
             return []

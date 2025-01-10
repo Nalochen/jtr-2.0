@@ -11,4 +11,4 @@ class UpdateUserLanguageCommandHandler:
 
         user.language = command.language
 
-        UserRepository.update(user)
+        UserRepository.update(user.id)

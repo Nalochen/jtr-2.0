@@ -4,8 +4,12 @@ from BusinessDomain.User.Repository import UserRepository
 class DoesUserExistsRule:
 
     @staticmethod
-    def applies(userId: int) -> bool:
+    def applies(
+            userId: int | None = None,
+            escapedUsername: str | None = None,
+            email: str | None = None) -> bool:
 
-        user = UserRepository.exists(userId)
+        if userId is None and escapedUsername is None and email is None:
+            return False
 
-        return False
+        return UserRepository.exists(userId, escapedUsername, email)

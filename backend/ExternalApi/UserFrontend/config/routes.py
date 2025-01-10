@@ -8,6 +8,7 @@ from ExternalApi.UserFrontend.config.extensions import (
     create_user_picture_cache_key,
 )
 from ExternalApi.UserFrontend.Handler import (
+    AuthenticateUserHandler,
     CreateNewPasswordHandler,
     CreatePasswordResetHandler,
     CreateUserHandler,
@@ -18,12 +19,12 @@ from ExternalApi.UserFrontend.Handler import (
     GetUserPictureHandler,
     IsAdminOfOrganizerHandler,
     IsAdminOfTeamHandler,
-    LoginUserHandler,
     UpdateUserHandler,
     UpdateUserLanguageHandler,
     UpdateUserPictureHandler,
 )
 from ExternalApi.UserFrontend.InputFilter import (
+    AuthenticateUserInputFilter,
     CreateNewPasswordInputFilter,
     CreatePasswordResetInputFilter,
     CreateUserInputFilter,
@@ -31,7 +32,6 @@ from ExternalApi.UserFrontend.InputFilter import (
     GetUserPictureInputFilter,
     IsAdminOfOrganizerInputFilter,
     IsAdminOfTeamInputFilter,
-    LoginUserInputFilter,
     UpdateUserInputFilter,
     UpdateUserLanguageInputFilter,
     UpdateUserPictureInputFilter,
@@ -44,9 +44,9 @@ user_frontend = Blueprint('user-frontend', __name__)
                      methods=['GET'], endpoint='get-user-details')
 @user_frontend.route('/get-user-details/<escapedUsername>',
                      methods=['GET'], endpoint='get-user-details')
-@GetUserDetailsInputFilter.validate()
-@jwt_required(optional=True)
 @cache.cached(key_prefix=create_user_cache_key)
+@jwt_required(optional=True)
+@GetUserDetailsInputFilter.validate()
 def getUserDetails(escapedUsername=None) -> Response:
     return GetUserDetailsHandler.handle()
 
@@ -60,8 +60,8 @@ def getUserOverview() -> Response:
 
 @user_frontend.route('/get-user-picture/<userId>',
                      methods=['GET'], endpoint='get-user-picture')
-@GetUserPictureInputFilter.validate()
 @cache.cached(key_prefix=create_user_picture_cache_key)
+@GetUserPictureInputFilter.validate()
 def getUserPicture(userId) -> Response:
     return GetUserPictureHandler.handle()
 
@@ -73,18 +73,18 @@ def getAdminOfTeams() -> Response:
     return GetAdminOfTeamsHandler.handle()
 
 
-@user_frontend.route('/is-admin-of-team/<teamId>',
+@user_frontend.route('/is-admin-of-team/<escapedName>',
                      methods=['GET'], endpoint='is-admin-of-team')
-@IsAdminOfTeamInputFilter.validate()
 @jwt_required()
-def isAdminOfTeam(teamId) -> Response:
+@IsAdminOfTeamInputFilter.validate()
+def isAdminOfTeam(escapedName) -> Response:
     return IsAdminOfTeamHandler.handle()
 
 
 @user_frontend.route('/is-admin-of-organizer/<tournamentId>',
                      methods=['GET'], endpoint='is-admin-of-organizer')
-@IsAdminOfOrganizerInputFilter.validate()
 @jwt_required()
+@IsAdminOfOrganizerInputFilter.validate()
 def isAdminOfOrganizer(tournamentId) -> Response:
     return IsAdminOfOrganizerHandler.handle()
 
@@ -99,9 +99,9 @@ def updateUser() -> Response:
 
 @user_frontend.route('/update-user-picture',
                      methods=['PUT'], endpoint='update-user-picture')
+@limiter.limit('3 per minute')
 @jwt_required()
 @UpdateUserPictureInputFilter.validate()
-@limiter.limit('3 per minute')
 def updateUserPicture() -> Response:
     return UpdateUserPictureHandler.handle()
 
@@ -109,32 +109,32 @@ def updateUserPicture() -> Response:
 @user_frontend.route('/update-user-language',
                      methods=['PUT'],
                      endpoint='update-user-language')
+@limiter.limit('4 per minute')
 @jwt_required()
 @UpdateUserLanguageInputFilter.validate()
-@limiter.limit('4 per minute')
 def updateUserLanguage() -> Response:
     return UpdateUserLanguageHandler.handle()
 
 
-@user_frontend.route('/login', methods=['POST'], endpoint='login')
-@LoginUserInputFilter.validate()
+@user_frontend.route('/authenticate-user', methods=['POST'], endpoint='authenticate-user')
 @limiter.limit('5 per minute')
-def login() -> Response:
-    return LoginUserHandler.handle()
+@AuthenticateUserInputFilter.validate()
+def authenticateUser() -> Response:
+    return AuthenticateUserHandler.handle()
 
 
-@user_frontend.route('/register', methods=['POST'], endpoint='register')
-@CreateUserInputFilter.validate()
+@user_frontend.route('/create-user', methods=['POST'], endpoint='create-user')
 @limiter.limit('2 per minute')
-def register() -> Response:
+@CreateUserInputFilter.validate()
+def createUser() -> Response:
     return CreateUserHandler.handle()
 
 
 @user_frontend.route('/create-password-reset',
                      methods=['POST'],
                      endpoint='create-password-reset')
-@CreatePasswordResetInputFilter.validate()
 @limiter.limit('2 per minute')
+@CreatePasswordResetInputFilter.validate()
 def createPasswordReset() -> Response:
     return CreatePasswordResetHandler.handle()
 
@@ -142,8 +142,8 @@ def createPasswordReset() -> Response:
 @user_frontend.route('/create-new-password',
                      methods=['PUT'],
                      endpoint='create-new-password')
-@CreateNewPasswordInputFilter.validate()
 @limiter.limit('2 per minute')
+@CreateNewPasswordInputFilter.validate()
 def createNewPassword() -> Response:
     return CreateNewPasswordHandler.handle()
 
@@ -151,7 +151,7 @@ def createNewPassword() -> Response:
 @user_frontend.route('/delete-user',
                      methods=['DELETE'],
                      endpoint='delete-user')
-@jwt_required()
 @limiter.limit('2 per minute')
+@jwt_required()
 def deleteUser() -> Response:
     return DeleteUserHandler.handle()

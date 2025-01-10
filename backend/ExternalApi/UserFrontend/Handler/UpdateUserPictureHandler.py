@@ -1,11 +1,7 @@
-import base64
-
 from flask import g
 
-from BusinessDomain.Common.Enum import PictureTypeEnum
-from BusinessDomain.Common.Service import PictureService
-from BusinessDomain.User.Repository import UserRepository
-from BusinessDomain.User.Rule.tools import getJwtIdentity
+from BusinessDomain.User.UseCase.CommandHandler import UpdateUserPictureCommandHandler
+from BusinessDomain.User.UseCase.CommandHandler.Command import UpdateUserPictureCommand
 from DataDomain.Model import Response
 
 
@@ -17,17 +13,12 @@ class UpdateUserPictureHandler:
 
         data = g.validatedData
 
-        pictureData: str = data.get('picture')
-
-        user = getJwtIdentity()
-
         try:
-            decodedData = base64.b64decode(pictureData)
-
-            user.picture = PictureService.savePicture(
-                decodedData, PictureTypeEnum.USER)
-
-            UserRepository.update(user)
+            UpdateUserPictureCommandHandler.execute(
+                UpdateUserPictureCommand(
+                    pictureData=data.get('picture')
+                )
+            )
 
         except Exception:
             return Response(status=500)

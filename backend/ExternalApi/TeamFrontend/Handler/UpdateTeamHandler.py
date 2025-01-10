@@ -22,7 +22,8 @@ class UpdateTeamHandler:
             return Response(status=404)
 
         # TODO: escapedName creation and check
-        escapedName = data.get('escapedName')
+        # escapedName = data.get('escapedName')
+        escapedName = data.get('name').replace(' ', '-')
 
         if not IsCurrentUserAdminOfTeamRule.applies(
                 teamId):

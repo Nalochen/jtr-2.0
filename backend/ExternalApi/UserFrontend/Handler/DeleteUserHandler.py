@@ -1,5 +1,6 @@
-from BusinessDomain.User.Repository import UserRepository
 from BusinessDomain.User.Rule.tools import getJwtIdentity
+from BusinessDomain.User.UseCase.CommandHandler import DeleteUserCommandHandler
+from BusinessDomain.User.UseCase.CommandHandler.Command import DeleteUserCommand
 from DataDomain.Model import Response
 
 
@@ -15,7 +16,11 @@ class DeleteUserHandler:
             return Response(status=404)
 
         try:
-            UserRepository.delete(currentUser.id)
+            DeleteUserCommandHandler.execute(
+                DeleteUserCommand(
+                    userId=currentUser.id
+                )
+            )
 
         except Exception:
             return Response(status=500)

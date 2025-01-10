@@ -1,8 +1,13 @@
 from flask import g
 
 from BusinessDomain.User.Repository import UserRepository
+from BusinessDomain.User.UseCase.CommandHandler import (
+    CreatePasswordResetHashCommandHandler,
+)
+from BusinessDomain.User.UseCase.CommandHandler.Command import (
+    CreatePasswordResetHashCommand,
+)
 from DataDomain.Model import Response
-from Infrastructure.Mail.User import SendPasswordResetMail
 
 
 class CreatePasswordResetHandler:
@@ -23,11 +28,10 @@ class CreatePasswordResetHandler:
             )
 
         try:
-            hash = UserRepository.createPasswordResetHash(user.id)
-
-            SendPasswordResetMail().send(
-                user=user,
-                hash=hash
+            CreatePasswordResetHashCommandHandler.execute(
+                CreatePasswordResetHashCommand(
+                    email=email
+                )
             )
 
         except Exception:

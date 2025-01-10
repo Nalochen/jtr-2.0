@@ -1,12 +1,9 @@
-from datetime import datetime
-
 from flask import g
-from flask_jwt_extended import create_access_token
-from werkzeug.security import generate_password_hash
 
-from BusinessDomain.User.Repository import UserRepository
+from BusinessDomain.User.Rule import DoesEmailExistsRule, DoesUsernameExistsRule
+from BusinessDomain.User.UseCase.CommandHandler import CreateUserCommandHandler
+from BusinessDomain.User.UseCase.CommandHandler.Command import CreateUserCommand
 from config import cache
-from DataDomain.Database.Model import Users
 from DataDomain.Model import Response
 
 
@@ -18,34 +15,41 @@ class CreateUserHandler:
 
         data = g.validatedData
 
-        user = Users()
+        username = data.get('username')
+        email = data.get('email')
 
-        user.birthdate_visibility = data.get('isBirthdateVisible')
-        user.city_visibility = data.get('isCityVisible')
-        user.name_visibility = data.get('isNameVisible')
-        user.password_hash = generate_password_hash(data.get('password'))
-        user.username = data.get('username')
+        if DoesUsernameExistsRule.applies(username):
+            return Response(
+                status=400,
+                message='Username already exists'
+            )
 
-        birthdate = data.get('birthdate')
-        if birthdate is not None:
-            user.birthdate = datetime.fromisoformat(birthdate)
-
-        user.city = data.get('city')
-        user.email = data.get('email')
-        user.name = data.get('name')
-        user.language = data.get('language')
+        if DoesEmailExistsRule.applies(email):
+            return Response(
+                status=400,
+                message='Email already exists'
+            )
 
         try:
-            UserRepository.create(user)
+            accessToken = CreateUserCommandHandler.execute(
+                CreateUserCommand(
+                    username=username,
+                    email=email,
+                    password=data.get('password'),
+                    name=data.get('name'),
+                    city=data.get('city'),
+                    birthdate=data.get('birthdate'),
+                    language=data.get('language'),
+                    isNameVisible=data.get('isNameVisible'),
+                    isCityVisible=data.get('isCityVisible'),
+                    isBirthdateVisible=data.get('isBirthdateVisible')
+                )
+            )
 
             cache.delete('user-overview')
 
         except Exception:
             return Response(status=500)
-
-        accessToken = create_access_token(
-            identity=user.id
-        )
 
         return Response(
             response={

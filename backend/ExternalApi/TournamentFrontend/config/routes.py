@@ -38,8 +38,8 @@ tournament_frontend = Blueprint('tournament-frontend', __name__)
 
 @tournament_frontend.route('/get-tournament-details/<tournamentId>',
                            methods=['GET'], endpoint='get-tournament-details')
-@GetTournamentDetailsInputFilter.validate()
 @cache.cached(key_prefix=create_tournament_cache_key)
+@GetTournamentDetailsInputFilter.validate()
 def getTournamentDetails(tournamentId) -> Response:
     return GetTournamentDetailsHandler.handle()
 
@@ -76,45 +76,45 @@ def updateTournamentStatus() -> Response:
 
 @tournament_frontend.route('/create-tournament',
                            methods=['POST'], endpoint='create-tournament')
+@limiter.limit('2 per minute')
 @jwt_required()
 @CreateTournamentInputFilter.validate()
-@limiter.limit('2 per minute')
 def createTournament() -> Response:
     return CreateTournamentHandler.handle()
 
 
 @tournament_frontend.route('/create-participation',
                            methods=['POST'], endpoint='create-participation')
+@limiter.limit('2 per minute')
 @jwt_required()
 @CreateParticipationInputFilter.validate()
-@limiter.limit('2 per minute')
 def createParticipation() -> Response:
     return CreateParticipationHandler.handle()
 
 
 @tournament_frontend.route('/create-result',
                            methods=['POST'], endpoint='create-result')
+@limiter.limit('2 per minute')
 @jwt_required()
 @CreateResultInputFilter.validate()
-@limiter.limit('2 per minute')
 def createResult() -> Response:
     return CreateResultHandler.handle()
 
 
 @tournament_frontend.route('/create-tournament-subscription',
                            methods=['POST'], endpoint='create-tournament-subscription')
+@limiter.limit('2 per minute')
 @jwt_required()
 @CreateTournamentSubscriptionInputFilter.validate()
-@limiter.limit('2 per minute')
 def createTournamentSubscription() -> Response:
     return CreateTournamentSubscriptionHandler.handle()
 
 
 @tournament_frontend.route('/create-tournament-notification',
                            methods=['POST'], endpoint='create-tournament-notification')
+@limiter.limit('2 per minute')
 @jwt_required()
 @CreateTournamentNotificationInputFilter.validate()
-@limiter.limit('2 per minute')
 def createTournamentNotification() -> Response:
     return CreateTournamentNotificationHandler.handle()
 
@@ -122,9 +122,9 @@ def createTournamentNotification() -> Response:
 @tournament_frontend.route('/delete-participation',
                            methods=['DELETE'],
                            endpoint='delete-participation')
+@limiter.limit('2 per minute')
 @jwt_required()
 @DeleteParticipationInputFilter.validate()
-@limiter.limit('2 per minute')
 def deleteParticipation() -> Response:
     return DeleteParticipationHandler.handle()
 
@@ -132,9 +132,9 @@ def deleteParticipation() -> Response:
 @tournament_frontend.route('/delete-tournament',
                            methods=['DELETE'],
                            endpoint='delete-tournament')
+@limiter.limit('2 per minute')
 @jwt_required()
 @DeleteTournamentInputFilter.validate()
-@limiter.limit('2 per minute')
 def deleteTournament() -> Response:
     return DeleteTournamentHandler.handle()
 
@@ -142,8 +142,8 @@ def deleteTournament() -> Response:
 @tournament_frontend.route('/delete-tournament-subscription',
                            methods=['DELETE'],
                            endpoint='delete-tournament-subscription')
+@limiter.limit('2 per minute')
 @jwt_required()
 @DeleteTournamentSubscriptionInputFilter.validate()
-@limiter.limit('2 per minute')
 def deleteTournamentSubscription() -> Response:
     return DeleteTournamentSubscriptionHandler.handle()

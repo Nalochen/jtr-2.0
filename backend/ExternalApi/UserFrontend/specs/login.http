@@ -1,5 +1,5 @@
 ### Log user in
-POST https://{{host}}/api/user-frontend/login
+POST https://{{host}}/api/user-frontend/authenticate-user
 Content-Type: application/json
 
 {

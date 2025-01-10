@@ -16,7 +16,7 @@ class TournamentRepository:
     """Repository for tournament related queries"""
 
     @staticmethod
-    def getTournamentOverview() -> List[TournamentOverviewModelElement]:
+    def all() -> List[TournamentOverviewModelElement]:
 
         currentTime = datetime.now()
 
@@ -124,12 +124,10 @@ class TournamentRepository:
     @staticmethod
     def exists(tournamentId: int) -> bool:
 
-        return db.session.query(
-            db.exists().where(
-                Tournaments.id == tournamentId,
-                Tournaments.is_deleted == False
-            )
-        ).scalar()
+        return Tournaments.query.filter(
+            Tournaments.id == tournamentId,
+            Tournaments.is_deleted == False
+        ).count() > 0
 
     @staticmethod
     def create(tournament: Tournaments) -> int:

@@ -54,8 +54,7 @@ class UpdateTeamInputFilter(InputFilter):
             ],
             validators=[
                 RegexValidator(
-                    RegexEnum.ISO_DATE.value,
-                    'Das Geburtsdatum muss im iso format haben.'
+                    RegexEnum.ISO_DATETIME.value,
                 )
             ]
         )

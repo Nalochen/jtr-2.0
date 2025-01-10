@@ -17,7 +17,7 @@ class UpdateUserLanguageHandler:
             UpdateUserLanguageCommandHandler.execute(
                 UpdateUserLanguageCommand(
                     userId=getJwtIdentity().id,
-                    language=data["language"]
+                    language=data.get('language')
                 )
             )
 

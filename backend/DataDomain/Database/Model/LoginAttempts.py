@@ -1,9 +1,8 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from sqlalchemy import func
 
 from DataDomain.Database import db
-from DataDomain.Database.Enum import LockType
 from DataDomain.Database.Model import BaseModel
 
 
@@ -33,16 +32,3 @@ class LoginAttempts(BaseModel, db.Model):
         server_default=func.now(),
         onupdate=func.now()
     )
-
-    def isLocked(self) -> tuple[bool, LockType | None]:
-        """Check if the user is locked"""
-
-        lockTime = timedelta(minutes=15)
-
-        if self.attempts >= 8:
-            return True, LockType.PERMANENTLY.value
-
-        elif self.attempts >= 6 and datetime.now() - self.last_attempt < lockTime:
-            return True, LockType.TEMPORARILY.value
-
-        return False, None

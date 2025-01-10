@@ -1,5 +1,5 @@
 ### Creates a new user
-POST https://{{host}}/api/user-frontend/register
+POST https://{{host}}/api/user-frontend/create-user
 Content-Type: application/json
 
 {

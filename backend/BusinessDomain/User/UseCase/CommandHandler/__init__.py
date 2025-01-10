@@ -1,10 +1,17 @@
+from .CreateNewPasswordCommandHandler import CreateNewPasswordCommandHandler
+from .CreatePasswordResetHashCommandHandler import CreatePasswordResetHashCommandHandler
 from .CreateTournamentNotificationCommandHandler import (
     CreateTournamentNotificationCommandHandler,
 )
 from .CreateTournamentSubscriptionCommandHandler import (
     CreateTournamentSubscriptionCommandHandler,
 )
+from .CreateUserCommandHandler import CreateUserCommandHandler
 from .DeleteTournamentSubscriptionCommandHandler import (
     DeleteTournamentSubscriptionCommandHandler,
 )
+from .DeleteUserCommandHandler import DeleteUserCommandHandler
+from .LoginUserCommandHandler import LoginUserCommandHandler
+from .UpdateUserCommandHandler import UpdateUserCommandHandler
 from .UpdateUserLanguageCommandHandler import UpdateUserLanguageCommandHandler
+from .UpdateUserPictureCommandHandler import UpdateUserPictureCommandHandler

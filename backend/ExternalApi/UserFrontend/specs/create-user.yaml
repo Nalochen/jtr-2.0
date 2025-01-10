@@ -3,7 +3,7 @@ info:
   title: Customer Frontend API
   version: 1.0.0
 paths:
-  /api/user-frontend/register:
+  /api/user-frontend/create-user:
     post:
       summary: Creates a new user
       description: Returns the JWT access token for the user session.

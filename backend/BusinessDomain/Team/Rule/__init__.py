@@ -1,3 +1,4 @@
 from .DoesTeamExistsRule import DoesTeamExistsRule
+from .GetTeamByEscapedNameRule import GetTeamByEscapedNameRule
 from .GetTeamByIdRule import GetTeamByIdRule
 from .IsHashValidRule import IsHashValidRule

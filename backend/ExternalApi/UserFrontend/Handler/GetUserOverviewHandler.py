@@ -1,4 +1,4 @@
-from BusinessDomain.User.Repository import UserRepository
+from BusinessDomain.User.UseCase.QueryHandler import GetUserOverviewQueryHandler
 from DataDomain.Model import Response
 
 
@@ -8,9 +8,9 @@ class GetUserOverviewHandler:
     @staticmethod
     def handle() -> Response:
 
-        user = UserRepository.getUserOverview()
+        users = GetUserOverviewQueryHandler.execute()
 
         return Response(
-            response=user,
+            response=users,
             status=200,
         )

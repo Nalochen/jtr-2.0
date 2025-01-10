@@ -4,11 +4,9 @@ from flask_inputfilter.Filter import StringTrimFilter, ToNullFilter
 from flask_inputfilter.Validator import IsStringValidator, RegexValidator
 
 
-class LoginUserInputFilter(InputFilter):
-    """The input filter for the login route"""
+class AuthenticateUserInputFilter(InputFilter):
 
     def __init__(self):
-        """Initializes the LoginUserInputFilter"""
 
         super().__init__()
 

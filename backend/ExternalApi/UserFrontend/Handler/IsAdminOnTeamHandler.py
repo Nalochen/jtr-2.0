@@ -1,6 +1,7 @@
 from flask import g
 
-from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule
+from BusinessDomain.User.UseCase.QueryHandler import IsAdminOfTeamQueryHandler
+from BusinessDomain.User.UseCase.QueryHandler.Query import IsUserAdminOfTeamQuery
 from DataDomain.Model import Response
 
 
@@ -12,10 +13,11 @@ class IsAdminOfTeamHandler:
 
         data = g.validatedData
 
-        teamId: int = data.get('teamId')
-
-        isAdmin = IsCurrentUserAdminOfTeamRule.applies(
-            teamId)
+        isAdmin = IsAdminOfTeamQueryHandler.execute(
+            IsUserAdminOfTeamQuery(
+                escapedName=data.get('escapedName')
+            )
+        )
 
         return Response(
             response=isAdmin,

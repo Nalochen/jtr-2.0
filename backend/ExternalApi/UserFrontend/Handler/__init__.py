@@ -1,3 +1,4 @@
+from .AuthenticateUserHandler import AuthenticateUserHandler
 from .CreateNewPasswordHandler import CreateNewPasswordHandler
 from .CreatePasswordResetHandler import CreatePasswordResetHandler
 from .CreateUserHandler import CreateUserHandler
@@ -8,7 +9,6 @@ from .GetUserOverviewHandler import GetUserOverviewHandler
 from .GetUserPictureHandler import GetUserPictureHandler
 from .IsAdminOnOrganizerHandler import IsAdminOfOrganizerHandler
 from .IsAdminOnTeamHandler import IsAdminOfTeamHandler
-from .LoginUserHandler import LoginUserHandler
 from .UpdateUserHandler import UpdateUserHandler
 from .UpdateUserLanguageHandler import UpdateUserLanguageHandler
 from .UpdateUserPictureHandler import UpdateUserPictureHandler

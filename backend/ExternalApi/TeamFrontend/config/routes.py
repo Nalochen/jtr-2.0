@@ -33,8 +33,8 @@ team_frontend = Blueprint('team-frontend', __name__)
 
 @team_frontend.route('/get-team-details/<escapedName>',
                      methods=['GET'], endpoint='get-team-details')
-@GetTeamDetailsInputFilter.validate()
 @cache.cached(key_prefix=create_team_cache_key)
+@GetTeamDetailsInputFilter.validate()
 def getTeamDetails(escapedName) -> Response:
     return GetTeamDetailsHandler.handle()
 
@@ -64,36 +64,36 @@ def updateTeam() -> Response:
 
 @team_frontend.route('/update-team-picture',
                      methods=['PUT'], endpoint='update-team-picture')
+@limiter.limit('3 per minute')
 @jwt_required()
 @UpdateTeamPictureInputFilter.validate()
-@limiter.limit('3 per minute')
 def updateTeamPicture() -> Response:
     return UpdateTeamPictureHandler.handle()
 
 
 @team_frontend.route('/create-team',
                      methods=['POST'], endpoint='create-team')
+@limiter.limit('2 per minute')
 @jwt_required()
 @CreateTeamInputFilter.validate()
-@limiter.limit('2 per minute')
 def createTeam() -> Response:
     return CreateTeamHandler.handle()
 
 
 @team_frontend.route('/send-team-invitation',
                      methods=['POST'], endpoint='send-team-invitation')
+@limiter.limit('2 per minute')
 @jwt_required()
 @SendTeamInvitationInputFilter.validate()
-@limiter.limit('2 per minute')
 def sendTeamInvitation() -> Response:
     return SendTeamInvitationHandler.handle()
 
 
 @team_frontend.route('/accept-team-invitation/<hash>',
                      methods=['POST'], endpoint='accept-team-invitation')
+@limiter.limit('2 per minute')
 @jwt_required()
 @AcceptTeamInvitationInputFilter.validate()
-@limiter.limit('2 per minute')
 def acceptTeamInvitation(hash) -> Response:
     return AcceptTeamInvitationHandler.handle()
 

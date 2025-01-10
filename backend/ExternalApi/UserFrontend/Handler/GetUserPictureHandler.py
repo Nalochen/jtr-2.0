@@ -1,8 +1,7 @@
-import os
+from flask import g, send_from_directory
 
-from flask import current_app, g, send_from_directory
-
-from BusinessDomain.User.Repository import UserRepository
+from BusinessDomain.User.UseCase.QueryHandler import GetUserPictureQueryHandler
+from BusinessDomain.User.UseCase.QueryHandler.Query import GetUserPictureQuery
 from DataDomain.Model import Response
 
 
@@ -14,14 +13,18 @@ class GetUserPictureHandler:
 
         data = g.validatedData
 
-        userId: int = data.get('userId')
+        uploadFolder, picture = GetUserPictureQueryHandler.execute(
+            GetUserPictureQuery(
+                userId=data.get('userId')
+            )
+        )
 
-        user = UserRepository.get(userId)
-
-        uploadFolder = os.path.join(
-            current_app.config['UPLOAD_FOLDER'],
-            'user-pictures')
+        if not picture:
+            return Response(
+                status=404,
+                message='No picture found'
+            )
 
         return send_from_directory(
-            uploadFolder, user.picture
+            uploadFolder, picture
         )

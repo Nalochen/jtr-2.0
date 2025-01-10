@@ -1,6 +1,7 @@
 from flask import g
 
-from BusinessDomain.User.Rule import IsCurrentUserAdminOfOrganizingTeamRule
+from BusinessDomain.User.UseCase.QueryHandler import IsAdminOfOrganizerQueryHandler
+from BusinessDomain.User.UseCase.QueryHandler.Query import IsAdminOfOrganizerQuery
 from DataDomain.Model import Response
 
 
@@ -12,10 +13,11 @@ class IsAdminOfOrganizerHandler:
 
         data = g.validatedData
 
-        tournamentId: int = data.get('tournamentId')
-
-        isAdmin = IsCurrentUserAdminOfOrganizingTeamRule.applies(
-            tournamentId)
+        isAdmin = IsAdminOfOrganizerQueryHandler.execute(
+            IsAdminOfOrganizerQuery(
+                tournamentId=data.get('tournamentId'),
+            )
+        )
 
         return Response(
             response=isAdmin,

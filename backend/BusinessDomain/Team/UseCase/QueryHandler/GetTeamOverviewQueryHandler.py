@@ -9,7 +9,7 @@ class GetTeamOverviewQueryHandler:
     @staticmethod
     def execute() -> List[TeamOverviewQueryResult]:
 
-        teams = TeamRepository.getTeamOverview()
+        teams = TeamRepository.all()
 
         if not teams:
             return []

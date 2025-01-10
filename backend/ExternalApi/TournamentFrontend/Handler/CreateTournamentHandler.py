@@ -58,10 +58,14 @@ class CreateTournamentHandler:
                     possibleSpace=data.get('possibleSpace'),
                     registrationCosts=data.get('registrationCosts'),
                     registrationCostsType=data.get('registrationCostsType'),
-                    registrationProcedureText=data.get('registrationProcedureText'),
-                    registrationProcedureType=data.get('registrationProcedureType'),
-                    registrationProcedureUrl=data.get('registrationProcedureUrl'),
-                    registrationStartDate=data.get('registrationStartDate'),
+                    registrationProcedureText=data.get(
+                        'registrationProcedureText'),
+                    registrationProcedureType=data.get(
+                        'registrationProcedureType'),
+                    registrationProcedureUrl=data.get(
+                        'registrationProcedureUrl'),
+                    registrationStartDate=data.get(
+                        'registrationStartDate'),
                     schedule=data.get('schedule'),
                     shoesText=data.get('shoesText'),
                     startArrivalDate=data.get('startArrivalDate'),

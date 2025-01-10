@@ -13,20 +13,20 @@ export class TeamGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   public canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
-    const teamId = route.params['teamId'];
+    const escapedName = route.params['escapedName'];
 
-    return this.authService.isAdminOfTeam(teamId).pipe(
+    return this.authService.isAdminOfTeam(escapedName).pipe(
       map((isAdmin: boolean) => {
         if (isAdmin) {
           return true;
         } else {
-          this.router.navigate(['team-details', teamId]);
+          this.router.navigate(['team-details', escapedName]);
 
           return false;
         }
       }),
       catchError(() => {
-        this.router.navigate(['team-details', teamId]);
+        this.router.navigate(['team-details', escapedName]);
 
         return [false];
       })
