@@ -2,7 +2,6 @@ from flask_jwt_extended import create_access_token
 from werkzeug.security import check_password_hash
 
 from BusinessDomain.User.Repository import UserRepository
-from BusinessDomain.User.Rule import CheckForFailedAttemptsRule
 from BusinessDomain.User.Rule.CreateOrIncreaseLoginAttemptsRule import (
     CreateOrIncreaseLoginAttemptsRule,
 )
@@ -19,22 +18,22 @@ class LoginUserCommandHandler:
     @staticmethod
     def execute(command: LoginUserCommand) -> LoginUserResult | bool:
 
-        if IsUserLockedRule.applies(command.username):
-            loginAttemptData = CheckForFailedAttemptsRule.applies(
-                command.username)
-
-            if loginAttemptData.lockType == LockType.TEMPORARILY.value:
-                IncreaseFailedAttemptsRule.applies(command.username)
-
-            return LoginUserResult(
-                lockType=loginAttemptData.lockType,
-                lockedUntil=loginAttemptData.lockedUntil
-            )
-
         user = UserRepository.getUserByUsernameOrEmail(
             username=command.username,
             email=command.email
         )
+
+        isLocked, lockType, lockedUntil = IsUserLockedRule.applies(
+            user.username)
+
+        if isLocked:
+            if lockType == LockType.TEMPORARILY.value:
+                IncreaseFailedAttemptsRule.applies(user.username)
+
+            return LoginUserResult(
+                lockType=lockType,
+                lockedUntil=lockedUntil
+            )
 
         if check_password_hash(user.password_hash, command.password):
             accessToken = create_access_token(
@@ -50,6 +49,6 @@ class LoginUserCommandHandler:
             user.username)
 
         if currentAttempts >= 8:
-            user = UserRepository.getUserByUsername(command.username)
+            user = UserRepository.getUserByUsername(user.username)
 
             SendUserLockedMail().send(user)

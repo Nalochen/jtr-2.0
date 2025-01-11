@@ -1,6 +1,6 @@
 from typing import List
 
-from sqlalchemy import and_, or_
+from sqlalchemy import or_
 
 from DataDomain.Database import db
 from DataDomain.Database.Model import Users
@@ -123,15 +123,13 @@ class UserRepository:
             email: str | None) -> Users | None:
         """Get a user by username or email"""
 
-        filters = []
-
-        if username is not None:
-            filters.append(Users.username == username)
-        if email is not None:
-            filters.append(Users.email == email)
-
         return Users.query.filter(
-            and_(*filters, Users.is_deleted == False)).first()
+            or_(
+                Users.username == username,
+                Users.email == email
+            ),
+            Users.is_deleted == False
+        ).first()
 
     @staticmethod
     def getUserByPasswordResetHash(hash: str) -> Users | None:
