@@ -15,10 +15,10 @@
 >
   <p-dropdown
     [options]="teams"
-    formControlName="name"
     placeholder="{{ 'page-tournament-details.select-team' | translate }}"
     [editable]="true"
     optionLabel="name"
+    [(ngModel)]="selectedTeam"
   />
 
   <app-button

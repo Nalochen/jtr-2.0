@@ -1,6 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { FormArray, FormControl, FormGroup, FormsModule } from '@angular/forms';
 
 import { ManageParticipationService } from '../../../business-rules/tournament/manage-participation.service';
 
@@ -13,6 +13,9 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { TeamData, TournamentTeamsData } from '@jtr/data-domain/store';
+import { Subject, takeUntil } from 'rxjs';
+import { AuthService } from '../../../business-rules/auth/auth.service';
 
 export interface Team {
   name: string;
@@ -29,47 +32,50 @@ export interface Team {
     TranslatePipe,
     DialogModule,
     DropdownModule,
+    FormsModule
   ],
   templateUrl: './tournament-bottom-bar.component.html',
   styleUrl: './tournament-bottom-bar.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TournamentBottomBarComponent implements OnInit {
+export class TournamentBottomBarComponent implements OnInit, OnDestroy {
   @Input() public tournamentId!: number;
   @Input() public registrationStartDate!: string;
+  @Input() public registeredTeams!: TournamentTeamsData;
 
   public ButtonTypeEnum = ButtonTypeEnum;
   public ButtonColorEnum = ButtonColorEnum;
 
   protected dialogVisible = false;
-  //add real teams
-  protected teams = [
-    { name: 'Rigor Mortis' },
-    { name: 'The Walking Dead' },
-    { name: 'The Living Dead' },
-    { name: 'Cranium Ex Machina' },
-    { name: 'Leipziger Partyhände' },
-  ];
-  protected selectedTeam: Team | undefined;
-  protected form = new FormArray<
-    FormGroup<{
-      name: FormControl<string | null>;
-    }>
-  >([]);
+  protected teams: TeamData[] = [];
+  protected selectedTeam: TeamData | null = null;
+  public destroy$ = new Subject<void>();
 
   constructor(
-    private readonly manageParticipationService: ManageParticipationService
+    private readonly manageParticipationService: ManageParticipationService,
+    private readonly authService: AuthService
   ) {}
 
   public ngOnInit() {
-    this.teams.forEach((team) => {
-      this.form.push(
-        new FormGroup({
-          name: new FormControl(team.name),
-        })
-      );
-    });
+    this.authService.userAdminTeams().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(
+      (teams) => {
+        const registeredIds = new Set([
+          ...this.registeredTeams.waiting.map(team => team.id),
+          ...this.registeredTeams.participating.map(team => team.id)
+        ]);
+
+        this.teams = teams.filter(team => !registeredIds.has(team.id))
+      }
+    )
   }
+
+  public ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
 
   public onShowDialog(): void {
     this.dialogVisible = true;
@@ -77,10 +83,11 @@ export class TournamentBottomBarComponent implements OnInit {
 
   public onRegistrationClick(): void {
     this.dialogVisible = false;
-    this.manageParticipationService.create({
-      tournamentId: this.tournamentId,
-      //add real teams
-      teamId: 1,
-    })
+    if (this.selectedTeam) {
+      this.manageParticipationService.create({
+        tournamentId: this.tournamentId,
+        teamId: this.selectedTeam?.id,
+      })
+    }
   }
 }

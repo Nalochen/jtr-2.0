@@ -11,6 +11,7 @@ import {
 
 import { DataContainerComponent, TeamComponent } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'tournament-teams',
@@ -18,11 +19,11 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [
     CommonModule,
     NgOptimizedImage,
-    MatDivider,
     DataContainerComponent,
     TeamComponent,
     MatIcon,
     TranslatePipe,
+    DividerModule
   ],
   templateUrl: './tournament-teams.component.html',
   styleUrl: './tournament-teams.component.less',

@@ -7,7 +7,7 @@
 
 <section class="registration">
   @if (tournament?.status === 'published' && registrationStartDate && tournament?.id) {
-  <tournament-registration [registrationStartDate]="registrationStartDate" [tournamentId]="tournament.id" />
+  <tournament-registration [registrationStartDate]="registrationStartDate" [tournamentId]="tournament.id" [registeredTeams]="tournament.teams" />
   } @if (teams$ | async; as teams) {
   <tournament-teams [teams]="teams" />
   }
