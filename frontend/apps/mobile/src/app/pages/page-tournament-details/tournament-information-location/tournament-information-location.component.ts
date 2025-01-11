@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-import { MatDividerModule } from '@angular/material/divider';
-
 import { TournamentData } from '@jtr/data-domain/store';
 import { AccommodationTypeEnum, PricingTypeEnum } from '@jtr/data-domain/tournament-data';
 
@@ -12,6 +10,7 @@ import {
   DataContainerRowComponent,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'tournament-information-location',
@@ -20,7 +19,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     CommonModule,
     DataContainerExpandableComponent,
     DataContainerRowComponent,
-    MatDividerModule,
+    DividerModule,
     ChipComponent,
     TranslatePipe,
   ],

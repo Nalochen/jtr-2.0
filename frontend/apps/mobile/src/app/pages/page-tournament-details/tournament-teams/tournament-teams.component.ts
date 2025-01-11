@@ -1,7 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
-import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
 import { TournamentTeamData, TournamentTeamsData } from '@jtr/data-domain/store';
@@ -11,6 +10,7 @@ import {
   TeamComponent,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'tournament-teams',
@@ -18,7 +18,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [
     CommonModule,
     NgOptimizedImage,
-    MatDivider,
+    DividerModule,
     DataContainerExpandableComponent,
     TeamComponent,
     MatIcon,

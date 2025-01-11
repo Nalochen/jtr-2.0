@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
 import { TournamentData, TournamentTeamData } from '@jtr/data-domain/store';
@@ -32,6 +31,7 @@ import {
 import { TournamentInformationRulesComponent } from '../tournament-information-rules/tournament-information-rules.component';
 import { TournamentTeamsComponent } from '../tournament-teams/tournament-teams.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DividerModule } from 'primeng/divider';
 
 export interface Panel {
   id: string;
@@ -59,7 +59,7 @@ export enum PanelTypes {
     MatButtonModule,
     ChipComponent,
     InfoButtonComponent,
-    MatDividerModule,
+    DividerModule,
     ButtonComponent,
     TournamentTeamsComponent,
     TeamComponent,
