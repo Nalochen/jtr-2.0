@@ -15,8 +15,8 @@ import {
   InfoButtonComponent,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DividerModule } from 'primeng/divider';
 import { InputSwitchModule } from 'primeng/inputswitch';
-import { Divider, DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'tournament-information-rules',

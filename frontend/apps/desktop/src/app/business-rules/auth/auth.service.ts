@@ -11,6 +11,7 @@ import {
   tap,
 } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { TeamData } from '@jtr/data-domain/store';
 
 const LOGIN_ENDPOINT = '/api/user-frontend/authenticate-user';

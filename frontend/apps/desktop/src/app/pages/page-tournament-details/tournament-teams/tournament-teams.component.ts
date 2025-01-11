@@ -1,7 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
-import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
 import {

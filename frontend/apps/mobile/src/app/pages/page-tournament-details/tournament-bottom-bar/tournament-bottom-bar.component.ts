@@ -1,7 +1,12 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
+import { Subject, takeUntil } from 'rxjs';
+
+import { TeamData, TournamentTeamsData } from '@jtr/data-domain/store';
+
+import { AuthService } from '../../../business-rules/auth/auth.service';
 import { ManageParticipationService } from '../../../business-rules/tournament/manage-participation.service';
 
 import {
@@ -13,9 +18,6 @@ import {
 import { TranslatePipe } from '@ngx-translate/core';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
-import { TeamData, TournamentTeamsData } from '@jtr/data-domain/store';
-import { Subject, takeUntil } from 'rxjs';
-import { AuthService } from '../../../business-rules/auth/auth.service';
 
 export interface Team {
   name: string;
