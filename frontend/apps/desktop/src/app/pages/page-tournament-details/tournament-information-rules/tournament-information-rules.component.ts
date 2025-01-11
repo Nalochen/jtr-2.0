@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { MatDividerModule } from '@angular/material/divider';
-
 import { TournamentData } from '@jtr/data-domain/store';
 
 import {
@@ -13,6 +11,7 @@ import {
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'tournament-information-rules',
@@ -22,7 +21,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     DataContainerComponent,
     DataContainerRowComponent,
     InfoButtonComponent,
-    MatDividerModule,
+    DividerModule,
     TranslatePipe,
     InputSwitchModule,
     ReactiveFormsModule,
