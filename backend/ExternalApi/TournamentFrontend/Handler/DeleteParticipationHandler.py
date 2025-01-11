@@ -1,13 +1,20 @@
 from flask import g
 
-from DataDomain.Database.Repository.ParticipatesInRepository import (
-    ParticipatesInRepository,
+from BusinessDomain.Participation.Rule import (
+    DoesParticipationExistsRule,
+    IsParticipationDeletedRule,
 )
-from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
+from BusinessDomain.Participation.UseCase.CommandHandler import (
+    DeleteParticipationCommandHandler,
 )
-from Infrastructure.Logger.Logger import logger
+from BusinessDomain.Participation.UseCase.CommandHandler.Command import (
+    DeleteParticipationCommand,
+)
+from BusinessDomain.User.Rule import (
+    IsCurrentUserAdminOfOrganizingTeamRule,
+    IsCurrentUserAdminOfTeamRule,
+)
+from DataDomain.Model import Response
 
 
 class DeleteParticipationHandler:
@@ -15,29 +22,29 @@ class DeleteParticipationHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Handles the delete-participation route"""
 
         data = g.validatedData
 
         teamId: int = data.get('teamId')
         tournamentId: int = data.get('tournamentId')
 
-        logger.info(f"Delete participation of team {
-                    teamId} to tournament {tournamentId}")
-
-        if (not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(teamId)
-                and not CheckForMembershipRoleService.
-                isCurrentUserAdminOfOrganizingTeam(tournamentId)):
+        if (not IsCurrentUserAdminOfTeamRule.applies(teamId)
+                and not IsCurrentUserAdminOfOrganizingTeamRule.applies(tournamentId)):
             return Response(status=403)
 
-        if not ParticipatesInRepository.exists(tournamentId, teamId):
+        if not DoesParticipationExistsRule.applies(tournamentId, teamId):
             return Response(status=404)
 
-        if ParticipatesInRepository.isDeleted(tournamentId, teamId):
+        if IsParticipationDeletedRule.applies(tournamentId, teamId):
             return Response(status=400)
 
         try:
-            ParticipatesInRepository.delete(tournamentId, teamId)
+            DeleteParticipationCommandHandler.execute(
+                DeleteParticipationCommand(
+                    teamId=teamId,
+                    tournamentId=tournamentId
+                )
+            )
 
         except Exception:
             return Response(status=500)

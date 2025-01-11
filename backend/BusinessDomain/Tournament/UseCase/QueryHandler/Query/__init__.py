@@ -1,0 +1,1 @@
+from .GetTournamentDetailsQuery import GetTournamentDetailsQuery

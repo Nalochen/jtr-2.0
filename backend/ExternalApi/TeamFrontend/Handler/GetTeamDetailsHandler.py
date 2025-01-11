@@ -1,7 +1,9 @@
 from flask import g
 
-from DataDomain.Database.Repository.TeamRepository import TeamRepository
-from DataDomain.Model.Response import Response
+from BusinessDomain.Team.Rule import DoesTeamExistsRule
+from BusinessDomain.Team.UseCase.QueryHandler import GetTeamDetailsQueryHandler
+from BusinessDomain.Team.UseCase.QueryHandler.Query import GetTeamDetailsQuery
+from DataDomain.Model import Response
 
 
 class GetTeamDetailsHandler:
@@ -9,14 +11,19 @@ class GetTeamDetailsHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Get team details by id"""
 
         data = g.validatedData
 
-        team = TeamRepository.getTeamDetails(data.get('teamId'))
+        escapedName: str = data.get('escapedName')
 
-        if team is None:
-            return Response(status=404, response='Team not found')
+        if not DoesTeamExistsRule.applies(escapedName=escapedName):
+            return Response(
+                response='Team does not exist',
+                status=404,
+            )
+
+        team = GetTeamDetailsQueryHandler().execute(
+            GetTeamDetailsQuery(escapedName=escapedName))
 
         return Response(
             response=team,

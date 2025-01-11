@@ -1,8 +1,8 @@
 import logging
 import os
 
-from DataDomain.Database.db import db
-from DataDomain.Model.LogHandler import LogHandler
+from DataDomain.Database import db
+from DataDomain.Model import LogHandler
 
 logger = logging.getLogger('jtr_mysql_logger')
 

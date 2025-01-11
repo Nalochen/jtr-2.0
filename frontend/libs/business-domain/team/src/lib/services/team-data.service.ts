@@ -31,11 +31,9 @@ export class TeamDataService {
   }
 
   public async reloadTeamDetails(): Promise<void> {
-    const teamId = (await firstValueFrom(this.team$))!.id;
+    const escapedName = (await firstValueFrom(this.team$))!.escapedName;
 
-    this.store$.dispatch(
-      loadTeamDetailsData({ teamId: teamId })
-    );
+    this.store$.dispatch(loadTeamDetailsData({ escapedName: escapedName }));
   }
 
   constructor(private readonly store$: Store) {}

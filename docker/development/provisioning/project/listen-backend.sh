@@ -1,3 +1,3 @@
 #!/bin/bash
 
-tail -f /var/log/backend.log &
+tail -F /var/log/backend.log &

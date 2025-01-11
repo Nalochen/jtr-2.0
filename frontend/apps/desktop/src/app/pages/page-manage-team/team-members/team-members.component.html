@@ -31,38 +31,34 @@
           <span class="material-icons-outlined">delete</span>
           <p>{{ 'page-manage-team.remove-member' | translate }}</p>
         </app-button>
-        @switch (member.role) {
-          @case ('admin') {
-          <app-button
-            class="menu-button"
-            [color]="ButtonColorEnum.White"
-            [type]="ButtonTypeEnum.Basic"
-          >
-            <span class="material-icons-outlined">admin_panel_settings</span>
-            <p>{{ 'page-manage-team.make-admin' | translate }}</p>
-          </app-button>
-          }
-          @case ('member') {
-          <app-button
-            class="menu-button"
-            [color]="ButtonColorEnum.White"
-            [type]="ButtonTypeEnum.Basic"
-          >
-            <span class="material-icons-outlined">add_moderator</span>
-            <p>{{ 'page-manage-team.make-moderator' | translate }}</p>
-          </app-button>
-          }
-          @case ('moderator') {
-          <app-button
-            class="menu-button"
-            [color]="ButtonColorEnum.White"
-            [type]="ButtonTypeEnum.Basic"
-          >
-            <span class="material-icons-outlined">remove_moderator</span>
-            <p>{{ 'page-manage-team.delete-moderator' | translate }}</p>
-          </app-button>
-          }
-        }
+        @switch (member.role) { @case ('admin') {
+        <app-button
+          class="menu-button"
+          [color]="ButtonColorEnum.White"
+          [type]="ButtonTypeEnum.Basic"
+        >
+          <span class="material-icons-outlined">admin_panel_settings</span>
+          <p>{{ 'page-manage-team.make-admin' | translate }}</p>
+        </app-button>
+        } @case ('member') {
+        <app-button
+          class="menu-button"
+          [color]="ButtonColorEnum.White"
+          [type]="ButtonTypeEnum.Basic"
+        >
+          <span class="material-icons-outlined">add_moderator</span>
+          <p>{{ 'page-manage-team.make-moderator' | translate }}</p>
+        </app-button>
+        } @case ('moderator') {
+        <app-button
+          class="menu-button"
+          [color]="ButtonColorEnum.White"
+          [type]="ButtonTypeEnum.Basic"
+        >
+          <span class="material-icons-outlined">remove_moderator</span>
+          <p>{{ 'page-manage-team.delete-moderator' | translate }}</p>
+        </app-button>
+        } }
       </div>
     </p-overlayPanel>
   </app-data-container-row>
@@ -80,7 +76,11 @@
   </app-button>
 </app-data-container>
 
-<p-dialog header="{{ 'page-manage-team.add-member' | translate }}" [modal]="true" [(visible)]="isAddMemberOverlayVisible">
+<p-dialog
+  header="{{ 'page-manage-team.add-member' | translate }}"
+  [modal]="true"
+  [(visible)]="isAddMemberOverlayVisible"
+>
   <div>
     @if (possibleUsers) {
     <p-dropdown

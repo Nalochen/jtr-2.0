@@ -11,7 +11,7 @@ Authorization: Bearer {{jwtToken}}
 
 
 ### Get another users details
-GET https://{{host}}/api/user-frontend/get-user-details/2
+GET https://{{host}}/api/user-frontend/get-user-details/maxi
 
 > {%
     client.test("It should return a successful status code", function() {

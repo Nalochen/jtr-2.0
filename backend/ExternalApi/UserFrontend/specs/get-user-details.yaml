@@ -3,16 +3,16 @@ info:
   title: Customer Frontend API
   version: 1.0.0
 paths:
-  /api/user-frontend/get-user-details/{userId?}:
+  /api/user-frontend/get-user-details/{escapedUsername?}:
     get:
       summary: Get user details
       operationId: getUserDetails
       parameters:
-        - name: userId
+        - name: escapedUsername
           in: path
           required: false
           schema:
-            type: number
+            type: string
 
       responses:
         '200':

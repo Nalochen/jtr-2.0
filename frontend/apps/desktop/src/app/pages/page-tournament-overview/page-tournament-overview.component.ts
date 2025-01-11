@@ -10,12 +10,22 @@ import { tournamentOverviewSelector } from '@jtr/business-domain/tournament';
 import { TournamentOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
-import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum,TournamentRowComponent } from '../../ui-shared';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+  TournamentRowComponent,
+} from '../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TranslatePipe, ButtonComponent, TournamentRowComponent],
+  imports: [
+    CommonModule,
+    TranslatePipe,
+    ButtonComponent,
+    TournamentRowComponent,
+  ],
   templateUrl: './page-tournament-overview.component.html',
   styleUrl: './page-tournament-overview.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,7 +34,10 @@ export class PageTournamentOverviewComponent {
   public ButtonTypeEnum = ButtonTypeEnum;
   public ButtonColorEnum = ButtonColorEnum;
 
-  constructor(private readonly store$: Store, private readonly router: Router) {}
+  constructor(
+    private readonly store$: Store,
+    private readonly router: Router
+  ) {}
 
   @SingletonGetter()
   public get tournaments$(): Observable<TournamentOverviewData[]> {

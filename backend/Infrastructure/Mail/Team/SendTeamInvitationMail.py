@@ -1,5 +1,5 @@
-from DataDomain.Database.Model.Users import Users
-from Infrastructure.Mail.SendSingleMail import SendSingleMail
+from DataDomain.Database.Model import Users
+from Infrastructure.Mail import SendSingleMail
 
 
 class SendTeamInvitationMail:

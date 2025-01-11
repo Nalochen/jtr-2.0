@@ -1,6 +1,6 @@
 from flask_inputfilter import InputFilter
-from flask_inputfilter.Filter import ToIntegerFilter
-from flask_inputfilter.Validator import IsIntegerValidator
+from flask_inputfilter.Filter import ToNullFilter
+from flask_inputfilter.Validator import IsStringValidator
 
 
 class GetUserDetailsInputFilter(InputFilter):
@@ -12,10 +12,10 @@ class GetUserDetailsInputFilter(InputFilter):
         super().__init__()
 
         self.add(
-            'userId',
+            'escapedUsername',
             required=False,
-            filters=[ToIntegerFilter()],
+            filters=[ToNullFilter()],
             validators=[
-                IsIntegerValidator()
+                IsStringValidator()
             ]
         )

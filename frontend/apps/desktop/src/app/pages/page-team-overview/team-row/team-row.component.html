@@ -3,7 +3,12 @@
     <div class="left-side">
       <p class="placement">{{ team.placement }}</p>
       <arrow [hasPlacementChangedUpwards]="null" />
-      <img ngSrc="{{ team.logo }}" width="50" height="50" alt="Logo of {{ team.name }}" />
+      <img
+        ngSrc="{{ team.logo }}"
+        width="50"
+        height="50"
+        alt="Logo of {{ team.name }}"
+      />
       <div class="team-infos">
         <p class="city">{{ team.city }}</p>
         <h2 class="team-name">{{ team.name }}</h2>

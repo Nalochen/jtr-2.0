@@ -3,10 +3,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from smtplib import SMTP
 
-from MailConfig import MailConfig
-from Model.SendMailTaskBody import SendMailTaskBody
+from Model import SendMailTaskBody
 
-from config.logger import logger
+from config import MailConfig, logger
 
 
 class SendMailHandler:
@@ -16,10 +15,10 @@ class SendMailHandler:
     def handle(data: SendMailTaskBody) -> None:
         """Send mail"""
 
-        subject = data.get('subject')
-        recipients = data.get('recipients')
-        body = data.get('body')
-        html = data.get('html')
+        subject = data.subject
+        recipients = data.recipients
+        body = data.body
+        html = data.html
 
         try:
             logger.info(f'Worker | SendMailHandler | Sending mail to {

@@ -6,30 +6,18 @@ from sqlalchemy import Column, Enum, func
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
-from DataDomain.Database.db import db
-from DataDomain.Database.Enum.TournamentAccommodationTypesEnum import (
+from DataDomain.Database import db
+from DataDomain.Database.Enum import (
     TournamentAccommodationTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentCostTypesEnum import TournamentCostTypesEnum
-from DataDomain.Database.Enum.TournamentFoodEveningTypesEnum import (
+    TournamentCostTypesEnum,
     TournamentFoodEveningTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import (
     TournamentFoodGastroTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import (
     TournamentFoodMorningTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import (
     TournamentFoodNoonTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import (
     TournamentRegistrationProcedureTypesEnum,
+    TournamentStatusTypesEnum,
 )
-from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
-from DataDomain.Database.Model.BaseModel import BaseModel
-from DataDomain.Database.Model.ParticipatesIn import participates_in
-from DataDomain.Database.Model.Teams import Teams
+from DataDomain.Database.Model import BaseModel, Teams, participates_in
 
 
 class Tournaments(BaseModel, db.Model):

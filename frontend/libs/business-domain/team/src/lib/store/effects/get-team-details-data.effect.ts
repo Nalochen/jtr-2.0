@@ -25,7 +25,7 @@ export class GetTeamDetailsDataEffect {
     this.actions$.pipe(
       ofType(loadTeamDetailsData),
       switchMap((action) =>
-        this.teamDataClient.getTeamData$(action.teamId).pipe(
+        this.teamDataClient.getTeamData$(action.escapedName).pipe(
           map((payload: TeamData) =>
             loadTeamDetailsDataSuccessAction({
               teamDetails: payload,

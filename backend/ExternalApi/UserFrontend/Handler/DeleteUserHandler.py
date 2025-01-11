@@ -1,6 +1,7 @@
-from DataDomain.Database.Repository.UserRepository import UserRepository
-from DataDomain.Database.tools import getJwtIdentity
-from DataDomain.Model.Response import Response
+from BusinessDomain.User.Rule.tools import getJwtIdentity
+from BusinessDomain.User.UseCase.CommandHandler import DeleteUserCommandHandler
+from BusinessDomain.User.UseCase.CommandHandler.Command import DeleteUserCommand
+from DataDomain.Model import Response
 
 
 class DeleteUserHandler:
@@ -8,7 +9,6 @@ class DeleteUserHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Handles the delete-user route"""
 
         currentUser = getJwtIdentity()
 
@@ -16,7 +16,11 @@ class DeleteUserHandler:
             return Response(status=404)
 
         try:
-            UserRepository.delete(currentUser.id)
+            DeleteUserCommandHandler.execute(
+                DeleteUserCommand(
+                    userId=currentUser.id
+                )
+            )
 
         except Exception:
             return Response(status=500)

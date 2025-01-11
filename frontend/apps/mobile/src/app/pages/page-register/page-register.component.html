@@ -49,8 +49,8 @@
       <p class="error-message">
         {{ 'register.username-required' | translate }}
       </p>
-      } @if ((form.controls.username.dirty || form.controls.username.touched)
-      && form.controls.username.hasError('minlength')) {
+      } @if ((form.controls.username.dirty || form.controls.username.touched) &&
+      form.controls.username.hasError('minlength')) {
       <p class="error-message">{{ 'register.username-min' | translate }}</p>
       }
     </div>
@@ -92,8 +92,8 @@
       <p class="error-message">
         {{ 'register.password-required' | translate }}
       </p>
-      } @if ((form.controls.password.dirty || form.controls.password.touched)
-      && form.controls.password.hasError('minlength')) {
+      } @if ((form.controls.password.dirty || form.controls.password.touched) &&
+      form.controls.password.hasError('minlength')) {
       <p class="error-message">{{ 'register.password-min' | translate }}</p>
       }
     </div>

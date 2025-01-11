@@ -1,16 +1,14 @@
 from flask import g
 
-from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
-from DataDomain.Database.Repository.TournamentSubscriptionRepository import (
-    TournamentSubscriptionRepository,
+from BusinessDomain.Tournament.Rule import DoesTournamentExistsRule
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfOrganizingTeamRule
+from BusinessDomain.User.UseCase.CommandHandler import (
+    CreateTournamentNotificationCommandHandler,
 )
-from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
+from BusinessDomain.User.UseCase.CommandHandler.Command import (
+    CreateTournamentNotificationCommand,
 )
-from Infrastructure.Mail.Tournament.SendTournamentSubscriptionNotificationsMail import (
-    SendTournamentSubscriptionNotificationsMail,
-)
+from DataDomain.Model import Response
 
 
 class CreateTournamentNotificationHandler:
@@ -18,27 +16,25 @@ class CreateTournamentNotificationHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Create tournament notifications"""
 
         data = g.validatedData
 
         tournamentId: int = data.get('tournamentId')
-        message: str = data.get('message')
 
-        tournament = TournamentRepository.get(tournamentId)
-        if not tournament:
+        if not DoesTournamentExistsRule.applies(tournamentId):
             return Response(status=404)
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfOrganizingTeam(
-                tournament.id):
+        if not IsCurrentUserAdminOfOrganizingTeamRule.applies(
+                tournamentId):
             return Response(status=403)
 
         try:
-            recipients = TournamentSubscriptionRepository.getRecipients(
-                tournament.id)
-
-            SendTournamentSubscriptionNotificationsMail.send(
-                recipients, tournament, message)
+            CreateTournamentNotificationCommandHandler.execute(
+                CreateTournamentNotificationCommand(
+                    tournamentId=tournamentId,
+                    message=data.get('message')
+                )
+            )
 
         except Exception:
             return Response(status=500)

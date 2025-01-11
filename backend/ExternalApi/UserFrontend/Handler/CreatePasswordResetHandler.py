@@ -1,9 +1,13 @@
-
 from flask import g
 
-from DataDomain.Database.Repository.UserRepository import UserRepository
-from DataDomain.Model.Response import Response
-from Infrastructure.Mail.User.SendPasswordResetMail import SendPasswordResetMail
+from BusinessDomain.User.Repository import UserRepository
+from BusinessDomain.User.UseCase.CommandHandler import (
+    CreatePasswordResetHashCommandHandler,
+)
+from BusinessDomain.User.UseCase.CommandHandler.Command import (
+    CreatePasswordResetHashCommand,
+)
+from DataDomain.Model import Response
 
 
 class CreatePasswordResetHandler:
@@ -11,7 +15,6 @@ class CreatePasswordResetHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Create a password reset request"""
 
         data = g.validatedData
 
@@ -25,11 +28,10 @@ class CreatePasswordResetHandler:
             )
 
         try:
-            hash = UserRepository.createPasswordResetHash(user.id)
-
-            SendPasswordResetMail().send(
-                user=user,
-                hash=hash
+            CreatePasswordResetHashCommandHandler.execute(
+                CreatePasswordResetHashCommand(
+                    email=email
+                )
             )
 
         except Exception:

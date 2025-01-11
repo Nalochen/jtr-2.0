@@ -1,9 +1,8 @@
 from flask import g
 
-from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
-)
+from BusinessDomain.User.UseCase.QueryHandler import IsAdminOfOrganizerQueryHandler
+from BusinessDomain.User.UseCase.QueryHandler.Query import IsAdminOfOrganizerQuery
+from DataDomain.Model import Response
 
 
 class IsAdminOfOrganizerHandler:
@@ -11,14 +10,14 @@ class IsAdminOfOrganizerHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Handle the request to check if the user is an admin of the organizing team"""
 
         data = g.validatedData
 
-        tournamentId: int = data.get('tournamentId')
-
-        isAdmin = CheckForMembershipRoleService.isCurrentUserAdminOfOrganizingTeam(
-            tournamentId)
+        isAdmin = IsAdminOfOrganizerQueryHandler.execute(
+            IsAdminOfOrganizerQuery(
+                tournamentId=data.get('tournamentId'),
+            )
+        )
 
         return Response(
             response=isAdmin,

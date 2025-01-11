@@ -1,6 +1,6 @@
 from flask_inputfilter import InputFilter
-from flask_inputfilter.Filter import ToIntegerFilter
-from flask_inputfilter.Validator import IsIntegerValidator
+from flask_inputfilter.Filter import ToStringFilter
+from flask_inputfilter.Validator import IsStringValidator
 
 
 class GetTeamDetailsInputFilter(InputFilter):
@@ -12,10 +12,10 @@ class GetTeamDetailsInputFilter(InputFilter):
         super().__init__()
 
         self.add(
-            'teamId',
+            'escapedName',
             required=True,
-            filters=[ToIntegerFilter()],
+            filters=[ToStringFilter()],
             validators=[
-                IsIntegerValidator()
+                IsStringValidator()
             ]
         )

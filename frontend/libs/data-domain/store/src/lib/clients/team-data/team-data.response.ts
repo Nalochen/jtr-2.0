@@ -35,6 +35,7 @@ export interface TeamData {
   logo: string;
   members: TeamUserData[];
   name: string;
+  escapedName: string;
   organizedTournaments: TeamOrganizedTournamentData[];
   pastTournaments: TeamPastTournamentData[];
   points: number;

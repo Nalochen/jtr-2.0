@@ -9,14 +9,10 @@ import { tournamentDetailsSelector } from '@jtr/business-domain/tournament';
 import { TournamentData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
-const CREATE_TEAM_ENDPOINT =
-  '/api/team-frontend/create-team';
-const UPDATE_TEAM_ENDPOINT =
-  '/api/team-frontend/update-team';
-const DELETE_TEAM_ENDPOINT =
-  '/api/team-frontend/delete-team';
-const UPDATE_TEAM_PICTURE_ENDPOINT =
-  '/api/team-frontend/update-team-picture';
+const CREATE_TEAM_ENDPOINT = '/api/team-frontend/create-team';
+const UPDATE_TEAM_ENDPOINT = '/api/team-frontend/update-team';
+const DELETE_TEAM_ENDPOINT = '/api/team-frontend/delete-team';
+const UPDATE_TEAM_PICTURE_ENDPOINT = '/api/team-frontend/update-team-picture';
 
 export interface CreateTeamRequestBody {
   name: string;
@@ -45,13 +41,15 @@ export interface DeleteTeamRequestBody {
   providedIn: 'root',
 })
 export class TeamService {
-
   @SingletonGetter()
   public get tournamentDetails$(): Observable<TournamentData | null> {
     return this.store$.select(tournamentDetailsSelector);
   }
 
-  constructor(private readonly http: HttpClient, private readonly store$: Store) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly store$: Store
+  ) {}
 
   public create(request: CreateTeamRequestBody): Observable<void> {
     return this.http.post<void>(CREATE_TEAM_ENDPOINT, request);

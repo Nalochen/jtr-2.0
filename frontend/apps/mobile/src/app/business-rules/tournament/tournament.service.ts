@@ -19,48 +19,49 @@ const UPDATE_TOURNAMENT_STATUS_ENDPOINT =
   '/api/tournament-frontend/update-tournament-status';
 
 export interface CreateTournamentRequestBody {
-  additionalInformation: string;
-  name: string;
-  startDate: string;
-  endDate: string;
-  startArrivalDate?: string;
-  endArrivalDate?: string;
-  address: string;
-  possibleSpace: number;
-  registrationProcedureType: string;
-  registrationProcedureText: string;
-  registrationStartDate: string;
-  registrationCosts?: number;
-  registrationCostsType?: PricingTypeEnum;
-  registrationProcedureUrl: string;
-  depositCosts?: number;
-  depositCostsType?: PricingTypeEnum;
   accommodationCosts?: number;
   accommodationCostsType?: PricingTypeEnum;
-  guestCosts?: number;
-  guestCostsType?: PricingTypeEnum;
+  accommodationLocation: string;
+  accommodationType: AccommodationTypeEnum;
+  additionalInformation: string;
+  address: string;
+  barefootAllowed: boolean;
+  camShoesAllowed: boolean;
+  cleatsShoesAllowed: boolean;
+  contacts: string[];
   costsText: string;
   deadlines: string;
-  schedule: string;
-  contacts: string[];
-  accommodationType: AccommodationTypeEnum;
-  accommodationLocation: string;
-  location: string;
-  foodMorning: TournamentFoodMorningEnum;
-  foodNoon: TournamentFoodNoonEnum;
+  depositCosts?: number;
+  depositCostsType?: PricingTypeEnum;
+  endArrivalDate?: string;
+  endDate: string;
   foodEvening: TournamentFoodEveningEnum;
   foodGastro: TournamentFoodGastroEnum;
-  tournamentSystemText: string;
-  tournamentSystemUrl: string;
-  pompfCheckText: string;
-  pompfCheckUrl: string;
+  foodMorning: TournamentFoodMorningEnum;
+  foodNoon: TournamentFoodNoonEnum;
+  guestCosts?: number;
+  guestCostsType?: PricingTypeEnum;
   houseRulesText: string;
   houseRulesUrl: string;
-  studdedShoesAllowed: boolean;
-  cleatsShoesAllowed: boolean;
-  camShoesAllowed: boolean;
-  barefootAllowed: boolean;
+  location: string;
+  name: string;
+  pompfCheckText: string;
+  pompfCheckUrl: string;
+  possibleSpace: number;
+  registrationCosts?: number;
+  registrationCostsType?: PricingTypeEnum;
+  registrationProcedureText: string;
+  registrationProcedureType: string;
+  registrationProcedureUrl: string;
+  registrationStartDate: string;
+  schedule: string;
   shoesText: string;
+  startArrivalDate?: string;
+  startDate: string;
+  studdedShoesAllowed: boolean;
+  teamId: number;
+  tournamentSystemText: string;
+  tournamentSystemUrl: string;
 }
 
 export interface CreateTournamentResponse {
@@ -68,49 +69,49 @@ export interface CreateTournamentResponse {
 }
 
 export interface UpdateTournamentRequestBody {
-  tournamentId: number;
-  additionalInformation: string;
-  name: string;
-  startDate: string;
-  endDate: string;
-  startArrivalDate?: string;
-  endArrivalDate?: string;
-  address: string;
-  possibleSpace: number;
-  registrationProcedureType: string;
-  registrationProcedureText: string;
-  registrationStartDate: string;
-  registrationCosts?: number;
-  registrationCostsType?: PricingTypeEnum;
-  registrationProcedureUrl: string;
-  depositCosts?: number;
-  depositCostsType?: PricingTypeEnum;
   accommodationCosts?: number;
   accommodationCostsType?: PricingTypeEnum;
-  guestCosts?: number;
-  guestCostsType?: PricingTypeEnum;
+  accommodationLocation: string;
+  accommodationType: AccommodationTypeEnum;
+  additionalInformation: string;
+  address: string;
+  barefootAllowed: boolean;
+  camShoesAllowed: boolean;
+  cleatsShoesAllowed: boolean;
+  contacts: string[];
   costsText: string;
   deadlines: string;
-  schedule: string;
-  contacts: string[];
-  accommodationType: AccommodationTypeEnum;
-  accommodationLocation: string;
-  location: string;
-  foodMorning: TournamentFoodMorningEnum;
-  foodNoon: TournamentFoodNoonEnum;
+  depositCosts?: number;
+  depositCostsType?: PricingTypeEnum;
+  endArrivalDate?: string;
+  endDate: string;
   foodEvening: TournamentFoodEveningEnum;
   foodGastro: TournamentFoodGastroEnum;
-  tournamentSystemText: string;
-  tournamentSystemUrl: string;
-  pompfCheckText: string;
-  pompfCheckUrl: string;
+  foodMorning: TournamentFoodMorningEnum;
+  foodNoon: TournamentFoodNoonEnum;
+  guestCosts?: number;
+  guestCostsType?: PricingTypeEnum;
   houseRulesText: string;
   houseRulesUrl: string;
-  studdedShoesAllowed: boolean;
-  cleatsShoesAllowed: boolean;
-  camShoesAllowed: boolean;
-  barefootAllowed: boolean;
+  location: string;
+  name: string;
+  pompfCheckText: string;
+  pompfCheckUrl: string;
+  possibleSpace: number;
+  registrationCosts?: number;
+  registrationCostsType?: PricingTypeEnum;
+  registrationProcedureText: string;
+  registrationProcedureType: string;
+  registrationProcedureUrl: string;
+  registrationStartDate: string;
+  schedule: string;
   shoesText: string;
+  startArrivalDate?: string;
+  startDate: string;
+  studdedShoesAllowed: boolean;
+  tournamentId: number;
+  tournamentSystemText: string;
+  tournamentSystemUrl: string;
 }
 
 export interface UpdateTournamentStatusRequestBody {
@@ -127,49 +128,50 @@ export class TournamentService {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public create(body: any): Observable<CreateTournamentResponse> {
     const request: CreateTournamentRequestBody = {
-      additionalInformation: body.costsText,
-      name: body.basic.name,
-      startDate: body.basic.tournamentStartDate,
-      endDate: body.basic.tournamentEndDate,
-      startArrivalDate: body.basic.arrivalStartDate,
-      endArrivalDate: body.basic.arrivalEndDate,
-      address: body.basic.address,
-      possibleSpace:
-        body.registration.teamCountButton ?? body.registration.teamCountField,
-      registrationProcedureType: body.registration.registrationProcedureType,
-      registrationProcedureText: body.registration.registrationProcedureText,
-      registrationProcedureUrl: 'test',
-      registrationStartDate: body.registration.registrationStartDate,
-      registrationCosts: body.registration.costs.registrationCosts,
-      registrationCostsType: body.registration.costs.registrationCostsType,
-      depositCosts: body.registration.costs.depositCosts,
-      depositCostsType: body.registration.costs.depositCostsType,
       accommodationCosts: body.registration.costs.accommodationCosts,
       accommodationCostsType: body.registration.costs.accommodationCostsType,
-      guestCosts: body.registration.costs.guestCosts,
-      guestCostsType: body.registration.costs.guestCostsType,
+      accommodationLocation: body.accommodation.accommodationAddress,
+      accommodationType: body.accommodation.accommodationType,
+      additionalInformation: body.costsText,
+      address: body.basic.address,
+      barefootAllowed: body.rules.shoes.barefoot,
+      camShoesAllowed: body.rules.shoes.cam,
+      cleatsShoesAllowed: body.rules.shoes.cleats,
+      contacts: body.contact.contacts,
       costsText: body.registration.costs.costsText,
       deadlines: body.registration.deadlines,
-      schedule: body.contact.schedule,
-      contacts: body.contact.contacts,
-      accommodationType: body.accommodation.accommodationType,
-      accommodationLocation: body.accommodation.accommodationAddress,
-      location: 'Keine Angabe',
-      foodMorning: body.accommodation.food.breakfast,
-      foodNoon: body.accommodation.food.lunch,
+      depositCosts: body.registration.costs.depositCosts,
+      depositCostsType: body.registration.costs.depositCostsType,
+      endArrivalDate: body.basic.arrivalEndDate,
+      endDate: body.basic.tournamentEndDate,
       foodEvening: body.accommodation.food.dinner,
       foodGastro: body.accommodation.food.gastronomy,
-      tournamentSystemText: body.rules.tournamentSystem,
-      tournamentSystemUrl: body.rules.tournamentSystemLink,
-      pompfCheckText: body.rules.pompfCheck,
-      pompfCheckUrl: body.rules.pompfCheckLink,
+      foodMorning: body.accommodation.food.breakfast,
+      foodNoon: body.accommodation.food.lunch,
+      guestCosts: body.registration.costs.guestCosts,
+      guestCostsType: body.registration.costs.guestCostsType,
       houseRulesText: body.rules.houseRules,
       houseRulesUrl: body.rules.houseRulesLink,
-      studdedShoesAllowed: body.rules.shoes.studded,
-      cleatsShoesAllowed: body.rules.shoes.cleats,
-      camShoesAllowed: body.rules.shoes.cam,
-      barefootAllowed: body.rules.shoes.barefoot,
+      location: 'Keine Angabe',
+      name: body.basic.name,
+      pompfCheckText: body.rules.pompfCheck,
+      pompfCheckUrl: body.rules.pompfCheckLink,
+      possibleSpace:
+        body.registration.teamCountButton ?? body.registration.teamCountField,
+      registrationCosts: body.registration.costs.registrationCosts,
+      registrationCostsType: body.registration.costs.registrationCostsType,
+      registrationProcedureText: body.registration.registrationProcedureText,
+      registrationProcedureType: body.registration.registrationProcedureType,
+      registrationProcedureUrl: 'test',
+      registrationStartDate: body.registration.registrationStartDate,
+      schedule: body.contact.schedule,
       shoesText: body.rules.shoes.shoesText,
+      startArrivalDate: body.basic.arrivalStartDate,
+      startDate: body.basic.tournamentStartDate,
+      studdedShoesAllowed: body.rules.shoes.studded,
+      teamId: body.teamId ?? 1,
+      tournamentSystemText: body.rules.tournamentSystem,
+      tournamentSystemUrl: body.rules.tournamentSystemLink,
     };
 
     return this.http.post<CreateTournamentResponse>(
@@ -179,55 +181,55 @@ export class TournamentService {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public update(tournamentId: number, body: any): Observable<any> {
+  public update(tournamentId: number, body: any): Observable<void> {
     const request: UpdateTournamentRequestBody = {
-      tournamentId: tournamentId,
-      additionalInformation: body.costsText,
-      name: body.basic.name,
-      startDate: body.basic.tournamentStartDate,
-      endDate: body.basic.tournamentEndDate,
-      startArrivalDate: body.basic.arrivalStartDate,
-      endArrivalDate: body.basic.arrivalEndDate,
-      address: body.basic.address,
-      possibleSpace:
-        body.registration.teamCountButton ?? body.registration.teamCountField,
-      registrationProcedureType: body.registration.registrationProcedureType,
-      registrationProcedureText: body.registration.registrationProcedureText,
-      registrationProcedureUrl: 'test',
-      registrationStartDate: body.registration.registrationStartDate,
-      registrationCosts: body.registration.costs.registrationCosts,
-      registrationCostsType: body.registration.costs.registrationCostsType,
-      depositCosts: body.registration.costs.depositCosts,
-      depositCostsType: body.registration.costs.depositCostsType,
       accommodationCosts: body.registration.costs.accommodationCosts,
       accommodationCostsType: body.registration.costs.accommodationCostsType,
-      guestCosts: body.registration.costs.guestCosts,
-      guestCostsType: body.registration.costs.guestCostsType,
+      accommodationLocation: body.accommodation.accommodationAddress,
+      accommodationType: body.accommodation.accommodationType,
+      additionalInformation: body.costsText,
+      address: body.basic.address,
+      barefootAllowed: body.rules.shoes.barefoot,
+      camShoesAllowed: body.rules.shoes.cam,
+      cleatsShoesAllowed: body.rules.shoes.cleats,
+      contacts: body.contact.contacts,
       costsText: body.registration.costs.costsText,
       deadlines: body.registration.deadlines,
-      schedule: body.contact.schedule,
-      contacts: body.contact.contacts,
-      accommodationType: body.accommodation.accommodationType,
-      accommodationLocation: body.accommodation.accommodationAddress,
-      location: 'Keine Angabe',
-      foodMorning: body.accommodation.food.breakfast,
-      foodNoon: body.accommodation.food.lunch,
+      depositCosts: body.registration.costs.depositCosts,
+      depositCostsType: body.registration.costs.depositCostsType,
+      endArrivalDate: body.basic.arrivalEndDate,
+      endDate: body.basic.tournamentEndDate,
       foodEvening: body.accommodation.food.dinner,
       foodGastro: body.accommodation.food.gastronomy,
-      tournamentSystemText: body.rules.tournamentSystem,
-      tournamentSystemUrl: body.rules.tournamentSystemLink,
-      pompfCheckText: body.rules.pompfCheck,
-      pompfCheckUrl: body.rules.pompfCheckLink,
+      foodMorning: body.accommodation.food.breakfast,
+      foodNoon: body.accommodation.food.lunch,
+      guestCosts: body.registration.costs.guestCosts,
+      guestCostsType: body.registration.costs.guestCostsType,
       houseRulesText: body.rules.houseRules,
       houseRulesUrl: body.rules.houseRulesLink,
-      studdedShoesAllowed: body.rules.shoes.studded,
-      cleatsShoesAllowed: body.rules.shoes.cleats,
-      camShoesAllowed: body.rules.shoes.cam,
-      barefootAllowed: body.rules.shoes.barefoot,
+      location: 'Keine Angabe',
+      name: body.basic.name,
+      pompfCheckText: body.rules.pompfCheck,
+      pompfCheckUrl: body.rules.pompfCheckLink,
+      possibleSpace:
+        body.registration.teamCountButton ?? body.registration.teamCountField,
+      registrationCosts: body.registration.costs.registrationCosts,
+      registrationCostsType: body.registration.costs.registrationCostsType,
+      registrationProcedureText: body.registration.registrationProcedureText,
+      registrationProcedureType: body.registration.registrationProcedureType,
+      registrationProcedureUrl: 'test',
+      registrationStartDate: body.registration.registrationStartDate,
+      schedule: body.contact.schedule,
       shoesText: body.rules.shoes.shoesText,
+      startArrivalDate: body.basic.arrivalStartDate,
+      startDate: body.basic.tournamentStartDate,
+      studdedShoesAllowed: body.rules.shoes.studded,
+      tournamentId: tournamentId,
+      tournamentSystemText: body.rules.tournamentSystem,
+      tournamentSystemUrl: body.rules.tournamentSystemLink,
     };
 
-    return this.http.put(UPDATE_TOURNAMENT_ENDPOINT, request);
+    return this.http.put<void>(UPDATE_TOURNAMENT_ENDPOINT, request);
   }
 
   public async updateStatus(

@@ -3,11 +3,12 @@ import os
 
 import pymysql
 from celery import Celery
-from Handler.SendMailHandler import SendMailHandler
-from MailConfig import MailConfig
-from Model.SendMailTaskBody import SendMailTaskBody
+from Handler import SendMailHandler
+from Model import SendMailTaskBody
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+
+from config import MailConfig
 
 celery = Celery(
     os.getenv('CELERY_APP_NAME'),
@@ -44,7 +45,7 @@ def send_email_task(data: SendMailTaskBody) -> str:
         SendMailHandler.handle(data)
 
         return f'Worker | send_email_task | Email successfully sent to {
-            data['recipients']} with subject: {data['body']}'
+            data.recipients} with subject: {data.body}'
 
     except Exception as e:
         logging.info(f'Worker | send_email_task | Failed to send email: {e}')

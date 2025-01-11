@@ -1,12 +1,9 @@
-from datetime import datetime
-
 from flask import g
-from flask_jwt_extended import create_access_token
-from werkzeug.security import generate_password_hash
+from flask_jwt_extended import get_jwt_identity
 
-from DataDomain.Database.Repository.UserRepository import UserRepository
-from DataDomain.Database.tools import getJwtIdentity
-from DataDomain.Model.Response import Response
+from BusinessDomain.User.UseCase.CommandHandler import UpdateUserCommandHandler
+from BusinessDomain.User.UseCase.CommandHandler.Command import UpdateUserCommand
+from DataDomain.Model import Response
 from ExternalApi.UserFrontend.config.extensions import clearUserCache
 
 
@@ -15,51 +12,26 @@ class UpdateUserHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Update a user"""
 
         data = g.validatedData
 
-        user = getJwtIdentity()
-
-        username = data.get('username')
-        if username is not None:
-            user.username = username
-
-        password = data.get('password')
-        if password is not None:
-            user.password_hash = generate_password_hash(password)
-
-        birthdate = data.get('birthdate')
-        if birthdate is not None:
-            user.birthdate = datetime.fromisoformat(birthdate)
-
-        city = data.get('city')
-        if city is not None:
-            user.city = city
-
-        email = data.get('email')
-        if email is not None:
-            user.email = email
-
-        name = data.get('name')
-        if name is not None:
-            user.name = name
-
-        pronouns = data.get('pronouns')
-        if pronouns is not None:
-            user.pronouns = pronouns
-
         try:
-            UserRepository.update(user)
+            accessToken = UpdateUserCommandHandler.execute(
+                UpdateUserCommand(
+                    username=data.get('username'),
+                    password=data.get('password'),
+                    birthdate=data.get('birthdate'),
+                    city=data.get('city'),
+                    email=data.get('email'),
+                    name=data.get('name'),
+                    pronouns=data.get('pronouns')
+                )
+            )
 
-            clearUserCache(user.id)
+            clearUserCache(get_jwt_identity())
 
         except Exception:
             return Response(status=500)
-
-        accessToken = create_access_token(
-            identity=user.id
-        )
 
         return Response(
             response={

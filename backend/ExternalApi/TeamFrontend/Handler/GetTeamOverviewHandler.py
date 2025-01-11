@@ -1,5 +1,6 @@
-from DataDomain.Database.Repository.TeamRepository import TeamRepository
-from DataDomain.Model.Response import Response
+
+from BusinessDomain.Team.UseCase.QueryHandler import GetTeamOverviewQueryHandler
+from DataDomain.Model import Response
 
 
 class GetTeamOverviewHandler:
@@ -7,12 +8,8 @@ class GetTeamOverviewHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Get team overview"""
 
-        team = TeamRepository.getTeamOverview()
-
-        if team is None:
-            return Response(status=404, response='Team not found')
+        team = GetTeamOverviewQueryHandler.execute()
 
         return Response(
             response=team,

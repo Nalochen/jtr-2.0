@@ -27,7 +27,7 @@ export const loadTeamOverviewDataFailedAction = createAction(
 
 export const loadTeamDetailsData = createAction(
   TeamActionTypes.LoadTeamDetails,
-  props<{ teamId: number }>()
+  props<{ escapedName: string }>()
 );
 
 export const loadTeamDetailsDataSuccessAction = createAction(

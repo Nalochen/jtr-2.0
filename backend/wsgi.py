@@ -1,5 +1,5 @@
 from config.app import app
-from DataDomain.Database.db import initDatabase
+from DataDomain.Database import initDatabase
 
 app.debug = False
 

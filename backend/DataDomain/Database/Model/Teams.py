@@ -6,10 +6,8 @@ from sqlalchemy import func
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
-from DataDomain.Database.db import db
-from DataDomain.Database.Model.BaseModel import BaseModel
-from DataDomain.Database.Model.IsPartOf import is_part_of
-from DataDomain.Database.Model.ParticipatesIn import participates_in
+from DataDomain.Database import db
+from DataDomain.Database.Model import BaseModel, is_part_of, participates_in
 
 
 class Teams(BaseModel, db.Model):
@@ -23,7 +21,14 @@ class Teams(BaseModel, db.Model):
 
     name: str = db.Column(
         db.String(100),
-        nullable=False
+        nullable=False,
+        unique=True
+    )
+
+    escaped_name: str = db.Column(
+        db.String(100),
+        nullable=False,
+        unique=True
     )
 
     logo: str | None = db.Column(

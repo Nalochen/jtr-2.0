@@ -37,15 +37,11 @@ export class PageTeamDetailsComponent {
   public teamId: number | null = null;
 
   constructor(private readonly store$: Store, private readonly router: Router) {
-    this.team$.pipe(
-      takeUntilDestroyed(),
-    ).subscribe(
-      (team) => {
-        if (team) {
-          this.teamId = team.id;
-        }
+    this.team$.pipe(takeUntilDestroyed()).subscribe((team) => {
+      if (team) {
+        this.teamId = team.id;
       }
-    );
+    });
   }
 
   @SingletonGetter()
