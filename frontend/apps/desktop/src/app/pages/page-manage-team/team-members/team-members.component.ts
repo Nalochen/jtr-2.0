@@ -12,6 +12,8 @@ import { userOverviewSelector } from '@jtr/business-domain/user';
 import { TeamData, UserOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
+import { UserService } from '../../../business-rules/user/user.service';
+
 import {
   ButtonColorEnum,
   ButtonComponent,
@@ -48,12 +50,16 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 export class TeamMembersComponent {
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
+
   protected isAddMemberOverlayVisible = false;
   protected selectedUser: UserOverviewData | null = null;
   protected possibleUsers: UserOverviewData[] = [];
   protected items: MenuItem[] | undefined;
 
-  constructor(private readonly store$: Store) {
+  constructor(
+    private readonly store$: Store,
+    private readonly userService: UserService
+  ) {
     this.items = [
       {
         label: 'Options',
@@ -102,5 +108,9 @@ export class TeamMembersComponent {
 
   public closeAddMemberOverlay() {
     this.isAddMemberOverlayVisible = false;
+  }
+
+  public getPictureUrl(picture: string): string {
+    return this.userService.getPictureUrl(picture);
   }
 }

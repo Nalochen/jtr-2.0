@@ -1,5 +1,5 @@
 <div [formGroup]="form" class="form-group">
-  <team-header [form]="form" />
+  <team-header [form]="form" [logo]="(team$ | async)?.logo" />
 
   <div class="content">
     <p class="small-text" *ngIf="team$ | async as team">

@@ -19,6 +19,7 @@ docker exec jtr be-test
 docker exec jtr be-format
 ```
 
+---
 
 ## SQL
 
@@ -38,4 +39,18 @@ pipreqs . --force
 
 ```sh
 act --container-architecture linux/amd64
+```
+
+---
+
+## New Migration
+
+```sh
+flask db migrate -m "Migration Message"
+```
+
+## Run Migrations
+
+```sh
+python manage.py db upgrade
 ```

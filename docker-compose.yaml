@@ -32,12 +32,21 @@ services:
       RABBITMQ_BE_USER: 'backend'
       SECRET_KEY: 'secret'
     ports:
-      - "3306:3306"
-      - "8080:8080"
-      - "15672:15672"
+      - "127.0.0.1:80:80/tcp"
+      - "127.0.0.1:443:443/tcp"
+      - "127.0.0.1:3306:3306/tcp"
+      - "127.0.0.1:8080:8080/tcp"
+      - "127.0.0.1:15672:15672/tcp"
+    extra_hosts:
+      - "jugger-tourna.local:127.0.0.1"
+      - "m.jugger-tourna.local:127.0.0.1"
+      - "cdn.jugger-tourna.local:127.0.0.1"
     volumes:
       - .:/home:delegated
       - mysql_db_data:/var/lib/mysql
+      - ./frontend/dist/apps:/usr/share/nginx/html:delegated
+      - ./docker/development/assets:/home/backend/DataDomain/assets
+      - ./docker/development/assets:/usr/share/nginx/html/assets
 
 volumes:
   mysql_db_data: {}

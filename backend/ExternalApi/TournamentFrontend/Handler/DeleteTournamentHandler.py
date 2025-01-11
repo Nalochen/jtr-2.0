@@ -16,7 +16,7 @@ class DeleteTournamentHandler:
     """Handler for deleting a tournament"""
 
     @staticmethod
-    def handle() -> Response:
+    async def handle() -> Response:
 
         data = g.validatedData
 

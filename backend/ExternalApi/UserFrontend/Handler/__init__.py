@@ -6,7 +6,6 @@ from .DeleteUserHandler import DeleteUserHandler
 from .GetAdminOnTeamHandler import GetAdminOfTeamsHandler
 from .GetUserDetailsHandler import GetUserDetailsHandler
 from .GetUserOverviewHandler import GetUserOverviewHandler
-from .GetUserPictureHandler import GetUserPictureHandler
 from .IsAdminOnOrganizerHandler import IsAdminOfOrganizerHandler
 from .IsAdminOnTeamHandler import IsAdminOfTeamHandler
 from .UpdateUserHandler import UpdateUserHandler

@@ -27,6 +27,10 @@ export interface UpdateUserResponse {
   token: string;
 }
 
+export interface UpdateUserPictureResponse {
+  picture: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -48,14 +52,17 @@ export class UserService {
     );
   }
 
-  public async updatePicture(file: File): Promise<void> {
+  public async updatePicture(file: File): Promise<UpdateUserPictureResponse> {
     const base64 = await this.fileToBase64(file);
     const request = {
       picture: base64,
     };
 
-    await firstValueFrom(
-      this.http.put<void>(UPDATE_USER_PICTURE_ENDPOINT, request)
+    return await firstValueFrom(
+      this.http.put<UpdateUserPictureResponse>(
+        UPDATE_USER_PICTURE_ENDPOINT,
+        request
+      )
     );
   }
 
@@ -73,8 +80,8 @@ export class UserService {
     this.authService.logout();
   }
 
-  public getPictureUrl(userId: number): string {
-    return `/api/user-frontend/get-user-picture/${userId}`;
+  public getPictureUrl(picture: string): string {
+    return `https://cdn.${window.location.host}/assets/user-pictures/${picture}`;
   }
 
   private fileToBase64(file: File): Promise<string> {

@@ -15,7 +15,7 @@ class CreateTournamentSubscriptionHandler:
     """Handler for creating tournament subscriptions"""
 
     @staticmethod
-    def handle() -> Response:
+    async def handle() -> Response:
 
         data = g.validatedData
 

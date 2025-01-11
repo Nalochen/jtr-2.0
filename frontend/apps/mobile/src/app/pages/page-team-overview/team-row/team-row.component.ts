@@ -3,6 +3,8 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { TeamOverviewData } from '@jtr/data-domain/store';
 
+import { TeamService } from '../../../business-rules/team/team.service';
+
 import {
   ButtonColorEnum,
   ButtonComponent,
@@ -26,6 +28,8 @@ import { TeamArrowComponent } from '../team-arrow/team-arrow.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamRowComponent {
+  constructor(private readonly teamService: TeamService) {}
+
   @Input() public team!: TeamOverviewData;
 
   protected readonly ButtonColorEnum = ButtonColorEnum;
@@ -33,5 +37,9 @@ export class TeamRowComponent {
 
   public navigateToTeam(): void {
     window.open(`/team-details/${this.team.escapedName}`, '_self');
+  }
+
+  public getPictureUrl(picture: string): string {
+    return this.teamService.getPictureUrl(picture);
   }
 }

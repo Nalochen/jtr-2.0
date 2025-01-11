@@ -5,6 +5,7 @@ celery
 cryptography
 flask
 flask_caching
+flask_compress
 flask_cors
 flask_inputfilter==0.0.3
 flask_jwt_extended

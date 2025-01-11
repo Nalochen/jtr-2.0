@@ -14,7 +14,7 @@ class UpdateUserPictureHandler:
         data = g.validatedData
 
         try:
-            UpdateUserPictureCommandHandler.execute(
+            filepath = UpdateUserPictureCommandHandler.execute(
                 UpdateUserPictureCommand(
                     pictureData=data.get('picture')
                 )
@@ -24,5 +24,8 @@ class UpdateUserPictureHandler:
             return Response(status=500)
 
         return Response(
+            response={
+                'picture': filepath
+            },
             status=200
         )

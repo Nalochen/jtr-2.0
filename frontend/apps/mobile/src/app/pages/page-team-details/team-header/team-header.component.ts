@@ -3,6 +3,8 @@ import { Component, Input } from '@angular/core';
 
 import { TeamData } from '@jtr/data-domain/store';
 
+import { TeamService } from '../../../business-rules/team/team.service';
+
 @Component({
   selector: 'team-header',
   standalone: true,
@@ -11,5 +13,11 @@ import { TeamData } from '@jtr/data-domain/store';
   styleUrl: './team-header.component.less',
 })
 export class TeamHeaderComponent {
+  constructor(private readonly teamService: TeamService) {}
+
   @Input() public team!: TeamData;
+
+  public get pictureUrl(): string {
+    return this.teamService.getPictureUrl(this.team.logo);
+  }
 }

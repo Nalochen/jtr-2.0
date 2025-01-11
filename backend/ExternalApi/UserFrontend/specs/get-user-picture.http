@@ -1,8 +1,0 @@
-### Get users picture by id
-GET https://{{host}}/api/user-frontend/get-user-picture/1
-
-> {%
-    client.test("It should return a successful status code", function() {
-        client.assert(response.status === 200, "Response status is not 200");
-    });
-%}

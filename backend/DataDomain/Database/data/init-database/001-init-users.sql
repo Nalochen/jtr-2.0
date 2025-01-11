@@ -19,7 +19,7 @@ INSERT IGNORE INTO users (
     True,
     '1990-01-01',
     False,
-    'https://howtodoright.com/wp-content/uploads/2017/07/sheep-on-green-grass.jpg',
+    'sheep-on-grass.jpg',
     'Berlin',
      True
 ),
@@ -32,7 +32,7 @@ INSERT IGNORE INTO users (
 True,
 '1990-01-01',
 True,
-'http://upload.wikimedia.org/wikipedia/commons/d/d0/Lundy_sheep_(head_detail).JPG',
+'lundy_sheep.jpeg',
 'Hamburg',
 True
 ),
@@ -45,7 +45,7 @@ True
 False,
 '1990-01-01',
 False,
-'http://wallsdesk.com/wp-content/uploads/2017/01/Sheep-Desktop-Wallpaper-.jpg',
+'Sheep-Desktop-Wallpaper.jpg',
 'Berlin',
 False
 ),
@@ -58,7 +58,7 @@ False
 False,
 '1990-01-01',
 False,
-'https://howtodoright.com/wp-content/uploads/2017/07/sheep-on-green-grass.jpg',
+'sheep-on-grass.jpg',
 'Gießen',
 True
 ),
@@ -71,7 +71,7 @@ True
 False,
 '1990-01-01',
 True,
-'http://upload.wikimedia.org/wikipedia/commons/d/d0/Lundy_sheep_(head_detail).JPG',
+'lundy_sheep.jpeg',
 'München',
 False
 ),
@@ -84,7 +84,7 @@ False
 True,
 '1990-01-01',
 False,
-'http://wallsdesk.com/wp-content/uploads/2017/01/Sheep-Desktop-Wallpaper-.jpg',
+'Sheep-Desktop-Wallpaper.jpg',
 'Leipzig',
 True
 );

@@ -3,10 +3,7 @@ from flask_jwt_extended import jwt_required
 
 from config import cache, limiter
 from DataDomain.Model import Response
-from ExternalApi.UserFrontend.config.extensions import (
-    create_user_cache_key,
-    create_user_picture_cache_key,
-)
+from ExternalApi.UserFrontend.config.extensions import create_user_cache_key
 from ExternalApi.UserFrontend.Handler import (
     AuthenticateUserHandler,
     CreateNewPasswordHandler,
@@ -16,7 +13,6 @@ from ExternalApi.UserFrontend.Handler import (
     GetAdminOfTeamsHandler,
     GetUserDetailsHandler,
     GetUserOverviewHandler,
-    GetUserPictureHandler,
     IsAdminOfOrganizerHandler,
     IsAdminOfTeamHandler,
     UpdateUserHandler,
@@ -29,7 +25,6 @@ from ExternalApi.UserFrontend.InputFilter import (
     CreatePasswordResetInputFilter,
     CreateUserInputFilter,
     GetUserDetailsInputFilter,
-    GetUserPictureInputFilter,
     IsAdminOfOrganizerInputFilter,
     IsAdminOfTeamInputFilter,
     UpdateUserInputFilter,
@@ -56,14 +51,6 @@ def getUserDetails(escapedUsername=None) -> Response:
 @cache.cached(key_prefix='user-overview')
 def getUserOverview() -> Response:
     return GetUserOverviewHandler.handle()
-
-
-@user_frontend.route('/get-user-picture/<userId>',
-                     methods=['GET'], endpoint='get-user-picture')
-@cache.cached(key_prefix=create_user_picture_cache_key)
-@GetUserPictureInputFilter.validate()
-def getUserPicture(userId) -> Response:
-    return GetUserPictureHandler.handle()
 
 
 @user_frontend.route('/get-admin-teams',

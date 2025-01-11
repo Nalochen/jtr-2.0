@@ -6,7 +6,7 @@
     <img
       ngProjectAs="container-icon"
       alt="Profilbild von {{ member }}"
-      ngSrc="{{ member.picture }}"
+      ngSrc="{{ getPictureUrl(member.picture) }}"
       width="28"
       height="28"
     />

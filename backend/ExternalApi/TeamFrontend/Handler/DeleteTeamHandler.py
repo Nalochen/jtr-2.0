@@ -12,7 +12,7 @@ class DeleteTeamHandler:
     """Handler for deleting a team"""
 
     @staticmethod
-    def handle() -> Response:
+    async def handle() -> Response:
 
         data = g.validatedData
 

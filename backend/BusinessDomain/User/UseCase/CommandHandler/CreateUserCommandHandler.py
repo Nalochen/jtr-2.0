@@ -22,6 +22,7 @@ class CreateUserCommandHandler:
         user.city = command.city
         user.city_visibility = command.isCityVisible
         user.email = command.email
+        user.escaped_username = command.username.lower().replace(' ', '-')
         user.language = command.language
         user.name = command.name
         user.name_visibility = command.isNameVisible

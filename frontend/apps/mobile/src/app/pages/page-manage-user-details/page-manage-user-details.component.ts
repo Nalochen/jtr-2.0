@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,6 +17,7 @@ import { editUserFormControl } from '@jtr/business-domain/user';
 import { UserData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
+import { TeamService } from '../../../../../desktop/src/app/business-rules/team/team.service';
 import { AuthService } from '../../business-rules/auth/auth.service';
 import { UserService } from '../../business-rules/user/user.service';
 
@@ -43,6 +44,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     ReactiveFormsModule,
     VisibilityButtonComponent,
     PageManageUserDetailsHeaderComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './page-manage-user-details.component.html',
   styleUrl: './page-manage-user-details.component.less',
@@ -60,7 +62,8 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
     private store$: Store,
     private readonly authService: AuthService,
     private readonly userService: UserService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly teamService: TeamService
   ) {}
 
   @SingletonGetter()
@@ -118,5 +121,9 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
       pronouns: this.form.controls.pronouns.value,
       username: this.form.controls.username.value,
     });
+  }
+
+  public getPictureUrl(picture: string): string {
+    return this.teamService.getPictureUrl(picture);
   }
 }

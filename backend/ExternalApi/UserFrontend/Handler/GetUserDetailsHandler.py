@@ -22,7 +22,8 @@ class GetUserDetailsHandler:
                 status=400,
                 response='Username or session is required')
 
-        if not DoesUserExistsRule.applies(escapedUsername=escapedUsername):
+        if escapedUsername is not None and not DoesUserExistsRule.applies(
+                escapedUsername=escapedUsername):
             return Response(
                 status=404,
                 response='User not found'

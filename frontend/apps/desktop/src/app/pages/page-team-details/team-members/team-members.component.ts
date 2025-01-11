@@ -3,6 +3,8 @@ import { Component, Input } from '@angular/core';
 
 import { TeamData } from '@jtr/data-domain/store';
 
+import { UserService } from '../../../business-rules/user/user.service';
+
 import {
   DataContainerComponent,
   DataContainerRowComponent,
@@ -21,5 +23,11 @@ import {
   styleUrl: './team-members.component.less',
 })
 export class TeamMembersComponent {
+  constructor(private readonly userService: UserService) {}
+
   @Input() public team!: TeamData;
+
+  public getPictureUrl(picture: string): string {
+    return this.userService.getPictureUrl(picture);
+  }
 }

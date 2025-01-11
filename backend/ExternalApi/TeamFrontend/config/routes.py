@@ -85,8 +85,8 @@ def createTeam() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @SendTeamInvitationInputFilter.validate()
-def sendTeamInvitation() -> Response:
-    return SendTeamInvitationHandler.handle()
+async def sendTeamInvitation() -> Response:
+    return await SendTeamInvitationHandler.handle()
 
 
 @team_frontend.route('/accept-team-invitation/<hash>',
@@ -103,8 +103,8 @@ def acceptTeamInvitation(hash) -> Response:
                      endpoint='delete-membership')
 @jwt_required()
 @DeleteMembershipInputFilter.validate()
-def deleteMembership() -> Response:
-    return DeleteMembershipHandler.handle()
+async def deleteMembership() -> Response:
+    return await DeleteMembershipHandler.handle()
 
 
 @team_frontend.route('/delete-team',
@@ -112,5 +112,5 @@ def deleteMembership() -> Response:
                      endpoint='delete-team')
 @jwt_required()
 @DeleteTeamInputFilter.validate()
-def deleteTeam() -> Response:
-    return DeleteTeamHandler.handle()
+async def deleteTeam() -> Response:
+    return await DeleteTeamHandler.handle()

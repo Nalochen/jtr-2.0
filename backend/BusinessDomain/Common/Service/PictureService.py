@@ -17,9 +17,7 @@ class PictureService:
         """Saves a picture to the file system"""
 
         image = PictureService.resizePicture(decodedData)
-
         filename = PictureService.createPictureName(image)
-
         savePath = PictureService.createPicturePath(filename, pictureType)
 
         isAnimated = getattr(image, 'is_animated', False)
@@ -37,7 +35,6 @@ class PictureService:
         """Resizes a picture if it is too large based on its base 4 representation"""
 
         image = Image.open(io.BytesIO(decodedPicture))
-
         isAnimated = getattr(image, 'is_animated', False)
 
         if not isAnimated and image.mode in ('RGBA', 'P'):
