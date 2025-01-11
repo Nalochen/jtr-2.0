@@ -1,7 +1,7 @@
 from flask import Blueprint
 
-from DataDomain.Model.Response import Response
-from ExternalApi.System.Handler.GetSwaggerFileHandler import GetSwaggerFileHandler
+from DataDomain.Model import Response
+from ExternalApi.System.Handler import GetSwaggerFileHandler
 
 system = Blueprint('system', __name__)
 

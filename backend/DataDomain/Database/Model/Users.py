@@ -4,9 +4,9 @@ from typing import Any, Dict, List
 from sqlalchemy import func
 from sqlalchemy.orm import Mapped
 
-from DataDomain.Database.db import db
-from DataDomain.Database.Model.BaseModel import BaseModel
-from DataDomain.Database.Model.IsPartOf import is_part_of
+from DataDomain.Database import db
+from DataDomain.Database.Enum import UserLanguageTypesEnum
+from DataDomain.Database.Model import BaseModel, is_part_of
 
 
 class Users(BaseModel, db.Model):
@@ -22,6 +22,11 @@ class Users(BaseModel, db.Model):
         db.String(100),
         nullable=False,
         unique=True
+    )
+
+    escaped_username: str = db.Column(
+        db.String(100),
+        nullable=False
     )
 
     password_hash: str = db.Column(
@@ -84,6 +89,11 @@ class Users(BaseModel, db.Model):
         db.Boolean,
         nullable=False,
         server_default='0'
+    )
+
+    language: UserLanguageTypesEnum = db.Column(
+        db.Enum(UserLanguageTypesEnum),
+        nullable=True
     )
 
     created_at: datetime = db.Column(

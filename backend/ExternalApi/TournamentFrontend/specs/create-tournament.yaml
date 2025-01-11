@@ -128,6 +128,8 @@ components:
           type: string
         registrationProcedureUrl:
           type: string
+        teamId:
+          type: number
 
     CreateTournamentResponseBody:
       type: object

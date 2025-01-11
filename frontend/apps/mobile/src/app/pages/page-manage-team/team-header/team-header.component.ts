@@ -57,7 +57,7 @@ export class TeamHeaderComponent {
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly store$: Store,
     private readonly teamService: TeamService
-) {}
+  ) {}
 
   public async onFileSelected(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;

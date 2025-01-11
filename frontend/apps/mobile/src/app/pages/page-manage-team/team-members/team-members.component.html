@@ -47,8 +47,7 @@
           <span class="material-icons-outlined">admin_panel_settings</span>
           <p>{{ 'page-manage-team.make-admin' | translate }}</p>
         </app-button>
-        }
-        @if (member.role === 'member') {
+        } @if (member.role === 'member') {
         <app-button
           class="menu-button"
           [color]="ButtonColorEnum.White"
@@ -57,8 +56,7 @@
           <span class="material-icons-outlined">add_moderator</span>
           <p>{{ 'page-manage-team.make-moderator' | translate }}</p>
         </app-button>
-        }
-        @if (member.role === 'moderator') {
+        } @if (member.role === 'moderator') {
         <app-button
           class="menu-button"
           [color]="ButtonColorEnum.White"
@@ -86,7 +84,11 @@
   </app-button>
 </app-data-container>
 
-<p-dialog header="{{ 'page-manage-team.add-member' | translate }}" [modal]="true" [(visible)]="isAddMemberOverlayVisible">
+<p-dialog
+  header="{{ 'page-manage-team.add-member' | translate }}"
+  [modal]="true"
+  [(visible)]="isAddMemberOverlayVisible"
+>
   <div>
     @if (possibleUsers) {
     <p-dropdown

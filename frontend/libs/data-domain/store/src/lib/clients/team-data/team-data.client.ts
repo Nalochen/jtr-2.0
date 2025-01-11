@@ -13,7 +13,7 @@ const ENDPOINT = '/api/team-frontend/get-team-details/';
 export class TeamDataClient {
   constructor(private http: HttpClient) {}
 
-  public getTeamData$(teamId: number): Observable<TeamData> {
-    return this.http.get<TeamData>(ENDPOINT + teamId.toString());
+  public getTeamData$(escapedName: string): Observable<TeamData> {
+    return this.http.get<TeamData>(ENDPOINT + escapedName);
   }
 }

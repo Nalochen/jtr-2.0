@@ -5,8 +5,8 @@ from typing import Any, Dict, Self
 from sqlalchemy import func
 from sqlalchemy.ext.hybrid import hybrid_property
 
-from DataDomain.Database.db import db
-from DataDomain.Database.Model.BaseModel import BaseModel
+from DataDomain.Database import db
+from DataDomain.Database.Model import BaseModel
 
 
 class TeamVersions(BaseModel, db.Model):
@@ -59,7 +59,6 @@ class TeamVersions(BaseModel, db.Model):
 
         return json.loads(self.changes)
 
-    @changes.setter
     def setChanges(self, changesDict: Dict[str, Any]) -> Self:
         """
         Takes the dictionary and safes it as a JSON-String in the 'changes' column.

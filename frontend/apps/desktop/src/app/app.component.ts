@@ -2,11 +2,12 @@ import { AsyncPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from './business-rules/auth/auth.service';
+import { UserService } from './business-rules/user/user.service';
 
 import { LoginOverlayComponent } from './login-overlay/login-overlay.component';
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from './ui-shared';
@@ -33,6 +34,7 @@ export class AppComponent {
 
   constructor(
     private readonly authService: AuthService,
+    private readonly userService: UserService,
     private readonly translate: TranslateService,
     private readonly router: Router
   ) {
@@ -52,8 +54,12 @@ export class AppComponent {
     this.router.navigate(['/']);
   }
 
-  public switchLanguage(language: string) {
+  public async switchLanguage(language: string): Promise<void> {
     this.translate.use(language);
     sessionStorage.setItem('language', language);
+
+    if (await firstValueFrom(this.isLoggedIn$)) {
+      await this.userService.updateUserLanguage({ language });
+    }
   }
 }

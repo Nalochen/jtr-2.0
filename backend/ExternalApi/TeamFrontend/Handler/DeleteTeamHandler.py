@@ -1,11 +1,11 @@
 from flask import g
 
-from DataDomain.Database.Repository.TeamRepository import TeamRepository
-from DataDomain.Model.Response import Response
+from BusinessDomain.Team.Rule import DoesTeamExistsRule
+from BusinessDomain.Team.UseCase.CommandHandler import DeleteTeamCommandHandler
+from BusinessDomain.Team.UseCase.CommandHandler.Command import DeleteTeamCommand
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule
+from DataDomain.Model import Response
 from ExternalApi.TeamFrontend.config.extensions import clearTeamCache
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
-)
 
 
 class DeleteTeamHandler:
@@ -13,26 +13,25 @@ class DeleteTeamHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Handles the delete-team route"""
 
         data = g.validatedData
 
         teamId: int = data.get('teamId')
 
-        team = TeamRepository.get(
-            teamId=teamId
-        )
-
-        if not team:
+        if not DoesTeamExistsRule.applies(teamId):
             return Response(status=404)
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(team.id):
+        if not IsCurrentUserAdminOfTeamRule.applies(teamId):
             return Response(status=403)
 
         try:
-            TeamRepository.delete(teamId=team.id)
+            DeleteTeamCommandHandler.execute(
+                DeleteTeamCommand(
+                    teamId=teamId
+                )
+            )
 
-            clearTeamCache(team.id)
+            clearTeamCache(teamId)
 
         except Exception:
             return Response(status=500)

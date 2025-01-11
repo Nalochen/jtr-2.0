@@ -1,0 +1,20 @@
+### Creates a new user
+POST https://{{host}}/api/user-frontend/create-user
+Content-Type: application/json
+
+{
+    "username": "MaxPecu",
+    "password": "123456",
+    "email": "max-pecu@gmail.de",
+    "isBirthdateVisible": true,
+    "birthdate": "1990-01-01",
+    "isCityVisible": true,
+    "city": "Berlin",
+    "isNameVisible": true
+}
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

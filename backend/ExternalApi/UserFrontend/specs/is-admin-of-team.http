@@ -1,0 +1,11 @@
+### Returns if the user is an admin of the team
+### Execute ExternalApi/UserFrontend/specs/create-password-request.http before using this to recieve the hash!
+GET https://{{host}}/api/user-frontend/is-admin-of-team/{{escapedName}}
+Authorization: Bearer {{jwtToken}}
+
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

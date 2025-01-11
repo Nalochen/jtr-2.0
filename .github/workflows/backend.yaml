@@ -27,7 +27,7 @@ jobs:
           set -e # Exit immediately if a command exits with a non-zero status.
           set -u # Exit immediately if a variable is not defined.
 
-          .github/scripts/check_server.sh
+          .github/scripts/check_backend_start.sh
 
       - name: Run tests
         run: |

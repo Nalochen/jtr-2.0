@@ -20,7 +20,7 @@ jobs:
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
-        with: 
+        with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -35,11 +35,11 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: docker/production/frontend/frontend.Dockerfile 
+          file: docker/production/frontend/frontend.Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          
+
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
@@ -62,7 +62,7 @@ jobs:
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
-        with: 
+        with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -77,11 +77,11 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: docker/production/backend/backend.Dockerfile 
+          file: docker/production/backend/backend.Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          
+
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:
@@ -104,7 +104,7 @@ jobs:
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
-        with: 
+        with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -119,11 +119,11 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: docker/production/worker/worker.Dockerfile 
+          file: docker/production/worker/worker.Dockerfile
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          
+
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
         with:

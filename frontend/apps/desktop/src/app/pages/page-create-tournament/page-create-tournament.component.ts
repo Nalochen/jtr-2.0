@@ -90,7 +90,8 @@ export class PageCreateTournamentComponent implements OnDestroy {
       this.form.reset();
 
       this.router.navigate([
-        '/tournament-details/' + createTournamentResponse.tournamentId,
+        'tournament-details',
+        createTournamentResponse.tournamentId,
       ]);
 
       return;

@@ -1,7 +1,9 @@
-
-from DataDomain.Database.Repository.TeamRepository import TeamRepository
-from DataDomain.Database.tools import getJwtIdentity
-from DataDomain.Model.Response import Response
+from BusinessDomain.User.Rule.tools import getJwtIdentity
+from BusinessDomain.User.UseCase.QueryHandler import GetTeamsWhereUserIsAdminQueryHandler
+from BusinessDomain.User.UseCase.QueryHandler.Query.GetTeamsWhereUserIsAdminQuery import (
+    GetTeamsWhereUserIsAdminQuery,
+)
+from DataDomain.Model import Response
 
 
 class GetAdminOfTeamsHandler:
@@ -10,17 +12,13 @@ class GetAdminOfTeamsHandler:
     @staticmethod
     def handle() -> Response:
 
-        currentUser = getJwtIdentity()
-
-        teams = TeamRepository.teamsOfAdmin(currentUser.id)
-
-        response = [{
-            'id': team.id,
-            'name': team.name,
-            'logo': team.logo,
-        } for team in teams]
+        teams = GetTeamsWhereUserIsAdminQueryHandler.execute(
+            GetTeamsWhereUserIsAdminQuery(
+                userId=getJwtIdentity().id
+            )
+        )
 
         return Response(
-            response=response,
+            response=teams,
             status=200,
         )

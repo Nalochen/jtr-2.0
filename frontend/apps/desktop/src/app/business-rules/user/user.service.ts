@@ -7,6 +7,7 @@ import { AuthService } from '../auth/auth.service';
 
 const UPDATE_USER_ENDPOINT = '/api/user-frontend/update-user';
 const UPDATE_USER_PICTURE_ENDPOINT = '/api/user-frontend/update-user-picture';
+const UPDATE_USER_LANGUAGE_ENDPOINT = '/api/user-frontend/update-user-language';
 const DELETE_USER_ENDPOINT = '/api/user-frontend/delete-user';
 
 export interface UpdateUserRequestBody {
@@ -16,6 +17,10 @@ export interface UpdateUserRequestBody {
   name: string | null;
   pronouns: string | null;
   username: string;
+}
+
+export interface UpdateUserLanguageRequestBody {
+  language: string;
 }
 
 export interface UpdateUserResponse {
@@ -51,6 +56,14 @@ export class UserService {
 
     await firstValueFrom(
       this.http.put<void>(UPDATE_USER_PICTURE_ENDPOINT, request)
+    );
+  }
+
+  public async updateUserLanguage(
+    request: UpdateUserLanguageRequestBody
+  ): Promise<void> {
+    await firstValueFrom(
+      this.http.put<void>(UPDATE_USER_LANGUAGE_ENDPOINT, request)
     );
   }
 

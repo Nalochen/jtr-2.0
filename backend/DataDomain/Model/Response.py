@@ -3,7 +3,7 @@ from typing import Any
 
 from flask import Response as FlaskResponse
 
-from DataDomain.Model.CustomJSONEncoder import CustomJSONEncoder
+from DataDomain.Model import CustomJSONEncoder
 
 
 class Response(FlaskResponse):

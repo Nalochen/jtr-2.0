@@ -1,12 +1,15 @@
 from flask import request
 
-from config.cache import cache
+from BusinessDomain.Team.Repository import TeamRepository
+from config import cache
 
 
 def create_team_cache_key() -> str:
     """Create cache key for team"""
 
-    teamId = request.view_args.get('teamId')
+    escapedName = request.view_args.get('escapedName')
+
+    teamId = TeamRepository.getTeamIdByEscapedName(escapedName)
 
     return f"team-{teamId}"
 

@@ -7,7 +7,11 @@ import { firstValueFrom, Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { EditTeamForm, TeamDataService, teamDetailsSelector } from '@jtr/business-domain/team';
+import {
+  EditTeamForm,
+  TeamDataService,
+  teamDetailsSelector,
+} from '@jtr/business-domain/team';
 import { TeamData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
@@ -24,13 +28,17 @@ import { DialogModule } from 'primeng/dialog';
 @Component({
   selector: 'team-bottom-bar',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, ButtonComponent, TranslatePipe, DialogModule],
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+    ButtonComponent,
+    TranslatePipe,
+    DialogModule,
+  ],
   templateUrl: './team-bottom-bar.component.html',
   styleUrl: './team-bottom-bar.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [
-    TeamDataService, TeamService
-  ]
+  providers: [TeamDataService, TeamService],
 })
 export class TeamBottomBarComponent {
   @Input() public form!: FormGroup<EditTeamForm>;
@@ -82,7 +90,10 @@ export class TeamBottomBarComponent {
         isMixTeam: this.form.controls.isMixTeam.value || undefined,
         trainingTime: this.form.controls.trainingTime.value || undefined,
         aboutUs: this.form.controls.aboutUs.value || undefined,
-        contacts: this.form.controls.contacts.value.filter((item): item is string => item !== null && item !== '') || [],
+        contacts:
+          this.form.controls.contacts.value.filter(
+            (item): item is string => item !== null && item !== ''
+          ) || [],
       })
     );
 

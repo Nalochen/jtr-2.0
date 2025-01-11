@@ -7,10 +7,6 @@ profile = 'black'
 skip = ['venv', '.venv', '*.md']
 line_length = 90
 
-[tool.autoflake]
-remove-all-unused-imports = true
-exclude = ['venv', '.venv', '*.md']
-
 [tool.flake8]
 exclude = ['__init__.py', 'venv', '.venv', '*.md']
 max-line-length = 90

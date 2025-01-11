@@ -97,3 +97,12 @@ class CreateUserInputFilter(InputFilter):
             ],
             validators=[IsStringValidator()]
         )
+
+        self.add(
+            'language',
+            required=False,
+            filters=[
+                StringTrimFilter()
+            ],
+            validators=[IsStringValidator()]
+        )

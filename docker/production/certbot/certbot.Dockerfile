@@ -2,8 +2,6 @@ FROM certbot/certbot:latest
 
 WORKDIR /etc/letsencrypt
 
-RUN apk add certbot-nginx
-
 COPY docker/production/certbot/renew-certificates.sh /usr/local/bin/renew-certificates.sh
 RUN chmod +x /usr/local/bin/renew-certificates.sh
 
