@@ -8,11 +8,9 @@ import {
 } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
 import { TournamentData, TournamentTeamData } from '@jtr/data-domain/store';
-import { PricingTypeEnum } from '@jtr/data-domain/tournament-data';
 
 import {
   ButtonColorEnum,
@@ -27,9 +25,13 @@ import {
 import { TournamentInformationAdditionalComponent } from '../tournament-information-additional/tournament-information-additional.component';
 import { TournamentInformationContactsComponent } from '../tournament-information-contacts/tournament-information-contacts.component';
 import { TournamentInformationLocationComponent } from '../tournament-information-location/tournament-information-location.component';
+import {
+  TournamentInformationRegistrationComponent
+} from '../tournament-information-registration/tournament-information-registration.component';
 import { TournamentInformationRulesComponent } from '../tournament-information-rules/tournament-information-rules.component';
 import { TournamentTeamsComponent } from '../tournament-teams/tournament-teams.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DividerModule } from 'primeng/divider';
 
 export interface Panel {
   id: string;
@@ -57,7 +59,7 @@ export enum PanelTypes {
     MatButtonModule,
     ChipComponent,
     InfoButtonComponent,
-    MatDividerModule,
+    DividerModule,
     ButtonComponent,
     TournamentTeamsComponent,
     TeamComponent,
@@ -66,6 +68,7 @@ export enum PanelTypes {
     TournamentInformationContactsComponent,
     TournamentInformationRulesComponent,
     TournamentInformationLocationComponent,
+    TournamentInformationRegistrationComponent,
     TranslatePipe,
   ],
   templateUrl: './tournament-information.component.html',
@@ -80,6 +83,7 @@ export class TournamentInformationComponent implements OnInit {
 
   public readonly PanelTypes = PanelTypes;
   public previewTeams: TournamentTeamData[] = [];
+  public showPlacement = false;
 
   protected panels: Panel[] = [
     { id: PanelTypes.Teams, isOpen: false },
@@ -93,7 +97,12 @@ export class TournamentInformationComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
-    this.previewTeams = this.tournament.teams.participating.slice(0, 6);
+    this.showPlacement = this.tournament.teams.participating.map((team) => team.placement).some((placement) => placement !== null);
+    if (this.showPlacement) {
+      this.previewTeams = [...this.tournament.teams.participating].sort((a, b) => a.placement - b.placement).slice(0, 6);
+    } else {
+      this.previewTeams = [...this.tournament.teams.participating].sort((a, b) => a.registrationOrder - b.registrationOrder).slice(0, 6);
+    }
   }
 
   public get areAllPanelsOpen(): boolean {
@@ -119,6 +128,4 @@ export class TournamentInformationComponent implements OnInit {
 
     this.cdr.detectChanges();
   }
-
-  protected readonly PricingTypeEnum = PricingTypeEnum;
 }

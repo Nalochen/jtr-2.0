@@ -1,4 +1,32 @@
-<app-scroll-to-top />
-<app-button [color]="ButtonColorEnum.Red" [type]="ButtonTypeEnum.Raised">{{
-  'page-tournament-details.register-team' | translate
-}}</app-button>
+<div class="buttons">
+  <app-scroll-to-top />
+  <app-button
+    (click)="onShowDialog()"
+    [color]="ButtonColorEnum.Red"
+    [type]="ButtonTypeEnum.Raised">
+    {{ 'page-tournament-details.register-team' | translate }}
+  </app-button>
+</div>
+
+<p-dialog
+  [(visible)]="dialogVisible"
+  header="{{ 'page-tournament-details.select-team' | translate }}"
+  [modal]="true"
+>
+  <p-dropdown
+    [options]="teams"
+    placeholder="{{ 'page-tournament-details.select-team' | translate }}"
+    [editable]="true"
+    optionLabel="name"
+    [(ngModel)]="selectedTeam"
+  />
+
+  <app-button
+    class="registrationButton"
+    (click)="onRegistrationClick()"
+    [type]="ButtonTypeEnum.Raised"
+    [color]="ButtonColorEnum.Red"
+    [fullWidth]="true"
+  >{{ 'page-tournament-details.register-team' | translate }}</app-button
+  >
+</p-dialog>

@@ -12,11 +12,14 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { TeamData } from '@jtr/data-domain/store';
+
 const LOGIN_ENDPOINT = '/api/user-frontend/authenticate-user';
 const REGISTER_ENDPOINT = '/api/user-frontend/create-user';
 const IS_ADMIN_OF_TEAM_ENDPOINT = '/api/user-frontend/is-admin-of-team';
 const IS_ADMIN_OF_ORGANIZER_ENDPOINT =
   '/api/user-frontend/is-admin-of-organizer';
+const USER_ADMIN_TEAMS = '/api/user-frontend/get-admin-teams';
 
 export interface LoginRequestBody {
   email: string | null;
@@ -114,6 +117,12 @@ export class AuthService {
   public isAdminOfOrganizer(tournamentId: number): Observable<boolean> {
     return this.http.get<boolean>(
       `${IS_ADMIN_OF_ORGANIZER_ENDPOINT}/${tournamentId}`
+    );
+  }
+
+  public userAdminTeams(): Observable<TeamData[]> {
+    return this.http.get<TeamData[]>(
+      `${USER_ADMIN_TEAMS}`
     );
   }
 

@@ -2,6 +2,6 @@
 <tournament-header [tournament]="tournament" />
 
 <tournament-information [tournament]="tournament" />
-}
 
-<tournament-bottom-bar />
+<tournament-bottom-bar [tournamentId]="tournament.id" [registrationStartDate]="tournament.registrationStartDate" [registeredTeams]="tournament.teams" />
+}

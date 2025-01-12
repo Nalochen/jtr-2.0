@@ -1,7 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
-import { MatDivider } from '@angular/material/divider';
 import { MatIcon } from '@angular/material/icon';
 
 import {
@@ -11,6 +10,7 @@ import {
 
 import { DataContainerComponent, TeamComponent } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'tournament-teams',
@@ -18,11 +18,11 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [
     CommonModule,
     NgOptimizedImage,
-    MatDivider,
     DataContainerComponent,
     TeamComponent,
     MatIcon,
     TranslatePipe,
+    DividerModule
   ],
   templateUrl: './tournament-teams.component.html',
   styleUrl: './tournament-teams.component.less',
@@ -32,9 +32,16 @@ export class TournamentTeamsComponent implements OnInit {
 
   public participatingTeams: TournamentTeamData[] = [];
   public waitingTeams: TournamentTeamData[] = [];
+  public showPlacement = false;
 
   public ngOnInit(): void {
-    this.participatingTeams = this.teams.participating;
-    this.waitingTeams = this.teams.waiting;
+    this.showPlacement = this.teams.participating.map((team) => team.placement).some((placement) => placement !== null);
+
+    if(this.showPlacement) {
+      this.participatingTeams = [...this.teams.participating].sort((a, b) => a.placement - b.placement);
+    } else {
+      this.participatingTeams = [...this.teams.participating].sort((a, b) => a.registrationOrder - b.registrationOrder);
+      this.waitingTeams = [...this.teams.waiting].sort((a, b) => a.registrationOrder - b.registrationOrder);
+    }
   }
 }
