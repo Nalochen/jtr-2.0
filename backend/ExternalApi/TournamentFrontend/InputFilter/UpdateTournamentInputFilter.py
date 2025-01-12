@@ -9,7 +9,7 @@ from flask_inputfilter.Filter import (
 from flask_inputfilter.Validator import (
     InEnumValidator,
     IsArrayValidator,
-    IsBoolValidator,
+    IsBooleanValidator,
     IsIntegerValidator,
     IsStringValidator,
     RegexValidator,
@@ -364,28 +364,28 @@ class UpdateTournamentInputFilter(InputFilter):
             'studdedShoesAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
             'cleatsShoesAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
             'camShoesAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
             'barefootAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
