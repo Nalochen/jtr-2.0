@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule, DecimalPipe, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { TeamOverviewData } from '@jtr/data-domain/store';
@@ -20,6 +20,7 @@ import { TeamArrowComponent } from '../team-arrow/team-arrow.component';
     DataContainerComponent,
     ButtonComponent,
     TeamArrowComponent,
+    DecimalPipe
   ],
   templateUrl: './team-row.component.html',
   styleUrl: './team-row.component.less',
