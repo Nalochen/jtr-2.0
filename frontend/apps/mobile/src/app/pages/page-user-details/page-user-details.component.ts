@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -10,6 +10,7 @@ import { UserData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from '../../business-rules/auth/auth.service';
+import { TeamService } from '../../business-rules/team/team.service';
 
 import {
   ButtonColorEnum,
@@ -31,6 +32,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     ButtonComponent,
     DataContainerRowComponent,
     DataContainerComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './page-user-details.component.html',
   styleUrl: './page-user-details.component.less',
@@ -42,7 +44,8 @@ export class PageUserDetailsComponent {
 
   constructor(
     private store$: Store,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly teamService: TeamService
   ) {}
 
   @SingletonGetter()
@@ -61,5 +64,9 @@ export class PageUserDetailsComponent {
 
   public addUserToTeam(): void {
     window.alert('User added to team');
+  }
+
+  public getPictureUrl(picture: string): string {
+    return this.teamService.getPictureUrl(picture);
   }
 }

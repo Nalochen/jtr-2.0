@@ -11,7 +11,7 @@ from Infrastructure.Logger import logger
 class UpdateTeamPictureCommandHandler:
 
     @staticmethod
-    def execute(command: UpdateTeamPictureCommand) -> None:
+    def execute(command: UpdateTeamPictureCommand) -> str:
 
         try:
             team = GetTeamByIdRule.get(command.teamId)
@@ -22,6 +22,8 @@ class UpdateTeamPictureCommandHandler:
                 decodedData, PictureTypeEnum.TEAM)
 
             TeamRepository.update()
+
+            return team.picture
 
         except Exception as e:
             logger.error(f'UpdateTeamPictureCommandHandler | execute | {e}')

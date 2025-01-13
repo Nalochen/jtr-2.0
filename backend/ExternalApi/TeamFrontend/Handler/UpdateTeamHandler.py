@@ -23,7 +23,7 @@ class UpdateTeamHandler:
 
         # TODO: escapedName creation and check
         # escapedName = data.get('escapedName')
-        escapedName = data.get('name').replace(' ', '-')
+        escapedName = data.get('name').lower().replace(' ', '-')
 
         if not IsCurrentUserAdminOfTeamRule.applies(
                 teamId):

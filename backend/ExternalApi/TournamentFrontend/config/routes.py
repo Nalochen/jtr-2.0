@@ -106,8 +106,8 @@ def createResult() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @CreateTournamentSubscriptionInputFilter.validate()
-def createTournamentSubscription() -> Response:
-    return CreateTournamentSubscriptionHandler.handle()
+async def createTournamentSubscription() -> Response:
+    return await CreateTournamentSubscriptionHandler.handle()
 
 
 @tournament_frontend.route('/create-tournament-notification',
@@ -115,8 +115,8 @@ def createTournamentSubscription() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @CreateTournamentNotificationInputFilter.validate()
-def createTournamentNotification() -> Response:
-    return CreateTournamentNotificationHandler.handle()
+async def createTournamentNotification() -> Response:
+    return await CreateTournamentNotificationHandler.handle()
 
 
 @tournament_frontend.route('/delete-participation',
@@ -125,8 +125,8 @@ def createTournamentNotification() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @DeleteParticipationInputFilter.validate()
-def deleteParticipation() -> Response:
-    return DeleteParticipationHandler.handle()
+async def deleteParticipation() -> Response:
+    return await DeleteParticipationHandler.handle()
 
 
 @tournament_frontend.route('/delete-tournament',
@@ -135,8 +135,8 @@ def deleteParticipation() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @DeleteTournamentInputFilter.validate()
-def deleteTournament() -> Response:
-    return DeleteTournamentHandler.handle()
+async def deleteTournament() -> Response:
+    return await DeleteTournamentHandler.handle()
 
 
 @tournament_frontend.route('/delete-tournament-subscription',
@@ -145,5 +145,5 @@ def deleteTournament() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @DeleteTournamentSubscriptionInputFilter.validate()
-def deleteTournamentSubscription() -> Response:
-    return DeleteTournamentSubscriptionHandler.handle()
+async def deleteTournamentSubscription() -> Response:
+    return await DeleteTournamentSubscriptionHandler.handle()

@@ -21,7 +21,7 @@ class DeleteParticipationHandler:
     """Handler for deleting a participate_in relation"""
 
     @staticmethod
-    def handle() -> Response:
+    async def handle() -> Response:
 
         data = g.validatedData
 

@@ -4,7 +4,7 @@
       <p class="placement">{{ team.placement }}</p>
       <arrow [hasPlacementChangedUpwards]="true" />
       <img
-        ngSrc="{{ team.logo }}"
+        ngSrc="{{ getPictureUrl(team.logo) }}"
         width="50"
         height="50"
         alt="Logo of {{ team.name }}"

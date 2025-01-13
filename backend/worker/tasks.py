@@ -11,16 +11,16 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 from config import MailConfig
 
 celery = Celery(
-    os.getenv('CELERY_APP_NAME'),
-    broker=os.getenv('CELERY_BROKER_URL'),
-    backend=os.getenv('CELERY_RESULT_BACKEND'))
+    main='tasks',
+    broker='amqp://worker:worker_password@rabbitmq:5672',
+    backend='rpc://')
 
 pymysql.install_as_MySQLdb()
 
 engine = create_engine(
     os.getenv(
         'DATABASE_URL',
-        'mysql+pymysql://user:password@localhost:3306/jtr'),
+        'mysql+pymysql://user:password@mysql:3306/jtr'),
     echo=True)
 
 db = scoped_session(sessionmaker(bind=engine))

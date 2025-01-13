@@ -39,7 +39,7 @@ services:
     container_name: worker
     environment:
       CELERY_APP_NAME: 'tasks'
-      CELERY_BROKER_URL: 'amqp://guest:guest@rabbitmq:5672'
+      CELERY_BROKER_URL: 'amqp://admin:mypass@rabbitmq:5672'
       CELERY_RESULT_BACKEND: 'rpc://'
       DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
       MAIL_SERVER: 'localhost'
@@ -64,10 +64,9 @@ services:
       CERTBOT_EMAIL: 'slotosch.leander@outlook.de'
     volumes:
       - certs:/etc/letsencrypt
-      - webroot:/usr/share/nginx/html/desktop
+      - webroot:/usr/share/nginx/html
     networks:
       - backend_network
-    restart: always
 
   backend:
     build:
@@ -79,12 +78,13 @@ services:
       CACHE_REDIS_HOST: 'redis'
       CACHE_REDIS_PORT: '6379'
       CELERY_BROKER_NAME: 'worker'
-      CELERY_BROKER_URL: 'amqp://guest:guest@rabbitmq:5672'
+      CELERY_BROKER_URL: 'amqp://admin:mypass@rabbitmq:5672'
       CELERY_RESULT_BACKEND: 'rpc://'
       DATABASE_URL: 'mysql+pymysql://user:password@mysql/jtr'
       SECRET_KEY: 'secret'
       GENERATE_TEST_DATA: True
     volumes:
+      - ./nginx:/etc/letsencrypt/live/jugger-tourna.de # This path is to fake the certbot certificate generation
       - certs:/etc/letsencrypt
       - ./assets:/app/DataDomain/assets
     ports:
@@ -103,8 +103,10 @@ services:
       dockerfile: docker/production/frontend/frontend.Dockerfile
     container_name: frontend
     volumes:
+      - ./nginx:/etc/letsencrypt/live/jugger-tourna.de # This path is to fake the certbot certificate generation
       - certs:/etc/letsencrypt
-      - webroot:/usr/share/nginx/html/desktop
+      - webroot:/usr/share/nginx/html
+      - ./assets:/usr/share/nginx/html/assets
     ports:
       - "80:80"
       - "443:443"

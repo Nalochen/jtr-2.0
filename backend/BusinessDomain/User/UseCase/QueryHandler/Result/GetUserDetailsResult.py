@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import date, datetime
 from typing import List
 
 
@@ -27,5 +27,5 @@ class GetUserDetailsResult:
     updatedAt: datetime
     username: str
     name: str | None = None
-    birthdate: datetime | None = None
+    birthdate: date | None = None
     city: str | None = None

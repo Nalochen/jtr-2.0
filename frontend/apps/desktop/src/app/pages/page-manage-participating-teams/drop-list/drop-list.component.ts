@@ -6,7 +6,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,6 +17,8 @@ import {
 import { FormsModule } from '@angular/forms';
 
 import { TournamentTeamData } from '@jtr/data-domain/store';
+
+import { TeamService } from '../../../business-rules/team/team.service';
 
 import {
   ButtonColorEnum,
@@ -46,12 +48,15 @@ import { TooltipModule } from 'primeng/tooltip';
     DropdownModule,
     FormsModule,
     ChipComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './drop-list.component.html',
   styleUrl: './drop-list.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropListComponent {
+  constructor(private readonly teamService: TeamService) {}
+
   public readonly participatingTeams = input.required<TournamentTeamData[]>();
   public readonly waitingTeams = input.required<TournamentTeamData[]>();
 
@@ -90,5 +95,9 @@ export class DropListComponent {
 
   public onDeleteTeam(index: number, isParticipating: boolean): void {
     this.deleteTeam.emit({ index, isParticipating });
+  }
+
+  public getPictureUrl(picture: string): string {
+    return this.teamService.getPictureUrl(picture);
   }
 }

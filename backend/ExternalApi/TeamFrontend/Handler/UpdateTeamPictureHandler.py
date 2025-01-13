@@ -25,7 +25,7 @@ class UpdateTeamPictureHandler:
             return Response(status=403)
 
         try:
-            UpdateTeamPictureCommandHandler.execute(
+            filepath = UpdateTeamPictureCommandHandler.execute(
                 UpdateTeamPictureCommand(
                     teamId=teamId,
                     picture=data.get('picture')
@@ -36,5 +36,8 @@ class UpdateTeamPictureHandler:
             return Response(status=500)
 
         return Response(
+            response={
+                'logo': filepath,
+            },
             status=200
         )

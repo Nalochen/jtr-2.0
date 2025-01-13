@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import date
 
 
 @dataclass
@@ -8,7 +8,7 @@ class GetUserOverviewResult:
     id: int
     username: str
     name: str | None
-    birthdate: datetime | None
+    birthdate: date | None
     picture: str | None
     pronouns: str | None
     city: str | None

@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date, datetime
 from typing import Any, Dict, List
 
 from sqlalchemy import func
@@ -55,7 +55,7 @@ class Users(BaseModel, db.Model):
         nullable=False
     )
 
-    birthdate: datetime | None = db.Column(
+    birthdate: date | None = db.Column(
         db.Date,
         nullable=True
     )

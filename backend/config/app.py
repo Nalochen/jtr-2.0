@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_compress import Compress
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from flask_talisman import Talisman
@@ -45,6 +46,8 @@ def createApp() -> Flask:
         'style-src': ["'self'", "'unsafe-inline'"],
         'img-src': ["'self'"],
     })
+
+    Compress(app)
 
     return app
 

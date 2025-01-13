@@ -12,6 +12,8 @@ import { userOverviewSelector } from '@jtr/business-domain/user';
 import { TeamData, UserOverviewData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
+import { UserService } from '../../../business-rules/user/user.service';
+
 import {
   ButtonColorEnum,
   ButtonComponent,
@@ -53,7 +55,10 @@ export class TeamMembersComponent {
   protected possibleUsers: UserOverviewData[] = [];
   protected items: MenuItem[] | undefined;
 
-  constructor(private readonly store$: Store) {
+  constructor(
+    private readonly store$: Store,
+    private readonly userService: UserService
+  ) {
     this.items = [
       {
         label: 'Options',
@@ -102,5 +107,9 @@ export class TeamMembersComponent {
 
   public closeAddMemberOverlay() {
     this.isAddMemberOverlayVisible = false;
+  }
+
+  public getPictureUrl(picture: string): string {
+    return this.userService.getPictureUrl(picture);
   }
 }

@@ -18,8 +18,8 @@ class GetUserDetailsQueryHandler:
         else:
             user = getJwtIdentity()
 
-        profileOfCurrentUser = getJwtIdentity() and getJwtIdentity(
-        ).escaped_username == query.escapedUsername
+        profileOfCurrentUser = getJwtIdentity() is not None and (getJwtIdentity(
+        ).escaped_username == query.escapedUsername or query.escapedUsername is None)
 
         return GetUserDetailsResult(
             id=user.id,

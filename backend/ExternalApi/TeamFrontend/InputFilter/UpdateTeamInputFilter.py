@@ -8,7 +8,7 @@ from flask_inputfilter.Filter import (
 )
 from flask_inputfilter.Validator import (
     IsArrayValidator,
-    IsBoolValidator,
+    IsBooleanValidator,
     IsIntegerValidator,
     IsStringValidator,
     RegexValidator,
@@ -70,7 +70,7 @@ class UpdateTeamInputFilter(InputFilter):
             'isMixTeam',
             required=False,
             filters=[ToBooleanFilter(), ToNullFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(

@@ -21,13 +21,13 @@ class CreateUserHandler:
         if DoesUsernameExistsRule.applies(username):
             return Response(
                 status=400,
-                message='Username already exists'
+                response='Username already exists'
             )
 
         if DoesEmailExistsRule.applies(email):
             return Response(
                 status=400,
-                message='Email already exists'
+                response='Email already exists'
             )
 
         try:
