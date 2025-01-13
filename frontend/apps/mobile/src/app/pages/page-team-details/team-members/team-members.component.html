@@ -1,7 +1,18 @@
-<p>Mitglieder</p>
-
 @if (team.members !== []) {
-<app-data-container-expandable>
+<app-data-container-expandable
+  [isOpen]="panelIsOpen"
+  (toggleVisibility)="togglePanel($event)"
+>
+  @if (!panelIsOpen) {
+  <div ngProjectAs="panel-header" class="member-previews">
+    @for (member of previewMembers; track member.id) {
+    <img ngProjectAs="team-logo" [src]="member.picture" alt="picture" height="32" width="32"/>
+    }
+  </div>
+  } @else {
+  <p ngProjectAs="panel-header">{{ 'page-team-details.members' | translate}}</p>
+  }
+
   @for (member of team.members; track member) {
   <app-data-container-row>
     <img
@@ -11,10 +22,13 @@
       width="28"
       height="28"
     />
-    <p>{{ member.name }}</p>
+    <p ngProjectAs="container-headline">{{ member.name }}</p>
+    @if (showRole(member.role) !== '') {
+    <app-chip ngProjectAs="container-additional">{{ showRole(member.role) | translate }}</app-chip>
+    }
   </app-data-container-row>
   }
 </app-data-container-expandable>
 } @else {
-<p>Noch keine Mitglieder vorhanden.</p>
+<p>{{ 'page-team-details.no-members' | translate }}</p>
 }

@@ -18,6 +18,10 @@ import { TeamInformationComponent } from './team-information/team-information.co
 import { TeamMembersComponent } from './team-members/team-members.component';
 import { TeamOtherTournamentsComponent } from './team-other-tournaments/team-other-tournaments.component';
 import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tournaments.component';
+import { ButtonComponent } from '../../ui-shared';
+import { AuthService } from '../../business-rules/auth/auth.service';
+import { combineLatest } from 'rxjs/internal/operators/combineLatest';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
@@ -28,18 +32,29 @@ import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tou
     TeamInformationComponent,
     TeamOwnTournamentsComponent,
     TeamOtherTournamentsComponent,
-    MatButtonModule,
+    ButtonComponent,
+    TranslatePipe
   ],
   templateUrl: './page-team-details.component.html',
   styleUrl: './page-team-details.component.less',
 })
 export class PageTeamDetailsComponent {
-  public teamId: number | null = null;
+  public teamEscapedName: string | null = null;
+  public canEditTeam: boolean = false;
+  public isMemberOfTeam: boolean = false;
 
-  constructor(private readonly store$: Store, private readonly router: Router) {
+  constructor(
+    private readonly store$: Store,
+    private readonly router: Router,
+    private readonly authService: AuthService
+  ) {
     this.team$.pipe(takeUntilDestroyed()).subscribe((team) => {
       if (team) {
-        this.teamId = team.id;
+        this.teamEscapedName = team.escapedName;
+
+        this.authService.isAdminOfTeam(this.teamEscapedName).pipe().subscribe(
+          canEditTeam => this.canEditTeam = canEditTeam
+        )
       }
     });
   }
@@ -50,6 +65,6 @@ export class PageTeamDetailsComponent {
   }
 
   public redirectToManageTeam() {
-    this.router.navigate(['manage-team-details', this.teamId]);
+    this.router.navigate(['manage-team-details', this.teamEscapedName]);
   }
 }

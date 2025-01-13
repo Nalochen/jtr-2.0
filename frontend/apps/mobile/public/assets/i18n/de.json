@@ -3,7 +3,6 @@
   "tournaments": "Turniere",
   "previous-tournaments": "Vergangene Turniere",
   "to-previous-tournaments": "Zu den vergangenen Turnieren",
-  "participated-tournaments": "Teilgenommene Turniere",
   "teams": "Teams",
   "search": "suchen",
   "page-manage-team": {
@@ -246,6 +245,22 @@
     "found-team": "Team gründen",
     "delete-account": "Account löschen",
     "save": "Speichern"
+  },
+  "page-team-details": {
+    "members": "Mitglieder",
+    "role-moderator": "Moderator",
+    "role-admin": "Admin",
+    "no-members": "noch keine Mitglieder vorhanden",
+    "founded": "gegründet",
+    "about-us": "über uns",
+    "training": "Training",
+    "last-updated": "zuletzt aktualisiert",
+    "last-tournament-played": "zuletzt ein Turneir gespielt",
+    "last-tournament-organized": "zuletzt ein Turnier organisiert",
+    "organized-tournaments": "organisierte Turniere",
+    "no-tournaments-organized-yet": "noch keine Turniere organisiert",
+    "participated-tournaments": "teilgenommene Turniere",
+    "no-participated-tournaments": "noch keine teilgenommenen Turniere"
   },
   "seconds": "Sekunden",
   "minutes": "Minuten",

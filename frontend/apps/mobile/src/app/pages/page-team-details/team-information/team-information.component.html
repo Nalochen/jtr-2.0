@@ -2,7 +2,9 @@
 
 <team-contacts [team]="team" />
 
+@if (team.lastTournamentOrganized || team.lastTournamentPlayed) {
 <team-statistics [team]="team" />
+}
 
 @if (team.aboutUs) {
 <team-about-us [team]="team" />
