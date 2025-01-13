@@ -14,6 +14,11 @@ import { TeamInformationComponent } from './team-information/team-information.co
 import { TeamMembersComponent } from './team-members/team-members.component';
 import { TeamOtherTournamentsComponent } from './team-other-tournaments/team-other-tournaments.component';
 import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tournaments.component';
+import { TranslatePipe } from '@ngx-translate/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../../../../mobile/src/app/business-rules/auth/auth.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ButtonComponent } from '../../ui-shared';
 
 @Component({
   standalone: true,
@@ -24,15 +29,39 @@ import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tou
     TeamInformationComponent,
     TeamOwnTournamentsComponent,
     TeamOtherTournamentsComponent,
+    TranslatePipe,
+    ButtonComponent
   ],
   templateUrl: './page-team-details.component.html',
   styleUrl: './page-team-details.component.less',
 })
 export class PageTeamDetailsComponent {
-  constructor(private store$: Store) {}
+  public teamEscapedName: string | null = null;
+  public canEditTeam: boolean = false;
+  public isMemberOfTeam: boolean = false;
+
+  constructor(
+    private readonly store$: Store,
+    private readonly router: Router,
+    private readonly authService: AuthService
+  ) {
+    this.team$.pipe(takeUntilDestroyed()).subscribe((team) => {
+      if (team) {
+        this.teamEscapedName = team.escapedName;
+
+        this.authService.isAdminOfTeam(this.teamEscapedName).pipe().subscribe(
+          canEditTeam => this.canEditTeam = canEditTeam
+        )
+      }
+    });
+  }
 
   @SingletonGetter()
   public get team$(): Observable<TeamData | null> {
     return this.store$.select(teamDetailsSelector);
+  }
+
+  public redirectToManageTeam() {
+    this.router.navigate(['manage-team-details', this.teamEscapedName]);
   }
 }

@@ -244,6 +244,22 @@
     "delete-account": "Delete Account",
     "save": "Save"
   },
+  "page-team-details": {
+    "members": "members",
+    "role-moderator": "moderator",
+    "role-admin": "admin",
+    "no-members": "no members yet",
+    "founded": "founded",
+    "about-us": "about us",
+    "training": "training",
+    "last-updated": "last updated",
+    "last-tournament-played": "last tournament played",
+    "last-tournament-organized": "last tournament organized",
+    "tournaments-organized": "organized tournaments",
+    "no-tournaments-organized-yet": "no tournaments organized yet",
+    "participated-tournaments": "participated tournaments",
+    "no-participated-tournaments": "no participated tournaments yet"
+  },
   "seconds": "seconds",
   "minutes": "minutes",
   "hours": "hours",

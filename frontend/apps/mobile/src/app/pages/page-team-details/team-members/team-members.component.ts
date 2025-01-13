@@ -1,14 +1,13 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
-import { TeamData, TeamUserData, TournamentTeamData, UserRole } from '@jtr/data-domain/store';
+import { TeamData, TeamUserData } from '@jtr/data-domain/store';
 
 import {
   ChipComponent,
   DataContainerExpandableComponent,
   DataContainerRowComponent
 } from '../../../ui-shared';
-import { Panel } from '../../page-tournament-details/tournament-information/tournament-information.component';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

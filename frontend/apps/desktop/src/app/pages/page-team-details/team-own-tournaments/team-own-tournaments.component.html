@@ -1,8 +1,13 @@
-<p>{{ 'participated-tournaments' | translate }}</p>
+<p>{{ 'page-team-details.participated-tournaments' | translate }}:</p>
 
 @if (team.pastTournaments.length > 0) { @for (tournament of
 team.pastTournaments; track tournament) {
-<app-button>{{ tournament.name }}</app-button>
+<app-button
+  [color]="ButtonColorEnum.Negative"
+  [type]="ButtonTypeEnum.Flat"
+  [fullWidth]="true"
+  (click)="redirectToTournament(tournament.id)"
+>{{ tournament.name }}</app-button>
 } } @else {
-<p>Noch keine teilgenommenen Turniere vorhanden</p>
+<p>{{ 'page-team-details.no-participated-tournaments' | translate }}</p>
 }

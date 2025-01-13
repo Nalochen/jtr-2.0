@@ -1,7 +1,7 @@
 <app-data-container>
   <app-data-container-row>
     <p ngProjectAs="container-headline">
-      zuletzt an einem Turnier teilgenommen:
+      {{ 'page-team-details.last-tournament-played' | translate }}:
     </p>
     <p ngProjectAs="container-content">
       {{ team.lastTournamentPlayed | date : 'dd.MM.YYYY' }}
@@ -9,7 +9,7 @@
   </app-data-container-row>
 
   <app-data-container-row>
-    <p ngProjectAs="container-headline">zuletzt ein Turnier organisiert:</p>
+    <p ngProjectAs="container-headline">{{ 'page-team-details.last-tournament-organized' | translate }}:</p>
     <p ngProjectAs="container-content">
       {{ team.lastTournamentOrganized | date : 'dd.MM.YYYY' }}
     </p>
