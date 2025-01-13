@@ -10,7 +10,6 @@ import { UserData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from '../../business-rules/auth/auth.service';
-import { TeamService } from '../../business-rules/team/team.service';
 
 import {
   ButtonColorEnum,
@@ -44,8 +43,7 @@ export class PageUserDetailsComponent {
 
   constructor(
     private store$: Store,
-    private readonly authService: AuthService,
-    private readonly teamService: TeamService
+    private readonly authService: AuthService
   ) {}
 
   @SingletonGetter()
@@ -64,9 +62,5 @@ export class PageUserDetailsComponent {
 
   public addUserToTeam(): void {
     window.alert('User added to team');
-  }
-
-  public getPictureUrl(picture: string): string {
-    return this.teamService.getPictureUrl(picture);
   }
 }

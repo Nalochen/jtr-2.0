@@ -5,7 +5,7 @@ Content-Type: application/json
 Authorization: Bearer {{jwtToken}}
 
 {
-  "teamId": 2,
+  "teamId": 1,
   "tournamentId": 1
 }
 

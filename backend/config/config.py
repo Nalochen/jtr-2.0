@@ -33,7 +33,7 @@ class Config:
         app.config['CACHE_DEFAULT_TIMEOUT'] = 300
 
         app.config['CELERY_BROKER_NAME'] = os.getenv('CELERY_BROKER_NAME')
-        app.config['CELERY_BROKER_URL'] = os.getenv('CELERY_BROKER_URL')
+        app.config['CELERY_BACKEND_URL'] = os.getenv('CELERY_BACKEND_URL')
         app.config['CELERY_RESULT_BACKEND'] = os.getenv(
             'CELERY_RESULT_BACKEND')
 

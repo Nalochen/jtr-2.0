@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd /home/backend
+
+. venv/bin/activate
+
+echo 'Running migrations'
+
+PYTHONPATH=backend flask db upgrade
+
+echo 'Migrations done'

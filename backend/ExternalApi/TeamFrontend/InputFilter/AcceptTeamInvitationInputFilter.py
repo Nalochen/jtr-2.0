@@ -7,7 +7,6 @@ class AcceptTeamInvitationInputFilter(InputFilter):
     """The input filter for the accept-team-invitation route"""
 
     def __init__(self):
-        """Initializes the AcceptTeamInvitationInputFilter"""
 
         super().__init__()
 

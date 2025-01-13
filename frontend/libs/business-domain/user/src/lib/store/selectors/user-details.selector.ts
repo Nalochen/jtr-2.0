@@ -21,16 +21,3 @@ export const userDetailsNameSelector = createSelector(
   userDetailsStateSelector,
   (state: UserDetailsState) => state.userDetails?.name
 );
-
-export const userDetailsPictureSelector = createSelector(
-  userDetailsStateSelector,
-  (state: UserDetailsState) => state.userDetails?.picture
-);
-
-export const userDetailsPictureUrlSelector = createSelector(
-  userDetailsStateSelector,
-  (state: UserDetailsState) =>
-    state.userDetails?.picture
-      ? `https://cdn.${window.location.host}/assets/user-pictures/${state.userDetails?.picture}`
-      : ''
-);

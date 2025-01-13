@@ -16,7 +16,7 @@ class CreatePasswordResetHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         email: str = data.get('email')
 
@@ -34,8 +34,8 @@ class CreatePasswordResetHandler:
                 )
             )
 
-        except Exception:
-            return Response(status=500)
+        except Exception as e:
+            return Response(status=500, response=str(e))
 
         return Response(
             status=200

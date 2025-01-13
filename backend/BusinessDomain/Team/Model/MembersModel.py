@@ -6,5 +6,5 @@ class MembersModel:
 
     id: int
     name: str
-    picture: str
+    picture_url: str
     role: str

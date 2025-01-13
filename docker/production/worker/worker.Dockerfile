@@ -4,10 +4,8 @@ WORKDIR /app
 
 COPY ../../../backend .
 
-RUN cd worker && pip install --no-cache-dir -r requirements.txt
-
-WORKDIR /app/worker
+RUN pip install --no-cache-dir -r worker/requirements.txt
 
 ENV PYTHONPATH=/app
 
-ENTRYPOINT ["celery", "-A", "tasks", "worker", "--loglevel=info"]
+ENTRYPOINT ["celery", "-A", "worker.tasks", "worker", "--loglevel=info"]

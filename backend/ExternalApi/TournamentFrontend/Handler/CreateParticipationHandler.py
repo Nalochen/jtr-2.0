@@ -1,6 +1,5 @@
 from flask import g
 
-from BusinessDomain.Participation.Rule import DoesParticipationExistsRule
 from BusinessDomain.Participation.UseCase.CommandHandler import (
     CreateParticipationCommandHandler,
 )
@@ -18,7 +17,7 @@ class CreateParticipationHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         teamId: int = data.get('teamId')
         tournamentId: int = data.get('tournamentId')
@@ -28,9 +27,6 @@ class CreateParticipationHandler:
 
         if not DoesTournamentExistsRule.applies(tournamentId):
             return Response(status=404)
-
-        if not DoesParticipationExistsRule.applies(teamId, tournamentId):
-            return Response(status=409)
 
         try:
             CreateParticipationCommandHandler.execute(

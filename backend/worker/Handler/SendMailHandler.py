@@ -3,9 +3,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from smtplib import SMTP
 
-from Model import SendMailTaskBody
-
-from config import MailConfig, logger
+from worker.config import MailConfig, logger
+from worker.Model import SendMailTaskBody
 
 
 class SendMailHandler:

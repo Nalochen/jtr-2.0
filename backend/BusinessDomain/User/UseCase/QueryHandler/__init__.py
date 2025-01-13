@@ -3,3 +3,4 @@ from .GetUserDetailsQueryHandler import GetUserDetailsQueryHandler
 from .GetUserOverviewQueryHandler import GetUserOverviewQueryHandler
 from .IsAdminOfOrganizerQueryHandler import IsAdminOfOrganizerQueryHandler
 from .IsAdminOfTeamQueryHandler import IsAdminOfTeamQueryHandler
+from .IsMemberOfTeamQueryHandler import IsMemberOfTeamQueryHandler

@@ -11,7 +11,7 @@ class UpdateUserLanguageHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         try:
             UpdateUserLanguageCommandHandler.execute(

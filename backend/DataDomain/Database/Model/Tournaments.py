@@ -4,7 +4,7 @@ from typing import List
 
 from sqlalchemy import Column, Enum, func
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import Mapped, aliased
 
 from DataDomain.Database import db
 from DataDomain.Database.Enum import (
@@ -288,3 +288,18 @@ class Tournaments(BaseModel, db.Model):
         """
 
         return json.loads(str(self.contacts))
+
+    @hybrid_property
+    def num_teams(self):
+        """Ermittelt die Anzahl der teilnehmenden Teams für das Turnier."""
+        return len(self.teams)
+
+    @num_teams.expression
+    def num_teams(cls):
+        """Ausdruck für die Anzahl der teilnehmenden Teams für SQL-Abfragen."""
+        aliased_participates_in = aliased(participates_in)
+        return (
+            db.select(func.count(aliased_participates_in.c.team_id))
+            .where(aliased_participates_in.c.tournament_id == cls.id)
+            .scalar_subquery()
+        )

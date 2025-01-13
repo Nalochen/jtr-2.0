@@ -12,7 +12,7 @@ class CreateNewPasswordHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         hash: str = data.get('hash')
 

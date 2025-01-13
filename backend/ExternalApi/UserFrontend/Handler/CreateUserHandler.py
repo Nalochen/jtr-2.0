@@ -13,7 +13,7 @@ class CreateUserHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         username = data.get('username')
         email = data.get('email')

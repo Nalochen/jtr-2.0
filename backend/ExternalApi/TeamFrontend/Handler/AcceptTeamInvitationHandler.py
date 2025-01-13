@@ -17,7 +17,7 @@ class AcceptTeamInvitationHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         hash: str = data.get('hash')
         currentUserId: int = getJwtIdentity().id

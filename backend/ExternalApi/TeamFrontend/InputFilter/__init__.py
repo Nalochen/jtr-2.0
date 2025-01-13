@@ -2,6 +2,7 @@ from .AcceptTeamInvitationInputFilter import AcceptTeamInvitationInputFilter
 from .CreateTeamInputFilter import CreateTeamInputFilter
 from .DeleteMembershipInputFilter import DeleteMembershipInputFilter
 from .DeleteTeamInputFilter import DeleteTeamInputFilter
+from .GetHistoricTeamPointsInputFilter import GetHistoricTeamPointsInputFilter
 from .GetTeamDetailsInputFilter import GetTeamDetailsInputFilter
 from .SendTeamInvitationInputFilter import SendTeamInvitationInputFilter
 from .UpdateMembershipInputFilter import UpdateMembershipInputFilter

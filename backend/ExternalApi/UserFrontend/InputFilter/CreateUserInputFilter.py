@@ -1,7 +1,11 @@
 from flask_inputfilter import InputFilter
 from flask_inputfilter.Enum.RegexEnum import RegexEnum
 from flask_inputfilter.Filter import StringTrimFilter, ToBooleanFilter, ToNullFilter
-from flask_inputfilter.Validator import IsBooleanValidator, IsStringValidator, RegexValidator
+from flask_inputfilter.Validator import (
+    IsBooleanValidator,
+    IsStringValidator,
+    RegexValidator,
+)
 
 
 class CreateUserInputFilter(InputFilter):

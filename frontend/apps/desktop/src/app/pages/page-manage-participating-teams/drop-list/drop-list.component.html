@@ -13,7 +13,7 @@
         <div class="custom-placeholder" *cdkDragPlaceholder></div>
         <div class="team-infos">
           <img
-            ngSrc="{{ getPictureUrl(team.logo) }}"
+            ngSrc="{{ team.logoUrl }}"
             [alt]="team.name"
             height="32"
             width="32"
@@ -61,7 +61,7 @@
         <div class="custom-placeholder" *cdkDragPlaceholder></div>
         <div class="team-infos">
           <img
-            ngSrc="{{ getPictureUrl(team.logo) }}"
+            ngSrc="{{ team.logoUrl }}"
             [alt]="team.name"
             height="32"
             width="32"

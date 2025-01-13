@@ -7,7 +7,7 @@ from typing import List
 class TeamResult:
 
     id: int
-    logo: str
+    logoUrl: str
     name: str
 
 
@@ -21,7 +21,7 @@ class GetUserDetailsResult:
     isCityVisible: bool
     isDeleted: bool
     isNameVisible: bool
-    picture: str
+    pictureUrl: str
     pronouns: str
     teams: List[TeamResult]
     updatedAt: datetime

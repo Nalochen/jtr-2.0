@@ -11,7 +11,6 @@ class CreateTeamInputFilter(InputFilter):
     """The input filter for the create-team route"""
 
     def __init__(self):
-        """Initializes the CreateTeamInputFilter"""
 
         super().__init__()
 

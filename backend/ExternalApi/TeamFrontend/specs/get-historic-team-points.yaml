@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/team-frontend/get-historic-team-points/{teamId}:
+    get:
+      summary: Get historic team points
+      operationId: getHistoricTeamPoints
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: number
+
+      responses:
+        '200':
+          description: OK

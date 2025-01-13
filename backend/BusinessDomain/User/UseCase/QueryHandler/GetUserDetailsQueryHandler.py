@@ -32,12 +32,12 @@ class GetUserDetailsQueryHandler:
             isDeleted=user.is_deleted,
             isNameVisible=user.name_visibility,
             name=user.name if user.name_visibility or profileOfCurrentUser else None,
-            picture=user.picture,
+            pictureUrl=user.picture_url,
             pronouns=user.pronouns,
             teams=[
                 TeamResult(
                     id=team.id,
-                    logo=team.logo,
+                    logoUrl=team.logo_url,
                     name=team.name,
                 ) for team in user.teams],
             updatedAt=user.updated_at,

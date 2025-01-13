@@ -45,16 +45,16 @@ export class TeamHeaderComponent implements OnChanges {
   ) {}
 
   @Input() public form!: FormGroup<EditTeamForm>;
-  @Input() public logo?: string;
+  @Input() public logoUrl?: string;
 
-  public logoUrl?: string;
+  public logoUrlFe?: string;
 
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['logo']) {
-      this.logoUrl = this.logo ? this.teamService.getPictureUrl(this.logo) : '';
+      this.logoUrlFe = this.logoUrl;
       this.changeDetectorRef.markForCheck();
     }
   }
@@ -68,9 +68,9 @@ export class TeamHeaderComponent implements OnChanges {
 
     const selectedFile = input.files[0];
 
-    this.logoUrl = this.teamService.getPictureUrl(
-      (await this.teamService.updatePicture(selectedFile)).logo
-    );
+    this.logoUrlFe = (
+      await this.teamService.updatePicture(selectedFile)
+    ).logoUrl;
     this.changeDetectorRef.markForCheck();
   }
 }
