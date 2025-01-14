@@ -1,15 +1,36 @@
 app-data-container {
   margin: 0 5px 20px 5px;
   width: 100%;
+  display: grid;
+  grid-template-areas:
+    'logo gap date city indicator'
+    'logo gap name name name';
+  grid-template-columns: 50px 0 auto auto auto;
+  gap: 4px;
 }
 
-.headline {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 8px;
+img {
+  grid-area: logo;
+  border-radius: 50%;
+  align-self: center;
+}
+
+.date {
+  grid-area: date;
+  text-align: start;
+}
+
+.city {
+  grid-area: city;
+  text-align: start;
+}
+
+.indicator {
+  grid-area: indicator;
 }
 
 h3 {
+  grid-area: name;
   text-align: start;
 }
+

@@ -1,29 +1,26 @@
 <app-button [fullWidth]="true" (click)="detailsClick()">
   <app-data-container>
-    <app-data-container-row ngProjectAs="panel-header">
-      <div ngProjectAs="container-headline" class="headline">
-        <div class="headline">
-          <p class="date">
-            {{ tournament.startDate | date : 'dd.MM' }} -
-            {{ tournament.endDate | date : 'dd.MM' }}
-          </p>
-          <p>{{ tournament.location }}</p>
+    <img
+      ngSrc="{{ tournament.organizerLogo }}"
+      width="50"
+      height="50"
+      alt="Logo of {{ tournament.name }}"
+    />
+    <p class="date">
+      {{ tournament.startDate | date : 'dd.MM' }} -
+      {{ tournament.endDate | date : 'dd.MM' }}
+    </p>
+    <p class="city">{{ tournament.location }}</p>
 
-          @if (!isPreviousTournament) {
-          <app-status-indicator
-            ngProjectAs="container-additional"
-            [totalTeams]="tournament.totalTeams"
-            [registeredTeams]="tournament.registeredTeams"
-          />
-          }
-        </div>
-      </div>
-      <span class="material-icons-outlined" ngProjectAs="container-icon"
-        >event</span
-      >
-      <h3 ngProjectAs="container-content" class="title">
-        {{ tournament.name }}
-      </h3>
-    </app-data-container-row>
+    @if (isPreviousTournament === false) {
+    <app-status-indicator
+      [totalTeams]="tournament.totalTeams"
+      [registeredTeams]="tournament.registeredTeams"
+      class="indicator"
+    />
+    }
+    <h3 class="name">
+      {{ tournament.name }}
+    </h3>
   </app-data-container>
 </app-button>
