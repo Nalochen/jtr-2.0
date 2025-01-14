@@ -1,10 +1,10 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { TeamData } from '@jtr/data-domain/store';
 
-import { ButtonComponent, ButtonColorEnum, ButtonTypeEnum } from '../../../ui-shared';
-import { Router } from '@angular/router';
+import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
