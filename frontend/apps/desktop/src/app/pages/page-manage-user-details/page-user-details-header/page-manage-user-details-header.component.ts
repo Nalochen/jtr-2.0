@@ -43,18 +43,16 @@ export class PageManageUserDetailsHeaderComponent implements OnChanges {
 
   @Input() public form!: FormGroup<EditUserForm>;
   @Input() public isLoggedIn$!: boolean;
-  @Input() public picture?: string;
+  @Input() public pictureUrl?: string;
 
-  public pictureUrl?: string;
+  public pictureUrlFe?: string;
 
   public readonly ButtonTypeEnum = ButtonTypeEnum;
   public readonly ButtonColorEnum = ButtonColorEnum;
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['picture']) {
-      this.pictureUrl = this.picture
-        ? this.userService.getPictureUrl(this.picture)
-        : '';
+      this.pictureUrlFe = this.pictureUrl;
       this.changeDetectorRef.markForCheck();
     }
   }
@@ -68,9 +66,9 @@ export class PageManageUserDetailsHeaderComponent implements OnChanges {
 
     const selectedFile = input.files[0];
 
-    this.pictureUrl = this.userService.getPictureUrl(
-      (await this.userService.updatePicture(selectedFile)).picture
-    );
+    this.pictureUrlFe = (
+      await this.userService.updatePicture(selectedFile)
+    ).pictureUrl;
     this.changeDetectorRef.markForCheck();
   }
 }

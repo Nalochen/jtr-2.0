@@ -18,7 +18,7 @@ class DeleteTournamentSubscriptionHandler:
     @staticmethod
     async def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         tournamentId = data.get('tournamentId')
         currentUserId = getJwtIdentity().id

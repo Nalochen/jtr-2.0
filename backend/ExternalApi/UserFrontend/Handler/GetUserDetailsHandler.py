@@ -13,7 +13,7 @@ class GetUserDetailsHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         escapedUsername: str | None = data.get('escapedUsername')
 

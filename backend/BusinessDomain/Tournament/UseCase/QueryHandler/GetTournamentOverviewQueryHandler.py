@@ -17,7 +17,7 @@ class GetTournamentOverviewQueryHandler:
         return [TournamentOverviewResult(
             id=tournament.id,
             name=tournament.name,
-            organizerLogo=tournament.logo,
+            organizerLogoUrl=tournament.logo_url,
             startDate=tournament.start_date,
             endDate=tournament.end_date,
             totalTeams=tournament.possible_space,

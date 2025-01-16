@@ -12,7 +12,6 @@ class UpdateTeamPictureInputFilter(InputFilter):
     """The input filter for the update-team-picture route"""
 
     def __init__(self):
-        """Initializes the UpdateTeamPictureInputFilter"""
 
         super().__init__()
 

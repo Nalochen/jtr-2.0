@@ -16,16 +16,3 @@ export const teamDetailsNameSelector = createSelector(
   teamDetailsStateSelector,
   (state: TeamDetailsState) => state.teamDetails?.name
 );
-
-export const teamDetailsLogoSelector = createSelector(
-  teamDetailsStateSelector,
-  (state: TeamDetailsState) => state.teamDetails?.logo
-);
-
-export const teamDetailsLogoUrlSelector = createSelector(
-  teamDetailsStateSelector,
-  (state: TeamDetailsState) =>
-    state.teamDetails?.logo
-      ? `https://cdn.${window.location.host}/assets/team-pictures/${state.teamDetails?.logo}`
-      : ''
-);

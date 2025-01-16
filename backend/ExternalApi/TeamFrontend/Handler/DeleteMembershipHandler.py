@@ -17,7 +17,7 @@ class DeleteMembershipHandler:
     @staticmethod
     async def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         currentUser = getJwtIdentity()
 

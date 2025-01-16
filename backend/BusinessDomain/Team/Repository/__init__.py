@@ -1,2 +1,3 @@
+from .HistoricTeamPointsRepository import HistoricTeamPointsRepository
 from .TeamInvitationRepository import TeamInvitationRepository
 from .TeamRepository import TeamRepository

@@ -1,7 +1,5 @@
 ### Returns if the user is an admin of the team
-### Execute ExternalApi/UserFrontend/specs/create-password-request.http before using this to recieve the hash!
 GET https://{{host}}/api/user-frontend/is-admin-of-team/{{escapedName}}
-Authorization: Bearer {{jwtToken}}
 
 
 > {%

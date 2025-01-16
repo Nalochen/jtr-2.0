@@ -1,3 +1,6 @@
 celery
+flask
+flask_migrate
 pymysql
+redis
 sqlalchemy

@@ -7,7 +7,7 @@ class TeamOverviewQueryResult:
     id: int
     name: str
     escapedName: str
-    logo: str
+    logoUrl: str
     points: float
     city: str
     placement: str

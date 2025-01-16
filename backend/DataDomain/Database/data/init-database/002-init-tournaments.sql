@@ -39,14 +39,14 @@ INSERT IGNORE INTO tournaments (
     organizer_id
 ) VALUES (
     'Pottpompfen mit Biss, für Mutige mit Zunder',
-    '2025-01-18 10:00:00',
-    '2025-01-18 18:00:00',
+    '2025-01-07 10:00:00',
+    '2025-01-08 18:00:00',
     'Abschlussturnier der Pottsblitze und Potthucken, die in Schul-AGs zusammen kommen und halbjährlich neu ausgeschrieben werden. Dies ist das Winterturnier. Das Pendant im Sommer ist "Der Pott erwacht" (Termin steht noch nicht fest)..',
     '',
     'Turnhalle der Maria Sybilla Merian - Gesamtschule, Lohackerstraße 9a, 44867 Bochum',
     16,
-    '2025-01-17',
-    '2025-01-18',
+    '2025-01-07',
+    '2025-01-08',
     20,
     'PER_TEAM',
     'published',

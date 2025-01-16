@@ -9,7 +9,6 @@ class UpdateMembershipInputFilter(InputFilter):
     """The input filter for the update-membership route"""
 
     def __init__(self):
-        """Initializes the UpdateMembershipInputFilter"""
 
         super().__init__()
 

@@ -5,8 +5,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { TournamentData } from '@jtr/data-domain/store';
 
-import { TeamService } from '../../../../../../desktop/src/app/business-rules/team/team.service';
-
 @Component({
   selector: 'tournament-header',
   standalone: true,
@@ -16,11 +14,5 @@ import { TeamService } from '../../../../../../desktop/src/app/business-rules/te
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentHeaderComponent {
-  constructor(private readonly teamService: TeamService) {}
-
   @Input() public tournament!: TournamentData;
-
-  public getPictureUrl(picture: string): string {
-    return this.teamService.getPictureUrl(picture);
-  }
 }

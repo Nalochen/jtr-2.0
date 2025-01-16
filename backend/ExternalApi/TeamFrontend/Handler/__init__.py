@@ -2,6 +2,7 @@ from .AcceptTeamInvitationHandler import AcceptTeamInvitationHandler
 from .CreateTeamHandler import CreateTeamHandler
 from .DeleteMembershipHandler import DeleteMembershipHandler
 from .DeleteTeamHandler import DeleteTeamHandler
+from .GetHistoricTeamPointsHandler import GetHistoricTeamPointsHandler
 from .GetTeamDetailsHandler import GetTeamDetailsHandler
 from .GetTeamOverviewHandler import GetTeamOverviewHandler
 from .SendTeamInvitationHandler import SendTeamInvitationHandler

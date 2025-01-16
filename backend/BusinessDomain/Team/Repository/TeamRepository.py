@@ -51,7 +51,7 @@ class TeamRepository:
             Teams.id,
             Teams.name,
             Teams.escaped_name,
-            Teams.logo,
+            Teams.logo_url,
             Teams.points,
             Teams.city,
             subquery.c.rank.label('placement')
@@ -71,7 +71,7 @@ class TeamRepository:
             Teams.id,
             Teams.name,
             Teams.escaped_name,
-            Teams.logo,
+            Teams.logo_url,
             Teams.points,
             Teams.city,
             Teams.is_mix_team,
@@ -102,7 +102,7 @@ class TeamRepository:
             Users.id,
             Users.name,
             cast(is_part_of.c.user_role, String).label('role'),
-            Users.picture
+            Users.picture_url
         ).join(
             is_part_of, is_part_of.c.user_id == Users.id
         ).filter(

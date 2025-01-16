@@ -18,7 +18,6 @@ import { UserData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from '../../business-rules/auth/auth.service';
-import { TeamService } from '../../business-rules/team/team.service';
 import { UserService } from '../../business-rules/user/user.service';
 
 import {
@@ -61,8 +60,7 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
     private store$: Store,
     private readonly authService: AuthService,
     private readonly userService: UserService,
-    private readonly router: Router,
-    private readonly teamService: TeamService
+    private readonly router: Router
   ) {}
 
   @SingletonGetter()
@@ -84,7 +82,7 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
         this.form.controls.isNameVisible.setValue(user.isNameVisible);
         this.form.controls.birthdate.setValue(user.birthdate || '');
         this.form.controls.isBirthdateVisible.setValue(user.isBirthdateVisible);
-        this.form.controls.profilePicture.setValue(user.picture);
+        this.form.controls.profilePicture.setValue(user.pictureUrl);
         this.form.controls.pronouns.setValue(user.pronouns || '');
         this.form.controls.city.setValue(user.city || '');
         this.form.controls.isCityVisible.setValue(user.isCityVisible);
@@ -120,9 +118,5 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
       pronouns: this.form.controls.pronouns.value,
       username: this.form.controls.username.value,
     });
-  }
-
-  public getPictureUrl(picture: string): string {
-    return this.teamService.getPictureUrl(picture);
   }
 }

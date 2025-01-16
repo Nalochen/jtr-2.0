@@ -1,9 +1,12 @@
+import os
 from datetime import date, datetime
 from typing import Any, Dict, List
 
-from sqlalchemy import func
+from sqlalchemy import Case, case, func, literal
+from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
+from BusinessDomain.Common.Enum import PicturePathEnum
 from DataDomain.Database import db
 from DataDomain.Database.Enum import UserLanguageTypesEnum
 from DataDomain.Database.Model import BaseModel, is_part_of
@@ -123,3 +126,39 @@ class Users(BaseModel, db.Model):
         del serialized['passwordHash']
 
         return serialized
+
+    @hybrid_property
+    def picture_url(self) -> str:
+        """Creates the URL for the user's profile picture."""
+
+        if self.picture is None or self.picture == '':
+            return ''
+
+        match os.getenv('FLASK_ENV'):
+            case 'development':
+                return f'https://cdn.localhost/assets/{
+                    PicturePathEnum.USER_PICTURES_FOLDER.value}/{
+                    self.picture}'
+
+            case 'production':
+                return f'https://cdn.jugger-tourna.de/assets/{
+                    PicturePathEnum.USER_PICTURES_FOLDER.value}/{
+                    self.picture}'
+
+            case _:
+                return self.picture
+
+    @picture_url.expression
+    def picture_url(cls) -> Case:
+        """Creates the URL for the user's profile picture."""
+
+        return case(
+            (cls.picture is None, literal(None)),
+            (cls.picture == '', literal(None)),
+            (literal(os.getenv('FLASK_ENV')) == 'development',
+             literal(f'https://cdn.localhost/assets/{PicturePathEnum.USER_PICTURES_FOLDER.value}/') + cls.picture),
+            (literal(os.getenv('FLASK_ENV')) == 'production',
+             literal(
+                 f'https://cdn.jugger-tourna.de/assets/{PicturePathEnum.USER_PICTURES_FOLDER.value}/') + cls.picture),
+            else_=cls.picture
+        )

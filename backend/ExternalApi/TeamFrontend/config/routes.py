@@ -4,11 +4,15 @@ from flask_jwt_extended import jwt_required
 from config import cache, limiter
 from DataDomain.Model import Response
 from ExternalApi.TeamFrontend.config import create_team_cache_key
+from ExternalApi.TeamFrontend.config.extensions import (
+    create_team_historic_points_cache_key,
+)
 from ExternalApi.TeamFrontend.Handler import (
     AcceptTeamInvitationHandler,
     CreateTeamHandler,
     DeleteMembershipHandler,
     DeleteTeamHandler,
+    GetHistoricTeamPointsHandler,
     GetTeamDetailsHandler,
     GetTeamOverviewHandler,
     SendTeamInvitationHandler,
@@ -21,6 +25,7 @@ from ExternalApi.TeamFrontend.InputFilter import (
     CreateTeamInputFilter,
     DeleteMembershipInputFilter,
     DeleteTeamInputFilter,
+    GetHistoricTeamPointsInputFilter,
     GetTeamDetailsInputFilter,
     SendTeamInvitationInputFilter,
     UpdateMembershipInputFilter,
@@ -44,6 +49,14 @@ def getTeamDetails(escapedName) -> Response:
 @cache.cached(key_prefix='team-overview')
 def getTeamOverview() -> Response:
     return GetTeamOverviewHandler.handle()
+
+
+@team_frontend.route('/get-historic-team-points/<teamId>',
+                     methods=['GET'], endpoint='get-historic-team-points')
+@cache.cached(key_prefix=create_team_historic_points_cache_key)
+@GetHistoricTeamPointsInputFilter.validate()
+def getHistoricTeamPoints(teamId) -> Response:
+    return GetHistoricTeamPointsHandler.handle()
 
 
 @team_frontend.route('/update-membership',

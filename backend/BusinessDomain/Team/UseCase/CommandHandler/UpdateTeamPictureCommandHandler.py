@@ -18,12 +18,12 @@ class UpdateTeamPictureCommandHandler:
 
             decodedData = base64.b64decode(command.picture)
 
-            team.picture = PictureService.savePicture(
+            team.logo = PictureService.savePicture(
                 decodedData, PictureTypeEnum.TEAM)
 
             TeamRepository.update()
 
-            return team.picture
+            return team.logo_url
 
         except Exception as e:
             logger.error(f'UpdateTeamPictureCommandHandler | execute | {e}')

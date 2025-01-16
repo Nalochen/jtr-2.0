@@ -22,5 +22,5 @@ class SendSingleMail:
                 recipients=recipients,
                 body=body,
                 html=html
-            )
+            ).toDict()
         ])

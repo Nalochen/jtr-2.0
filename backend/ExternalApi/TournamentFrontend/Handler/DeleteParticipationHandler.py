@@ -23,7 +23,7 @@ class DeleteParticipationHandler:
     @staticmethod
     async def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         teamId: int = data.get('teamId')
         tournamentId: int = data.get('tournamentId')

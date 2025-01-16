@@ -22,7 +22,7 @@ class GetUserOverviewQueryHandler:
             city=user.city if user.city_visibility else None,
             email=user.email,
             name=user.name if user.name_visibility else None,
-            picture=user.picture,
+            pictureUrl=user.picture_url,
             pronouns=user.pronouns,
             username=user.username
         ) for user in users]

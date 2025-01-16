@@ -7,7 +7,6 @@ class DeleteMembershipInputFilter(InputFilter):
     """The input filter for the delete-membership route"""
 
     def __init__(self):
-        """Initializes the DeleteMembershipInputFilter"""
 
         super().__init__()
 

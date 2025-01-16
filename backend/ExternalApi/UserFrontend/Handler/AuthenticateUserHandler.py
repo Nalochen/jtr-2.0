@@ -12,7 +12,7 @@ class AuthenticateUserHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         username: str | None = data.get('username')
         email: str | None = data.get('email')

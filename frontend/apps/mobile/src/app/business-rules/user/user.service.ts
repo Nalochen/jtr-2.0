@@ -28,7 +28,7 @@ export interface UpdateUserResponse {
 }
 
 export interface UpdateUserPictureResponse {
-  picture: string;
+  pictureUrl: string;
 }
 
 @Injectable({
@@ -78,10 +78,6 @@ export class UserService {
     await firstValueFrom(this.http.delete<void>(DELETE_USER_ENDPOINT));
 
     this.authService.logout();
-  }
-
-  public getPictureUrl(picture: string): string {
-    return `https://cdn.${window.location.host}/assets/user-pictures/${picture}`;
   }
 
   private fileToBase64(file: File): Promise<string> {

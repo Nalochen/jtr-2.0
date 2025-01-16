@@ -28,7 +28,7 @@ class TournamentRepository:
             Tournaments.name,
             Tournaments.start_date,
             Tournaments.end_date,
-            Teams.logo.label('logo'),
+            Teams.logo_url.label('logo_url'),
             Tournaments.possible_space,
             func.count(
                 TeamParticipation.c.team_id).label('registered_teams'),
@@ -68,7 +68,7 @@ class TournamentRepository:
             Tournaments.name,
             Tournaments.start_date,
             Tournaments.end_date,
-            Teams.logo.label('logo'),
+            Teams.logo_url.label('logo_url'),
             Tournaments.possible_space,
             func.count(
                 TeamParticipation.c.team_id).label('registered_teams'),

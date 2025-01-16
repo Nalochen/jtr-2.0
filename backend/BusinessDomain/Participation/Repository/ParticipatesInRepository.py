@@ -88,7 +88,11 @@ class ParticipatesInRepository:
             raise e
 
     @staticmethod
-    def recreate(tournamentId: int, teamId: int, registrationOrder: int) -> None:
+    def recreate(
+            tournamentId: int,
+            teamId: int,
+            registrationOrder: int,
+            isOnWaitingList: bool) -> None:
         """Recreate a participates_in entry"""
 
         try:
@@ -100,7 +104,8 @@ class ParticipatesInRepository:
             ).update(
                 values={
                     'is_deleted': False,
-                    'registration_order': registrationOrder
+                    'registration_order': registrationOrder,
+                    'is_on_waiting_list': isOnWaitingList
                 }
             )
             db.session.commit()

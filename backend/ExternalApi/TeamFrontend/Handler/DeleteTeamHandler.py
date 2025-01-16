@@ -14,7 +14,7 @@ class DeleteTeamHandler:
     @staticmethod
     async def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         teamId: int = data.get('teamId')
 

@@ -8,25 +8,25 @@ INSERT IGNORE INTO participates_in (
 ) VALUES (
     1,
     1,
-    NULL,
-    TRUE,
+    1,
     FALSE,
+    TRUE,
     1
 ),
        (
     1,
     2,
-    NULL,
+    2,
     FALSE,
-    FALSE,
+    TRUE,
     2
 ),
        (
     1,
     3,
-    NULL,
-    TRUE,
+    3,
     FALSE,
+    TRUE,
     3
 ),
        (

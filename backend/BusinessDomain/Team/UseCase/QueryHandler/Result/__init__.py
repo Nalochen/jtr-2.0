@@ -1,2 +1,3 @@
+from .GetHistoricTeamPointsResult import GetHistoricTeamPointsResult
 from .GetTeamDetailsQueryResult import GetTeamDetailsQueryResult
 from .TeamOverviewQueryResult import TeamOverviewQueryResult

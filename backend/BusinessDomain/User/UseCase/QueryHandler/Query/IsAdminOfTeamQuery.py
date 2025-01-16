@@ -2,6 +2,6 @@ from dataclasses import dataclass
 
 
 @dataclass
-class IsUserAdminOfTeamQuery:
+class IsAdminOfTeamQuery:
 
     escapedName: str

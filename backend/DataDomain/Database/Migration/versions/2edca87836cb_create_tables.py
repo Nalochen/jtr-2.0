@@ -303,6 +303,14 @@ def upgrade():
                     sa.ForeignKeyConstraint(['user_id'], ['users.id']),
                     sa.PrimaryKeyConstraint('tournament_id', 'user_id')
                     )
+    op.create_table('historic_team_points',
+                    sa.Column('id', sa.Integer(), nullable=False),
+                    sa.Column('date', sa.DateTime(), nullable=False),
+                    sa.Column('points', sa.Float(), nullable=False),
+                    sa.Column('team_id', sa.Integer(), nullable=False),
+                    sa.ForeignKeyConstraint(['team_id'], ['teams.id']),
+                    sa.PrimaryKeyConstraint('id')
+                    )
     # ### end Alembic commands ###
 
 
@@ -315,4 +323,5 @@ def downgrade():
     op.drop_table('teams')
     op.drop_table('tournaments')
     op.drop_table('users')
+    op.drop_table('historic_team_points')
     # ### end Alembic commands ###

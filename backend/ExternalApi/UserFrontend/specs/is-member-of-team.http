@@ -1,0 +1,9 @@
+### Returns if the user is an member of the team
+GET https://{{host}}/api/user-frontend/is-member-of-team/{{escapedName}}
+
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

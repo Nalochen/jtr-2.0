@@ -38,7 +38,7 @@ export interface DeleteTeamRequestBody {
 }
 
 export interface UpdateTeamLogoResponse {
-  logo: string;
+  logoUrl: string;
 }
 
 @Injectable({
@@ -81,10 +81,6 @@ export class TeamService {
         request
       )
     );
-  }
-
-  public getPictureUrl(picture: string): string {
-    return `https://cdn.${window.location.host}/assets/team-pictures/${picture}`;
   }
 
   private fileToBase64(file: File): Promise<string> {

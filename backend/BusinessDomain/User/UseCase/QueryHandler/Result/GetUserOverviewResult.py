@@ -9,7 +9,7 @@ class GetUserOverviewResult:
     username: str
     name: str | None
     birthdate: date | None
-    picture: str | None
+    pictureUrl: str | None
     pronouns: str | None
     city: str | None
     email: str | None

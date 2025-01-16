@@ -14,7 +14,7 @@ class UpdateTeamHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         teamId = data.get('teamId')
 
