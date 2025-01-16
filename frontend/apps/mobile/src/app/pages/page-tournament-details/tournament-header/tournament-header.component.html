@@ -7,7 +7,8 @@
 
 <div class="tournament-information">
   <div class="event-information">
-    @if ((tournament.date.start | date : 'dd.MM.YYYY') === (tournament.date.end | date : 'dd.MM.YYYY')) {
+    @if ((tournament.date.start | date : 'dd.MM.YYYY') === (tournament.date.end
+    | date : 'dd.MM.YYYY')) {
     <p class="date">
       {{ tournament.date.start | date : 'dd.MM.YYYY' }}
     </p>

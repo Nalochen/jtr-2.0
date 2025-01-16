@@ -5,9 +5,11 @@
     <p class="small-text" *ngIf="team$ | async as team">
       gegründet: {{ team.founded | date : 'dd.MM.YYYY' }}
     </p>
+    @if ((isAdminOfTeam$() | async) === true) {
     <button mat-icon-button (click)="redirectToManageTeam()">
       <span class="material-icons">edit</span>
     </button>
+    }
   </div>
 
   <team-information *ngIf="team$ | async as team" [team]="team" />

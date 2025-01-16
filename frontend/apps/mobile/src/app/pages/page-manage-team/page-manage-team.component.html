@@ -1,8 +1,10 @@
+@let team = team$ | async;
+
 <div [formGroup]="form" class="form-group">
-  <team-header [form]="form" [logoUrl]="(team$ | async)?.logoUrl" />
+  <team-header [form]="form" [logoUrl]="team?.logoUrl" [teamId]="team?.id" />
 
   <div class="content">
-    <p class="small-text" *ngIf="team$ | async as team">
+    <p class="small-text" *ngIf="team">
       {{ 'page-manage-team.founded' | translate }}:
       {{ team.founded | date : 'dd.MM.yyyy' }}
     </p>

@@ -64,6 +64,7 @@ def getAdminOfTeams() -> Response:
 
 @user_frontend.route('/is-admin-of-team/<escapedName>',
                      methods=['GET'], endpoint='is-admin-of-team')
+@jwt_required()
 @IsAdminOfTeamInputFilter.validate()
 def isAdminOfTeam(escapedName) -> Response:
     return IsAdminOfTeamHandler.handle()
@@ -71,6 +72,7 @@ def isAdminOfTeam(escapedName) -> Response:
 
 @user_frontend.route('/is-admin-of-organizer/<tournamentId>',
                      methods=['GET'], endpoint='is-admin-of-organizer')
+@jwt_required()
 @IsAdminOfOrganizerInputFilter.validate()
 def isAdminOfOrganizer(tournamentId) -> Response:
     return IsAdminOfOrganizerHandler.handle()
@@ -78,6 +80,7 @@ def isAdminOfOrganizer(tournamentId) -> Response:
 
 @user_frontend.route('/is-member-of-team/<escapedName>',
                      methods=['GET'], endpoint='is-member-of-team')
+@jwt_required()
 @IsMemberOfTeamInputFilter.validate()
 def isMemberOfTeam(escapedName) -> Response:
     return IsMemberOfTeamHandler.handle()

@@ -4,7 +4,6 @@ from sqlalchemy import String, cast, func, or_
 from sqlalchemy.orm import aliased
 
 from BusinessDomain.Team.Model import (
-    MembersModel,
     OrganizedTournamentsModel,
     PastTournamentsModel,
     TeamDetailsModel,
@@ -95,14 +94,14 @@ class TeamRepository:
         ).first()
 
     @staticmethod
-    def getTeamMembers(teamId: int) -> List[MembersModel]:
+    def getTeamMembers(teamId: int) -> List:
         """Get team members by team id"""
 
         return db.session.query(
             Users.id,
             Users.name,
             cast(is_part_of.c.user_role, String).label('role'),
-            Users.picture_url
+            Users.picture_url.label('pictureUrl')
         ).join(
             is_part_of, is_part_of.c.user_id == Users.id
         ).filter(

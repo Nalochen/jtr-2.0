@@ -6,7 +6,7 @@ import {
   TournamentFoodMorningEnum,
   TournamentFoodNoonEnum,
   TournamentRegistrationProcedureTypeEnum,
-  TournamentStatus
+  TournamentStatus,
 } from '@jtr/data-domain/tournament-data';
 
 export interface TournamentDate {

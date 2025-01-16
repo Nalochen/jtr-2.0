@@ -1,5 +1,6 @@
 ### Returns if the user is an admin of the team
-GET https://{{host}}/api/user-frontend/is-admin-of-team/{{escapedName}}
+GET https://{{host}}/api/user-frontend/is-admin-of-team/rigor-mortis
+Authorization: Bearer {{jwtToken}}
 
 
 > {%

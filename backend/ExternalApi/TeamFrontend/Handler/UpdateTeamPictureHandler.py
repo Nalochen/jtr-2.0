@@ -37,7 +37,7 @@ class UpdateTeamPictureHandler:
 
         return Response(
             response={
-                'logo': filepath,
+                'logoUrl': filepath,
             },
             status=200
         )

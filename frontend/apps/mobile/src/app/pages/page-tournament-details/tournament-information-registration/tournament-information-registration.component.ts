@@ -7,7 +7,7 @@ import { PricingTypeEnum } from '@jtr/data-domain/tournament-data';
 import {
   ChipComponent,
   DataContainerExpandableComponent,
-  DataContainerRowComponent
+  DataContainerRowComponent,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DividerModule } from 'primeng/divider';

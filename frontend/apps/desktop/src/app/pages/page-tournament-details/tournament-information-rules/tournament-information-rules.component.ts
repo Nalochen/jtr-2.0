@@ -33,10 +33,10 @@ export class TournamentInformationRulesComponent implements OnInit {
   @Input() public tournament!: TournamentData;
 
   protected form = new FormGroup({
-    nubbedShoesAllowed: new FormControl({value: false, disabled: true}),
-    cleadedShoesAllowed: new FormControl({value: false, disabled: true}),
-    studdedShoesAllowed: new FormControl({value: false, disabled: true}),
-    barefootAllowed: new FormControl({value: false, disabled: true}),
+    nubbedShoesAllowed: new FormControl({ value: false, disabled: true }),
+    cleadedShoesAllowed: new FormControl({ value: false, disabled: true }),
+    studdedShoesAllowed: new FormControl({ value: false, disabled: true }),
+    barefootAllowed: new FormControl({ value: false, disabled: true }),
   });
 
   public ngOnInit(): void {
