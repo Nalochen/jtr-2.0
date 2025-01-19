@@ -216,6 +216,6 @@ export class PageCreateTournamentComponent implements OnDestroy {
       tournament.shoes.text
     );
 
-    this.form.controls.costsText.setValue(tournament.additionalInformation);
+    this.form.controls.additionalText.setValue(tournament.additionalInformation);
   }
 }

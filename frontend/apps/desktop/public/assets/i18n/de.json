@@ -182,7 +182,16 @@
     "shoes-information-barefoot-header": "Barfuß",
     "manage-teams": "Teams verwalten",
     "save": "Speichern",
-    "publish-tournament": "Turnier veröffentlichen"
+    "publish-tournament": "Turnier veröffentlichen",
+    "accommodation-type-required": "Übernachtungsart ist erforderlich",
+    "food-required": "Angaben zur Verpflegung sind erforderlich",
+    "name-required": "Turniername ist erforderlich",
+    "tournament-start-date-required": "Turnierstartdatum ist erforderlich",
+    "tournament-end-date-required": "Turnierenddatum ist erforderlich",
+    "address-required": "Adresse ist erforderlich",
+    "team-count-required": "Anzahl der Teams ist erforderlich",
+    "registration-procedure-required": "Anmeldeverfahren ist erforderlich",
+    "registration-start-date-required": "Anmeldestartdatum ist erforderlich"
   },
   "manage-tournament": {
     "manage-tournament": "Turnier verwalten",

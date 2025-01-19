@@ -4,6 +4,10 @@
       <h3>{{ 'create-tournament.name' | translate }}</h3>
       <input pInputText type="text" [formControl]="form.controls.name" />
     </div>
+    @if ((form.controls.name.dirty || form.controls.name.touched) &&
+    form.controls.name.hasError('required')) {
+    <p ngProjectAs="container-content" class="error-message">{{ 'create-tournament.name-required' | translate }}</p>
+    }
   </app-data-container-row>
 
   <app-data-container-row>
@@ -26,6 +30,14 @@
     <app-info-button ngProjectAs="container-additional">
       <p>{{ 'create-tournament.tournament-dates-info' | translate }}</p>
     </app-info-button>
+    @if ((form.controls.tournamentStartDate.dirty || form.controls.tournamentStartDate.touched) &&
+    form.controls.tournamentStartDate.hasError('required')) {
+    <p ngProjectAs="container-content" class="error-message">{{ 'create-tournament.tournament-start-date-required' | translate }}</p>
+    }
+    @if ((form.controls.tournamentEndDate.dirty || form.controls.tournamentEndDate.touched) &&
+    form.controls.tournamentEndDate.hasError('required')) {
+    <p ngProjectAs="container-content" class="error-message">{{ 'create-tournament.tournament-end-date-required' | translate }}</p>
+    }
   </app-data-container-row>
 
   <app-data-container-row>
@@ -62,4 +74,8 @@
       <input pInputText type="text" [formControl]="form.controls.address" />
     </div>
   </app-data-container-row>
+  @if ((form.controls.address.dirty || form.controls.address.touched) &&
+  form.controls.address.hasError('required')) {
+  <p ngProjectAs="container-content" class="error-message">{{ 'create-tournament.address-required' | translate }}</p>
+  }
 </div>
