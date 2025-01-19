@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 
 import { firstValueFrom, Observable, of, switchMap } from 'rxjs';
@@ -14,16 +15,15 @@ import {
 import { TeamData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
-import { ButtonComponent } from '../../ui-shared';
 import { AuthService } from '../../business-rules/auth/auth.service';
 
+import { ButtonComponent } from '../../ui-shared';
 import { TeamHeaderComponent } from './team-header/team-header.component';
 import { TeamInformationComponent } from './team-information/team-information.component';
 import { TeamMembersComponent } from './team-members/team-members.component';
 import { TeamOtherTournamentsComponent } from './team-other-tournaments/team-other-tournaments.component';
 import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tournaments.component';
 import { TranslatePipe } from '@ngx-translate/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   standalone: true,
