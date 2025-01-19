@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 import {
   BehaviorSubject,
@@ -16,6 +15,7 @@ import { TeamData } from '@jtr/data-domain/store';
 
 const LOGIN_ENDPOINT = '/api/user-frontend/authenticate-user';
 const REGISTER_ENDPOINT = '/api/user-frontend/create-user';
+const IS_MEMBER_OF_TEAM_ENDPOINT = 'api/user-frontend/is-member-of-team';
 const IS_ADMIN_OF_TEAM_ENDPOINT = '/api/user-frontend/is-admin-of-team';
 const IS_ADMIN_OF_ORGANIZER_ENDPOINT =
   '/api/user-frontend/is-admin-of-organizer';
@@ -60,7 +60,6 @@ export class AuthService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly router: Router
   ) {
     const token = localStorage.getItem('jwt');
     this.tokenSubject = new BehaviorSubject<string | null>(token);
@@ -105,6 +104,12 @@ export class AuthService {
           }
         })
       )
+    );
+  }
+
+  public isMemberOfTeam(escapedName: string): Observable<boolean> {
+    return this.http.get<boolean>(
+      `${IS_MEMBER_OF_TEAM_ENDPOINT}/${escapedName}`
     );
   }
 

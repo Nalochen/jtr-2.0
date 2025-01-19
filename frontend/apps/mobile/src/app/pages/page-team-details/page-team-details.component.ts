@@ -52,7 +52,11 @@ export class PageTeamDetailsComponent {
 
         this.authService.isAdminOfTeam(this.teamEscapedName).pipe().subscribe(
           canEditTeam => this.canEditTeam = canEditTeam
-        )
+        );
+
+        this.authService.isMemberOfTeam(this.teamEscapedName).pipe().subscribe(
+          isMemberOfTeam => this.isMemberOfTeam = isMemberOfTeam
+        );
       }
     });
   }
