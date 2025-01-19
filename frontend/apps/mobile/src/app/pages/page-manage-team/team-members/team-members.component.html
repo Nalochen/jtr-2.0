@@ -88,6 +88,8 @@
   header="{{ 'page-manage-team.add-member' | translate }}"
   [modal]="true"
   [(visible)]="isAddMemberOverlayVisible"
+  (onHide)="closeAddMemberOverlay()"
+  (visibleChange)="closeAddMemberOverlay()"
 >
   <div>
     @if (possibleUsers) {
@@ -113,7 +115,7 @@
     </app-button>
 
     <app-button
-      (click)="onAddMember(); closeAddMemberOverlay()"
+      (click)="onAddMember()"
       [color]="ButtonColorEnum.Red"
       [type]="ButtonTypeEnum.Raised"
       class="align-self-end"

@@ -11,6 +11,8 @@
     [(visible)]="visible"
     [modal]="true"
     [style]="{ width: '90%' }"
+    (onHide)="hideDialog()"
+    (visibleChange)="hideDialog()"
   >
     <div class="content">
       <ng-content />

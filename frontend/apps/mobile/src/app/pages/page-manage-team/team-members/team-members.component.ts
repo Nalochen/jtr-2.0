@@ -1,5 +1,9 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable } from 'rxjs';
@@ -53,7 +57,10 @@ export class TeamMembersComponent {
   protected possibleUsers: UserOverviewData[] = [];
   protected items: MenuItem[] | undefined;
 
-  constructor(private readonly store$: Store) {
+  constructor(
+    private readonly store$: Store,
+    private readonly changeDetectorRef: ChangeDetectorRef
+  ) {
     this.items = [
       {
         label: 'Options',
@@ -94,13 +101,16 @@ export class TeamMembersComponent {
   public onAddMember() {
     //add Member to team
     //Seite neu laden
+    this.closeAddMemberOverlay();
   }
 
   public openAddMemberOverlay() {
     this.isAddMemberOverlayVisible = true;
+    this.changeDetectorRef.detectChanges();
   }
 
   public closeAddMemberOverlay() {
     this.isAddMemberOverlayVisible = false;
+    this.changeDetectorRef.detectChanges();
   }
 }

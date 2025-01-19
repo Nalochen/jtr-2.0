@@ -3,15 +3,7 @@ from datetime import datetime
 from typing import List
 
 from BusinessDomain.Team.Model import OrganizedTournamentsModel, PastTournamentsModel
-
-
-@dataclass
-class MembersResult:
-
-    id: int
-    name: str
-    pictureUrl: str
-    role: str
+from BusinessDomain.Team.UseCase.QueryHandler.Result import MembersResult
 
 
 @dataclass

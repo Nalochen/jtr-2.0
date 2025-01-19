@@ -3,7 +3,8 @@
   <app-button
     (click)="onShowDialog()"
     [color]="ButtonColorEnum.Red"
-    [type]="ButtonTypeEnum.Raised">
+    [type]="ButtonTypeEnum.Raised"
+  >
     {{ 'page-tournament-details.register-team' | translate }}
   </app-button>
 </div>
@@ -27,6 +28,6 @@
     [type]="ButtonTypeEnum.Raised"
     [color]="ButtonColorEnum.Red"
     [fullWidth]="true"
-  >{{ 'page-tournament-details.register-team' | translate }}</app-button
+    >{{ 'page-tournament-details.register-team' | translate }}</app-button
   >
 </p-dialog>

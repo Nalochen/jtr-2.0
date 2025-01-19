@@ -2,8 +2,9 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  Input, OnDestroy,
-  OnInit
+  Input,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -33,7 +34,7 @@ import { DropdownModule } from 'primeng/dropdown';
     TranslatePipe,
     DialogModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './tournament-registration.component.html',
   styleUrl: './tournament-registration.component.less',
@@ -58,18 +59,17 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
-    this.authService.userAdminTeams().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(
-      (teams) => {
+    this.authService
+      .userAdminTeams()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((teams) => {
         const registeredIds = new Set([
-          ...this.registeredTeams.waiting.map(team => team.id),
-          ...this.registeredTeams.participating.map(team => team.id)
+          ...this.registeredTeams.waiting.map((team) => team.id),
+          ...this.registeredTeams.participating.map((team) => team.id),
         ]);
 
-        this.teams = teams.filter(team => !registeredIds.has(team.id))
-      }
-    )
+        this.teams = teams.filter((team) => !registeredIds.has(team.id));
+      });
   }
 
   public ngOnDestroy() {
@@ -87,7 +87,7 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
       this.manageParticipationService.create({
         tournamentId: this.tournamentId,
         teamId: this.selectedTeam?.id,
-      })
+      });
     }
   }
 }

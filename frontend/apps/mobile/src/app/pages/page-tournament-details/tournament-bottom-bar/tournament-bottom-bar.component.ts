@@ -1,5 +1,11 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
@@ -34,7 +40,7 @@ export interface Team {
     TranslatePipe,
     DialogModule,
     DropdownModule,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './tournament-bottom-bar.component.html',
   styleUrl: './tournament-bottom-bar.component.less',
@@ -59,25 +65,23 @@ export class TournamentBottomBarComponent implements OnInit, OnDestroy {
   ) {}
 
   public ngOnInit() {
-    this.authService.userAdminTeams().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe(
-      (teams) => {
+    this.authService
+      .userAdminTeams()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((teams) => {
         const registeredIds = new Set([
-          ...this.registeredTeams.waiting.map(team => team.id),
-          ...this.registeredTeams.participating.map(team => team.id)
+          ...this.registeredTeams.waiting.map((team) => team.id),
+          ...this.registeredTeams.participating.map((team) => team.id),
         ]);
 
-        this.teams = teams.filter(team => !registeredIds.has(team.id))
-      }
-    )
+        this.teams = teams.filter((team) => !registeredIds.has(team.id));
+      });
   }
 
   public ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
 
   public onShowDialog(): void {
     this.dialogVisible = true;
@@ -89,7 +93,7 @@ export class TournamentBottomBarComponent implements OnInit, OnDestroy {
       this.manageParticipationService.create({
         tournamentId: this.tournamentId,
         teamId: this.selectedTeam?.id,
-      })
+      });
     }
   }
 }

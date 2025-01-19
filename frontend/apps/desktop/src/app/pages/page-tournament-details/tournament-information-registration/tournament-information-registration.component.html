@@ -22,9 +22,7 @@
         ) | translate
       }}
     </p>
-    }
-
-    @if (tournament.costs.depositCosts) {
+    } @if (tournament.costs.depositCosts) {
     <p ngProjectAs="container-content">
       {{ 'page-tournament-details.deposit' | translate }}:
       {{
@@ -33,15 +31,13 @@
       }}
 
       {{
-      (tournament.costs.depositCostsType === PricingTypeEnum.PER_PERSON
-        ? 'page-tournament-details.per-person'
-        : 'page-tournament-details.per-team'
-      ) | translate
+        (tournament.costs.depositCostsType === PricingTypeEnum.PER_PERSON
+          ? 'page-tournament-details.per-person'
+          : 'page-tournament-details.per-team'
+        ) | translate
       }}
     </p>
-    }
-
-    @if (tournament.costs.guestCosts) {
+    } @if (tournament.costs.guestCosts) {
     <p ngProjectAs="container-content">
       {{ 'page-tournament-details.guests' | translate }}:
       {{
@@ -50,15 +46,13 @@
       }}
 
       {{
-      (tournament.costs.guestCostsType === PricingTypeEnum.PER_PERSON
-        ? 'page-tournament-details.per-person'
-        : 'page-tournament-details.per-team'
-      ) | translate
+        (tournament.costs.guestCostsType === PricingTypeEnum.PER_PERSON
+          ? 'page-tournament-details.per-person'
+          : 'page-tournament-details.per-team'
+        ) | translate
       }}
     </p>
-    }
-
-    @if (tournament.costs.costsText) {
+    } @if (tournament.costs.costsText) {
     <p ngProjectAs="container-content">
       {{ tournament.costs.costsText }}
     </p>
@@ -75,7 +69,9 @@
       {{ 'page-tournament-details.registration-procedure' | translate }}
     </h4>
 
-    <app-chip ngProjectAs="container-additional">{{ chipText | translate }}</app-chip>
+    <app-chip ngProjectAs="container-additional">{{
+      chipText | translate
+    }}</app-chip>
 
     <p ngProjectAs="container-content">
       {{ tournament.registrationProcedure.text }}

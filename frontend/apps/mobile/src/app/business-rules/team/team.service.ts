@@ -69,18 +69,21 @@ export class TeamService {
     });
   }
 
-  public async updatePicture(file: File): Promise<UpdateTeamLogoResponse> {
+  public async updatePicture(file: File, teamId: number): Promise<string> {
     const base64 = await this.fileToBase64(file);
     const request = {
       picture: base64,
+      teamId: teamId,
     };
 
-    return await firstValueFrom(
-      this.http.put<UpdateTeamLogoResponse>(
-        UPDATE_TEAM_PICTURE_ENDPOINT,
-        request
+    return (
+      await firstValueFrom(
+        this.http.put<UpdateTeamLogoResponse>(
+          UPDATE_TEAM_PICTURE_ENDPOINT,
+          request
+        )
       )
-    );
+    ).logoUrl;
   }
 
   private fileToBase64(file: File): Promise<string> {

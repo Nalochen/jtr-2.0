@@ -2,7 +2,10 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { TournamentData } from '@jtr/data-domain/store';
-import { AccommodationTypeEnum, PricingTypeEnum } from '@jtr/data-domain/tournament-data';
+import {
+  AccommodationTypeEnum,
+  PricingTypeEnum,
+} from '@jtr/data-domain/tournament-data';
 
 import {
   ChipComponent,

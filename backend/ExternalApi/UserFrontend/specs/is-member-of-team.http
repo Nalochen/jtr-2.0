@@ -1,5 +1,6 @@
 ### Returns if the user is an member of the team
 GET https://{{host}}/api/user-frontend/is-member-of-team/{{escapedName}}
+Authorization: Bearer {{jwtToken}}
 
 
 > {%

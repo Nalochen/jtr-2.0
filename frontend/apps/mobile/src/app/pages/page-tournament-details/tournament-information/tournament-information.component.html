@@ -23,7 +23,11 @@
   >
     @if (panel.isOpen) {
     <p class="title" ngProjectAs="panel-header">
-      {{ showPlacement ? ('page-tournament-details.ranking' | translate) : ('page-tournament-details.registered' | translate) }}:
+      {{
+        showPlacement
+          ? ('page-tournament-details.ranking' | translate)
+          : ('page-tournament-details.registered' | translate)
+      }}:
     </p>
     } @else {
     <section ngProjectAs="panel-header" class="teams-previews">
@@ -31,7 +35,13 @@
       tournament.teams.waiting.length === 0) {
       <p>{{ 'page-tournament-details.no-registered-teams' | translate }}</p>
       } @else { @for (team of previewTeams; track team) {
-      <img ngProjectAs="team-logo" [src]="team.logo" alt="logo" height="32" width="32"/>
+      <img
+        ngProjectAs="team-logo"
+        ngSrc="{{ team.logoUrl }}"
+        alt="logo"
+        height="32"
+        width="32"
+      />
       }}
     </section>
     }

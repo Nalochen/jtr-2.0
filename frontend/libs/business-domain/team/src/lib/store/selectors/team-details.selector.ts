@@ -16,3 +16,8 @@ export const teamDetailsNameSelector = createSelector(
   teamDetailsStateSelector,
   (state: TeamDetailsState) => state.teamDetails?.name
 );
+
+export const teamDetailsEscapedNameSelector = createSelector(
+  teamDetailsStateSelector,
+  (state: TeamDetailsState) => state.teamDetails?.escapedName
+);

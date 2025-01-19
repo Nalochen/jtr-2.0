@@ -16,8 +16,8 @@ class PictureService:
     def savePicture(decodedData: bytes, pictureType: PictureTypeEnum) -> str:
         """Saves a picture to the file system"""
 
-        image = PictureService.resizePicture(decodedData)
-        filename = PictureService.createPictureName(image)
+        image, originalFormat = PictureService.resizePicture(decodedData)
+        filename = PictureService.createPictureName(originalFormat)
         savePath = PictureService.createPicturePath(filename, pictureType)
 
         isAnimated = getattr(image, 'is_animated', False)
@@ -26,16 +26,18 @@ class PictureService:
             with open(savePath, 'wb') as outFile:
                 outFile.write(decodedData)
         else:
-            image.save(savePath, format=image.format)
+            image.save(savePath, format=originalFormat)
 
         return filename
 
     @staticmethod
-    def resizePicture(decodedPicture: bytes) -> Image:
+    def resizePicture(decodedPicture: bytes) -> tuple[Image, str]:
         """Resizes a picture if it is too large based on its base 4 representation"""
 
         image = Image.open(io.BytesIO(decodedPicture))
         isAnimated = getattr(image, 'is_animated', False)
+
+        originalFormat = image.format
 
         if not isAnimated and image.mode in ('RGBA', 'P'):
             image = image.convert('RGB')
@@ -53,13 +55,13 @@ class PictureService:
                 raise ValueError(
                     'Das GIF ist zu groß, kann aber nicht automatisch skaliert werden.')
 
-        return image
+        return image, originalFormat
 
     @staticmethod
-    def createPictureName(image: Image) -> str:
+    def createPictureName(originalFormat: str) -> str:
         """Creates the path to a picture"""
 
-        fileExtension = image.format.lower()
+        fileExtension = originalFormat.lower()
         randomHash = uuid.uuid4().hex
 
         filename = secure_filename(f'{randomHash}.{fileExtension}')

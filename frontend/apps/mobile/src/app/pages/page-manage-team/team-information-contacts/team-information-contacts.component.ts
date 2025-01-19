@@ -1,6 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
@@ -36,7 +35,6 @@ import { InputTextModule } from 'primeng/inputtext';
   ],
   templateUrl: './team-information-contacts.component.html',
   styleUrl: './team-information-contacts.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamInformationContactsComponent implements OnInit, OnDestroy {
   @Input() public form!: FormGroup<EditTeamForm>;
@@ -57,9 +55,11 @@ export class TeamInformationContactsComponent implements OnInit, OnDestroy {
 
   public onNewContact(): void {
     this.form.controls.contacts.push(new FormControl(''));
+    this.changeDetectorRef.detectChanges();
   }
 
   public onRemoveContact(index: number): void {
     this.form.controls.contacts.removeAt(index);
+    this.changeDetectorRef.detectChanges();
   }
 }
