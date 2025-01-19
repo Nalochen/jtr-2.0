@@ -37,6 +37,10 @@ export interface DeleteTeamRequestBody {
   teamId: number;
 }
 
+export interface UpdateTeamLogoResponse {
+  logoUrl: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -65,19 +69,18 @@ export class TeamService {
     });
   }
 
-  public async updatePicture(file: File): Promise<void> {
+  public async updatePicture(file: File): Promise<UpdateTeamLogoResponse> {
     const base64 = await this.fileToBase64(file);
     const request = {
       picture: base64,
     };
 
-    await firstValueFrom(
-      this.http.put<void>(UPDATE_TEAM_PICTURE_ENDPOINT, request)
+    return await firstValueFrom(
+      this.http.put<UpdateTeamLogoResponse>(
+        UPDATE_TEAM_PICTURE_ENDPOINT,
+        request
+      )
     );
-  }
-
-  public getPictureUrl(teamId: number): string {
-    return `/api/team-frontend/get-team-picture/${teamId}`;
   }
 
   private fileToBase64(file: File): Promise<string> {

@@ -2,14 +2,12 @@
   alt="Logo of {{ team.name }}"
   width="50"
   height="50"
-  ngSrc="{{ team.logo }}"
+  ngSrc="{{ team.logoUrl }}"
 />
 
 <div class="meta-data">
   <p class="city">
-    @if (team.city) {
-    {{ team.city }}
-    } @else { Mixteam }
+    {{ team.city ?? 'Mixteam' }}
   </p>
   <p class="points">{{ team.points }} P.</p>
 </div>

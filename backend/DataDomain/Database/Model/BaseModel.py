@@ -2,7 +2,7 @@
 class BaseModel:
     """Base model class for all models"""
 
-    __table__ = None
+    __abstract__ = True
 
     @staticmethod
     def toCamelCase(snakeStr):

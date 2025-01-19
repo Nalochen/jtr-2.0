@@ -14,7 +14,7 @@ class GetTournamentDetailsHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         tournamentId = data.get('tournamentId')
 

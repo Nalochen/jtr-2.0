@@ -13,9 +13,9 @@ class SendTeamInvitationHandler:
     """Handler for sending a team invitation to a user"""
 
     @staticmethod
-    def handle() -> Response:
+    async def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         userId: int = data.get('userId')
         teamId: int = data.get('teamId')

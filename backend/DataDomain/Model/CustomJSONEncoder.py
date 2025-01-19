@@ -1,6 +1,6 @@
 import json
 from dataclasses import asdict, is_dataclass
-from datetime import datetime
+from datetime import date, datetime
 from decimal import Decimal
 from enum import Enum
 
@@ -20,7 +20,7 @@ class CustomJSONEncoder(json.JSONEncoder):
         elif obj is None:
             return {}
 
-        elif isinstance(obj, datetime):
+        elif isinstance(obj, datetime) or isinstance(obj, date):
             return obj.isoformat()
 
         elif isinstance(obj, Decimal):

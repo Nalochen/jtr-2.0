@@ -13,7 +13,7 @@ class CreateTeamHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         escapedName = data.get('escapedName')
 

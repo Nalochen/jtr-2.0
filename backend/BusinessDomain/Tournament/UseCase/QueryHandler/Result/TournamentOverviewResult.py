@@ -6,7 +6,7 @@ class TournamentOverviewResult:
 
     id: int
     name: str
-    organizerLogo: str
+    organizerLogoUrl: str
     startDate: str
     endDate: str
     totalTeams: int

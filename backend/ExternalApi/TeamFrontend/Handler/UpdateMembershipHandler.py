@@ -16,7 +16,7 @@ class UpdateMembershipHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         teamId: int = data.get('teamId')
         userId: int = data.get('userId')

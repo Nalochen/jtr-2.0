@@ -12,7 +12,7 @@ class GetTeamDetailsHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         escapedName: str = data.get('escapedName')
 

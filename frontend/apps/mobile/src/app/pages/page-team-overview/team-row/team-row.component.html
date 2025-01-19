@@ -3,13 +3,13 @@
     <p class="placement">{{ team.placement }}</p>
     <arrow [hasPlacementChangedUpwards]="true" />
     <img
-      ngSrc="{{ team.logo }}"
+      ngSrc="{{ team.logoUrl }}"
       width="50"
       height="50"
       alt="Logo of {{ team.name }}"
     />
     <p class="city">{{ team.city }}</p>
     <h4 class="team-name">{{ team.name }}</h4>
-    <p class="points">{{ team.points | number: '1.2-2' }} P.</p>
+    <p class="points">{{ team.points }} P.</p>
   </app-data-container>
 </app-button>

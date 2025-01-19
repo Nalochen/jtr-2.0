@@ -11,7 +11,7 @@ class IsAdminOfOrganizerHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         isAdmin = IsAdminOfOrganizerQueryHandler.execute(
             IsAdminOfOrganizerQuery(

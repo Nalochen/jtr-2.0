@@ -1,5 +1,5 @@
 from .GetTeamsWhereUserIsAdminQuery import GetTeamsWhereUserIsAdminQuery
 from .GetUserDetailsQuery import GetUserDetailsQuery
-from .GetUserPictureQuery import GetUserPictureQuery
 from .IsAdminOfOrganizerQuery import IsAdminOfOrganizerQuery
-from .IsAdminOfTeamQuery import IsUserAdminOfTeamQuery
+from .IsAdminOfTeamQuery import IsAdminOfTeamQuery
+from .IsMemberOfTeamQuery import IsMemberOfTeamQuery

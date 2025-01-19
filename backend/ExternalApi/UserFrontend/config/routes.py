@@ -3,10 +3,7 @@ from flask_jwt_extended import jwt_required
 
 from config import cache, limiter
 from DataDomain.Model import Response
-from ExternalApi.UserFrontend.config.extensions import (
-    create_user_cache_key,
-    create_user_picture_cache_key,
-)
+from ExternalApi.UserFrontend.config.extensions import create_user_cache_key
 from ExternalApi.UserFrontend.Handler import (
     AuthenticateUserHandler,
     CreateNewPasswordHandler,
@@ -16,9 +13,9 @@ from ExternalApi.UserFrontend.Handler import (
     GetAdminOfTeamsHandler,
     GetUserDetailsHandler,
     GetUserOverviewHandler,
-    GetUserPictureHandler,
     IsAdminOfOrganizerHandler,
     IsAdminOfTeamHandler,
+    IsMemberOfTeamHandler,
     UpdateUserHandler,
     UpdateUserLanguageHandler,
     UpdateUserPictureHandler,
@@ -29,9 +26,9 @@ from ExternalApi.UserFrontend.InputFilter import (
     CreatePasswordResetInputFilter,
     CreateUserInputFilter,
     GetUserDetailsInputFilter,
-    GetUserPictureInputFilter,
     IsAdminOfOrganizerInputFilter,
     IsAdminOfTeamInputFilter,
+    IsMemberOfTeamInputFilter,
     UpdateUserInputFilter,
     UpdateUserLanguageInputFilter,
     UpdateUserPictureInputFilter,
@@ -58,14 +55,6 @@ def getUserOverview() -> Response:
     return GetUserOverviewHandler.handle()
 
 
-@user_frontend.route('/get-user-picture/<userId>',
-                     methods=['GET'], endpoint='get-user-picture')
-@cache.cached(key_prefix=create_user_picture_cache_key)
-@GetUserPictureInputFilter.validate()
-def getUserPicture(userId) -> Response:
-    return GetUserPictureHandler.handle()
-
-
 @user_frontend.route('/get-admin-teams',
                      methods=['GET'], endpoint='get-admin-teams')
 @jwt_required()
@@ -75,7 +64,6 @@ def getAdminOfTeams() -> Response:
 
 @user_frontend.route('/is-admin-of-team/<escapedName>',
                      methods=['GET'], endpoint='is-admin-of-team')
-@jwt_required()
 @IsAdminOfTeamInputFilter.validate()
 def isAdminOfTeam(escapedName) -> Response:
     return IsAdminOfTeamHandler.handle()
@@ -83,10 +71,16 @@ def isAdminOfTeam(escapedName) -> Response:
 
 @user_frontend.route('/is-admin-of-organizer/<tournamentId>',
                      methods=['GET'], endpoint='is-admin-of-organizer')
-@jwt_required()
 @IsAdminOfOrganizerInputFilter.validate()
 def isAdminOfOrganizer(tournamentId) -> Response:
     return IsAdminOfOrganizerHandler.handle()
+
+
+@user_frontend.route('/is-member-of-team/<escapedName>',
+                     methods=['GET'], endpoint='is-member-of-team')
+@IsMemberOfTeamInputFilter.validate()
+def isMemberOfTeam(escapedName) -> Response:
+    return IsMemberOfTeamHandler.handle()
 
 
 @user_frontend.route('/update-user',

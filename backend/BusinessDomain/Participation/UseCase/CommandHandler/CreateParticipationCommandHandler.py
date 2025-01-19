@@ -19,16 +19,17 @@ class CreateParticipationCommandHandler:
             command.tournamentId
         )
 
+        isOnWaitingList = registrationOrder > GetPossibleSpaceRule.applies(
+            command.tournamentId)
+
         if not DoesParticipationExistsHardRule.applies(
                 command.tournamentId, command.teamId):
-
-            possibleSpace = GetPossibleSpaceRule.applies(command.tournamentId)
 
             ParticipatesInRepository.create(
                 tournamentId=command.tournamentId,
                 teamId=command.teamId,
                 registrationOrder=registrationOrder,
-                isOnWaitingList=registrationOrder > possibleSpace
+                isOnWaitingList=isOnWaitingList
             )
 
             return
@@ -39,5 +40,6 @@ class CreateParticipationCommandHandler:
             ParticipatesInRepository.recreate(
                 tournamentId=command.tournamentId,
                 teamId=command.teamId,
-                registrationOrder=registrationOrder
+                registrationOrder=registrationOrder,
+                isOnWaitingList=isOnWaitingList
             )

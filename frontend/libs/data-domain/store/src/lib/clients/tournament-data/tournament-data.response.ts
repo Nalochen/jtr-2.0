@@ -80,7 +80,7 @@ export interface TournamentTeamData {
   createdAt: string;
   founded: string;
   isMixTeam: boolean;
-  logo: string;
+  logoUrl: string;
   name: string;
   trainingTime: string;
   hasPaid: boolean;
@@ -98,7 +98,7 @@ export interface TournamentOrganizerTeamData {
   createdAt: string;
   founded: string;
   isMixTeam: boolean;
-  logo: string;
+  logoUrl: string;
   name: string;
   trainingTime: string;
   updatedAt: string;

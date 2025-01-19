@@ -6,7 +6,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -46,6 +46,7 @@ import { TooltipModule } from 'primeng/tooltip';
     DropdownModule,
     FormsModule,
     ChipComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './drop-list.component.html',
   styleUrl: './drop-list.component.less',

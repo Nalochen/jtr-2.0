@@ -18,7 +18,7 @@ class GetTeamOverviewQueryHandler:
                 id=team.id,
                 name=team.name,
                 escapedName=team.escaped_name,
-                logo=team.logo,
+                logoUrl=team.logo_url,
                 points=team.points,
                 placement=team.placement,
                 city=team.city,

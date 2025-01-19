@@ -11,17 +11,19 @@ from Infrastructure.Logger import logger
 class UpdateTeamPictureCommandHandler:
 
     @staticmethod
-    def execute(command: UpdateTeamPictureCommand) -> None:
+    def execute(command: UpdateTeamPictureCommand) -> str:
 
         try:
             team = GetTeamByIdRule.get(command.teamId)
 
             decodedData = base64.b64decode(command.picture)
 
-            team.picture = PictureService.savePicture(
+            team.logo = PictureService.savePicture(
                 decodedData, PictureTypeEnum.TEAM)
 
             TeamRepository.update()
+
+            return team.logo_url
 
         except Exception as e:
             logger.error(f'UpdateTeamPictureCommandHandler | execute | {e}')

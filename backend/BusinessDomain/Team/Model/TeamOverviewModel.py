@@ -7,7 +7,7 @@ class TeamOverviewModelElement:
     id: int
     name: str
     escaped_name: str
-    logo: str
+    logo_url: str
     points: float
     city: str
     placement: str

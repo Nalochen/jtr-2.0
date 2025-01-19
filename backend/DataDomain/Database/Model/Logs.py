@@ -26,7 +26,7 @@ class Logs(BaseModel, db.Model):
     )
 
     message: str = db.Column(
-        db.String(255),
+        db.Text,
         nullable=False
     )
 

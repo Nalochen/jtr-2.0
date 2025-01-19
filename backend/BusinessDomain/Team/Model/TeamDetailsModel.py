@@ -8,7 +8,7 @@ class TeamDetailsModel:
     id: int
     name: str
     escaped_name: str
-    logo: str
+    logo_url: str
     points: float
     city: str | None
     is_mix_team: bool | None

@@ -13,7 +13,7 @@ class UpdateUserHandler:
     @staticmethod
     def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         try:
             accessToken = UpdateUserCommandHandler.execute(

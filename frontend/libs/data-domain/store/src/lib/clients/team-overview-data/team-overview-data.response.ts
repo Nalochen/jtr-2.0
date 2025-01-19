@@ -1,7 +1,7 @@
 export interface TeamOverviewData {
   id: number;
   city: string;
-  logo: string;
+  logoUrl: string;
   name: string;
   escapedName: string;
   placement: number;

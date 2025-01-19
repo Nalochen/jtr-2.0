@@ -1,4 +1,5 @@
 from .BaseModel import BaseModel
+from .HistoricTeamPoints import HistoricTeamPoints
 from .IsPartOf import is_part_of
 from .LoginAttempts import LoginAttempts
 from .Logs import Logs

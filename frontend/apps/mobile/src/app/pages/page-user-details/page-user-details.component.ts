@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -31,6 +31,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     ButtonComponent,
     DataContainerRowComponent,
     DataContainerComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './page-user-details.component.html',
   styleUrl: './page-user-details.component.less',

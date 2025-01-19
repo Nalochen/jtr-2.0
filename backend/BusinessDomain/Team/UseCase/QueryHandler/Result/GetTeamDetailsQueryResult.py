@@ -2,11 +2,16 @@ from dataclasses import dataclass
 from datetime import datetime
 from typing import List
 
-from BusinessDomain.Team.Model import (
-    MembersModel,
-    OrganizedTournamentsModel,
-    PastTournamentsModel,
-)
+from BusinessDomain.Team.Model import OrganizedTournamentsModel, PastTournamentsModel
+
+
+@dataclass
+class MembersResult:
+
+    id: int
+    name: str
+    pictureUrl: str
+    role: str
 
 
 @dataclass
@@ -21,8 +26,8 @@ class GetTeamDetailsQueryResult:
     isMixTeam: bool | None
     lastOrganizedTournament: datetime | None
     lastParticipatedTournament: datetime | None
-    logo: str
-    members: List[MembersModel]
+    logoUrl: str
+    members: List[MembersResult]
     name: str
     organizedTournaments: List[OrganizedTournamentsModel]
     pastTournaments: List[PastTournamentsModel]

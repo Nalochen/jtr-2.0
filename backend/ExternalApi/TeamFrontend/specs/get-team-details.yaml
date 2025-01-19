@@ -3,16 +3,16 @@ info:
   title: Customer Frontend API
   version: 1.0.0
 paths:
-  /api/team-frontend/get-team-details/{teamId}:
+  /api/team-frontend/get-team-details/{escapedName}:
     get:
       summary: Get team details
       operationId: getTeamDetails
       parameters:
-        - name: teamId
+        - name: escapedName
           in: path
           required: true
           schema:
-            type: number
+            type: string
 
       responses:
         '200':

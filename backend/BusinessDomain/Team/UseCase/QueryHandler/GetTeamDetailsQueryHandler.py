@@ -23,7 +23,7 @@ class GetTeamDetailsQueryHandler:
             id=teamDetails.id,
             name=teamDetails.name,
             escapedName=teamDetails.escaped_name,
-            logo=teamDetails.logo,
+            logoUrl=teamDetails.logo_url,
             points=teamDetails.points,
             city=teamDetails.city,
             aboutUs=teamDetails.about_us,

@@ -2,6 +2,6 @@ from dataclasses import dataclass
 
 
 @dataclass
-class GetUserPictureQuery:
+class IsMemberOfTeamQuery:
 
-    userId: int
+    escapedName: str

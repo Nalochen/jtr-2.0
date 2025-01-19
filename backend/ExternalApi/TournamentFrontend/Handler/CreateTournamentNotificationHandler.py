@@ -15,9 +15,9 @@ class CreateTournamentNotificationHandler:
     """Handler for creating tournament notifications"""
 
     @staticmethod
-    def handle() -> Response:
+    async def handle() -> Response:
 
-        data = g.validatedData
+        data = g.validated_data
 
         tournamentId: int = data.get('tournamentId')
 

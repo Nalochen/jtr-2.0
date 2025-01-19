@@ -1,7 +1,7 @@
 @let team = team$ | async;
 
 <div [formGroup]="form" class="form-group">
-  <team-header [form]="form" [teamId]="team?.id" />
+  <team-header [form]="form" [logoUrl]="team?.logoUrl" />
 
   @if (team) {
   <p class="small-text">

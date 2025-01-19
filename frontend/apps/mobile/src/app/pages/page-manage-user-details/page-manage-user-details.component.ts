@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -43,6 +43,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     ReactiveFormsModule,
     VisibilityButtonComponent,
     PageManageUserDetailsHeaderComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './page-manage-user-details.component.html',
   styleUrl: './page-manage-user-details.component.less',
@@ -82,7 +83,7 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
         this.form.controls.isNameVisible.setValue(user.isNameVisible);
         this.form.controls.birthdate.setValue(user.birthdate || '');
         this.form.controls.isBirthdateVisible.setValue(user.isBirthdateVisible);
-        this.form.controls.profilePicture.setValue(user.picture);
+        this.form.controls.profilePicture.setValue(user.pictureUrl);
         this.form.controls.pronouns.setValue(user.pronouns || '');
         this.form.controls.city.setValue(user.city || '');
         this.form.controls.isCityVisible.setValue(user.isCityVisible);

@@ -6,7 +6,7 @@ class TournamentOverviewModelElement:
 
     id: int
     name: str
-    logo: str
+    logo_url: str
     start_date: str
     end_date: str
     possible_space: int

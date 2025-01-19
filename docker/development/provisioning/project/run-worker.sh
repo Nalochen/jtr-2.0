@@ -1,9 +1,9 @@
 #!/bin/bash
 
-cd /home/backend/worker
+cd /home/backend
 
-. venv/bin/activate
+. worker/venv/bin/activate
 
-nohup celery -A tasks worker --loglevel=info > /var/log/worker.log 2>&1 &
+nohup celery -A worker.tasks worker --loglevel=info > /var/log/worker.log 2>&1 &
 
 echo "Worker started on pid: $!"

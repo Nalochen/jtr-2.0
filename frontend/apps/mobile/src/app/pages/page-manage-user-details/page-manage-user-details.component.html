@@ -1,7 +1,7 @@
 <page-manage-user-details-header
   [form]="form"
   [isLoggedIn$]="isLoggedIn$"
-  [userId]="(user$ | async)?.id"
+  [pictureUrl]="(user$ | async)?.pictureUrl"
 />
 
 <div class="content">
@@ -162,7 +162,7 @@
       <img
         id="logo"
         alt="Logo of {{ team.name }}"
-        src="{{ team.logo }}"
+        ngSrc="{{ team.logoUrl }}"
         height="30"
         width="30"
       />

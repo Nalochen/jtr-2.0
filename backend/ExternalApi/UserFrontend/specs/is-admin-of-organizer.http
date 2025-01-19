@@ -1,5 +1,6 @@
-### Get users picture by id
-GET https://{{host}}/api/user-frontend/get-user-picture/1
+### Returns if the user is an admin of the organizing team of a tournament
+GET https://{{host}}/api/user-frontend/is-admin-of-organizer/{{tournamentId}}
+
 
 > {%
     client.test("It should return a successful status code", function() {

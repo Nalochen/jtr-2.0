@@ -48,6 +48,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 export class TeamMembersComponent {
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
+
   protected isAddMemberOverlayVisible = false;
   protected selectedUser: UserOverviewData | null = null;
   protected possibleUsers: UserOverviewData[] = [];
