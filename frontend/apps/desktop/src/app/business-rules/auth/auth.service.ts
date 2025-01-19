@@ -126,9 +126,7 @@ export class AuthService {
   }
 
   public userAdminTeams(): Observable<TeamData[]> {
-    return this.http.get<TeamData[]>(
-      `${USER_ADMIN_TEAMS}`
-    );
+    return this.http.get<TeamData[]>(`${USER_ADMIN_TEAMS}`);
   }
 
   public setSession(token: string): void {

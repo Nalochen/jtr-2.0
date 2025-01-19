@@ -52,18 +52,20 @@ export class UserService {
     );
   }
 
-  public async updatePicture(file: File): Promise<UpdateUserPictureResponse> {
+  public async updatePicture(file: File): Promise<string> {
     const base64 = await this.fileToBase64(file);
     const request = {
       picture: base64,
     };
 
-    return await firstValueFrom(
-      this.http.put<UpdateUserPictureResponse>(
-        UPDATE_USER_PICTURE_ENDPOINT,
-        request
+    return (
+      await firstValueFrom(
+        this.http.put<UpdateUserPictureResponse>(
+          UPDATE_USER_PICTURE_ENDPOINT,
+          request
+        )
       )
-    );
+    ).pictureUrl;
   }
 
   public async updateUserLanguage(

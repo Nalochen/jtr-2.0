@@ -2,9 +2,9 @@ from dataclasses import dataclass
 
 
 @dataclass
-class MembersModel:
+class MembersResult:
 
     id: int
     name: str
-    picture_url: str
+    pictureUrl: str
     role: str

@@ -1,25 +1,29 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable, of, switchMap } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
 
-import { teamDetailsSelector } from '@jtr/business-domain/team';
+import {
+  teamDetailsEscapedNameSelector,
+  teamDetailsSelector,
+} from '@jtr/business-domain/team';
 import { TeamData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
+import { ButtonComponent } from '../../ui-shared';
 import { AuthService } from '../../business-rules/auth/auth.service';
 
-import { ButtonComponent } from '../../ui-shared';
 import { TeamHeaderComponent } from './team-header/team-header.component';
 import { TeamInformationComponent } from './team-information/team-information.component';
 import { TeamMembersComponent } from './team-members/team-members.component';
 import { TeamOtherTournamentsComponent } from './team-other-tournaments/team-other-tournaments.component';
 import { TeamOwnTournamentsComponent } from './team-own-tournaments/team-own-tournaments.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   standalone: true,
@@ -66,7 +70,30 @@ export class PageTeamDetailsComponent {
     return this.store$.select(teamDetailsSelector);
   }
 
-  public redirectToManageTeam() {
-    this.router.navigate(['manage-team-details', this.teamEscapedName]);
+  @SingletonGetter()
+  public get teamEscapedName$(): Observable<string | undefined> {
+    return this.store$.select(teamDetailsEscapedNameSelector);
+  }
+
+  public isAdminOfTeam$(): Observable<boolean> {
+    return this.teamEscapedName$.pipe(
+      map((escapedName) => {
+        if (!escapedName) {
+          return false;
+        }
+
+        return this.authService.isAdminOfTeam(escapedName);
+      }),
+      switchMap((isAdmin) =>
+        isAdmin instanceof Observable ? isAdmin : of(isAdmin)
+      )
+    );
+  }
+
+  public async redirectToManageTeam() {
+    this.router.navigate([
+      'manage-team-details',
+      await firstValueFrom(this.teamEscapedName$),
+    ]);
   }
 }

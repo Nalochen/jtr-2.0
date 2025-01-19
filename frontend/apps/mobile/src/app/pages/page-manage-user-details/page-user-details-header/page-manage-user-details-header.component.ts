@@ -1,12 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 import { EditUserForm } from '@jtr/business-domain/user';
@@ -33,9 +26,8 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
   templateUrl: './page-manage-user-details-header.component.html',
   styleUrl: './page-manage-user-details-header.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PageManageUserDetailsHeaderComponent implements OnChanges {
+export class PageManageUserDetailsHeaderComponent {
   constructor(
     private readonly userService: UserService,
     private readonly changeDetectorRef: ChangeDetectorRef
@@ -45,17 +37,8 @@ export class PageManageUserDetailsHeaderComponent implements OnChanges {
   @Input() public isLoggedIn$!: boolean;
   @Input() public pictureUrl?: string;
 
-  public pictureUrlFe?: string;
-
   public readonly ButtonTypeEnum = ButtonTypeEnum;
   public readonly ButtonColorEnum = ButtonColorEnum;
-
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['picture']) {
-      this.pictureUrlFe = this.pictureUrl;
-      this.changeDetectorRef.markForCheck();
-    }
-  }
 
   public async onFileSelected(event: Event): Promise<void> {
     const input = event.target as HTMLInputElement;
@@ -66,9 +49,7 @@ export class PageManageUserDetailsHeaderComponent implements OnChanges {
 
     const selectedFile = input.files[0];
 
-    this.pictureUrlFe = (
-      await this.userService.updatePicture(selectedFile)
-    ).pictureUrl;
-    this.changeDetectorRef.markForCheck();
+    this.pictureUrl = await this.userService.updatePicture(selectedFile);
+    this.changeDetectorRef.detectChanges();
   }
 }

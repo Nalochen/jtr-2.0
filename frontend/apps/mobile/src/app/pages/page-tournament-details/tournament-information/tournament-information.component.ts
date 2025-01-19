@@ -25,9 +25,7 @@ import {
 import { TournamentInformationAdditionalComponent } from '../tournament-information-additional/tournament-information-additional.component';
 import { TournamentInformationContactsComponent } from '../tournament-information-contacts/tournament-information-contacts.component';
 import { TournamentInformationLocationComponent } from '../tournament-information-location/tournament-information-location.component';
-import {
-  TournamentInformationRegistrationComponent
-} from '../tournament-information-registration/tournament-information-registration.component';
+import { TournamentInformationRegistrationComponent } from '../tournament-information-registration/tournament-information-registration.component';
 import { TournamentInformationRulesComponent } from '../tournament-information-rules/tournament-information-rules.component';
 import { TournamentTeamsComponent } from '../tournament-teams/tournament-teams.component';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -97,11 +95,17 @@ export class TournamentInformationComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) {}
 
   public ngOnInit(): void {
-    this.showPlacement = this.tournament.teams.participating.map((team) => team.placement).some((placement) => placement !== null);
+    this.showPlacement = this.tournament.teams.participating
+      .map((team) => team.placement)
+      .some((placement) => placement !== null);
     if (this.showPlacement) {
-      this.previewTeams = [...this.tournament.teams.participating].sort((a, b) => a.placement - b.placement).slice(0, 6);
+      this.previewTeams = [...this.tournament.teams.participating]
+        .sort((a, b) => a.placement - b.placement)
+        .slice(0, 6);
     } else {
-      this.previewTeams = [...this.tournament.teams.participating].sort((a, b) => a.registrationOrder - b.registrationOrder).slice(0, 6);
+      this.previewTeams = [...this.tournament.teams.participating]
+        .sort((a, b) => a.registrationOrder - b.registrationOrder)
+        .slice(0, 6);
     }
   }
 

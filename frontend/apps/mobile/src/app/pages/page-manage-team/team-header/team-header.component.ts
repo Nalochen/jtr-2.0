@@ -1,12 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnChanges,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { EditTeamForm } from '@jtr/business-domain/team';
@@ -36,9 +29,8 @@ import { InputTextModule } from 'primeng/inputtext';
   ],
   templateUrl: './team-header.component.html',
   styleUrl: './team-header.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamHeaderComponent implements OnChanges {
+export class TeamHeaderComponent {
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
     private readonly teamService: TeamService
@@ -46,20 +38,16 @@ export class TeamHeaderComponent implements OnChanges {
 
   @Input() public form!: FormGroup<EditTeamForm>;
   @Input() public logoUrl?: string;
-
-  public logoUrlFe?: string;
+  @Input() public teamId?: number;
 
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes['logo']) {
-      this.logoUrlFe = this.logoUrl;
-      this.changeDetectorRef.markForCheck();
-    }
-  }
-
   public async onFileSelected(event: Event): Promise<void> {
+    if (!this.teamId) {
+      return;
+    }
+
     const input = event.target as HTMLInputElement;
 
     if (!input.files || input.files.length <= 0) {
@@ -68,9 +56,10 @@ export class TeamHeaderComponent implements OnChanges {
 
     const selectedFile = input.files[0];
 
-    this.logoUrlFe = (
-      await this.teamService.updatePicture(selectedFile)
-    ).logoUrl;
-    this.changeDetectorRef.markForCheck();
+    this.logoUrl = await this.teamService.updatePicture(
+      selectedFile,
+      this.teamId
+    );
+    this.changeDetectorRef.detectChanges();
   }
 }

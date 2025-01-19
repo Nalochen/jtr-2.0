@@ -1,8 +1,8 @@
 <app-data-container-expandable [id]="id" [isOpen]="isOpen">
   <app-data-container-row ngProjectAs="panel-header">
-      <span class="material-icons-outlined" ngProjectAs="container-icon"
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
       >edit_note</span
-      >
+    >
     <h5 ngProjectAs="container-headline">
       {{ 'page-tournament-details.costs' | translate }}
     </h5>
@@ -11,54 +11,48 @@
     <p ngProjectAs="container-content">
       {{ 'page-tournament-details.registration' | translate }}:
       {{
-      tournament.costs.registrationCosts
-      | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
+        tournament.costs.registrationCosts
+          | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
       }}
 
       {{
-      (tournament.costs.registrationCostsType === PricingTypeEnum.PER_PERSON
-      ? 'page-tournament-details.per-person'
-      : 'page-tournament-details.per-team'
-      ) | translate
+        (tournament.costs.registrationCostsType === PricingTypeEnum.PER_PERSON
+          ? 'page-tournament-details.per-person'
+          : 'page-tournament-details.per-team'
+        ) | translate
       }}
     </p>
-    }
-
-    @if (tournament.costs.depositCosts) {
+    } @if (tournament.costs.depositCosts) {
     <p ngProjectAs="container-content">
       {{ 'page-tournament-details.deposit' | translate }}:
       {{
-      tournament.costs.depositCosts
-      | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
+        tournament.costs.depositCosts
+          | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
       }}
 
       {{
-      (tournament.costs.depositCostsType === PricingTypeEnum.PER_PERSON
-      ? 'page-tournament-details.per-person'
-      : 'page-tournament-details.per-team'
-      ) | translate
+        (tournament.costs.depositCostsType === PricingTypeEnum.PER_PERSON
+          ? 'page-tournament-details.per-person'
+          : 'page-tournament-details.per-team'
+        ) | translate
       }}
     </p>
-    }
-
-    @if (tournament.costs.guestCosts) {
+    } @if (tournament.costs.guestCosts) {
     <p ngProjectAs="container-content">
       {{ 'page-tournament-details.guests' | translate }}:
       {{
-      tournament.costs.guestCosts
-      | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
+        tournament.costs.guestCosts
+          | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
       }}
 
       {{
-      (tournament.costs.guestCostsType === PricingTypeEnum.PER_PERSON
-      ? 'page-tournament-details.per-person'
-      : 'page-tournament-details.per-team'
-      ) | translate
+        (tournament.costs.guestCostsType === PricingTypeEnum.PER_PERSON
+          ? 'page-tournament-details.per-person'
+          : 'page-tournament-details.per-team'
+        ) | translate
       }}
     </p>
-    }
-
-    @if (tournament.costs.costsText) {
+    } @if (tournament.costs.costsText) {
     <p ngProjectAs="container-content">
       {{ tournament.costs.costsText }}
     </p>
@@ -67,17 +61,16 @@
 
   <p-divider ngProjectAs="panel-content" />
 
-  <app-data-container-row
-    class="first-content-row"
-    ngProjectAs="panel-content"
-  >
-      <span class="material-icons-outlined" ngProjectAs="container-icon"
+  <app-data-container-row class="first-content-row" ngProjectAs="panel-content">
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
       >edit_note</span
-      >
+    >
     <h5 ngProjectAs="container-headline">
       {{ 'page-tournament-details.registration-procedure' | translate }}
     </h5>
-    <app-chip ngProjectAs="container-additional">{{ chipText | translate }}</app-chip>
+    <app-chip ngProjectAs="container-additional">{{
+      chipText | translate
+    }}</app-chip>
 
     <p ngProjectAs="container-content">
       {{ tournament.registrationProcedure.text }}
@@ -87,9 +80,9 @@
   <p-divider ngProjectAs="panel-content" />
 
   <app-data-container-row ngProjectAs="panel-content">
-      <span class="material-icons-outlined" ngProjectAs="container-icon"
+    <span class="material-icons-outlined" ngProjectAs="container-icon"
       >edit_note</span
-      >
+    >
     <h5 ngProjectAs="container-headline">
       {{ 'page-tournament-details.deadlines' | translate }}
     </h5>

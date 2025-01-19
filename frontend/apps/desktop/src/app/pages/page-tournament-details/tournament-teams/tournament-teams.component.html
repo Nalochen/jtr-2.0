@@ -1,35 +1,55 @@
 <app-data-container>
   @if (showPlacement) {
   <p class="title">{{ 'page-tournament-details.ranking' | translate }}:</p>
-    @for (team of participatingTeams; track team) {
-      <app-team class="team">
-        <p ngProjectAs="team-ranking">{{ team.placement }}</p>
-        <img ngProjectAs="team-logo" [src]="team.logo" alt="team logo" height="32" width="32"/>
-        <p ngProjectAs="team-name">{{ team.name }}</p>
-      </app-team>
-    }
-  } @else {
-    <p class="title">{{ 'page-tournament-details.registered' | translate }}:</p>
+  @for (team of participatingTeams; track team) {
+  <app-team class="team">
+    <p ngProjectAs="team-ranking">{{ team.placement }}</p>
+    <img
+      ngProjectAs="team-logo"
+      ngSrc="{{ team.logoUrl }}"
+      alt="team logo"
+      height="32"
+      width="32"
+    />
+    <p ngProjectAs="team-name">{{ team.name }}</p>
+  </app-team>
+  } } @else {
+  <p class="title">{{ 'page-tournament-details.registered' | translate }}:</p>
 
-    @for (team of participatingTeams; track team) {
-    <app-team class="team">
-      <img ngProjectAs="team-logo" [src]="team.logo" alt="team logo" height="32" width="32"/>
-      <p ngProjectAs="team-name">{{ team.name }}</p>
-    </app-team>
-    } @empty {
-    <p class="empty">{{ 'page-tournament-details.no-registered-teams' | translate }}</p>
-    }
-    <p-divider />
-
-    <p class="title">{{ 'page-tournament-details.waiting' | translate }}:</p>
-
-    @for (team of waitingTeams; track team) {
-    <app-team class="team">
-      <img ngProjectAs="team-logo" [src]="team.logo" alt="team logo" height="32" width="32"/>
-      <p ngProjectAs="team-name">{{ team.name }}</p>
-    </app-team>
-    } @empty {
-    <p class="empty">{{ 'page-tournament-details.no-waiting-teams' | translate }}</p>
-    }
+  @for (team of participatingTeams; track team) {
+  <app-team class="team">
+    <img
+      ngProjectAs="team-logo"
+      ngSrc="{{ team.logoUrl }}"
+      alt="team logo"
+      height="32"
+      width="32"
+    />
+    <p ngProjectAs="team-name">{{ team.name }}</p>
+  </app-team>
+  } @empty {
+  <p class="empty">
+    {{ 'page-tournament-details.no-registered-teams' | translate }}
+  </p>
   }
+  <p-divider />
+
+  <p class="title">{{ 'page-tournament-details.waiting' | translate }}:</p>
+
+  @for (team of waitingTeams; track team) {
+  <app-team class="team">
+    <img
+      ngProjectAs="team-logo"
+      ngSrc="{{ team.logoUrl }}"
+      alt="team logo"
+      height="32"
+      width="32"
+    />
+    <p ngProjectAs="team-name">{{ team.name }}</p>
+  </app-team>
+  } @empty {
+  <p class="empty">
+    {{ 'page-tournament-details.no-waiting-teams' | translate }}
+  </p>
+  } }
 </app-data-container>

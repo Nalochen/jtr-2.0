@@ -19,7 +19,8 @@
       {{ 'page-tournament-details.arrival' | translate }}
     </h5>
     <p ngProjectAs="container-content">
-      {{ tournament.arrivalDate.start | date : "dd.MM.YYYY hh:mm" }} Uhr - {{ tournament.arrivalDate.end | date : "dd.MM.YYYY hh:mm" }} Uhr
+      {{ tournament.arrivalDate.start | date : 'dd.MM.YYYY hh:mm' }} Uhr -
+      {{ tournament.arrivalDate.end | date : 'dd.MM.YYYY hh:mm' }} Uhr
     </p>
   </app-data-container-row>
 
@@ -51,19 +52,21 @@
     <p ngProjectAs="container-content">
       {{ 'page-tournament-details.costs' | translate }}:
       {{
-      tournament.costs.accommodationCosts
-      | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
+        tournament.costs.accommodationCosts
+          | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
       }}
 
       {{
-      (tournament.costs.accommodationCostsType === PricingTypeEnum.PER_PERSON
-      ? 'page-tournament-details.per-person'
-      : 'page-tournament-details.per-team'
-      ) | translate
+        (tournament.costs.accommodationCostsType === PricingTypeEnum.PER_PERSON
+          ? 'page-tournament-details.per-person'
+          : 'page-tournament-details.per-team'
+        ) | translate
       }}
     </p>
     }
-    <app-chip ngProjectAs="container-additional">{{ chipText | translate }}</app-chip>
+    <app-chip ngProjectAs="container-additional">{{
+      chipText | translate
+    }}</app-chip>
   </app-data-container-row>
 
   <p-divider ngProjectAs="panel-content" />

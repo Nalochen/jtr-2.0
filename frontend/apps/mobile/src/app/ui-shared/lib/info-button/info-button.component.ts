@@ -31,11 +31,11 @@ export class InfoButtonComponent {
 
   public showDialog() {
     this.visible = true;
-    this.changeDetectorRef.markForCheck();
+    this.changeDetectorRef.detectChanges();
   }
 
   public hideDialog() {
     this.visible = false;
-    this.changeDetectorRef.markForCheck();
+    this.changeDetectorRef.detectChanges();
   }
 }
