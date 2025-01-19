@@ -6,7 +6,7 @@
   @if (!panelIsOpen) {
   <div ngProjectAs="panel-header" class="member-previews">
     @for (member of previewMembers; track member.id) {
-    <img ngProjectAs="team-logo" [src]="member.picture" alt="picture" height="32" width="32"/>
+    <img ngProjectAs="team-logo" [src]="member.pictureUrl" alt="picture" height="32" width="32"/>
     }
   </div>
   } @else {

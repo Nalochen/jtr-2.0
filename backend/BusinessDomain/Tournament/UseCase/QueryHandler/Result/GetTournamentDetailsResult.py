@@ -63,7 +63,7 @@ class Organizer:
     createdAt: datetime
     founded: Optional[str]
     isMixTeam: bool
-    logo: str
+    logoUrl: str
     trainingTime: str
     updatedAt: datetime
 

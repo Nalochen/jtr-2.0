@@ -9,6 +9,7 @@
     <p class="small-text">
       {{ 'page-team-details.founded' | translate }}: {{ team.founded | date : 'dd.MM.YYYY' }}
     </p>
+    }
     @if ((isAdminOfTeam$() | async) === true) {
     <app-button (click)="redirectToManageTeam()">
       <span class="material-icons">edit</span>
