@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import {
   ButtonColorEnum,
@@ -9,7 +10,6 @@ import {
   ButtonTypeEnum,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'page-create-tournament-submit',
