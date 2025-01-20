@@ -29,7 +29,6 @@ export class PageCreateTournamentSubmitComponent {
 
   constructor(private readonly router: Router) {}
 
-
   public onManageTeams() {
     if (this.tournamentId) {
       this.router.navigate(['manage-tournament/participating-teams/', this.tournamentId])

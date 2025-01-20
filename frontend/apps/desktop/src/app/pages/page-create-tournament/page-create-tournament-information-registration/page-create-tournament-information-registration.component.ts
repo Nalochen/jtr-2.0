@@ -70,9 +70,7 @@ export class PageCreateTournamentInformationRegistrationComponent
     { label: '24', value: 24 },
     { label: '32', value: 32 },
   ];
-
   public registrationProcedureOptions: { label: string; value: TournamentRegistrationProcedureTypeEnum; }[] = [];
-
   public pricingTypeOptions: { label: string; value: PricingTypeEnum; }[] = [];
 
   constructor(
@@ -81,6 +79,24 @@ export class PageCreateTournamentInformationRegistrationComponent
   ) {
     this.initializeRegistrationProcedureOptions();
     this.initializePricingTypeOptions();
+  }
+
+  public ngOnInit() {
+    this.form.controls.teamCountField.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        if (this.form.controls.teamCountField.value) {
+          this.form.controls.teamCountButton.setValue(null);
+          this.form.controls.teamCountButton.disable();
+        } else {
+          this.form.controls.teamCountButton.enable();
+        }
+      });
+  }
+
+  public ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   private initializeRegistrationProcedureOptions(): void {
@@ -100,8 +116,8 @@ export class PageCreateTournamentInformationRegistrationComponent
 
   private initializePricingTypeOptions(): void {
     const options = [
-      { label: 'per Person', value: PricingTypeEnum.PER_PERSON },
-      { label: 'per Team', value: PricingTypeEnum.PER_TEAM },
+      { label: 'per-person', value: PricingTypeEnum.PER_PERSON },
+      { label: 'per-team', value: PricingTypeEnum.PER_TEAM },
     ];
 
     this.translateService.get('create-tournament').subscribe(translations => {
@@ -110,24 +126,6 @@ export class PageCreateTournamentInformationRegistrationComponent
         label: translations[option.label] || option.label
       }));
     });
-  }
-
-  public ngOnInit() {
-    this.form.controls.teamCountField.valueChanges
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(() => {
-        if (this.form.controls.teamCountField.value) {
-          this.form.controls.teamCountButton.setValue(null);
-          this.form.controls.teamCountButton.disable();
-        } else {
-          this.form.controls.teamCountButton.enable();
-        }
-      });
-  }
-
-  public ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   public onOpenRegistrationNow() {
