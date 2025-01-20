@@ -7,6 +7,7 @@ import {
   DataContainerComponent,
   DataContainerRowComponent,
 } from '../../../ui-shared';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'team-about-us',
@@ -16,6 +17,7 @@ import {
     NgOptimizedImage,
     DataContainerRowComponent,
     DataContainerComponent,
+    TranslatePipe
   ],
   templateUrl: './team-information-about-us.component.html',
   styleUrl: './team-information-about-us.component.less',

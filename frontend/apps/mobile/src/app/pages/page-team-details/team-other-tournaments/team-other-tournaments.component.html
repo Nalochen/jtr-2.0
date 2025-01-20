@@ -1,8 +1,14 @@
-<p>Organisierte Turniere</p>
+<p>{{ 'page-team-details.organized-tournaments' | translate }}:</p>
 
-@if (team.organizedTournaments.length > 0) { @for (tournament of
-team.organizedTournaments; track tournament) {
-<app-button>{{ tournament.name }}</app-button>
-} } @else {
-<p>Noch keine organisierten Turniere vorhanden</p>
+@if (team.organizedTournaments.length > 0) {
+  @for (tournament of team.organizedTournaments; track tournament) {
+  <app-button
+    [color]="ButtonColorEnum.Negative"
+    [type]="ButtonTypeEnum.Flat"
+    [fullWidth]="true"
+    (click)="redirectToTournament(tournament.id)"
+  >{{ tournament.name }}</app-button>
+  }
+} @else {
+<p>{{ 'page-team-details.no-tournaments-organized-yet' | translate }}</p>
 }

@@ -116,7 +116,7 @@ class GetTournamentDetailsQueryHandler:
                 createdAt=tournament.organizer.created_at,
                 founded=tournament.organizer.founded,
                 isMixTeam=tournament.organizer.is_mix_team,
-                logo=tournament.organizer.logo,
+                logoUrl=tournament.organizer.logo_url,
                 trainingTime=tournament.organizer.training_time,
                 updatedAt=tournament.organizer.updated_at
             ),

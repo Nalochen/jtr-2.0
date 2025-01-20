@@ -4,7 +4,7 @@
 
 <div class="tournaments">
   @for (tournament of tournaments$ | async; track tournament) {
-  <tournament-row [tournament]="tournament" [isPreviousTournament]="true" />
+  <tournament-row [tournament]="tournament" [isPreviousTournament]="false" />
   }
 
   <app-button

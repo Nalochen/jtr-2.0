@@ -3,12 +3,12 @@
     <span class="material-icons-outlined" ngProjectAs="container-icon"
       >event</span
     >
-    <h4 ngProjectAs="container-headline">Training</h4>
+    <h4 ngProjectAs="container-headline">{{ 'page-team-details.training' | translate }}</h4>
 
     <p ngProjectAs="container-content">{{ team.trainingTime }}</p>
 
     <p class="small-text" ngProjectAs="container-additional">
-      zuletzt aktualisiert:
+      {{ 'page-team-details.last-updated' | translate }}:
       {{ team.trainingTimeUpdatedAt | date : 'dd.MM.YYYY' }}
     </p>
   </app-data-container-row>

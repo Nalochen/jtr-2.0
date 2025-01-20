@@ -1,23 +1,40 @@
 @import 'colors-mobile';
 
 app-data-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-areas:
+    'placement arrow logo gap city points'
+    'placement arrow logo gap name points';
+  grid-template-columns: 16px 24px 50px 0 auto 60px;
   width: 100%;
-}
-
-.team-infos {
-  display: flex;
-  flex-direction: column;
   gap: 4px;
-  align-items: flex-start;
+  align-items: center;
 }
 
-.left-side {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
+.placement {
+  grid-area: placement;
+}
+
+arrow {
+  grid-area: arrow
+}
+
+img {
+  grid-area: logo;
+  border-radius: 50%;
+}
+
+.city {
+  grid-area: city;
+  text-align: start;
+}
+
+.team-name {
+  grid-area: name;
+  font-weight: bold;
+  text-align: start;
+}
+
+.points {
+  grid-area: points;
 }

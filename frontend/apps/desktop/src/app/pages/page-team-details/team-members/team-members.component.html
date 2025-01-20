@@ -1,4 +1,4 @@
-<h3>Mitglieder</h3>
+<h3>{{ 'page-team-details.members' | translate }}</h3>
 
 <app-data-container>
   @if (team.members.length > 0) { @for (member of team.members; track member) {
@@ -10,11 +10,14 @@
       width="28"
       height="28"
     />
-    <p>{{ member.name }}</p>
+    <p ngProjectAs="container-headline">{{ member.name }}</p>
+    @if (showRole(member.role) !== '') {
+    <app-chip ngProjectAs="container-additional">{{ showRole(member.role) | translate }}</app-chip>
+    }
   </app-data-container-row>
   } } @else {
   <div class="noMembers">
-    <p>Noch keine Mitglieder vorhanden.</p>
+    <p>{{ 'page-team-details.no-members-yet' | translate }}</p>
   </div>
   }
 </app-data-container>

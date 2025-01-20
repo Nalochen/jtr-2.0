@@ -1,24 +1,36 @@
-<team-header *ngIf="team$ | async as team" [team]="team" />
+@let team = team$ | async;
+
+@if (team) {
+<team-header [team]="team" />
 
 <section class="content">
   <div class="extra-infos">
-    <p class="small-text" *ngIf="team$ | async as team">
-      gegründet: {{ team.founded | date : 'dd.MM.YYYY' }}
+    @if (team.founded) {
+    <p class="small-text">
+      {{ 'page-team-details.founded' | translate }}: {{ team.founded | date : 'dd.MM.YYYY' }}
     </p>
+    }
     @if ((isAdminOfTeam$() | async) === true) {
-    <button mat-icon-button (click)="redirectToManageTeam()">
+    <app-button (click)="redirectToManageTeam()">
       <span class="material-icons">edit</span>
-    </button>
+    </app-button>
     }
   </div>
 
-  <team-information *ngIf="team$ | async as team" [team]="team" />
+  <team-information [team]="team" />
 
   <section class="activities">
-    <team-members *ngIf="team$ | async as team" [team]="team" />
+    @if (isMemberOfTeam) {
+    <team-members [team]="team" />
+    }
 
-    <team-own-tournaments *ngIf="team$ | async as team" [team]="team" />
+    @if (team.pastTournaments.length !== 0) {
+    <team-other-tournaments [team]="team" />
+    }
 
-    <team-other-tournaments *ngIf="team$ | async as team" [team]="team" />
+    @if (team.organizedTournaments.length !== 0) {
+    <team-own-tournaments [team]="team" />
+    }
   </section>
 </section>
+}
