@@ -11,8 +11,8 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 
 import {
-  PricingTypeEnum,
-  TournamentRegistrationProcedureTypeEnum,
+  PricingTypeEnum, TournamentFoodGastroEnum,
+  TournamentRegistrationProcedureTypeEnum
 } from '@jtr/data-domain/tournament-data';
 
 import { RegistrationInformationForm } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
@@ -23,7 +23,7 @@ import {
   DataContainerRowComponent,
   InfoButtonComponent,
 } from '../../../ui-shared';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -71,21 +71,46 @@ export class PageCreateTournamentInformationRegistrationComponent
     { label: '32', value: 32 },
   ];
 
-  public registrationProcedureOptions = [
-    {
-      label: 'first come first served',
-      value: TournamentRegistrationProcedureTypeEnum.FIRST_COME,
-    },
-    { label: 'draw', value: TournamentRegistrationProcedureTypeEnum.LOTS },
-    { label: 'other', value: TournamentRegistrationProcedureTypeEnum.OTHER },
-  ];
+  public registrationProcedureOptions: { label: string; value: TournamentRegistrationProcedureTypeEnum; }[] = [];
 
-  public pricingTypeOptions = [
-    { label: 'per Person', value: PricingTypeEnum.PER_PERSON },
-    { label: 'per Team', value: PricingTypeEnum.PER_TEAM },
-  ];
+  public pricingTypeOptions: { label: string; value: PricingTypeEnum; }[] = [];
 
-  constructor(private readonly datePipe: DatePipe) {}
+  constructor(
+    private readonly datePipe: DatePipe,
+    private readonly translateService: TranslateService
+  ) {
+    this.initializeRegistrationProcedureOptions();
+    this.initializePricingTypeOptions();
+  }
+
+  private initializeRegistrationProcedureOptions(): void {
+    const options = [
+      { label: 'first-come', value: TournamentRegistrationProcedureTypeEnum.FIRST_COME },
+      { label: 'draw', value: TournamentRegistrationProcedureTypeEnum.LOTS },
+      { label: 'other-procedure', value: TournamentRegistrationProcedureTypeEnum.OTHER },
+    ];
+
+    this.translateService.get('create-tournament').subscribe(translations => {
+      this.registrationProcedureOptions = options.map(option => ({
+        ...option,
+        label: translations[option.label] || option.label
+      }));
+    });
+  }
+
+  private initializePricingTypeOptions(): void {
+    const options = [
+      { label: 'per Person', value: PricingTypeEnum.PER_PERSON },
+      { label: 'per Team', value: PricingTypeEnum.PER_TEAM },
+    ];
+
+    this.translateService.get('create-tournament').subscribe(translations => {
+      this.pricingTypeOptions = options.map(option => ({
+        ...option,
+        label: translations[option.label] || option.label
+      }));
+    });
+  }
 
   public ngOnInit() {
     this.form.controls.teamCountField.valueChanges
