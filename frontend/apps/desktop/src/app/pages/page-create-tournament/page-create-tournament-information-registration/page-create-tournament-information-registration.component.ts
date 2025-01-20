@@ -11,7 +11,7 @@ import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 
 import {
-  PricingTypeEnum, TournamentFoodGastroEnum,
+  PricingTypeEnum,
   TournamentRegistrationProcedureTypeEnum
 } from '@jtr/data-domain/tournament-data';
 
