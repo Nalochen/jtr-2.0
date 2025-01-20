@@ -9,6 +9,7 @@ import {
   ButtonTypeEnum,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'page-create-tournament-submit',
@@ -24,9 +25,15 @@ export class PageCreateTournamentSubmitComponent {
   public readonly ButtonFunctionType = ButtonFunctionType;
 
   @Input() public formRef!: FormGroupDirective;
+  @Input() public tournamentId?: number;
+
+  constructor(private readonly router: Router) {}
+
 
   public onManageTeams() {
-    console.log('Manage Teams');
+    if (this.tournamentId) {
+      this.router.navigate(['manage-tournament/participating-teams/', this.tournamentId])
+    }
   }
 
   public onPublish(event: Event) {

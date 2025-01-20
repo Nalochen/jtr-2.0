@@ -3,7 +3,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { firstValueFrom, Observable, Subject } from 'rxjs';
+import { firstValueFrom, Observable, Subject, takeUntil } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
@@ -47,8 +47,10 @@ import { DividerModule } from 'primeng/divider';
 })
 export class PageCreateTournamentComponent implements OnDestroy {
   public form = createTournamentFormControl;
-  private readonly destroy$ = new Subject<void>();
 
+  protected tournamentId: number | undefined;
+
+  private readonly destroy$ = new Subject<void>();
   private newTournament = true;
 
   @SingletonGetter()
@@ -62,10 +64,13 @@ export class PageCreateTournamentComponent implements OnDestroy {
     private readonly store$: Store,
     private readonly datePipe: DatePipe
   ) {
-    this.tournament$.pipe().subscribe((tournament) => {
+    this.tournament$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((tournament) => {
       if (tournament) {
         this.prefillFormValues(tournament);
         this.newTournament = false;
+        this.tournamentId = tournament.id;
       }
     });
   }
