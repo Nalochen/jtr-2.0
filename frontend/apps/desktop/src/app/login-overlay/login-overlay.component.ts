@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
+import { loginFormControl } from '@jtr/business-domain/user';
+import { isEmail } from '@jtr/business-domain/user';
+
 import { AuthService, LockType } from '../business-rules/auth/auth.service';
 
-import { loginFormControl } from '../../../../../libs/business-domain/login/src/lib/form-controls/login-form.control';
-import { isEmail } from '../../../../../libs/business-domain/login/src/lib/rules/is-email.rule';
 import {
   ButtonColorEnum,
   ButtonComponent,

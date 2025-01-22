@@ -31,7 +31,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     TeamOwnTournamentsComponent,
     TeamOtherTournamentsComponent,
     TranslatePipe,
-    ButtonComponent
+    ButtonComponent,
   ],
   templateUrl: './page-team-details.component.html',
   styleUrl: './page-team-details.component.less',
@@ -50,13 +50,17 @@ export class PageTeamDetailsComponent {
       if (team) {
         this.teamEscapedName = team.escapedName;
 
-        this.authService.isAdminOfTeam(this.teamEscapedName).pipe().subscribe(
-          canEditTeam => this.canEditTeam = canEditTeam
-        )
+        this.authService
+          .isAdminOfTeam(this.teamEscapedName)
+          .pipe()
+          .subscribe((canEditTeam) => (this.canEditTeam = canEditTeam));
 
-        this.authService.isMemberOfTeam(this.teamEscapedName).pipe().subscribe(
-          isMemberOfTeam => this.isMemberOfTeam = isMemberOfTeam
-        )
+        this.authService
+          .isMemberOfTeam(this.teamEscapedName)
+          .pipe()
+          .subscribe(
+            (isMemberOfTeam) => (this.isMemberOfTeam = isMemberOfTeam)
+          );
       }
     });
   }

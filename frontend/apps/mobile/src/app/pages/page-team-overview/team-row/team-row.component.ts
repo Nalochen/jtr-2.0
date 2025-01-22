@@ -20,7 +20,7 @@ import { TeamArrowComponent } from '../team-arrow/team-arrow.component';
     DataContainerComponent,
     ButtonComponent,
     TeamArrowComponent,
-    DecimalPipe
+    DecimalPipe,
   ],
   templateUrl: './team-row.component.html',
   styleUrl: './team-row.component.less',

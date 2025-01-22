@@ -11,10 +11,10 @@ import {
 } from '@jtr/data-domain/store';
 
 import {
-  loadTournamentOverviewData,
+  loadTournamentOverviewDataAction,
   loadTournamentOverviewDataFailedAction,
   loadTournamentOverviewDataSuccessAction,
-} from '../actions/tournament.action';
+} from '../actions/tournament-overview.action';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +28,7 @@ export class GetTournamentOverviewDataEffect {
 
   public getTournamentOverviewData$: Observable<unknown> = createEffect(() =>
     this.actions$.pipe(
-      ofType(loadTournamentOverviewData),
+      ofType(loadTournamentOverviewDataAction),
       switchMap(() =>
         this.tournamentOverviewDataClient.getTournamentOverviewData$().pipe(
           map((payload: TournamentOverviewData[]) =>

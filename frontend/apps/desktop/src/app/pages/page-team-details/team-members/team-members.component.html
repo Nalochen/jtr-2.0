@@ -12,7 +12,9 @@
     />
     <p ngProjectAs="container-headline">{{ member.name }}</p>
     @if (showRole(member.role) !== '') {
-    <app-chip ngProjectAs="container-additional">{{ showRole(member.role) | translate }}</app-chip>
+    <app-chip ngProjectAs="container-additional">{{
+      showRole(member.role) | translate
+    }}</app-chip>
     }
   </app-data-container-row>
   } } @else {

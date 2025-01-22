@@ -14,7 +14,7 @@ import {
   loadTeamOverviewData,
   loadTeamOverviewDataFailedAction,
   loadTeamOverviewDataSuccessAction,
-} from '../actions/team.action';
+} from '../actions/team-overview.action';
 
 @Injectable({
   providedIn: 'root',

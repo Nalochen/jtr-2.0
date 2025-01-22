@@ -4,8 +4,6 @@
 
 @if (team.lastTournamentOrganized || team.lastTournamentPlayed) {
 <team-statistics [team]="team" />
-}
-
-@if (team.aboutUs) {
+} @if (team.aboutUs) {
 <team-about-us [team]="team" />
 }
