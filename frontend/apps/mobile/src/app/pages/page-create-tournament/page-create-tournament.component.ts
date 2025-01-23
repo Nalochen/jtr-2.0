@@ -45,8 +45,10 @@ import { DividerModule } from 'primeng/divider';
 })
 export class PageCreateTournamentComponent implements OnDestroy {
   public form = createTournamentFormControl;
-  private readonly destroy$ = new Subject<void>();
 
+  protected tournamentId?: number;
+
+  private readonly destroy$ = new Subject<void>();
   private newTournament = true;
 
   @SingletonGetter()
@@ -64,6 +66,7 @@ export class PageCreateTournamentComponent implements OnDestroy {
       if (tournament) {
         this.prefillFormValues(tournament);
         this.newTournament = false;
+        this.tournamentId = tournament.id;
       }
     });
   }
@@ -213,6 +216,6 @@ export class PageCreateTournamentComponent implements OnDestroy {
       tournament.shoes.text
     );
 
-    this.form.controls.costsText.setValue(tournament.additionalInformation);
+    this.form.controls.additionalText.setValue(tournament.additionalInformation);
   }
 }

@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
@@ -36,29 +35,35 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './page-team-details.component.html',
   styleUrl: './page-team-details.component.less',
 })
-export class PageTeamDetailsComponent {
+export class PageTeamDetailsComponent implements OnDestroy {
   public teamEscapedName: string | null = null;
   public canEditTeam: boolean = false;
   public isMemberOfTeam: boolean = false;
+  public destroy$ = new Subject<void>();
 
   constructor(
     private readonly store$: Store,
     private readonly router: Router,
     private readonly authService: AuthService
   ) {
-    this.team$.pipe(takeUntilDestroyed()).subscribe((team) => {
+    this.team$.pipe(takeUntil(this.destroy$)).subscribe((team) => {
       if (team) {
         this.teamEscapedName = team.escapedName;
 
-        this.authService.isAdminOfTeam(this.teamEscapedName).pipe().subscribe(
+        this.authService.isAdminOfTeam(this.teamEscapedName).pipe(takeUntil(this.destroy$)).subscribe(
           canEditTeam => this.canEditTeam = canEditTeam
         )
 
-        this.authService.isMemberOfTeam(this.teamEscapedName).pipe().subscribe(
+        this.authService.isMemberOfTeam(this.teamEscapedName).pipe(takeUntil(this.destroy$)).subscribe(
           isMemberOfTeam => this.isMemberOfTeam = isMemberOfTeam
         )
       }
     });
+  }
+
+  public ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   @SingletonGetter()
