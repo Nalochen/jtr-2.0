@@ -1,12 +1,15 @@
 <app-data-container>
   <p class="small-text" ngProjectAs="container-additional">
-    {{ 'page-team-details.last-updated' | translate}}: {{ team.trainingTimeUpdatedAt | date : 'dd.MM.YYYY' }}
+    {{ 'page-team-details.last-updated' | translate }}:
+    {{ team.trainingTimeUpdatedAt | date : 'dd.MM.YYYY' }}
   </p>
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon"
       >event</span
     >
-    <h5 ngProjectAs="container-headline">{{ 'page-team-details.training' | translate}}</h5>
+    <h5 ngProjectAs="container-headline">
+      {{ 'page-team-details.training' | translate }}
+    </h5>
 
     <p ngProjectAs="container-content">{{ team.trainingTime }}</p>
   </app-data-container-row>

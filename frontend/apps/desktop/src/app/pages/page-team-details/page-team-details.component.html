@@ -2,7 +2,8 @@
 
 <div class="edit-infos">
   <p class="small-text" *ngIf="team$ | async as team">
-    {{ 'page-team-details.founded' | translate }}: {{ team.founded | date : 'dd.MM.YYYY' }}
+    {{ 'page-team-details.founded' | translate }}:
+    {{ team.founded | date : 'dd.MM.YYYY' }}
   </p>
   @if (canEditTeam) {
   <app-button (click)="redirectToManageTeam()">

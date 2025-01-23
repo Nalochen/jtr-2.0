@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { loadUserDetailsData } from '@jtr/business-domain/user';
+import { loadUserDetailsDataAction } from '@jtr/business-domain/user';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,9 @@ export class UserDetailsResolver implements Resolve<boolean> {
     const escapedUsername = route.paramMap.get('escapedUsername');
 
     this.store$.dispatch(
-      loadUserDetailsData({ escapedUsername: escapedUsername || undefined })
+      loadUserDetailsDataAction({
+        escapedUsername: escapedUsername || undefined,
+      })
     );
 
     return new Observable<boolean>((observer) => {

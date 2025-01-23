@@ -4,7 +4,11 @@ import { Router } from '@angular/router';
 
 import { TeamData } from '@jtr/data-domain/store';
 
-import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../../ui-shared';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+} from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
@@ -23,6 +27,6 @@ export class TeamOwnTournamentsComponent {
   constructor(private readonly router: Router) {}
 
   protected redirectToTournament(tournamentId: number) {
-    this.router.navigate(['tournament-details', tournamentId])
+    this.router.navigate(['tournament-details', tournamentId]);
   }
 }

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { loadTournamentDetailsData } from '@jtr/business-domain/tournament';
+import { loadTournamentDetailsDataAction } from '@jtr/business-domain/tournament';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +18,7 @@ export class TournamentDetailsResolver implements Resolve<boolean> {
 
     if (tournamentId) {
       this.store$.dispatch(
-        loadTournamentDetailsData({ tournamentId: +tournamentId })
+        loadTournamentDetailsDataAction({ tournamentId: +tournamentId })
       );
     }
 

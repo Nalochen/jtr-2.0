@@ -7,9 +7,11 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import { UserData, UserDataClient } from '@jtr/data-domain/store';
 
-import { loadUserDetailsData } from '../actions/user-details-data-load.action';
-import { loadUserDetailsDataFailedAction } from '../actions/user-details-data-loaded-failed.action';
-import { loadUserDetailsDataSuccessAction } from '../actions/user-details-data-loaded-success.action';
+import {
+  loadUserDetailsDataAction,
+  loadUserDetailsDataFailedAction,
+  loadUserDetailsDataSuccessAction,
+} from '../actions/user-details.action';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +23,7 @@ export class GetUserDetailsDataEffect {
 
   public getUserDetailsData$: Observable<unknown> = createEffect(() =>
     this.actions$.pipe(
-      ofType(loadUserDetailsData),
+      ofType(loadUserDetailsDataAction),
       switchMap((action) =>
         this.userDataClient.getUserData$(action.escapedUsername).pipe(
           map((payload: UserData) =>
