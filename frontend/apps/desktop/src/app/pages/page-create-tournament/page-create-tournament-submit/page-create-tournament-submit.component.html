@@ -1,3 +1,4 @@
+@if (!!tournamentId) {
 <app-button
   [color]="ButtonColorEnum.White"
   [type]="ButtonTypeEnum.Raised"
@@ -7,6 +8,7 @@
 >
   {{ 'create-tournament.manage-teams' | translate }}
 </app-button>
+}
 <div class="button-wrapper">
   <app-button
     [color]="ButtonColorEnum.White"

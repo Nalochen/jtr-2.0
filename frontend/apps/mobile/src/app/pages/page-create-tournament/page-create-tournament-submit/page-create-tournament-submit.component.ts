@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import {
   ButtonColorEnum,
@@ -24,9 +25,14 @@ export class PageCreateTournamentSubmitComponent {
   public readonly ButtonFunctionType = ButtonFunctionType;
 
   @Input() public formRef!: FormGroupDirective;
+  @Input() public tournamentId?: number;
+
+  constructor(private readonly router: Router) {}
 
   public onManageTeams() {
-    console.log('Manage Teams');
+    if (this.tournamentId) {
+      this.router.navigate(['manage-tournament/participating-teams/', this.tournamentId])
+    }
   }
 
   public onPublish(event: Event) {

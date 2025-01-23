@@ -28,10 +28,10 @@
   <p-divider id="additional" />
 
   <page-create-tournament-information-additional
-    [form]="form.controls.costsText"
+    [form]="form.controls.additionalText"
   />
 
   <p-divider />
 
-  <page-create-tournament-submit [formRef]="tournamentForm" />
+  <page-create-tournament-submit [formRef]="tournamentForm" [tournamentId]="tournamentId"/>
 </form>
