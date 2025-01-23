@@ -13,7 +13,7 @@ import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from '../../../../../mobile/src/app/business-rules/auth/auth.service';
 
-import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../ui-shared';
+import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum } from '../../ui-shared';
 import { TeamHeaderComponent } from './team-header/team-header.component';
 import { TeamInformationComponent } from './team-information/team-information.component';
 import { TeamMembersComponent } from './team-members/team-members.component';

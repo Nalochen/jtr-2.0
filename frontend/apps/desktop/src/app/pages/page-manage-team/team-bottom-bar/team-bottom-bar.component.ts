@@ -3,17 +3,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { firstValueFrom, Observable } from 'rxjs';
-
-import { Store } from '@ngrx/store';
+import { firstValueFrom } from 'rxjs';
 
 import {
   EditTeamForm,
   TeamDataService,
-  teamDetailsSelector,
 } from '@jtr/business-domain/team';
-import { TeamData } from '@jtr/data-domain/store';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { TeamService } from '../../../business-rules/team/team.service';
 
@@ -51,7 +46,6 @@ export class TeamBottomBarComponent {
     private readonly teamService: TeamService,
     private readonly teamDataService: TeamDataService,
     private readonly router: Router,
-    private readonly store$: Store
   ) {}
 
   public onOpenDeleteDialog() {

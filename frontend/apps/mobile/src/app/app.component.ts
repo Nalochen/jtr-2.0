@@ -1,3 +1,4 @@
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { Router, RouterModule } from '@angular/router';
@@ -7,6 +8,10 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { Observable } from 'rxjs';
 
+import { Store } from '@ngrx/store';
+
+import { userDetailsSelector } from '@jtr/business-domain/user';
+import { UserData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from './business-rules/auth/auth.service';
@@ -15,10 +20,6 @@ import { OverlayMenuComponent } from './overlay-menu/overlay-menu.component';
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from './ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { UserData } from '@jtr/data-domain/store';
-import { userDetailsSelector } from '@jtr/business-domain/user';
-import { Store } from '@ngrx/store';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   standalone: true,
