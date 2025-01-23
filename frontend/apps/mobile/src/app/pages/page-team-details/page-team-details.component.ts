@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 
-import { firstValueFrom, Observable, of, switchMap } from 'rxjs';
+import { firstValueFrom, Observable, of, Subject, switchMap } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Store } from '@ngrx/store';
@@ -17,7 +17,7 @@ import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from '../../business-rules/auth/auth.service';
 
-import { ButtonComponent } from '../../ui-shared';
+import { ButtonComponent, ButtonTypeEnum, ButtonColorEnum } from '../../ui-shared';
 import { TeamHeaderComponent } from './team-header/team-header.component';
 import { TeamInformationComponent } from './team-information/team-information.component';
 import { TeamMembersComponent } from './team-members/team-members.component';
@@ -44,6 +44,9 @@ export class PageTeamDetailsComponent {
   public teamEscapedName: string | null = null;
   public canEditTeam: boolean = false;
   public isMemberOfTeam: boolean = false;
+  public destroy$ = new Subject<void>();
+  protected readonly ButtonColorEnum = ButtonColorEnum;
+  protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
   constructor(
     private readonly store$: Store,
@@ -95,5 +98,9 @@ export class PageTeamDetailsComponent {
       'manage-team-details',
       await firstValueFrom(this.teamEscapedName$),
     ]);
+  }
+
+  public createTournament() {
+    this.router.navigate(['create-tournament/tournament-information']);
   }
 }

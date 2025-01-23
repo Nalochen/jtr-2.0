@@ -5,9 +5,18 @@
     {{ 'page-team-details.founded' | translate }}: {{ team.founded | date : 'dd.MM.YYYY' }}
   </p>
   @if (canEditTeam) {
-  <app-button (click)="redirectToManageTeam()">
-    <span class="material-icons">edit</span>
-  </app-button>
+  <div class="buttons">
+    <app-button (click)="redirectToManageTeam()">
+      <span class="material-icons">edit</span>
+    </app-button>
+    <app-button
+      [color]="ButtonColorEnum.Red"
+      [type]="ButtonTypeEnum.Raised"
+      (click)="createTournament()"
+    >
+      Turnier erstellen
+    </app-button>
+  </div>
   }
 </div>
 
