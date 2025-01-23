@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
@@ -13,6 +13,9 @@ import { LoginOverlayComponent } from './login-overlay/login-overlay.component';
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from './ui-shared';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { UserData } from '@jtr/data-domain/store';
+import { userDetailsSelector } from '@jtr/business-domain/user';
+import { Store } from '@ngrx/store';
 
 @Component({
   standalone: true,
@@ -23,6 +26,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     OverlayPanelModule,
     TranslatePipe,
     AsyncPipe,
+    NgOptimizedImage,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -36,7 +40,8 @@ export class AppComponent {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly translate: TranslateService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly store$: Store,
   ) {
     const savedLanguage = sessionStorage.getItem('language') || 'de';
     this.translate.setDefaultLang(savedLanguage);
@@ -46,6 +51,11 @@ export class AppComponent {
   @SingletonGetter()
   public get isLoggedIn$(): Observable<boolean> {
     return this.authService.isAuthenticated$;
+  }
+
+  @SingletonGetter()
+  public get user$(): Observable<UserData | null> {
+    return this.store$.select(userDetailsSelector);
   }
 
   public logout(): void {
@@ -61,5 +71,13 @@ export class AppComponent {
     if (await firstValueFrom(this.isLoggedIn$)) {
       await this.userService.updateUserLanguage({ language });
     }
+  }
+
+  public navigateToHome() {
+    this.router.navigate(['/']);
+  }
+
+  public navigateToUserDetails() {
+    this.router.navigate(['manage-user-details']);
   }
 }
