@@ -1,11 +1,13 @@
 <div>
-  <app-button
-    (click)="onOpenDeleteDialog()"
-    [color]="ButtonColorEnum.White"
-    [type]="ButtonTypeEnum.Raised"
-  >
-    <p>{{ 'page-manage-team.delete-team' | translate }}</p>
-  </app-button>
+  @if (teamId) {
+    <app-button
+      (click)="onOpenDeleteDialog()"
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Raised"
+    >
+      <p>{{ 'page-manage-team.delete-team' | translate }}</p>
+    </app-button>
+  }
 
   <app-button
     (click)="onSaveTeam()"

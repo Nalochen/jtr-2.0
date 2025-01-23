@@ -1,5 +1,10 @@
 @import 'colors-mobile';
 
+:host {
+  display: flex;
+  height: calc(100vh - 58px);
+}
+
 .small-text {
   margin-bottom: 16px !important;
 }
@@ -32,4 +37,10 @@ team-bottom-bar {
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
