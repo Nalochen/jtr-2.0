@@ -1,6 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
@@ -30,7 +29,6 @@ import { TeamInformationTrainingComponent } from '../team-information-training/t
   ],
   templateUrl: './team-information.component.html',
   styleUrl: './team-information.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamInformationComponent implements OnInit, OnDestroy {
   @Input() public form!: FormGroup<EditTeamForm>;

@@ -1,5 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { TeamOverviewData } from '@jtr/data-domain/store';
 
@@ -23,15 +24,16 @@ import { TeamArrowComponent } from '../team-arrow/team-arrow.component';
   ],
   templateUrl: './team-row.component.html',
   styleUrl: './team-row.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamRowComponent {
+  constructor(private readonly router: Router) {}
+
   @Input() public team!: TeamOverviewData;
 
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
   public navigateToTeam(): void {
-    window.open(`/team-details/${this.team.escapedName}`, '_self');
+    this.router.navigate(['team-details', this.team.escapedName]);
   }
 }

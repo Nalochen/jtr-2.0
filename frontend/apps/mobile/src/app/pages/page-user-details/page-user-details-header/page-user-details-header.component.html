@@ -1,14 +1,14 @@
 <div class="content">
   <div class="picture-name">
+    @if (user().pictureUrl) {
     <img
       id="logo"
       alt="Profile Picture of {{ user().username }}"
-      ngSrc="{{ user().pictureUrl }}"
+      [src]="user().pictureUrl"
       height="48"
       width="48"
     />
-
-    @if (user().isNameVisible) {
+    } @if (user().isNameVisible) {
     <div class="names">
       <h1>{{ user().name }}</h1>
       <h4>{{ user().username }}</h4>

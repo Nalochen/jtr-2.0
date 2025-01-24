@@ -1,11 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
@@ -71,7 +65,6 @@ export enum PanelTypes {
   ],
   templateUrl: './tournament-information.component.html',
   styleUrl: './tournament-information.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentInformationComponent implements OnInit {
   @Input() public tournament!: TournamentData;

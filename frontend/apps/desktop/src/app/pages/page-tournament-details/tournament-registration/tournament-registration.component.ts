@@ -1,19 +1,14 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { Subject, takeUntil } from 'rxjs';
+import { firstValueFrom, Subject, takeUntil } from 'rxjs';
 
+import { TournamentDataService } from '@jtr/business-domain/tournament';
 import { TeamData, TournamentTeamsData } from '@jtr/data-domain/store';
 
 import { AuthService } from '../../../business-rules/auth/auth.service';
-import { ManageParticipationService } from '../../../business-rules/tournament/manage-participation.service';
+import { ParticipationService } from '../../../business-rules/tournament/participation.service';
 
 import {
   ButtonColorEnum,
@@ -36,9 +31,9 @@ import { DropdownModule } from 'primeng/dropdown';
     DropdownModule,
     FormsModule,
   ],
+  providers: [TournamentDataService],
   templateUrl: './tournament-registration.component.html',
   styleUrl: './tournament-registration.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentRegistrationComponent implements OnInit, OnDestroy {
   @Input() public tournamentId!: number;
@@ -54,8 +49,9 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
   public destroy$ = new Subject<void>();
 
   constructor(
-    private readonly manageParticipationService: ManageParticipationService,
-    private readonly authService: AuthService
+    private readonly manageParticipationService: ParticipationService,
+    private readonly authService: AuthService,
+    private readonly tournamentDataService: TournamentDataService
   ) {}
 
   public ngOnInit() {
@@ -81,13 +77,19 @@ export class TournamentRegistrationComponent implements OnInit, OnDestroy {
     this.dialogVisible = true;
   }
 
-  public onRegistrationClick(): void {
+  public async onRegistrationClick(): Promise<void> {
     this.dialogVisible = false;
     if (this.selectedTeam) {
-      this.manageParticipationService.create({
-        tournamentId: this.tournamentId,
-        teamId: this.selectedTeam?.id,
-      });
+      await firstValueFrom(
+        this.manageParticipationService.create({
+          tournamentId: this.tournamentId,
+          teamId: this.selectedTeam?.id,
+        })
+      );
+
+      this.selectedTeam = null;
+
+      await this.tournamentDataService.reloadTournamentDetails();
     }
   }
 }

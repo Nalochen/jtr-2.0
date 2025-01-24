@@ -7,7 +7,6 @@ import {
 } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -46,7 +45,6 @@ import {
   imports: [CommonModule],
   templateUrl: './data-container-expandable.component.html',
   styleUrl: './data-container-expandable.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataContainerExpandableComponent implements OnChanges {
   @Input() public id = '';

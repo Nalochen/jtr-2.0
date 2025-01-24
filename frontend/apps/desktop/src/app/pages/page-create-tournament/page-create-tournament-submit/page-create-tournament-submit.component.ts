@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroupDirective } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [CommonModule, ButtonComponent, TranslatePipe],
   templateUrl: './page-create-tournament-submit.component.html',
   styleUrl: './page-create-tournament-submit.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageCreateTournamentSubmitComponent {
   public readonly ButtonColorEnum = ButtonColorEnum;
@@ -31,7 +30,10 @@ export class PageCreateTournamentSubmitComponent {
 
   public onManageTeams() {
     if (this.tournamentId) {
-      this.router.navigate(['manage-tournament/participating-teams/', this.tournamentId])
+      this.router.navigate([
+        'manage-tournament/participating-teams/',
+        this.tournamentId,
+      ]);
     }
   }
 

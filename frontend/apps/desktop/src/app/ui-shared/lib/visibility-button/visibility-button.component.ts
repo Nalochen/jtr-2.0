@@ -1,10 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  OnInit,
-} from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { ButtonColorEnum, ButtonComponent, ButtonTypeEnum } from '../../index';
@@ -23,7 +18,6 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
   ],
   templateUrl: './visibility-button.component.html',
   styleUrl: './visibility-button.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VisibilityButtonComponent implements OnInit {
   public readonly control = input.required<FormControl<boolean | null>>();

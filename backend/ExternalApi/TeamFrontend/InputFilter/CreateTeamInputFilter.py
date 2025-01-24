@@ -10,7 +10,7 @@ from flask_inputfilter.Validator import (
 class CreateTeamInputFilter(InputFilter):
     """The input filter for the create-team route"""
 
-    def __init__(self):
+    def __init__(self) -> None:
 
         super().__init__()
 

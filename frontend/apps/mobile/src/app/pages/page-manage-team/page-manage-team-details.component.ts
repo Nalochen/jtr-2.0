@@ -67,7 +67,7 @@ export class PageManageTeamDetailsComponent implements OnInit, OnDestroy {
   public createEmptyFormControl(): void {
     this.form.controls.aboutUs.setValue('');
     this.form.controls.city.setValue('');
-    this.form.controls.contacts.setValue([])
+    this.form.controls.contacts.setValue([]);
     this.form.controls.isMixTeam.setValue(false);
     this.form.controls.name.setValue('');
     this.form.controls.trainingTime.setValue('');
@@ -77,10 +77,10 @@ export class PageManageTeamDetailsComponent implements OnInit, OnDestroy {
     this.form.controls.id.setValue(team.id);
     this.form.controls.aboutUs.setValue(team.aboutUs);
     this.form.controls.city.setValue(team.city);
+    this.form.controls.contacts.clear();
     team.contacts.forEach((contact) => {
       this.form.controls.contacts.push(new FormControl(contact));
     });
-    this.form.controls.contacts.setValue(team.contacts);
     this.form.controls.isMixTeam.setValue(team.isMixTeam);
     this.form.controls.name.setValue(team.name);
     this.form.controls.trainingTime.setValue(team.trainingTime);

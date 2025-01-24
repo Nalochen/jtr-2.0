@@ -1,3 +1,5 @@
+export * from './lib/form-controls/create-tournament-form.control';
+
 export * from './lib/store/actions/tournament-details.action';
 export * from './lib/store/actions/tournament-overview.action';
 

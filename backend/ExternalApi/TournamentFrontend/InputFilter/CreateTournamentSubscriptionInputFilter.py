@@ -7,7 +7,6 @@ class CreateTournamentSubscriptionInputFilter(InputFilter):
     """The input filter for the create-tournament-subscription route"""
 
     def __init__(self) -> None:
-        """Initializes the CreateTournamentSubscriptionInputFilter"""
 
         super().__init__()
 

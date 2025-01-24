@@ -1,14 +1,17 @@
 from flask_inputfilter import InputFilter
 from flask_inputfilter.Enum.RegexEnum import RegexEnum
 from flask_inputfilter.Filter import StringTrimFilter, ToNullFilter
-from flask_inputfilter.Validator import IsStringValidator, RegexValidator
+from flask_inputfilter.Validator import (
+    IsBooleanValidator,
+    IsStringValidator,
+    RegexValidator,
+)
 
 
 class UpdateUserInputFilter(InputFilter):
     """The input filter for the update-user route"""
 
-    def __init__(self):
-        """Initializes the UpdateUserInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 
@@ -89,4 +92,22 @@ class UpdateUserInputFilter(InputFilter):
                 ToNullFilter()
             ],
             validators=[IsStringValidator()]
+        )
+
+        self.add(
+            'isBirthdateVisible',
+            required=True,
+            validators=[IsBooleanValidator()]
+        )
+
+        self.add(
+            'isCityVisible',
+            required=True,
+            validators=[IsBooleanValidator()]
+        )
+
+        self.add(
+            'isNameVisible',
+            required=True,
+            validators=[IsBooleanValidator()]
         )

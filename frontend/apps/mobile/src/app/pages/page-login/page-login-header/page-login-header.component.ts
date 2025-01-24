@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { ButtonComponent } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -17,6 +17,5 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
   ],
   templateUrl: './page-login-header.component.html',
   styleUrl: './page-login-header.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageLoginHeaderComponent {}

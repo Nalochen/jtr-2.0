@@ -9,7 +9,6 @@ class LogHandler(logging.Handler):
     """Custom logging handler that logs to the database"""
 
     def __init__(self, session: Session) -> None:
-        """Initialize the log handler"""
 
         super().__init__()
 

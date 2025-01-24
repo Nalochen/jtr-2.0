@@ -1,20 +1,22 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-} from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 
 import { teamDetailsSelector } from '@jtr/business-domain/team';
 import { userOverviewSelector } from '@jtr/business-domain/user';
-import { TeamData, UserOverviewData } from '@jtr/data-domain/store';
+import {
+  TeamData,
+  TeamUserData,
+  UserOverviewData,
+} from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
+
+import { MembershipService } from '../../../business-rules/team/membership.service';
 
 import {
   ButtonColorEnum,
@@ -47,7 +49,6 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
   ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamMembersComponent {
   protected readonly ButtonColorEnum = ButtonColorEnum;
@@ -59,7 +60,8 @@ export class TeamMembersComponent {
 
   constructor(
     private readonly store$: Store,
-    private readonly changeDetectorRef: ChangeDetectorRef
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly membershipService: MembershipService
   ) {
     this.items = [
       {
@@ -112,5 +114,20 @@ export class TeamMembersComponent {
   public closeAddMemberOverlay() {
     this.isAddMemberOverlayVisible = false;
     this.changeDetectorRef.detectChanges();
+  }
+
+  public async removeMember(member: TeamUserData): Promise<void> {
+    const teamId = (await firstValueFrom(this.team$))?.id;
+
+    if (!teamId) {
+      return;
+    }
+
+    await firstValueFrom(
+      this.membershipService.delete({
+        userId: member.id,
+        teamId: teamId,
+      })
+    );
   }
 }

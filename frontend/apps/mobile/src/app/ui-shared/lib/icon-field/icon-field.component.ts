@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -9,6 +9,5 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-icon-field',
   templateUrl: './icon-field.component.html',
   styleUrls: ['./icon-field.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconFieldComponent {}

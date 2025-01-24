@@ -55,8 +55,8 @@ export class TeamService {
     private readonly store$: Store
   ) {}
 
-  public create(request: CreateTeamRequestBody): Observable<void> {
-    return this.http.post<void>(CREATE_TEAM_ENDPOINT, request);
+  public create(request: CreateTeamRequestBody): Observable<string> {
+    return this.http.post<string>(CREATE_TEAM_ENDPOINT, request);
   }
 
   public update(request: UpdateTeamRequestBody): Observable<void> {

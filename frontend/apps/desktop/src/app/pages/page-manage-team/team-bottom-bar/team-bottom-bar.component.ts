@@ -1,14 +1,11 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { firstValueFrom } from 'rxjs';
 
-import {
-  EditTeamForm,
-  TeamDataService,
-} from '@jtr/business-domain/team';
+import { EditTeamForm, TeamDataService } from '@jtr/business-domain/team';
 
 import { TeamService } from '../../../business-rules/team/team.service';
 
@@ -32,10 +29,9 @@ import { DialogModule } from 'primeng/dialog';
   ],
   templateUrl: './team-bottom-bar.component.html',
   styleUrl: './team-bottom-bar.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [TeamDataService, TeamService],
 })
-export class TeamBottomBarComponent {
+export class TeamBottomBarComponent implements OnDestroy {
   @Input() public form!: FormGroup<EditTeamForm>;
   @Input() public teamId?: number;
   protected readonly ButtonColorEnum = ButtonColorEnum;
@@ -45,15 +41,19 @@ export class TeamBottomBarComponent {
   constructor(
     private readonly teamService: TeamService,
     private readonly teamDataService: TeamDataService,
-    private readonly router: Router,
+    private readonly router: Router
   ) {}
+
+  public ngOnDestroy(): void {
+    this.form.reset();
+  }
 
   public onOpenDeleteDialog() {
     this.isDeleteDialogVisible = true;
   }
 
   public async onDeleteTeam() {
-    if(!this.teamId) {
+    if (!this.teamId) {
       return;
     }
 
@@ -63,30 +63,30 @@ export class TeamBottomBarComponent {
       })
     );
 
-    await this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 
   public async onSaveTeam() {
     if (this.form.invalid) {
-      console.log(this.form);
       this.markAllFieldsAsTouched(this.form);
       return;
     }
 
-    if(!this.teamId) {
-      console.log('here');
-      await firstValueFrom(
+    if (!this.teamId) {
+      const escapedName = await firstValueFrom(
         this.teamService.create({
           name: this.form.controls.name.value,
           city: this.form.controls.city.value || undefined,
           isMixTeam: this.form.controls.isMixTeam.value,
           trainingTime: this.form.controls.trainingTime.value || undefined,
           aboutUs: this.form.controls.aboutUs.value || undefined,
-          contacts: this.form.controls.contacts.value.filter(
-            (item): item is string => item !== null && item !== ''
-          ) || [],
+          contacts:
+            this.form.controls.contacts.value.filter(
+              (item): item is string => item !== null && item !== ''
+            ) || [],
         })
-      )
+      );
+      this.router.navigate(['team-details', escapedName]);
     } else {
       await firstValueFrom(
         this.teamService.update({

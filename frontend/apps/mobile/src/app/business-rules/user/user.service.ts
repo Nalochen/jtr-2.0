@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { firstValueFrom, tap } from 'rxjs';
+import { firstValueFrom, Observable, tap } from 'rxjs';
 
 import { AuthService } from '../auth/auth.service';
 
@@ -17,6 +17,9 @@ export interface UpdateUserRequestBody {
   name: string | null;
   pronouns: string | null;
   username: string;
+  isCityVisible: boolean;
+  isNameVisible: boolean;
+  isBirthdateVisible: boolean;
 }
 
 export interface UpdateUserLanguageRequestBody {
@@ -40,16 +43,16 @@ export class UserService {
     private readonly authService: AuthService
   ) {}
 
-  public async update(
+  public update(
     request: UpdateUserRequestBody
-  ): Promise<UpdateUserResponse> {
-    return await firstValueFrom(
-      this.http.put<UpdateUserResponse>(CREATE_USER_ENDPOINT, request).pipe(
+  ): Observable<UpdateUserResponse> {
+    return this.http
+      .put<UpdateUserResponse>(CREATE_USER_ENDPOINT, request)
+      .pipe(
         tap((response: UpdateUserResponse) => {
           this.authService.setSession(response.token);
         })
-      )
-    );
+      );
   }
 
   public async updatePicture(file: File): Promise<string> {
@@ -68,12 +71,10 @@ export class UserService {
     ).pictureUrl;
   }
 
-  public async updateUserLanguage(
+  public updateUserLanguage(
     request: UpdateUserLanguageRequestBody
-  ): Promise<void> {
-    await firstValueFrom(
-      this.http.put<void>(UPDATE_USER_LANGUAGE_ENDPOINT, request)
-    );
+  ): Observable<void> {
+    return this.http.put<void>(UPDATE_USER_LANGUAGE_ENDPOINT, request);
   }
 
   public async delete(): Promise<void> {

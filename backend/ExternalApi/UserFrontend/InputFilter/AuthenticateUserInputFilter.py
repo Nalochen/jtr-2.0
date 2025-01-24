@@ -6,7 +6,7 @@ from flask_inputfilter.Validator import IsStringValidator, RegexValidator
 
 class AuthenticateUserInputFilter(InputFilter):
 
-    def __init__(self):
+    def __init__(self) -> None:
 
         super().__init__()
 

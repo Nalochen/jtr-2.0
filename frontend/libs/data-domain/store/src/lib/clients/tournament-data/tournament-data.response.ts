@@ -47,7 +47,6 @@ export interface TournamentAccommodation {
 }
 
 export interface TournamentRegistrationProcedure {
-  url: string;
   type: TournamentRegistrationProcedureTypeEnum;
   text: string;
 }
@@ -82,6 +81,7 @@ export interface TournamentTeamData {
   isMixTeam: boolean;
   logoUrl: string;
   name: string;
+  escapedName: string;
   trainingTime: string;
   hasPaid: boolean;
   updatedAt: string;

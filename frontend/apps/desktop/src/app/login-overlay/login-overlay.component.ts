@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { loginFormControl } from '@jtr/business-domain/user';
@@ -34,7 +34,6 @@ export interface LoginAttemptResponse {
   ],
   templateUrl: './login-overlay.component.html',
   styleUrl: './login-overlay.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginOverlayComponent {
   @Input() public loginOverlayPanel!: OverlayPanel;

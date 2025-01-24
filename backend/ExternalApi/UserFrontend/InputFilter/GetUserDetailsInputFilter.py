@@ -6,8 +6,7 @@ from flask_inputfilter.Validator import IsStringValidator
 class GetUserDetailsInputFilter(InputFilter):
     """The input filter for the get-user-details route"""
 
-    def __init__(self):
-        """Initializes the GetUserDetailsInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 

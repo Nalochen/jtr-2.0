@@ -98,8 +98,8 @@ def createTeam() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @SendTeamInvitationInputFilter.validate()
-async def sendTeamInvitation() -> Response:
-    return await SendTeamInvitationHandler.handle()
+def sendTeamInvitation() -> Response:
+    return SendTeamInvitationHandler.handle()
 
 
 @team_frontend.route('/accept-team-invitation/<hash>',

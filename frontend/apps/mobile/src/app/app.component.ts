@@ -46,7 +46,7 @@ export class AppComponent {
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
-    private readonly store$: Store,
+    private readonly store$: Store
   ) {}
 
   @SingletonGetter()

@@ -12,7 +12,11 @@ import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from '../../../../../mobile/src/app/business-rules/auth/auth.service';
 
-import { ButtonColorEnum,ButtonComponent, ButtonTypeEnum } from '../../ui-shared';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+} from '../../ui-shared';
 import { TeamHeaderComponent } from './team-header/team-header.component';
 import { TeamInformationComponent } from './team-information/team-information.component';
 import { TeamMembersComponent } from './team-members/team-members.component';
@@ -52,13 +56,17 @@ export class PageTeamDetailsComponent implements OnDestroy {
       if (team) {
         this.teamEscapedName = team.escapedName;
 
-        this.authService.isAdminOfTeam(this.teamEscapedName).pipe(takeUntil(this.destroy$)).subscribe(
-          canEditTeam => this.canEditTeam = canEditTeam
-        )
+        this.authService
+          .isAdminOfTeam(this.teamEscapedName)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((canEditTeam) => (this.canEditTeam = canEditTeam));
 
-        this.authService.isMemberOfTeam(this.teamEscapedName).pipe(takeUntil(this.destroy$)).subscribe(
-          isMemberOfTeam => this.isMemberOfTeam = isMemberOfTeam
-        )
+        this.authService
+          .isMemberOfTeam(this.teamEscapedName)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(
+            (isMemberOfTeam) => (this.isMemberOfTeam = isMemberOfTeam)
+          );
       }
     });
   }

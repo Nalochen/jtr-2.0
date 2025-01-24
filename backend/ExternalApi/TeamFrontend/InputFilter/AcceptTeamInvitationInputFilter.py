@@ -6,7 +6,7 @@ from flask_inputfilter.Validator import IsStringValidator
 class AcceptTeamInvitationInputFilter(InputFilter):
     """The input filter for the accept-team-invitation route"""
 
-    def __init__(self):
+    def __init__(self) -> None:
 
         super().__init__()
 

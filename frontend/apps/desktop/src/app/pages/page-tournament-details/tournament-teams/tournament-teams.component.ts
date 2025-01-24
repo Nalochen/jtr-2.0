@@ -1,5 +1,6 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { MatIcon } from '@angular/material/icon';
 
@@ -28,6 +29,8 @@ import { DividerModule } from 'primeng/divider';
   styleUrl: './tournament-teams.component.less',
 })
 export class TournamentTeamsComponent implements OnInit {
+  constructor(private readonly router: Router) {}
+
   @Input() public teams!: TournamentTeamsData;
 
   public participatingTeams: TournamentTeamData[] = [];
@@ -51,5 +54,9 @@ export class TournamentTeamsComponent implements OnInit {
         (a, b) => a.registrationOrder - b.registrationOrder
       );
     }
+  }
+
+  protected redirectToTeam(escapedName: string): void {
+    this.router.navigate(['team-details', escapedName]);
   }
 }

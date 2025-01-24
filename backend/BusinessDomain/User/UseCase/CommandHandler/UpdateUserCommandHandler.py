@@ -43,6 +43,18 @@ class UpdateUserCommandHandler:
         if pronouns is not None:
             user.pronouns = pronouns
 
+        city_visibility = command.isCityVisible
+        if city_visibility is not None:
+            user.city_visibility = city_visibility
+
+        name_visibility = command.isNameVisible
+        if name_visibility is not None:
+            user.name_visibility = name_visibility
+
+        birthdate_visibility = command.isBirthdateVisible
+        if birthdate_visibility is not None:
+            user.birthdate_visibility = birthdate_visibility
+
         UserRepository.update(user.id)
 
         return create_access_token(

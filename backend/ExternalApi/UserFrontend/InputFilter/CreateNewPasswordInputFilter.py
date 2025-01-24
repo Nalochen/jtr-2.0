@@ -6,8 +6,7 @@ from flask_inputfilter.Validator import IsStringValidator
 class CreateNewPasswordInputFilter(InputFilter):
     """The input filter for the create-new-password route"""
 
-    def __init__(self):
-        """Initializes the CreateNewPasswordInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 

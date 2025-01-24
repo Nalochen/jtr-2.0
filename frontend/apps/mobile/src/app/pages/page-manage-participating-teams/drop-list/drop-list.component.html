@@ -12,12 +12,9 @@
       <div class="drop-list-box" cdkDrag>
         <div class="custom-placeholder" *cdkDragPlaceholder></div>
         <div class="team-infos">
-          <img
-            ngSrc="{{ team.logoUrl }}"
-            [alt]="team.name"
-            height="32"
-            width="32"
-          />
+          @if (team.logoUrl) {
+          <img [src]="team.logoUrl" [alt]="team.name" height="32" width="32" />
+          }
           <span>{{ team.name }}</span>
         </div>
         <div class="team-actions">
@@ -60,12 +57,9 @@
       <div class="drop-list-box" cdkDrag>
         <div class="custom-placeholder" *cdkDragPlaceholder></div>
         <div class="team-infos">
-          <img
-            ngSrc="{{ team.logoUrl }}"
-            [alt]="team.name"
-            height="32"
-            width="32"
-          />
+          @if (team.logoUrl) {
+          <img [src]="team.logoUrl" [alt]="team.name" height="32" width="32" />
+          }
           <span>{{ team.name }}</span>
         </div>
         <div class="team-actions">

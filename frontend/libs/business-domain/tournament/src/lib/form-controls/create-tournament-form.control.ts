@@ -5,7 +5,7 @@ import {
   FormGroup,
   ValidationErrors,
   ValidatorFn,
-  Validators
+  Validators,
 } from '@angular/forms';
 
 import {
@@ -24,8 +24,10 @@ export const teamCountMissingValidator: ValidatorFn = (
   const teamCountButton = control.get('teamCountButton');
   const teamCountInputField = control.get('teamCountField');
 
-  return (!!teamCountButton?.value || !!teamCountInputField?.value) ? null : { teamCountMissing: true };
-}
+  return !!teamCountButton?.value || !!teamCountInputField?.value
+    ? null
+    : { teamCountMissing: true };
+};
 
 export type CostsInformationForm = {
   registrationCosts: FormControl<number | null>;
@@ -125,43 +127,49 @@ export const basicInformationFormControl = new FormGroup<BasicInformationForm>({
 });
 
 export const registrationInformationFormControl =
-  new FormGroup<RegistrationInformationForm>({
-    teamCountButton: new FormControl(null),
-    teamCountField: new FormControl(null),
-    registrationProcedureType: new FormControl(TournamentRegistrationProcedureTypeEnum.FIRST_COME, [Validators.required]),
-    registrationProcedureText: new FormControl(null),
-    registrationStartDate: new FormControl(null, [Validators.required]),
-    costs: new FormGroup<CostsInformationForm>({
-      registrationCosts: new FormControl(0, {
+  new FormGroup<RegistrationInformationForm>(
+    {
+      teamCountButton: new FormControl(null),
+      teamCountField: new FormControl(null),
+      registrationProcedureType: new FormControl(
+        TournamentRegistrationProcedureTypeEnum.FIRST_COME,
+        [Validators.required]
+      ),
+      registrationProcedureText: new FormControl(null),
+      registrationStartDate: new FormControl(null, [Validators.required]),
+      costs: new FormGroup<CostsInformationForm>({
+        registrationCosts: new FormControl(0, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        registrationCostsType: new FormControl(null),
+        depositCosts: new FormControl(0, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        depositCostsType: new FormControl(null),
+        accommodationCosts: new FormControl(0, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        accommodationCostsType: new FormControl(null),
+        guestCosts: new FormControl(0, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        guestCostsType: new FormControl(null),
+        costsText: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+      }),
+      deadlines: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      registrationCostsType: new FormControl(null),
-      depositCosts: new FormControl(0, {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-      depositCostsType: new FormControl(null),
-      accommodationCosts: new FormControl(0, {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-      accommodationCostsType: new FormControl(null),
-      guestCosts: new FormControl(0, {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-      guestCostsType: new FormControl(null),
-      costsText: new FormControl('', {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-    }),
-    deadlines: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-  }, { validators: teamCountMissingValidator });
+    },
+    { validators: teamCountMissingValidator }
+  );
 
 export const contactInformationFormControl =
   new FormGroup<ContactInformationForm>({

@@ -1,9 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-} from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 
 import { MatButtonModule } from '@angular/material/button';
 
@@ -19,7 +15,6 @@ import { DialogModule } from 'primeng/dialog';
   selector: 'app-info-button',
   templateUrl: './info-button.component.html',
   styleUrls: ['./info-button.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfoButtonComponent {
   protected readonly ButtonTypeEnum = ButtonTypeEnum;

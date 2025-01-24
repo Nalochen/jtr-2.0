@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { TournamentData } from '@jtr/data-domain/store';
@@ -33,7 +28,6 @@ import { InputSwitchModule } from 'primeng/inputswitch';
   ],
   templateUrl: './tournament-information-rules.component.html',
   styleUrl: './tournament-information-rules.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentInformationRulesComponent
   extends DataContainerExpandableComponent

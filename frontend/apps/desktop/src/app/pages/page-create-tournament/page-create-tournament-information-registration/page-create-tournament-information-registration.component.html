@@ -20,9 +20,13 @@
         />
       </div>
     </div>
-    @if ((form.controls.teamCountButton.dirty || form.controls.teamCountButton.touched || form.controls.teamCountField.dirty || form.controls.teamCountField.touched) &&
+    @if ((form.controls.teamCountButton.dirty ||
+    form.controls.teamCountButton.touched || form.controls.teamCountField.dirty
+    || form.controls.teamCountField.touched) &&
     form.hasError('teamCountMissing')) {
-    <p ngProjectAs="container-content" class="error-message">{{ 'create-tournament.team-count-required' | translate }}</p>
+    <p ngProjectAs="container-content" class="error-message">
+      {{ 'create-tournament.team-count-required' | translate }}
+    </p>
     }
   </app-data-container-row>
 
@@ -47,9 +51,12 @@
       type="text"
       [formControl]="form.controls.registrationProcedureText"
     />
-    @if ((form.controls.registrationProcedureType.dirty || form.controls.registrationProcedureType.touched) &&
+    @if ((form.controls.registrationProcedureType.dirty ||
+    form.controls.registrationProcedureType.touched) &&
     form.controls.registrationProcedureType.hasError('required')) {
-    <p ngProjectAs="container-content" class="error-message">{{ 'create-tournament.registration-procedure-required' | translate }}</p>
+    <p ngProjectAs="container-content" class="error-message">
+      {{ 'create-tournament.registration-procedure-required' | translate }}
+    </p>
     }
   </app-data-container-row>
 
@@ -78,9 +85,12 @@
         </app-button>
       </div>
     </div>
-    @if ((form.controls.registrationStartDate.dirty || form.controls.registrationStartDate.touched) &&
+    @if ((form.controls.registrationStartDate.dirty ||
+    form.controls.registrationStartDate.touched) &&
     form.controls.registrationStartDate.hasError('required')) {
-    <p ngProjectAs="container-content" class="error-message">{{ 'create-tournament.registration-start-date-required' | translate }}</p>
+    <p ngProjectAs="container-content" class="error-message">
+      {{ 'create-tournament.registration-start-date-required' | translate }}
+    </p>
     }
   </app-data-container-row>
 

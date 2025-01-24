@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { MatIconButton } from '@angular/material/button';
 
@@ -19,7 +19,6 @@ import { StatusIndicatorComponent } from '../../../ui-shared';
   ],
   templateUrl: './team-arrow.component.html',
   styleUrl: './team-arrow.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamArrowComponent {
   @Input() public hasPlacementChangedUpwards!: boolean | null;

@@ -15,7 +15,7 @@ class DeleteMembershipHandler:
     """Handler for deleting an is_part_of relation"""
 
     @staticmethod
-    async def handle() -> Response:
+    def handle() -> Response:
 
         data = g.validated_data
 

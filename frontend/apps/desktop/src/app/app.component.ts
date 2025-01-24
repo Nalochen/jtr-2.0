@@ -42,7 +42,7 @@ export class AppComponent {
     private readonly userService: UserService,
     private readonly translate: TranslateService,
     private readonly router: Router,
-    private readonly store$: Store,
+    private readonly store$: Store
   ) {
     const savedLanguage = sessionStorage.getItem('language') || 'de';
     this.translate.setDefaultLang(savedLanguage);
@@ -70,7 +70,7 @@ export class AppComponent {
     sessionStorage.setItem('language', language);
 
     if (await firstValueFrom(this.isLoggedIn$)) {
-      await this.userService.updateUserLanguage({ language });
+      await firstValueFrom(this.userService.updateUserLanguage({ language }));
     }
   }
 

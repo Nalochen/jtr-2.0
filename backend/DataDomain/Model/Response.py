@@ -10,7 +10,6 @@ class Response(FlaskResponse):
     """Custom Response class that handles JSON serialization"""
 
     def __init__(self, response: Any = None, status=200, **kwargs):
-        """Custom Response constructor"""
 
         jsonData = json.dumps(response, cls=CustomJSONEncoder)
 

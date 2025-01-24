@@ -10,4 +10,6 @@ class CreateTournamentSubscriptionCommandHandler:
     def execute(command: CreateTournamentSubscriptionCommand) -> None:
 
         TournamentSubscriptionRepository.create(
-            command.tournamentId, command.userId)
+            userId=command.userId,
+            tournamentId=command.tournamentId
+        )

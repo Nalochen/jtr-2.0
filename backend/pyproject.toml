@@ -1,7 +1,3 @@
-#[tool.autopep8]
-#max-line-length = 90
-#aggressive = 2
-
 [tool.isort]
 profile = 'black'
 skip = ['venv', '.venv', '*.md']

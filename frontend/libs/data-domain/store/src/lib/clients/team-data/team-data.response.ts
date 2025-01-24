@@ -8,7 +8,7 @@ export interface TeamUserData {
   id: number;
   name: string;
   role: UserRole;
-  pictureUrl: string;
+  pictureUrl?: string;
 }
 
 export interface TeamOrganizedTournamentData {

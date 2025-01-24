@@ -3,12 +3,7 @@
 <div class="header">
   <div class="left">
     <app-button (click)="navigateToHome()">
-      <img
-        src="assets/jtr-logo.png"
-        alt="Logo"
-        width="50"
-        height="50"
-      />
+      <img src="assets/jtr-logo.png" alt="Logo" width="50" height="50" />
       <h1>JTR 2.0</h1>
     </app-button>
     <app-button
@@ -64,16 +59,16 @@
       (click)="navigateToUserDetails()"
     >
       @if (user) {
-        <img
-          id="logo"
-          alt="Profile Picture of {{ user?.username }}"
-          ngSrc="{{ user?.pictureUrl }}"
-          height="32"
-          width="32"
-          class="user-profile-pic"
-        />
+      <img
+        id="logo"
+        alt="Profile Picture of {{ user?.username }}"
+        [src]="user?.pictureUrl"
+        height="32"
+        width="32"
+        class="user-profile-pic"
+      />
       } @else {
-        <span class="material-icons-outlined">account_circle</span>
+      <span class="material-icons-outlined">account_circle</span>
       }
     </app-button>
     <app-button

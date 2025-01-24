@@ -1,29 +1,29 @@
 <div class="header">
   <div class="image-container">
     @if (logoUrl) {
-      <img
-        id="logo"
-        alt="Logo of {{ form.controls.name.value }}"
-        height="50"
-        width="50"
-        ngSrc="{{ logoUrl }}"
-      />
-      <app-button
-        (click)="fileInput.click()"
-        [color]="ButtonColorEnum.White"
-        [type]="ButtonTypeEnum.Round"
-        class="change-logo"
-      >
-        <span class="material-icons-outlined edit-icon">edit</span>
-      </app-button>
+    <img
+      id="logo"
+      alt="Logo of {{ form.controls.name.value }}"
+      height="50"
+      width="50"
+      [src]="logoUrl"
+    />
+    <app-button
+      (click)="fileInput.click()"
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Round"
+      class="change-logo"
+    >
+      <span class="material-icons-outlined edit-icon">edit</span>
+    </app-button>
     } @else {
-      <app-button
-        (click)="fileInput.click()"
-        [color]="ButtonColorEnum.White"
-        [type]="ButtonTypeEnum.Round"
-      >
-        <span class="material-icons-outlined edit-icon">edit</span>
-      </app-button>
+    <app-button
+      (click)="fileInput.click()"
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Round"
+    >
+      <span class="material-icons-outlined edit-icon">edit</span>
+    </app-button>
     }
     <input
       class="file-input"

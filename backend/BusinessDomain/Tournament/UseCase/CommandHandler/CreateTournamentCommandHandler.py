@@ -32,8 +32,6 @@ class CreateTournamentCommandHandler:
                 command.registrationProcedureType)
             tournament.registration_procedure_text = (
                 command.registrationProcedureText)
-            tournament.registration_procedure_url = (
-                command.registrationProcedureUrl)
             tournament.registration_start_date = ParseIsoDateRule.applies(
                 command.registrationStartDate)
             tournament.registration_costs = command.registrationCosts

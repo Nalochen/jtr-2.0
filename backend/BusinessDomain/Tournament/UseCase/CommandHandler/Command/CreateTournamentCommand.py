@@ -15,7 +15,6 @@ class CreateTournamentCommand:
     possibleSpace: int
     registrationProcedureType: str
     registrationProcedureText: str
-    registrationProcedureUrl: str
     registrationStartDate: str
     registrationCosts: int
     registrationCostsType: str

@@ -4,27 +4,31 @@
   @for (team of participatingTeams; track team) {
   <app-team class="team">
     <p ngProjectAs="team-ranking">{{ team.placement }}</p>
+    @if (team.logoUrl) {
     <img
       ngProjectAs="team-logo"
-      ngSrc="{{ team.logoUrl }}"
+      [src]="team.logoUrl"
       alt="team logo"
       height="32"
       width="32"
     />
+    }
     <p ngProjectAs="team-name">{{ team.name }}</p>
   </app-team>
   } } @else {
   <p class="title">{{ 'page-tournament-details.registered' | translate }}:</p>
 
   @for (team of participatingTeams; track team) {
-  <app-team class="team">
+  <app-team class="team" (click)="redirectToTeam(team.escapedName)">
+    @if (team.logoUrl) {
     <img
       ngProjectAs="team-logo"
-      ngSrc="{{ team.logoUrl }}"
+      [src]="team.logoUrl"
       alt="team logo"
       height="32"
       width="32"
     />
+    }
     <p ngProjectAs="team-name">{{ team.name }}</p>
   </app-team>
   } @empty {
@@ -36,15 +40,17 @@
 
   <p class="title">{{ 'page-tournament-details.waiting' | translate }}:</p>
 
-  @for (team of waitingTeams; track team) {
-  <app-team class="team">
+  @for (team of waitingTeams; track team.id) {
+  <app-team class="team" (click)="redirectToTeam(team.escapedName)">
+    @if (team.logoUrl) {
     <img
       ngProjectAs="team-logo"
-      ngSrc="{{ team.logoUrl }}"
+      [src]="team.logoUrl"
       alt="team logo"
       height="32"
       width="32"
     />
+    }
     <p ngProjectAs="team-name">{{ team.name }}</p>
   </app-team>
   } @empty {

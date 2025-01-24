@@ -1,10 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { MatIcon } from '@angular/material/icon';
 
@@ -34,7 +29,6 @@ import { DividerModule } from 'primeng/divider';
   ],
   templateUrl: './tournament-teams.component.html',
   styleUrl: './tournament-teams.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentTeamsComponent implements OnInit {
   @Input() public teams!: TournamentTeamsData;

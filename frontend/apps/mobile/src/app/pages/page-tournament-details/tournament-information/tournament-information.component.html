@@ -37,7 +37,7 @@
       } @else { @for (team of previewTeams; track team) {
       <img
         ngProjectAs="team-logo"
-        ngSrc="{{ team.logoUrl }}"
+        [src]="team.logoUrl"
         alt="logo"
         height="32"
         width="32"

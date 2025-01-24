@@ -1,21 +1,15 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
+import { RegistrationInformationForm } from '@jtr/business-domain/tournament';
 import {
   PricingTypeEnum,
   TournamentRegistrationProcedureTypeEnum,
 } from '@jtr/data-domain/tournament-data';
 
-import { RegistrationInformationForm } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import {
   ButtonColorEnum,
   ButtonComponent,
@@ -52,7 +46,6 @@ export type TeamCountOption = { label: string; value: number };
   templateUrl:
     './page-create-tournament-information-registration.component.html',
   styleUrl: './page-create-tournament-information-registration.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageCreateTournamentInformationRegistrationComponent
   implements OnInit, OnDestroy
@@ -73,8 +66,11 @@ export class PageCreateTournamentInformationRegistrationComponent
     { label: '32', value: 32 },
   ];
 
-  public registrationProcedureOptions: { label: string; value: TournamentRegistrationProcedureTypeEnum; }[] = [];
-  public pricingTypeOptions: { label: string; value: PricingTypeEnum; }[] = [];
+  public registrationProcedureOptions: {
+    label: string;
+    value: TournamentRegistrationProcedureTypeEnum;
+  }[] = [];
+  public pricingTypeOptions: { label: string; value: PricingTypeEnum }[] = [];
 
   constructor(
     private readonly datePipe: DatePipe,
@@ -104,15 +100,21 @@ export class PageCreateTournamentInformationRegistrationComponent
 
   private initializeRegistrationProcedureOptions(): void {
     const options = [
-      { label: 'first-come', value: TournamentRegistrationProcedureTypeEnum.FIRST_COME },
+      {
+        label: 'first-come',
+        value: TournamentRegistrationProcedureTypeEnum.FIRST_COME,
+      },
       { label: 'draw', value: TournamentRegistrationProcedureTypeEnum.LOTS },
-      { label: 'other-procedure', value: TournamentRegistrationProcedureTypeEnum.OTHER },
+      {
+        label: 'other-procedure',
+        value: TournamentRegistrationProcedureTypeEnum.OTHER,
+      },
     ];
 
-    this.translateService.get('create-tournament').subscribe(translations => {
-      this.registrationProcedureOptions = options.map(option => ({
+    this.translateService.get('create-tournament').subscribe((translations) => {
+      this.registrationProcedureOptions = options.map((option) => ({
         ...option,
-        label: translations[option.label] || option.label
+        label: translations[option.label] || option.label,
       }));
     });
   }
@@ -123,10 +125,10 @@ export class PageCreateTournamentInformationRegistrationComponent
       { label: 'per-team', value: PricingTypeEnum.PER_TEAM },
     ];
 
-    this.translateService.get('create-tournament').subscribe(translations => {
-      this.pricingTypeOptions = options.map(option => ({
+    this.translateService.get('create-tournament').subscribe((translations) => {
+      this.pricingTypeOptions = options.map((option) => ({
         ...option,
-        label: translations[option.label] || option.label
+        label: translations[option.label] || option.label,
       }));
     });
   }

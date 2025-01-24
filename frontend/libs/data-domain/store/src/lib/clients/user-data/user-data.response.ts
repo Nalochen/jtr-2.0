@@ -2,6 +2,7 @@ export interface UserTeamData {
   id: number;
   name: string;
   logoUrl: string;
+  escapedName: string;
 }
 
 export interface UserData {
