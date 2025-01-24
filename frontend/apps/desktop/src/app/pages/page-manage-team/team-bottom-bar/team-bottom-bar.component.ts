@@ -3,17 +3,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { firstValueFrom, Observable } from 'rxjs';
-
-import { Store } from '@ngrx/store';
+import { firstValueFrom } from 'rxjs';
 
 import {
   EditTeamForm,
   TeamDataService,
-  teamDetailsSelector,
 } from '@jtr/business-domain/team';
-import { TeamData } from '@jtr/data-domain/store';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { TeamService } from '../../../business-rules/team/team.service';
 
@@ -42,20 +37,15 @@ import { DialogModule } from 'primeng/dialog';
 })
 export class TeamBottomBarComponent {
   @Input() public form!: FormGroup<EditTeamForm>;
+  @Input() public teamId?: number;
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
   protected isDeleteDialogVisible = false;
-
-  @SingletonGetter()
-  public get team$(): Observable<TeamData | null> {
-    return this.store$.select(teamDetailsSelector);
-  }
 
   constructor(
     private readonly teamService: TeamService,
     private readonly teamDataService: TeamDataService,
     private readonly router: Router,
-    private readonly store$: Store
   ) {}
 
   public onOpenDeleteDialog() {
@@ -63,11 +53,13 @@ export class TeamBottomBarComponent {
   }
 
   public async onDeleteTeam() {
-    const teamId = (await firstValueFrom(this.team$))!.id;
+    if(!this.teamId) {
+      return;
+    }
 
     await firstValueFrom(
       this.teamService.delete({
-        teamId: teamId,
+        teamId: this.teamId,
       })
     );
 
@@ -76,28 +68,43 @@ export class TeamBottomBarComponent {
 
   public async onSaveTeam() {
     if (this.form.invalid) {
+      console.log(this.form);
       this.markAllFieldsAsTouched(this.form);
       return;
     }
 
-    const teamId = (await firstValueFrom(this.team$))!.id;
-
-    await firstValueFrom(
-      this.teamService.update({
-        teamId: teamId,
-        name: this.form.controls.name.value || undefined,
-        city: this.form.controls.city.value || undefined,
-        isMixTeam: this.form.controls.isMixTeam.value || undefined,
-        trainingTime: this.form.controls.trainingTime.value || undefined,
-        aboutUs: this.form.controls.aboutUs.value || undefined,
-        contacts:
-          this.form.controls.contacts.value.filter(
+    if(!this.teamId) {
+      console.log('here');
+      await firstValueFrom(
+        this.teamService.create({
+          name: this.form.controls.name.value,
+          city: this.form.controls.city.value || undefined,
+          isMixTeam: this.form.controls.isMixTeam.value,
+          trainingTime: this.form.controls.trainingTime.value || undefined,
+          aboutUs: this.form.controls.aboutUs.value || undefined,
+          contacts: this.form.controls.contacts.value.filter(
             (item): item is string => item !== null && item !== ''
           ) || [],
-      })
-    );
+        })
+      )
+    } else {
+      await firstValueFrom(
+        this.teamService.update({
+          teamId: this.teamId,
+          name: this.form.controls.name.value || undefined,
+          city: this.form.controls.city.value || undefined,
+          isMixTeam: this.form.controls.isMixTeam.value || undefined,
+          trainingTime: this.form.controls.trainingTime.value || undefined,
+          aboutUs: this.form.controls.aboutUs.value || undefined,
+          contacts:
+            this.form.controls.contacts.value.filter(
+              (item): item is string => item !== null && item !== ''
+            ) || [],
+        })
+      );
 
-    await this.teamDataService.reloadTeamDetails();
+      await this.teamDataService.reloadTeamDetails();
+    }
   }
 
   private markAllFieldsAsTouched(form: FormGroup): void {

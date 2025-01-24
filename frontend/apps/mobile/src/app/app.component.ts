@@ -1,3 +1,4 @@
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { Router, RouterModule } from '@angular/router';
@@ -7,6 +8,10 @@ import { MatMenuModule } from '@angular/material/menu';
 
 import { Observable } from 'rxjs';
 
+import { Store } from '@ngrx/store';
+
+import { userDetailsSelector } from '@jtr/business-domain/user';
+import { UserData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from './business-rules/auth/auth.service';
@@ -20,6 +25,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
   standalone: true,
   providers: [provideAnimations()],
   imports: [
+    CommonModule,
     RouterModule,
     MatButtonModule,
     MatMenuModule,
@@ -27,6 +33,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     TranslatePipe,
     ButtonComponent,
     OverlayPanelModule,
+    NgOptimizedImage,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -38,12 +45,18 @@ export class AppComponent {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly store$: Store,
   ) {}
 
   @SingletonGetter()
   public get isLoggedIn$(): Observable<boolean> {
     return this.authService.isAuthenticated$;
+  }
+
+  @SingletonGetter()
+  public get user$(): Observable<UserData | null> {
+    return this.store$.select(userDetailsSelector);
   }
 
   @ViewChild('overlay') public overlay!: OverlayMenuComponent;
@@ -60,5 +73,13 @@ export class AppComponent {
     this.authService.logout();
 
     this.router.navigate(['/']);
+  }
+
+  public navigateToHome() {
+    this.router.navigate(['/']);
+  }
+
+  public navigateToUserDetails() {
+    this.router.navigate(['manage-user-details']);
   }
 }

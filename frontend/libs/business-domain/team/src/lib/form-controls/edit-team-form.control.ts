@@ -12,10 +12,7 @@ import { UserRole } from '@jtr/data-domain/store';
 
 export const editTeamForm = new FormGroup<EditTeamForm>(
   {
-    id: new FormControl(null, {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
+    id: new FormControl(null),
     aboutUs: new FormControl('', { nonNullable: true }),
     city: new FormControl('', { nonNullable: true }),
     contacts: new FormArray<FormControl<string | null>>([]),
@@ -37,8 +34,8 @@ export type EditTeamForm = {
   aboutUs: FormControl<string | null>;
   city: FormControl<string | null>;
   contacts: FormArray<FormControl<string | null>>;
-  isMixTeam: FormControl<boolean | null>;
-  name: FormControl<string | null>;
+  isMixTeam: FormControl<boolean>;
+  name: FormControl<string>;
   trainingTime: FormControl<string | null>;
 };
 

@@ -1,9 +1,13 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 import { firstValueFrom, Observable } from 'rxjs';
 
+import { Store } from '@ngrx/store';
+
+import { userDetailsSelector } from '@jtr/business-domain/user';
+import { UserData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from './business-rules/auth/auth.service';
@@ -23,6 +27,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     OverlayPanelModule,
     TranslatePipe,
     AsyncPipe,
+    NgOptimizedImage,
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -36,7 +41,8 @@ export class AppComponent {
     private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly translate: TranslateService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly store$: Store,
   ) {
     const savedLanguage = sessionStorage.getItem('language') || 'de';
     this.translate.setDefaultLang(savedLanguage);
@@ -46,6 +52,11 @@ export class AppComponent {
   @SingletonGetter()
   public get isLoggedIn$(): Observable<boolean> {
     return this.authService.isAuthenticated$;
+  }
+
+  @SingletonGetter()
+  public get user$(): Observable<UserData | null> {
+    return this.store$.select(userDetailsSelector);
   }
 
   public logout(): void {
@@ -61,5 +72,13 @@ export class AppComponent {
     if (await firstValueFrom(this.isLoggedIn$)) {
       await this.userService.updateUserLanguage({ language });
     }
+  }
+
+  public navigateToHome() {
+    this.router.navigate(['/']);
+  }
+
+  public navigateToUserDetails() {
+    this.router.navigate(['manage-user-details']);
   }
 }
