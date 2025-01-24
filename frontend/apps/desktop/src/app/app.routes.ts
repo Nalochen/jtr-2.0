@@ -51,6 +51,10 @@ export const appRoutes: Route[] = [
     canActivate: [TeamGuard],
   },
   {
+    path: 'create-team/team-information',
+    component: PageManageTeamDetailsComponent,
+  },
+  {
     path: 'teams-overview',
     component: PageTeamOverviewComponent,
     resolve: {
@@ -151,5 +155,8 @@ export const appRoutes: Route[] = [
   {
     path: '**',
     redirectTo: 'tournaments-overview',
+    resolve: {
+      userDetails: UserDetailsResolver,
+    },
   },
 ];

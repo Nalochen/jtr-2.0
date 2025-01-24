@@ -1,6 +1,6 @@
 <div class="header" [formGroup]="form">
   <div class="image-container">
-    @if (logoUrl) {
+    @if(logoUrl) {
     <img
       id="logo"
       alt="Logo of {{ form.controls.name.value }}"
@@ -8,7 +8,15 @@
       width="150"
       [src]="logoUrl"
     />
-    }
+    <app-button
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Round"
+      (click)="fileInput.click()"
+      class="change-logo"
+    >
+      <span class="material-icons-outlined">edit</span>
+    </app-button>
+    } @else {
     <app-button
       [color]="ButtonColorEnum.White"
       [type]="ButtonTypeEnum.Round"
@@ -16,6 +24,7 @@
     >
       <span class="material-icons-outlined">edit</span>
     </app-button>
+    }
     <input
       type="file"
       #fileInput

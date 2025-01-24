@@ -1,3 +1,5 @@
+@let user = user$ | async;
+
 <page-manage-user-details-header
   [form]="form"
   [isLoggedIn$]="isLoggedIn$"
@@ -145,11 +147,10 @@
     />
   </form>
 
-  @if ((user$ | async)?.teams; as teams) {
-
+  @if (user?.teams && user?.teams?.length !== 0) {
   <h4>Teams:</h4>
 
-  @for (team of teams; track team.id) {
+  @for (team of user?.teams; track team.id) {
   <app-button
     [color]="ButtonColorEnum.Grey"
     [type]="ButtonTypeEnum.Raised"
@@ -166,16 +167,12 @@
         [src]="team.logoUrl"
         height="30"
         width="30"
-      />}
+      />
+      }
       <p>{{ team.name }}</p>
     </div>
   </app-button>
-
-  } @empty {
-  <p>{{ 'user-details.no-teams' | translate }}</p>
-  } } @else {
-  <p>{{ 'user-details.no-teams' | translate }}</p>
-  }
+  } }
 
   <div class="cta">
     <app-button

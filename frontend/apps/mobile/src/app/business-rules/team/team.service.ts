@@ -16,11 +16,11 @@ const UPDATE_TEAM_PICTURE_ENDPOINT = '/api/team-frontend/update-team-picture';
 
 export interface CreateTeamRequestBody {
   name: string;
-  city: string;
+  city?: string;
   isMixTeam: boolean;
   trainingTime?: string;
-  aboutUs: string;
-  contact: string[];
+  aboutUs?: string;
+  contacts: string[];
 }
 
 export interface UpdateTeamRequestBody {

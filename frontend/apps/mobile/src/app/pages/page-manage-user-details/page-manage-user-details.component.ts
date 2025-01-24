@@ -95,7 +95,7 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
   }
 
   public onFoundNewTeam(): void {
-    window.alert('Found new team');
+    this.router.navigate(['/create-team/team-information']);
   }
 
   public async onDeleteAccount(): Promise<void> {

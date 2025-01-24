@@ -50,20 +50,10 @@ export class PageManageTeamDetailsComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     this.team$.pipe(takeUntil(this.destroy$)).subscribe((team) => {
       if (!team) {
-        return;
+        this.createEmptyFormControl();
+      } else {
+        this.createFormControlFromTeam(team);
       }
-
-      this.form.controls.id.setValue(team?.id);
-      this.form.controls.aboutUs.setValue(team?.aboutUs);
-      this.form.controls.city.setValue(team?.city);
-      this.form.controls.contacts.clear();
-      team?.contacts.forEach((contact) => {
-        this.form.controls.contacts.push(new FormControl(contact));
-      });
-      this.form.controls.isMixTeam.setValue(team?.isMixTeam);
-
-      this.form.controls.name.setValue(team?.name);
-      this.form.controls.trainingTime.setValue(team?.trainingTime);
 
       this.changeDetectorRef.markForCheck();
     });
@@ -72,5 +62,27 @@ export class PageManageTeamDetailsComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  public createEmptyFormControl(): void {
+    this.form.controls.aboutUs.setValue('');
+    this.form.controls.city.setValue('');
+    this.form.controls.contacts.setValue([]);
+    this.form.controls.isMixTeam.setValue(false);
+    this.form.controls.name.setValue('');
+    this.form.controls.trainingTime.setValue('');
+  }
+
+  public createFormControlFromTeam(team: TeamData): void {
+    this.form.controls.id.setValue(team.id);
+    this.form.controls.aboutUs.setValue(team.aboutUs);
+    this.form.controls.city.setValue(team.city);
+    this.form.controls.contacts.clear();
+    team.contacts.forEach((contact) => {
+      this.form.controls.contacts.push(new FormControl(contact));
+    });
+    this.form.controls.isMixTeam.setValue(team.isMixTeam);
+    this.form.controls.name.setValue(team.name);
+    this.form.controls.trainingTime.setValue(team.trainingTime);
   }
 }

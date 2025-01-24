@@ -7,7 +7,16 @@
       height="50"
       width="50"
       [src]="logoUrl"
-    />}
+    />
+    <app-button
+      (click)="fileInput.click()"
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Round"
+      class="change-logo"
+    >
+      <span class="material-icons-outlined edit-icon">edit</span>
+    </app-button>
+    } @else {
     <app-button
       (click)="fileInput.click()"
       [color]="ButtonColorEnum.White"
@@ -15,6 +24,7 @@
     >
       <span class="material-icons-outlined edit-icon">edit</span>
     </app-button>
+    }
     <input
       class="file-input"
       type="file"
@@ -32,7 +42,7 @@
       <input
         pInputText
         type="text"
-        formControlName="city"
+        [formControl]="form.controls.city"
         value="{{ form.controls.city.value }}"
         id="city"
       />
@@ -41,7 +51,7 @@
       }
       <div class="switch">
         <p class="mixteam">{{ 'page-manage-team.mix-team' | translate }}?</p>
-        <p-inputSwitch formControlName="isMixTeam" />
+        <p-inputSwitch [formControl]="form.controls.isMixTeam" />
       </div>
     </div>
     @if ((form.controls.city.dirty || form.controls.city.touched ||

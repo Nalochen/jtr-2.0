@@ -23,7 +23,11 @@ import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { AuthService } from '../../business-rules/auth/auth.service';
 
-import { ButtonComponent } from '../../ui-shared';
+import {
+  ButtonColorEnum,
+  ButtonComponent,
+  ButtonTypeEnum,
+} from '../../ui-shared';
 import { TeamHeaderComponent } from './team-header/team-header.component';
 import { TeamInformationComponent } from './team-information/team-information.component';
 import { TeamMembersComponent } from './team-members/team-members.component';
@@ -51,6 +55,8 @@ export class PageTeamDetailsComponent implements OnDestroy {
   public canEditTeam: boolean = false;
   public isMemberOfTeam: boolean = false;
   public destroy$ = new Subject<void>();
+  protected readonly ButtonColorEnum = ButtonColorEnum;
+  protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
   constructor(
     private readonly store$: Store,
@@ -111,5 +117,9 @@ export class PageTeamDetailsComponent implements OnDestroy {
       'manage-team-details',
       await firstValueFrom(this.teamEscapedName$),
     ]);
+  }
+
+  public createTournament() {
+    this.router.navigate(['create-tournament/tournament-information']);
   }
 }

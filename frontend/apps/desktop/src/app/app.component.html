@@ -1,9 +1,11 @@
+@let user = user$ | async;
+
 <div class="header">
   <div class="left">
-    <div mat-button class="home">
-      <span class="material-icons-outlined">image</span>
+    <app-button (click)="navigateToHome()">
+      <img src="assets/jtr-logo.png" alt="Logo" width="50" height="50" />
       <h1>JTR 2.0</h1>
-    </div>
+    </app-button>
     <app-button
       [type]="ButtonTypeEnum.Icon"
       [color]="ButtonColorEnum.None"
@@ -51,8 +53,23 @@
       <p class="color-blue">Deutsch</p>
     </app-button>
     @if (isLoggedIn$ | async) {
-    <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon">
+    <app-button
+      [color]="ButtonColorEnum.None"
+      [type]="ButtonTypeEnum.Icon"
+      (click)="navigateToUserDetails()"
+    >
+      @if (user) {
+      <img
+        id="logo"
+        alt="Profile Picture of {{ user?.username }}"
+        ngSrc="{{ user?.pictureUrl }}"
+        height="32"
+        width="32"
+        class="user-profile-pic"
+      />
+      } @else {
       <span class="material-icons-outlined">account_circle</span>
+      }
     </app-button>
     <app-button
       [color]="ButtonColorEnum.None"
@@ -70,9 +87,9 @@
       <p class="color-blue">Login</p>
     </app-button>
     }
-    <app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon">
+    <!--<app-button [color]="ButtonColorEnum.None" [type]="ButtonTypeEnum.Icon">
       <span class="material-icons-outlined">menu</span>
-    </app-button>
+    </app-button>-->
   </div>
 </div>
 <div class="content">
