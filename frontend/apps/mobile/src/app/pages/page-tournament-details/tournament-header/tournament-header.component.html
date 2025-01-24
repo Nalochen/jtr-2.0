@@ -1,9 +1,11 @@
+@if (tournament.organizer.logoUrl) {
 <img
   alt="Logo of {{ tournament.name }}"
   width="50"
   height="50"
-  ngSrc="{{ tournament.organizer.logoUrl }}"
+  [src]="tournament.organizer.logoUrl"
 />
+}
 
 <div class="tournament-information">
   <div class="event-information">

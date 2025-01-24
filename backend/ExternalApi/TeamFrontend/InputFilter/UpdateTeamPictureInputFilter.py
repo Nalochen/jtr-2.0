@@ -11,7 +11,7 @@ from flask_inputfilter.Validator import (
 class UpdateTeamPictureInputFilter(InputFilter):
     """The input filter for the update-team-picture route"""
 
-    def __init__(self):
+    def __init__(self) -> None:
 
         super().__init__()
 

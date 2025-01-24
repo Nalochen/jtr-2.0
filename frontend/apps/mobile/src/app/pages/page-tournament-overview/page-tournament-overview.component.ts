@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
@@ -32,7 +33,10 @@ export class PageTournamentOverviewComponent {
   public ButtonTypeEnum = ButtonTypeEnum;
   public ButtonColorEnum = ButtonColorEnum;
 
-  constructor(private readonly store$: Store) {}
+  constructor(
+    private readonly store$: Store,
+    private readonly router: Router
+  ) {}
 
   @SingletonGetter()
   public get tournaments$(): Observable<TournamentOverviewData[]> {
@@ -40,6 +44,6 @@ export class PageTournamentOverviewComponent {
   }
 
   public navigateToPreviousTournaments(): void {
-    window.open('tournaments-overview/previous', '_self');
+    this.router.navigate(['tournaments-overview/previous']);
   }
 }

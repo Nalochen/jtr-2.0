@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-status-indicator',
@@ -12,7 +7,6 @@ import {
   imports: [CommonModule],
   templateUrl: './status-indicator.component.html',
   styleUrls: ['./status-indicator.component.less'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusIndicatorComponent implements OnChanges {
   @Input() public totalTeams!: number;

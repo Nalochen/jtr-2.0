@@ -3,13 +3,14 @@
 <app-data-container>
   @if (team.members.length > 0) { @for (member of team.members; track member) {
   <app-data-container-row>
+    @if (member.pictureUrl) {
     <img
       ngProjectAs="container-icon"
       alt="Profilbild von {{ member }}"
-      ngSrc="{{ member.pictureUrl }}"
+      [src]="member.pictureUrl"
       width="28"
       height="28"
-    />
+    />}
     <p ngProjectAs="container-headline">{{ member.name }}</p>
     @if (showRole(member.role) !== '') {
     <app-chip ngProjectAs="container-additional">{{

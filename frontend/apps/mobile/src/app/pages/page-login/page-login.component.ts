@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -40,7 +40,6 @@ export interface LoginAttemptResponse {
   ],
   templateUrl: './page-login.component.html',
   styleUrl: './page-login.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageLoginComponent {
   protected readonly ButtonColorEnum = ButtonColorEnum;

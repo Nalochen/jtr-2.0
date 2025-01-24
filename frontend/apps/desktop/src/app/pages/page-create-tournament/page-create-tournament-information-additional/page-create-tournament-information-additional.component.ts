@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { DataContainerRowComponent } from '../../../ui-shared';
@@ -18,7 +18,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   ],
   templateUrl: './page-create-tournament-information-additional.component.html',
   styleUrl: './page-create-tournament-information-additional.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageCreateTournamentInformationAdditionalComponent {
   @Input() public form!: FormControl<string | null>;

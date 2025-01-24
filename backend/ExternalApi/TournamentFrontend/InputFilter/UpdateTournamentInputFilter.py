@@ -29,8 +29,7 @@ from DataDomain.Database.Enum import (
 class UpdateTournamentInputFilter(InputFilter):
     """The input filter for the update-tournament route"""
 
-    def __init__(self):
-        """Initializes the UpdateTournamentInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 
@@ -392,12 +391,5 @@ class UpdateTournamentInputFilter(InputFilter):
             'shoesText',
             required=False,
             filters=[StringTrimFilter(), ToNullFilter()],
-            validators=[IsStringValidator()]
-        )
-
-        self.add(
-            'registrationProcedureUrl',
-            required=True,
-            filters=[StringTrimFilter()],
             validators=[IsStringValidator()]
         )

@@ -11,7 +11,6 @@ class CreateResultInputFilter(InputFilter):
     """The input filter for the create-result route"""
 
     def __init__(self) -> None:
-        """Initializes the CreateResultInputFilter"""
 
         super().__init__()
 

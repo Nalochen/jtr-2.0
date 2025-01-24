@@ -21,7 +21,7 @@ export interface DeleteParticipationRequestBody {
 @Injectable({
   providedIn: 'root',
 })
-export class ManageParticipationService {
+export class ParticipationService {
   constructor(private readonly http: HttpClient) {}
 
   public create(request: CreateParticipationRequestBody): Observable<void> {

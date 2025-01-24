@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -17,7 +17,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [CommonModule, TournamentRowComponent, TranslatePipe],
   templateUrl: './page-tournament-overview-previous.component.html',
   styleUrl: './page-tournament-overview-previous.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageTournamentOverviewPreviousComponent {
   constructor(private store$: Store) {}

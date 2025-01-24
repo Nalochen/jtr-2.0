@@ -2,7 +2,7 @@
   <img
     id="logo"
     alt="Profile Picture of {{ form.controls.username.value }}"
-    ngSrc="{{ pictureUrl }}"
+    [src]="pictureUrl ?? 'assets/images/default-profile-picture.png'"
     height="100"
     width="100"
     (click)="fileInput.click()"

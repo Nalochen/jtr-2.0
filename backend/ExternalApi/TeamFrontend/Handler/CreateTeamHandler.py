@@ -15,9 +15,9 @@ class CreateTeamHandler:
 
         data = g.validated_data
 
-        escapedName = data.get('escapedName')
-
         # TODO: escapedName creation
+        # escapedName = data.get('escapedName')
+        escapedName = data.get('name').lower().replace(' ', '-')
 
         if DoesTeamExistsRule.applies(escapedName=escapedName):
             return Response(status=409)

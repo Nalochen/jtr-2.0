@@ -1,11 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable, Subject, takeUntil } from 'rxjs';
@@ -38,7 +32,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
   templateUrl: './page-manage-team.component.html',
   styleUrl: './page-manage-team.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageManageTeamDetailsComponent implements OnInit, OnDestroy {
   public readonly form = editTeamForm;
@@ -63,10 +56,10 @@ export class PageManageTeamDetailsComponent implements OnInit, OnDestroy {
       this.form.controls.id.setValue(team?.id);
       this.form.controls.aboutUs.setValue(team?.aboutUs);
       this.form.controls.city.setValue(team?.city);
+      this.form.controls.contacts.clear();
       team?.contacts.forEach((contact) => {
         this.form.controls.contacts.push(new FormControl(contact));
       });
-      this.form.controls.contacts.setValue(team?.contacts);
       this.form.controls.isMixTeam.setValue(team?.isMixTeam);
 
       this.form.controls.name.setValue(team?.name);

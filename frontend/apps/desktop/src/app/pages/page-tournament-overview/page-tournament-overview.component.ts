@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -28,7 +28,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
   templateUrl: './page-tournament-overview.component.html',
   styleUrl: './page-tournament-overview.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageTournamentOverviewComponent {
   public ButtonTypeEnum = ButtonTypeEnum;

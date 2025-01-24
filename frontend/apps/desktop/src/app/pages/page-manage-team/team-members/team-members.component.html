@@ -5,13 +5,14 @@
 <app-data-container>
   @for (member of team?.members; track member.id) {
   <app-data-container-row>
+    @if (member.pictureUrl) {
     <img
       ngProjectAs="container-icon"
       alt="Profilbild von {{ member.name }}"
-      ngSrc="{{ member.pictureUrl }}"
+      [src]="member.pictureUrl"
       width="28"
       height="28"
-    />
+    />}
     <p ngProjectAs="container-headline">{{ member.name }}</p>
     <app-button
       ngProjectAs="container-additional"

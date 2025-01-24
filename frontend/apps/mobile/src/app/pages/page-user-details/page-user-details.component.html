@@ -31,13 +31,14 @@
   class="team-button"
 >
   <div class="team">
+    @if (team.logoUrl) {
     <img
       id="logo"
       alt="Logo of {{ team.name }}"
-      ngSrc="{{ team.logoUrl }}"
+      [src]="team.logoUrl"
       height="30"
       width="30"
-    />
+    />}
     <p>{{ team.name }}</p>
   </div>
 </app-button>

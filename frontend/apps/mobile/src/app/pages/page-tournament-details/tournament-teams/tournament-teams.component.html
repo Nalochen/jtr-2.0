@@ -1,24 +1,27 @@
 @if (showPlacement) { @for (team of participatingTeams; track team) {
 <app-team class="team">
   <p ngProjectAs="team-ranking">{{ team.placement }}</p>
+  @if (team.logoUrl) {
   <img
     ngProjectAs="team-logo"
-    ngSrc="{{ team.logoUrl }}"
+    [src]="team.logoUrl"
     alt="team logo"
     height="32"
     width="32"
   />
+  }
   <p ngProjectAs="team-name">{{ team.name }}</p>
 </app-team>
 } } @else { @for (team of participatingTeams; track team) {
 <app-team class="team">
+  @if (team.logoUrl) {
   <img
     ngProjectAs="team-logo"
-    ngSrc="{{ team.logoUrl }}"
+    [src]="team.logoUrl"
     alt="logo"
     height="32"
     width="32"
-  />
+  />}
   <p ngProjectAs="team-name">{{ team.name }}</p>
 </app-team>
 }
@@ -29,13 +32,14 @@
 
 @for (team of waitingTeams; track team) {
 <app-team class="team">
+  @if (team.logoUrl) {
   <img
     ngProjectAs="team-logo"
-    ngSrc="{{ team.logoUrl }}"
+    [src]="team.logoUrl"
     alt="logo"
     height="32"
     width="32"
-  />
+  />}
   <p ngProjectAs="team-name">{{ team.name }}</p>
 </app-team>
 } }

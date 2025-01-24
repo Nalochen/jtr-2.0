@@ -9,13 +9,15 @@
 
   @for (member of team?.members; track member.id) {
   <app-data-container-row>
+    @if (member.pictureUrl) {
+
     <img
       ngProjectAs="container-icon"
       alt="Profilbild von {{ member.name }}"
-      ngSrc="{{ member.pictureUrl }}"
+      [src]="member.pictureUrl"
       width="28"
       height="28"
-    />
+    />}
     <div class="member-name" ngProjectAs="container-headline">
       <p>{{ member.name }}</p>
     </div>

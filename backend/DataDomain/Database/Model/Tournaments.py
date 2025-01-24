@@ -236,11 +236,6 @@ class Tournaments(BaseModel, db.Model):
     registration_procedure_type: TournamentRegistrationProcedureTypesEnum = db.Column(
         Enum(TournamentRegistrationProcedureTypesEnum), nullable=False)
 
-    registration_procedure_url: str = db.Column(
-        db.String(255),
-        nullable=False
-    )
-
     registration_start_date: datetime = db.Column(
         db.DateTime,
         nullable=False,

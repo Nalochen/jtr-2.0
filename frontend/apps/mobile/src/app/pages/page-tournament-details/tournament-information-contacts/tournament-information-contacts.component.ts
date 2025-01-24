@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { TournamentData } from '@jtr/data-domain/store';
 
@@ -22,7 +22,6 @@ import { DividerModule } from 'primeng/divider';
   ],
   templateUrl: './tournament-information-contacts.component.html',
   styleUrl: './tournament-information-contacts.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentInformationContactsComponent extends DataContainerExpandableComponent {
   @Input() public tournament!: TournamentData;

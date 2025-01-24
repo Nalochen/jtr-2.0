@@ -62,8 +62,6 @@ class CreateTournamentHandler:
                         'registrationProcedureText'),
                     registrationProcedureType=data.get(
                         'registrationProcedureType'),
-                    registrationProcedureUrl=data.get(
-                        'registrationProcedureUrl'),
                     registrationStartDate=data.get(
                         'registrationStartDate'),
                     schedule=data.get('schedule'),

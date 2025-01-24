@@ -7,13 +7,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  input,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TournamentTeamData } from '@jtr/data-domain/store';
@@ -50,7 +44,6 @@ import { TooltipModule } from 'primeng/tooltip';
   ],
   templateUrl: './drop-list.component.html',
   styleUrl: './drop-list.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropListComponent {
   public readonly participatingTeams = input.required<TournamentTeamData[]>();

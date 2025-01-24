@@ -1,9 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-} from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable } from 'rxjs';
@@ -47,7 +43,6 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
   ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamMembersComponent {
   protected readonly ButtonColorEnum = ButtonColorEnum;

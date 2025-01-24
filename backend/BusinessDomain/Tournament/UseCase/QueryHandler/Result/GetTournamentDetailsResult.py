@@ -80,7 +80,6 @@ class RegistrationProcedure:
 
     text: str
     type: str
-    url: str
 
 
 @dataclass
@@ -97,19 +96,20 @@ class Shoes:
 class TeamData:
 
     id: int
-    name: str
     aboutUs: str
     city: str
     contacts: List[str]
     createdAt: datetime
+    escapedName: str
     founded: Optional[str]
-    isMixTeam: bool
-    logo: str
-    trainingTime: str
-    updatedAt: datetime
     hasPayed: bool
+    isMixTeam: bool
+    logoUrl: str
+    name: str
     placement: Optional[int]
     registrationOrder: int
+    trainingTime: str
+    updatedAt: datetime
 
 
 @dataclass

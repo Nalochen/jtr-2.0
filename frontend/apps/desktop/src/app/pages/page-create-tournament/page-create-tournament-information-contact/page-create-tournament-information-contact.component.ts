@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
@@ -11,7 +10,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
-import { ContactInformationForm } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
+import { ContactInformationForm } from '@jtr/business-domain/tournament';
+
 import {
   ButtonComponent,
   DataContainerRowComponent,
@@ -36,7 +36,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   ],
   templateUrl: './page-create-tournament-information-contact.component.html',
   styleUrl: './page-create-tournament-information-contact.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageCreateTournamentInformationContactComponent
   implements OnInit, OnDestroy

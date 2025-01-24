@@ -8,7 +8,7 @@ from DataDomain.Database.Enum import UserLanguageTypesEnum
 class UpdateUserLanguageInputFilter(InputFilter):
     """The input filter for the update-user-language route"""
 
-    def __init__(self):
+    def __init__(self) -> None:
 
         super().__init__()
 

@@ -1,11 +1,12 @@
 <app-button [fullWidth]="true" (click)="detailsClick()">
   <app-data-container>
+    @if (tournament.organizerLogoUrl) {
     <img
-      ngSrc="{{ tournament.organizerLogoUrl }}"
+      [src]="tournament.organizerLogoUrl"
       width="50"
       height="50"
       alt="Logo of {{ tournament.name }}"
-    />
+    />}
     <p class="date">
       {{ tournament.startDate | date : 'dd.MM' }} -
       {{ tournament.endDate | date : 'dd.MM' }}

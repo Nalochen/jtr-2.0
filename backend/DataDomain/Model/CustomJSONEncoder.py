@@ -12,7 +12,6 @@ class CustomJSONEncoder(json.JSONEncoder):
     """Custom JSON encoder that handles serialization of datetime and Decimal objects"""
 
     def default(self, obj) -> str | float | dict:
-        """Custom JSON encoder"""
 
         if is_dataclass(obj):
             return asdict(obj)

@@ -98,7 +98,7 @@ export class OverlayMenuComponent {
     sessionStorage.setItem('language', language);
 
     if (await firstValueFrom(this.isLoggedIn$)) {
-      await this.userService.updateUserLanguage({ language });
+      await firstValueFrom(this.userService.updateUserLanguage({ language }));
     }
 
     this.closeMenu();

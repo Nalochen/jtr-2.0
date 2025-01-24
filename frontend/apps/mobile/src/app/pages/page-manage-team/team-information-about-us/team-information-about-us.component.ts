@@ -1,6 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
@@ -34,7 +33,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   ],
   templateUrl: './team-information-about-us.component.html',
   styleUrl: './team-information-about-us.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamInformationAboutUsComponent implements OnInit, OnDestroy {
   @Input() public form!: FormGroup<EditTeamForm>;

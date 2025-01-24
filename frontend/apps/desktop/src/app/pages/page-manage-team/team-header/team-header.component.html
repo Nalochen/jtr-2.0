@@ -1,12 +1,14 @@
 <div class="header" [formGroup]="form">
   <div class="image-container">
+    @if (logoUrl) {
     <img
       id="logo"
       alt="Logo of {{ form.controls.name.value }}"
       height="150"
       width="150"
-      ngSrc="{{ logoUrl }}"
+      [src]="logoUrl"
     />
+    }
     <app-button
       [color]="ButtonColorEnum.White"
       [type]="ButtonTypeEnum.Round"

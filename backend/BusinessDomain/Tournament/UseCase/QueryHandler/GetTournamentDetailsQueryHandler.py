@@ -45,19 +45,20 @@ class GetTournamentDetailsQueryHandler:
 
             teamData = TeamData(
                 id=team.id,
-                name=team.name,
                 aboutUs=team.about_us,
                 city=team.city,
                 contacts=json.loads(team.contacts),
                 createdAt=team.created_at,
+                escapedName=team.escaped_name,
                 founded=team.founded,
+                hasPayed=participation.has_payed,
                 isMixTeam=team.is_mix_team,
-                logo=team.logo,
+                logoUrl=team.logo_url,
+                name=team.name,
+                placement=participation.placement,
+                registrationOrder=participation.registration_order,
                 trainingTime=team.training_time,
                 updatedAt=team.updated_at,
-                hasPayed=participation.has_payed,
-                placement=participation.placement,
-                registrationOrder=participation.registration_order
             )
 
             if participation.is_on_waiting_list:
@@ -129,7 +130,6 @@ class GetTournamentDetailsQueryHandler:
             registrationProcedure=RegistrationProcedure(
                 text=tournament.registration_procedure_text,
                 type=tournament.registration_procedure_type,
-                url=tournament.registration_procedure_url
             ),
             schedule=tournament.schedule,
             shoes=Shoes(

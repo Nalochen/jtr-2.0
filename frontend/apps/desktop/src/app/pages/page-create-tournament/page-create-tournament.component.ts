@@ -7,13 +7,16 @@ import { firstValueFrom, Observable, Subject, takeUntil } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { tournamentDetailsSelector } from '@jtr/business-domain/tournament';
+import {
+  TournamentDataService,
+  tournamentDetailsSelector,
+} from '@jtr/business-domain/tournament';
+import { createTournamentFormControl } from '@jtr/business-domain/tournament';
 import { TournamentData } from '@jtr/data-domain/store';
 import { SingletonGetter } from '@jtr/infrastructure/cache';
 
 import { TournamentService } from '../../business-rules/tournament/tournament.service';
 
-import { createTournamentFormControl } from '../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import { PageCreateTournamentInformationAccommodationComponent } from './page-create-tournament-information-accommodation/page-create-tournament-information-accommodation.component';
 import { PageCreateTournamentInformationAdditionalComponent } from './page-create-tournament-information-additional/page-create-tournament-information-additional.component';
 import { PageTournamentInformationBasicComponent } from './page-create-tournament-information-basic/page-create-tournament-information-basic.component';
@@ -41,7 +44,7 @@ import { DividerModule } from 'primeng/divider';
     DividerModule,
     TranslatePipe,
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, TournamentDataService],
   templateUrl: './page-create-tournament.component.html',
   styleUrl: './page-create-tournament.component.less',
 })
@@ -64,9 +67,7 @@ export class PageCreateTournamentComponent implements OnDestroy {
     private readonly store$: Store,
     private readonly datePipe: DatePipe
   ) {
-    this.tournament$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((tournament) => {
+    this.tournament$.pipe(takeUntil(this.destroy$)).subscribe((tournament) => {
       if (tournament) {
         this.prefillFormValues(tournament);
         this.newTournament = false;
@@ -221,6 +222,8 @@ export class PageCreateTournamentComponent implements OnDestroy {
       tournament.shoes.text
     );
 
-    this.form.controls.additionalText.setValue(tournament.additionalInformation);
+    this.form.controls.additionalText.setValue(
+      tournament.additionalInformation
+    );
   }
 }

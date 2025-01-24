@@ -52,7 +52,6 @@ export interface CreateTournamentRequestBody {
   registrationCostsType?: PricingTypeEnum;
   registrationProcedureText: string;
   registrationProcedureType: string;
-  registrationProcedureUrl: string;
   registrationStartDate: string;
   schedule: string;
   shoesText: string;
@@ -102,7 +101,6 @@ export interface UpdateTournamentRequestBody {
   registrationCostsType?: PricingTypeEnum;
   registrationProcedureText: string;
   registrationProcedureType: string;
-  registrationProcedureUrl: string;
   registrationStartDate: string;
   schedule: string;
   shoesText: string;
@@ -162,7 +160,6 @@ export class TournamentService {
       registrationCostsType: body.registration.costs.registrationCostsType,
       registrationProcedureText: body.registration.registrationProcedureText,
       registrationProcedureType: body.registration.registrationProcedureType,
-      registrationProcedureUrl: 'test',
       registrationStartDate: body.registration.registrationStartDate,
       schedule: body.contact.schedule,
       shoesText: body.rules.shoes.shoesText,
@@ -217,7 +214,6 @@ export class TournamentService {
       registrationCostsType: body.registration.costs.registrationCostsType,
       registrationProcedureText: body.registration.registrationProcedureText,
       registrationProcedureType: body.registration.registrationProcedureType,
-      registrationProcedureUrl: 'test',
       registrationStartDate: body.registration.registrationStartDate,
       schedule: body.contact.schedule,
       shoesText: body.rules.shoes.shoesText,

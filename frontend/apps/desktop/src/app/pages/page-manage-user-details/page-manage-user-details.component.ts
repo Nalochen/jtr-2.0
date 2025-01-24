@@ -1,14 +1,9 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { firstValueFrom, Observable, Subject, takeUntil } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
@@ -46,7 +41,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
   templateUrl: './page-manage-user-details.component.html',
   styleUrl: './page-manage-user-details.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
   public readonly ButtonTypeEnum = ButtonTypeEnum;
@@ -96,7 +90,7 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
   }
 
   public navigateToTeam(teamId: number): void {
-    window.open(`team-details/${teamId}`, '_self');
+    this.router.navigate(['team-details', teamId]);
   }
 
   public onFoundNewTeam(): void {
@@ -110,13 +104,15 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
   }
 
   public async onSubmit(): Promise<void> {
-    await this.userService.update({
-      birthdate: this.form.controls.birthdate.value,
-      city: this.form.controls.city.value,
-      email: this.form.controls.email.value,
-      name: this.form.controls.name.value,
-      pronouns: this.form.controls.pronouns.value,
-      username: this.form.controls.username.value,
-    });
+    await firstValueFrom(
+      this.userService.update({
+        birthdate: this.form.controls.birthdate.value,
+        city: this.form.controls.city.value,
+        email: this.form.controls.email.value,
+        name: this.form.controls.name.value,
+        pronouns: this.form.controls.pronouns.value,
+        username: this.form.controls.username.value,
+      })
+    );
   }
 }

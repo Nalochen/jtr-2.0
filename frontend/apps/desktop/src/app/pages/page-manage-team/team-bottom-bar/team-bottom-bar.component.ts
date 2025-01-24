@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -37,7 +37,6 @@ import { DialogModule } from 'primeng/dialog';
   ],
   templateUrl: './team-bottom-bar.component.html',
   styleUrl: './team-bottom-bar.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [TeamDataService, TeamService],
 })
 export class TeamBottomBarComponent {

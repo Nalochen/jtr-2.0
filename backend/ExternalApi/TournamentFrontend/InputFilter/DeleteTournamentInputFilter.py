@@ -6,8 +6,7 @@ from flask_inputfilter.Validator import IsIntegerValidator
 class DeleteTournamentInputFilter(InputFilter):
     """The input filter for the delete-tournament route"""
 
-    def __init__(self):
-        """Initializes the DeleteTournamentInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 

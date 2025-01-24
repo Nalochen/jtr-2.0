@@ -248,8 +248,6 @@ def upgrade():
                               sa.Text(), nullable=True),
                     sa.Column('registration_procedure_type', sa.Enum(
                         'FIRST_COME', 'LOTS', 'OTHER', name='tournamentregistrationproceduretypesenum'), nullable=False),
-                    sa.Column('registration_procedure_url',
-                              sa.String(length=255), nullable=False),
                     sa.Column('registration_start_date', sa.DateTime(),
                               server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
                     sa.Column('is_deleted', sa.Boolean(),

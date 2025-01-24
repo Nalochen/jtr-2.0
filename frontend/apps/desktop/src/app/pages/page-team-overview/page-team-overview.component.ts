@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  DestroyRef,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
@@ -31,7 +26,6 @@ import { TranslatePipe } from '@ngx-translate/core';
   ],
   templateUrl: './page-team-overview.component.html',
   styleUrl: './page-team-overview.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageTeamOverviewComponent {
   public dataSource: TeamOverviewData[] = [];

@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { MatChipsModule } from '@angular/material/chips';
 
@@ -14,7 +9,6 @@ import { MatChipsModule } from '@angular/material/chips';
   imports: [CommonModule, MatChipsModule],
   templateUrl: './status-indicator.component.html',
   styleUrl: './status-indicator.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatusIndicatorComponent implements OnChanges {
   @Input() public totalTeams: number = 0;

@@ -34,7 +34,6 @@ INSERT IGNORE INTO tournaments (
     pompf_check_url,
     registration_procedure_text,
     registration_procedure_type,
-    registration_procedure_url,
     registration_start_date,
     organizer_id
 ) VALUES (
@@ -73,7 +72,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     1
 ),
@@ -113,7 +111,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     2
 ),
@@ -153,7 +150,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     3
 ),
@@ -193,7 +189,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     4
 ),
@@ -233,7 +228,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     5
 ),
@@ -273,7 +267,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     6
 ),
@@ -313,7 +306,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     1
 ),
@@ -353,7 +345,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     1
 ),
@@ -393,7 +384,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     1
 ),
@@ -433,7 +423,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     1
 );

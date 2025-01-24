@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { RulesInformationForm } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
+import { RulesInformationForm } from '@jtr/business-domain/tournament';
+
 import {
   DataContainerRowComponent,
   InfoButtonComponent,
@@ -27,7 +28,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
   ],
   templateUrl: './page-create-tournament-information-rules.component.html',
   styleUrl: './page-create-tournament-information-rules.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageCreateTournamentInformationRulesComponent {
   @Input() public form!: FormGroup<RulesInformationForm>;

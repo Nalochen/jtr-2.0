@@ -50,13 +50,17 @@ export class PageTeamDetailsComponent implements OnDestroy {
       if (team) {
         this.teamEscapedName = team.escapedName;
 
-        this.authService.isAdminOfTeam(this.teamEscapedName).pipe(takeUntil(this.destroy$)).subscribe(
-          canEditTeam => this.canEditTeam = canEditTeam
-        )
+        this.authService
+          .isAdminOfTeam(this.teamEscapedName)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((canEditTeam) => (this.canEditTeam = canEditTeam));
 
-        this.authService.isMemberOfTeam(this.teamEscapedName).pipe(takeUntil(this.destroy$)).subscribe(
-          isMemberOfTeam => this.isMemberOfTeam = isMemberOfTeam
-        )
+        this.authService
+          .isMemberOfTeam(this.teamEscapedName)
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(
+            (isMemberOfTeam) => (this.isMemberOfTeam = isMemberOfTeam)
+          );
       }
     });
   }

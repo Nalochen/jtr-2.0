@@ -7,8 +7,7 @@ from flask_inputfilter.Validator import IsStringValidator, RegexValidator
 class UpdateUserInputFilter(InputFilter):
     """The input filter for the update-user route"""
 
-    def __init__(self):
-        """Initializes the UpdateUserInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { firstValueFrom, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import {
   AccommodationTypeEnum,
@@ -52,7 +52,6 @@ export interface CreateTournamentRequestBody {
   registrationCostsType?: PricingTypeEnum;
   registrationProcedureText: string;
   registrationProcedureType: string;
-  registrationProcedureUrl: string;
   registrationStartDate: string;
   schedule: string;
   shoesText: string;
@@ -83,7 +82,6 @@ export interface UpdateTournamentRequestBody {
   registrationStartDate: string;
   registrationCosts?: number;
   registrationCostsType?: PricingTypeEnum;
-  registrationProcedureUrl: string;
   depositCosts?: number;
   depositCostsType?: PricingTypeEnum;
   accommodationCosts?: number;
@@ -162,14 +160,13 @@ export class TournamentService {
       registrationCostsType: body.registration.costs.registrationCostsType,
       registrationProcedureText: body.registration.registrationProcedureText,
       registrationProcedureType: body.registration.registrationProcedureType,
-      registrationProcedureUrl: 'test',
       registrationStartDate: body.registration.registrationStartDate,
       schedule: body.contact.schedule,
       shoesText: body.rules.shoes.shoesText,
       startArrivalDate: body.basic.arrivalStartDate,
       startDate: body.basic.tournamentStartDate,
       studdedShoesAllowed: body.rules.shoes.studded,
-      teamId: body.teamId ?? 1,
+      teamId: body.teamId,
       tournamentSystemText: body.rules.tournamentSystem,
       tournamentSystemUrl: body.rules.tournamentSystemLink,
     };
@@ -217,7 +214,6 @@ export class TournamentService {
       registrationCostsType: body.registration.costs.registrationCostsType,
       registrationProcedureText: body.registration.registrationProcedureText,
       registrationProcedureType: body.registration.registrationProcedureType,
-      registrationProcedureUrl: 'test',
       registrationStartDate: body.registration.registrationStartDate,
       schedule: body.contact.schedule,
       shoesText: body.rules.shoes.shoesText,
@@ -232,11 +228,9 @@ export class TournamentService {
     return this.http.put<void>(UPDATE_TOURNAMENT_ENDPOINT, request);
   }
 
-  public async updateStatus(
+  public updateStatus(
     request: UpdateTournamentStatusRequestBody
-  ): Promise<void> {
-    return await firstValueFrom(
-      this.http.put<void>(UPDATE_TOURNAMENT_STATUS_ENDPOINT, request)
-    );
+  ): Observable<void> {
+    return this.http.put<void>(UPDATE_TOURNAMENT_STATUS_ENDPOINT, request);
   }
 }
