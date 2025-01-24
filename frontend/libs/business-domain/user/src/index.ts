@@ -1,9 +1,11 @@
-export * from './lib/store/actions/user-details-data-load.action';
-export * from './lib/store/actions/user-details-data-loaded-failed.action';
-export * from './lib/store/actions/user-details-data-loaded-success.action';
-export * from './lib/store/actions/user-overview-data-load.action';
-export * from './lib/store/actions/user-overview-data-loaded-failed.action';
-export * from './lib/store/actions/user-overview-data-loaded-success.action';
+export * from './lib/form-controls/edit-user-form.control';
+export * from './lib/form-controls/login-form.control';
+export * from './lib/form-controls/register-form.control';
+
+export * from './lib/rules/is-email.rule';
+
+export * from './lib/store/actions/user-details.action';
+export * from './lib/store/actions/user-overview.action';
 
 export * from './lib/store/effects/get-user-details-data.effect';
 export * from './lib/store/effects/get-user-overview-data.effect';
@@ -28,4 +30,4 @@ export * from './lib/store/states/user-overview-data-store.state';
 
 export * from './lib/store/types/loading-state.type';
 
-export * from './lib/form-controls/edit-user-form.control';
+export * from './lib/validator/passwords-match.validator';

@@ -5,7 +5,7 @@ import { firstValueFrom, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import {
-  loadTournamentDetailsData,
+  loadTournamentDetailsDataAction,
   tournamentDetailsNameSelector,
   tournamentDetailsSelector,
   tournamentDetailsTeamsSelector,
@@ -46,7 +46,7 @@ export class TournamentDataService {
     const tournamentId = (await firstValueFrom(this.tournamentDetails$))!.id;
 
     this.store$.dispatch(
-      loadTournamentDetailsData({ tournamentId: tournamentId })
+      loadTournamentDetailsDataAction({ tournamentId: tournamentId })
     );
   }
 

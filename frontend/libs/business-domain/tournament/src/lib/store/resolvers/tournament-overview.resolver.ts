@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
-import { loadTournamentOverviewData } from '@jtr/business-domain/tournament';
+import { loadTournamentOverviewDataAction } from '@jtr/business-domain/tournament';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +14,7 @@ export class TournamentOverviewResolver implements Resolve<boolean> {
   constructor(private store$: Store) {}
 
   public resolve(): Observable<boolean> {
-    this.store$.dispatch(loadTournamentOverviewData());
+    this.store$.dispatch(loadTournamentOverviewDataAction());
 
     return new Observable<boolean>((observer) => {
       observer.next(true);

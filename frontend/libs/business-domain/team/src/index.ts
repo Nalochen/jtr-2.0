@@ -1,6 +1,7 @@
 export * from './lib/form-controls/edit-team-form.control';
 
-export * from './lib/store/actions/team.action';
+export * from './lib/store/actions/team-details.action';
+export * from './lib/store/actions/team-overview.action';
 
 export * from './lib/store/effects/get-team-details-data.effect';
 export * from './lib/store/effects/get-team-overview-data.effect';

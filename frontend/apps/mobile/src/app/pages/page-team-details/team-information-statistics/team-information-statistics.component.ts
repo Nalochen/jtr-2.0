@@ -17,7 +17,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     NgOptimizedImage,
     DataContainerComponent,
     DataContainerRowComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './team-information-statistics.component.html',
   styleUrl: './team-information-statistics.component.less',

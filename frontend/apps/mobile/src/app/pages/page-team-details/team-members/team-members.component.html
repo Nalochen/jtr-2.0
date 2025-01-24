@@ -6,14 +6,20 @@
   @if (!panelIsOpen) {
   <div ngProjectAs="panel-header" class="member-previews">
     @for (member of previewMembers; track member.id) {
-    <img ngProjectAs="team-logo" [src]="member.pictureUrl" alt="picture" height="32" width="32"/>
+    <img
+      ngProjectAs="team-logo"
+      [src]="member.pictureUrl"
+      alt="picture"
+      height="32"
+      width="32"
+    />
     }
   </div>
   } @else {
-  <p ngProjectAs="panel-header">{{ 'page-team-details.members' | translate}}</p>
-  }
-
-  @for (member of team.members; track member) {
+  <p ngProjectAs="panel-header">
+    {{ 'page-team-details.members' | translate }}
+  </p>
+  } @for (member of team.members; track member) {
   <app-data-container-row>
     <img
       ngProjectAs="container-icon"
@@ -24,7 +30,9 @@
     />
     <p ngProjectAs="container-headline">{{ member.name }}</p>
     @if (showRole(member.role) !== '') {
-    <app-chip ngProjectAs="container-additional">{{ showRole(member.role) | translate }}</app-chip>
+    <app-chip ngProjectAs="container-additional">{{
+      showRole(member.role) | translate
+    }}</app-chip>
     }
   </app-data-container-row>
   }

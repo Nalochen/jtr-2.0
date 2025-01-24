@@ -7,7 +7,8 @@ team.organizedTournaments; track tournament) {
   [type]="ButtonTypeEnum.Flat"
   [fullWidth]="true"
   (click)="redirectToTournament(tournament.id)"
->{{ tournament.name }}</app-button>
+  >{{ tournament.name }}</app-button
+>
 } } @else {
 <p>{{ 'page-team-details.no-organized-tournaments-yet' | translate }}</p>
 }

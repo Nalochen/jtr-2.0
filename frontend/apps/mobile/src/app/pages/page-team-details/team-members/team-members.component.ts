@@ -6,7 +6,7 @@ import { TeamData, TeamUserData } from '@jtr/data-domain/store';
 import {
   ChipComponent,
   DataContainerExpandableComponent,
-  DataContainerRowComponent
+  DataContainerRowComponent,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -19,7 +19,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     DataContainerExpandableComponent,
     DataContainerRowComponent,
     TranslatePipe,
-    ChipComponent
+    ChipComponent,
   ],
   templateUrl: './team-members.component.html',
   styleUrl: './team-members.component.less',

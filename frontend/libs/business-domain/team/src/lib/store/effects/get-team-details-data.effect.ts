@@ -11,7 +11,7 @@ import {
   loadTeamDetailsData,
   loadTeamDetailsDataFailedAction,
   loadTeamDetailsDataSuccessAction,
-} from '../actions/team.action';
+} from '../actions/team-details.action';
 
 @Injectable({
   providedIn: 'root',

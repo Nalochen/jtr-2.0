@@ -20,7 +20,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     DataContainerComponent,
     DataContainerRowComponent,
     MatDividerModule,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './team-information-training.component.html',
   styleUrl: './team-information-training.component.less',

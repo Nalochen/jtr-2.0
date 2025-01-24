@@ -58,9 +58,7 @@ export enum LockType {
 export class AuthService {
   private tokenSubject: BehaviorSubject<string | null>;
 
-  constructor(
-    private readonly http: HttpClient,
-  ) {
+  constructor(private readonly http: HttpClient) {
     const token = localStorage.getItem('jwt');
     this.tokenSubject = new BehaviorSubject<string | null>(token);
   }

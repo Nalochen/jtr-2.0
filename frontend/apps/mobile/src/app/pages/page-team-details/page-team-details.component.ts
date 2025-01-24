@@ -34,7 +34,7 @@ import { TranslatePipe } from '@ngx-translate/core';
     TeamOwnTournamentsComponent,
     TeamOtherTournamentsComponent,
     ButtonComponent,
-    TranslatePipe
+    TranslatePipe,
   ],
   templateUrl: './page-team-details.component.html',
   styleUrl: './page-team-details.component.less',

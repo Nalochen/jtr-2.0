@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { AuthService } from '../../business-rules/auth/auth.service';
 
-import { registerForm } from '../../../../../../libs/business-domain/register/src/lib/form-controls/register-form.control';
+import { registerForm } from '../../../../../../libs/business-domain/user/src/lib/form-controls/register-form.control';
 import {
   ButtonColorEnum,
   ButtonComponent,
