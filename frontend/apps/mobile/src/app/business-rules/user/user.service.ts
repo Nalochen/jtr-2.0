@@ -17,6 +17,9 @@ export interface UpdateUserRequestBody {
   name: string | null;
   pronouns: string | null;
   username: string;
+  isCityVisible: boolean;
+  isNameVisible: boolean;
+  isBirthdateVisible: boolean;
 }
 
 export interface UpdateUserLanguageRequestBody {

@@ -29,7 +29,7 @@
       <img
         id="logo"
         alt="Profile Picture of {{ user?.username }}"
-        ngSrc="{{ user?.pictureUrl }}"
+        [src]="user?.pictureUrl"
         height="32"
         width="32"
         class="user-profile-pic"

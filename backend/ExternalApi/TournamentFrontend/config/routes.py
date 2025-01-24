@@ -106,8 +106,8 @@ def createResult() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @CreateTournamentSubscriptionInputFilter.validate()
-async def createTournamentSubscription() -> Response:
-    return await CreateTournamentSubscriptionHandler.handle()
+def createTournamentSubscription() -> Response:
+    return CreateTournamentSubscriptionHandler.handle()
 
 
 @tournament_frontend.route('/create-tournament-notification',
@@ -115,8 +115,8 @@ async def createTournamentSubscription() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @CreateTournamentNotificationInputFilter.validate()
-async def createTournamentNotification() -> Response:
-    return await CreateTournamentNotificationHandler.handle()
+def createTournamentNotification() -> Response:
+    return CreateTournamentNotificationHandler.handle()
 
 
 @tournament_frontend.route('/delete-participation',
@@ -125,8 +125,8 @@ async def createTournamentNotification() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @DeleteParticipationInputFilter.validate()
-async def deleteParticipation() -> Response:
-    return await DeleteParticipationHandler.handle()
+def deleteParticipation() -> Response:
+    return DeleteParticipationHandler.handle()
 
 
 @tournament_frontend.route('/delete-tournament',
@@ -135,8 +135,8 @@ async def deleteParticipation() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @DeleteTournamentInputFilter.validate()
-async def deleteTournament() -> Response:
-    return await DeleteTournamentHandler.handle()
+def deleteTournament() -> Response:
+    return DeleteTournamentHandler.handle()
 
 
 @tournament_frontend.route('/delete-tournament-subscription',
@@ -145,5 +145,5 @@ async def deleteTournament() -> Response:
 @limiter.limit('2 per minute')
 @jwt_required()
 @DeleteTournamentSubscriptionInputFilter.validate()
-async def deleteTournamentSubscription() -> Response:
-    return await DeleteTournamentSubscriptionHandler.handle()
+def deleteTournamentSubscription() -> Response:
+    return DeleteTournamentSubscriptionHandler.handle()

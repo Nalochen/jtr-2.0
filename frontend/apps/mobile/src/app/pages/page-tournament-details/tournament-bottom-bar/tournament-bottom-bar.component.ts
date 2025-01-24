@@ -1,9 +1,16 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { firstValueFrom, Subject, takeUntil } from 'rxjs';
 
+import { TournamentDataService } from '@jtr/business-domain/tournament';
 import { TeamData, TournamentTeamsData } from '@jtr/data-domain/store';
 
 import { AuthService } from '../../../business-rules/auth/auth.service';
@@ -36,6 +43,7 @@ export interface Team {
     DropdownModule,
     FormsModule,
   ],
+  providers: [TournamentDataService],
   templateUrl: './tournament-bottom-bar.component.html',
   styleUrl: './tournament-bottom-bar.component.less',
 })
@@ -54,7 +62,9 @@ export class TournamentBottomBarComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly manageParticipationService: ParticipationService,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly tournamentDataService: TournamentDataService,
+    private readonly changeDetectorRef: ChangeDetectorRef
   ) {}
 
   public ngOnInit() {
@@ -86,9 +96,12 @@ export class TournamentBottomBarComponent implements OnInit, OnDestroy {
       await firstValueFrom(
         this.manageParticipationService.create({
           tournamentId: this.tournamentId,
-          teamId: this.selectedTeam?.id,
+          teamId: this.selectedTeam.id,
         })
       );
     }
+
+    await this.tournamentDataService.reloadTournamentDetails();
+    this.changeDetectorRef.detectChanges();
   }
 }

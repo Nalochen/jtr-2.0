@@ -37,9 +37,10 @@ class GetUserDetailsQueryHandler:
             teams=[
                 TeamResult(
                     id=team.id,
+                    escapedName=team.escaped_name,
                     logoUrl=team.logo_url,
                     name=team.name,
-                ) for team in user.teams],
+                ) for team in user.teams if not team.is_deleted],
             updatedAt=user.updated_at,
             username=user.username,
         )

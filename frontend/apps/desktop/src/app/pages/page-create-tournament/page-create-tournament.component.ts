@@ -67,6 +67,7 @@ export class PageCreateTournamentComponent implements OnDestroy {
     private readonly store$: Store,
     private readonly datePipe: DatePipe
   ) {
+    this.form.reset();
     this.tournament$.pipe(takeUntil(this.destroy$)).subscribe((tournament) => {
       if (tournament) {
         this.prefillFormValues(tournament);

@@ -23,7 +23,7 @@ class CreateTeamHandler:
             return Response(status=409)
 
         try:
-            CreateTeamCommandHandler.execute(
+            escapedName = CreateTeamCommandHandler.execute(
                 CreateTeamCommand(
                     aboutUs=data.get('aboutUs'),
                     city=data.get('city'),
@@ -41,5 +41,6 @@ class CreateTeamHandler:
             return Response(status=500)
 
         return Response(
+            response=escapedName,
             status=200
         )

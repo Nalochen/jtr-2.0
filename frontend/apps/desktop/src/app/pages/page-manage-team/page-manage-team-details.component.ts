@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { Observable, Subject, takeUntil } from 'rxjs';
@@ -37,10 +37,7 @@ export class PageManageTeamDetailsComponent implements OnInit, OnDestroy {
   public readonly form = editTeamForm;
   private readonly destroy$ = new Subject<void>();
 
-  constructor(
-    private store$: Store,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {}
+  constructor(private store$: Store) {}
 
   @SingletonGetter()
   public get team$(): Observable<TeamData | null> {

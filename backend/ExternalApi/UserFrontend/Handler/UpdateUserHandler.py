@@ -18,13 +18,16 @@ class UpdateUserHandler:
         try:
             accessToken = UpdateUserCommandHandler.execute(
                 UpdateUserCommand(
-                    username=data.get('username'),
-                    password=data.get('password'),
                     birthdate=data.get('birthdate'),
                     city=data.get('city'),
                     email=data.get('email'),
+                    isBirthdateVisible=data.get('isBirthdateVisible'),
+                    isCityVisible=data.get('isCityVisible'),
+                    isNameVisible=data.get('isNameVisible'),
                     name=data.get('name'),
-                    pronouns=data.get('pronouns')
+                    password=data.get('password'),
+                    pronouns=data.get('pronouns'),
+                    username=data.get('username'),
                 )
             )
 

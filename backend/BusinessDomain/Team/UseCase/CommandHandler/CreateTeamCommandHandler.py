@@ -13,7 +13,7 @@ from Infrastructure.Logger import logger
 class CreateTeamCommandHandler:
 
     @staticmethod
-    def execute(command: CreateTeamCommand) -> None:
+    def execute(command: CreateTeamCommand) -> str:
 
         team = Teams()
 
@@ -42,3 +42,5 @@ class CreateTeamCommandHandler:
             teamId=teamId,
             userRole=UserRoleTypesEnum.ADMIN.value
         )
+
+        return team.escaped_name

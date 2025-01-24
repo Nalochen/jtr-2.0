@@ -48,17 +48,17 @@ export class OverlayMenuComponent {
   }
 
   public onRedirectToTournaments() {
-    this.router.navigate(['/tournament-overview']);
+    this.router.navigate(['tournament-overview']);
     this.closeMenu();
   }
 
   public onRedirectToTeams() {
-    this.router.navigate(['/teams-overview']);
+    this.router.navigate(['teams-overview']);
     this.closeMenu();
   }
 
   public onRedirectToAccount() {
-    this.router.navigate(['/manage-user-details']);
+    this.router.navigate(['manage-user-details']);
     this.closeMenu();
   }
 
@@ -68,7 +68,7 @@ export class OverlayMenuComponent {
   }
 
   public onRedirectToLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['login']);
     this.closeMenu();
   }
 

@@ -148,7 +148,7 @@
   [type]="ButtonTypeEnum.Raised"
   [fullWidth]="true"
   [justifyContent]="ButtonJustifyContentEnum.FLEX_START"
-  (click)="navigateToTeam(team.id)"
+  (click)="navigateToTeam(team.escapedName)"
   class="team-button"
 >
   <div class="team">

@@ -36,6 +36,7 @@
           class="menu-button"
           [color]="ButtonColorEnum.White"
           [type]="ButtonTypeEnum.Basic"
+          (click)="removeMember(member)"
         >
           <span class="material-icons-outlined">delete</span>
           <p>{{ 'page-manage-team.remove-member' | translate }}</p>

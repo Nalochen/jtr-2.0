@@ -34,6 +34,8 @@ class GetTournamentDetailsQueryHandler:
         waitingTeams = []
 
         for team in tournament.teams:
+            if team.is_deleted:
+                continue
 
             participation = ParticipatesInRepository.get(
                 tournamentId=query.tournamentId,

@@ -39,6 +39,12 @@ class AuthenticateUserHandler:
             )
         )
 
+        if not loginUserResult:
+            return Response(
+                response='Falsche Anmeldedaten.',
+                status=401
+            )
+
         if loginUserResult.token is not None:
             return Response(
                 response={

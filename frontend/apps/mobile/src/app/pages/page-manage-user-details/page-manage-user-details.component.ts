@@ -90,18 +90,18 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  public navigateToTeam(teamId: number): void {
-    this.router.navigate(['team-details', teamId]);
+  public navigateToTeam(escapedName: string): void {
+    this.router.navigate(['team-details', escapedName]);
   }
 
   public onFoundNewTeam(): void {
-    this.router.navigate(['/create-team/team-information']);
+    this.router.navigate(['create-team/team-information']);
   }
 
   public async onDeleteAccount(): Promise<void> {
     await this.userService.delete();
 
-    this.router.navigate(['/tournament-overview']);
+    this.router.navigate(['tournament-overview']);
   }
 
   public async onSubmit(): Promise<void> {
@@ -113,6 +113,9 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
         name: this.form.controls.name.value,
         pronouns: this.form.controls.pronouns.value,
         username: this.form.controls.username.value,
+        isBirthdateVisible: this.form.controls.isBirthdateVisible.value,
+        isNameVisible: this.form.controls.isNameVisible.value,
+        isCityVisible: this.form.controls.isCityVisible.value,
       })
     );
   }

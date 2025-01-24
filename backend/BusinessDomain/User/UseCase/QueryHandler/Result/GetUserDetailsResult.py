@@ -7,6 +7,7 @@ from typing import List
 class TeamResult:
 
     id: int
+    escapedName: str
     logoUrl: str
     name: str
 

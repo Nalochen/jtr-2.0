@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -31,7 +31,7 @@ import { DialogModule } from 'primeng/dialog';
   styleUrl: './team-bottom-bar.component.less',
   providers: [TeamDataService, TeamService],
 })
-export class TeamBottomBarComponent {
+export class TeamBottomBarComponent implements OnDestroy {
   @Input() public form!: FormGroup<EditTeamForm>;
   @Input() public teamId?: number;
   protected readonly ButtonColorEnum = ButtonColorEnum;
@@ -43,6 +43,10 @@ export class TeamBottomBarComponent {
     private readonly teamDataService: TeamDataService,
     private readonly router: Router
   ) {}
+
+  public ngOnDestroy(): void {
+    this.form.reset();
+  }
 
   public onOpenDeleteDialog() {
     this.isDeleteDialogVisible = true;
@@ -59,19 +63,17 @@ export class TeamBottomBarComponent {
       })
     );
 
-    await this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 
   public async onSaveTeam() {
     if (this.form.invalid) {
-      console.log(this.form);
       this.markAllFieldsAsTouched(this.form);
       return;
     }
 
     if (!this.teamId) {
-      console.log('here');
-      await firstValueFrom(
+      const escapedName = await firstValueFrom(
         this.teamService.create({
           name: this.form.controls.name.value,
           city: this.form.controls.city.value || undefined,
@@ -84,6 +86,7 @@ export class TeamBottomBarComponent {
             ) || [],
         })
       );
+      this.router.navigate(['team-details', escapedName]);
     } else {
       await firstValueFrom(
         this.teamService.update({
