@@ -1,7 +1,8 @@
 export interface UserTeamData {
   id: number;
   name: string;
-  logo: string;
+  logoUrl: string;
+  escapedName: string;
 }
 
 export interface UserData {
@@ -15,7 +16,7 @@ export interface UserData {
   isDeleted: boolean;
   isNameVisible: boolean;
   name?: string;
-  picture: string;
+  pictureUrl: string;
   pronouns: string;
   teams: UserTeamData[];
   updatedAt: string;

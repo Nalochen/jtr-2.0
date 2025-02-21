@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 
+import { loginFormControl } from '@jtr/business-domain/user';
+import { isEmail } from '@jtr/business-domain/user';
+
 import { AuthService, LockType } from '../../business-rules/auth/auth.service';
 
-import { loginFormControl } from '../../../../../../libs/business-domain/login/src/lib/form-controls/login-form.control';
-import { isEmail } from '../../../../../../libs/business-domain/login/src/lib/rules/is-email.rule';
 import {
   ButtonColorEnum,
   ButtonComponent,
@@ -39,7 +40,6 @@ export interface LoginAttemptResponse {
   ],
   templateUrl: './page-login.component.html',
   styleUrl: './page-login.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageLoginComponent {
   protected readonly ButtonColorEnum = ButtonColorEnum;

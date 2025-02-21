@@ -1,5 +1,5 @@
 from flask_inputfilter import InputFilter
-from flask_inputfilter.Enum.RegexEnum import RegexEnum
+from flask_inputfilter.Enum import RegexEnum
 from flask_inputfilter.Filter import (
     StringTrimFilter,
     ToBooleanFilter,
@@ -9,29 +9,19 @@ from flask_inputfilter.Filter import (
 from flask_inputfilter.Validator import (
     InEnumValidator,
     IsArrayValidator,
-    IsBoolValidator,
+    IsBooleanValidator,
     IsIntegerValidator,
     IsStringValidator,
     RegexValidator,
 )
 
-from DataDomain.Database.Enum.TournamentAccommodationTypesEnum import (
+from DataDomain.Database.Enum import (
     TournamentAccommodationTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentCostTypesEnum import TournamentCostTypesEnum
-from DataDomain.Database.Enum.TournamentFoodEveningTypesEnum import (
+    TournamentCostTypesEnum,
     TournamentFoodEveningTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import (
     TournamentFoodGastroTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import (
     TournamentFoodMorningTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import (
     TournamentFoodNoonTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import (
     TournamentRegistrationProcedureTypesEnum,
 )
 
@@ -39,8 +29,7 @@ from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import (
 class CreateTournamentInputFilter(InputFilter):
     """The input filter for the create-tournament route"""
 
-    def __init__(self):
-        """Initializes the CreateTournamentInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 
@@ -360,28 +349,28 @@ class CreateTournamentInputFilter(InputFilter):
             'studdedShoesAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
             'cleatsShoesAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
             'camShoesAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
             'barefootAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
@@ -392,8 +381,7 @@ class CreateTournamentInputFilter(InputFilter):
         )
 
         self.add(
-            'registrationProcedureUrl',
+            'teamId',
             required=True,
-            filters=[StringTrimFilter()],
-            validators=[IsStringValidator()]
+            validators=[IsIntegerValidator()]
         )

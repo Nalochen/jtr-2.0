@@ -9,7 +9,10 @@ The container to create and maintain SSL certificates for the production environ
 To create a certificate, run the following command inside the container:
 
 ```bash
-certbot certonly --webroot -w /usr/share/nginx/html/desktop -d ${CERTBOT_DOMAIN} -m ${CERTBOT_EMAIL}
+certbot certonly --webroot \
+  -w /usr/share/nginx/html/desktop -d ${CERTBOT_DOMAIN} \
+  -w /usr/share/nginx/html/mobile -d m.${CERTBOT_DOMAIN} \
+  -m ${CERTBOT_EMAIL}
 ```
 
 ### Renew a certificate

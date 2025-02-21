@@ -55,6 +55,12 @@ components:
           type: string
         username:
           type: string
+        isCityVisible:
+          type: boolean
+        isBirthdateVisible:
+          type: boolean
+        isNameVisible:
+          type: boolean
 
     UpdateUserResponseBody:
       type: object

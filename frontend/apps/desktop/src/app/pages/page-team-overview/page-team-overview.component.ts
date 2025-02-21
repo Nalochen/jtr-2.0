@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef } from '@angular/core';
+import { ChangeDetectorRef, Component, DestroyRef } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
@@ -17,10 +17,15 @@ import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TranslatePipe, ReactiveFormsModule, TeamRowComponent, IconFieldComponent],
+  imports: [
+    CommonModule,
+    TranslatePipe,
+    ReactiveFormsModule,
+    TeamRowComponent,
+    IconFieldComponent,
+  ],
   templateUrl: './page-team-overview.component.html',
   styleUrl: './page-team-overview.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageTeamOverviewComponent {
   public dataSource: TeamOverviewData[] = [];
@@ -31,8 +36,15 @@ export class PageTeamOverviewComponent {
     return this.store$.select(teamOverviewSelector);
   }
 
-  constructor(private store$: Store, private readonly destroyRef: DestroyRef, private readonly changeDetectorRef: ChangeDetectorRef) {
-    combineLatest([this.teams$, this.searchForm.valueChanges.pipe(startWith(''))])
+  constructor(
+    private store$: Store,
+    private readonly destroyRef: DestroyRef,
+    private readonly changeDetectorRef: ChangeDetectorRef
+  ) {
+    combineLatest([
+      this.teams$,
+      this.searchForm.valueChanges.pipe(startWith('')),
+    ])
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(([teams, search]: [TeamOverviewData[], string | null]) => {
         search = search?.toLowerCase() || '';

@@ -1,28 +1,20 @@
 from flask import request
 
-from config.cache import cache
+from BusinessDomain.User.Repository import UserRepository
+from config import cache
 
 
 def create_user_cache_key() -> str | None:
     """Create cache key for user"""
 
-    userId = request.view_args.get('userId')
+    escapedUsername = request.view_args.get('escapedUsername')
 
-    if userId is None:
+    user = UserRepository.getUserByUsername(escapedUsername)
+
+    if user is None:
         return None
 
-    return f"user-{userId}"
-
-
-def create_user_picture_cache_key() -> str | None:
-    """Create cache key for user"""
-
-    userId = request.view_args.get('userId')
-
-    if userId is None:
-        return None
-
-    return f"user-picture-{userId}"
+    return f"user-{user.id}"
 
 
 def clearUserCache(userId: int) -> None:

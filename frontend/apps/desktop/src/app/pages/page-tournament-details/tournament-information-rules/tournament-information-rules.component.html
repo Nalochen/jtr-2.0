@@ -6,16 +6,18 @@
     <h4 ngProjectAs="container-headline">
       {{ 'page-tournament-details.pompf-check' | translate }}
     </h4>
+    @if (tournament.pompfCheck.url) {
     <a
       ngProjectAs="container-additional"
       href="{{ tournament.pompfCheck.url }}"
       target="_blank"
       >Link</a
     >
+    }
     <p ngProjectAs="container-content">{{ tournament.pompfCheck.text }}</p>
   </app-data-container-row>
 
-  <mat-divider />
+  <p-divider />
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon"
@@ -24,18 +26,20 @@
     <h4 ngProjectAs="container-headline">
       {{ 'page-tournament-details.tournament-system' | translate }}
     </h4>
+    @if (tournament.tournamentSystem.url) {
     <a
       ngProjectAs="container-additional"
       href="{{ tournament.tournamentSystem.url }}"
       target="_blank"
       >tugeny</a
     >
+    }
     <p ngProjectAs="container-content">
       {{ tournament.tournamentSystem.text }}
     </p>
   </app-data-container-row>
 
-  <mat-divider />
+  <p-divider />
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon"
@@ -44,16 +48,18 @@
     <h4 ngProjectAs="container-headline">
       {{ 'page-tournament-details.house-rules' | translate }}
     </h4>
+    @if (tournament.houseRules.url) {
     <a
       ngProjectAs="container-additional"
       href="{{ tournament.houseRules.url }}"
       target="_blank"
       >Link</a
     >
+    }
     <p ngProjectAs="container-content">{{ tournament.houseRules.text }}</p>
   </app-data-container-row>
 
-  <mat-divider />
+  <p-divider />
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon"
@@ -94,7 +100,7 @@
               | translate
           }}
         </p>
-        <p-inputSwitch formControlName="nubbedShoesAllowed" [disabled]="true" />
+        <p-inputSwitch formControlName="nubbedShoesAllowed" />
       </div>
       <div class="shoe">
         <p>
@@ -103,10 +109,7 @@
               | translate
           }}
         </p>
-        <p-inputSwitch
-          formControlName="cleadedShoesAllowed"
-          [disabled]="true"
-        />
+        <p-inputSwitch formControlName="cleadedShoesAllowed" />
       </div>
       <div class="shoe">
         <p>
@@ -115,10 +118,7 @@
               | translate
           }}
         </p>
-        <p-inputSwitch
-          formControlName="studdedShoesAllowed"
-          [disabled]="true"
-        />
+        <p-inputSwitch formControlName="studdedShoesAllowed" />
       </div>
       <div class="shoe">
         <p>
@@ -127,7 +127,7 @@
               | translate
           }}
         </p>
-        <p-inputSwitch formControlName="barefootAllowed" [disabled]="true" />
+        <p-inputSwitch formControlName="barefootAllowed" />
       </div>
 
       <p>{{ tournament.shoes.text }}</p>

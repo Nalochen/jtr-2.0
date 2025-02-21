@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: Customer Frontend API
+  version: 1.0.0
+paths:
+  /api/user-frontend/create-user:
+    post:
+      summary: Creates a new user
+      description: Returns the JWT access token for the user session.
+      requestBody: 
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequestBody'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterResponseBody'
+
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    RegisterRequestBody:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        birthdate:
+          type: string
+          format: date
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        language:
+          type: string
+
+    RegisterResponseBody:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOifghjkgfdsfghj

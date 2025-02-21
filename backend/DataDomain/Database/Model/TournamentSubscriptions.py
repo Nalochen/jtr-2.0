@@ -1,6 +1,6 @@
 from sqlalchemy import func
 
-from DataDomain.Database.db import db
+from DataDomain.Database import db
 
 tournament_subscriptions = db.Table(
 

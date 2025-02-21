@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  Input,
-} from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { firstValueFrom, Observable } from 'rxjs';
@@ -13,7 +8,7 @@ import { TeamDataService } from '@jtr/business-domain/team';
 import { TournamentDataService } from '@jtr/business-domain/tournament';
 import { TeamOverviewData, TournamentTeamData } from '@jtr/data-domain/store';
 
-import { ManageParticipationService } from '../../../business-rules/tournament/manage-participation.service';
+import { ParticipationService } from '../../../business-rules/tournament/participation.service';
 
 import {
   ButtonColorEnum,
@@ -39,12 +34,11 @@ import { DropdownModule } from 'primeng/dropdown';
   providers: [TeamDataService],
   templateUrl: './submit-area.component.html',
   styleUrl: './submit-area.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SubmitAreaComponent {
   constructor(
     private readonly tournamentDataService: TournamentDataService,
-    private readonly manageParticipationService: ManageParticipationService
+    private readonly manageParticipationService: ParticipationService
   ) {}
   private readonly teamDataService = inject(TeamDataService);
 

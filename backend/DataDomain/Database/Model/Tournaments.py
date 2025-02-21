@@ -4,32 +4,20 @@ from typing import List
 
 from sqlalchemy import Column, Enum, func
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import Mapped, aliased
 
-from DataDomain.Database.db import db
-from DataDomain.Database.Enum.TournamentAccommodationTypesEnum import (
+from DataDomain.Database import db
+from DataDomain.Database.Enum import (
     TournamentAccommodationTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentCostTypesEnum import TournamentCostTypesEnum
-from DataDomain.Database.Enum.TournamentFoodEveningTypesEnum import (
+    TournamentCostTypesEnum,
     TournamentFoodEveningTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import (
     TournamentFoodGastroTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import (
     TournamentFoodMorningTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import (
     TournamentFoodNoonTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import (
     TournamentRegistrationProcedureTypesEnum,
+    TournamentStatusTypesEnum,
 )
-from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
-from DataDomain.Database.Model.BaseModel import BaseModel
-from DataDomain.Database.Model.ParticipatesIn import participates_in
-from DataDomain.Database.Model.Teams import Teams
+from DataDomain.Database.Model import BaseModel, Teams, participates_in
 
 
 class Tournaments(BaseModel, db.Model):
@@ -248,11 +236,6 @@ class Tournaments(BaseModel, db.Model):
     registration_procedure_type: TournamentRegistrationProcedureTypesEnum = db.Column(
         Enum(TournamentRegistrationProcedureTypesEnum), nullable=False)
 
-    registration_procedure_url: str = db.Column(
-        db.String(255),
-        nullable=False
-    )
-
     registration_start_date: datetime = db.Column(
         db.DateTime,
         nullable=False,
@@ -300,3 +283,18 @@ class Tournaments(BaseModel, db.Model):
         """
 
         return json.loads(str(self.contacts))
+
+    @hybrid_property
+    def num_teams(self):
+        """Ermittelt die Anzahl der teilnehmenden Teams für das Turnier."""
+        return len(self.teams)
+
+    @num_teams.expression
+    def num_teams(cls):
+        """Ausdruck für die Anzahl der teilnehmenden Teams für SQL-Abfragen."""
+        aliased_participates_in = aliased(participates_in)
+        return (
+            db.select(func.count(aliased_participates_in.c.team_id))
+            .where(aliased_participates_in.c.tournament_id == cls.id)
+            .scalar_subquery()
+        )

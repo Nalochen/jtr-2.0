@@ -1,28 +1,16 @@
 import logging
 import os
 
-import pymysql
 from celery import Celery
-from Handler.SendMailHandler import SendMailHandler
-from MailConfig import MailConfig
-from Model.SendMailTaskBody import SendMailTaskBody
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+
+from worker.config import MailConfig
+from worker.Handler import CalculateTeamScoresHandler, SendMailHandler
+from worker.Model import SendMailTaskBody
 
 celery = Celery(
-    os.getenv('CELERY_APP_NAME'),
-    broker=os.getenv('CELERY_BROKER_URL'),
+    main=os.getenv('CELERY_APP_NAME'),
+    broker=os.getenv('CELERY_WORKER_URL'),
     backend=os.getenv('CELERY_RESULT_BACKEND'))
-
-pymysql.install_as_MySQLdb()
-
-engine = create_engine(
-    os.getenv(
-        'DATABASE_URL',
-        'mysql+pymysql://user:password@localhost:3306/jtr'),
-    echo=True)
-
-db = scoped_session(sessionmaker(bind=engine))
 
 celery.conf.update(
     SMTP_HOST=MailConfig.MAIL_SERVER,
@@ -34,18 +22,42 @@ celery.conf.update(
 
 
 @celery.task(name="send_email_task")
-def send_email_task(data: SendMailTaskBody) -> str:
+def send_email_task(data: dict) -> None:
     """
     Handles the email sending logic. This is the main worker logic
     for processing the email asynchronously.
     """
 
     try:
+        data = SendMailTaskBody.fromDict(data)
+
         SendMailHandler.handle(data)
 
-        return f'Worker | send_email_task | Email successfully sent to {
-            data['recipients']} with subject: {data['body']}'
+        logging.info(f'Worker | send_email_task | Email successfully sent to {
+            data.recipients} with subject: {data.body}')
 
     except Exception as e:
-        logging.info(f'Worker | send_email_task | Failed to send email: {e}')
+        logging.error(f'Worker | send_email_task | Failed to send email: {e}')
+        raise
+
+
+@celery.task(name="calculate_team_scores_task")
+def calculate_team_scores_task() -> None:
+    """
+    Handles the team score calculation logic. This is the main worker logic
+    for processing the team score asynchronously.
+    """
+
+    try:
+        logging.info(
+            f'Worker | calculate_team_scores_task | Start calculating new Team scores')
+
+        CalculateTeamScoresHandler().handle()
+
+        logging.info(
+            f'Worker | calculate_team_scores_task | Finished calculating new Team scores calculated ')
+
+    except Exception as e:
+        logging.error(
+            f'Worker | calculate_team_scores_task | Failed to calculate team score: {e}')
         raise

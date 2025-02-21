@@ -1,10 +1,10 @@
 import { createReducer, on } from '@ngrx/store';
 
 import {
-  loadTournamentDetailsData,
+  loadTournamentDetailsDataAction,
   loadTournamentDetailsDataFailedAction,
   loadTournamentDetailsDataSuccessAction,
-} from '../actions/tournament.action';
+} from '../actions/tournament-details.action';
 import { tournamentDetailsDataInitialState } from '../states/tournament-details-data-store.initial-state';
 import { TournamentDetailsState } from '../states/tournament-details-data-store.state';
 import { FAILED, IDLE, LOADING } from '../types/loading-state.type';
@@ -12,7 +12,7 @@ import { FAILED, IDLE, LOADING } from '../types/loading-state.type';
 export const tournamentDetailsDataReducer = createReducer(
   tournamentDetailsDataInitialState,
   on(
-    loadTournamentDetailsData,
+    loadTournamentDetailsDataAction,
     (state): TournamentDetailsState => ({
       ...state,
       loadingState: LOADING,

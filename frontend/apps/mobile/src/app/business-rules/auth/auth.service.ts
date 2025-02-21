@@ -11,32 +11,38 @@ import {
 } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-const LOGIN_ENDPOINT = '/api/user-frontend/login';
-const REGISTER_ENDPOINT = '/api/user-frontend/register';
+import { TeamData } from '@jtr/data-domain/store';
+
+const LOGIN_ENDPOINT = '/api/user-frontend/authenticate-user';
+const REGISTER_ENDPOINT = '/api/user-frontend/create-user';
+const IS_MEMBER_OF_TEAM_ENDPOINT = 'api/user-frontend/is-member-of-team';
 const IS_ADMIN_OF_TEAM_ENDPOINT = '/api/user-frontend/is-admin-of-team';
 const IS_ADMIN_OF_ORGANIZER_ENDPOINT =
   '/api/user-frontend/is-admin-of-organizer';
+const USER_ADMIN_TEAMS = '/api/user-frontend/get-admin-teams';
 
 export interface LoginRequestBody {
-  username: string | null;
   email: string | null;
   password: string;
+  username: string | null;
 }
 
 export interface RegisterRequestBody {
   birthdate: string | null;
-  isBirthdateVisible: boolean;
   city: string | null;
-  isCityVisible: boolean;
   email: string | null;
-  name: string | null;
+  isBirthdateVisible: boolean;
+  isCityVisible: boolean;
   isNameVisible: boolean;
+  language: string;
+  name: string | null;
   password: string;
   username: string;
 }
 
 export interface AuthResponse {
   token: string | undefined;
+  language: string | undefined;
   lockType: LockType | undefined;
   lockedUntil: string | undefined;
 }
@@ -72,6 +78,10 @@ export class AuthService {
           if (response.token) {
             this.setSession(response.token);
           }
+
+          if (response.language) {
+            sessionStorage.setItem('language', response.language);
+          }
         }),
         catchError((error) => {
           if (error.status === 401 && error.error) {
@@ -95,14 +105,26 @@ export class AuthService {
     );
   }
 
-  public isAdminOfTeam(teamId: number): Observable<boolean> {
-    return this.http.get<boolean>(`${IS_ADMIN_OF_TEAM_ENDPOINT}/${teamId}`);
+  public isMemberOfTeam(escapedName: string): Observable<boolean> {
+    return this.http.get<boolean>(
+      `${IS_MEMBER_OF_TEAM_ENDPOINT}/${escapedName}`
+    );
+  }
+
+  public isAdminOfTeam(escapedName: string): Observable<boolean> {
+    return this.http.get<boolean>(
+      `${IS_ADMIN_OF_TEAM_ENDPOINT}/${escapedName}`
+    );
   }
 
   public isAdminOfOrganizer(tournamentId: number): Observable<boolean> {
     return this.http.get<boolean>(
       `${IS_ADMIN_OF_ORGANIZER_ENDPOINT}/${tournamentId}`
     );
+  }
+
+  public userAdminTeams(): Observable<TeamData[]> {
+    return this.http.get<TeamData[]>(`${USER_ADMIN_TEAMS}`);
   }
 
   public setSession(token: string): void {

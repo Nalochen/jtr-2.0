@@ -7,15 +7,13 @@
       type="text"
       placeholder="{{ 'search' | translate }}"
       [formControl]="searchForm"
-    >
+    />
     <span ngProjectAs="icon" class="material-icons-outlined">search</span>
   </app-icon-field>
 </div>
 
 <div class="teams">
   @for (team of dataSource; track team.id) {
-  <team-row
-    [team]="team"
-  />
+  <team-row [team]="team" />
   }
 </div>

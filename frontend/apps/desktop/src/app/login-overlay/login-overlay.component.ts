@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
+import { loginFormControl } from '@jtr/business-domain/user';
+import { isEmail } from '@jtr/business-domain/user';
 
 import { AuthService, LockType } from '../business-rules/auth/auth.service';
 
-import { loginFormControl } from '../../../../../libs/business-domain/login/src/lib/form-controls/login-form.control';
-import { isEmail } from '../../../../../libs/business-domain/login/src/lib/rules/is-email.rule';
 import {
   ButtonColorEnum,
   ButtonComponent,
@@ -33,7 +34,6 @@ export interface LoginAttemptResponse {
   ],
   templateUrl: './login-overlay.component.html',
   styleUrl: './login-overlay.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginOverlayComponent {
   @Input() public loginOverlayPanel!: OverlayPanel;

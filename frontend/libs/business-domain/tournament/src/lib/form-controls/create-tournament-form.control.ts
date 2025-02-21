@@ -1,4 +1,12 @@
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 
 import {
   AccommodationTypeEnum,
@@ -9,6 +17,17 @@ import {
   TournamentFoodNoonEnum,
   TournamentRegistrationProcedureTypeEnum,
 } from '@jtr/data-domain/tournament-data';
+
+export const teamCountMissingValidator: ValidatorFn = (
+  control: AbstractControl
+): ValidationErrors | null => {
+  const teamCountButton = control.get('teamCountButton');
+  const teamCountInputField = control.get('teamCountField');
+
+  return !!teamCountButton?.value || !!teamCountInputField?.value
+    ? null
+    : { teamCountMissing: true };
+};
 
 export type CostsInformationForm = {
   registrationCosts: FormControl<number | null>;
@@ -63,17 +82,17 @@ export type ContactInformationForm = {
 
 export type AccommodationInformationForm = {
   accommodationType: FormControl<AccommodationTypeEnum | null>;
-  accommodationAddress: FormControl<string>;
+  accommodationAddress: FormControl<string | null>;
   food: FormGroup<FoodInformationForm>;
 };
 
 export type RulesInformationForm = {
-  tournamentSystem: FormControl<string>;
-  tournamentSystemLink: FormControl<string>;
-  pompfCheck: FormControl<string>;
-  pompfCheckLink: FormControl<string>;
-  houseRules: FormControl<string>;
-  houseRulesLink: FormControl<string>;
+  tournamentSystem: FormControl<string | null>;
+  tournamentSystemLink: FormControl<string | null>;
+  pompfCheck: FormControl<string | null>;
+  pompfCheckLink: FormControl<string | null>;
+  houseRules: FormControl<string | null>;
+  houseRulesLink: FormControl<string | null>;
   shoes: FormGroup<ShoesInformationForm>;
 };
 
@@ -83,7 +102,7 @@ export type CreateTournamentForm = {
   contact: FormGroup<ContactInformationForm>;
   accommodation: FormGroup<AccommodationInformationForm>;
   rules: FormGroup<RulesInformationForm>;
-  costsText: FormControl<string | null>;
+  additionalText: FormControl<string | null>;
 };
 
 export const basicInformationFormControl = new FormGroup<BasicInformationForm>({
@@ -108,43 +127,49 @@ export const basicInformationFormControl = new FormGroup<BasicInformationForm>({
 });
 
 export const registrationInformationFormControl =
-  new FormGroup<RegistrationInformationForm>({
-    teamCountButton: new FormControl(null),
-    teamCountField: new FormControl(null),
-    registrationProcedureType: new FormControl(null, [Validators.required]),
-    registrationProcedureText: new FormControl(null),
-    registrationStartDate: new FormControl(null, [Validators.required]),
-    costs: new FormGroup<CostsInformationForm>({
-      registrationCosts: new FormControl(0, {
+  new FormGroup<RegistrationInformationForm>(
+    {
+      teamCountButton: new FormControl(null),
+      teamCountField: new FormControl(null),
+      registrationProcedureType: new FormControl(
+        TournamentRegistrationProcedureTypeEnum.FIRST_COME,
+        [Validators.required]
+      ),
+      registrationProcedureText: new FormControl(null),
+      registrationStartDate: new FormControl(null, [Validators.required]),
+      costs: new FormGroup<CostsInformationForm>({
+        registrationCosts: new FormControl(0, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        registrationCostsType: new FormControl(null),
+        depositCosts: new FormControl(0, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        depositCostsType: new FormControl(null),
+        accommodationCosts: new FormControl(0, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        accommodationCostsType: new FormControl(null),
+        guestCosts: new FormControl(0, {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+        guestCostsType: new FormControl(null),
+        costsText: new FormControl('', {
+          nonNullable: true,
+          validators: [Validators.required],
+        }),
+      }),
+      deadlines: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      registrationCostsType: new FormControl(null),
-      depositCosts: new FormControl(0, {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-      depositCostsType: new FormControl(null),
-      accommodationCosts: new FormControl(0, {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-      accommodationCostsType: new FormControl(null),
-      guestCosts: new FormControl(0, {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-      guestCostsType: new FormControl(null),
-      costsText: new FormControl('', {
-        nonNullable: true,
-        validators: [Validators.required],
-      }),
-    }),
-    deadlines: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
-  });
+    },
+    { validators: teamCountMissingValidator }
+  );
 
 export const contactInformationFormControl =
   new FormGroup<ContactInformationForm>({
@@ -155,10 +180,7 @@ export const contactInformationFormControl =
 export const accommodationInformationFormControl =
   new FormGroup<AccommodationInformationForm>({
     accommodationType: new FormControl(null, [Validators.required]),
-    accommodationAddress: new FormControl('', {
-      nonNullable: true,
-      validators: [Validators.required],
-    }),
+    accommodationAddress: new FormControl(''),
     food: new FormGroup<FoodInformationForm>({
       breakfast: new FormControl(null, [Validators.required]),
       lunch: new FormControl(null, [Validators.required]),
@@ -168,30 +190,12 @@ export const accommodationInformationFormControl =
   });
 
 export const rulesInformationFormControl = new FormGroup<RulesInformationForm>({
-  tournamentSystem: new FormControl('', {
-    nonNullable: true,
-    validators: [Validators.required],
-  }),
-  tournamentSystemLink: new FormControl('', {
-    nonNullable: true,
-    validators: [Validators.required],
-  }),
-  pompfCheck: new FormControl('', {
-    nonNullable: true,
-    validators: [Validators.required],
-  }),
-  pompfCheckLink: new FormControl('', {
-    nonNullable: true,
-    validators: [Validators.required],
-  }),
-  houseRules: new FormControl('', {
-    nonNullable: true,
-    validators: [Validators.required],
-  }),
-  houseRulesLink: new FormControl('', {
-    nonNullable: true,
-    validators: [Validators.required],
-  }),
+  tournamentSystem: new FormControl(''),
+  tournamentSystemLink: new FormControl(''),
+  pompfCheck: new FormControl(''),
+  pompfCheckLink: new FormControl(''),
+  houseRules: new FormControl(''),
+  houseRulesLink: new FormControl(''),
   shoes: new FormGroup<ShoesInformationForm>({
     studded: new FormControl(false, {
       nonNullable: true,
@@ -219,5 +223,5 @@ export const createTournamentFormControl = new FormGroup<CreateTournamentForm>({
   contact: contactInformationFormControl,
   accommodation: accommodationInformationFormControl,
   rules: rulesInformationFormControl,
-  costsText: new FormControl(''),
+  additionalText: new FormControl(''),
 });

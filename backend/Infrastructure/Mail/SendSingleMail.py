@@ -1,7 +1,7 @@
 from typing import List
 
-from config.tasks import send_email_task
-from worker.Model.SendMailTaskBody import SendMailTaskBody
+from config import send_email_task
+from worker.Model import SendMailTaskBody
 
 
 class SendSingleMail:
@@ -22,5 +22,5 @@ class SendSingleMail:
                 recipients=recipients,
                 body=body,
                 html=html
-            )
+            ).toDict()
         ])

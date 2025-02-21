@@ -8,8 +8,7 @@ import { TournamentOverviewData } from '@jtr/data-domain/store';
 import {
   ButtonComponent,
   DataContainerComponent,
-  DataContainerRowComponent,
-  StatusIndicatorComponent
+  StatusIndicatorComponent,
 } from '../../index';
 
 @Component({
@@ -21,7 +20,6 @@ import {
     DataContainerComponent,
     MatIconButton,
     StatusIndicatorComponent,
-    DataContainerRowComponent,
     ButtonComponent,
   ],
   templateUrl: './tournament-row.component.html',

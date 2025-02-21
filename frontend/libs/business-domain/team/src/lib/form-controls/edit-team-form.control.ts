@@ -5,28 +5,37 @@ import {
   FormGroup,
   ValidationErrors,
   ValidatorFn,
-  Validators
+  Validators,
 } from '@angular/forms';
 
 import { UserRole } from '@jtr/data-domain/store';
 
-export const editTeamForm = new FormGroup<EditTeamForm>({
-  id: new FormControl(null, {nonNullable: true, validators: [Validators.required]}),
-  aboutUs: new FormControl('', {nonNullable: true}),
-  city: new FormControl('', {nonNullable: true}),
-  contacts: new FormArray<FormControl<string | null>>([]),
-  isMixTeam: new FormControl(false, {nonNullable: true, validators: [Validators.required]}),
-  name: new FormControl('', {nonNullable: true, validators: [Validators.required]}),
-  trainingTime: new FormControl('', {nonNullable: false}),
-}, {validators: mixteamOrCityValidator()});
+export const editTeamForm = new FormGroup<EditTeamForm>(
+  {
+    id: new FormControl(null),
+    aboutUs: new FormControl('', { nonNullable: true }),
+    city: new FormControl('', { nonNullable: true }),
+    contacts: new FormArray<FormControl<string | null>>([]),
+    isMixTeam: new FormControl(false, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    name: new FormControl('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    trainingTime: new FormControl('', { nonNullable: false }),
+  },
+  { validators: mixteamOrCityValidator() }
+);
 
 export type EditTeamForm = {
   id: FormControl<number | null>;
   aboutUs: FormControl<string | null>;
   city: FormControl<string | null>;
   contacts: FormArray<FormControl<string | null>>;
-  isMixTeam: FormControl<boolean | null>;
-  name: FormControl<string | null>;
+  isMixTeam: FormControl<boolean>;
+  name: FormControl<string>;
   trainingTime: FormControl<string | null>;
 };
 
@@ -42,7 +51,7 @@ export function mixteamOrCityValidator(): ValidatorFn {
     const city = control.get('city')?.value;
 
     if (!isMixTeam && !city) {
-      return {mixteamOrCityRequired: true};
+      return { mixteamOrCityRequired: true };
     }
 
     return null;

@@ -1,13 +1,6 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-
-import { MatDividerModule } from '@angular/material/divider';
 
 import { TournamentData } from '@jtr/data-domain/store';
 
@@ -17,6 +10,7 @@ import {
   InfoButtonComponent,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DividerModule } from 'primeng/divider';
 import { InputSwitchModule } from 'primeng/inputswitch';
 
 @Component({
@@ -27,14 +21,13 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     DataContainerExpandableComponent,
     DataContainerRowComponent,
     InfoButtonComponent,
-    MatDividerModule,
+    DividerModule,
     TranslatePipe,
     InputSwitchModule,
     ReactiveFormsModule,
   ],
   templateUrl: './tournament-information-rules.component.html',
   styleUrl: './tournament-information-rules.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TournamentInformationRulesComponent
   extends DataContainerExpandableComponent

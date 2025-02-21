@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   inject,
@@ -8,6 +7,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Subject, takeUntil } from 'rxjs';
 
@@ -38,9 +38,13 @@ import { InputTextModule } from 'primeng/inputtext';
   providers: [TournamentDataService, TeamDataService],
   templateUrl: './page-manage-tournament.component.html',
   styleUrl: './page-manage-tournament.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageManageTournamentComponent implements OnInit, OnDestroy {
+  constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly router: Router
+  ) {}
+
   private readonly tournamentDataService = inject(TournamentDataService);
   private readonly teamsDataService = inject(TeamDataService);
   public readonly tournament$ = this.tournamentDataService.tournamentDetails$;
@@ -70,8 +74,6 @@ export class PageManageTournamentComponent implements OnInit, OnDestroy {
     teams: new FormControl<EmailRecipientEnum | null>(null),
   });
 
-  constructor(private readonly changeDetectorRef: ChangeDetectorRef) {}
-
   public ngOnInit(): void {
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.changeDetectorRef.markForCheck();
@@ -94,17 +96,20 @@ export class PageManageTournamentComponent implements OnInit, OnDestroy {
   }
 
   public onManageTeams(): void {
-    window.alert('Manage teams');
+    this.router.navigate([
+      'manage-tournament/participating-teams',
+      this.tournamentId,
+    ]);
   }
 
   public onEnterResults(): void {
-    window.alert('Enter results');
+    this.router.navigate(['manage-tournament/enter-results']);
   }
 
   public onEditInfos(): void {
-    window.open(
-      `manage-tournament/tournament-information/${this.tournamentId}`,
-      '_self'
-    );
+    this.router.navigate([
+      'manage-tournament/tournament-information',
+      this.tournamentId,
+    ]);
   }
 }

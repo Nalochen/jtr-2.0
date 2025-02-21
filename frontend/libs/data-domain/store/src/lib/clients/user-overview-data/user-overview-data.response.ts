@@ -3,7 +3,7 @@ export interface UserOverviewData {
   username: string;
   name: string;
   birthDate: string | null;
-  picture: string;
+  pictureUrl: string;
   pronouns: string;
   city: string | null;
   email: string;

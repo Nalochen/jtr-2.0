@@ -10,9 +10,11 @@ import {
   UserOverviewDataClient,
 } from '@jtr/data-domain/store';
 
-import { loadUserOverviewData } from '../actions/user-overview-data-load.action';
-import { loadUserOverviewDataFailedAction } from '../actions/user-overview-data-loaded-failed.action';
-import { loadUserOverviewDataSuccessAction } from '../actions/user-overview-data-loaded-success.action';
+import {
+  loadUserOverviewDataAction,
+  loadUserOverviewDataFailedAction,
+  loadUserOverviewDataSuccessAction,
+} from '../actions/user-overview.action';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +26,7 @@ export class GetUserOverviewDataEffect {
 
   public getUserOverviewData$: Observable<unknown> = createEffect(() =>
     this.actions$.pipe(
-      ofType(loadUserOverviewData),
+      ofType(loadUserOverviewDataAction),
       switchMap(() =>
         this.userOverviewDataClient.getUserOverviewData$().pipe(
           map((payload: UserOverviewData[]) =>

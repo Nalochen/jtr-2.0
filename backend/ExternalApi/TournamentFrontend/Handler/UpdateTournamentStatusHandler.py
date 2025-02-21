@@ -1,11 +1,14 @@
 from flask import g
 
-from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
-from DataDomain.Model.Response import Response
-from ExternalApi.TournamentFrontend.config.extensions import clearTournamentCache
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
+from BusinessDomain.Tournament.UseCase.CommandHandler import (
+    UpdateTournamentStatusCommandHandler,
 )
+from BusinessDomain.Tournament.UseCase.CommandHandler.Command import (
+    UpdateTournamentStatusCommand,
+)
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfOrganizingTeamRule
+from DataDomain.Model import Response
+from ExternalApi.TournamentFrontend.config.extensions import clearTournamentCache
 
 
 class UpdateTournamentStatusHandler:
@@ -13,22 +16,21 @@ class UpdateTournamentStatusHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Update tournament status"""
 
-        data = g.validatedData
+        data = g.validated_data
 
         tournamentId: int = data.get('tournamentId')
 
-        tournament = TournamentRepository.get(tournamentId)
-
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(
-                tournament.organizer_id):
+        if not IsCurrentUserAdminOfOrganizingTeamRule.applies(tournamentId):
             return Response(status=403)
 
-        tournament.status = data.get('status')
-
         try:
-            TournamentRepository.update(tournament)
+            UpdateTournamentStatusCommandHandler.execute(
+                UpdateTournamentStatusCommand(
+                    tournamentId=tournamentId,
+                    status=data.get('status')
+                )
+            )
 
             clearTournamentCache(tournamentId)
 

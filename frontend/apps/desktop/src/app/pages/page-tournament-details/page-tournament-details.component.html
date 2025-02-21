@@ -1,14 +1,17 @@
-@if (tournament$ | async; as tournament) {
+@let tournament = tournament$ | async; @if (tournament) {
 <tournament-header [tournament]="tournament" />
-} @if (tournament$ | async; as tournament) {
 <tournament-information [tournament]="tournament" />
-}
 
 <section class="registration">
-  @if ((tournament$ | async)?.status === 'published' && (registrationStartDate$
-  | async); as registrationStartDate) {
-  <tournament-registration [registrationStartDate]="registrationStartDate" />
+  @if (tournament?.status === TournamentStatus.PUBLISHED && (canRegister$ |
+  async) && tournament?.id) {
+  <tournament-registration
+    [registrationStartDate]="tournament.registrationStartDate"
+    [tournamentId]="tournament.id"
+    [registeredTeams]="tournament.teams"
+  />
   } @if (teams$ | async; as teams) {
   <tournament-teams [teams]="teams" />
   }
 </section>
+}

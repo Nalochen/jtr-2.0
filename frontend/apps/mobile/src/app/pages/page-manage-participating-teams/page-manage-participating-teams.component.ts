@@ -7,13 +7,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  inject,
-  OnDestroy,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { firstValueFrom, Subject, takeUntil } from 'rxjs';
@@ -25,7 +19,7 @@ import {
   TournamentTeamsData,
 } from '@jtr/data-domain/store';
 
-import { ManageParticipationService } from '../../business-rules/tournament/manage-participation.service';
+import { ParticipationService } from '../../business-rules/tournament/participation.service';
 
 import {
   ButtonColorEnum,
@@ -63,12 +57,11 @@ import { TooltipModule } from 'primeng/tooltip';
   providers: [TournamentDataService],
   templateUrl: './page-manage-participating-teams.component.html',
   styleUrl: './page-manage-participating-teams.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageManageParticipatingTeamsComponent implements OnDestroy {
   constructor(
     private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly manageParticipationService: ManageParticipationService
+    private readonly manageParticipationService: ParticipationService
   ) {
     this.teams$
       .pipe(takeUntil(this.destroy$))

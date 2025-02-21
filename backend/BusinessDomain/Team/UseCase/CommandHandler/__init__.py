@@ -1,0 +1,5 @@
+from .CreateTeamCommandHandler import CreateTeamCommandHandler
+from .DeleteTeamCommandHandler import DeleteTeamCommandHandler
+from .SendTeamInvitationCommandHandler import SendTeamInvitationCommandHandler
+from .UpdateTeamCommandHandler import UpdateTeamCommandHandler
+from .UpdateTeamPictureCommandHandler import UpdateTeamPictureCommandHandler

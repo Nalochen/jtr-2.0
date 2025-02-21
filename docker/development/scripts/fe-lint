@@ -2,4 +2,4 @@
 
 cd /home/frontend
 
-npm run lint-fix:all
+npm run nx int-fix:all

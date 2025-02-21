@@ -1,13 +1,13 @@
 <div class="picture-name">
+  @if (user().pictureUrl) {
   <img
     id="logo"
     alt="Profile Picture of {{ user().username }}"
-    src="{{ user().picture }}"
+    [src]="user().pictureUrl"
     height="100"
     width="100"
   />
-
-  @if (user().isNameVisible) {
+  } @if (user().isNameVisible) {
   <div class="names">
     <h1>{{ user().name }}</h1>
     <h3>{{ user().username }}</h3>

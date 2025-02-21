@@ -1,11 +1,9 @@
 from flask import g
-from werkzeug.security import generate_password_hash
 
-from DataDomain.Database.Repository.UserRepository import UserRepository
-from DataDomain.Model.Response import Response
-from Infrastructure.Mail.User.SendPasswordResetSuccessMail import (
-    SendPasswordResetSuccessMail,
-)
+from BusinessDomain.User.Rule import DoesPasswordResetHashExistsRule
+from BusinessDomain.User.UseCase.CommandHandler import CreateNewPasswordCommandHandler
+from BusinessDomain.User.UseCase.CommandHandler.Command import CreateNewPasswordCommand
+from DataDomain.Model import Response
 
 
 class CreateNewPasswordHandler:
@@ -13,28 +11,22 @@ class CreateNewPasswordHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Reset password"""
 
-        data = g.validatedData
+        data = g.validated_data
 
         hash: str = data.get('hash')
-        password: str = data.get('password')
 
-        user = UserRepository.checkPasswordResetHash(hash)
-
-        if not user:
+        if not DoesPasswordResetHashExistsRule.applies(hash):
             return Response(
-                status=404
+                status=400
             )
 
         try:
-            UserRepository.updatePasswordAndClearPasswordResetHash(
-                user.id,
-                generate_password_hash(password)
-            )
-
-            SendPasswordResetSuccessMail().send(
-                user=user
+            CreateNewPasswordCommandHandler.execute(
+                CreateNewPasswordCommand(
+                    hash=hash,
+                    password=data.get('password')
+                )
             )
 
         except Exception:

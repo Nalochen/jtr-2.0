@@ -14,10 +14,10 @@ export class ManageTeamDetailsResolver implements Resolve<boolean> {
   constructor(private store$: Store) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
-    const teamId = route.paramMap.get('teamId');
+    const escapedName = route.paramMap.get('escapedName');
 
-    if (teamId) {
-      this.store$.dispatch(loadTeamDetailsData({ teamId: +teamId }));
+    if (escapedName) {
+      this.store$.dispatch(loadTeamDetailsData({ escapedName: escapedName }));
     }
 
     return new Observable<boolean>((observer) => {

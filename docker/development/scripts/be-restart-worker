@@ -1,0 +1,11 @@
+#!/bin/bash
+
+pkill -f 'celery -A worker.tasks worker --loglevel=info'
+
+cd /home/backend
+
+. worker/venv/bin/activate
+
+celery -A worker.tasks worker --loglevel=info
+
+echo "Worker restarted on pid: $!"

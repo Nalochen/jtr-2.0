@@ -8,7 +8,7 @@ from flask_inputfilter.Filter import (
 )
 from flask_inputfilter.Validator import (
     IsArrayValidator,
-    IsBoolValidator,
+    IsBooleanValidator,
     IsIntegerValidator,
     IsStringValidator,
     RegexValidator,
@@ -18,8 +18,7 @@ from flask_inputfilter.Validator import (
 class UpdateTeamInputFilter(InputFilter):
     """The input filter for the update-team route"""
 
-    def __init__(self):
-        """Initializes the UpdateTeamInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 
@@ -54,8 +53,7 @@ class UpdateTeamInputFilter(InputFilter):
             ],
             validators=[
                 RegexValidator(
-                    RegexEnum.ISO_DATE.value,
-                    'Das Geburtsdatum muss im iso format haben.'
+                    RegexEnum.ISO_DATETIME.value,
                 )
             ]
         )
@@ -71,7 +69,7 @@ class UpdateTeamInputFilter(InputFilter):
             'isMixTeam',
             required=False,
             filters=[ToBooleanFilter(), ToNullFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(

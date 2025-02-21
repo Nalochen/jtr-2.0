@@ -1,11 +1,15 @@
 from flask import g
 
-from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
-from DataDomain.Database.Repository.TournamentSubscriptionRepository import (
-    TournamentSubscriptionRepository,
+from BusinessDomain.Tournament.Rule import DoesTournamentExistsRule
+from BusinessDomain.User.Rule import DoesSubscriptionExistsRule
+from BusinessDomain.User.Rule.tools import getJwtIdentity
+from BusinessDomain.User.UseCase.CommandHandler import (
+    DeleteTournamentSubscriptionCommandHandler,
 )
-from DataDomain.Database.tools import getJwtIdentity
-from DataDomain.Model.Response import Response
+from BusinessDomain.User.UseCase.CommandHandler.Command import (
+    DeleteTournamentSubscriptionCommand,
+)
+from DataDomain.Model import Response
 
 
 class DeleteTournamentSubscriptionHandler:
@@ -13,29 +17,26 @@ class DeleteTournamentSubscriptionHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Handles the delete-tournament-subscription route"""
 
-        data = g.validatedData
+        data = g.validated_data
 
         tournamentId = data.get('tournamentId')
         currentUserId = getJwtIdentity().id
 
-        tournament = TournamentRepository.get(
-            tournamentId
-        )
-        if not tournament:
+        if not DoesTournamentExistsRule.applies(tournamentId):
             return Response(status=404)
 
-        subscription = TournamentSubscriptionRepository.exists(
-            currentUserId,
-            tournament.id
-        )
-        if not subscription:
-            return Response(status=400)
+        if not DoesSubscriptionExistsRule.applies(
+                userId=currentUserId, tournamentId=tournamentId):
+            return Response(status=404)
 
         try:
-            TournamentSubscriptionRepository.delete(
-                currentUserId, tournament.id)
+            DeleteTournamentSubscriptionCommandHandler.execute(
+                DeleteTournamentSubscriptionCommand(
+                    userId=currentUserId,
+                    tournamentId=tournamentId
+                )
+            )
 
         except Exception:
             return Response(status=500)

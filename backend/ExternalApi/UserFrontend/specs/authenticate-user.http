@@ -1,0 +1,14 @@
+### Log user in
+POST https://{{host}}/api/user-frontend/authenticate-user
+Content-Type: application/json
+
+{
+    "username": "Maxi",
+    "password": "123456"
+}
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

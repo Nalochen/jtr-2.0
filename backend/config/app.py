@@ -1,19 +1,18 @@
 import os
 
 from flask import Flask
+from flask_compress import Compress
 from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from flask_talisman import Talisman
 from redis import Redis
 
-from config.cache import cache
-from config.config import Config
-from config.limiter import limiter
-from DataDomain.Database.db import db
-from ExternalApi.System.config.routes import system
-from ExternalApi.TeamFrontend.config.routes import team_frontend
-from ExternalApi.TournamentFrontend.config.routes import tournament_frontend
-from ExternalApi.UserFrontend.config.routes import user_frontend
+from config import Config, cache, limiter
+from DataDomain.Database import db
+from ExternalApi.System.config import system
+from ExternalApi.TeamFrontend.config import team_frontend
+from ExternalApi.TournamentFrontend.config import tournament_frontend
+from ExternalApi.UserFrontend.config import user_frontend
 
 
 def createApp() -> Flask:
@@ -47,6 +46,8 @@ def createApp() -> Flask:
         'style-src': ["'self'", "'unsafe-inline'"],
         'img-src': ["'self'"],
     })
+
+    Compress(app)
 
     return app
 

@@ -34,19 +34,18 @@ INSERT IGNORE INTO tournaments (
     pompf_check_url,
     registration_procedure_text,
     registration_procedure_type,
-    registration_procedure_url,
     registration_start_date,
     organizer_id
 ) VALUES (
     'Pottpompfen mit Biss, für Mutige mit Zunder',
-    '2025-01-18 10:00:00',
-    '2025-01-18 18:00:00',
+    '2025-01-07 10:00:00',
+    '2025-01-08 18:00:00',
     'Abschlussturnier der Pottsblitze und Potthucken, die in Schul-AGs zusammen kommen und halbjährlich neu ausgeschrieben werden. Dies ist das Winterturnier. Das Pendant im Sommer ist "Der Pott erwacht" (Termin steht noch nicht fest)..',
     '',
     'Turnhalle der Maria Sybilla Merian - Gesamtschule, Lohackerstraße 9a, 44867 Bochum',
     16,
-    '2025-01-17',
-    '2025-01-18',
+    '2025-01-07',
+    '2025-01-08',
     20,
     'PER_TEAM',
     'published',
@@ -73,7 +72,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     1
 ),
@@ -113,7 +111,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     2
 ),
@@ -153,7 +150,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     3
 ),
@@ -193,7 +189,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     4
 ),
@@ -233,7 +228,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     5
 ),
@@ -273,7 +267,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     6
 ),
@@ -313,7 +306,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     1
 ),
@@ -353,7 +345,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     1
 ),
@@ -393,7 +384,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     1
 ),
@@ -433,7 +423,6 @@ INSERT IGNORE INTO tournaments (
     'https://example.com/pompf-check',
     'First come, first served.',
     'first_come',
-    'https://example.com/registration',
     NOW(),
     1
 );

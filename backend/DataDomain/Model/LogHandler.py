@@ -2,14 +2,13 @@ import logging
 
 from flask_sqlalchemy.session import Session
 
-from DataDomain.Database.Model.Logs import Logs
+from DataDomain.Database.Model import Logs
 
 
 class LogHandler(logging.Handler):
     """Custom logging handler that logs to the database"""
 
     def __init__(self, session: Session) -> None:
-        """Initialize the log handler"""
 
         super().__init__()
 

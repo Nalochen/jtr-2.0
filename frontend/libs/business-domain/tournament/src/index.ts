@@ -1,4 +1,7 @@
-export * from './lib/store/actions/tournament.action';
+export * from './lib/form-controls/create-tournament-form.control';
+
+export * from './lib/store/actions/tournament-details.action';
+export * from './lib/store/actions/tournament-overview.action';
 
 export * from './lib/store/effects/get-tournament-details-data.effect';
 export * from './lib/store/effects/get-tournament-overview-data.effect';

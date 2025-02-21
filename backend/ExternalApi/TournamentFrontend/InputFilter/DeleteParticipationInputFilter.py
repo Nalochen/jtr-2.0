@@ -6,8 +6,7 @@ from flask_inputfilter.Validator import IsIntegerValidator
 class DeleteParticipationInputFilter(InputFilter):
     """The input filter for the delete-participation route"""
 
-    def __init__(self):
-        """Initializes the DeleteParticipationInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 

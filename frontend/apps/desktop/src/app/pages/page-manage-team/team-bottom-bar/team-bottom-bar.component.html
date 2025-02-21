@@ -1,4 +1,5 @@
 <div>
+  @if (teamId) {
   <app-button
     (click)="onOpenDeleteDialog()"
     [color]="ButtonColorEnum.White"
@@ -6,6 +7,7 @@
   >
     <p>{{ 'page-manage-team.delete-team' | translate }}</p>
   </app-button>
+  }
 
   <app-button
     (click)="onSaveTeam()"
@@ -16,7 +18,12 @@
   </app-button>
 </div>
 
-<p-dialog header="{{ 'page-manage-team.confirmation' | translate }}?" [modal]="true" [(visible)]="isDeleteDialogVisible" [style]="{ width: '25rem' }">
+<p-dialog
+  header="{{ 'page-manage-team.confirmation' | translate }}?"
+  [modal]="true"
+  [(visible)]="isDeleteDialogVisible"
+  [style]="{ width: '25rem' }"
+>
   <div class="delete-overlay">
     <app-button
       (click)="isDeleteDialogVisible = false"

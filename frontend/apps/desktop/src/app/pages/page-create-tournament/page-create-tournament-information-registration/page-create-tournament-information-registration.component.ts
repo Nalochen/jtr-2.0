@@ -1,21 +1,15 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
 
+import { RegistrationInformationForm } from '@jtr/business-domain/tournament';
 import {
   PricingTypeEnum,
   TournamentRegistrationProcedureTypeEnum,
 } from '@jtr/data-domain/tournament-data';
 
-import { RegistrationInformationForm } from '../../../../../../../libs/business-domain/tournament/src/lib/form-controls/create-tournament-form.control';
 import {
   ButtonColorEnum,
   ButtonComponent,
@@ -23,7 +17,7 @@ import {
   DataContainerRowComponent,
   InfoButtonComponent,
 } from '../../../ui-shared';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -50,7 +44,6 @@ export type TeamCountOption = { label: string; value: number };
   templateUrl:
     './page-create-tournament-information-registration.component.html',
   styleUrl: './page-create-tournament-information-registration.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageCreateTournamentInformationRegistrationComponent
   implements OnInit, OnDestroy
@@ -70,22 +63,19 @@ export class PageCreateTournamentInformationRegistrationComponent
     { label: '24', value: 24 },
     { label: '32', value: 32 },
   ];
+  public registrationProcedureOptions: {
+    label: string;
+    value: TournamentRegistrationProcedureTypeEnum;
+  }[] = [];
+  public pricingTypeOptions: { label: string; value: PricingTypeEnum }[] = [];
 
-  public registrationProcedureOptions = [
-    {
-      label: 'first come first served',
-      value: TournamentRegistrationProcedureTypeEnum.FIRST_COME,
-    },
-    { label: 'draw', value: TournamentRegistrationProcedureTypeEnum.LOTS },
-    { label: 'other', value: TournamentRegistrationProcedureTypeEnum.OTHER },
-  ];
-
-  public pricingTypeOptions = [
-    { label: 'per Person', value: PricingTypeEnum.PER_PERSON },
-    { label: 'per Team', value: PricingTypeEnum.PER_TEAM },
-  ];
-
-  constructor(private readonly datePipe: DatePipe) {}
+  constructor(
+    private readonly datePipe: DatePipe,
+    private readonly translateService: TranslateService
+  ) {
+    this.initializeRegistrationProcedureOptions();
+    this.initializePricingTypeOptions();
+  }
 
   public ngOnInit() {
     this.form.controls.teamCountField.valueChanges
@@ -103,6 +93,41 @@ export class PageCreateTournamentInformationRegistrationComponent
   public ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+  }
+
+  private initializeRegistrationProcedureOptions(): void {
+    const options = [
+      {
+        label: 'first-come',
+        value: TournamentRegistrationProcedureTypeEnum.FIRST_COME,
+      },
+      { label: 'draw', value: TournamentRegistrationProcedureTypeEnum.LOTS },
+      {
+        label: 'other-procedure',
+        value: TournamentRegistrationProcedureTypeEnum.OTHER,
+      },
+    ];
+
+    this.translateService.get('create-tournament').subscribe((translations) => {
+      this.registrationProcedureOptions = options.map((option) => ({
+        ...option,
+        label: translations[option.label] || option.label,
+      }));
+    });
+  }
+
+  private initializePricingTypeOptions(): void {
+    const options = [
+      { label: 'per-person', value: PricingTypeEnum.PER_PERSON },
+      { label: 'per-team', value: PricingTypeEnum.PER_TEAM },
+    ];
+
+    this.translateService.get('create-tournament').subscribe((translations) => {
+      this.pricingTypeOptions = options.map((option) => ({
+        ...option,
+        label: translations[option.label] || option.label,
+      }));
+    });
   }
 
   public onOpenRegistrationNow() {

@@ -6,13 +6,8 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  input,
-  output,
-} from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TournamentTeamData } from '@jtr/data-domain/store';
@@ -45,10 +40,10 @@ import { TooltipModule } from 'primeng/tooltip';
     DropdownModule,
     FormsModule,
     ChipComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './drop-list.component.html',
   styleUrl: './drop-list.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropListComponent {
   public readonly participatingTeams = input.required<TournamentTeamData[]>();

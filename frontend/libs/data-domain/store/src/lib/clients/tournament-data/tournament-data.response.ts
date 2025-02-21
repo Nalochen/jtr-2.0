@@ -1,4 +1,5 @@
 import {
+  AccommodationTypeEnum,
   PricingTypeEnum,
   TournamentFoodEveningEnum,
   TournamentFoodGastroEnum,
@@ -42,11 +43,10 @@ export interface TournamentPompfCheck {
 
 export interface TournamentAccommodation {
   location: string;
-  type: string;
+  type: AccommodationTypeEnum;
 }
 
 export interface TournamentRegistrationProcedure {
-  url: string;
   type: TournamentRegistrationProcedureTypeEnum;
   text: string;
 }
@@ -79,8 +79,9 @@ export interface TournamentTeamData {
   createdAt: string;
   founded: string;
   isMixTeam: boolean;
-  logo: string;
+  logoUrl: string;
   name: string;
+  escapedName: string;
   trainingTime: string;
   hasPaid: boolean;
   updatedAt: string;
@@ -97,7 +98,7 @@ export interface TournamentOrganizerTeamData {
   createdAt: string;
   founded: string;
   isMixTeam: boolean;
-  logo: string;
+  logoUrl: string;
   name: string;
   trainingTime: string;
   updatedAt: string;

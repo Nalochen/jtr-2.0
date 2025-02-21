@@ -9,7 +9,7 @@
     <p ngProjectAs="container-content">{{ tournament.address }}</p>
   </app-data-container-row>
 
-  <mat-divider ngProjectAs="panel-content" />
+  <p-divider ngProjectAs="panel-content" />
 
   <app-data-container-row ngProjectAs="panel-content" class="first-content-row">
     <span class="material-icons-outlined" ngProjectAs="container-icon"
@@ -19,11 +19,12 @@
       {{ 'page-tournament-details.arrival' | translate }}
     </h5>
     <p ngProjectAs="container-content">
-      {{ tournament.arrivalDate.start }} - {{ tournament.arrivalDate.end }}
+      {{ tournament.arrivalDate.start | date : 'dd.MM.YYYY hh:mm' }} Uhr -
+      {{ tournament.arrivalDate.end | date : 'dd.MM.YYYY hh:mm' }} Uhr
     </p>
   </app-data-container-row>
 
-  <mat-divider ngProjectAs="panel-content" />
+  <p-divider ngProjectAs="panel-content" />
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon"
@@ -35,7 +36,7 @@
     <p ngProjectAs="container-content">{{ tournament.schedule }}</p>
   </app-data-container-row>
 
-  <mat-divider ngProjectAs="panel-content" />
+  <p-divider ngProjectAs="panel-content" />
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon"
@@ -47,12 +48,28 @@
     <p ngProjectAs="container-content">
       {{ tournament.accommodation.location }}
     </p>
+    @if (tournament.costs.accommodationCosts) {
+    <p ngProjectAs="container-content">
+      {{ 'page-tournament-details.costs' | translate }}:
+      {{
+        tournament.costs.accommodationCosts
+          | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
+      }}
+
+      {{
+        (tournament.costs.accommodationCostsType === PricingTypeEnum.PER_PERSON
+          ? 'page-tournament-details.per-person'
+          : 'page-tournament-details.per-team'
+        ) | translate
+      }}
+    </p>
+    }
     <app-chip ngProjectAs="container-additional">{{
-      tournament.accommodation.type
+      chipText | translate
     }}</app-chip>
   </app-data-container-row>
 
-  <mat-divider ngProjectAs="panel-content" />
+  <p-divider ngProjectAs="panel-content" />
 
   <app-data-container-row ngProjectAs="panel-content">
     <span class="material-icons-outlined" ngProjectAs="container-icon"
@@ -63,19 +80,19 @@
     </h5>
     <p ngProjectAs="container-content">
       {{ 'page-tournament-details.breakfast' | translate }}:
-      {{ tournament.food.morning }}
+      {{ foodMorningText | translate }}
     </p>
     <p ngProjectAs="container-content">
       {{ 'page-tournament-details.lunch' | translate }}:
-      {{ tournament.food.noon }}
+      {{ foodNoonText | translate }}
     </p>
     <p ngProjectAs="container-content">
       {{ 'page-tournament-details.dinner' | translate }}:
-      {{ tournament.food.evening }}
+      {{ foodEveningText | translate }}
     </p>
     <p ngProjectAs="container-content">
       {{ 'page-tournament-details.gastronomy' | translate }}:
-      {{ tournament.food.gastro }}
+      {{ foodGastroText | translate }}
     </p>
   </app-data-container-row>
 </app-data-container-expandable>

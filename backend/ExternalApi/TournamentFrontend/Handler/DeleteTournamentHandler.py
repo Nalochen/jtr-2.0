@@ -1,11 +1,15 @@
 from flask import g
 
-from DataDomain.Database.Repository.TournamentRepository import TournamentRepository
-from DataDomain.Model.Response import Response
-from ExternalApi.TournamentFrontend.config.extensions import clearTournamentCache
-from ExternalApi.UserFrontend.Service.CheckForMembershipRoleService import (
-    CheckForMembershipRoleService,
+from BusinessDomain.Tournament.Repository import TournamentRepository
+from BusinessDomain.Tournament.UseCase.CommandHandler import (
+    DeleteTournamentCommandHandler,
 )
+from BusinessDomain.Tournament.UseCase.CommandHandler.Command import (
+    DeleteTournamentCommand,
+)
+from BusinessDomain.User.Rule import IsCurrentUserAdminOfTeamRule
+from DataDomain.Model import Response
+from ExternalApi.TournamentFrontend.config.extensions import clearTournamentCache
 
 
 class DeleteTournamentHandler:
@@ -13,9 +17,8 @@ class DeleteTournamentHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Handles the delete-tournament route"""
 
-        data = g.validatedData
+        data = g.validated_data
 
         tournamentId = data.get('tournamentId')
 
@@ -25,12 +28,16 @@ class DeleteTournamentHandler:
         if not tournament:
             return Response(status=404)
 
-        if not CheckForMembershipRoleService.isCurrentUserAdminOfTeam(
+        if not IsCurrentUserAdminOfTeamRule.applies(
                 tournament.organizer_id):
             return Response(status=403)
 
         try:
-            TournamentRepository.delete(tournamentId=tournament.id)
+            DeleteTournamentCommandHandler.execute(
+                DeleteTournamentCommand(
+                    tournamentId=tournamentId
+                )
+            )
 
             clearTournamentCache(tournament.id)
 

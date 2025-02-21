@@ -126,8 +126,8 @@ components:
           type: boolean
         shoesText:
           type: string
-        registrationProcedureUrl:
-          type: string
+        teamId:
+          type: number
 
     CreateTournamentResponseBody:
       type: object

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 const CREATE_RESULT_ENDPOINT = '/api/tournament-frontend/create-result';
 
@@ -21,7 +21,9 @@ export interface EnterResultRequestBody {
 export class EnterResultService {
   constructor(private readonly http: HttpClient) {}
 
-  public create(request: EnterResultRequestBody): Observable<void> {
-    return this.http.post<void>(CREATE_RESULT_ENDPOINT, request);
+  public async create(request: EnterResultRequestBody): Promise<void> {
+    return await firstValueFrom(
+      this.http.post<void>(CREATE_RESULT_ENDPOINT, request)
+    );
   }
 }

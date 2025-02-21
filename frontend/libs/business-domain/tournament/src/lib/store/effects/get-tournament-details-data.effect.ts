@@ -8,10 +8,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { TournamentData, TournamentDataClient } from '@jtr/data-domain/store';
 
 import {
-  loadTournamentDetailsData,
+  loadTournamentDetailsDataAction,
   loadTournamentDetailsDataFailedAction,
   loadTournamentDetailsDataSuccessAction,
-} from '../actions/tournament.action';
+} from '../actions/tournament-details.action';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +23,7 @@ export class GetTournamentDetailsDataEffect {
 
   public getTournamentDetailsData$: Observable<unknown> = createEffect(() =>
     this.actions$.pipe(
-      ofType(loadTournamentDetailsData),
+      ofType(loadTournamentDetailsDataAction),
       switchMap((action) =>
         this.tournamentDataClient.getTournamentData$(action.tournamentId).pipe(
           map((payload: TournamentData) =>

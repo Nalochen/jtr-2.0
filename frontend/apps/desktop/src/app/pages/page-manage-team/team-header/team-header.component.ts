@@ -1,6 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
@@ -10,8 +9,6 @@ import {
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { Subject, takeUntil } from 'rxjs';
-
-import { Store } from '@ngrx/store';
 
 import { EditTeamForm } from '@jtr/business-domain/team';
 
@@ -40,20 +37,20 @@ import { InputTextModule } from 'primeng/inputtext';
   ],
   templateUrl: './team-header.component.html',
   styleUrl: './team-header.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamHeaderComponent implements OnInit, OnDestroy {
+  constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly teamService: TeamService
+  ) {}
+
   @Input() public form!: FormGroup<EditTeamForm>;
-  @Input() public teamId!: number | undefined;
+  @Input() public logoUrl?: string;
+  @Input() public teamId?: number;
+
   private readonly destroy$ = new Subject<void>();
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
-
-  constructor(
-    private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly store$: Store,
-    private readonly teamService: TeamService
-  ) {}
 
   public ngOnInit(): void {
     this.form.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
@@ -67,16 +64,22 @@ export class TeamHeaderComponent implements OnInit, OnDestroy {
   }
 
   public async onFileSelected(event: Event): Promise<void> {
+    if (!this.teamId) {
+      return;
+    }
+
     const input = event.target as HTMLInputElement;
 
-    if (input.files && input.files.length > 0) {
-      const selectedFile = input.files[0];
-
-      await this.teamService.updatePicture(selectedFile);
+    if (!input.files || input.files.length <= 0) {
+      return;
     }
-  }
 
-  public getPictureUrl(): string {
-    return this.teamId ? this.teamService.getPictureUrl(this.teamId) : '';
+    const selectedFile = input.files[0];
+
+    this.logoUrl = await this.teamService.updatePicture(
+      selectedFile,
+      this.teamId
+    );
+    this.changeDetectorRef.detectChanges();
   }
 }

@@ -1,12 +1,8 @@
-import base64
-
 from flask import g
 
-from DataDomain.Database.Repository.UserRepository import UserRepository
-from DataDomain.Database.tools import getJwtIdentity
-from DataDomain.Model.Response import Response
-from ExternalApi.UserFrontend.Service.PictureService import PictureService
-from ExternalApi.UserFrontend.Service.PictureTypeEnum import PictureTypeEnum
+from BusinessDomain.User.UseCase.CommandHandler import UpdateUserPictureCommandHandler
+from BusinessDomain.User.UseCase.CommandHandler.Command import UpdateUserPictureCommand
+from DataDomain.Model import Response
 
 
 class UpdateUserPictureHandler:
@@ -14,25 +10,22 @@ class UpdateUserPictureHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Update a user picture"""
 
-        data = g.validatedData
-
-        pictureData: str = data.get('picture')
-
-        user = getJwtIdentity()
+        data = g.validated_data
 
         try:
-            decodedData = base64.b64decode(pictureData)
-
-            user.picture = PictureService.savePicture(
-                decodedData, PictureTypeEnum.USER)
-
-            UserRepository.update(user)
+            filepath = UpdateUserPictureCommandHandler.execute(
+                UpdateUserPictureCommand(
+                    pictureData=data.get('picture')
+                )
+            )
 
         except Exception:
             return Response(status=500)
 
         return Response(
+            response={
+                'picture': filepath
+            },
             status=200
         )

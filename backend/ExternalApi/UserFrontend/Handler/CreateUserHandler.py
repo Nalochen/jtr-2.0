@@ -1,13 +1,10 @@
-from datetime import datetime
-
 from flask import g
-from flask_jwt_extended import create_access_token
-from werkzeug.security import generate_password_hash
 
-from config.cache import cache
-from DataDomain.Database.Model.Users import Users
-from DataDomain.Database.Repository.UserRepository import UserRepository
-from DataDomain.Model.Response import Response
+from BusinessDomain.User.Rule import DoesEmailExistsRule, DoesUsernameExistsRule
+from BusinessDomain.User.UseCase.CommandHandler import CreateUserCommandHandler
+from BusinessDomain.User.UseCase.CommandHandler.Command import CreateUserCommand
+from config import cache
+from DataDomain.Model import Response
 
 
 class CreateUserHandler:
@@ -15,45 +12,44 @@ class CreateUserHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Create a user and login"""
 
-        data = g.validatedData
+        data = g.validated_data
 
-        user = Users()
-
-        user.birthdate_visibility = data.get('isBirthdateVisible')
-        user.city_visibility = data.get('isCityVisible')
-        user.name_visibility = data.get('isNameVisible')
-        user.password_hash = generate_password_hash(data.get('password'))
-        user.username = data.get('username')
-
-        birthdate = data.get('birthdate')
-        if birthdate is not None:
-            user.birthdate = datetime.fromisoformat(birthdate)
-
-        city = data.get('city')
-        if city is not None:
-            user.city = city
-
+        username = data.get('username')
         email = data.get('email')
-        if email is not None:
-            user.email = email
 
-        name = data.get('name')
-        if name is not None:
-            user.name = name
+        if DoesUsernameExistsRule.applies(username):
+            return Response(
+                status=400,
+                response='Username already exists'
+            )
+
+        if DoesEmailExistsRule.applies(email):
+            return Response(
+                status=400,
+                response='Email already exists'
+            )
 
         try:
-            UserRepository.create(user)
+            accessToken = CreateUserCommandHandler.execute(
+                CreateUserCommand(
+                    username=username,
+                    email=email,
+                    password=data.get('password'),
+                    name=data.get('name'),
+                    city=data.get('city'),
+                    birthdate=data.get('birthdate'),
+                    language=data.get('language'),
+                    isNameVisible=data.get('isNameVisible'),
+                    isCityVisible=data.get('isCityVisible'),
+                    isBirthdateVisible=data.get('isBirthdateVisible')
+                )
+            )
 
             cache.delete('user-overview')
 
         except Exception:
             return Response(status=500)
-
-        accessToken = create_access_token(
-            identity=user.id
-        )
 
         return Response(
             response={

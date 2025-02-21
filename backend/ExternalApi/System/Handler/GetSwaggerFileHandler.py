@@ -5,7 +5,7 @@ from typing import List
 import yaml
 from flask import Blueprint
 
-from DataDomain.Model.Response import Response
+from DataDomain.Model import Response
 
 externalApiFolder = Blueprint(
     'external_api',

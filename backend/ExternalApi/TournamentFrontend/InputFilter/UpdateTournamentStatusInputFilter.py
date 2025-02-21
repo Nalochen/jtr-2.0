@@ -2,14 +2,13 @@ from flask_inputfilter import InputFilter
 from flask_inputfilter.Filter import StringTrimFilter, ToIntegerFilter
 from flask_inputfilter.Validator import InEnumValidator, IsIntegerValidator
 
-from DataDomain.Database.Enum.TournamentStatusTypesEnum import TournamentStatusTypesEnum
+from DataDomain.Database.Enum import TournamentStatusTypesEnum
 
 
 class UpdateTournamentStatusInputFilter(InputFilter):
     """The input filter for the update-tournament-status route"""
 
-    def __init__(self):
-        """Initializes the UpdateTournamentStatusInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 

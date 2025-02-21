@@ -1,21 +1,10 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-} from '@angular/core';
+import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { Observable } from 'rxjs';
+import { EditTeamForm } from '@jtr/business-domain/team';
 
-import { Store } from '@ngrx/store';
-
-import { EditTeamForm, teamDetailsSelector } from '@jtr/business-domain/team';
-import { TeamData } from '@jtr/data-domain/store';
-import { SingletonGetter } from '@jtr/infrastructure/cache';
-
-import { TeamService } from '../../../../../../desktop/src/app/business-rules/team/team.service';
+import { TeamService } from '../../../business-rules/team/team.service';
 
 import {
   ButtonColorEnum,
@@ -40,36 +29,37 @@ import { InputTextModule } from 'primeng/inputtext';
   ],
   templateUrl: './team-header.component.html',
   styleUrl: './team-header.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TeamHeaderComponent {
+  constructor(
+    private readonly changeDetectorRef: ChangeDetectorRef,
+    private readonly teamService: TeamService
+  ) {}
+
   @Input() public form!: FormGroup<EditTeamForm>;
-  @Input() public teamId!: number | undefined;
+  @Input() public logoUrl?: string;
+  @Input() public teamId?: number;
+
   protected readonly ButtonColorEnum = ButtonColorEnum;
   protected readonly ButtonTypeEnum = ButtonTypeEnum;
 
-  @SingletonGetter()
-  public get team$(): Observable<TeamData | null> {
-    return this.store$.select(teamDetailsSelector);
-  }
-
-  constructor(
-    private readonly changeDetectorRef: ChangeDetectorRef,
-    private readonly store$: Store,
-    private readonly teamService: TeamService
-) {}
-
   public async onFileSelected(event: Event): Promise<void> {
+    if (!this.teamId) {
+      return;
+    }
+
     const input = event.target as HTMLInputElement;
 
-    if (input.files && input.files.length > 0) {
-      const selectedFile = input.files[0];
-
-      await this.teamService.updatePicture(selectedFile);
+    if (!input.files || input.files.length <= 0) {
+      return;
     }
-  }
 
-  public getPictureUrl(): string {
-    return this.teamId ? this.teamService.getPictureUrl(this.teamId) : '';
+    const selectedFile = input.files[0];
+
+    this.logoUrl = await this.teamService.updatePicture(
+      selectedFile,
+      this.teamId
+    );
+    this.changeDetectorRef.detectChanges();
   }
 }

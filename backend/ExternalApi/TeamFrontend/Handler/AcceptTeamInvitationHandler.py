@@ -1,12 +1,14 @@
 from flask import g
 
-from DataDomain.Database.Enum.UserRoleTypesEnum import UserRoleTypesEnum
-from DataDomain.Database.Repository.IsPartOfRepository import IsPartOfRepository
-from DataDomain.Database.Repository.TeamInvitationRepository import (
-    TeamInvitationRepository,
+from BusinessDomain.Membership.UseCase.CommandHandler import (
+    CreateMembershipCommandHandler,
 )
-from DataDomain.Database.tools import getJwtIdentity
-from DataDomain.Model.Response import Response
+from BusinessDomain.Membership.UseCase.CommandHandler.Command import (
+    CreateMembershipCommand,
+)
+from BusinessDomain.Team.Rule import IsHashValidRule
+from BusinessDomain.User.Rule.tools import getJwtIdentity
+from DataDomain.Model import Response
 
 
 class AcceptTeamInvitationHandler:
@@ -14,33 +16,21 @@ class AcceptTeamInvitationHandler:
 
     @staticmethod
     def handle() -> Response:
-        """Accept invitation of a user to join a team"""
 
-        data = g.validatedData
+        data = g.validated_data
 
         hash: str = data.get('hash')
         currentUserId: int = getJwtIdentity().id
 
         try:
-            validHash = TeamInvitationRepository.checkHash(
-                userId=currentUserId,
-                hash=hash
-            )
-
-            if not validHash:
+            if not IsHashValidRule.applies(currentUserId, hash):
                 return Response(status=400)
 
-            teamId = TeamInvitationRepository.getTeamIdByHash(hash)
-
-            IsPartOfRepository.create(
-                userId=currentUserId,
-                teamId=teamId,
-                userRole=UserRoleTypesEnum.MEMBER.value
-            )
-
-            TeamInvitationRepository.delete(
-                userId=currentUserId,
-                teamId=teamId
+            CreateMembershipCommandHandler.execute(
+                CreateMembershipCommand(
+                    userId=currentUserId,
+                    hash=hash
+                )
             )
 
         except Exception:

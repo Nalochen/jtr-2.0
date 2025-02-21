@@ -1,14 +1,17 @@
 from flask_inputfilter import InputFilter
 from flask_inputfilter.Enum.RegexEnum import RegexEnum
 from flask_inputfilter.Filter import StringTrimFilter, ToBooleanFilter, ToNullFilter
-from flask_inputfilter.Validator import IsBoolValidator, IsStringValidator, RegexValidator
+from flask_inputfilter.Validator import (
+    IsBooleanValidator,
+    IsStringValidator,
+    RegexValidator,
+)
 
 
 class CreateUserInputFilter(InputFilter):
     """The input filter for the register route"""
 
-    def __init__(self):
-        """Initializes the CreateUserInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 
@@ -30,7 +33,7 @@ class CreateUserInputFilter(InputFilter):
             'isBirthdateVisible',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
@@ -47,7 +50,7 @@ class CreateUserInputFilter(InputFilter):
             'isCityVisible',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
@@ -79,7 +82,7 @@ class CreateUserInputFilter(InputFilter):
             'isNameVisible',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
@@ -92,6 +95,15 @@ class CreateUserInputFilter(InputFilter):
         self.add(
             'username',
             required=True,
+            filters=[
+                StringTrimFilter()
+            ],
+            validators=[IsStringValidator()]
+        )
+
+        self.add(
+            'language',
+            required=False,
             filters=[
                 StringTrimFilter()
             ],

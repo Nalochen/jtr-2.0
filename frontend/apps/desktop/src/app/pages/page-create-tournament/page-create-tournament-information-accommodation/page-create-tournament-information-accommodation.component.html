@@ -12,6 +12,13 @@
         optionValue="value"
       />
     </div>
+    @if ((form.controls.accommodationType.dirty ||
+    form.controls.accommodationType.touched) &&
+    form.controls.accommodationType.hasError('required')) {
+    <p ngProjectAs="container-content" class="error-message">
+      {{ 'create-tournament.accommodation-type-required' | translate }}
+    </p>
+    }
   </app-data-container-row>
 
   <app-data-container-row>
@@ -59,5 +66,14 @@
         [options]="gastronomyAvailabilityOptions"
       />
     </div>
+    @if ((form.dirty || form.touched) &&
+    (form.controls.food.controls.breakfast.hasError('required') ||
+    form.controls.food.controls.lunch.hasError('required') ||
+    form.controls.food.controls.dinner.hasError('required') ||
+    form.controls.food.controls.gastronomy.hasError('required'))) {
+    <p ngProjectAs="container-content" class="error-message">
+      {{ 'create-tournament.food-required' | translate }}
+    </p>
+    }
   </app-data-container-row>
 </div>

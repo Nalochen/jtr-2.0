@@ -1,0 +1,8 @@
+### Get historic team points
+GET https://{{host}}/api/team-frontend/get-historic-team-points/1
+
+> {%
+    client.test("It should return a successful status code", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

@@ -1,16 +1,25 @@
+@if (tournament.organizer.logoUrl) {
 <img
   alt="Logo of {{ tournament.name }}"
   width="50"
   height="50"
-  ngSrc="{{ tournament.organizer.logo }}"
+  [src]="tournament.organizer.logoUrl"
 />
+}
 
 <div class="tournament-information">
   <div class="event-information">
+    @if ((tournament.date.start | date : 'dd.MM.YYYY') === (tournament.date.end
+    | date : 'dd.MM.YYYY')) {
     <p class="date">
-      {{ tournament.date.start | date : 'dd.MM.YYYY' }} -
+      {{ tournament.date.start | date : 'dd.MM.YYYY' }}
+    </p>
+    } @else {
+    <p class="date">
+      {{ tournament.date.start | date : 'dd.MM.' }} -
       {{ tournament.date.end | date : 'dd.MM.YYYY' }}
     </p>
+    }
 
     <p class="city">{{ tournament.location }}</p>
   </div>

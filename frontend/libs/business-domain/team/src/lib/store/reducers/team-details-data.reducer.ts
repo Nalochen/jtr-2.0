@@ -4,7 +4,7 @@ import {
   loadTeamDetailsData,
   loadTeamDetailsDataFailedAction,
   loadTeamDetailsDataSuccessAction,
-} from '../actions/team.action';
+} from '../actions/team-details.action';
 import { teamDetailsDataInitialState } from '../states/team-details-data-store.initial-state';
 import { TeamDetailsState } from '../states/team-details-data-store.state';
 import { FAILED, IDLE, LOADING } from '../types/loading-state.type';

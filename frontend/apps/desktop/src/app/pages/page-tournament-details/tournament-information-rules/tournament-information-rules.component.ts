@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { MatDividerModule } from '@angular/material/divider';
-
 import { TournamentData } from '@jtr/data-domain/store';
 
 import {
@@ -12,6 +10,7 @@ import {
   InfoButtonComponent,
 } from '../../../ui-shared';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DividerModule } from 'primeng/divider';
 import { InputSwitchModule } from 'primeng/inputswitch';
 
 @Component({
@@ -22,7 +21,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     DataContainerComponent,
     DataContainerRowComponent,
     InfoButtonComponent,
-    MatDividerModule,
+    DividerModule,
     TranslatePipe,
     InputSwitchModule,
     ReactiveFormsModule,
@@ -34,10 +33,10 @@ export class TournamentInformationRulesComponent implements OnInit {
   @Input() public tournament!: TournamentData;
 
   protected form = new FormGroup({
-    nubbedShoesAllowed: new FormControl(false),
-    cleadedShoesAllowed: new FormControl(false),
-    studdedShoesAllowed: new FormControl(false),
-    barefootAllowed: new FormControl(false),
+    nubbedShoesAllowed: new FormControl({ value: false, disabled: true }),
+    cleadedShoesAllowed: new FormControl({ value: false, disabled: true }),
+    studdedShoesAllowed: new FormControl({ value: false, disabled: true }),
+    barefootAllowed: new FormControl({ value: false, disabled: true }),
   });
 
   public ngOnInit(): void {

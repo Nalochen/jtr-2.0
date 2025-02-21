@@ -1,8 +1,10 @@
+@let user = user$ | async; @let isLoggedIn = isLoggedIn$ | async;
+
 <div class="header">
   <div class="left">
-    <button mat-icon-button="home">
-      <span class="material-icons-outlined">image</span>
-    </button>
+    <app-button (click)="navigateToHome()">
+      <img src="assets/jtr-logo.png" alt="Logo" width="32" height="32" />
+    </app-button>
     <app-button
       [type]="ButtonTypeEnum.Icon"
       [color]="ButtonColorEnum.None"
@@ -17,12 +19,29 @@
     </app-button>
   </div>
   <nav>
-    <button mat-icon-button="search" class="search">
-      <span class="material-icons-outlined">search</span>
-    </button>
-    <button mat-icon-button (click)="openOverlay()">
+    @if (isLoggedIn$ | async) {
+    <app-button
+      [color]="ButtonColorEnum.None"
+      [type]="ButtonTypeEnum.Icon"
+      (click)="navigateToUserDetails()"
+    >
+      @if (user) {
+      <img
+        id="logo"
+        alt="Profile Picture of {{ user?.username }}"
+        [src]="user?.pictureUrl"
+        height="32"
+        width="32"
+        class="user-profile-pic"
+      />
+      } @else {
+      <span class="material-icons-outlined">account_circle</span>
+      }
+    </app-button>
+    }
+    <app-button (click)="openOverlay()">
       <span class="material-icons-outlined">menu</span>
-    </button>
+    </app-button>
   </nav>
 </div>
 <div class="content">

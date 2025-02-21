@@ -1,14 +1,9 @@
-import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { firstValueFrom, Observable, Subject, takeUntil } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 
@@ -42,10 +37,10 @@ import { TranslatePipe } from '@ngx-translate/core';
     InfoButtonComponent,
     ReactiveFormsModule,
     VisibilityButtonComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './page-manage-user-details.component.html',
   styleUrl: './page-manage-user-details.component.less',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
   public readonly ButtonTypeEnum = ButtonTypeEnum;
@@ -81,7 +76,7 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
         this.form.controls.isNameVisible.setValue(user.isNameVisible);
         this.form.controls.birthdate.setValue(user.birthdate || '');
         this.form.controls.isBirthdateVisible.setValue(user.isBirthdateVisible);
-        this.form.controls.profilePicture.setValue(user.picture);
+        this.form.controls.profilePicture.setValue(user.pictureUrl);
         this.form.controls.pronouns.setValue(user.pronouns || '');
         this.form.controls.city.setValue(user.city || '');
         this.form.controls.isCityVisible.setValue(user.isCityVisible);
@@ -94,28 +89,33 @@ export class PageManageUserDetailsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  public navigateToTeam(teamId: number): void {
-    window.open(`team-details/${teamId}`, '_self');
+  public navigateToTeam(escapedName: string): void {
+    this.router.navigate(['team-details', escapedName]);
   }
 
   public onFoundNewTeam(): void {
-    window.alert('Found new team');
+    this.router.navigate(['create-team/team-information']);
   }
 
   public async onDeleteAccount(): Promise<void> {
     await this.userService.delete();
 
-    this.router.navigate(['/tournament-overview']);
+    this.router.navigate(['tournament-overview']);
   }
 
   public async onSubmit(): Promise<void> {
-    await this.userService.update({
-      birthdate: this.form.controls.birthdate.value,
-      city: this.form.controls.city.value,
-      email: this.form.controls.email.value,
-      name: this.form.controls.name.value,
-      pronouns: this.form.controls.pronouns.value,
-      username: this.form.controls.username.value,
-    });
+    await firstValueFrom(
+      this.userService.update({
+        birthdate: this.form.controls.birthdate.value,
+        city: this.form.controls.city.value,
+        email: this.form.controls.email.value,
+        name: this.form.controls.name.value,
+        pronouns: this.form.controls.pronouns.value,
+        username: this.form.controls.username.value,
+        isBirthdateVisible: this.form.controls.isBirthdateVisible.value,
+        isNameVisible: this.form.controls.isNameVisible.value,
+        isCityVisible: this.form.controls.isCityVisible.value,
+      })
+    );
   }
 }

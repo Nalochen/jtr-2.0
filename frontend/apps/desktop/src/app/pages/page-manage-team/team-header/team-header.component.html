@@ -1,18 +1,30 @@
 <div class="header" [formGroup]="form">
   <div class="image-container">
+    @if(logoUrl) {
     <img
       id="logo"
       alt="Logo of {{ form.controls.name.value }}"
       height="150"
       width="150"
-      src="{{ getPictureUrl() }}"
+      [src]="logoUrl"
     />
     <app-button
       [color]="ButtonColorEnum.White"
       [type]="ButtonTypeEnum.Round"
-      (click)="fileInput.click()">
+      (click)="fileInput.click()"
+      class="change-logo"
+    >
       <span class="material-icons-outlined">edit</span>
     </app-button>
+    } @else {
+    <app-button
+      [color]="ButtonColorEnum.White"
+      [type]="ButtonTypeEnum.Round"
+      (click)="fileInput.click()"
+    >
+      <span class="material-icons-outlined">edit</span>
+    </app-button>
+    }
     <input
       type="file"
       #fileInput
@@ -42,9 +54,12 @@
         <p-inputSwitch formControlName="isMixTeam" />
       </div>
     </div>
-    @if ((form.controls.city.dirty || form.controls.city.touched || form.controls.isMixTeam.dirty || form.controls.isMixTeam.touched ) &&
+    @if ((form.controls.city.dirty || form.controls.city.touched ||
+    form.controls.isMixTeam.dirty || form.controls.isMixTeam.touched ) &&
     form.hasError('mixteamOrCityRequired')) {
-    <p class="error-message small-text">{{ 'page-manage-team.city-or-mixteam-required' | translate }}</p>
+    <p class="error-message small-text">
+      {{ 'page-manage-team.city-or-mixteam-required' | translate }}
+    </p>
     }
 
     <label for="name">{{ 'page-manage-team.name' | translate }}</label>
@@ -56,7 +71,9 @@
     />
     @if ((form.controls.name.dirty || form.controls.name.touched) &&
     form.controls.name.hasError('required')) {
-    <p class="error-message small-text">{{ 'page-manage-team.name-required' | translate }}</p>
+    <p class="error-message small-text">
+      {{ 'page-manage-team.name-required' | translate }}
+    </p>
     }
   </div>
 </div>

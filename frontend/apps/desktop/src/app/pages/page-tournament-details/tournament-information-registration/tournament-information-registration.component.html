@@ -9,6 +9,7 @@
 
     @if (tournament.costs.registrationCosts) {
     <p ngProjectAs="container-content">
+      {{ 'page-tournament-details.registration' | translate }}:
       {{
         tournament.costs.registrationCosts
           | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
@@ -21,10 +22,44 @@
         ) | translate
       }}
     </p>
+    } @if (tournament.costs.depositCosts) {
+    <p ngProjectAs="container-content">
+      {{ 'page-tournament-details.deposit' | translate }}:
+      {{
+        tournament.costs.depositCosts
+          | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
+      }}
+
+      {{
+        (tournament.costs.depositCostsType === PricingTypeEnum.PER_PERSON
+          ? 'page-tournament-details.per-person'
+          : 'page-tournament-details.per-team'
+        ) | translate
+      }}
+    </p>
+    } @if (tournament.costs.guestCosts) {
+    <p ngProjectAs="container-content">
+      {{ 'page-tournament-details.guests' | translate }}:
+      {{
+        tournament.costs.guestCosts
+          | currency : 'EUR' : 'symbol-narrow' : '1.0-0' : 'de'
+      }}
+
+      {{
+        (tournament.costs.guestCostsType === PricingTypeEnum.PER_PERSON
+          ? 'page-tournament-details.per-person'
+          : 'page-tournament-details.per-team'
+        ) | translate
+      }}
+    </p>
+    } @if (tournament.costs.costsText) {
+    <p ngProjectAs="container-content">
+      {{ tournament.costs.costsText }}
+    </p>
     }
   </app-data-container-row>
 
-  <mat-divider />
+  <p-divider />
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon"
@@ -35,7 +70,7 @@
     </h4>
 
     <app-chip ngProjectAs="container-additional">{{
-      tournament.registrationProcedure.type
+      chipText | translate
     }}</app-chip>
 
     <p ngProjectAs="container-content">
@@ -43,7 +78,7 @@
     </p>
   </app-data-container-row>
 
-  <mat-divider />
+  <p-divider />
 
   <app-data-container-row>
     <span class="material-icons-outlined" ngProjectAs="container-icon"

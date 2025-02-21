@@ -1,15 +1,15 @@
 import json
+import os
 from datetime import datetime
 from typing import Any, Dict, List
 
-from sqlalchemy import func
+from sqlalchemy import Case, case, func, literal
 from sqlalchemy.ext.hybrid import hybrid_property
 from sqlalchemy.orm import Mapped
 
-from DataDomain.Database.db import db
-from DataDomain.Database.Model.BaseModel import BaseModel
-from DataDomain.Database.Model.IsPartOf import is_part_of
-from DataDomain.Database.Model.ParticipatesIn import participates_in
+from BusinessDomain.Common.Enum import PicturePathEnum
+from DataDomain.Database import db
+from DataDomain.Database.Model import BaseModel, is_part_of, participates_in
 
 
 class Teams(BaseModel, db.Model):
@@ -23,7 +23,14 @@ class Teams(BaseModel, db.Model):
 
     name: str = db.Column(
         db.String(100),
-        nullable=False
+        nullable=False,
+        unique=True
+    )
+
+    escaped_name: str = db.Column(
+        db.String(100),
+        nullable=False,
+        unique=True
     )
 
     logo: str | None = db.Column(
@@ -107,6 +114,11 @@ class Teams(BaseModel, db.Model):
         back_populates='organizer'
     )
 
+    historic_points: Mapped[List['HistoricTeamPoints']] = db.relationship(
+        'HistoricTeamPoints',
+        back_populates='team'
+    )
+
     def serialize(self) -> Dict[str, Any]:
         """
         Serializes the object as a dictionary.
@@ -132,3 +144,39 @@ class Teams(BaseModel, db.Model):
         """
 
         return json.loads(str(self.contacts))
+
+    @hybrid_property
+    def logo_url(self) -> str:
+        """Creates the URL for the team's logo."""
+
+        if self.logo is None or self.logo == '':
+            return ''
+
+        match os.getenv('FLASK_ENV'):
+            case 'development':
+                return f'https://cdn.localhost/assets/{
+                    PicturePathEnum.TEAM_PICTURES_FOLDER.value}/{
+                    self.logo}'
+
+            case 'production':
+                return f'https://cdn.jugger-tourna.de/assets/{
+                    PicturePathEnum.TEAM_PICTURES_FOLDER.value}/{
+                    self.logo}'
+
+            case _:
+                return self.picture
+
+    @logo_url.expression
+    def logo_url(cls) -> Case:
+        """Creates the URL for the team's logo."""
+
+        return case(
+            (cls.logo is None, literal(None)),
+            (cls.logo == '', literal(None)),
+            (literal(os.getenv('FLASK_ENV')) == 'development',
+             literal(f'https://cdn.localhost/assets/{PicturePathEnum.TEAM_PICTURES_FOLDER.value}/') + cls.logo),
+            (literal(os.getenv('FLASK_ENV')) == 'production',
+             literal(
+                 f'https://cdn.jugger-tourna.de/assets/{PicturePathEnum.TEAM_PICTURES_FOLDER.value}/') + cls.logo),
+            else_=cls.logo
+        )

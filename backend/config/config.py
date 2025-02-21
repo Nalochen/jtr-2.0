@@ -33,7 +33,7 @@ class Config:
         app.config['CACHE_DEFAULT_TIMEOUT'] = 300
 
         app.config['CELERY_BROKER_NAME'] = os.getenv('CELERY_BROKER_NAME')
-        app.config['CELERY_BROKER_URL'] = os.getenv('CELERY_BROKER_URL')
+        app.config['CELERY_BACKEND_URL'] = os.getenv('CELERY_BACKEND_URL')
         app.config['CELERY_RESULT_BACKEND'] = os.getenv(
             'CELERY_RESULT_BACKEND')
 
@@ -42,31 +42,33 @@ class Config:
 
         app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024  # 4MB
 
-        if os.getenv('FLASK_ENV') == 'production':
-            app.config['DATABASE_PATH'] = '/app/DataDomain/Database'
-            app.config['CACHE_TYPE'] = 'redis'
-            app.config['UPLOAD_FOLDER'] = '/app/DataDomain/assets'
+        """Provides different path configuration for different env"""
+        match os.getenv('FLASK_ENV'):
+            case 'production':
+                app.config['DATABASE_PATH'] = '/app/DataDomain/Database'
+                app.config['CACHE_TYPE'] = 'redis'
+                app.config['UPLOAD_FOLDER'] = '/app/DataDomain/assets'
 
-        elif os.getenv('FLASK_ENV') == 'testing':
-            app.config['DATABASE_PATH'] = 'DataDomain/Database'
-            app.config['CACHE_TYPE'] = 'null'
-            app.config['UPLOAD_FOLDER'] = 'DataDomain/assets'
+            case 'testing':
+                app.config['DATABASE_PATH'] = 'DataDomain/Database'
+                app.config['CACHE_TYPE'] = 'null'
+                app.config['UPLOAD_FOLDER'] = 'DataDomain/assets'
 
-            import warnings
+                import warnings
 
-            warnings.filterwarnings(
-                "ignore",
-                message="Flask-Caching: CACHE_TYPE is set to null, "
-                        "caching is effectively disabled.")
+                warnings.filterwarnings(
+                    "ignore",
+                    message="Flask-Caching: CACHE_TYPE is set to null, "
+                            "caching is effectively disabled.")
 
-        elif os.getenv('FLASK_ENV') == 'development':
-            app.config['DATABASE_PATH'] = '/home/backend/DataDomain/Database'
-            app.config['CACHE_TYPE'] = 'null'
-            app.config['UPLOAD_FOLDER'] = '/home/backend/DataDomain/assets'
+            case 'development':
+                app.config['DATABASE_PATH'] = '/home/backend/DataDomain/Database'
+                app.config['CACHE_TYPE'] = 'null'
+                app.config['UPLOAD_FOLDER'] = '/home/backend/DataDomain/assets'
 
-            import warnings
+                import warnings
 
-            warnings.filterwarnings(
-                "ignore",
-                message="Flask-Caching: CACHE_TYPE is set to null, "
-                        "caching is effectively disabled.")
+                warnings.filterwarnings(
+                    "ignore",
+                    message="Flask-Caching: CACHE_TYPE is set to null, "
+                            "caching is effectively disabled.")

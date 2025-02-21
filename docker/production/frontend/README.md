@@ -24,5 +24,5 @@ sudo nginx -t
 ### Restart nginx
 
 ```bash
-sudo systemctl reload nginx
+nginx -s reload
 ```

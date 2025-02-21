@@ -9,29 +9,19 @@ from flask_inputfilter.Filter import (
 from flask_inputfilter.Validator import (
     InEnumValidator,
     IsArrayValidator,
-    IsBoolValidator,
+    IsBooleanValidator,
     IsIntegerValidator,
     IsStringValidator,
     RegexValidator,
 )
 
-from DataDomain.Database.Enum.TournamentAccommodationTypesEnum import (
+from DataDomain.Database.Enum import (
     TournamentAccommodationTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentCostTypesEnum import TournamentCostTypesEnum
-from DataDomain.Database.Enum.TournamentFoodEveningTypesEnum import (
+    TournamentCostTypesEnum,
     TournamentFoodEveningTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodGastroTypesEnum import (
     TournamentFoodGastroTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodMorningTypesEnum import (
     TournamentFoodMorningTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentFoodNoonTypesEnum import (
     TournamentFoodNoonTypesEnum,
-)
-from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import (
     TournamentRegistrationProcedureTypesEnum,
 )
 
@@ -39,8 +29,7 @@ from DataDomain.Database.Enum.TournamentRegistrationProcedureTypesEnum import (
 class UpdateTournamentInputFilter(InputFilter):
     """The input filter for the update-tournament route"""
 
-    def __init__(self):
-        """Initializes the UpdateTournamentInputFilter"""
+    def __init__(self) -> None:
 
         super().__init__()
 
@@ -374,40 +363,33 @@ class UpdateTournamentInputFilter(InputFilter):
             'studdedShoesAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
             'cleatsShoesAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
             'camShoesAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
             'barefootAllowed',
             required=True,
             filters=[ToBooleanFilter()],
-            validators=[IsBoolValidator()]
+            validators=[IsBooleanValidator()]
         )
 
         self.add(
             'shoesText',
             required=False,
             filters=[StringTrimFilter(), ToNullFilter()],
-            validators=[IsStringValidator()]
-        )
-
-        self.add(
-            'registrationProcedureUrl',
-            required=True,
-            filters=[StringTrimFilter()],
             validators=[IsStringValidator()]
         )
